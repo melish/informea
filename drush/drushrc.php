@@ -237,6 +237,55 @@
 // Provide a default directory to run on drush casperjs.
 # $command_specific['casperjs']['test-root'] = str_replace('drush', 'tests/casperjs', dirname(__FILE__));
 
+// Read JSON configuration file from conf/ and pre-configure drush commands
+$json_path = getcwd() . '/../conf/config.json';
+if(file_exists($json_path)) {
+        $cfg = json_decode(file_get_contents($json_path));
+        $db_url = sprintf('mysql://%s:%s@%s:%s/%s', $cfg->db->username, $cfg->db->password, $cfg->db->host, $cfg->db->port, $cfg->db->database);
+        $command_specific['site-install'] = array(
+                'db-url' => $db_url,
+                'account-mail' => $cfg->admin->email, 'account-name' => $cfg->admin->username, 'account-pass' => $cfg->admin->password,
+                'db-su' => $cfg->db->root_username, "db-su-pw" => $cfg->db->root_password,
+                'site-mail' => $cfg->site_mail
+        );
+}
+
+$options['init-modules'] = array(
+	'ctools', 'entity',
+
+	'locale',
+	'entity_translation',
+	'i18n',
+	'variable',
+
+	'views',
+	'views_ui',
+	'views_bulk_operations',
+
+	'taxonomy_access_fix',
+	'date',
+	'migrate',
+	'features',
+
+	'entityreference',
+	'link',
+	'title',
+	'wysiwyg',
+	'pathauto',
+	'uuid',
+
+	'search_api',
+	'facetapi',
+	'search_api_facetapi',
+	'apachesolr',
+	'apachesolr_search',
+	'search_api_solr',
+	'strongarm',
+
+	'imce_wysiwyg',
+);
+
+
 /**
  * Load local development override configuration, if available.
  *
