@@ -17,6 +17,15 @@ function build_drush_command() {
 		'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
 	);
 
+	$items['init'] = array(
+		'description' => 'Initialize the Drupal project instance in the current docroot/',
+		'callback' => '_drush_init',
+		'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+		'options' => array(
+			'debug-modules' => 'If enabled, modules are enabled one by one'
+		)
+	);
+
 	$items['devify'] = array(
 		'description' => 'Configures the current database for development.',
 		'callback' => '_drush_devify',
@@ -108,4 +117,30 @@ function _drush_devify() {
 	drush_sql_sanitize();
 
 	drush_log(dt('Devified!'), 'success');
+}
+
+/**
+ * Callback for drush init.
+ */
+function _drush_init() {
+	drush_log(dt('Enabling the required modules'), 'success');
+	// Enable modules.
+	$modules = drush_get_option('init-modules', array());
+	if (is_string($modules)) {
+		$modules = explode(',', $modules);
+	}
+	if(!empty($modules)) {
+		$debug = drush_get_option('debug-modules', FALSE);
+		if(!$debug) {
+			if(!module_enable($modules)) {
+				drush_log(dt('Failed to enable one ore more modules'), 'error');
+			}
+		} else {
+			foreach($modules as $module) {
+				if(!module_enable(array($module))) {
+					drush_log(dt('Failed to enable @module', array('@module' => $module)), 'error');
+				}
+			}
+		}
+	}
 }
