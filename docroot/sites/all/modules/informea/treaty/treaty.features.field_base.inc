@@ -10,6 +10,37 @@
 function treaty_field_default_field_bases() {
   $field_bases = array();
 
+  // Exported field_base: 'body'
+  $field_bases['body'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(
+      0 => 'node',
+    ),
+    'field_name' => 'body',
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'text_with_summary',
+  );
+
   // Exported field_base: 'field_address'
   $field_bases['field_address'] = array(
     'active' => 1,
@@ -276,6 +307,139 @@ function treaty_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'taxonomy_term_reference',
+  );
+
+  // Exported field_base: 'field_sorting_order'
+  $field_bases['field_sorting_order'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_sorting_order',
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_treaty_is_protocol'
+  $field_bases['field_treaty_is_protocol'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_treaty_is_protocol',
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => 'Is protocol',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
+  // Exported field_base: 'field_treaty_long_name'
+  $field_bases['field_treaty_long_name'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_treaty_long_name',
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max_length' => 255,
+    ),
+    'translatable' => 1,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_treaty_primary'
+  $field_bases['field_treaty_primary'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_treaty_primary',
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => 'Primary',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
+  // Exported field_base: 'field_treaty_year'
+  $field_bases['field_treaty_year'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_treaty_year',
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'date',
+    'settings' => array(
+      'cache_count' => 1,
+      'cache_enabled' => 1,
+      'entity_translation_sync' => FALSE,
+      'granularity' => array(
+        'day' => 0,
+        'hour' => 0,
+        'minute' => 0,
+        'month' => 0,
+        'second' => 0,
+        'year' => 'year',
+      ),
+      'timezone_db' => '',
+      'todate' => '',
+      'tz_handling' => 'none',
+    ),
+    'translatable' => 0,
+    'type' => 'datetime',
   );
 
   // Exported field_base: 'field_url_treaty_parties'

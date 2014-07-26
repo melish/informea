@@ -1,5 +1,7 @@
 <?php
 /**
  * @file
- * Drupal needs this blank file.
+ * Code for the treaty feature.
  */
+
+include_once 'treaty.features.inc';
