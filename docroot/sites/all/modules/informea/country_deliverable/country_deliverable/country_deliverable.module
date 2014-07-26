@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the country_deliverable feature.
+ */
+
+include_once 'country_deliverable.features.inc';
