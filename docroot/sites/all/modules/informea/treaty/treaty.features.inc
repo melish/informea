@@ -18,14 +18,6 @@ function treaty_ctools_plugin_api($module = NULL, $api = NULL) {
  */
 function treaty_node_info() {
   $items = array(
-    'member_party' => array(
-      'name' => t('Member Party'),
-      'base' => 'node_content',
-      'description' => t('Member party to a treaty'),
-      'has_title' => '1',
-      'title_label' => t('Title'),
-      'help' => '',
-    ),
     'organization' => array(
       'name' => t('Organization'),
       'base' => 'node_content',
