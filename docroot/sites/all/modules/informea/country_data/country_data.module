@@ -1,7 +1,5 @@
 <?php
 /**
  * @file
- * Code for the country_data feature.
+ * Drupal needs this blank file.
  */
-
-include_once 'country_data.features.inc';
