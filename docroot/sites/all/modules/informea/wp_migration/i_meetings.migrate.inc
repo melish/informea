@@ -57,6 +57,7 @@ class MigrateMeetings extends DynamicMigration {
     $this->addFieldMapping('field_abbreviation', 'abbreviation');
     $this->addFieldMapping('body', 'description');
     $this->addFieldMapping('body:language')->defaultValue('en');
+    $this->addFieldMapping('body:format')->defaultValue('full_html');
 
     $this->addFieldMapping('field_url', 'event_url');
     $this->addFieldMapping('event_calendar_date', 'start');
@@ -80,13 +81,20 @@ class MigrateMeetings extends DynamicMigration {
     $this->addFieldMapping('field_original_id', 'original_id');
     $this->addFieldMapping('field_treaty', 'id_treaty');
 
-    #$this->addFieldMapping('created', 'rec_created');
+    $this->addFieldMapping('created', 'rec_created');
+    $this->addFieldMapping('language')->defaultValue('en');
     $this->addFieldMapping('uid')->defaultValue(1);
   }
 
   function prepareRow($row) {
     if ($row->end == '0000-00-00 00:00:00') {
       $row->end = NULL;
+    }
+    if ($row->rec_created == '0000-00-00 00:00:00') {
+      $row->rec_created = NULL;
+    }
+    if (!empty($row->rec_created)) {
+      $row->rec_created = strtotime($row->rec_created);
     }
     $row->id_country = $this->countries[$row->id_country];
     $row->id_treaty = $this->treaties[$row->id_treaty];

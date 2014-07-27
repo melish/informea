@@ -11,3 +11,4 @@ dependencies[] = text
 
 files[] = i_treaty.migrate.inc
 files[] = i_meetings.migrate.inc
+files[] = i_decisions.migrate.inc

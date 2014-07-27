@@ -10,6 +10,7 @@ function wp_migration_migrate_api() {
     'migrations' => array(
       'Treaties' => array('class_name' => 'MigrateTreaties'),
       'Meetings' => array('class_name' => 'MigrateMeetings'),
+      'Decisions' => array('class_name' => 'MigrateDecisions'),
     )
   );
   return $api;

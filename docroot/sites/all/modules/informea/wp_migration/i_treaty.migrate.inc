@@ -39,19 +39,27 @@ class MigrateTreaties extends DynamicMigration {
     $this->addFieldMapping('field_number_of_parties', 'number_of_parties');
     $this->addFieldMapping('field_sorting_order', 'order');
     $this->addFieldMapping('field_treaty_is_protocol', 'is_protocol');
-    // $this->addFieldMapping('', 'logo_medium');
     $this->addFieldMapping('field_odata_identifier', 'odata_name');
     $this->addFieldMapping('field_ratification_xml_url', 'ratification_xml_url');
-    $this->addFieldMapping('field_logo', 'logo_medium');
 
-    #$this->addFieldMapping('created', 'rec_created');
+    $this->addFieldMapping('field_logo', 'logo_medium');
+    $this->addFieldMapping('field_logo:file_replace')->defaultValue(FILE_EXISTS_REPLACE);
+    $this->addFieldMapping('field_logo:source_dir')->defaultValue('/Work/informea/www.old/wp-content/uploads');
+
+    $this->addFieldMapping('created', 'rec_created');
+    $this->addFieldMapping('language')->defaultValue('en');
     $this->addFieldMapping('uid')->defaultValue(1);
   }
 
   function prepareRow($row) {
-    $row->logo_medium = '/Work/informea/www.old/wp-content/uploads/' . $row->logo_medium;
-    return TRUE;
+    if ($row->rec_created == '0000-00-00 00:00:00') {
+      $row->rec_created = NULL;
+    }
+    if (!empty($row->rec_created)) {
+      $row->rec_created = strtotime($row->rec_created);
+    }
   }
+
   protected function generateMachineName() {
     return 'Treaties';
   }
