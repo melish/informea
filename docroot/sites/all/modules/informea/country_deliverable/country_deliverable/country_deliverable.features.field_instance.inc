@@ -120,7 +120,7 @@ function country_deliverable_field_default_field_instances() {
     'settings' => array(
       'description_field' => 0,
       'entity_translation_sync' => 0,
-      'file_directory' => 'reports/national',
+      'file_directory' => 'reports/action_plans',
       'file_extensions' => 'txt pdf doc docx xls xlsx',
       'max_filesize' => '',
       'user_register_form' => FALSE,
@@ -174,6 +174,60 @@ function country_deliverable_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => 39,
+    ),
+  );
+
+  // Exported field_instance: 'node-action_plan-field_report_submission_date'
+  $field_instances['node-action_plan-field_report_submission_date'] = array(
+    'bundle' => 'action_plan',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_report_submission_date',
+    'label' => 'Submission date',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'm/d/Y - H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_popup',
+      'weight' => 40,
     ),
   );
 
@@ -370,7 +424,7 @@ function country_deliverable_field_default_field_instances() {
     'settings' => array(
       'description_field' => 0,
       'entity_translation_sync' => 0,
-      'file_directory' => '',
+      'file_directory' => 'reports/national',
       'file_extensions' => 'txt',
       'max_filesize' => '',
       'user_register_form' => FALSE,
@@ -424,6 +478,60 @@ function country_deliverable_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => 39,
+    ),
+  );
+
+  // Exported field_instance: 'node-national_report-field_report_submission_date'
+  $field_instances['node-national_report-field_report_submission_date'] = array(
+    'bundle' => 'national_report',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_report_submission_date',
+    'label' => 'Submission date',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'm/d/Y - H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_popup',
+      'weight' => 41,
     ),
   );
 
@@ -516,6 +624,7 @@ function country_deliverable_field_default_field_instances() {
   t('Country');
   t('Files');
   t('Original ID');
+  t('Submission date');
   t('Title');
   t('Treaty');
 
