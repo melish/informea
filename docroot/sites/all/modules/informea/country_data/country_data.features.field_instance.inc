@@ -96,44 +96,6 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact_person-field_contact_category'
-  $field_instances['node-contact_person-field_contact_category'] = array(
-    'bundle' => 'contact_person',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 13,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_contact_category',
-    'label' => 'Category',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_select',
-      'weight' => 47,
-    ),
-  );
-
   // Exported field_instance: 'node-contact_person-field_contact_fax'
   $field_instances['node-contact_person-field_contact_fax'] = array(
     'bundle' => 'contact_person',
@@ -172,6 +134,50 @@ function country_data_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => 46,
+    ),
+  );
+
+  // Exported field_instance: 'node-contact_person-field_contact_primary_nfp'
+  $field_instances['node-contact_person-field_contact_primary_nfp'] = array(
+    'bundle' => 'contact_person',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 15,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_contact_primary_nfp',
+    'label' => 'Primary NFP',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 50,
     ),
   );
 
@@ -1147,7 +1153,6 @@ function country_data_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Address');
   t('Body');
-  t('Category');
   t('Country');
   t('Department');
   t('E-Mail');
@@ -1162,6 +1167,7 @@ function country_data_field_default_field_instances() {
   t('Original ID');
   t('Position');
   t('Prefix');
+  t('Primary NFP');
   t('Telephone');
   t('Title');
   t('Treaty');

@@ -23,7 +23,7 @@ function country_data_node_info() {
       'base' => 'node_content',
       'description' => t('Person with a certain role (eg. focal point)'),
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => t('Full name'),
       'help' => '',
     ),
     'geographical_site' => array(
