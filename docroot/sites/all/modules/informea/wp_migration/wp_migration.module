@@ -11,6 +11,8 @@ function wp_migration_migrate_api() {
       'Treaties' => array('class_name' => 'MigrateTreaties'),
       'Meetings' => array('class_name' => 'MigrateMeetings'),
       'Decisions' => array('class_name' => 'MigrateDecisions'),
+      'ActionPlans' => array('class_name' => 'MigrateActionPlans'),
+      'NationalReports' => array('class_name' => 'MigrateNationalReports'),
     )
   );
   return $api;
