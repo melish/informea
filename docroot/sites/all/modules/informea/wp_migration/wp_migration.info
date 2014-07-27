@@ -1,0 +1,13 @@
+name = "WordPress migration"
+description = "Migrate InforMEA from WordPress to Drupal"
+package = "InforMEA"
+core = 7.x
+dependencies[] = migrate
+dependencies[] = field
+dependencies[] = file
+dependencies[] = image
+dependencies[] = number
+dependencies[] = text
+
+files[] = i_treaty.migrate.inc
+files[] = i_meetings.migrate.inc
