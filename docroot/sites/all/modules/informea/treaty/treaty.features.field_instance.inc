@@ -1054,11 +1054,11 @@ function treaty_field_default_field_instances() {
   t('Number of parties');
   t('OData identifier');
   t('Order');
+  t('Original ID');
   t('Primary');
   t('Ratification XML URL');
   t('Region');
   t('Title');
-  t('Treaty');
   t('Treaty parties URL');
   t('Treaty text URL');
   t('Treaty website URL');
