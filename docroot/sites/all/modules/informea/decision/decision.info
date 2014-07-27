@@ -37,6 +37,7 @@ features[field_instance][] = node-decision-field_meeting_title_en
 features[field_instance][] = node-decision-field_original_id
 features[field_instance][] = node-decision-field_treaty
 features[field_instance][] = node-decision-field_url
+features[field_instance][] = node-decision-title_field
 features[node][] = decision
 features[taxonomy][] = decision_status
 features[taxonomy][] = decision_type
