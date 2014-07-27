@@ -80,6 +80,7 @@ class MigrateDecisions extends DynamicMigration {
     $this->addFieldMapping('field_sorting_order', 'display_order');
 
     $this->addFieldMapping('created', 'rec_created');
+    $this->addFieldMapping('changed', 'rec_updated');
     $this->addFieldMapping('language')->defaultValue('en');
     $this->addFieldMapping('uid')->defaultValue(1);
 
@@ -93,6 +94,9 @@ class MigrateDecisions extends DynamicMigration {
     }
     if (!empty($row->rec_created)) {
       $row->rec_created = strtotime($row->rec_created);
+    }
+    if ($row->rec_updated == '0000-00-00 00:00:00') {
+      $row->rec_updated = NULL;
     }
     $row->id_meeting = $this->meetings[$row->id_meeting];
     $row->id_treaty = $this->treaties[$row->id_treaty];

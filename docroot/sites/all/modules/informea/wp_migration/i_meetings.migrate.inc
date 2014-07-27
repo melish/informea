@@ -84,6 +84,7 @@ class MigrateMeetings extends DynamicMigration {
     $this->addFieldMapping('field_treaty', 'id_treaty');
 
     $this->addFieldMapping('created', 'rec_created');
+    $this->addFieldMapping('changed', 'rec_updated');
     $this->addFieldMapping('language')->defaultValue('en');
     $this->addFieldMapping('uid')->defaultValue(1);
   }
@@ -94,6 +95,9 @@ class MigrateMeetings extends DynamicMigration {
     }
     if ($row->rec_created == '0000-00-00 00:00:00') {
       $row->rec_created = NULL;
+    }
+    if ($row->rec_updated == '0000-00-00 00:00:00') {
+      $row->rec_updated = NULL;
     }
     if (!empty($row->rec_created)) {
       $row->rec_created = strtotime($row->rec_created);

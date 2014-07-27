@@ -49,6 +49,7 @@ class MigrateTreaties extends DynamicMigration {
     $this->addFieldMapping('field_logo:source_dir')->defaultValue('/Work/informea/www.old/wp-content/uploads');
 
     $this->addFieldMapping('created', 'rec_created');
+    $this->addFieldMapping('changed', 'rec_updated');
     $this->addFieldMapping('language')->defaultValue('en');
     $this->addFieldMapping('uid')->defaultValue(1);
   }
@@ -56,6 +57,9 @@ class MigrateTreaties extends DynamicMigration {
   function prepareRow($row) {
     if ($row->rec_created == '0000-00-00 00:00:00') {
       $row->rec_created = NULL;
+    }
+    if ($row->rec_updated == '0000-00-00 00:00:00') {
+      $row->rec_updated = NULL;
     }
     if (!empty($row->rec_created)) {
       $row->rec_created = strtotime($row->rec_created);
