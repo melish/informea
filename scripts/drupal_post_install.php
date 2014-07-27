@@ -5,7 +5,7 @@
  */
 
 configure_solr();
-
+change_field_size();
 
 function configure_solr() {
 	$config_file = sprintf('%s/../conf/config.json', dirname(__FILE__));
@@ -94,4 +94,44 @@ function configure_solr() {
 	} else {
 		drupal_set_message('Unable to find solr_server section in config. Solr integration may be broken', 'warning');
 	}
+}
+
+
+/**
+ * Enlarge title field size to 768 characters
+ */
+function change_field_size() {
+  $column_size = 768;
+  $table = 'field_data_title_field';
+  $column = 'title_field_value';
+  if (_get_mysql_column_size($table, $column) < $column_size) {
+    drupal_set_message("Changing $table size to $column_size");
+    db_change_field($table, $column, $column,
+      array('type' => 'varchar', 'length' => $column_size)
+    );
+  }
+  $table = 'field_revision_title_field';
+  if (_get_mysql_column_size($table, $column) < $column_size) {
+    drupal_set_message("Changing $table size to $column_size");
+    db_change_field($table, $column, $column,
+      array('type' => 'varchar','length' => $column_size)
+    );
+  }
+}
+
+/**
+ * Function to retrive the size of a MySQL varchar column from a table
+ * @param string $table Table name
+ * @param string $column Target column
+ * @return int
+ */
+function _get_mysql_column_size($table, $column) {
+  $result = db_query("
+		SELECT CHARACTER_MAXIMUM_LENGTH
+		FROM information_schema.columns
+		WHERE table_schema = DATABASE()
+			AND table_name = :table AND COLUMN_NAME = :column",
+    array(':table' => $table, ':column' => $column)
+  );
+  return $result->fetchField(0);
 }

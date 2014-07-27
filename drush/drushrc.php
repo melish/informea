@@ -281,6 +281,18 @@ $options['init-modules'] = array(
   'search_api_solr',
   'strongarm',
   'imce_wysiwyg',
+
+  'date_views',
+  'calendar',
+  'date_popup',
+  'i18n_taxonomy',
+
+  'decision',
+  'meeting',
+  'country_deliverable',
+  'treaty',
+  'informea',
+  'country_data',
 );
 
 
