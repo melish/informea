@@ -12,7 +12,7 @@ class MigrateDecisions extends DynamicMigration {
   public function __construct($arguments) {
     parent::__construct();
 
-    $this->description = 'Import InforMEA meetings';
+    $this->description = 'Import InforMEA decisions and documents';
     $this->map = new MigrateSQLMap($this->machineName,
       array(
         'id' => array('type' => 'int',
@@ -81,6 +81,9 @@ class MigrateDecisions extends DynamicMigration {
     $this->addFieldMapping('created', 'rec_created');
     $this->addFieldMapping('language')->defaultValue('en');
     $this->addFieldMapping('uid')->defaultValue(1);
+
+    //TODO: Migrate files
+    //$this->addFieldMapping('field_files', '');
   }
 
   function prepareRow($row) {
