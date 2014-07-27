@@ -15,7 +15,7 @@ function decision_taxonomy_default_vocabularies() {
       'description' => 'Possible status for a decision',
       'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => 0,
+      'weight' => -10,
       'language' => 'und',
       'i18n_mode' => 4,
       'rdf_mapping' => array(
@@ -40,7 +40,7 @@ function decision_taxonomy_default_vocabularies() {
       'description' => 'Type of decision (eg. recommendation)',
       'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => 0,
+      'weight' => -9,
       'language' => 'und',
       'i18n_mode' => 4,
       'rdf_mapping' => array(
