@@ -15,6 +15,7 @@ function wp_migration_migrate_api() {
       'NationalReports' => array('class_name' => 'MigrateNationalReports'),
       'Sites' => array('class_name' => 'MigrateSites'),
       'NationalFocalPoints' => array('class_name' => 'MigrateNationalFocalPoints'),
+      'Thesaurus' => array('class_name' => 'MigrateThesaurus'),
     )
   );
   return $api;

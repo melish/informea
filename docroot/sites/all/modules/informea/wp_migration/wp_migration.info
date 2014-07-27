@@ -16,3 +16,4 @@ files[] = i_action_plan.migrate.inc
 files[] = i_national_report.migrate.inc
 files[] = i_sites.migrate.inc
 files[] = i_nfp.migrate.inc
+files[] = i_thesaurus.migrate.inc
