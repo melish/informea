@@ -32,12 +32,16 @@ class MigrateMeetings extends DynamicMigration {
         $this->countries[$row->id] = $row->code2l;
       }
     }
-    if(empty($this->treaties)) {
-      $query = db_select('migrate_map_treaties', 'm')->fields('m')->execute();
-      $rows = $query->fetchAll();
-      foreach($rows as $row) {
-        $this->treaties[$row->sourceid1] = $row->destid1;
+    try {
+      if(empty($this->treaties)) {
+        $query = db_select('migrate_map_treaties', 'm')->fields('m')->execute();
+        $rows = $query->fetchAll();
+        foreach($rows as $row) {
+          $this->treaties[$row->sourceid1] = $row->destid1;
+        }
       }
+    } catch(Exception $e) {
+      // Table might not be available yet
     }
 
     $query = Database::getConnection('default', 'for_migration')
