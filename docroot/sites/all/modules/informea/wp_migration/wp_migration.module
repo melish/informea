@@ -13,6 +13,7 @@ function wp_migration_migrate_api() {
       'Decisions' => array('class_name' => 'MigrateDecisions'),
       'ActionPlans' => array('class_name' => 'MigrateActionPlans'),
       'NationalReports' => array('class_name' => 'MigrateNationalReports'),
+      'Sites' => array('class_name' => 'MigrateSites'),
     )
   );
   return $api;

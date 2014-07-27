@@ -14,3 +14,4 @@ files[] = i_meetings.migrate.inc
 files[] = i_decisions.migrate.inc
 files[] = i_action_plan.migrate.inc
 files[] = i_national_report.migrate.inc
+files[] = i_sites.migrate.inc
