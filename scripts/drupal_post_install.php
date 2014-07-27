@@ -102,20 +102,31 @@ function configure_solr() {
  */
 function change_field_size() {
   $column_size = 768;
+  $spec = array('type' => 'varchar', 'length' => $column_size);
   $table = 'field_data_title_field';
   $column = 'title_field_value';
+
   if (_get_mysql_column_size($table, $column) < $column_size) {
     drupal_set_message("Changing $table size to $column_size");
-    db_change_field($table, $column, $column,
-      array('type' => 'varchar', 'length' => $column_size)
-    );
+    db_change_field($table, $column, $column, $spec);
   }
   $table = 'field_revision_title_field';
   if (_get_mysql_column_size($table, $column) < $column_size) {
     drupal_set_message("Changing $table size to $column_size");
-    db_change_field($table, $column, $column,
-      array('type' => 'varchar','length' => $column_size)
-    );
+    db_change_field($table, $column, $column, $spec);
+  }
+
+  $table = 'node';
+  $column = 'title';
+  if (_get_mysql_column_size($table, $column) < $column_size) {
+    drupal_set_message("Changing $table size to $column_size");
+    db_change_field($table, $column, $column, $spec);
+  }
+
+  $table = 'node_revision';
+  if (_get_mysql_column_size($table, $column) < $column_size) {
+    drupal_set_message("Changing $table size to $column_size");
+    db_change_field($table, $column, $column, $spec);
   }
 }
 

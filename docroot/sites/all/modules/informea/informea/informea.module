@@ -10,20 +10,27 @@ include_once 'informea.features.inc';
  * Implements hook_schema_alter()
  */
 function informea_migration_schema_alter(&$schema) {
-  if (isset($schema['field_data_name_field'])) {
-    $schema['field_data_name_field']['fields']['name_field_value'] = array(
-      'type' => 'varchar',
-      'length' => 768,
-      'not null' => TRUE,
-      'default' => '',
-    );
+  $table = 'field_data_title_field';
+  $column = 'title_field_value';
+
+  $new_spec = array(
+    'type' => 'varchar', 'length' => 768, 'not null' => TRUE, 'default' => '',
+  );
+  if (isset($schema[$table])) {
+    $schema[$table]['fields'][$column] = $new_spec;
   }
-  if (isset($schema['field_revision_name_field'])) {
-    $schema['field_revision_name_field']['fields']['name_field_value'] = array(
-      'type' => 'varchar',
-      'length' => 768,
-      'not null' => TRUE,
-      'default' => '',
-    );
+  $table = 'field_revision_title_field';
+  if (isset($schema[$table])) {
+    $schema[$table]['fields'][$column] = $new_spec;
+  }
+
+  $table = 'node';
+  $column = 'title';
+  if (isset($schema[$table])) {
+    $schema[$table]['fields'][$column] = $new_spec;
+  }
+  $table = 'node_revision';
+  if (isset($schema[$table])) {
+    $schema[$table]['fields'][$column] = $new_spec;
   }
 }
