@@ -87,6 +87,7 @@ class MigrateMeetings extends DynamicMigration {
     $this->addFieldMapping('changed', 'rec_updated');
     $this->addFieldMapping('language')->defaultValue('en');
     $this->addFieldMapping('uid')->defaultValue(1);
+    $this->addFieldMapping('comment')->defaultValue(FALSE);
   }
 
   function prepareRow($row) {

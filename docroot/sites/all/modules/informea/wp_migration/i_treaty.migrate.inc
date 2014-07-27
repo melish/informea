@@ -52,6 +52,12 @@ class MigrateTreaties extends DynamicMigration {
     $this->addFieldMapping('changed', 'rec_updated');
     $this->addFieldMapping('language')->defaultValue('en');
     $this->addFieldMapping('uid')->defaultValue(1);
+    $this->addFieldMapping('comment')->defaultValue(FALSE);
+
+    $this->addUnmigratedSources(array(
+      'id_organization', 'id_parent', 'short_title_alternative', 'year',
+      'enabled', 'regional', 'use_informea', 'rec_author', 'rec_updated_author', 'is_indexed'
+    ));
   }
 
   function prepareRow($row) {
