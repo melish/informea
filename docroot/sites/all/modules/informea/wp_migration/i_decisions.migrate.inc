@@ -52,11 +52,12 @@ class MigrateDecisions extends DynamicMigration {
     $this->source = new MigrateSourceSQL($query);
     $this->destination = new MigrateDestinationNode('decision');
 
+    $this->addFieldMapping('title_field', 'short_title');
+    $this->addFieldMapping('title_field:language')->defaultValue('en');
+    $this->addFieldMapping('title', 'short_title');
+
     $this->addFieldMapping('field_original_id', 'original_id');
     $this->addFieldMapping('field_url', 'link');
-
-    $this->addFieldMapping('title_field', 'short_title');
-    $this->addFieldMapping('title', 'short_title');
 
     $this->addFieldMapping('body', 'body');
     $this->addFieldMapping('body:summary', 'summary');

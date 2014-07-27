@@ -27,7 +27,9 @@ class MigrateTreaties extends DynamicMigration {
     $this->destination = new MigrateDestinationNode('treaty');
 
     $this->addFieldMapping('title_field', 'short_title');
+    $this->addFieldMapping('title_field:language')->defaultValue('en');
     $this->addFieldMapping('title', 'short_title');
+
     $this->addFieldMapping('field_treaty_long_name', 'long_title');
     $this->addFieldMapping('body', 'abstract');
     $this->addFieldMapping('body:language')->defaultValue('en');

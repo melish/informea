@@ -53,7 +53,9 @@ class MigrateMeetings extends DynamicMigration {
     $this->destination = new MigrateDestinationNode('event_calendar');
 
     $this->addFieldMapping('title_field', 'title');
+    $this->addFieldMapping('title_field:language')->defaultValue('en');
     $this->addFieldMapping('title', 'title');
+
     $this->addFieldMapping('field_abbreviation', 'abbreviation');
     $this->addFieldMapping('body', 'description');
     $this->addFieldMapping('body:language')->defaultValue('en');
