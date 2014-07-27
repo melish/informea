@@ -84,6 +84,10 @@ class MigrateDecisions extends DynamicMigration {
     $this->addFieldMapping('language')->defaultValue('en');
     $this->addFieldMapping('uid')->defaultValue(1);
     $this->addFieldMapping('comment')->defaultValue(FALSE);
+    $this->addFieldMapping('status')->defaultValue(1);
+    $this->addFieldMapping('promote')->defaultValue(0);
+    $this->addFieldMapping('sticky')->defaultValue(0);
+    $this->addFieldMapping('revision')->defaultValue(FALSE);
 
     //TODO: Migrate files
     //$this->addFieldMapping('field_files', '');
