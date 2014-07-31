@@ -1,0 +1,260 @@
+.navbar {
+  border: 0;
+  min-height: 70px;
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    border-radius: 0;
+  }
+}
+
+.navbar > .container {
+  position: relative;
+}
+
+.navbar-default {
+  background-image: -o-linear-gradient(top, #0099d5 0%, #267399 100%);
+  background-image: -webkit-linear-gradient(top, #0099d5 0%, #267399 100%);
+  background-image: linear-gradient(to bottom, #0099d5 0%, #267399 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0099d5', endColorstr='#ff267399', GradientType=0);
+}
+
+.navbar-default .navbar-nav {
+  border-left: 1px solid rgba(26, 58, 111, 0.25);
+  border-right: 1px solid rgba(247, 247, 247, 0.25);
+}
+
+.navbar-default .navbar-nav > li > a {
+  border-left: 1px solid rgba(247, 247, 247, 0.25);
+  border-right: 1px solid rgba(26, 58, 111, 0.25);
+  color: #fff;
+  font-size: 14px;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #8a95a6;
+  background-color: #eee;
+}
+
+.navbar-default .navbar-nav > li > a:active {
+  color: #16232e;
+  background-color: #ffcc66;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #16232e;
+  background-color: #eee;
+}
+
+.navbar-nav .dropdown-full-width {
+  position: static;
+}
+
+.navbar-nav > li > a {
+  font-family: Georgia, serif;
+  padding-bottom: 25px;
+  padding-top: 25px;
+}
+
+.navbar-form {
+  margin-bottom: 18px;
+  margin-top: 18px;
+}
+
+@media (min-width: 768px) {
+  .navbar-form.navbar-right:last-child {
+    margin-right: -30px;
+  }
+}
+
+.dropdown-menu {
+  border: 2px solid #ffcc66;
+  border-radius: 0;
+  box-shadow: 0 1px 3px rgba(138, 149, 166, 0.5);
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background-color: #0099d5;
+  color: #fff;
+}
+
+.dropdown-full-width > .dropdown-menu > li[class*="col-"] {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.dropdown-full-width > .dropdown-menu > li > ul {
+  padding: 0;
+}
+
+.dropdown-full-width > .dropdown-menu > li > ul > li {
+  list-style: none;
+}
+
+.dropdown-full-width > .dropdown-menu > li > ul > li > a {
+  display: block;
+  padding: 3px 20px;
+}
+
+@media (min-width: 768px) {
+  .dropdown-full-width > .dropdown-menu {
+    left: 0;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    right: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .dropdown-full-width > .dropdown-menu {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .dropdown-full-width > .dropdown-menu > li > ul > li > a {
+    padding: 5px 15px 5px 25px;
+  }
+}
+
+.footer {
+  background-color: #16232e;
+  border-top: 2px solid #8a95a6;
+  color: #505c6a;
+  font-size: 90%;
+}
+
+.footer a {
+  color: #8a95a6;
+}
+
+.footer a:hover,
+.footer a:focus {
+  color: #c6cedb;
+}
+
+.footer-group {
+  border-bottom: 1px solid #505c6a;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.footer-group:last-child {
+  border-bottom: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.footer-group .divider {
+  background-color: #505c6a;
+  height: 1px;
+  margin: 9px 0;
+  overflow: hidden;
+}
+
+.footer a.logo {
+  display: block;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: center;
+}
+
+.footer a.logo .image {
+  background-image: url('../img/logos.png');
+  background-repeat: no-repeat;
+  height: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60px;
+}
+
+.footer a.logo:hover,
+.footer a.logo:focus {
+  background-color: #f3f3f3;
+  color: #444;
+  text-decoration: none;
+}
+
+.footer a.logo:hover .image,
+.footer a.logo:focus .image {
+  background-image: url('../img/logos-active.png');
+}
+
+.logo-un > .image {
+  background-position: -300px 0;
+}
+
+.logo-unece > .image {
+  background-position: -660px 0;
+}
+
+.logo-unep > .image {
+  background-position: -840px 0;
+}
+
+.logo-unesco > .image {
+  background-position: -1020px 0;
+}
+
+.logo-fao > .image {
+  background-position: -1080px 0;
+}
+
+.logo-unfccc > .image {
+  background-position: -1200px 0;
+}
+
+.logo-unccd > .image {
+  background-position: -480px 0;
+}
+
+.logo-ozone > .image {
+  background-position: -420px 0;
+}
+
+.logo-basel > .image {
+  background-position: -360px 0;
+}
+
+.logo-rotterdam > .image {
+  background-position: -1140px 0;
+}
+
+.logo-stockholm > .image {
+  background-position: -120px 0;
+}
+
+.logo-cbd > .image {
+  background-position: -540px 0;
+}
+
+.logo-cites > .image {
+  background-position: -720px 0;
+}
+
+.logo-whc > .image {
+  background-position: 0 0;
+}
+
+.logo-ramsar > .image {
+  background-position: -780px 0;
+}
+
+.logo-irpgrfa > .image {
+  background-position: -60px 0;
+}
+
+.logo-cites > .image {
+  background-position: -720px 0;
+}
+
+.logo-cms > .image {
+  background-position: -900px 0;
+}
