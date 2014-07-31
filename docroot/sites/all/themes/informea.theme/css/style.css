@@ -84,6 +84,11 @@
   color: #fff;
 }
 
+.dropdown-header {
+  color: #16232e;
+  font-weight: bold;
+}
+
 .dropdown-full-width > .dropdown-menu > li[class*="col-"] {
   padding-left: 0;
   padding-right: 0;
