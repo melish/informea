@@ -33,6 +33,18 @@
   font-size: 14px;
 }
 
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav {
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .navbar-default .navbar-nav > li > a {
+    border-left: 0;
+    border-right: 0;
+  }
+}
+
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
   color: #8a95a6;
@@ -59,6 +71,13 @@
   font-family: Georgia, serif;
   padding-bottom: 25px;
   padding-top: 25px;
+}
+
+@media (max-width: 767px) {
+  .navbar-nav > li > a {
+    padding-bottom: 15px;
+    padding-top: 15px;
+  }
 }
 
 .navbar-form {
