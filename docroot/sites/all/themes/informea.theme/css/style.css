@@ -13,12 +13,45 @@
   position: relative;
 }
 
+.navbar-toggle {
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+
 .navbar-default {
   background-image: -o-linear-gradient(top, #0099d5 0%, #267399 100%);
   background-image: -webkit-linear-gradient(top, #0099d5 0%, #267399 100%);
   background-image: linear-gradient(to bottom, #0099d5 0%, #267399 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0099d5', endColorstr='#ff267399', GradientType=0);
+}
+
+.navbar-default .navbar-toggle {
+  border-color: #fff;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #f3f3f3;
+  border-color: #c6cedb;
+}
+
+.navbar-default .navbar-toggle:hover .icon-bar,
+.navbar-default .navbar-toggle:focus .icon-bar {
+  background-color: #8a95a6;
+}
+
+.navbar-default .navbar-toggle:active {
+  background-color: #ffcc66;
+  border-color: #ffcc33;
+}
+
+.navbar-default .navbar-toggle:active .icon-bar {
+  background-color: #16232e;
 }
 
 .navbar-default .navbar-nav {
