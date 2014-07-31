@@ -26,4 +26,4 @@ stylesheets[all][] = css/style.css
 ; Settings
 
 settings[bootstrap_cdn] = 3.2.0
-settings[bootstrap_navbar_position] = 'fixed_top'
+settings[bootstrap_navbar_position] = 'static-top'
