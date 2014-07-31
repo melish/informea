@@ -161,13 +161,13 @@
         <li><?php print l(t('Glossary'), 'terms'); ?></li>
         <li class="dropdown">
           <?php print l(t('More') . ' <span class="caret"></span>', NULL, array('attributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'), 'external' => TRUE, 'fragment' => FALSE, 'html' => TRUE)); ?>
-          <ul class="dropdown-menu" role="menu">
+          <ul class="dropdown-menu dropdown-menu-right" role="menu">
             <li><?php print l(t('About InforMEA'), 'about'); ?></li>
             <li><?php print l(t('Multimedia'), 'about/multimedia'); ?></li>
             <li class="divider"></li>
             <li><?php print l(t('Latest updates'), 'news'); ?></li>
             <li><?php print l(t('Events'), 'news'); ?></li>
-          </ul><!-- .dropdown-menu -->
+          </ul><!-- .dropdown-menu .dropdown-menu-right -->
         </li><!-- .dropdown -->
       </ul><!-- .nav .navbar-nav -->
       <?php print $search_box; ?>
@@ -223,11 +223,11 @@
 <footer class="footer">
   <div class="container">
     <?php if (!empty($page['footer'])): ?>
-      <div class="footer-group">
+      <div class="footer-section">
         <?php print render($page['footer']); ?>
-      </div><!-- .footer-group -->
+      </div><!-- .footer-section -->
     <?php endif; ?>
-    <div class="footer-group">
+    <div class="footer-section">
       <h5 class="text-uppercase"><?php print t('Organizations'); ?></h5>
       <ul class="list-inline">
         <li>
@@ -261,8 +261,8 @@
           </a><!-- .logo .logo-un -->
         </li>
       </ul><!-- .list-inline -->
-    </div><!-- .footer-group -->
-    <div class="footer-group">
+    </div><!-- .footer-section -->
+    <div class="footer-section">
       <h5 class="text-uppercase"><?php print t('Global treaties'); ?></h5>
       <ul class="list-inline">
         <li>
@@ -338,8 +338,8 @@
           </a><!-- .logo .logo-cms -->
         </li>
       </ul><!-- .list-inline -->
-    </div><!-- .footer-group -->
-    <div class="footer-group">
+    </div><!-- .footer-section -->
+    <div class="footer-section">
       <h5 class="text-uppercase"><?php print t('Regional treaties'); ?></h5>
       <div class="row">
         <div class="col-md-3">
@@ -389,9 +389,9 @@
           </ul><!-- .list-unstyled -->
         </div><!-- .col-md-3 -->
       </div><!-- .row -->
-    </div><!-- .footer-group -->
-    <div class="footer-group">
+    </div><!-- .footer-section -->
+    <div class="footer-section">
       <p><?php print t('<a href="@url">Terms and conditions</a> &dash; Portions Copyright &copy; United Nations, FAO, UNEP, UNESCO', array('@url' => url('disclaimer'))); ?></p>
-    </div><!-- .footer-group -->
+    </div><!-- .footer-section -->
   </div><!-- .container -->
 </footer><!-- .footer -->
