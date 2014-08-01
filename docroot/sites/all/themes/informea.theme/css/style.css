@@ -102,6 +102,14 @@
 }
 
 
+/* Navbar alignment options */
+
+/* Static top navbar */
+.navbar-static-top + .hero-unit {
+  margin-top: -20px;
+}
+
+
 /* Navbar toggle */
 
 .navbar-toggle {
@@ -263,6 +271,32 @@
   .navbar-default .navbar-nav .open .dropdown-menu > li > ul > li > a:focus {
     text-decoration: none;
   }
+}
+
+
+/* Hero unit */
+/* --------- */
+
+
+/* Wrapper and base class */
+
+.hero-unit {
+  background-color: #1a3a6f;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+
+/* Hero unit body */
+
+.hero-unit-body {
+  color: #fff;
+}
+
+.hero-unit-body a:hover,
+.hero-unit-body a:focus {
+  color: #ffcc66;
 }
 
 
