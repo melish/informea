@@ -179,9 +179,6 @@
 </header><!-- #navbar -->
 <div class="container">
   <header id="page-header" role="banner">
-    <?php if (!empty($site_slogan)): ?>
-      <p class="lead"><?php print $site_slogan; ?></p>
-    <?php endif; ?>
     <?php print render($page['header']); ?>
   </header><!-- #page-header -->
   <div class="row">
