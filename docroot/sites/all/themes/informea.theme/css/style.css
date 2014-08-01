@@ -310,6 +310,37 @@
 }
 
 
+/* List groups */
+/* ----------- */
+
+
+/* Scrollalbe list groups */
+
+.list-group-scrollable {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  max-height: 215px;
+  overflow-y: scroll;
+}
+
+.list-group-scrollable .list-group-item {
+  border-left: 0;
+  border-right: 0;
+}
+
+.list-group-scrollable .list-group-item:first-child {
+  border-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.list-group-scrollable .list-group-item:last-child {
+  border-bottom: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+
 /* Footer */
 /* ------ */
 
