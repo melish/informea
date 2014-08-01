@@ -236,6 +236,75 @@
     </div><!-- .row -->
   </div><!-- .container -->
 </div><!-- .hero-unit -->
+<div class="container">
+  <h1 class="page-header"><?php print t('InforMEA features'); ?></h1>
+  <div class="well">
+    <div class="row">
+      <div class="col-md-4">
+        <h2><?php print t('Treaties'); ?></h2>
+        <ul>
+          <li><?php print t('Read the complete text on any treaty'); ?></li>
+          <li><?php print t('See decisions/resolutions with details'); ?></li>
+          <li><?php print t('Study map coverage and membership'); ?></li>
+        </ul>
+      </div><!-- .col-md-4 -->
+      <div class="col-md-8">
+        <h3><?php print t('Topics'); ?></h3>
+        <ul class="list-inline text-muted">
+          <li><?php print l(t('Biological Diversity'), 'treaties', array('fragment' => t('Biological Diversity'))); ?></li>
+          <li>&middot;</li>
+          <li><?php print l(t('Chemicals and Waste Management'), 'treaties', array('fragment' => t('Chemicals and Waste Management'))); ?></li>
+          <li>&middot;</li>
+          <li><?php print l(t('Climate, Atmosphere and Deserts'), 'treaties', array('fragment' => t('Climate, Atmosphere and Deserts'))); ?></li>
+        </ul><!-- .list-inline .text-muted -->
+        <h3><?php print t('Regions'); ?></h3>
+        <ul class="list-inline text-muted">
+          <li><?php print l(t('Global'), 'treaties', array('fragment' => t('Global'))); ?></li>
+          <li>&middot;</li>
+          <li><?php print l(t('Africa'), 'treaties', array('fragment' => t('Africa'))); ?></li>
+          <li>&middot;</li>
+          <li><?php print l(t('Asia and the Pacific'), 'treaties', array('fragment' => t('Asia and the Pacific'))); ?></li>
+          <li>&middot;</li>
+          <li><?php print l(t('Europe'), 'treaties', array('fragment' => t('Europe'))); ?></li>
+          <li>&middot;</li>
+          <li><?php print l(t('Latin America and the Caribbean'), 'treaties', array('fragment' => t('Latin America and the Caribbean'))); ?></li>
+          <li>&middot;</li>
+          <li><?php print l(t('North America'), 'treaties', array('fragment' => t('North America'))); ?></li>
+          <li>&middot;</li>
+          <li><?php print l(t('West Asia'), 'treaties', array('fragment' => t('West Asia'))); ?></li>
+        </ul><!-- .list-inline .text-muted -->
+        <p><?php print l(t('Browse all treaties'), 'treaties'); ?></p>
+      </div><!-- .col-md-8 -->
+    </div><!-- .row -->
+  </div><!-- .well -->
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <h2><?php print t('Glossary'); ?></h2>
+      <p><img src="<?php print $directory; ?>/img/glossary.gif" alt=""></p>
+      <p><?php print t('Find the definition of any term related to MEAs as well as all of it&amp;s occurences on this website.'); ?></p>
+      <p><?php print l(t('Start searching for definitions'), 'terms'); ?></p>
+    </div><!-- .col-md-4 -->
+    <div class="col-md-4 text-center">
+      <h2><?php print t('Countries'); ?></h2>
+      <div class="country-selector">
+        <p><img src="<?php print $directory; ?>/img/countries.gif" alt=""></p>
+        <form role="form">
+          <select class="form-control input-sm">
+            <option><?php print t('Select a country&hellip;'); ?></option>
+          </select><!-- .form-control .input-sm -->
+        </form>
+      </div><!-- .country-selector -->
+      <p><?php print t('Research MEA related information on a certain country - Membership, Focal Points, National Plans and more.'); ?></p>
+      <p><?php print l(t('See all countries'), 'countries'); ?></p>
+    </div><!-- .col-md-4 -->
+    <div class="col-md-4 text-center">
+      <h2><?php print t('Events'); ?></h2>
+      <p><img src="<?php print $directory; ?>/img/events.gif" alt=""></p>
+      <p><?php print t('Upcoming or past events, MEA news.'); ?></p>
+      <p><?php print l(t('See all events'), 'meetings'); ?></p>
+    </div><!-- .col-md-4 -->
+  </div><!-- .row -->
+</div><!-- .container -->
 <footer class="footer">
   <div class="container">
     <?php if (!empty($page['footer'])): ?>
