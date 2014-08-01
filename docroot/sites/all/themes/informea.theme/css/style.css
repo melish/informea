@@ -1,3 +1,72 @@
+/* Dropdown menus */
+/* -------------- */
+
+
+/* Dropdown menu */
+
+.dropdown-menu {
+  border: 2px solid #ffcc66;
+  border-radius: 0;
+  box-shadow: 0 1px 3px rgba(138, 149, 166, 0.5);
+}
+
+/* Hover/Focus state */
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background-color: #0099d5;
+  color: #fff;
+}
+
+/* Dropdown section headers */
+.dropdown-header {
+  color: #16232e;
+  font-weight: bold;
+}
+
+
+/* Full-width dropdown menu */
+
+.dropdown-full-width > .dropdown-menu > li[class*="col-"] {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.dropdown-full-width > .dropdown-menu > li > ul {
+  padding: 0;
+}
+
+.dropdown-full-width > .dropdown-menu > li > ul > li {
+  list-style: none;
+}
+
+.dropdown-full-width > .dropdown-menu > li > ul > li > a {
+  display: block;
+  padding: 3px 20px;
+}
+
+@media (min-width: 768px) {
+  .dropdown-full-width > .dropdown-menu {
+    left: 0;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    right: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .dropdown-full-width > .dropdown-menu {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .dropdown-full-width > .dropdown-menu > li > ul > li > a {
+    padding: 5px 15px 5px 25px;
+  }
+}
+
+
 /* Navbars */
 /* ------- */
 
@@ -197,75 +266,6 @@
 }
 
 
-/* Dropdown menus */
-/* -------------- */
-
-
-/* Dropdown menu */
-
-.dropdown-menu {
-  border: 2px solid #ffcc66;
-  border-radius: 0;
-  box-shadow: 0 1px 3px rgba(138, 149, 166, 0.5);
-}
-
-/* Hover/Focus state */
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus {
-  background-color: #0099d5;
-  color: #fff;
-}
-
-/* Dropdown section headers */
-.dropdown-header {
-  color: #16232e;
-  font-weight: bold;
-}
-
-
-/* Full-width dropdown menu */
-
-.dropdown-full-width > .dropdown-menu > li[class*="col-"] {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.dropdown-full-width > .dropdown-menu > li > ul {
-  padding: 0;
-}
-
-.dropdown-full-width > .dropdown-menu > li > ul > li {
-  list-style: none;
-}
-
-.dropdown-full-width > .dropdown-menu > li > ul > li > a {
-  display: block;
-  padding: 3px 20px;
-}
-
-@media (min-width: 768px) {
-  .dropdown-full-width > .dropdown-menu {
-    left: 0;
-    margin-left: 15px;
-    margin-right: 15px;
-    padding-bottom: 15px;
-    padding-top: 15px;
-    right: 0;
-  }
-}
-
-@media (max-width: 767px) {
-  .dropdown-full-width > .dropdown-menu {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .dropdown-full-width > .dropdown-menu > li > ul > li > a {
-    padding: 5px 15px 5px 25px;
-  }
-}
-
-
 /* Footer */
 /* ------ */
 
@@ -278,6 +278,7 @@
   color: #505c6a;
   font-size: 90%;
 }
+
 
 /* Footer sections */
 
