@@ -416,6 +416,33 @@ h2, .h2 {
 }
 
 
+/* Country selector */
+/* ---------------- */
+
+
+/* Wrapper and base class */
+
+.country-selector {
+  position: relative;
+}
+
+
+/* Form alignment */
+
+.country-selector > form {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 59px;
+}
+
+.country-selector > form > .form-control {
+  margin-left: auto;
+  margin-right: auto;
+  width: 240px;
+}
+
+
 /* Footer */
 /* ------ */
 
