@@ -300,6 +300,16 @@
 }
 
 
+/* Media objects */
+/* ------------- */
+
+
+/* Component alignment */
+.media.list-group-item {
+  margin-top: 0;
+}
+
+
 /* Footer */
 /* ------ */
 
