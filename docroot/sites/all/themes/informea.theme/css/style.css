@@ -26,6 +26,31 @@ h2, .h2 {
 }
 
 
+/* Buttons */
+/* ------- */
+
+
+/* Alternate buttons */
+
+.btn-primary {
+  background-color: #0099d5;
+  border-color: #267399;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #f3f3f3;
+  border-color: #c6cedb;
+  color: #8a95a6;
+}
+
+.btn-primary:active {
+  background-color: #ffcc66;
+  border-color: #ffcc33;
+  color: #16232e;
+}
+
+
 /* Dropdown menus */
 /* -------------- */
 
