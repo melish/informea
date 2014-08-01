@@ -177,6 +177,65 @@
     </nav><!-- .navbar-collapse .collapse -->
   </div><!-- .container -->
 </header><!-- #navbar -->
+<div class="hero-unit">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 hero-unit-body">
+        <?php if (!empty($site_slogan)): ?>
+          <p class="lead"><?php print $site_slogan; ?></p>
+        <?php endif; ?>
+        <p><?php print t('InforMEA harvests COP decisions, news, meetings, membership, national focal points and reports from MEAs. Information is organised by terms from MEA COP agendas.'); ?></p>
+        <p><?php print t('InforMEA is a project of the MEA Information and Knowledge Management (IKM) Initiative with the support from the United Nations Environment Programme (UNEP).'); ?></p>
+        <p><?php print l(t('Learn more about InforMEA') . ' <span class="glyphicon glyphicon-arrow-right"></span>', 'about', array('html' => TRUE)); ?></p>
+      </div><!-- .col-md-6 .hero-unit-body -->
+      <div class="col-md-6 latest-updates">
+        <div class="media-list list-group list-group-scrollable">
+          <a class="media list-group-item" href="#">
+            <div class="pull-right">
+              <img class="media-object" src="http://placehold.it/48x48" alt="">
+            </div><!-- .pull-right -->
+            <div class="media-body">
+              <p class="list-group-item-text"><?php print t('The Month of Reporting open with special series of webinars on National Reporting'); ?></p>
+            </div><!-- .media-body -->
+          </a><!-- .media .list-group-item -->
+          <a class="media list-group-item" href="#">
+            <div class="pull-right">
+              <span class="label label-default">28&ndash;30<br>Oct.</span>
+            </div><!-- .pull-right -->
+            <div class="media-body">
+              <p class="list-group-item-text"><?php print t('Tenth meeting of the Compliance Committee under the Protocol on Water and Health'); ?></p>
+            </div><!-- .media-body -->
+          </a><!-- .media .list-group-item -->
+          <a class="media list-group-item" href="#">
+            <div class="pull-right">
+              <img class="media-object" src="http://placehold.it/48x48" alt="">
+            </div><!-- .pull-right -->
+            <div class="media-body">
+              <p class="list-group-item-text"><?php print t('The Month of Reporting open with special series of webinars on National Reporting'); ?></p>
+            </div><!-- .media-body -->
+          </a><!-- .media .list-group-item -->
+          <a class="media list-group-item" href="#">
+            <div class="pull-right">
+              <span class="label label-default">28&ndash;30<br>Oct.</span>
+            </div><!-- .pull-right -->
+            <div class="media-body">
+              <p class="list-group-item-text"><?php print t('Tenth meeting of the Compliance Committee under the Protocol on Water and Health'); ?></p>
+            </div><!-- .media-body -->
+          </a><!-- .media .list-group-item -->
+          <a class="media list-group-item" href="#">
+            <div class="pull-right">
+              <span class="label label-default">28&ndash;30<br>Oct.</span>
+            </div><!-- .pull-right -->
+            <div class="media-body">
+              <p class="list-group-item-text"><?php print t('Tenth meeting of the Compliance Committee under the Protocol on Water and Health'); ?></p>
+            </div><!-- .media-body -->
+          </a><!-- .media .list-group-item -->
+        </div><!-- .media-list .list-group -->
+        <a class="btn btn-primary btn-block" href="#">Read the latest MEA updates</a>
+      </div><!-- .col-md-6 .latest-updates -->
+    </div><!-- .row -->
+  </div><!-- .container -->
+</div><!-- .hero-unit -->
 <footer class="footer">
   <div class="container">
     <?php if (!empty($page['footer'])): ?>
