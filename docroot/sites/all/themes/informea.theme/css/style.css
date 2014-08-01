@@ -1,3 +1,19 @@
+/* Scaffolding */
+/* ----------- */
+
+
+/* Links */
+
+a {
+  color: #0080d5;
+}
+
+a:hover,
+a:focus {
+  color: #005289;
+}
+
+
 /* Dropdown menus */
 /* -------------- */
 
