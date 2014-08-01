@@ -596,3 +596,32 @@ h2, .h2 {
   margin: 9px 0;
   overflow: hidden;
 }
+
+
+/* Pages */
+/* ----- */
+
+
+/* Front page */
+
+@media (min-width: 1200px) {
+  .front .hero-unit-body > .lead {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  .front .hero-unit-body {
+    margin-bottom: 30px;
+  }
+}
+
+.front .well h2:first-child {
+  margin-top: 0;
+}
+
+@media (min-width: 992px) {
+  .front .well h3:first-child {
+    margin-top: 0;
+  }
+}
