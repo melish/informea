@@ -101,6 +101,15 @@ class MigrateTreaties extends DynamicMigration {
     }
   }
 
+  function complete($entity, $row) {
+      $args = array(
+        'source' => 'node/' . $entity->nid,
+        'alias' => 'treaties/' . $row->odata_name,
+        'language' => 'en',
+      );
+      path_save($args);
+  }
+
   protected function generateMachineName() {
     return 'Treaties';
   }
