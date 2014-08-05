@@ -1,0 +1,3 @@
+<?php
+
+informea_configure_entity_translation_types();
