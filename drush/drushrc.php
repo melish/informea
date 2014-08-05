@@ -287,6 +287,8 @@ $options['init-modules'] = array(
   'date_popup',
   'i18n_taxonomy',
 
+  'jquery_update',
+
   'decision',
   'meeting',
   'country_deliverable',
