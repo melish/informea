@@ -5,3 +5,19 @@
  */
 
 include_once 'country_data.features.inc';
+
+/**
+ * Registers the countries path and includes a page callback.
+ *
+ * @return
+ *   An associative array of properties for each path.
+ */
+function country_data_menu() {
+  $items['countries'] = array(
+    'title' => 'Countries',
+    'page callback' => 'country_data_page_callback',
+    'access arguments' => array('access content')
+  );
+
+  return $items;
+}
