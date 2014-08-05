@@ -10,6 +10,24 @@ drush php-script ../scripts/drupal_pre_install.php
 drush init
 drush build
 
+drush en -y wp_migration
+drush migrate-auto-register
+
+if [ "$1" == "--migrate" ]; then
+
+	echo "Running migrations ..."
+	drush mi Treaties
+	drush mi Meetings
+	drush mi Thesaurus
+
+	drush mi ActionPlans
+	drush mi NationalFocalPoints
+	drush mi NationalReports
+	drush mi Sites
+	drush mi Decisions
+
+fi
+
 drush php-script ../scripts/drupal_post_install.php
 
 drush cc all
