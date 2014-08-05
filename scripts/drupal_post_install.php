@@ -6,6 +6,7 @@
 
 configure_solr();
 change_field_size();
+module_disable(array('overlay'));
 
 function configure_solr() {
 	$config_file = sprintf('%s/../conf/config.json', dirname(__FILE__));
