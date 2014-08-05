@@ -46,32 +46,6 @@ function country_deliverable_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_country'
-  $field_bases['field_country'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_country',
-    'foreign keys' => array(),
-    'indexes' => array(
-      'iso2' => array(
-        0 => 'iso2',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'countries',
-    'settings' => array(
-      'continents' => array(),
-      'countries' => array(),
-      'enabled' => 1,
-      'entity_translation_sync' => FALSE,
-      'size' => 5,
-    ),
-    'translatable' => 0,
-    'type' => 'country',
-  );
-
   // Exported field_base: 'field_report_submission_date'
   $field_bases['field_report_submission_date'] = array(
     'active' => 1,

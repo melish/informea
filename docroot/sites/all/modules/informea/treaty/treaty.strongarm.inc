@@ -111,6 +111,13 @@ function treaty_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_comment_filter_treaty';
+  $strongarm->value = 0;
+  $export['entity_translation_comment_filter_treaty'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_hide_translation_links_organization';
   $strongarm->value = 1;
   $export['entity_translation_hide_translation_links_organization'] = $strongarm;
@@ -121,6 +128,20 @@ function treaty_strongarm() {
   $strongarm->name = 'entity_translation_hide_translation_links_treaty';
   $strongarm->value = 1;
   $export['entity_translation_hide_translation_links_treaty'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_node_metadata_organization';
+  $strongarm->value = '0';
+  $export['entity_translation_node_metadata_organization'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_node_metadata_treaty';
+  $strongarm->value = '0';
+  $export['entity_translation_node_metadata_treaty'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
