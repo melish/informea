@@ -21,3 +21,21 @@ function country_data_menu() {
 
   return $items;
 }
+
+/**
+ * Displays the countries page when the user visits the path.
+ *
+ * @return
+ *   String representing the content of the page.
+ */
+function country_data_page_callback() {
+  // Adds the amCharts JavaScript files to the page.
+  drupal_add_js('http://www.amcharts.com/lib/3/ammap.js', 'external');
+  drupal_add_js('http://www.amcharts.com/lib/3/maps/js/worldHigh.js', 'external');
+  drupal_add_js('http://www.amcharts.com/lib/3/themes/light.js', 'external');
+
+  // Adds the countries JavaScript file to the page.
+  drupal_add_js(drupal_get_path('module', 'country_data') . '/js/countries.js');
+
+  return '';
+}
