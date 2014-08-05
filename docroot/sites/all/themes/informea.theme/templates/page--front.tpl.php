@@ -177,44 +177,132 @@
     </nav><!-- .navbar-collapse .collapse -->
   </div><!-- .container -->
 </header><!-- #navbar -->
+<div class="hero-unit">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 hero-unit-body">
+        <?php if (!empty($site_slogan)): ?>
+          <p class="lead"><?php print $site_slogan; ?></p>
+        <?php endif; ?>
+        <p><?php print t('InforMEA harvests COP decisions, news, meetings, membership, national focal points and reports from MEAs. Information is organised by terms from MEA COP agendas.'); ?></p>
+        <p><?php print t('InforMEA is a project of the MEA Information and Knowledge Management (IKM) Initiative with the support from the United Nations Environment Programme (UNEP).'); ?></p>
+        <p><?php print l(t('Learn more about InforMEA') . ' <span class="glyphicon glyphicon-arrow-right"></span>', 'about', array('html' => TRUE)); ?></p>
+      </div><!-- .col-md-6 .hero-unit-body -->
+      <div class="col-md-6 latest-updates">
+        <div class="media-list list-group list-group-scrollable">
+          <a class="media list-group-item" href="#">
+            <div class="pull-right">
+              <img class="media-object" src="http://placehold.it/48x48" alt="">
+            </div><!-- .pull-right -->
+            <div class="media-body">
+              <p class="list-group-item-text"><?php print t('The Month of Reporting open with special series of webinars on National Reporting'); ?></p>
+            </div><!-- .media-body -->
+          </a><!-- .media .list-group-item -->
+          <a class="media list-group-item" href="#">
+            <div class="pull-right">
+              <span class="label label-default">28&ndash;30<br>Oct.</span>
+            </div><!-- .pull-right -->
+            <div class="media-body">
+              <p class="list-group-item-text"><?php print t('Tenth meeting of the Compliance Committee under the Protocol on Water and Health'); ?></p>
+            </div><!-- .media-body -->
+          </a><!-- .media .list-group-item -->
+          <a class="media list-group-item" href="#">
+            <div class="pull-right">
+              <img class="media-object" src="http://placehold.it/48x48" alt="">
+            </div><!-- .pull-right -->
+            <div class="media-body">
+              <p class="list-group-item-text"><?php print t('The Month of Reporting open with special series of webinars on National Reporting'); ?></p>
+            </div><!-- .media-body -->
+          </a><!-- .media .list-group-item -->
+          <a class="media list-group-item" href="#">
+            <div class="pull-right">
+              <span class="label label-default">28&ndash;30<br>Oct.</span>
+            </div><!-- .pull-right -->
+            <div class="media-body">
+              <p class="list-group-item-text"><?php print t('Tenth meeting of the Compliance Committee under the Protocol on Water and Health'); ?></p>
+            </div><!-- .media-body -->
+          </a><!-- .media .list-group-item -->
+          <a class="media list-group-item" href="#">
+            <div class="pull-right">
+              <span class="label label-default">28&ndash;30<br>Oct.</span>
+            </div><!-- .pull-right -->
+            <div class="media-body">
+              <p class="list-group-item-text"><?php print t('Tenth meeting of the Compliance Committee under the Protocol on Water and Health'); ?></p>
+            </div><!-- .media-body -->
+          </a><!-- .media .list-group-item -->
+        </div><!-- .media-list .list-group -->
+        <a class="btn btn-primary btn-block" href="#">Read the latest MEA updates</a>
+      </div><!-- .col-md-6 .latest-updates -->
+    </div><!-- .row -->
+  </div><!-- .container -->
+</div><!-- .hero-unit -->
 <div class="container">
-  <header id="page-header" role="banner">
-    <?php print render($page['header']); ?>
-  </header><!-- #page-header -->
+  <h1 class="page-header"><?php print t('InforMEA features'); ?></h1>
+  <div class="well">
+    <div class="row">
+      <div class="col-md-4">
+        <h2><?php print t('Treaties'); ?></h2>
+        <ul>
+          <li><?php print t('Read the complete text on any treaty'); ?></li>
+          <li><?php print t('See decisions/resolutions with details'); ?></li>
+          <li><?php print t('Study map coverage and membership'); ?></li>
+        </ul>
+      </div><!-- .col-md-4 -->
+      <div class="col-md-8">
+        <h3><?php print t('Topics'); ?></h3>
+        <ul class="list-inline text-muted">
+          <li><?php print l(t('Biological Diversity'), 'treaties', array('fragment' => t('Biological Diversity'))); ?></li>
+          <li>&middot;</li>
+          <li><?php print l(t('Chemicals and Waste Management'), 'treaties', array('fragment' => t('Chemicals and Waste Management'))); ?></li>
+          <li>&middot;</li>
+          <li><?php print l(t('Climate, Atmosphere and Deserts'), 'treaties', array('fragment' => t('Climate, Atmosphere and Deserts'))); ?></li>
+        </ul><!-- .list-inline .text-muted -->
+        <h3><?php print t('Regions'); ?></h3>
+        <ul class="list-inline text-muted">
+          <li><?php print l(t('Global'), 'treaties', array('fragment' => t('Global'))); ?></li>
+          <li>&middot;</li>
+          <li><?php print l(t('Africa'), 'treaties', array('fragment' => t('Africa'))); ?></li>
+          <li>&middot;</li>
+          <li><?php print l(t('Asia and the Pacific'), 'treaties', array('fragment' => t('Asia and the Pacific'))); ?></li>
+          <li>&middot;</li>
+          <li><?php print l(t('Europe'), 'treaties', array('fragment' => t('Europe'))); ?></li>
+          <li>&middot;</li>
+          <li><?php print l(t('Latin America and the Caribbean'), 'treaties', array('fragment' => t('Latin America and the Caribbean'))); ?></li>
+          <li>&middot;</li>
+          <li><?php print l(t('North America'), 'treaties', array('fragment' => t('North America'))); ?></li>
+          <li>&middot;</li>
+          <li><?php print l(t('West Asia'), 'treaties', array('fragment' => t('West Asia'))); ?></li>
+        </ul><!-- .list-inline .text-muted -->
+        <p><?php print l(t('Browse all treaties'), 'treaties'); ?></p>
+      </div><!-- .col-md-8 -->
+    </div><!-- .row -->
+  </div><!-- .well -->
   <div class="row">
-    <?php if (!empty($page['sidebar_first'])): ?>
-      <aside id="sidebar-first" class="col-sm-3" role="complementary">
-        <?php print render($page['sidebar_first']); ?>
-      </aside><!-- #sidebar-first .col-sm-3 -->
-    <?php endif; ?>
-    <section<?php print $content_column_class; ?>>
-      <?php if (!empty($page['highlighted'])): ?>
-        <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
-      <?php endif; ?>
-      <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
-      <a id="main-content"></a>
-      <?php print render($title_prefix); ?>
-      <?php if (!empty($title)): ?>
-        <h1 class="page-header"><?php print $title; ?></h1>
-      <?php endif; ?>
-      <?php print render($title_suffix); ?>
-      <?php print $messages; ?>
-      <?php if (!empty($tabs)): ?>
-        <?php print render($tabs); ?>
-      <?php endif; ?>
-      <?php if (!empty($page['help'])): ?>
-        <?php print render($page['help']); ?>
-      <?php endif; ?>
-      <?php if (!empty($action_links)): ?>
-        <ul class="action-links"><?php print render($action_links); ?></ul>
-      <?php endif; ?>
-      <?php print render($page['content']); ?>
-    </section>
-    <?php if (!empty($page['sidebar_second'])): ?>
-      <aside id="sidebar-second" class="col-sm-3" role="complementary">
-        <?php print render($page['sidebar_second']); ?>
-      </aside><!-- #sidebar-second .col-sm-3 -->
-    <?php endif; ?>
+    <div class="col-md-4 text-center">
+      <h2><?php print t('Glossary'); ?></h2>
+      <p><img src="<?php print $directory; ?>/img/glossary.gif" alt=""></p>
+      <p><?php print t('Find the definition of any term related to MEAs as well as all of it&amp;s occurences on this website.'); ?></p>
+      <p><?php print l(t('Start searching for definitions'), 'terms'); ?></p>
+    </div><!-- .col-md-4 -->
+    <div class="col-md-4 text-center">
+      <h2><?php print t('Countries'); ?></h2>
+      <div class="country-selector">
+        <p><img src="<?php print $directory; ?>/img/countries.gif" alt=""></p>
+        <form role="form">
+          <select class="form-control input-sm">
+            <option><?php print t('Select a country&hellip;'); ?></option>
+          </select><!-- .form-control .input-sm -->
+        </form>
+      </div><!-- .country-selector -->
+      <p><?php print t('Research MEA related information on a certain country - Membership, Focal Points, National Plans and more.'); ?></p>
+      <p><?php print l(t('See all countries'), 'countries'); ?></p>
+    </div><!-- .col-md-4 -->
+    <div class="col-md-4 text-center">
+      <h2><?php print t('Events'); ?></h2>
+      <p><img src="<?php print $directory; ?>/img/events.gif" alt=""></p>
+      <p><?php print t('Upcoming or past events, MEA news.'); ?></p>
+      <p><?php print l(t('See all events'), 'meetings'); ?></p>
+    </div><!-- .col-md-4 -->
   </div><!-- .row -->
 </div><!-- .container -->
 <footer class="footer">

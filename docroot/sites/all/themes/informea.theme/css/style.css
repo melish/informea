@@ -1,3 +1,125 @@
+/* Scaffolding */
+/* ----------- */
+
+
+/* Links */
+
+a {
+  color: #0080d5;
+}
+
+a:hover,
+a:focus {
+  color: #005289;
+}
+
+
+/* Typography */
+/* ---------- */
+
+
+/* Headings */
+
+h1, .h1,
+h2, .h2 {
+  font-family: Georgia, serif;
+}
+
+
+/* Buttons */
+/* ------- */
+
+
+/* Alternate buttons */
+
+.btn-primary {
+  background-color: #0099d5;
+  border-color: #267399;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #f3f3f3;
+  border-color: #c6cedb;
+  color: #8a95a6;
+}
+
+.btn-primary:active {
+  background-color: #ffcc66;
+  border-color: #ffcc33;
+  color: #16232e;
+}
+
+
+/* Dropdown menus */
+/* -------------- */
+
+
+/* Dropdown menu */
+
+.dropdown-menu {
+  border: 2px solid #ffcc66;
+  border-radius: 0;
+  box-shadow: 0 1px 3px rgba(138, 149, 166, 0.5);
+}
+
+/* Hover/Focus state */
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background-color: #0099d5;
+  color: #fff;
+}
+
+/* Dropdown section headers */
+.dropdown-header {
+  color: #16232e;
+  font-weight: bold;
+}
+
+
+/* Full-width dropdown menu */
+
+.dropdown-full-width > .dropdown-menu > li[class*="col-"] {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.dropdown-full-width > .dropdown-menu > li > ul {
+  padding: 0;
+}
+
+.dropdown-full-width > .dropdown-menu > li > ul > li {
+  list-style: none;
+}
+
+.dropdown-full-width > .dropdown-menu > li > ul > li > a {
+  display: block;
+  padding: 3px 20px;
+}
+
+@media (min-width: 768px) {
+  .dropdown-full-width > .dropdown-menu {
+    left: 0;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    right: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .dropdown-full-width > .dropdown-menu {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .dropdown-full-width > .dropdown-menu > li > ul > li > a {
+    padding: 5px 15px 5px 25px;
+  }
+}
+
+
 /* Navbars */
 /* ------- */
 
@@ -30,6 +152,14 @@
   .navbar-collapse {
     box-shadow: none;
   }
+}
+
+
+/* Navbar alignment options */
+
+/* Static top navbar */
+.navbar-static-top + .hero-unit {
+  margin-top: -20px;
 }
 
 
@@ -197,72 +327,119 @@
 }
 
 
-/* Dropdown menus */
-/* -------------- */
+/* Hero unit */
+/* --------- */
 
 
-/* Dropdown menu */
+/* Wrapper and base class */
 
-.dropdown-menu {
-  border: 2px solid #ffcc66;
-  border-radius: 0;
-  box-shadow: 0 1px 3px rgba(138, 149, 166, 0.5);
+.hero-unit {
+  background-color: #1a3a6f;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  padding-top: 30px;
 }
 
-/* Hover/Focus state */
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus {
-  background-color: #0099d5;
+
+/* Hero unit body */
+
+.hero-unit-body {
   color: #fff;
 }
 
-/* Dropdown section headers */
-.dropdown-header {
-  color: #16232e;
-  font-weight: bold;
+.hero-unit-body a:hover,
+.hero-unit-body a:focus {
+  color: #ffcc66;
 }
 
 
-/* Full-width dropdown menu */
+/* Media objects */
+/* ------------- */
 
-.dropdown-full-width > .dropdown-menu > li[class*="col-"] {
-  padding-left: 0;
-  padding-right: 0;
+
+/* Component alignment */
+.media.list-group-item {
+  margin-top: 0;
 }
 
-.dropdown-full-width > .dropdown-menu > li > ul {
-  padding: 0;
+
+/* List groups */
+/* ----------- */
+
+
+/* Scrollalbe list groups */
+
+.list-group-scrollable {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  max-height: 215px;
+  overflow-y: scroll;
 }
 
-.dropdown-full-width > .dropdown-menu > li > ul > li {
-  list-style: none;
+.list-group-scrollable .list-group-item {
+  border-left: 0;
+  border-right: 0;
 }
 
-.dropdown-full-width > .dropdown-menu > li > ul > li > a {
-  display: block;
-  padding: 3px 20px;
+.list-group-scrollable .list-group-item:first-child {
+  border-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
-@media (min-width: 768px) {
-  .dropdown-full-width > .dropdown-menu {
-    left: 0;
-    margin-left: 15px;
-    margin-right: 15px;
-    padding-bottom: 15px;
-    padding-top: 15px;
-    right: 0;
-  }
+.list-group-scrollable .list-group-item:last-child {
+  border-bottom: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
-@media (max-width: 767px) {
-  .dropdown-full-width > .dropdown-menu {
-    margin-left: 0;
-    margin-right: 0;
-  }
 
-  .dropdown-full-width > .dropdown-menu > li > ul > li > a {
-    padding: 5px 15px 5px 25px;
-  }
+/* Latest updates */
+/* -------------- */
+
+
+/* Component alignment */
+
+.latest-updates > .list-group-scrollable {
+  border-bottom-left-radius: 0;
+  margin-bottom: 0;
+}
+
+.latest-updates > .list-group-scrollable .label {
+  display: inline-block;
+}
+
+.latest-updates > .btn-block {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin-top: -1px;
+}
+
+
+/* Country selector */
+/* ---------------- */
+
+
+/* Wrapper and base class */
+
+.country-selector {
+  position: relative;
+}
+
+
+/* Form alignment */
+
+.country-selector > form {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 59px;
+}
+
+.country-selector > form > .form-control {
+  margin-left: auto;
+  margin-right: auto;
+  width: 240px;
 }
 
 
@@ -278,6 +455,7 @@
   color: #505c6a;
   font-size: 90%;
 }
+
 
 /* Footer sections */
 
@@ -417,4 +595,33 @@
   height: 1px;
   margin: 9px 0;
   overflow: hidden;
+}
+
+
+/* Pages */
+/* ----- */
+
+
+/* Front page */
+
+@media (min-width: 1200px) {
+  .front .hero-unit-body > .lead {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  .front .hero-unit-body {
+    margin-bottom: 30px;
+  }
+}
+
+.front .well h2:first-child {
+  margin-top: 0;
+}
+
+@media (min-width: 992px) {
+  .front .well h3:first-child {
+    margin-top: 0;
+  }
 }
