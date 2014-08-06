@@ -1,4 +1,4 @@
-(function ($) {
+jQuery(document).ready(function ($) {
   // This method allows to create charts with a single config.
   var map = AmCharts.makeChart('ammap', {
     areasSettings: {
@@ -9,7 +9,7 @@
     },
     backgroundZoomsToTop : true,
     dataProvider: {
-      areas: [],
+      areas: Drupal.settings.areas,
       map: 'worldHigh'
     },
     pathToImages: 'http://www.amcharts.com/lib/3/images/',
@@ -28,4 +28,4 @@
       window.location.href = Drupal.settings.basePath + 'countries/' + event.mapObject.id;
     }
   });
-})(jQuery);
+});
