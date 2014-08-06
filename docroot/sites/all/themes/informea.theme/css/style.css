@@ -523,70 +523,155 @@ h2, .h2 {
 
 /* Individual logos */
 .logo-itpgrfa > .image {
+  background-position: -60px -60px;
+}
+
+.logo-itpgrfa:hover > .image,
+.logo-itpgrfa:focus > .image {
   background-position: -60px 0;
 }
 
 .logo-stockholm > .image {
+  background-position: -120px -60px;
+}
+
+.logo-stockholm:hover > .image,
+.logo-stockholm:focus > .image {
   background-position: -120px 0;
 }
 
 .logo-un > .image {
+  background-position: -300px -60px;
+}
+
+.logo-un:hover > .image,
+.logo-un:focus > .image {
   background-position: -300px 0;
 }
 
 .logo-basel > .image {
+  background-position: -360px -60px;
+}
+
+.logo-basel:hover > .image,
+.logo-basel:focus > .image {
   background-position: -360px 0;
 }
 
 .logo-ozone > .image {
+  background-position: -420px -60px;
+}
+
+.logo-ozone:hover > .image,
+.logo-ozone:focus > .image {
   background-position: -420px 0;
 }
 
 .logo-unccd > .image {
+  background-position: -480px -60px;
+}
+
+.logo-unccd:hover > .image,
+.logo-unccd:focus > .image {
   background-position: -480px 0;
 }
 
 .logo-cbd > .image {
+  background-position: -540px -60px;
+}
+
+.logo-cbd:hover > .image,
+.logo-cbd:focus > .image {
   background-position: -540px 0;
 }
 
 .logo-unece > .image {
+  background-position: -660px -60px;
+}
+
+.logo-unece:hover > .image,
+.logo-unece:focus > .image {
   background-position: -660px 0;
 }
 
 .logo-cites > .image {
+  background-position: -720px -60px;
+}
+
+.logo-cites:hover > .image,
+.logo-cites:focus > .image {
   background-position: -720px 0;
 }
 
 .logo-ramsar > .image {
+  background-position: -780px -60px;
+}
+
+.logo-ramsar:hover > .image,
+.logo-ramsar:focus > .image {
   background-position: -780px 0;
 }
 
 .logo-unep > .image {
+  background-position: -840px -60px;
+}
+
+.logo-unep:hover > .image,
+.logo-unep:focus > .image {
   background-position: -840px 0;
 }
 
 .logo-cms > .image {
+  background-position: -900px -60px;
+}
+
+.logo-cms:hover > .image,
+.logo-cms:focus > .image {
   background-position: -900px 0;
 }
 
 .logo-unesco > .image {
+  background-position: -1020px -60px;
+}
+
+.logo-unesco:hover > .image,
+.logo-unesco:focus > .image {
   background-position: -1020px 0;
 }
 
 .logo-fao > .image {
+  background-position: -1080px -60px;
+}
+
+.logo-fao:hover > .image,
+.logo-fao:focus > .image {
   background-position: -1080px 0;
 }
 
 .logo-rotterdam > .image {
+  background-position: -1140px -60px;
+}
+
+.logo-rotterdam:hover > .image,
+.logo-rotterdam:focus > .image {
   background-position: -1140px 0;
 }
 
 .logo-unfccc > .image {
+  background-position: -1200px -60px;
+}
+
+.logo-unfccc:hover > .image,
+.logo-unfccc:focus > .image {
   background-position: -1200px 0;
 }
 
 .logo-whc > .image {
+  background-position: -1380px -60px;
+}
+
+.logo-whc:hover > .image,
+.logo-whc:focus > .image {
   background-position: -1380px 0;
 }
 
