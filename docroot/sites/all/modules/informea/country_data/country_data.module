@@ -37,5 +37,17 @@ function country_data_page_callback() {
   // Adds the countries JavaScript file to the page.
   drupal_add_js(drupal_get_path('module', 'country_data') . '/js/countries.js');
 
-  return '';
+  return theme('countries');
+}
+
+/**
+ * Registers module's theme implementations.
+ *
+ * @return
+ *   An associative array of theme hook information.
+ */
+function country_data_theme() {
+  return array(
+    'countries' => array()
+  );
 }
