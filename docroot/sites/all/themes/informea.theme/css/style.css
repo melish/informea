@@ -527,16 +527,52 @@ h2, .h2 {
 }
 
 /* Individual logos */
+.logo-itpgrfa > .image {
+  background-position: -60px 0;
+}
+
+.logo-stockholm > .image {
+  background-position: -120px 0;
+}
+
 .logo-un > .image {
   background-position: -300px 0;
+}
+
+.logo-basel > .image {
+  background-position: -360px 0;
+}
+
+.logo-ozone > .image {
+  background-position: -420px 0;
+}
+
+.logo-unccd > .image {
+  background-position: -480px 0;
+}
+
+.logo-cbd > .image {
+  background-position: -540px 0;
 }
 
 .logo-unece > .image {
   background-position: -660px 0;
 }
 
+.logo-cites > .image {
+  background-position: -720px 0;
+}
+
+.logo-ramsar > .image {
+  background-position: -780px 0;
+}
+
 .logo-unep > .image {
   background-position: -840px 0;
+}
+
+.logo-cms > .image {
+  background-position: -900px 0;
 }
 
 .logo-unesco > .image {
@@ -547,56 +583,16 @@ h2, .h2 {
   background-position: -1080px 0;
 }
 
-.logo-unfccc > .image {
-  background-position: -1200px 0;
-}
-
-.logo-unccd > .image {
-  background-position: -480px 0;
-}
-
-.logo-ozone > .image {
-  background-position: -420px 0;
-}
-
-.logo-basel > .image {
-  background-position: -360px 0;
-}
-
 .logo-rotterdam > .image {
   background-position: -1140px 0;
 }
 
-.logo-stockholm > .image {
-  background-position: -120px 0;
-}
-
-.logo-cbd > .image {
-  background-position: -540px 0;
-}
-
-.logo-cites > .image {
-  background-position: -720px 0;
+.logo-unfccc > .image {
+  background-position: -1200px 0;
 }
 
 .logo-whc > .image {
   background-position: -1380px 0;
-}
-
-.logo-ramsar > .image {
-  background-position: -780px 0;
-}
-
-.logo-itpgrfa > .image {
-  background-position: -60px 0;
-}
-
-.logo-cites > .image {
-  background-position: -720px 0;
-}
-
-.logo-cms > .image {
-  background-position: -900px 0;
 }
 
 
