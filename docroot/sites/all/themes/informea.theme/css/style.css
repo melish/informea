@@ -521,11 +521,6 @@ h2, .h2 {
   text-decoration: none;
 }
 
-.footer a.logo:hover .image,
-.footer a.logo:focus .image {
-  background-image: url('../img/logos-active.png');
-}
-
 /* Individual logos */
 .logo-itpgrfa > .image {
   background-position: -60px 0;
