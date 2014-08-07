@@ -17,6 +17,11 @@ function informea_theme_preprocess_page(&$variables) {
   $search_form = drupal_get_form('search_form');
 
   $variables['search_box'] = drupal_render($search_form);
+
+  if ($variables['is_front']) {
+    // Loads the enabled countries.
+    $variables['countries'] = countries_get_countries('name', array('enabled' => COUNTRIES_ENABLED));
+  }
 }
 
 /**

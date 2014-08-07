@@ -290,7 +290,10 @@
         <p><img src="<?php print $directory; ?>/img/countries.gif" alt=""></p>
         <form role="form">
           <select class="form-control input-sm">
-            <option><?php print t('Select a country&hellip;'); ?></option>
+            <option value=""><?php print t('Select a country&hellip;'); ?></option>
+            <?php foreach ($countries as $iso2 => $country): ?>
+              <option value="<?php print $iso2; ?>"><?php print $country; ?></option>
+            <?php endforeach; ?>
           </select><!-- .form-control .input-sm -->
         </form>
       </div><!-- .country-selector -->
