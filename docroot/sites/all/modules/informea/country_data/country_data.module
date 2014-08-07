@@ -68,6 +68,16 @@ function country_data_map_view() {
 }
 
 /**
+ * Displays the countries list page when the user visits the path.
+ *
+ * @return
+ *   String representing the content of the page.
+ */
+function country_data_list_view() {
+  return theme('countries_list');
+}
+
+/**
  * Registers module's theme implementations.
  *
  * @return
