@@ -568,14 +568,14 @@ h2, .h2 {
 }
 
 .logo-whc > .image {
-  background-position: 0 0;
+  background-position: -1380px 0;
 }
 
 .logo-ramsar > .image {
   background-position: -780px 0;
 }
 
-.logo-irpgrfa > .image {
+.logo-itpgrfa > .image {
   background-position: -60px 0;
 }
 
