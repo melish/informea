@@ -19,6 +19,12 @@ function country_data_menu() {
     'access arguments' => array('access content')
   );
 
+  $items['countries/list'] = array(
+    'title' => 'Countries',
+    'page callback' => 'country_data_list_view',
+    'access arguments' => array('access content')
+  );
+
   return $items;
 }
 
