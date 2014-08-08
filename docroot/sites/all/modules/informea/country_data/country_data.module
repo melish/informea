@@ -35,7 +35,7 @@ function country_data_menu() {
  *   An associative array of properties for each area.
  */
 function _country_data_get_areas() {
-  // Loads the enabled countries.
+  // Loads all properties of enabled countries.
   $countries = countries_get_countries('all', array('enabled' => COUNTRIES_ENABLED));
 
   foreach ($countries as $iso2 => $country) {
@@ -65,6 +65,25 @@ function country_data_map_view() {
   drupal_add_js(drupal_get_path('module', 'country_data') . '/js/countries-map.js');
 
   return theme('countries_map');
+}
+
+/**
+ * Loads the alphabetical index of countries.
+ *
+ * @return
+ *   An associative array of countries indexed by first letter.
+ */
+function _country_data_get_index() {
+  $index = array();
+
+  // Loads the names of enabled countries.
+  $countries = countries_get_countries('name', array('enabled' => COUNTRIES_ENABLED));
+
+  foreach ($countries as $iso2 => $name) {
+    $index[mb_substr($name, 0, 1)][$iso2] = $name;
+  }
+
+  return $index;
 }
 
 /**
