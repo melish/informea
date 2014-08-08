@@ -93,7 +93,7 @@ function _country_data_get_index() {
  *   String representing the content of the page.
  */
 function country_data_list_view() {
-  return theme('countries_list');
+  return theme('countries_list', array('index' => _country_data_get_index()));
 }
 
 /**
@@ -104,6 +104,11 @@ function country_data_list_view() {
  */
 function country_data_theme() {
   return array(
+    'countries_list' => array(
+      'variables' => array(
+        'index' => NULL
+      )
+    ),
     'countries_map' => array()
   );
 }
