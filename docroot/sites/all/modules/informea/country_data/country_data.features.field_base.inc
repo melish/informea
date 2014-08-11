@@ -97,48 +97,6 @@ function country_data_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_latitude'
-  $field_bases['field_latitude'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_latitude',
-    'foreign keys' => array(),
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'number',
-    'settings' => array(
-      'decimal_separator' => '.',
-      'entity_translation_sync' => FALSE,
-      'precision' => 12,
-      'scale' => 3,
-    ),
-    'translatable' => 0,
-    'type' => 'number_decimal',
-  );
-
-  // Exported field_base: 'field_longitude'
-  $field_bases['field_longitude'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_longitude',
-    'foreign keys' => array(),
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'number',
-    'settings' => array(
-      'decimal_separator' => '.',
-      'entity_translation_sync' => FALSE,
-      'precision' => 12,
-      'scale' => 3,
-    ),
-    'translatable' => 0,
-    'type' => 'number_decimal',
-  );
-
   // Exported field_base: 'field_person_department'
   $field_bases['field_person_department'] = array(
     'active' => 1,

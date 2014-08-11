@@ -34,3 +34,19 @@ function informea_migration_schema_alter(&$schema) {
     $schema[$table]['fields'][$column] = $new_spec;
   }
 }
+
+
+/**
+ * Configure Entity translation to handle nodes and taxonomy terms.
+ */
+function informea_configure_entity_translation_types() {
+  variable_set(
+    'entity_translation_entity_types',
+    array(
+      'node' => 'node',
+      'taxonomy_term' => 'taxonomy_term',
+      'comment' => 0,
+      'user' => 0,
+    )
+  );
+}
