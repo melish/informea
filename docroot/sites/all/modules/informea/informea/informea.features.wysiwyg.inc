@@ -84,6 +84,7 @@ function informea_wysiwyg_default_profiles() {
           'JustifyRight' => 1,
           'JustifyBlock' => 1,
           'BulletedList' => 1,
+          'NumberedList' => 1,
           'Outdent' => 1,
           'Indent' => 1,
           'Undo' => 1,
@@ -101,6 +102,7 @@ function informea_wysiwyg_default_profiles() {
           'HorizontalRule' => 1,
           'Cut' => 1,
           'Copy' => 1,
+          'PasteFromWord' => 1,
           'ShowBlocks' => 1,
           'RemoveFormat' => 1,
           'Format' => 1,
@@ -111,6 +113,9 @@ function informea_wysiwyg_default_profiles() {
           'CreateDiv' => 1,
           'Iframe' => 1,
           'SpellChecker' => 1,
+        ),
+        'imce' => array(
+          'imce' => 1,
         ),
         'drupal' => array(
           'break' => 1,
