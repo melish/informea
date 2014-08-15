@@ -297,6 +297,9 @@ $options['init-modules'] = array(
   'treaty',
   'informea',
   'country_data',
+
+  'devel',
+  'diff'
 );
 
 
