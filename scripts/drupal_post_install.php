@@ -21,7 +21,7 @@ function configure_solr() {
 	}
 	if(!empty($cfg['solr_server'])) {
 		// Configure Search API: submit search_api_admin_add_server form
-		if(module_load_include('inc', 'search_api', 'search_api.admin')) {
+		if(module_exists('search_api') && module_load_include('inc', 'search_api', 'search_api.admin')) {
 			drupal_set_message('Creating Solr server using machine name: search_server ...');
 			$cfg = array_merge(
 				array(
@@ -75,7 +75,7 @@ function configure_solr() {
 		}
 
 		// Configure apachesolr: submit apachesolr_environment_edit_form
-		if(module_load_include('inc', 'apachesolr', 'apachesolr.admin')) {
+		if(module_exists('apachesolr') && module_load_include('inc', 'apachesolr', 'apachesolr.admin')) {
 			drupal_set_message('Configuring Apachesolr search environment ...');
 
 			$url = sprintf('%s://%s:%s%s', $cfg['scheme'], $cfg['host'], $cfg['port'], $cfg['path']);
