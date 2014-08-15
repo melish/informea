@@ -22,7 +22,7 @@ class MigrateThesaurus extends DynamicMigration {
     );
 
     $query = Database::getConnection('default', 'for_migration')
-      ->select('voc_concept', 'e')
+      ->select('voc_concept', 'e')->condition('id_source', 9, '=')
       ->fields('e');
 
     $this->source = new MigrateSourceSQL($query);
@@ -83,10 +83,11 @@ class MigrateThesaurus extends DynamicMigration {
       MigrationBase::MESSAGE_INFORMATIONAL
     );
     $voc = taxonomy_vocabulary_machine_name_load(INFORMEA_VOC_INFORMEA);
-    // new => old
+
     $mappings_new_old = db_select('migrate_map_thesaurus', 'e')
       ->fields('e', array('destid1', 'sourceid1'))
       ->execute()->fetchAllKeyed(0);
+
     $mappings_old_new = db_select('migrate_map_thesaurus', 'e')
       ->fields('e')
       ->execute()->fetchAllKeyed(0);
