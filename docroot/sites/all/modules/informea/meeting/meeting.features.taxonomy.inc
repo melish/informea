@@ -42,7 +42,7 @@ function meeting_taxonomy_default_vocabularies() {
       'module' => 'event_calendar',
       'weight' => -7,
       'language' => 'und',
-      'i18n_mode' => 4,
+      'i18n_mode' => 1,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',

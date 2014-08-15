@@ -17,7 +17,7 @@ function decision_taxonomy_default_vocabularies() {
       'module' => 'taxonomy',
       'weight' => -10,
       'language' => 'und',
-      'i18n_mode' => 4,
+      'i18n_mode' => 1,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
@@ -42,7 +42,7 @@ function decision_taxonomy_default_vocabularies() {
       'module' => 'taxonomy',
       'weight' => -9,
       'language' => 'und',
-      'i18n_mode' => 4,
+      'i18n_mode' => 1,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
