@@ -15,7 +15,10 @@ function wp_migration_migrate_api() {
       'NationalReports' => array('class_name' => 'MigrateNationalReports'),
       'Sites' => array('class_name' => 'MigrateSites'),
       'NationalFocalPoints' => array('class_name' => 'MigrateNationalFocalPoints'),
-      'Thesaurus' => array('class_name' => 'MigrateThesaurus'),
+      'ThesaurusInforMEA' => array('class_name' => 'MigrateThesaurusInforMEA'),
+      'ThesaurusGEG' => array('class_name' => 'MigrateThesaurusGEG'),
+      'ThesaurusGEMET' => array('class_name' => 'MigrateThesaurusGEMET'),
+      'ThesaurusIEG' => array('class_name' => 'MigrateThesaurusIEG'),
     )
   );
   return $api;

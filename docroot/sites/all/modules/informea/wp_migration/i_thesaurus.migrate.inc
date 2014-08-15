@@ -1,32 +1,9 @@
 <?php
 
-class MigrateThesaurus extends DynamicMigration {
+class MigrateThesaurusBase extends  DynamicMigration {
 
-  protected function generateMachineName() {
-    return 'Thesaurus';
-  }
-
-  public function __construct($arguments) {
+  public function __construct($arguments, $source_voc_id, $destination_voc) {
     parent::__construct();
-
-    $this->description = 'Import InforMEA thesaurus';
-    $this->map = new MigrateSQLMap($this->machineName,
-      array(
-        'id' => array('type' => 'int',
-          'length' => 4,
-          'not null' => TRUE,
-          'description' => 'Source PK',
-        )
-      ),
-      MigrateDestinationNode::getKeySchema()
-    );
-
-    $query = Database::getConnection('default', 'for_migration')
-      ->select('voc_concept', 'e')->condition('id_source', 9, '=')
-      ->fields('e');
-
-    $this->source = new MigrateSourceSQL($query);
-    $this->destination = new MigrateDestinationTerm(INFORMEA_VOC_INFORMEA);
 
     $this->addFieldMapping('name_field', 'term');
     $this->addFieldMapping('name_field:language')->defaultValue('en');
@@ -68,10 +45,36 @@ class MigrateThesaurus extends DynamicMigration {
       'description_field:summary',
       'field_term_geg_url:attributes', 'field_term_geg_url:language'
     ));
+
+    $this->map = new MigrateSQLMap($this->getMachineName(),
+      array(
+        'id' => array('type' => 'int',
+          'length' => 4,
+          'not null' => TRUE,
+          'description' => 'Source PK',
+        )
+      ),
+      MigrateDestinationNode::getKeySchema()
+    );
+    $query = Database::getConnection('default', 'for_migration')
+      ->select('voc_concept', 'e')->condition('id_source', $source_voc_id, '=')
+      ->fields('e');
+
+    $this->source = new MigrateSourceSQL($query);
+    $this->destination = new MigrateDestinationTerm($destination_voc);
   }
 
-  public function prepare($entity, $row) {
-    $row->path['pathauto'] = 0;
+}
+
+class MigrateThesaurusInforMEA extends MigrateThesaurusBase {
+
+  protected function generateMachineName() {
+    return 'Thesaurus';
+  }
+
+  public function __construct($arguments) {
+    parent::__construct($arguments, 9, INFORMEA_VOC_INFORMEA);
+    $this->description = 'Import InforMEA thesaurus';
   }
 
   /**
@@ -112,5 +115,44 @@ class MigrateThesaurus extends DynamicMigration {
         taxonomy_term_save($term);
       }
     }
+  }
+}
+
+
+class MigrateThesaurusGEG extends MigrateThesaurusBase {
+
+  protected function generateMachineName() {
+    return 'ThesaurusGEG';
+  }
+
+  public function __construct($arguments) {
+    parent::__construct($arguments, 10, INFORMEA_VOC_GEG);
+    $this->description = 'Import GEG thesaurus';
+  }
+}
+
+
+class MigrateThesaurusIEG extends MigrateThesaurusBase {
+
+  protected function generateMachineName() {
+    return 'ThesaurusIEG';
+  }
+
+  public function __construct($arguments) {
+    parent::__construct($arguments, 13, INFORMEA_VOC_IEG);
+    $this->description = 'Import IEG thesaurus';
+  }
+}
+
+
+class MigrateThesaurusGEMET extends MigrateThesaurusBase {
+
+  protected function generateMachineName() {
+    return 'ThesaurusGEMET';
+  }
+
+  public function __construct($arguments) {
+    parent::__construct($arguments, 13, INFORMEA_VOC_GEMET);
+    $this->description = 'Import GEMET thesaurus';
   }
 }
