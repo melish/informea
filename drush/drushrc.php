@@ -273,12 +273,14 @@ $options['init-modules'] = array(
   'wysiwyg',
   'pathauto',
   'uuid',
-  'search_api',
-  'facetapi',
-  'search_api_facetapi',
-  'apachesolr',
-  'apachesolr_search',
-  'search_api_solr',
+
+  #'search_api',
+  #'facetapi',
+  #'search_api_facetapi',
+  #'apachesolr',
+  #'apachesolr_search',
+  #'search_api_solr',
+
   'strongarm',
   'imce_wysiwyg',
 
