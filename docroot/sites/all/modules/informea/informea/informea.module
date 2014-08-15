@@ -6,6 +6,8 @@
 
 include_once 'informea.features.inc';
 
+define('INFORMEA_VOC_INFORMEA', 'thesaurus_informea');
+
 /**
  * Implements hook_schema_alter()
  */

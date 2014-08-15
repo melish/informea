@@ -26,7 +26,7 @@ class MigrateThesaurus extends DynamicMigration {
       ->fields('e');
 
     $this->source = new MigrateSourceSQL($query);
-    $this->destination = new MigrateDestinationTerm('thesaurus_informea');
+    $this->destination = new MigrateDestinationTerm(INFORMEA_VOC_INFORMEA);
 
     $this->addFieldMapping('name_field', 'term');
     $this->addFieldMapping('name_field:language')->defaultValue('en');
@@ -50,7 +50,7 @@ class MigrateThesaurus extends DynamicMigration {
     $this->addFieldMapping('field_term_geg_url', 'geg_tools_url');
     $this->addFieldMapping('field_term_geg_url:title')->defaultValue('View GEG goals');
 
-    $this->addFieldMapping('weight', 'order')->defaultValue(FALSE);
+    $this->addFieldMapping('weight', 'order')->defaultValue(0);
     $this->addFieldMapping('format')->defaultValue('plain_text');
 
     $this->addUnmigratedSources(array(
@@ -68,6 +68,48 @@ class MigrateThesaurus extends DynamicMigration {
       'description_field:summary',
       'field_term_geg_url:attributes', 'field_term_geg_url:language'
     ));
+  }
 
+  public function prepare($entity, $row) {
+    $row->path['pathauto'] = 0;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function postImport() {
+    Migration::displayMessage(
+      "Setting term hierarchy for " . INFORMEA_VOC_INFORMEA,
+      MigrationBase::MESSAGE_INFORMATIONAL
+    );
+    $voc = taxonomy_vocabulary_machine_name_load(INFORMEA_VOC_INFORMEA);
+    // new => old
+    $mappings_new_old = db_select('migrate_map_thesaurus', 'e')
+      ->fields('e', array('destid1', 'sourceid1'))
+      ->execute()->fetchAllKeyed(0);
+    $mappings_old_new = db_select('migrate_map_thesaurus', 'e')
+      ->fields('e')
+      ->execute()->fetchAllKeyed(0);
+
+    $relations = Database::getConnection('default', 'for_migration')
+      ->select('voc_relation', 'e')->where('relation=1')
+      ->fields('e', array('id_concept', 'target_term'))->execute()->fetchAll();
+
+    $terms = taxonomy_get_tree($voc->vid);
+    foreach($terms as &$term) {
+      $original_id = $mappings_new_old[$term->tid];
+      $parents = array();
+      foreach($relations as $oterm) {
+        if($original_id == $oterm->id_concept) {
+          $oparent_id = $oterm->target_term;
+          $parent_id = $mappings_old_new[$oparent_id];
+          $parents[] = $parent_id;
+        }
+      }
+      if(!empty($parents)) {
+        $term->parent = $parents;
+        taxonomy_term_save($term);
+      }
+    }
   }
 }
