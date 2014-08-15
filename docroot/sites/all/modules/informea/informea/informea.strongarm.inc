@@ -173,7 +173,7 @@ function informea_strongarm() {
     'hide_language_selector' => 0,
     'exclude_language_none' => 1,
     'lock_language' => 0,
-    'shared_fields_original_only' => 0,
+    'shared_fields_original_only' => 1,
   );
   $export['entity_translation_settings_node__article'] = $strongarm;
 
@@ -186,7 +186,7 @@ function informea_strongarm() {
     'hide_language_selector' => 0,
     'exclude_language_none' => 1,
     'lock_language' => 0,
-    'shared_fields_original_only' => 0,
+    'shared_fields_original_only' => 1,
   );
   $export['entity_translation_settings_node__page'] = $strongarm;
 
@@ -196,10 +196,10 @@ function informea_strongarm() {
   $strongarm->name = 'entity_translation_settings_taxonomy_term__tags';
   $strongarm->value = array(
     'default_language' => 'xx-et-default',
-    'hide_language_selector' => 1,
-    'exclude_language_none' => 0,
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
     'lock_language' => 0,
-    'shared_fields_original_only' => 0,
+    'shared_fields_original_only' => 1,
   );
   $export['entity_translation_settings_taxonomy_term__tags'] = $strongarm;
 
@@ -209,10 +209,10 @@ function informea_strongarm() {
   $strongarm->name = 'entity_translation_settings_taxonomy_term__thesaurus_agrovoc';
   $strongarm->value = array(
     'default_language' => 'xx-et-default',
-    'hide_language_selector' => 1,
-    'exclude_language_none' => 0,
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
     'lock_language' => 0,
-    'shared_fields_original_only' => 0,
+    'shared_fields_original_only' => 1,
   );
   $export['entity_translation_settings_taxonomy_term__thesaurus_agrovoc'] = $strongarm;
 
@@ -222,10 +222,10 @@ function informea_strongarm() {
   $strongarm->name = 'entity_translation_settings_taxonomy_term__thesaurus_ecolex';
   $strongarm->value = array(
     'default_language' => 'xx-et-default',
-    'hide_language_selector' => 1,
-    'exclude_language_none' => 0,
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
     'lock_language' => 0,
-    'shared_fields_original_only' => 0,
+    'shared_fields_original_only' => 1,
   );
   $export['entity_translation_settings_taxonomy_term__thesaurus_ecolex'] = $strongarm;
 
@@ -235,10 +235,10 @@ function informea_strongarm() {
   $strongarm->name = 'entity_translation_settings_taxonomy_term__thesaurus_gemet';
   $strongarm->value = array(
     'default_language' => 'xx-et-default',
-    'hide_language_selector' => 1,
-    'exclude_language_none' => 0,
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
     'lock_language' => 0,
-    'shared_fields_original_only' => 0,
+    'shared_fields_original_only' => 1,
   );
   $export['entity_translation_settings_taxonomy_term__thesaurus_gemet'] = $strongarm;
 
@@ -248,10 +248,10 @@ function informea_strongarm() {
   $strongarm->name = 'entity_translation_settings_taxonomy_term__thesaurus_informea';
   $strongarm->value = array(
     'default_language' => 'xx-et-default',
-    'hide_language_selector' => 1,
-    'exclude_language_none' => 0,
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
     'lock_language' => 0,
-    'shared_fields_original_only' => 0,
+    'shared_fields_original_only' => 1,
   );
   $export['entity_translation_settings_taxonomy_term__thesaurus_informea'] = $strongarm;
 
