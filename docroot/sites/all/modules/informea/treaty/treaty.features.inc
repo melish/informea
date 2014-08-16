@@ -34,6 +34,22 @@ function treaty_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
+    'treaty_article' => array(
+      'name' => t('Treaty Article'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'treaty_paragraph' => array(
+      'name' => t('Treaty Paragraph'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
   );
   return $items;
 }
