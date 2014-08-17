@@ -1124,8 +1124,8 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty_article-field_internal_order'
-  $field_instances['node-treaty_article-field_internal_order'] = array(
+  // Exported field_instance: 'node-treaty_article-field_official_order'
+  $field_instances['node-treaty_article-field_official_order'] = array(
     'bundle' => 'treaty_article',
     'default_value' => NULL,
     'deleted' => 0,
@@ -1133,15 +1133,10 @@ function treaty_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 5,
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1151,23 +1146,22 @@ function treaty_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_internal_order',
-    'label' => 'Internal order',
+    'field_name' => 'field_official_order',
+    'label' => 'Official order',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'max' => '',
-      'min' => '',
-      'prefix' => '',
-      'suffix' => '',
+      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 7,
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 8,
     ),
   );
 
@@ -1344,8 +1338,8 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty_paragraph-field_internal_order'
-  $field_instances['node-treaty_paragraph-field_internal_order'] = array(
+  // Exported field_instance: 'node-treaty_paragraph-field_official_order'
+  $field_instances['node-treaty_paragraph-field_official_order'] = array(
     'bundle' => 'treaty_paragraph',
     'default_value' => NULL,
     'deleted' => 0,
@@ -1353,15 +1347,10 @@ function treaty_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 1,
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1371,22 +1360,21 @@ function treaty_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_internal_order',
-    'label' => 'Internal order',
+    'field_name' => 'field_official_order',
+    'label' => 'Official order',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'max' => '',
-      'min' => '',
-      'prefix' => '',
-      'suffix' => '',
+      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
       'weight' => 8,
     ),
   );
@@ -1534,13 +1522,13 @@ function treaty_field_default_field_instances() {
   t('Date when treaty was created');
   t('Depositary');
   t('Enter into force');
-  t('Internal order');
   t('Is protocol');
   t('Is this the organisation\'s primary treaty?');
   t('Logo');
   t('Long name');
   t('Number of parties');
   t('OData identifier');
+  t('Official order');
   t('Order');
   t('Paragraph Indentation');
   t('Parent Treaty Article');
