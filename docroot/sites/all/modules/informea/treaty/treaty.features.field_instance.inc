@@ -1513,6 +1513,46 @@ function treaty_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-treaty_paragraph-field_treaty'
+  $field_instances['node-treaty_paragraph-field_treaty'] = array(
+    'bundle' => 'treaty_paragraph',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 8,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_treaty',
+    'label' => 'Treaty',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 10,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Address');
