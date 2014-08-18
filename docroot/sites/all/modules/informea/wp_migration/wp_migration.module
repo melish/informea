@@ -9,12 +9,16 @@ function wp_migration_migrate_api() {
     'api' => 2,
     'migrations' => array(
       'Treaties' => array('class_name' => 'MigrateTreaties'),
+      'TreatiesArticles' => array('class_name' => 'MigrateTreatiesArticles'),
+      'TreatiesParagraphs' => array('class_name' => 'MigrateTreatiesParagraphs'),
+
       'Meetings' => array('class_name' => 'MigrateMeetings'),
       'Decisions' => array('class_name' => 'MigrateDecisions'),
       'ActionPlans' => array('class_name' => 'MigrateActionPlans'),
       'NationalReports' => array('class_name' => 'MigrateNationalReports'),
       'Sites' => array('class_name' => 'MigrateSites'),
       'NationalFocalPoints' => array('class_name' => 'MigrateNationalFocalPoints'),
+
       'ThesaurusInforMEA' => array('class_name' => 'MigrateThesaurusInforMEA'),
       'ThesaurusGEG' => array('class_name' => 'MigrateThesaurusGEG'),
       'ThesaurusGEMET' => array('class_name' => 'MigrateThesaurusGEMET'),
