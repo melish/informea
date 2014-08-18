@@ -1,6 +1,6 @@
 <?php
 
-class MigrateThesaurusBase extends  DynamicMigration {
+class MigrateThesaurusBase extends DynamicMigration {
 
   public function __construct($arguments, $source_voc_id, $destination_voc) {
     parent::__construct();
