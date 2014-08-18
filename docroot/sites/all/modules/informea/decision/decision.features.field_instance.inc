@@ -305,10 +305,10 @@ function decision_field_default_field_instances() {
     'label' => 'Files',
     'required' => 0,
     'settings' => array(
-      'description_field' => 0,
+      'description_field' => 1,
       'entity_translation_sync' => 1,
       'file_directory' => 'decisions',
-      'file_extensions' => 'pdf doc docx odt rtf xls xlsx',
+      'file_extensions' => 'pdf doc docx xls xlsx ppt pptx ods odt odp',
       'max_filesize' => '',
       'user_register_form' => FALSE,
     ),
