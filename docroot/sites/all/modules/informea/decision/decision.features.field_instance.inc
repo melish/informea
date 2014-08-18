@@ -306,9 +306,9 @@ function decision_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'description_field' => 0,
-      'entity_translation_sync' => FALSE,
+      'entity_translation_sync' => 1,
       'file_directory' => 'decisions',
-      'file_extensions' => 'txt doc pdf xls rtf xdoc',
+      'file_extensions' => 'pdf doc docx odt rtf xls xlsx',
       'max_filesize' => '',
       'user_register_form' => FALSE,
     ),
