@@ -455,6 +455,26 @@ h2, .h2 {
 }
 
 
+/* Countries */
+/* --------- */
+
+
+/* Country base class */
+
+.country {
+  display: block;
+  line-height: 1.42857143;
+  margin-bottom: 20px;
+  padding: 4px;
+  text-align: center;
+}
+
+/* Country names */
+.country .name {
+  padding: 9px;
+}
+
+
 /* Footer */
 /* ------ */
 
