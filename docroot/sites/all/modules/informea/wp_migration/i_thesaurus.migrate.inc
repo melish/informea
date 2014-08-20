@@ -69,7 +69,7 @@ class MigrateThesaurusBase extends DynamicMigration {
 class MigrateThesaurusInforMEA extends MigrateThesaurusBase {
 
   protected function generateMachineName() {
-    return 'Thesaurus';
+    return 'ThesaurusInforMEA';
   }
 
   public function __construct($arguments) {
@@ -87,11 +87,11 @@ class MigrateThesaurusInforMEA extends MigrateThesaurusBase {
     );
     $voc = taxonomy_vocabulary_machine_name_load(INFORMEA_VOC_INFORMEA);
 
-    $mappings_new_old = db_select('migrate_map_thesaurus', 'e')
+    $mappings_new_old = db_select('migrate_map_thesaurusinformea', 'e')
       ->fields('e', array('destid1', 'sourceid1'))
       ->execute()->fetchAllKeyed(0);
 
-    $mappings_old_new = db_select('migrate_map_thesaurus', 'e')
+    $mappings_old_new = db_select('migrate_map_thesaurusinformea', 'e')
       ->fields('e')
       ->execute()->fetchAllKeyed(0);
 
