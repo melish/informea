@@ -280,14 +280,14 @@
   <div class="row">
     <div class="col-md-4 text-center">
       <h2><?php print t('Glossary'); ?></h2>
-      <p><img src="<?php print $directory; ?>/img/glossary.gif" alt=""></p>
+      <p><?php print theme('image', array('path' => $directory . '/img/glossary.gif', 'width' => 300, 'height' => 148)); ?></p>
       <p><?php print t('Find the definition of any term related to MEAs as well as all of it&amp;s occurences on this website.'); ?></p>
       <p><?php print l(t('Start searching for definitions'), 'terms'); ?></p>
     </div><!-- .col-md-4 -->
     <div class="col-md-4 text-center">
       <h2><?php print t('Countries'); ?></h2>
       <div class="country-selector">
-        <p><img src="<?php print $directory; ?>/img/countries.gif" alt=""></p>
+        <p><?php print theme('image', array('path' => $directory . '/img/countries.gif', 'width' => 300, 'height' => 148)); ?></p>
         <form role="form">
           <select class="form-control input-sm">
             <option value=""><?php print t('Select a country&hellip;'); ?></option>
@@ -302,7 +302,7 @@
     </div><!-- .col-md-4 -->
     <div class="col-md-4 text-center">
       <h2><?php print t('Events'); ?></h2>
-      <p><img src="<?php print $directory; ?>/img/events.gif" alt=""></p>
+      <p><?php print theme('image', array('path' => $directory . '/img/events.gif', 'width' => 175, 'height' => 500)); ?></p>
       <p><?php print t('Upcoming or past events, MEA news.'); ?></p>
       <p><?php print l(t('See all events'), 'meetings'); ?></p>
     </div><!-- .col-md-4 -->

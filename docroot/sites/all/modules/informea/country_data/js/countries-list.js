@@ -1,5 +1,5 @@
 jQuery(document).ready(function ($) {
-  $('[data-filter="index"]').click(function (event) {
+  $('[data-filter="country"]').click(function (event) {
     event.preventDefault();
 
     var $parent = $(this).parent();
