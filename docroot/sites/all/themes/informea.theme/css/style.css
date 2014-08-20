@@ -471,7 +471,10 @@ h2, .h2 {
 
 /* Country names */
 .country-name {
+  overflow: hidden;
   padding: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 
