@@ -93,6 +93,9 @@ function _country_data_get_index() {
  *   String representing the content of the page.
  */
 function country_data_list_view() {
+  // Adds the countries list JavaScript file to the page.
+  drupal_add_js(drupal_get_path('module', 'country_data') . '/js/countries-list.js');
+
   return theme('countries_list', array('index' => _country_data_get_index()));
 }
 
