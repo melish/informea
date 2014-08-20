@@ -470,7 +470,7 @@ h2, .h2 {
 }
 
 /* Country names */
-.country .name {
+.country-name {
   padding: 9px;
 }
 
@@ -732,4 +732,21 @@ h2, .h2 {
   .front .well h3:first-child {
     margin-top: 0;
   }
+}
+
+
+/* Countries list */
+
+.page-countries-list .nav-pills {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.page-countries-list .nav-pills > li {
+  display: inline-block;
+  float: none;
+}
+
+.page-countries-list .nav-pills > li + li {
+  margin-left: 0;
 }
