@@ -1,5 +1,67 @@
 <?php
 
+class MigrateDecisionsDocuments extends DynamicMigration {
+  protected function generateMachineName() {
+    return 'DecisionsDocuments';
+  }
+
+  public function __construct($arguments) {
+    parent::__construct();
+    $this->source_dir = '/Work/informea/resources/';
+
+    $this->description = 'Import InforMEA decisions documents';
+    $this->map = new MigrateSQLMap($this->machineName,
+      array(
+        'id' => array('type' => 'varchar',
+          'length' => 255,
+          'not null' => TRUE,
+          'description' => 'Source PK',
+        )
+      ),
+      MigrateDestinationNode::getKeySchema()
+    );
+
+    $query = Database::getConnection('default', 'for_migration')
+      ->select('ai_document', 'd')
+      ->fields('d');
+
+    $this->source = new DecisionsDocumentsMigrateSourceSQL($query);
+    $this->destination = new MigrateDestinationFile();
+
+    $this->addFieldMapping('uid')->defaultValue(1);
+    $this->addFieldMapping('value', 'path');
+    $this->addFieldMapping('destination_file', 'destination_file');
+    $this->addFieldMapping('file_replace')->defaultValue(FILE_EXISTS_REPLACE);
+    $this->addFieldMapping('preserve_files')->defaultValue(FALSE);
+    $this->addFieldMapping('source_dir')->defaultValue($this->source_dir);
+
+    /* TODO: Add support in file_entity for these fields (comes from MEA)
+    $this->addFieldMapping('file_original_url', 'url');
+    $this->addFieldMapping('file_language', 'language');
+    */
+
+    $this->addUnmigratedDestinations(array(
+      'timestamp', 'destination_dir'
+    ));
+    $this->addUnmigratedSources(array(
+      'original_id', 'mime', 'id_decision', 'size',
+      'is_indexed', 'rec_created', 'rec_author', 'rec_updated',
+      'rec_updated_author', 'id', 'filename'
+    ));
+  }
+
+  public function prepareRow($row) {
+    if(!file_exists($this->source_dir . $row->path)) {
+      return FALSE;
+    }
+    $dest = preg_replace('/\/?uploads\/decisions\//i', '', $row->path);
+    $info = pathinfo($dest);
+    $destination = 'decisions' . DIRECTORY_SEPARATOR . $info['dirname'] . DIRECTORY_SEPARATOR . $row->filename;
+    $row->destination_file = $destination;
+    return TRUE;
+  }
+}
+
 class MigrateDecisions extends DynamicMigration {
 
   protected $meetings = array();
@@ -48,9 +110,11 @@ class MigrateDecisions extends DynamicMigration {
       ->select('ai_decision', 'd')
       ->fields('d');
 
-    $this->dependencies = array('Treaties', 'Meetings');
-    $this->source = new MigrateSourceSQL($query);
-    $this->destination = new MigrateDestinationNode('decision');
+    $this->dependencies = array('Treaties', 'Meetings', 'DecisionsDocuments');
+    $this->source = new DecisionsMigrateSourceSQL($query);
+
+    $op = MigrateDestinationNode::options('en', 'full_html');
+    $this->destination = new MigrateDestinationNode('decision', $op);
 
     $this->addFieldMapping('title_field', 'short_title');
     $this->addFieldMapping('title_field:language')->defaultValue('en');
@@ -89,11 +153,22 @@ class MigrateDecisions extends DynamicMigration {
     $this->addFieldMapping('sticky')->defaultValue(0);
     $this->addFieldMapping('revision')->defaultValue(FALSE);
 
-    //TODO: Migrate files
-    //$this->addFieldMapping('field_files', '');
+    #$this->addFieldMapping('field_files', 'documents')->arguments(array('source_type' => 'fid'));
+
+
+    $this->addUnmigratedDestinations(array(
+      'log', 'tnid', 'translate', 'revision_uid', 'is_new'
+    ));
+    $this->addUnmigratedSources(array(
+        'id_organization', 'long_title',
+        'rec_author', 'rec_updated_author',
+        'is_indexed'
+      )
+    );
   }
 
-  function prepareRow($row) {
+  public function prepareRow(&$row) {
+    $row->language = 'en';
     if ($row->rec_created == '0000-00-00 00:00:00') {
       $row->rec_created = NULL;
     }
@@ -105,6 +180,67 @@ class MigrateDecisions extends DynamicMigration {
     }
     $row->id_meeting = $this->meetings[$row->id_meeting];
     $row->id_treaty = $this->treaties[$row->id_treaty];
+    $this->prepareDecisionDocuments($row);
     return TRUE;
+  }
+
+  public function prepare($entity, $row) {
+    if(!empty($row->documents)) {
+      $migration = Migration::currentMigration();
+      $entity_type = $migration->getDestination()->getEntityType();
+      $translation_handler = entity_translation_get_handler($entity_type, $entity);
+      foreach(array_keys($row->documents) as $language) {
+        $value = $row->documents[$language];
+        $entity->field_files[$language] = $value;
+        if($language != 'en') {
+          $translation_handler->setTranslation(array(
+            'translate' => 0, 'status' => 1, 'uid' => 1,
+            'language' => $language,
+            'source' => 'en',
+          ));
+        }
+      }
+    }
+  }
+
+  function prepareDecisionDocuments(&$row) {
+    static $old_new = array();
+    if(empty($old_new)) {
+      $old_new = db_select('migrate_map_decisionsdocuments', 'm')
+        ->fields('m', array('sourceid1', 'destid1'))
+        ->execute()->fetchAllKeyed(0);
+    }
+
+    $rows = Database::getConnection('default', 'for_migration')
+      ->select('ai_document', 'd')->where('id_decision=:id', array(':id' => $row->id))
+      ->fields('d', array('id', 'language', 'filename'))->execute()->fetchAll();
+    foreach($rows as $d) {
+      $language = ($d->language == 'und') ? 'en' : $d->language;
+      $row->documents[$language][] = array(
+        'fid' => $old_new[$d->id],
+        'display' => 1,
+        'description' => ''
+      );
+    }
+  }
+}
+
+class DecisionsDocumentsMigrateSourceSQL extends MigrateSourceSQL {
+
+  public function fields() {
+    $fields = parent::fields() + array(
+        'destination_file' => 'Computed destination file',
+      );
+    return $fields;
+  }
+}
+
+class DecisionsMigrateSourceSQL extends MigrateSourceSQL {
+
+  public function fields() {
+    $fields = parent::fields() + array(
+        'documents' => 'Attached fids from DecisionDocuments migration',
+      );
+    return $fields;
   }
 }

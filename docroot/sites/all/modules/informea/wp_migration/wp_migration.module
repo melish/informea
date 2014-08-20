@@ -14,6 +14,7 @@ function wp_migration_migrate_api() {
 
       'Meetings' => array('class_name' => 'MigrateMeetings'),
       'Decisions' => array('class_name' => 'MigrateDecisions'),
+      'DecisionsDocuments' => array('class_name' => 'MigrateDecisionsDocuments'),
       'ActionPlans' => array('class_name' => 'MigrateActionPlans'),
       'NationalReports' => array('class_name' => 'MigrateNationalReports'),
       'Sites' => array('class_name' => 'MigrateSites'),
