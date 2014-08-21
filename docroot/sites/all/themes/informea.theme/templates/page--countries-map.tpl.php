@@ -191,9 +191,14 @@
   <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
   <a id="main-content"></a>
   <?php print render($title_prefix); ?>
-  <?php if (!empty($title)): ?>
-    <h1 class="page-header"><?php print $title; ?></h1>
-  <?php endif; ?>
+  <div class="page-header">
+    <ul class="nav nav-pills pull-right">
+      <li><span class="nav-text"><?php print t('View as:'); ?></span></li>
+      <li class="active"><?php print l(t('Map'), 'countries'); ?></li>
+      <li><?php print l(t('List'), 'countries/list'); ?></li>
+    </ul><!-- .nav .nav-pills .pull-right -->
+    <h1><?php print $title; ?></h1>
+  </div><!-- .page-header -->
   <?php print render($title_suffix); ?>
   <?php print $messages; ?>
   <?php if (!empty($tabs)): ?>
