@@ -95,6 +95,7 @@
           <ul class="dropdown-menu row" role="menu">
             <li class="col-sm-3">
               <ul>
+                <li><?php print l(t('Treaties'), 'treaties'); ?></li>
                 <li class="dropdown-header"><?php print t('Biological Diversity'); ?></li>
                 <li><?php print l(t('Cartagena Protocol'), 'treaties/cartagena'); ?></li>
                 <li><?php print l(t('CBD'), 'treaties/cbd'); ?></li>
@@ -304,7 +305,7 @@
     </div><!-- .col-md-4 -->
     <div class="col-md-4 text-center">
       <h2><?php print t('Events'); ?></h2>
-      <p><?php print theme('image', array('path' => $directory . '/img/events.gif', 'width' => 175, 'height' => 500)); ?></p>
+      <p><?php print theme('image', array('path' => $directory . '/img/events.gif', 'width' => 175, 'height' => 150)); ?></p>
       <p><?php print t('Upcoming or past events, MEA news.'); ?></p>
       <p><?php print l(t('See all events'), 'meetings'); ?></p>
     </div><!-- .col-md-4 -->
