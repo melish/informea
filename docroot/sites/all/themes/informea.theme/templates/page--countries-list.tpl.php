@@ -194,8 +194,8 @@
   <div class="page-header">
     <ul class="nav nav-pills pull-right">
       <li><span class="nav-text"><?php print t('View as:'); ?></span></li>
-      <li class="active"><?php print l(t('Map'), 'countries'); ?></li>
-      <li><?php print l(t('List'), 'countries/list'); ?></li>
+      <li><?php print l(t('Map'), 'countries'); ?></li>
+      <li class="active"><?php print l(t('List'), 'countries/list'); ?></li>
     </ul><!-- .nav .nav-pills .pull-right -->
     <h1><?php print $title; ?></h1>
   </div><!-- .page-header -->
