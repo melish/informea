@@ -7,7 +7,9 @@
 <div id="index">
   <?php foreach ($index as $key => $countries): ?>
     <div id="<?php print $key ?>" class="country-group">
-      <h2 class="page-header"><?php print $key; ?></h2>
+      <div class="page-header">
+        <h2><?php print $key; ?></h2>
+      </div><!-- .page-header -->
       <div class="row">
         <?php foreach ($countries as $iso2 => $name): ?>
           <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
