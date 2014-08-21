@@ -178,11 +178,15 @@
   </div><!-- .container -->
 </header><!-- #navbar -->
 <div class="container">
-  <header id="page-header" role="banner">
-    <?php print render($page['header']); ?>
-  </header><!-- #page-header -->
+  <?php if (!empty($page['header'])): ?>
+    <header id="page-header" role="banner">
+      <?php print render($page['header']); ?>
+    </header><!-- #page-header -->
+  <?php endif; ?>
   <?php if (!empty($page['highlighted'])): ?>
-    <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
+    <div class="highlighted jumbotron">
+      <?php print render($page['highlighted']); ?>
+    </div><!-- .highlighted .jumbotron -->
   <?php endif; ?>
   <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
   <a id="main-content"></a>
