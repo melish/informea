@@ -741,15 +741,14 @@ h2, .h2 {
 /* Countries list page */
 
 .page-countries-list .nav-pills {
-  margin-bottom: 20px;
+  font-size: 0;
+  margin-bottom: 15px;
   text-align: center;
 }
 
 .page-countries-list .nav-pills > li {
   display: inline-block;
   float: none;
-}
-
-.page-countries-list .nav-pills > li + li {
-  margin-left: 0;
+  font-size: 14px;
+  margin-bottom: 2px;
 }
