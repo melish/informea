@@ -305,7 +305,7 @@
     </div><!-- .col-md-4 -->
     <div class="col-md-4 text-center">
       <h2><?php print t('Events'); ?></h2>
-      <p><?php print theme('image', array('path' => $directory . '/img/events.gif', 'width' => 175, 'height' => 500)); ?></p>
+      <p><?php print theme('image', array('path' => $directory . '/img/events.gif', 'width' => 175, 'height' => 150)); ?></p>
       <p><?php print t('Upcoming or past events, MEA news.'); ?></p>
       <p><?php print l(t('See all events'), 'meetings'); ?></p>
     </div><!-- .col-md-4 -->
