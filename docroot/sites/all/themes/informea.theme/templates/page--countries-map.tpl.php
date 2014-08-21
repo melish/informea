@@ -183,45 +183,34 @@
       <?php print render($page['header']); ?>
     </header><!-- #page-header -->
   <?php endif; ?>
-  <div class="row">
-    <?php if (!empty($page['sidebar_first'])): ?>
-      <aside id="sidebar-first" class="col-sm-3" role="complementary">
-        <?php print render($page['sidebar_first']); ?>
-      </aside><!-- #sidebar-first .col-sm-3 -->
-    <?php endif; ?>
-    <section<?php print $content_column_class; ?>>
-      <?php if (!empty($page['highlighted'])): ?>
-        <div class="highlighted jumbotron">
-          <?php print render($page['highlighted']); ?>
-        </div><!-- .highlighted .jumbotron -->
-      <?php endif; ?>
-      <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
-      <a id="main-content"></a>
-      <?php print render($title_prefix); ?>
-      <?php if (!empty($title)): ?>
-        <div class="page-header">
-          <h1><?php print $title; ?></h1>
-        </div><!-- .page-header -->
-      <?php endif; ?>
-      <?php print render($title_suffix); ?>
-      <?php print $messages; ?>
-      <?php if (!empty($tabs)): ?>
-        <?php print render($tabs); ?>
-      <?php endif; ?>
-      <?php if (!empty($page['help'])): ?>
-        <?php print render($page['help']); ?>
-      <?php endif; ?>
-      <?php if (!empty($action_links)): ?>
-        <ul class="action-links"><?php print render($action_links); ?></ul>
-      <?php endif; ?>
-      <?php print render($page['content']); ?>
-    </section>
-    <?php if (!empty($page['sidebar_second'])): ?>
-      <aside id="sidebar-second" class="col-sm-3" role="complementary">
-        <?php print render($page['sidebar_second']); ?>
-      </aside><!-- #sidebar-second .col-sm-3 -->
-    <?php endif; ?>
-  </div><!-- .row -->
+  <?php if (!empty($page['highlighted'])): ?>
+    <div class="highlighted jumbotron">
+      <?php print render($page['highlighted']); ?>
+    </div><!-- .highlighted .jumbotron -->
+  <?php endif; ?>
+  <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
+  <a id="main-content"></a>
+  <?php print render($title_prefix); ?>
+  <div class="page-header">
+    <ul class="nav nav-pills pull-right">
+      <li><span class="nav-text"><?php print t('View as:'); ?></span></li>
+      <li class="active"><?php print l(t('Map'), 'countries'); ?></li>
+      <li><?php print l(t('List'), 'countries/list'); ?></li>
+    </ul><!-- .nav .nav-pills .pull-right -->
+    <h1><?php print $title; ?></h1>
+  </div><!-- .page-header -->
+  <?php print render($title_suffix); ?>
+  <?php print $messages; ?>
+  <?php if (!empty($tabs)): ?>
+    <?php print render($tabs); ?>
+  <?php endif; ?>
+  <?php if (!empty($page['help'])): ?>
+    <?php print render($page['help']); ?>
+  <?php endif; ?>
+  <?php if (!empty($action_links)): ?>
+    <ul class="action-links"><?php print render($action_links); ?></ul>
+  <?php endif; ?>
+  <?php print render($page['content']); ?>
 </div><!-- .container -->
 <footer class="footer">
   <div class="container">

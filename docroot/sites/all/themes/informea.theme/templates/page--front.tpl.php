@@ -237,7 +237,9 @@
   </div><!-- .container -->
 </div><!-- .hero-unit -->
 <div class="container">
-  <h1 class="page-header"><?php print t('InforMEA features'); ?></h1>
+  <div class="page-header">
+    <h1><?php print t('InforMEA features'); ?></h1>
+  </div><!-- .page-header -->
   <div class="well">
     <div class="row">
       <div class="col-md-4">
