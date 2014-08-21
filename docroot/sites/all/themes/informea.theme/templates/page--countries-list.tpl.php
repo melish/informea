@@ -95,6 +95,7 @@
           <ul class="dropdown-menu row" role="menu">
             <li class="col-sm-3">
               <ul>
+                <li><?php print l(t('Treaties'), 'treaties'); ?></li>
                 <li class="dropdown-header"><?php print t('Biological Diversity'); ?></li>
                 <li><?php print l(t('Cartagena Protocol'), 'treaties/cartagena'); ?></li>
                 <li><?php print l(t('CBD'), 'treaties/cbd'); ?></li>
