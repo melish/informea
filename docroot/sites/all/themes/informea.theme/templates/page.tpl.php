@@ -178,9 +178,11 @@
   </div><!-- .container -->
 </header><!-- #navbar -->
 <div class="container">
-  <header id="page-header" role="banner">
-    <?php print render($page['header']); ?>
-  </header><!-- #page-header -->
+  <?php if (!empty($page['header'])): ?>
+    <header id="page-header" role="banner">
+      <?php print render($page['header']); ?>
+    </header><!-- #page-header -->
+  <?php endif; ?>
   <div class="row">
     <?php if (!empty($page['sidebar_first'])): ?>
       <aside id="sidebar-first" class="col-sm-3" role="complementary">
