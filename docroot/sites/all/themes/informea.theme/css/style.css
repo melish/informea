@@ -120,6 +120,18 @@ h2, .h2 {
 }
 
 
+/* Navs */
+/* ---- */
+
+
+/* Text in navs */
+.nav-text {
+  display: block;
+  padding: 10px 15px;
+  position: relative;
+}
+
+
 /* Navbars */
 /* ------- */
 
