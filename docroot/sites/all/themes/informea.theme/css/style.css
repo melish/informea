@@ -455,6 +455,29 @@ h2, .h2 {
 }
 
 
+/* Countries */
+/* --------- */
+
+
+/* Country base class */
+
+.country {
+  display: block;
+  line-height: 1.42857143;
+  margin-bottom: 20px;
+  padding: 4px;
+  text-align: center;
+}
+
+/* Country names */
+.country-name {
+  overflow: hidden;
+  padding: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
 /* Footer */
 /* ------ */
 
@@ -712,4 +735,20 @@ h2, .h2 {
   .front .well h3:first-child {
     margin-top: 0;
   }
+}
+
+
+/* Countries list page */
+
+.page-countries-list .nav-pills {
+  font-size: 0;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.page-countries-list .nav-pills > li {
+  display: inline-block;
+  float: none;
+  font-size: 14px;
+  margin-bottom: 2px;
 }
