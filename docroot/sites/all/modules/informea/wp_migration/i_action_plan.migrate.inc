@@ -61,6 +61,8 @@ class MigrateActionPlans extends DynamicMigration {
     $this->addFieldMapping('field_treaty', 'id_treaty');
     $this->addFieldMapping('field_report_submission_date', 'submission');
     $this->addFieldMapping('field_files', 'document_url');
+    $this->addFieldMapping('field_document_url', 'document_url');
+    $this->addFieldMapping('field_document_url:title')->defaultValue('View on MEA website');
     $this->addFieldMapping('field_files:language')->defaultValue('en');
     $this->addFieldMapping('field_files:file_replace')->defaultValue(FILE_EXISTS_REPLACE);
 
@@ -82,7 +84,17 @@ class MigrateActionPlans extends DynamicMigration {
       'rec_author', 'rec_updated_author', 'is_indexed'
     ));
     $this->addUnmigratedDestinations(array(
-      'log', 'tnid', 'translate', 'revision_uid', 'is_new', 'body:summary',
+      'body', 'body:summary', 'body:format', 'body:language',
+      'field_action_plan_type:source_type', 'field_action_plan_type:ignore_case',
+      'field_files:preserve_files', 'field_files:source_dir', 'field_files:description', 'field_files:display',
+      'field_files:destination_dir', 'field_files:destination_file', 'field_files:file_class',
+
+      'field_original_id:language',
+      'field_report_submission_date:timezone', 'field_report_submission_date:rrule', 'field_report_submission_date:to',
+      'field_document_url:attributes', 'field_document_url:language',
+      'field_informea_tags', 'field_informea_tags:source_type', 'field_informea_tags:create_term',
+      'field_informea_tags:ignore_case',
+      'log', 'tnid', 'translate', 'revision_uid', 'is_new', 'path',
     ));
 
   }
