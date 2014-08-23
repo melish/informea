@@ -260,6 +260,119 @@ class MigrateDecisions extends DynamicMigration {
   }
 }
 
+
+class MigrateDecisionsParagraphs extends DynamicMigration {
+
+  private $decisions_mapping = array();
+
+  protected function generateMachineName() {
+    return 'DecisionsParagraphs';
+  }
+
+  public function __construct($arguments) {
+    parent::__construct();
+
+    $this->dependencies = array('Decisions');
+    $this->description = 'Import InforMEA decisions paragraphs';
+    $this->map = new MigrateSQLMap($this->machineName,
+      array(
+        'id' => array('type' => 'int',
+          'length' => 2,
+          'not null' => TRUE,
+          'description' => 'Source PK',
+        )
+      ),
+      MigrateDestinationNode::getKeySchema()
+    );
+
+    try {
+      if(empty($this->decisions_mapping)) {
+        $this->decisions_mapping = db_select('migrate_map_decisions', 'm')
+          ->fields('m', array('sourceid1', 'destid1'))
+          ->execute()
+          ->fetchAllKeyed(0);
+      }
+    } catch(Exception $e) {
+      // Table might not be available yet
+    }
+
+    $query = Database::getConnection('default', 'for_migration')
+      ->select('ai_decision_paragraph', 'd')
+      ->fields('d');
+
+    $this->source = new DecisionsParagraphsMigrateSourceSQL($query);
+
+    $op = MigrateDestinationNode::options('en', 'full_html');
+    $this->destination = new MigrateDestinationNode('decision_paragraph', $op);
+
+    $this->addFieldMapping('title_field', 'title');
+    $this->addFieldMapping('title_field:language')->defaultValue('en');
+    $this->addFieldMapping('title', 'title');
+
+    $this->addFieldMapping('field_parent_decision', 'id_decision');
+
+    $this->addFieldMapping('body', 'content');
+    $this->addFieldMapping('body:language')->defaultValue('en');
+    $this->addFieldMapping('body:format')->defaultValue('full_html');
+
+    $this->addFieldMapping('field_sorting_order', 'order');
+    $this->addFieldMapping('field_official_order', 'official_order');
+    $this->addFieldMapping('field_paragraph_indentation', 'indent');
+
+    $this->addFieldMapping('field_informea_tags', 'tags');
+    $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_informea_tags:create_term')->defaultValue(FALSE);
+
+    $this->addFieldMapping('created', 'rec_created');
+    $this->addFieldMapping('changed', 'rec_updated');
+    $this->addFieldMapping('language')->defaultValue('en');
+    $this->addFieldMapping('uid')->defaultValue(1);
+    $this->addFieldMapping('comment')->defaultValue(FALSE);
+    $this->addFieldMapping('status')->defaultValue(1);
+    $this->addFieldMapping('promote')->defaultValue(0);
+    $this->addFieldMapping('sticky')->defaultValue(0);
+    $this->addFieldMapping('revision')->defaultValue(FALSE);
+
+    $this->addUnmigratedDestinations(array(
+      'body:summary',
+      'field_informea_tags:ignore_case', 'field_official_order:language',
+      'log', 'tnid', 'translate', 'revision_uid', 'is_new', 'path',
+    ));
+    $this->addUnmigratedSources(array(
+        'rec_author', 'rec_updated_author', 'rec_updated', 'rec_updated_author',
+        'is_indexed'
+      )
+    );
+  }
+
+  public function prepareRow($row) {
+    $row->title = 'Decision paragraph #' . $row->id;
+    $row->language = 'en';
+    if ($row->rec_created == '0000-00-00 00:00:00') {
+      $row->rec_created = NULL;
+    }
+    if (!empty($row->rec_created)) {
+      $row->rec_created = strtotime($row->rec_created);
+    }
+    if ($row->rec_updated == '0000-00-00 00:00:00') {
+      $row->rec_updated = NULL;
+    }
+    $row->id_decision = $this->decisions_mapping[$row->id_decision];
+    $this->prepareTags($row);
+    return TRUE;
+  }
+
+  function prepareTags(&$row) {
+    $old_tags = Database::getConnection('default', 'for_migration')
+      ->select('ai_decision_paragraph_vocabulary', 'd')
+      ->where('id_decision_paragraph=:id', array(':id' => $row->id))
+      ->fields('d', array('id_concept'))
+      ->execute()
+      ->fetchCol(0);
+    $row->tags = informea_tags($old_tags);
+  }
+}
+
 class DecisionsDocumentsMigrateSourceSQL extends MigrateSourceSQL {
 
   public function fields() {
@@ -276,6 +389,16 @@ class DecisionsMigrateSourceSQL extends MigrateSourceSQL {
     $fields = parent::fields() + array(
         'documents' => 'Attached fids from DecisionDocuments migration',
         'tags' => 'Decision tags',
+      );
+    return $fields;
+  }
+}
+
+class DecisionsParagraphsMigrateSourceSQL extends MigrateSourceSQL {
+
+  public function fields() {
+    $fields = parent::fields() + array(
+        'tags' => 'InforMEA tags',
       );
     return $fields;
   }
