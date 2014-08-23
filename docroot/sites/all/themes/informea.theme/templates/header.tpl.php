@@ -1,0 +1,105 @@
+<header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
+  <div class="container">
+    <div class="navbar-header">
+      <?php if ($logo): ?>
+        <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+          <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+        </a><!-- .logo .navbar-btn .pull-left -->
+      <?php endif; ?>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button><!-- .navbar-toggle -->
+    </div><!-- .navbar-header -->
+    <nav class="navbar-collapse collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li class="dropdown dropdown-full-width">
+          <?php print l(t('Treaties') . ' <span class="caret"></span>', NULL, array('attributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'), 'external' => TRUE, 'fragment' => FALSE, 'html' => TRUE)); ?>
+          <ul class="dropdown-menu row" role="menu">
+            <li class="col-sm-3">
+              <ul>
+                <li><?php print l(t('Treaties'), 'treaties'); ?></li>
+                <li class="dropdown-header"><?php print t('Biological Diversity'); ?></li>
+                <li><?php print l(t('Cartagena Protocol'), 'treaties/cartagena'); ?></li>
+                <li><?php print l(t('CBD'), 'treaties/cbd'); ?></li>
+                <li><?php print l(t('CITES'), 'treaties/cites'); ?></li>
+                <li><?php print l(t('CMS'), 'treaties/cms'); ?></li>
+                <li><?php print l(t('Nagoya Protocol'), 'treaties/nagoya'); ?></li>
+                <li><?php print l(t('Plant Treaty'), 'treaties/plant-treaty'); ?></li>
+                <li><?php print l(t('Ramsar'), 'treaties/ramsar'); ?></li>
+                <li><?php print l(t('WHC'), 'treaties/whc'); ?></li>
+              </ul>
+            </li><!-- .col-sm-3 -->
+            <li class="col-sm-3">
+              <ul>
+                <li class="dropdown-header"><?php print t('Chemicals/Waste'); ?></li>
+                <li><?php print l(t('Basel'), 'treaties/basel'); ?></li>
+                <li><?php print l(t('Rotterdam'), 'treaties/rotterdam'); ?></li>
+                <li><?php print l(t('Stockholm'), 'treaties/stockholm'); ?></li>
+                <li class="dropdown-header"><?php print t('Climate/Atmosphere'); ?></li>
+                <li><?php print l(t('UNCCD'), 'treaties/unccd'); ?></li>
+                <li><?php print l(t('UNFCCC'), 'treaties/unfccc'); ?></li>
+                <li><?php print l(t('Kyoto Protocol'), 'treaties/kyoto'); ?></li>
+                <li><?php print l(t('Montreal Protocol'), 'treaties/montreal'); ?></li>
+                <li><?php print l(t('Vienna'), 'treaties/vienna'); ?></li>
+              </ul>
+            </li><!-- .col-sm-3 -->
+            <li class="col-sm-3">
+              <ul>
+                <li class="dropdown-header"><?php print t('Regional Treaties'); ?></li>
+                <li><?php print l(t('Aarhus Convention'), 'treaties/aarhus'); ?></li>
+                <li><?php print l(t('Abidjan Convention'), 'treaties/abidjan'); ?></li>
+                <li><?php print l(t('AEWA'), 'treaties/aewa'); ?></li>
+                <li><?php print l(t('Antigua Convention'), 'treaties/antigua'); ?></li>
+                <li><?php print l(t('Apia Convention'), 'treaties/apia'); ?></li>
+                <li><?php print l(t('Barcelona'), 'treaties/barcelona'); ?></li>
+                <li><?php print l(t('Barcelona Dumping Protocol'), 'treaties/dumping'); ?></li>
+                <li><?php print l(t('Bamako Convention'), 'treaties/bamako'); ?></li>
+                <li><?php print l(t('Cartagena Convention'), 'treaties/cartagena-conv'); ?></li>
+                <li><?php print l(t('Espoo Convention'), 'treaties/espoo'); ?></li>
+                <li><?php print l(t('Hazardous Wastes Protocol'), 'treaties/hazardous'); ?></li>
+                <li><?php print l(t('Industrial Accidents Convention'), 'treaties/industrialaccidents'); ?></li>
+                <li><?php print l(t('Jeddah Convention'), 'treaties/jeddah'); ?></li>
+              </ul>
+            </li><!-- .col-sm-3 -->
+            <li class="col-sm-3">
+              <ul>
+                <li><?php print l(t('Kiev Protocol'), 'treaties/pollutantrelease'); ?></li>
+                <li><?php print l(t('Kuwait Regional Convention'), 'treaties/kuwait'); ?></li>
+                <li><?php print l(t('Long-Range Transboundary Air Pollution'), 'treaties/lrtp'); ?></li>
+                <li><?php print l(t('Lusaka Agreement'), 'treaties/lusakaagreement'); ?></li>
+                <li><?php print l(t('Nairobi Convention'), 'treaties/nairobi'); ?></li>
+                <li><?php print l(t('Noumea Convention'), 'treaties/noumea'); ?></li>
+                <li><?php print l(t('Land-Based Sources Protocol'), 'treaties/land-based'); ?></li>
+                <li><?php print l(t('Offshore Protocol'), 'treaties/offshore'); ?></li>
+                <li><?php print l(t('Prevention and Emergency Protocol'), 'treaties/preventionemergency'); ?></li>
+                <li><?php print l(t('Specially Protected Areas Protocol'), 'treaties/barc-spa'); ?></li>
+                <li><?php print l(t('The Kyiv Protocol'), 'treaties/kyivsea'); ?></li>
+                <li><?php print l(t('Protocol on Water and Health'), 'treaties/protocolwaterhealth'); ?></li>
+                <li><?php print l(t('Water Convention'), 'treaties/waterconvention'); ?></li>
+              </ul>
+            </li><!-- .col-sm-3 -->
+          </ul><!-- .dropdown-menu -->
+        </li><!-- .dropdown -->
+        <li><?php print l(t('Countries'), 'countries'); ?></li>
+        <li><?php print l(t('Glossary'), 'terms'); ?></li>
+        <li class="dropdown">
+          <?php print l(t('More') . ' <span class="caret"></span>', NULL, array('attributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'), 'external' => TRUE, 'fragment' => FALSE, 'html' => TRUE)); ?>
+          <ul class="dropdown-menu dropdown-menu-right" role="menu">
+            <li><?php print l(t('About InforMEA'), 'about'); ?></li>
+            <li><?php print l(t('Multimedia'), 'about/multimedia'); ?></li>
+            <li class="divider"></li>
+            <li><?php print l(t('Latest updates'), 'news'); ?></li>
+            <li><?php print l(t('Events'), 'news'); ?></li>
+          </ul><!-- .dropdown-menu .dropdown-menu-right -->
+        </li><!-- .dropdown -->
+      </ul><!-- .nav .navbar-nav -->
+      <?php print $search_box; ?>
+      <?php if (!empty($page['navigation'])): ?>
+        <?php print render($page['navigation']); ?>
+      <?php endif; ?>
+    </nav><!-- .navbar-collapse .collapse -->
+  </div><!-- .container -->
+</header><!-- #navbar -->
