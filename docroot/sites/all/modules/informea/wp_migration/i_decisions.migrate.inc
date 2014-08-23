@@ -74,6 +74,7 @@ class MigrateDecisions extends DynamicMigration {
   public function __construct($arguments) {
     parent::__construct();
 
+    $this->dependencies = array('ThesaurusInforMEA');
     $this->description = 'Import InforMEA decisions and documents';
     $this->map = new MigrateSQLMap($this->machineName,
       array(
@@ -134,6 +135,10 @@ class MigrateDecisions extends DynamicMigration {
     $this->addFieldMapping('field_decision_status:create_term')->defaultValue(TRUE);
     $this->addFieldMapping('field_decision_number', 'number');
 
+    $this->addFieldMapping('field_informea_tags', 'tags');
+    $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_informea_tags:create_term')->defaultValue(FALSE);
+
     $this->addFieldMapping('field_treaty', 'id_treaty');
     $this->addFieldMapping('field_decision_published', 'published');
     $this->addFieldMapping('field_decision_updated', 'updated');
@@ -175,6 +180,7 @@ class MigrateDecisions extends DynamicMigration {
       'field_last_update', 'field_last_update:timezone', 'field_last_update:rrule',
       'field_last_update:to',
 
+      'field_informea_tags:ignore_case',
       'log', 'tnid', 'translate', 'revision_uid', 'is_new', 'path',
     ));
     $this->addUnmigratedSources(array(
@@ -258,6 +264,7 @@ class DecisionsMigrateSourceSQL extends MigrateSourceSQL {
   public function fields() {
     $fields = parent::fields() + array(
         'documents' => 'Attached fids from DecisionDocuments migration',
+        'tags' => 'Decision tags',
       );
     return $fields;
   }
