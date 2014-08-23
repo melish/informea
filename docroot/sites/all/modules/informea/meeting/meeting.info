@@ -44,6 +44,7 @@ features[field_instance][] = node-event_calendar-field_event_images
 features[field_instance][] = node-event_calendar-field_event_kind
 features[field_instance][] = node-event_calendar-field_event_repetition
 features[field_instance][] = node-event_calendar-field_event_type
+features[field_instance][] = node-event_calendar-field_informea_tags
 features[field_instance][] = node-event_calendar-field_latitude
 features[field_instance][] = node-event_calendar-field_location
 features[field_instance][] = node-event_calendar-field_longitude
