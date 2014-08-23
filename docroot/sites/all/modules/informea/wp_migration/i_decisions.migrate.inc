@@ -205,6 +205,7 @@ class MigrateDecisions extends DynamicMigration {
     $row->id_meeting = $this->meetings[$row->id_meeting];
     $row->id_treaty = $this->treaties[$row->id_treaty];
     $this->prepareDecisionDocuments($row);
+    $this->prepareDecisionTags($row);
     return TRUE;
   }
 
@@ -246,6 +247,16 @@ class MigrateDecisions extends DynamicMigration {
         'description' => ''
       );
     }
+  }
+
+  function prepareDecisionTags(&$row) {
+    $old_tags = Database::getConnection('default', 'for_migration')
+      ->select('ai_decision_vocabulary', 'd')
+      ->where('id_decision=:id', array(':id' => $row->id))
+      ->fields('d', array('id_concept'))
+      ->execute()
+      ->fetchCol(0);
+    $row->tags = informea_tags($old_tags);
   }
 }
 

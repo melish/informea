@@ -28,3 +28,28 @@ function wp_migration_migrate_api() {
   );
   return $api;
 }
+
+/**
+ * Extract new terms mapped to old terms.
+ *
+ * @param array $old
+ *   Array of old term ids
+ *
+ * @return array
+ *   Array of new terms tids
+ */
+function informea_tags($old) {
+  static $terms_old_new = array();
+  if(empty($terms_old_new)) {
+    $terms_old_new = db_select('migrate_map_thesaurusinformea', 'm')
+      ->fields('m', array('sourceid1', 'destid1'))
+      ->execute()->fetchAllKeyed(0);
+  }
+  $ret = array();
+  foreach($old as $tid) {
+    if(array_key_exists($tid, $terms_old_new)) {
+      $ret[] = $terms_old_new[$tid];
+    }
+  }
+  return $ret;
+}
