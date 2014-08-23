@@ -61,6 +61,7 @@ class MigrateNationalReports extends DynamicMigration {
     $this->addFieldMapping('field_treaty', 'id_treaty');
     $this->addFieldMapping('field_report_submission_date', 'submission');
     $this->addFieldMapping('field_files', 'document_url');
+    $this->addFieldMapping('field_document_url', 'document_url');
     $this->addFieldMapping('field_files:language')->defaultValue('en');
     $this->addFieldMapping('field_files:file_replace')->defaultValue(FILE_EXISTS_REPLACE);
 
