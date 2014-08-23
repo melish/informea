@@ -26,6 +26,14 @@ function decision_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
+    'decision_paragraph' => array(
+      'name' => t('Decision Paragraph'),
+      'base' => 'node_content',
+      'description' => t('Paragraph extracted from a decison'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
   );
   drupal_alter('node_info', $items);
   return $items;
