@@ -157,7 +157,25 @@ class MigrateDecisions extends DynamicMigration {
 
 
     $this->addUnmigratedDestinations(array(
-      'log', 'tnid', 'translate', 'revision_uid', 'is_new'
+      'field_decision_number:language',
+      'field_decision_published:timezone', 'field_decision_published:rrule',
+      'field_decision_updated:timezone', 'field_decision_updated:rrule',
+      'field_decision_updated:to', 'field_meeting_title_en:language',
+      'field_decision_published:to', 'field_decision_status:source_type',
+      'field_decision_status:ignore_case', 'field_decision_type:source_type',
+      'field_decision_type:ignore_case',
+      'field_meeting_url:title', 'field_meeting_url:attributes', 'field_meeting_url:language',
+      'field_original_id:language', 'field_url:title', 'field_url:attributes', 'field_url:language',
+
+      // Migrated above
+      'field_files',
+      'field_files:file_class', 'field_files:language', 'field_files:destination_dir',
+      'field_files:destination_file', 'field_files:file_replace', 'field_files:preserve_files',
+      'field_files:source_dir', 'field_files:description', 'field_files:display',
+      'field_last_update', 'field_last_update:timezone', 'field_last_update:rrule',
+      'field_last_update:to',
+
+      'log', 'tnid', 'translate', 'revision_uid', 'is_new', 'path',
     ));
     $this->addUnmigratedSources(array(
         'id_organization', 'long_title',
@@ -167,7 +185,7 @@ class MigrateDecisions extends DynamicMigration {
     );
   }
 
-  public function prepareRow(&$row) {
+  public function prepareRow($row) {
     $row->language = 'en';
     if ($row->rec_created == '0000-00-00 00:00:00') {
       $row->rec_created = NULL;
