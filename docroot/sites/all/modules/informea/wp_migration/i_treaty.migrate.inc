@@ -147,12 +147,16 @@ class MigrateTreatiesArticles extends DynamicMigration {
 
     $this->addFieldMapping('title_field', 'title');
     $this->addFieldMapping('title', 'title');
+    $this->addFieldMapping('title_field:language')->defaultValue('en');
 
     $this->addFieldMapping('body', 'content');
+    $this->addFieldMapping('body:format')->defaultValue('full_html');
+    $this->addFieldMapping('body:language')->defaultValue('en');
 
     $this->addFieldMapping('field_treaty', 'id_treaty');
     $this->addFieldMapping('field_sorting_order', 'order');
     $this->addFieldMapping('field_official_order', 'official_order');
+    $this->addFieldMapping('field_official_order:language')->defaultValue('en');
 
     $this->addFieldMapping('created', 'rec_created');
     $this->addFieldMapping('changed', 'rec_updated');
@@ -165,20 +169,10 @@ class MigrateTreatiesArticles extends DynamicMigration {
     $this->addFieldMapping('revision')->defaultValue(FALSE);
 
     $this->addUnmigratedSources(array(
-      'use_informea', 'rec_author', 'rec_updated_author', 'is_indexed'
+      'rec_author', 'rec_updated_author', 'is_indexed'
     ));
     $this->addUnmigratedDestinations(array(
-      'log', 'tnid', 'translate', 'revision_uid', 'is_new', 'body:summary',
-      'field_enter_into_force:timezone', 'field_enter_into_force:rrule', 'field_enter_into_force:to',
-      'field_logo:file_class',
-      'field_logo:destination_dir', 'field_logo:destination_file', 'field_logo:preserve_files', 'field_logo:alt', 'field_logo:title',
-      'field_odata_identifier:language',
-      'field_ratification_xml_url:title', 'field_ratification_xml_url:attributes', 'field_ratification_xml_url:language',
-      'field_treaty_long_name:language', 'field_url_treaty_website:attributes',
-      'field_treaty_year:timezone', 'field_treaty_year:rrule', 'field_treaty_year:to',
-      'field_url_treaty_parties:attributes', 'field_url_treaty_text:attributes',
-      'field_region:source_type',
-      'field_region:ignore_case'
+      'log', 'tnid', 'translate', 'revision_uid', 'is_new', 'body:summary', 'path',
     ));
   }
 
@@ -232,20 +226,24 @@ class MigrateTreatiesParagraphs extends DynamicMigration {
       ->fields('ta');
 
 
-    $this->source = new MigrateSourceSQL($query);
+    $this->source = new TreatiesParagraphsMigrateSourceSQL($query);
 
     $opt = MigrateDestinationNode::options('en', 'full_html');
     $this->destination = new MigrateDestinationNode('treaty_paragraph', $opt);
 
     $this->addFieldMapping('title_field', 'order');
     $this->addFieldMapping('title', 'order');
+    $this->addFieldMapping('title_field:language')->defaultValue('en');
 
     $this->addFieldMapping('body', 'content');
+    $this->addFieldMapping('body:format')->defaultValue('full_html');
+    $this->addFieldMapping('body:language')->defaultValue('en');
     $this->addFieldMapping('field_parent_treaty_article', 'id_treaty_article');
     $this->addFieldMapping('field_paragraph_indentation', 'indent');
 
     $this->addFieldMapping('field_sorting_order', 'order');
     $this->addFieldMapping('field_official_order', 'official_order');
+    $this->addFieldMapping('field_official_order:language')->defaultValue('en');
     $this->addFieldMapping('field_treaty', 'id_treaty');
 
     $this->addFieldMapping('created', 'rec_created');
@@ -259,11 +257,10 @@ class MigrateTreatiesParagraphs extends DynamicMigration {
     $this->addFieldMapping('revision')->defaultValue(FALSE);
 
     $this->addUnmigratedSources(array(
-      'id_organization', 'id_parent', 'short_title_alternative', 'year',
-      'enabled', 'regional', 'use_informea', 'rec_author', 'rec_updated_author', 'is_indexed'
+      'rec_author', 'rec_updated_author', 'is_indexed'
     ));
     $this->addUnmigratedDestinations(array(
-      'log', 'tnid', 'translate', 'revision_uid', 'is_new', 'body:summary'
+      'log', 'tnid', 'translate', 'revision_uid', 'is_new', 'body:summary', 'path'
     ));
   }
 
@@ -310,5 +307,15 @@ class MigrateTreatiesParagraphs extends DynamicMigration {
 
   function complete($entity) {
     $entity->path['pathauto'] = 0;
+  }
+}
+
+class TreatiesParagraphsMigrateSourceSQL extends MigrateSourceSQL {
+
+  public function fields() {
+    $fields = parent::fields() + array(
+        'id_treaty' => 'Parent treaty taken from its article',
+      );
+    return $fields;
   }
 }
