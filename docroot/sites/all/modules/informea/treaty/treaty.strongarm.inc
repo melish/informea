@@ -461,10 +461,10 @@ function treaty_strongarm() {
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '3',
         ),
         'language' => array(
-          'weight' => '6',
+          'weight' => '7',
         ),
       ),
       'display' => array(),
