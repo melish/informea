@@ -305,8 +305,8 @@ class MigrateTreatiesParagraphs extends DynamicMigration {
     static $articles_treaty = array();
     static $old_new_articles = array();
     if(empty($articles_treaty)) {
-      $mappings_new_old = db_select('migrate_map_treaties', 'e')
-        ->fields('e', array('destid1', 'sourceid1'))
+      $mappings_old_new = db_select('migrate_map_treaties', 'e')
+        ->fields('e', array('sourceid1', 'destid1'))
         ->execute()->fetchAllKeyed(0);
 
       $rows = Database::getConnection('default', 'for_migration')
@@ -315,7 +315,7 @@ class MigrateTreatiesParagraphs extends DynamicMigration {
         ->execute()
         ->fetchAllKeyed(0);
       foreach($rows as $id_article => $id_treaty_old) {
-        $articles_treaty[$id_article] = $mappings_new_old[$id_treaty_old];
+        $articles_treaty[$id_article] = $mappings_old_new[$id_treaty_old];
       }
     }
     if(empty($old_new_articles)) {
