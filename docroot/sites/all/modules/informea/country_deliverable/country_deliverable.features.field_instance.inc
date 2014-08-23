@@ -101,7 +101,7 @@ function country_deliverable_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'countries',
         'settings' => array(),
         'type' => 'country_default',
@@ -131,6 +131,61 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-action_plan-field_document_url'
+  $field_instances['node-action_plan-field_document_url'] = array(
+    'bundle' => 'action_plan',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_default',
+        'weight' => 9,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_document_url',
+    'label' => 'Document URL',
+    'required' => 0,
+    'settings' => array(
+      'attributes' => array(
+        'class' => '',
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => '_blank',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
+      'rel_remove' => 'default',
+      'title' => 'optional',
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
+      'user_register_form' => FALSE,
+      'validate_url' => 0,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 44,
+    ),
+  );
+
   // Exported field_instance: 'node-action_plan-field_files'
   $field_instances['node-action_plan-field_files'] = array(
     'bundle' => 'action_plan',
@@ -138,7 +193,7 @@ function country_deliverable_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_default',
@@ -224,9 +279,8 @@ function country_deliverable_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'hidden',
         'weight' => 4,
       ),
       'teaser' => array(
@@ -318,10 +372,10 @@ function country_deliverable_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'link' => 1,
         ),
         'type' => 'entityreference_label',
         'weight' => 2,
@@ -742,6 +796,7 @@ function country_deliverable_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Body');
   t('Country');
+  t('Document URL');
   t('Files');
   t('InforMEA Tags');
   t('Original ID');
