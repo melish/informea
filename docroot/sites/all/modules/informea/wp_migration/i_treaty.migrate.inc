@@ -2,6 +2,10 @@
 
 class MigrateTreaties extends DynamicMigration {
 
+  protected function generateMachineName() {
+    return 'Treaties';
+  }
+
   public function __construct($arguments) {
     parent::__construct();
 
@@ -22,8 +26,7 @@ class MigrateTreaties extends DynamicMigration {
       ->select('ai_treaty', 't')
       ->fields('t');
 
-
-    $this->source = new MigrateSourceSQL($query);
+    $this->source = new EntityWithTagsMigrateSourceSQL($query);
 
     $this->destination = new MigrateDestinationNode('treaty');
 
@@ -61,6 +64,10 @@ class MigrateTreaties extends DynamicMigration {
     $this->addFieldMapping('field_logo:file_replace')->defaultValue(FILE_EXISTS_REPLACE);
     $this->addFieldMapping('field_logo:source_dir')->defaultValue('/Work/informea/www.old/wp-content/uploads');
 
+    $this->addFieldMapping('field_informea_tags', 'tags');
+    $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_informea_tags:create_term')->defaultValue(FALSE);
+
     $this->addFieldMapping('created', 'rec_created');
     $this->addFieldMapping('changed', 'rec_updated');
     $this->addFieldMapping('language')->defaultValue('en');
@@ -90,10 +97,6 @@ class MigrateTreaties extends DynamicMigration {
     ));
   }
 
-  protected function generateMachineName() {
-    return 'Treaties';
-  }
-
   function prepareRow($row) {
     if ($row->rec_created == '0000-00-00 00:00:00') {
       $row->rec_created = NULL;
@@ -104,6 +107,7 @@ class MigrateTreaties extends DynamicMigration {
     if (!empty($row->rec_created)) {
       $row->rec_created = strtotime($row->rec_created);
     }
+    $this->prepareTags($row);
   }
 
   function complete($entity, $row) {
@@ -114,11 +118,25 @@ class MigrateTreaties extends DynamicMigration {
       );
       path_save($args);
   }
+
+  function prepareTags(&$row) {
+    $old_tags = Database::getConnection('default', 'for_migration')
+      ->select('ai_treaty_vocabulary', 'd')
+      ->where('id_treaty=:id', array(':id' => $row->id))
+      ->fields('d', array('id_concept'))
+      ->execute()
+      ->fetchCol(0);
+    $row->tags = informea_tags($old_tags);
+  }
 }
 
 
 
 class MigrateTreatiesArticles extends DynamicMigration {
+
+  protected function generateMachineName() {
+    return 'TreatiesArticles';
+  }
 
   public function __construct($arguments) {
     parent::__construct();
@@ -141,7 +159,7 @@ class MigrateTreatiesArticles extends DynamicMigration {
       ->fields('ta');
 
 
-    $this->source = new MigrateSourceSQL($query);
+    $this->source = new EntityWithTagsMigrateSourceSQL($query);
 
     $opt = MigrateDestinationNode::options('en', 'full_html');
     $this->destination = new MigrateDestinationNode('treaty_article', $opt);
@@ -158,6 +176,10 @@ class MigrateTreatiesArticles extends DynamicMigration {
     $this->addFieldMapping('field_sorting_order', 'order');
     $this->addFieldMapping('field_official_order', 'official_order');
     $this->addFieldMapping('field_official_order:language')->defaultValue('en');
+
+    $this->addFieldMapping('field_informea_tags', 'tags');
+    $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_informea_tags:create_term')->defaultValue(FALSE);
 
     $this->addFieldMapping('created', 'rec_created');
     $this->addFieldMapping('changed', 'rec_updated');
@@ -177,10 +199,6 @@ class MigrateTreatiesArticles extends DynamicMigration {
     ));
   }
 
-  protected function generateMachineName() {
-    return 'TreatiesArticles';
-  }
-
   function prepareRow($row) {
     $row->id_treaty = db_select('migrate_map_treaties', 't')
       ->fields('t', array('destid1'))->where('sourceid1=:id', array('id' => $row->id_treaty))
@@ -195,13 +213,23 @@ class MigrateTreatiesArticles extends DynamicMigration {
     if (!empty($row->rec_created)) {
       $row->rec_created = strtotime($row->rec_created);
     }
+    $this->prepareTags($row);
   }
 
   function complete($entity) {
     $entity->path['pathauto'] = 0;
   }
-}
 
+  function prepareTags(&$row) {
+    $old_tags = Database::getConnection('default', 'for_migration')
+      ->select('ai_treaty_article_vocabulary', 'd')
+      ->where('id_treaty_article=:id', array(':id' => $row->id))
+      ->fields('d', array('id_concept'))
+      ->execute()
+      ->fetchCol(0);
+    $row->tags = informea_tags($old_tags);
+  }
+}
 
 
 class MigrateTreatiesParagraphs extends DynamicMigration {
@@ -246,6 +274,10 @@ class MigrateTreatiesParagraphs extends DynamicMigration {
     $this->addFieldMapping('field_official_order', 'official_order');
     $this->addFieldMapping('field_official_order:language')->defaultValue('en');
     $this->addFieldMapping('field_treaty', 'id_treaty');
+
+    $this->addFieldMapping('field_informea_tags', 'tags');
+    $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_informea_tags:create_term')->defaultValue(FALSE);
 
     $this->addFieldMapping('created', 'rec_created');
     $this->addFieldMapping('changed', 'rec_updated');
@@ -304,10 +336,21 @@ class MigrateTreatiesParagraphs extends DynamicMigration {
     if (!empty($row->rec_created)) {
       $row->rec_created = strtotime($row->rec_created);
     }
+    $this->prepareTags($row);
   }
 
   function complete($entity) {
     $entity->path['pathauto'] = 0;
+  }
+
+  function prepareTags(&$row) {
+    $old_tags = Database::getConnection('default', 'for_migration')
+      ->select('ai_treaty_article_paragraph_vocabulary', 'd')
+      ->where('id_treaty_article_paragraph=:id', array(':id' => $row->id))
+      ->fields('d', array('id_concept'))
+      ->execute()
+      ->fetchCol(0);
+    $row->tags = informea_tags($old_tags);
   }
 }
 
@@ -316,6 +359,17 @@ class TreatiesParagraphsMigrateSourceSQL extends MigrateSourceSQL {
   public function fields() {
     $fields = parent::fields() + array(
         'id_treaty' => 'Parent treaty taken from its article',
+        'tags' => 'Associated InforMEA tags',
+      );
+    return $fields;
+  }
+}
+
+class EntityWithTagsMigrateSourceSQL extends MigrateSourceSQL {
+
+  public function fields() {
+    $fields = parent::fields() + array(
+        'tags' => 'Associated InforMEA tags',
       );
     return $fields;
   }
