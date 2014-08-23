@@ -5,6 +5,7 @@ class MigrateTreaties extends DynamicMigration {
   public function __construct($arguments) {
     parent::__construct();
 
+    $this->dependencies = array('ThesaurusInforMEA');
     $this->description = 'Import InforMEA treaties';
     $this->map = new MigrateSQLMap($this->machineName,
       array(

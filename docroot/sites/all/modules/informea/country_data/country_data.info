@@ -42,6 +42,7 @@ features[field_instance][] = node-contact_person-field_person_prefix
 features[field_instance][] = node-contact_person-field_treaty
 features[field_instance][] = node-geographical_site-body
 features[field_instance][] = node-geographical_site-field_country
+features[field_instance][] = node-geographical_site-field_informea_tags
 features[field_instance][] = node-geographical_site-field_latitude
 features[field_instance][] = node-geographical_site-field_longitude
 features[field_instance][] = node-geographical_site-field_original_id

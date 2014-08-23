@@ -710,6 +710,47 @@ function country_data_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-geographical_site-field_informea_tags'
+  $field_instances['node-geographical_site-field_informea_tags'] = array(
+    'bundle' => 'geographical_site',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 8,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_informea_tags',
+    'label' => 'InforMEA Tags',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 43,
+    ),
+  );
+
   // Exported field_instance: 'node-geographical_site-field_latitude'
   $field_instances['node-geographical_site-field_latitude'] = array(
     'bundle' => 'geographical_site',
@@ -1159,6 +1200,7 @@ function country_data_field_default_field_instances() {
   t('Fax');
   t('First name');
   t('Focal point country');
+  t('InforMEA Tags');
   t('Institution');
   t('Last name');
   t('Latitude');
