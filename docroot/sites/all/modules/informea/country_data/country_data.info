@@ -5,6 +5,7 @@ package = InforMEA
 version = 7.x-1.3
 project = country_data
 dependencies[] = country_deliverable
+dependencies[] = countries
 dependencies[] = ctools
 dependencies[] = email
 dependencies[] = informea
