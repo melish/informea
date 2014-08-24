@@ -5,12 +5,12 @@
  */
 
 /**
- * Implementation of hook_feeds_importer_default().
+ * Implements hook_feeds_importer_default().
  */
 function feeds_news_feeds_importer_default() {
   $export = array();
 
-  $feeds_importer = new stdClass;
+  $feeds_importer = new stdClass();
   $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
   $feeds_importer->api_version = 1;
   $feeds_importer->id = 'feed';
@@ -23,6 +23,7 @@ function feeds_news_feeds_importer_default() {
         'auto_detect_feeds' => 1,
         'use_pubsubhubbub' => 0,
         'designated_hub' => '',
+        'request_timeout' => NULL,
       ),
     ),
     'parser' => array(
@@ -32,14 +33,14 @@ function feeds_news_feeds_importer_default() {
     'processor' => array(
       'plugin_key' => 'FeedsNodeProcessor',
       'config' => array(
-        'bundle' => 'feed_item',
-        'update_existing' => '0',
+        'bundle' => 'event_calendar_imported',
+        'update_existing' => '2',
         'expire' => '-1',
         'mappings' => array(
           0 => array(
             'source' => 'title',
             'target' => 'title',
-            'unique' => FALSE,
+            'unique' => 1,
           ),
           1 => array(
             'source' => 'timestamp',
@@ -47,23 +48,46 @@ function feeds_news_feeds_importer_default() {
             'unique' => FALSE,
           ),
           2 => array(
+            'source' => 'timestamp',
+            'target' => 'event_calendar_date:start',
+            'unique' => FALSE,
+          ),
+          3 => array(
             'source' => 'url',
             'target' => 'url',
             'unique' => 1,
           ),
-          3 => array(
+          4 => array(
+            'source' => 'url',
+            'target' => 'field_url:url',
+            'unique' => FALSE,
+          ),
+          5 => array(
             'source' => 'guid',
             'target' => 'guid',
             'unique' => 1,
           ),
-          4 => array(
+          6 => array(
             'source' => 'description',
-            'target' => 'field_feed_item_description',
+            'target' => 'body',
             'unique' => FALSE,
+          ),
+          7 => array(
+            'source' => 'title',
+            'target' => 'title_field',
+            'unique' => FALSE,
+          ),
+          8 => array(
+            'source' => 'tags',
+            'target' => 'field_tags',
+            'term_search' => '0',
+            'autocreate' => 1,
           ),
         ),
         'input_format' => 'filtered_html',
         'author' => 0,
+        'authorize' => 0,
+        'skip_hash_check' => 0,
       ),
     ),
     'content_type' => 'feed',
@@ -75,7 +99,7 @@ function feeds_news_feeds_importer_default() {
   );
   $export['feed'] = $feeds_importer;
 
-  $feeds_importer = new stdClass;
+  $feeds_importer = new stdClass();
   $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
   $feeds_importer->api_version = 1;
   $feeds_importer->id = 'opml';
