@@ -298,6 +298,10 @@ $options['init-modules'] = array(
   'informea',
   'country_data',
 
+  'feeds',
+  'feeds_news',
+  'feeds_ui',
+
   'devel',
   'diff'
 );
