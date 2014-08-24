@@ -23,6 +23,8 @@ function meeting_field_default_field_bases() {
     'module' => 'date',
     'required' => TRUE,
     'settings' => array(
+      'cache_count' => 4,
+      'cache_enabled' => 0,
       'enddate' => 1,
       'enddate_required' => 0,
       'entity_translation_sync' => FALSE,
@@ -35,7 +37,7 @@ function meeting_field_default_field_bases() {
         'year' => 'year',
       ),
       'repeat' => 0,
-      'timezone_db' => 'UTC',
+      'timezone_db' => '',
       'todate' => 'optional',
       'tz_handling' => 'none',
     ),
