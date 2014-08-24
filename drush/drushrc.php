@@ -302,6 +302,8 @@ $options['init-modules'] = array(
   'feeds_news',
   'feeds_ui',
 
+  'r4032login',
+
   'devel',
   'diff'
 );
