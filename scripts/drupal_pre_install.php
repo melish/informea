@@ -4,6 +4,6 @@
  * Created: 201407171712
  */
 
-require_once 'library.php';
+require_once 'library.inc';
 
 project_pre_install_set_config_variables();
