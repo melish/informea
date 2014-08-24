@@ -70,15 +70,19 @@ class MigrateMeetings extends DynamicMigration {
 
     $this->addFieldMapping('field_event_repetition', 'repetition');
     $this->addFieldMapping('field_event_repetition:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_event_repetition:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('field_event_kind', 'kind');
     $this->addFieldMapping('field_event_kind:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_event_kind:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('field_event_type', 'type');
     $this->addFieldMapping('field_event_type:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_event_type:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('field_event_access', 'access');
     $this->addFieldMapping('field_event_access:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_event_access:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('event_calendar_status', 'status');
     $this->addFieldMapping('event_calendar_status:create_term')->defaultValue(TRUE);
@@ -119,12 +123,12 @@ class MigrateMeetings extends DynamicMigration {
     $this->addUnmigratedDestinations(array(
       'event_calendar_date:timezone', 'event_calendar_date:rrule', 'event_calendar_status:source_type',
       'field_abbreviation:language',
-      'field_event_access:source_type', 'field_event_access:ignore_case',
+      'field_event_access:source_type',
       'field_event_images:file_class', 'field_event_images:destination_dir', 'field_event_images:destination_file',
       'field_event_images:preserve_files', 'field_event_images:source_dir', 'field_event_images:alt', 'field_event_images:title',
-      'field_event_kind:source_type', 'field_event_kind:ignore_case',
-      'field_event_repetition:source_type', 'field_event_repetition:ignore_case',
-      'field_event_type:source_type', 'field_event_type:ignore_case',
+      'field_event_kind:source_type',
+      'field_event_repetition:source_type',
+      'field_event_type:source_type',
       'field_original_id:language',
       'field_url:attributes',
       'log', 'tnid', 'translate', 'revision_uid', 'is_new', 'body:summary',
