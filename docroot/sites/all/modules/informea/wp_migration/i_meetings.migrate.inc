@@ -84,9 +84,9 @@ class MigrateMeetings extends DynamicMigration {
     $this->addFieldMapping('field_event_access:create_term')->defaultValue(TRUE);
     $this->addFieldMapping('field_event_access:ignore_case')->defaultValue(TRUE);
 
-    $this->addFieldMapping('event_calendar_status', 'status');
-    $this->addFieldMapping('event_calendar_status:create_term')->defaultValue(TRUE);
-    $this->addFieldMapping('event_calendar_status:ignore_case')->defaultValue(TRUE);
+    $this->addFieldMapping('field_event_calendar_status', 'status');
+    $this->addFieldMapping('field_event_calendar_status:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_event_calendar_status:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('field_event_images', 'image');
     $this->addFieldMapping('field_event_images:language')->defaultValue('en');
@@ -124,7 +124,7 @@ class MigrateMeetings extends DynamicMigration {
       'field_informea_tags', 'field_informea_tags:source_type', 'field_informea_tags:create_term',
       'field_informea_tags:ignore_case',
       'field_tags', 'field_tags:source_type', 'field_tags:create_term', 'field_tags:ignore_case',
-      'event_calendar_date:timezone', 'event_calendar_date:rrule', 'event_calendar_status:source_type',
+      'event_calendar_date:timezone', 'event_calendar_date:rrule', 'field_event_calendar_status:source_type',
       'field_abbreviation:language',
       'field_event_access:source_type',
       'field_event_images:file_class', 'field_event_images:destination_dir', 'field_event_images:destination_file',
