@@ -275,6 +275,7 @@ $options['init-modules'] = array(
   'uuid',
   'uuid_features',
   'event_calendar',
+  'advanced_help',
 
   #'search_api',
   #'facetapi',
