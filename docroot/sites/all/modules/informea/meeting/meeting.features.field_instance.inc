@@ -111,46 +111,6 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-event_calendar_status'
-  $field_instances['node-event_calendar-event_calendar_status'] = array(
-    'bundle' => 'event_calendar',
-    'default_value' => array(
-      0 => array(
-        'tid' => 2,
-      ),
-    ),
-    'deleted' => 0,
-    'description' => 'Describe Event status',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 15,
-      ),
-      'teaser' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 2,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'event_calendar_status',
-    'label' => 'Status',
-    'required' => TRUE,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_select',
-      'weight' => 4,
-    ),
-  );
-
   // Exported field_instance: 'node-event_calendar-field_abbreviation'
   $field_instances['node-event_calendar-field_abbreviation'] = array(
     'bundle' => 'event_calendar',
@@ -305,6 +265,44 @@ function meeting_field_default_field_instances() {
       'settings' => array(),
       'type' => 'options_select',
       'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-event_calendar-field_event_calendar_status'
+  $field_instances['node-event_calendar-field_event_calendar_status'] = array(
+    'bundle' => 'event_calendar',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 20,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_event_calendar_status',
+    'label' => 'Event status',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 25,
     ),
   );
 
@@ -1234,10 +1232,10 @@ function meeting_field_default_field_instances() {
   t('City');
   t('Country');
   t('Date');
-  t('Describe Event status');
   t('Description');
   t('Event Description');
   t('Event images');
+  t('Event status');
   t('If the imported item is associated with a treaty');
   t('InforMEA Tags');
   t('Kind');
@@ -1247,7 +1245,6 @@ function meeting_field_default_field_instances() {
   t('Original ID');
   t('Repetition');
   t('Select the start and end dates for this event.');
-  t('Status');
   t('Tags');
   t('Title');
   t('Treaty');
