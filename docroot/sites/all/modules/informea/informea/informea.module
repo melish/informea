@@ -55,3 +55,29 @@ function informea_configure_entity_translation_types() {
     )
   );
 }
+
+/**
+ * Implements hook_date_formats().
+ */
+function informea_date_formats() {
+  variable_set('date_format_short', 'j M Y');
+  variable_set('date_format_medium', 'd M Y - H:i');
+  variable_set('date_format_long', 'D, d F Y - H:i');
+  return array(
+    array(
+      'type' => 'short',
+      'format' => 'j M Y',
+      'locales' => array(),
+    ),
+    array(
+      'type' => 'medium',
+      'format' => 'd M Y - H:i',
+      'locales' => array(),
+    ),
+    array(
+      'type' => 'long',
+      'format' => 'D, d F Y - H:i',
+      'locales' => array(),
+    ),
+  );
+}
