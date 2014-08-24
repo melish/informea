@@ -13,7 +13,7 @@ function treaty_taxonomy_default_vocabularies() {
       'name' => 'Geographical regions',
       'machine_name' => 'geographical_regions',
       'description' => '',
-      'hierarchy' => 0,
+      'hierarchy' => 1,
       'module' => 'taxonomy',
       'weight' => -2,
       'language' => 'und',
