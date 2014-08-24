@@ -121,6 +121,9 @@ class MigrateMeetings extends DynamicMigration {
       'rec_author', 'rec_updated_author', 'is_indexed'
     ));
     $this->addUnmigratedDestinations(array(
+      'field_informea_tags', 'field_informea_tags:source_type', 'field_informea_tags:create_term',
+      'field_informea_tags:ignore_case',
+      'field_tags', 'field_tags:source_type', 'field_tags:create_term', 'field_tags:ignore_case',
       'event_calendar_date:timezone', 'event_calendar_date:rrule', 'event_calendar_status:source_type',
       'field_abbreviation:language',
       'field_event_access:source_type',
@@ -131,7 +134,7 @@ class MigrateMeetings extends DynamicMigration {
       'field_event_type:source_type',
       'field_original_id:language',
       'field_url:attributes',
-      'log', 'tnid', 'translate', 'revision_uid', 'is_new', 'body:summary',
+      'log', 'tnid', 'translate', 'revision_uid', 'is_new', 'body:summary', 'path',
     ));
   }
 
