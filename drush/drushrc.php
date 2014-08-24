@@ -301,6 +301,8 @@ $options['init-modules'] = array(
   'informea',
   'country_data',
 
+  'initial_content',
+
   'feeds',
   'feeds_news',
   'feeds_ui',
