@@ -273,6 +273,7 @@ $options['init-modules'] = array(
   'wysiwyg',
   'pathauto',
   'uuid',
+  'uuid_features',
 
   #'search_api',
   #'facetapi',
