@@ -274,6 +274,7 @@ $options['init-modules'] = array(
   'pathauto',
   'uuid',
   'uuid_features',
+  'event_calendar',
 
   #'search_api',
   #'facetapi',
