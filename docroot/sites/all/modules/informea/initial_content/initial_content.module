@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * initial_content.features.inc
- */
-
-include_once 'initial_content.features.inc';
