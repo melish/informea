@@ -8,6 +8,9 @@
  * Implements hook_ctools_plugin_api().
  */
 function treaty_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "field_group" && $api == "field_group") {
+    return array("version" => "1");
+  }
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -18,10 +21,10 @@ function treaty_ctools_plugin_api($module = NULL, $api = NULL) {
  */
 function treaty_node_info() {
   $items = array(
-    'organization' => array(
-      'name' => t('Organization'),
+    'organisation' => array(
+      'name' => t('Organisation'),
       'base' => 'node_content',
-      'description' => t('An organization which hosts a number of treaties (ex. UNEP)'),
+      'description' => '',
       'has_title' => '1',
       'title_label' => t('Name'),
       'help' => '',
@@ -29,13 +32,13 @@ function treaty_node_info() {
     'treaty' => array(
       'name' => t('Treaty'),
       'base' => 'node_content',
-      'description' => t('Political treaty'),
+      'description' => t('Generic treaty entity'),
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => t('title'),
       'help' => '',
     ),
     'treaty_article' => array(
-      'name' => t('Treaty Article'),
+      'name' => t('Treaty article'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
@@ -43,7 +46,7 @@ function treaty_node_info() {
       'help' => '',
     ),
     'treaty_paragraph' => array(
-      'name' => t('Treaty Paragraph'),
+      'name' => t('Treaty paragraph'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',

@@ -13,23 +13,9 @@ function treaty_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'additional_settings__active_tab_treaty_article';
-  $strongarm->value = 'edit-menu';
-  $export['additional_settings__active_tab_treaty_article'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'additional_settings__active_tab_treaty_paragraph';
-  $strongarm->value = 'edit-menu';
-  $export['additional_settings__active_tab_treaty_paragraph'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'comment_anonymous_organization';
+  $strongarm->name = 'comment_anonymous_organisation';
   $strongarm->value = 0;
-  $export['comment_anonymous_organization'] = $strongarm;
+  $export['comment_anonymous_organisation'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -55,9 +41,9 @@ function treaty_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_default_mode_organization';
+  $strongarm->name = 'comment_default_mode_organisation';
   $strongarm->value = 1;
-  $export['comment_default_mode_organization'] = $strongarm;
+  $export['comment_default_mode_organisation'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -83,9 +69,9 @@ function treaty_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_default_per_page_organization';
+  $strongarm->name = 'comment_default_per_page_organisation';
   $strongarm->value = '50';
-  $export['comment_default_per_page_organization'] = $strongarm;
+  $export['comment_default_per_page_organisation'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -111,9 +97,9 @@ function treaty_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_form_location_organization';
+  $strongarm->name = 'comment_form_location_organisation';
   $strongarm->value = 1;
-  $export['comment_form_location_organization'] = $strongarm;
+  $export['comment_form_location_organisation'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -139,16 +125,16 @@ function treaty_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_organization';
+  $strongarm->name = 'comment_organisation';
   $strongarm->value = '1';
-  $export['comment_organization'] = $strongarm;
+  $export['comment_organisation'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_preview_organization';
+  $strongarm->name = 'comment_preview_organisation';
   $strongarm->value = '1';
-  $export['comment_preview_organization'] = $strongarm;
+  $export['comment_preview_organisation'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -174,9 +160,9 @@ function treaty_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_subject_field_organization';
+  $strongarm->name = 'comment_subject_field_organisation';
   $strongarm->value = 1;
-  $export['comment_subject_field_organization'] = $strongarm;
+  $export['comment_subject_field_organisation'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -223,44 +209,9 @@ function treaty_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'diff_enable_revisions_page_node_treaty_article';
-  $strongarm->value = 1;
-  $export['diff_enable_revisions_page_node_treaty_article'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'diff_enable_revisions_page_node_treaty_paragraph';
-  $strongarm->value = 1;
-  $export['diff_enable_revisions_page_node_treaty_paragraph'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'diff_show_preview_changes_node_treaty_article';
-  $strongarm->value = 1;
-  $export['diff_show_preview_changes_node_treaty_article'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'diff_show_preview_changes_node_treaty_paragraph';
-  $strongarm->value = 1;
-  $export['diff_show_preview_changes_node_treaty_paragraph'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'diff_view_mode_preview_node_treaty_article';
-  $strongarm->value = 'full';
-  $export['diff_view_mode_preview_node_treaty_article'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'diff_view_mode_preview_node_treaty_paragraph';
-  $strongarm->value = 'full';
-  $export['diff_view_mode_preview_node_treaty_paragraph'] = $strongarm;
+  $strongarm->name = 'entity_translation_comment_filter_organisation';
+  $strongarm->value = 0;
+  $export['entity_translation_comment_filter_organisation'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -286,37 +237,37 @@ function treaty_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'entity_translation_hide_translation_links_organization';
-  $strongarm->value = 1;
-  $export['entity_translation_hide_translation_links_organization'] = $strongarm;
+  $strongarm->name = 'entity_translation_hide_translation_links_organisation';
+  $strongarm->value = 0;
+  $export['entity_translation_hide_translation_links_organisation'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_hide_translation_links_treaty';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['entity_translation_hide_translation_links_treaty'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_hide_translation_links_treaty_article';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['entity_translation_hide_translation_links_treaty_article'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_hide_translation_links_treaty_paragraph';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['entity_translation_hide_translation_links_treaty_paragraph'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'entity_translation_node_metadata_organization';
+  $strongarm->name = 'entity_translation_node_metadata_organisation';
   $strongarm->value = '0';
-  $export['entity_translation_node_metadata_organization'] = $strongarm;
+  $export['entity_translation_node_metadata_organisation'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -342,15 +293,15 @@ function treaty_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'entity_translation_settings_node__organization';
+  $strongarm->name = 'entity_translation_settings_node__organisation';
   $strongarm->value = array(
     'default_language' => 'xx-et-default',
     'hide_language_selector' => 0,
     'exclude_language_none' => 1,
     'lock_language' => 0,
-    'shared_fields_original_only' => 1,
+    'shared_fields_original_only' => 0,
   );
-  $export['entity_translation_settings_node__organization'] = $strongarm;
+  $export['entity_translation_settings_node__organisation'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -361,22 +312,9 @@ function treaty_strongarm() {
     'hide_language_selector' => 0,
     'exclude_language_none' => 1,
     'lock_language' => 0,
-    'shared_fields_original_only' => 1,
+    'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_node__treaty'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'entity_translation_settings_node__treaty_article';
-  $strongarm->value = array(
-    'default_language' => 'xx-et-default',
-    'hide_language_selector' => 0,
-    'exclude_language_none' => 1,
-    'lock_language' => 0,
-    'shared_fields_original_only' => 1,
-  );
-  $export['entity_translation_settings_node__treaty_article'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -387,27 +325,131 @@ function treaty_strongarm() {
     'hide_language_selector' => 0,
     'exclude_language_none' => 1,
     'lock_language' => 0,
-    'shared_fields_original_only' => 1,
+    'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_node__treaty_paragraph'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'entity_translation_settings_taxonomy_term__geographical_regions';
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__data_source';
   $strongarm->value = array(
     'default_language' => 'xx-et-default',
-    'hide_language_selector' => 0,
+    'hide_language_selector' => 1,
     'exclude_language_none' => 1,
     'lock_language' => 0,
-    'shared_fields_original_only' => 1,
+    'shared_fields_original_only' => 0,
   );
-  $export['entity_translation_settings_taxonomy_term__geographical_regions'] = $strongarm;
+  $export['entity_translation_settings_taxonomy_term__data_source'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'field_bundle_settings_node__organization';
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__ecolex_glossary';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 1,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__ecolex_glossary'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__field_of_application';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 1,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__field_of_application'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__geographical_region';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 1,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__geographical_region'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__jurisdiction';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 1,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__jurisdiction'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__subject';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 1,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__subject'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__tags';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 1,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__tags'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__thesaurus_informea';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 1,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__thesaurus_informea'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__type_of_text';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 1,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__type_of_text'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__organisation';
   $strongarm->value = array(
     'view_modes' => array(),
     'extra_fields' => array(
@@ -425,46 +467,21 @@ function treaty_strongarm() {
       'display' => array(),
     ),
   );
-  $export['field_bundle_settings_node__organization'] = $strongarm;
+  $export['field_bundle_settings_node__organisation'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__treaty';
   $strongarm->value = array(
-    'view_modes' => array(
-      'teaser' => array(
-        'custom_settings' => TRUE,
-      ),
-      'full' => array(
-        'custom_settings' => FALSE,
-      ),
-      'rss' => array(
-        'custom_settings' => FALSE,
-      ),
-      'search_index' => array(
-        'custom_settings' => FALSE,
-      ),
-      'search_result' => array(
-        'custom_settings' => FALSE,
-      ),
-      'diff_standard' => array(
-        'custom_settings' => FALSE,
-      ),
-      'token' => array(
-        'custom_settings' => FALSE,
-      ),
-    ),
+    'view_modes' => array(),
     'extra_fields' => array(
       'form' => array(
-        'title' => array(
-          'weight' => '-5',
-        ),
         'path' => array(
-          'weight' => '3',
+          'weight' => '5',
         ),
         'language' => array(
-          'weight' => '7',
+          'weight' => '4',
         ),
       ),
       'display' => array(),
@@ -480,11 +497,11 @@ function treaty_strongarm() {
     'view_modes' => array(),
     'extra_fields' => array(
       'form' => array(
-        'path' => array(
-          'weight' => '1',
+        'title' => array(
+          'weight' => '-5',
         ),
-        'language' => array(
-          'weight' => '0',
+        'path' => array(
+          'weight' => '30',
         ),
       ),
       'display' => array(),
@@ -497,39 +514,17 @@ function treaty_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__treaty_paragraph';
   $strongarm->value = array(
-    'view_modes' => array(
-      'teaser' => array(
-        'custom_settings' => TRUE,
-      ),
-      'full' => array(
-        'custom_settings' => FALSE,
-      ),
-      'rss' => array(
-        'custom_settings' => FALSE,
-      ),
-      'search_index' => array(
-        'custom_settings' => FALSE,
-      ),
-      'search_result' => array(
-        'custom_settings' => FALSE,
-      ),
-      'diff_standard' => array(
-        'custom_settings' => FALSE,
-      ),
-      'token' => array(
-        'custom_settings' => FALSE,
-      ),
-    ),
+    'view_modes' => array(),
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '0',
+          'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '30',
         ),
         'language' => array(
-          'weight' => '1',
+          'weight' => '5',
         ),
       ),
       'display' => array(),
@@ -540,9 +535,39 @@ function treaty_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'language_content_type_organization';
+  $strongarm->name = 'field_bundle_settings_taxonomy_term__geographical_region';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'path' => array(
+          'weight' => '30',
+        ),
+        'name' => array(
+          'weight' => '-5',
+        ),
+        'description' => array(
+          'weight' => '0',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_taxonomy_term__geographical_region'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_taxonomy_term__jurisdiction';
+  $strongarm->value = array();
+  $export['field_bundle_settings_taxonomy_term__jurisdiction'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_organisation';
   $strongarm->value = '4';
-  $export['language_content_type_organization'] = $strongarm;
+  $export['language_content_type_organisation'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -555,7 +580,7 @@ function treaty_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'language_content_type_treaty_article';
-  $strongarm->value = '4';
+  $strongarm->value = '0';
   $export['language_content_type_treaty_article'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -568,11 +593,11 @@ function treaty_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_options_organization';
+  $strongarm->name = 'menu_options_organisation';
   $strongarm->value = array(
     0 => 'main-menu',
   );
-  $export['menu_options_organization'] = $strongarm;
+  $export['menu_options_organisation'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -604,9 +629,9 @@ function treaty_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_parent_organization';
+  $strongarm->name = 'menu_parent_organisation';
   $strongarm->value = 'main-menu:0';
-  $export['menu_parent_organization'] = $strongarm;
+  $export['menu_parent_organisation'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -632,11 +657,11 @@ function treaty_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_options_organization';
+  $strongarm->name = 'node_options_organisation';
   $strongarm->value = array(
     0 => 'status',
   );
-  $export['node_options_organization'] = $strongarm;
+  $export['node_options_organisation'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -668,9 +693,9 @@ function treaty_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_preview_organization';
+  $strongarm->name = 'node_preview_organisation';
   $strongarm->value = '0';
-  $export['node_preview_organization'] = $strongarm;
+  $export['node_preview_organisation'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -696,9 +721,9 @@ function treaty_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_submitted_organization';
+  $strongarm->name = 'node_submitted_organisation';
   $strongarm->value = 0;
-  $export['node_submitted_organization'] = $strongarm;
+  $export['node_submitted_organisation'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -718,7 +743,7 @@ function treaty_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_treaty_paragraph';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['node_submitted_treaty_paragraph'] = $strongarm;
 
   return $export;
