@@ -1,0 +1,132 @@
+<?php
+
+function ws_consumer_update_treaties_ratification() {
+  $query = new EntityFieldQuery('entity_type', 'node');
+  $result = $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'treaty')
+    ->fieldCondition('field_ratification_xml_url', 'url', 'NULL', '!=')
+    ->execute();
+  if (isset($result['node'])) {
+    $result_nids = array_keys($result['node']);
+    $treaties = entity_load('node', $result_nids);
+    foreach($treaties as $treaty) {
+      ws_consumer_update_treaty_ratification($treaty);
+    }
+  }
+}
+
+
+function ws_consumer_update_treaty_ratification_odata_name($odata_name) {
+  $query = new EntityFieldQuery('entity_type', 'node');
+  $result = $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'treaty')
+    ->fieldCondition('field_ratification_xml_url', 'url', 'NULL', '!=')
+    ->fieldCondition('field_odata_identifier', 'value', $odata_name, '=')
+    ->execute();
+  if (isset($result['node'])) {
+    $result_nids = array_keys($result['node']);
+    $treaties = entity_load('node', $result_nids);
+    $treaty = current($treaties);
+    ws_consumer_update_treaty_ratification($treaty);
+  } else {
+    drush_log('Given treaty does not exist or does not have field_ratification_xml_url data: ' . $odata_name, 'error');
+  }
+}
+
+function ws_consumer_update_treaty_ratification($node) {
+  if($xml_url = field_get_items('node', $node, 'field_ratification_xml_url')) {
+    $xml_url = $xml_url[0]['url'];
+    $data = ws_consumer_service_process_xml($xml_url);
+    var_dump($data);
+  }
+}
+
+
+/**
+ * @param string $url URL to the XML
+ * @return stdClass Object with data extracted from XML. Fields:
+ * - source_url - Original URL
+  * - ratification - array with ratification information (keys are country names in English)
+ */
+function ws_consumer_service_process_xml($url) {
+  $ret = new stdClass();
+  $ret->source_url = $url;
+  $ret->ratification = array();
+
+  $ctx = stream_context_create(array('http' => array('timeout' => 20)));
+  $xml_str = file_get_contents($url, 0, $ctx);
+  $xml = simplexml_load_string($xml_str, 'SimpleXMLElement', LIBXML_NOEMPTYTAG);
+  if($xml === FALSE) {
+
+    return FALSE;
+  }
+
+  if(!empty($xml->Treaty->Participants->Table->TGroup->Tbody->Rows->Row)) {
+    foreach($xml->Treaty->Participants->Table->TGroup->Tbody->Rows->Row as $row) {
+      $warnings = '';
+      $row = $row->children();
+      $row = array((string)$row[0], (string)$row[1], (string)$row[2]);
+      $country = $row[0];
+      if(!empty($country)) {
+        // Remove additional data from country name such as footnote references
+        $country = preg_replace('/\<superscript\>.*\<\/superscript\>/', '', $country);
+      } else {
+        $warnings .= 'Could not reliably determine the country name;';
+      }
+
+      $date1 = '';
+      if(!empty($row[1]) && is_string($row[1])) {
+        $parsed = date_parse($row[1]);
+        if($parsed !== FALSE) {
+          //@todo: Inspect error_count, errors, warning_count and warnings inside $date1p
+          $date1 = date('Y-m-d', mktime(0, 0, 0, $parsed['month'], $parsed['day'], $parsed['year']));
+        } else {
+          $warnings = sprintf('Canot parse date1: %s', $row[1]);
+        }
+      } else {
+        if(!empty($row[1])) {
+          $warnings = 'date1 is not a string. Removed';
+        }
+      }
+
+      $date2 = '';
+      if(!empty($row[2]) && is_string($row[2])) {
+        $parsed = date_parse($row[2]);
+        if($parsed !== FALSE) {
+          //@todo: Inspect error_count, errors, warning_count and warnings inside $date2p
+          $date2 = date('Y-m-d', mktime(0, 0, 0, $parsed['month'], $parsed['day'], $parsed['year']));
+        } else {
+          $warnings = sprintf('Cannot parse date2: %s', $row[2]);
+        }
+      } else {
+        if(!empty($row[2])) {
+          $warnings = 'date2 is not a string. Setting to empty';
+        }
+      }
+
+      if(preg_match('/\ a$/', $row[2])) { // a
+        $status = 'accession';
+      } elseif(preg_match('/\ AA$/', $row[2])) { // AA
+        $status = 'approval';
+      } elseif(preg_match('/\ A$/', $row[2])) { // A
+        $status = 'acceptance';
+      } else {
+        $status = 'ratification';
+      }
+
+      $ob = new stdClass();
+      $ob->country = $country;
+      $ob->country_verbatim = $row[0];
+      $ob->date1 = $date1;
+      $ob->date1_verbatim = $row[1];
+      $ob->date2= $date2;
+      $ob->date2_verbatim = $row[2];
+      $ob->status = $status;
+      $ob->warnings = $warnings;
+      $ob->errors = array();
+
+      $ret->ratification[] = $ob;
+    }
+  }
+  return $ret;
+}

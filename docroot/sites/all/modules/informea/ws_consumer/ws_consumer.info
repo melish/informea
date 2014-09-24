@@ -1,0 +1,7 @@
+name = ws_consumer
+description = Consume external web services
+core = 7.x
+package = InforMEA
+version = 7.x-1.0
+project = ws_consumer
+dependencies[] = country_data

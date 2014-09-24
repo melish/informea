@@ -884,7 +884,7 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 15,
+      'weight' => 14,
     ),
   );
 
@@ -969,7 +969,7 @@ function treaty_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 13,
+      'weight' => 12,
     ),
   );
 
@@ -1025,7 +1025,7 @@ function treaty_field_default_field_instances() {
           'image_style' => '',
         ),
         'type' => 'image',
-        'weight' => 29,
+        'weight' => 39,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1039,7 +1039,7 @@ function treaty_field_default_field_instances() {
     'label' => 'Logo',
     'required' => 0,
     'settings' => array(
-      'alt_field' => 1,
+      'alt_field' => 0,
       'default_image' => 0,
       'entity_translation_sync' => FALSE,
       'file_directory' => 'images/logo',
@@ -1047,7 +1047,7 @@ function treaty_field_default_field_instances() {
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
-      'title_field' => 1,
+      'title_field' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1058,7 +1058,7 @@ function treaty_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 11,
+      'weight' => 17,
     ),
   );
 
@@ -1448,7 +1448,7 @@ function treaty_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 12,
+      'weight' => 11,
     ),
   );
 
@@ -1486,7 +1486,7 @@ function treaty_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 16,
+      'weight' => 15,
     ),
   );
 
@@ -1661,7 +1661,7 @@ function treaty_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 17,
+      'weight' => 16,
     ),
   );
 
@@ -1968,7 +1968,7 @@ function treaty_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_text',
-      'weight' => 14,
+      'weight' => 13,
     ),
   );
 
