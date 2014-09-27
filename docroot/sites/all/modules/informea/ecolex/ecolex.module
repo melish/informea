@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the ecolex feature.
+ */
+
+include_once 'ecolex.features.inc';
