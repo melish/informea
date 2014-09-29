@@ -218,10 +218,16 @@ class EcolexTreatyMigrateSource extends MigrateSource {
                     $ob->dateOfEntry = (string)$doc->dateOfEntry;
                     $ob->dateOfModification = (string)$doc->dateOfModification;
 
-                    $ob->title = (string)$doc->titleOfText;
                     $ob->titleOfText['en'] = (string)$doc->titleOfText;
                     $ob->titleOfText['fr'] = (string)$doc->titleOfTextFr;
+                    $ob->titleOfText['es'] = (string)$doc->titleOfTextEs;
                     $ob->titleOfText['de'] = (string)$doc->titleOfTextOther;
+                    foreach($ob->titleOfText as $title) {
+                        if(!empty($title)) {
+                            $ob->title = $title;
+                            break;
+                        }
+                    }
 
                     $ob->typeOfText = (string)$doc->typeOfText;
                     $ob->jurisdiction = (string)$doc->jurisdiction;
@@ -233,8 +239,14 @@ class EcolexTreatyMigrateSource extends MigrateSource {
                     $ob->placeOfAdoption = (string)$doc->placeOfAdoption;
                     $ob->depository = (string)$doc->depository;
                     $ob->dateOfText = (string)$doc->dateOfText;
+                    $ob->dateOfText = ($ob->dateOfText == '0000-00-00') ? NULL : $ob->dateOfText;
+
                     $ob->searchDate = (string)$doc->searchDate;
+                    $ob->searchDate = ($ob->searchDate == '0000-00-00') ? NULL : $ob->searchDate;
+
                     $ob->entryIntoForceDate = (string)$doc->entryIntoForceDate;
+                    $ob->entryIntoForceDate = ($ob->entryIntoForceDate == '0000-00-00') ? NULL : $ob->entryIntoForceDate;
+
                     $ob->obsolete = (string)$doc->obsolete;
                     $ob->officialPublication = (string)$doc->officialPublication;
                     $ob->availableIn = (string)$doc->availableIn;
@@ -250,9 +262,29 @@ class EcolexTreatyMigrateSource extends MigrateSource {
                     foreach($doc->citesTreaty as $s) { $ob->citesTreaty[] = (string)$s; }
                     foreach($doc->keyword as $s) { $ob->keyword[] = (string)$s; }
 
+                    if(empty($ob->title)) {
+                        $this->setMessage('Skipping record with empty title:' . $ob->Recid);
+                        continue;
+                    }
                     $this->data[$id] = $ob;
                 }
             }
         }
+    }
+
+    /**
+     * Add messages during data retrieval for debugging.
+     *
+     * @param string $msg
+     *   Message string
+     * @param int $severity
+     *   Migration message level
+     */
+    protected function setMessage($msg, $severity = MigrationBase::MESSAGE_WARNING) {
+        if(function_exists('drush_log')) {
+            drush_log($msg, 'warning');
+        }
+        drupal_set_message($msg);
+        $this->activeMigration->queueMessage($msg, $severity);
     }
 }
