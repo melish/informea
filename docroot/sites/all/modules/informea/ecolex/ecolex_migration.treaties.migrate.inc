@@ -33,6 +33,9 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
         $this->addFieldMapping('title', 'title');
         $this->addFieldMapping('title_field', 'titleOfText');
 
+        $this->addFieldMapping('field_data_source')->defaultValue('Ecolex');
+        $this->addFieldMapping('field_data_source:create_term')->defaultValue(TRUE);
+
         $this->addFieldMapping('field_type_of_text', 'typeOfText');
         $this->addFieldMapping('field_type_of_text:create_term')->defaultValue(TRUE);
 
@@ -41,6 +44,9 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
 
         $this->addFieldMapping('field_subjects', 'subject');
         $this->addFieldMapping('field_subjects:create_term')->defaultValue(TRUE);
+
+        $this->addFieldMapping('field_tags', 'keyword');
+        $this->addFieldMapping('field_tags:create_term')->defaultValue(TRUE);
 
         // $this->addFieldMapping('', 'languageOfDocument');
         $this->addFieldMapping('field_place_of_adoption', 'placeOfAdoption');
@@ -160,6 +166,7 @@ class EcolexTreatyMigrateSource extends MigrateSource {
             'relatedWebSite' => '@todo: relatedWebSite',
             'abstract' => '@todo: abstract',
             'citesTreaty' => '@todo: citesTreaty',
+            'keyword' => '@todo: keyword',
         );
     }
 
@@ -220,7 +227,7 @@ class EcolexTreatyMigrateSource extends MigrateSource {
 
                     $ob->titleOfText['en'] = (string)$doc->titleOfText;
                     $ob->titleOfText['fr'] = (string)$doc->titleOfTextFr;
-                    $ob->titleOfText['es'] = (string)$doc->titleOfTextEs;
+                    $ob->titleOfText['es'] = (string)$doc->titleOfTextSp;
                     $ob->titleOfText['de'] = (string)$doc->titleOfTextOther;
                     foreach($ob->titleOfText as $title) {
                         if(!empty($title)) {
