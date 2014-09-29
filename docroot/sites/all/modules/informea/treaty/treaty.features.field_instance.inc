@@ -1750,6 +1750,47 @@ function treaty_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-treaty-field_tags'
+  $field_instances['node-treaty-field_tags'] = array(
+    'bundle' => 'treaty',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 41,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_tags',
+    'label' => 'Tags',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 18,
+    ),
+  );
+
   // Exported field_instance: 'node-treaty-field_title_abbreviation'
   $field_instances['node-treaty-field_title_abbreviation'] = array(
     'bundle' => 'treaty',
@@ -2687,6 +2728,7 @@ function treaty_field_default_field_instances() {
   t('Related website');
   t('Secondary topic');
   t('Subject(s)');
+  t('Tags');
   t('Title');
   t('Title abbreviation');
   t('Treaty');

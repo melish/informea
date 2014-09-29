@@ -21,7 +21,7 @@ function treaty_field_group_info() {
   $field_group->parent_name = 'group_treaty_field_group';
   $field_group->data = array(
     'label' => 'Ecolex',
-    'weight' => '19',
+    'weight' => '20',
     'children' => array(
       0 => 'field_abstract',
       1 => 'field_alternative_record_id',
@@ -96,7 +96,7 @@ function treaty_field_group_info() {
   $field_group->parent_name = 'group_treaty_field_group';
   $field_group->data = array(
     'label' => 'Technical data',
-    'weight' => '20',
+    'weight' => '21',
     'children' => array(
       0 => 'field_odata_identifier',
       1 => 'field_ratification_xml_url',
