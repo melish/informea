@@ -1,0 +1,23 @@
+<?php
+
+
+/**
+ * Implements hook_migrate_api().
+ *
+ * Set the API level to 2, for migration classes to be recognized by Migrate.
+ */
+function ecolex_migration_migrate_api() {
+
+    $base_data_dir = '/Users/cristiroma/Work/informea/drupal/ecolex_files/xml/';
+    $migrations = array();
+    $migrations['EcolexTreaties'] = array(
+        'class_name' => 'EcolexTreatyMigrateWiki',
+        'data_dir' => $base_data_dir . '/treaties/',
+    );
+    $api = array(
+        'api' => 2,
+        'migrations' => $migrations,
+    );
+    return $api;
+}
+
