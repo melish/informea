@@ -11,7 +11,7 @@ class EcolexLegislationMigrate extends DynamicMigration {
         $this->description = 'Import Ecolex legislation from XML web service (files)';
         $data_dir = $arguments['data_dir'];
         $this->source = new EcolexLegislationMigrateSource($data_dir, array(
-                'skip_count' => TRUE,
+                // 'skip_count' => TRUE,
             )
         );
         $this->map = new MigrateSQLMap($this->machineName,
@@ -43,7 +43,7 @@ class EcolexLegislationMigrate extends DynamicMigration {
         $this->addFieldMapping('field_date_of_text', 'Date_of_Text');
         $this->addFieldMapping('field_date_of_original_text', 'Date_of_original_Text');
         $this->addFieldMapping('field_date_of_consolidation', 'Date_of_Consolidation');
-        $this->addFieldMapping('field_entry_into_force', 'Entry_into_Force');
+        // $this->addFieldMapping('field_entry_into_force', 'Entry_into_Force');
         // $this->addFieldMapping('', 'searchDate');
         $this->addFieldMapping('field_avaiable_web_site', 'Related_Web_Site');
         $this->addFieldMapping('field_url', 'link_to_full_text');
@@ -59,7 +59,7 @@ class EcolexLegislationMigrate extends DynamicMigration {
         // $this->addFieldMapping('', 'International_Organizations');
         // $this->addFieldMapping('', 'Record_Language');
         // $this->addFieldMapping('', 'Doc_Language');
-        $this->addFieldMapping('field_repeals', 'Repealed');
+        // $this->addFieldMapping('field_repeals', 'Repealed');
         // $this->addFieldMapping('', 'Serial_Imprint');
         // $this->addFieldMapping('', 'Publication_reference');
 
@@ -95,7 +95,8 @@ class EcolexLegislationMigrate extends DynamicMigration {
         $languages = array_keys(language_list());
         $entity_type = $migration->getDestination()->getEntityType();
 
-        $row->field_ecolex_url['en'][0]['url'] = 'http://www.ecolex.org/ecolex/ledge/view/RecordDetails?index=treaties&id=' . $row->Recid;
+        $row->field_ecolex_url['en'][0]['url'] = 'http://www.ecolex.org/ecolex/ledge/view/RecordDetails?index=documents&id=' . $row->id;
+        $row->field_faolex_url['en'][0]['url'] = 'http://faolex.fao.org/cgi-bin/faolex.exe?database=faolex&search_type=link&table=result&lang=eng&format_name=@ERALL&rec_id=' . $row->ISIS_MFN;
 
         $translation_handler = entity_translation_get_handler($entity_type, $entity);
         $entity->translations = $translation_handler->getTranslations();
@@ -103,15 +104,6 @@ class EcolexLegislationMigrate extends DynamicMigration {
         foreach ($languages as $language) {
             $has_translation = FALSE;
 
-            if (!empty($row->abstract[$language])) {
-                $entity->body[$language][0]['value'] = $row->abstract[$language];
-                $entity->body[$language][0]['format'] = 'full_html';
-                $has_translation = TRUE;
-            }
-            if (!empty($row->titleOfText[$language])) {
-                $entity->title_field[$language][0]['value'] = $row->titleOfText[$language];
-                $has_translation = TRUE;
-            }
             if ($has_translation) {
                 MigrationUtil::setTranslation($translation_handler, $entity, $row, $language);
             }
@@ -185,7 +177,23 @@ class EcolexLegislationMigrateSource extends MigrateSource {
      * Return the number of available source records.
      */
     public function computeCount() {
-        return 0;
+        $files = file_scan_directory($this->data_dir, '/.*/');
+        $ret = 0;
+        foreach ($files as $i => $file) {
+            try {
+                $docs = @simplexml_load_file($file->uri);
+                if(!$docs) {
+                    continue;
+                }
+                foreach ($docs as $doc) {
+                    $ret++;
+                }
+            }
+            catch (Exception $e) {
+                // Swallow
+            }
+        }
+        return $ret;
     }
 
     /**
@@ -224,21 +232,45 @@ class EcolexLegislationMigrateSource extends MigrateSource {
             $this->data = array();
             $this->parsed = TRUE;
             $files = file_scan_directory($this->data_dir, '/.*/');
-            foreach($files as $file) {
+            $country_objects = countries_get_countries();
+            $iso_mapping = array();
+            foreach($country_objects as $c) {
+                $iso_mapping[$c->iso3] = $c->iso2;
+            }
+            $missing_iso = array();
+
+            $processed = 0;
+            foreach($files as $i => $file) {
                 try {
-                    $docs = simplexml_load_file($file->uri);
+                    $docs = @simplexml_load_file($file->uri);
+                    if(!$docs) {
+                        continue;
+                    }
                     foreach ($docs as $doc) {
+                        $processed++;
+                        if($processed % 5000 == 0) {
+                            $this->setMessage("Processed $processed records");
+                        }
                         $id = (string)$doc->id;
 
                         $ob = new stdClass();
-                        $ob->language = 'en';
                         // Copy all attributes
-                        $ob->id = (string)$doc->id;
+                        $ob->id = $id;
                         $ob->ISIS_MFN = (string)$doc->ISIS_MFN;
                         $ob->FaolexId = (string)$doc->FaolexId;
                         $ob->Date_of_Entry = (string)$doc->Date_of_Entry;
                         $ob->Date_of_Modification = (string)$doc->Date_of_Modification;
-                        $ob->country = (string)$doc->country;
+
+                        $iso3 = (string)$doc->country;
+                        if(!empty($iso3)) {
+                            $iso3 = strtoupper($iso3);
+                            if(array_key_exists($iso3, $iso_mapping)) {
+                                $ob->country = $iso_mapping[$iso3];
+                            } else {
+                                $missing_iso[] = $iso3;
+                            }
+                        }
+
                         $ob->Territorial_Subdivision = (string)$doc->Territorial_Subdivision;
                         $ob->basin = (string)$doc->basin;
 
@@ -252,7 +284,17 @@ class EcolexLegislationMigrateSource extends MigrateSource {
                         $ob->searchDate = (string)$doc->searchDate;
                         $ob->Related_Web_Site = (string)$doc->Related_Web_Site;
                         $ob->Internet_Reference = (string)$doc->Internet_Reference;
-                        $ob->link_to_full_text = (string)$doc->link_to_full_text;
+
+                        $filename = (string)$doc->link_to_full_text;
+                        if(strpos($filename, '.pdf')) {
+                            $ob->link_to_full_text = 'http://faolex.fao.org/docs/pdf/' . $filename;
+                        }
+                        else if(strpos($filename, '.doc')) {
+                            $ob->link_to_full_text = 'http://faolex.fao.org/docs/texts/' . $filename;
+                        } else {
+                            $ob->link_to_full_text = $filename;
+                        }
+
                         $ob->Type_of_Text = (string)$doc->Type_of_Text;
                         $ob->Sub_file_code = (string)$doc->Sub_file_code;
                         $ob->Abstract = (string)$doc->Abstract;
@@ -280,6 +322,8 @@ class EcolexLegislationMigrateSource extends MigrateSource {
                     $this->setMessage('Error parsing ' . $e->getMessage());
                 }
             }
+            $this->setMessage("Missing ISO codes: " . implode(',', array_unique($missing_iso)));
+            $this->setMessage("Records: " . count($this->data));
         }
     }
 
