@@ -67,7 +67,7 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
         $this->addFieldMapping('field_region', 'region');
         $this->addFieldMapping('field_region:create_term')->defaultValue(TRUE);
 
-        $this->addFieldMapping('field_ecolex_url')->defaultValue('http://www.ecolex.org/ecolex/ledge/view/RecordDetails?index=treaties&id=');
+        $this->addFieldMapping('field_ecolex_url', 'ecolex_url');
     }
 
     /**
@@ -175,6 +175,7 @@ class EcolexTreatyMigrateSource extends MigrateSource {
             'citesTreaty' => '@todo: citesTreaty',
             'keyword' => '@todo: keyword',
             'region' => '@todo: region',
+            'ecolex_url' => 'Web page on Ecolex website',
         );
     }
 
@@ -273,6 +274,8 @@ class EcolexTreatyMigrateSource extends MigrateSource {
                     $ob->abstract['en'] = (string)$doc->abstract;
                     $ob->abstract['fr'] = (string)$doc->abstractFr;
                     $ob->abstract['es'] = (string)$doc->abstractSp;
+
+                    $ob->ecolex_url = 'http://www.ecolex.org/ecolex/ledge/view/RecordDetails?index=treaties&id=' . $id;
 
                     foreach($doc->citesTreaty as $s) { $ob->citesTreaty[] = (string)$s; }
                     foreach($doc->keyword as $s) { $ob->keyword[] = (string)$s; }
