@@ -71,6 +71,7 @@ function treaty_field_group_info() {
       0 => 'field_treaty_parties_url',
       1 => 'field_treaty_text_url',
       2 => 'field_treaty_website_url',
+      3 => 'field_faolex_url',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
