@@ -104,7 +104,7 @@ function informea_field_default_field_bases() {
   // Exported field_base: 'field_country'
   $field_bases['field_country'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_country',
@@ -449,7 +449,7 @@ function informea_field_default_field_bases() {
     'settings' => array(
       'allowed_values' => array(
         0 => array(
-          'vocabulary' => 'geographical_regions',
+          'vocabulary' => 'geographical_region',
           'parent' => 0,
         ),
       ),
