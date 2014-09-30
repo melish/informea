@@ -45,8 +45,8 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
         $this->addFieldMapping('field_subjects', 'subject');
         $this->addFieldMapping('field_subjects:create_term')->defaultValue(TRUE);
 
-        $this->addFieldMapping('field_tags', 'keyword');
-        $this->addFieldMapping('field_tags:create_term')->defaultValue(TRUE);
+        $this->addFieldMapping('field_keywords', 'keyword');
+        $this->addFieldMapping('field_keywords:create_term')->defaultValue(TRUE);
 
         // $this->addFieldMapping('', 'languageOfDocument');
         $this->addFieldMapping('field_place_of_adoption', 'placeOfAdoption');
