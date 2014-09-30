@@ -49,6 +49,7 @@ class EcolexLegislationMigrate extends DynamicMigration {
         $this->addFieldMapping('field_url', 'link_to_full_text');
         // $this->addFieldMapping('', 'Internet_Reference');
         $this->addFieldMapping('field_type_of_text', 'Type_of_Text');
+        $this->addFieldMapping('field_type_of_text:create_term')->defaultValue(TRUE);
         // $this->addFieldMapping('', 'Sub_file_code');
         $this->addFieldMapping('body', 'Abstract');
         $this->addFieldMapping('field_abstract', 'Comment');
