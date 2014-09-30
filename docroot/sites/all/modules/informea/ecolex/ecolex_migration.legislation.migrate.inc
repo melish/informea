@@ -53,8 +53,9 @@ class EcolexLegislationMigrate extends DynamicMigration {
         $this->addFieldMapping('body', 'Abstract');
         $this->addFieldMapping('field_abstract', 'Comment');
 
-        $this->addFieldMapping('field_keywords', 'keyword');
-        $this->addFieldMapping('field_keywords:create_term')->defaultValue(TRUE);
+        //@todo: Integers instead of real terms.
+        #$this->addFieldMapping('field_keywords', 'keyword');
+        #$this->addFieldMapping('field_keywords:create_term')->defaultValue(TRUE);
 
         // $this->addFieldMapping('', 'International_Organizations');
         // $this->addFieldMapping('', 'Record_Language');
@@ -64,7 +65,7 @@ class EcolexLegislationMigrate extends DynamicMigration {
         // $this->addFieldMapping('', 'Publication_reference');
 
 
-        $this->addFieldMapping('field_ecolex_url', 'ecolex_url');
+        // see prepare() $this->addFieldMapping('field_ecolex_url', 'ecolex_url');
 
     }
 
@@ -95,8 +96,8 @@ class EcolexLegislationMigrate extends DynamicMigration {
         $languages = array_keys(language_list());
         $entity_type = $migration->getDestination()->getEntityType();
 
-        $row->field_ecolex_url['en'][0]['url'] = 'http://www.ecolex.org/ecolex/ledge/view/RecordDetails?index=documents&id=' . $row->id;
-        $row->field_faolex_url['en'][0]['url'] = 'http://faolex.fao.org/cgi-bin/faolex.exe?database=faolex&search_type=link&table=result&lang=eng&format_name=@ERALL&rec_id=' . $row->ISIS_MFN;
+        $entity->field_ecolex_url['en'][0]['url'] = 'http://www.ecolex.org/ecolex/ledge/view/RecordDetails?index=documents&id=' . $row->id;
+        $entity->field_faolex_url['en'][0]['url'] = 'http://faolex.fao.org/cgi-bin/faolex.exe?database=faolex&search_type=link&table=result&lang=eng&format_name=@ERALL&rec_id=' . $row->ISIS_MFN;
 
         $translation_handler = entity_translation_get_handler($entity_type, $entity);
         $entity->translations = $translation_handler->getTranslations();
@@ -291,6 +292,9 @@ class EcolexLegislationMigrateSource extends MigrateSource {
                         }
                         else if(strpos($filename, '.doc')) {
                             $ob->link_to_full_text = 'http://faolex.fao.org/docs/texts/' . $filename;
+                        }
+                        else if(strpos($filename, '.html')) {
+                            $ob->link_to_full_text = 'http://faolex.fao.org/html/' . $filename;
                         } else {
                             $ob->link_to_full_text = $filename;
                         }
