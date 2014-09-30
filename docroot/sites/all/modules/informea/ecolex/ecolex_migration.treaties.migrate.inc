@@ -101,6 +101,7 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
 
         $translation_handler = entity_translation_get_handler($entity_type, $entity);
         $entity->translations = $translation_handler->getTranslations();
+        $entity->language = 'en';
         foreach ($languages as $language) {
             $has_translation = FALSE;
 

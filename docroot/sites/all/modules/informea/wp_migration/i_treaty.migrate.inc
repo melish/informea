@@ -34,7 +34,10 @@ class MigrateTreaties extends DynamicMigration {
     $this->addFieldMapping('title_field:language')->defaultValue('en');
     $this->addFieldMapping('title', 'short_title');
 
-    $this->addFieldMapping('field_official_name', 'long_title');
+    $this->addFieldMapping('field_data_source')->defaultValue('InforMEA');
+    $this->addFieldMapping('field_data_source:create_term')->defaultValue(TRUE);
+
+      $this->addFieldMapping('field_official_name', 'long_title');
     $this->addFieldMapping('body', 'abstract');
     $this->addFieldMapping('body:language')->defaultValue('en');
     $this->addFieldMapping('body:format')->defaultValue('full_html');
