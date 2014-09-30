@@ -84,6 +84,25 @@ function informea_date_formats() {
 
 
 class MigrationUtil {
+
+    /**
+     * Transform custom escapes like <@#&> and <&#@> in HTML text.
+     *
+     * @param string $text
+     *   Text to process
+     *
+     * @return string
+     *     Decoded text
+     */
+    public static function decodeHTMLText($text) {
+        $search  = array('<@#&>', '<&#@>');
+        $replace = array('"', ',');
+        $ret = str_replace($search, $replace, $text);
+        $ret = html_entity_decode($ret);
+        return $ret;
+    }
+
+
     public static function setTranslation(&$translation_handler, $entity, $row, $language) {
         /* Don't translate en (default) */
         if ($language != $row->language

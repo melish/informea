@@ -63,6 +63,11 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
         // $this->addFieldMapping('', 'amendsTreaty');
         // $this->addFieldMapping('', 'relatedWebSite');
         // $this->addFieldMapping('', 'citesTreaty');
+
+        $this->addFieldMapping('field_region', 'region');
+        $this->addFieldMapping('field_region:create_term')->defaultValue(TRUE);
+
+        $this->addFieldMapping('field_ecolex_url')->defaultValue('http://www.ecolex.org/ecolex/ledge/view/RecordDetails?index=treaties&id=');
     }
 
     /**
@@ -91,6 +96,8 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
         $migration = Migration::currentMigration();
         $languages = array_keys(language_list());
         $entity_type = $migration->getDestination()->getEntityType();
+
+        $row->field_ecolex_url['en'][0]['url'] = 'http://www.ecolex.org/ecolex/ledge/view/RecordDetails?index=treaties&id=' . $row->Recid;
 
         $translation_handler = entity_translation_get_handler($entity_type, $entity);
         $entity->translations = $translation_handler->getTranslations();
@@ -167,6 +174,7 @@ class EcolexTreatyMigrateSource extends MigrateSource {
             'abstract' => '@todo: abstract',
             'citesTreaty' => '@todo: citesTreaty',
             'keyword' => '@todo: keyword',
+            'region' => '@todo: region',
         );
     }
 
@@ -240,7 +248,7 @@ class EcolexTreatyMigrateSource extends MigrateSource {
                     $ob->jurisdiction = (string)$doc->jurisdiction;
                     $ob->fieldOfApplication = (string)$doc->fieldOfApplication;
 
-                    foreach($doc->subject as $s) { $ob->subject[] = (string)$s; }
+                    foreach($doc->subject as $s) { $ob->subject[] = MigrationUtil::decodeHTMLText((string)$s); }
                     foreach($doc->languageOfDocument as $s) { $ob->languageOfDocument[] = (string)$s; }
 
                     $ob->placeOfAdoption = (string)$doc->placeOfAdoption;
@@ -268,6 +276,7 @@ class EcolexTreatyMigrateSource extends MigrateSource {
 
                     foreach($doc->citesTreaty as $s) { $ob->citesTreaty[] = (string)$s; }
                     foreach($doc->keyword as $s) { $ob->keyword[] = (string)$s; }
+                    foreach($doc->region as $s) { $ob->region[] = (string)$s; }
 
                     if(empty($ob->title)) {
                         $this->setMessage('Skipping record with empty title:' . $ob->Recid);
