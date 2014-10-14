@@ -294,6 +294,7 @@ $options['init-modules'] = array(
 
   'jquery_update',
 
+  'country',
   'decision',
   'meeting',
   'country_deliverable',
