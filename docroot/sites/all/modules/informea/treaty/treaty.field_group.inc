@@ -40,7 +40,6 @@ function treaty_field_group_info() {
       14 => 'field_place_of_adoption',
       15 => 'field_related_website',
       16 => 'field_type_of_text',
-      17 => 'field_subjects',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -68,10 +67,10 @@ function treaty_field_group_info() {
     'label' => 'External links',
     'weight' => '18',
     'children' => array(
-      0 => 'field_treaty_parties_url',
-      1 => 'field_treaty_text_url',
-      2 => 'field_treaty_website_url',
-      3 => 'field_faolex_url',
+      0 => 'field_faolex_url',
+      1 => 'field_treaty_parties_url',
+      2 => 'field_treaty_text_url',
+      3 => 'field_treaty_website_url',
     ),
     'format_type' => 'htab',
     'format_settings' => array(

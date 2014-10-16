@@ -222,10 +222,10 @@ function country_data_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '-5',
+          'weight' => '0',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '1',
         ),
       ),
       'display' => array(),
@@ -245,10 +245,10 @@ function country_data_strongarm() {
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '2',
         ),
         'language' => array(
-          'weight' => '5',
+          'weight' => '1',
         ),
       ),
       'display' => array(),

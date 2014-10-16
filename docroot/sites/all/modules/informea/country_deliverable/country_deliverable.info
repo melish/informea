@@ -13,6 +13,7 @@ dependencies[] = features
 dependencies[] = file
 dependencies[] = i18n_taxonomy
 dependencies[] = informea
+dependencies[] = link
 dependencies[] = options
 dependencies[] = strongarm
 dependencies[] = taxonomy

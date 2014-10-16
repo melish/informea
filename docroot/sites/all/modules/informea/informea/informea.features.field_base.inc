@@ -108,23 +108,43 @@ function informea_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_country',
-    'foreign keys' => array(),
+    'foreign keys' => array(
+      'node' => array(
+        'columns' => array(
+          'target_id' => 'nid',
+        ),
+        'table' => 'node',
+      ),
+    ),
     'indexes' => array(
-      'iso2' => array(
-        0 => 'iso2',
+      'target_id' => array(
+        0 => 'target_id',
       ),
     ),
     'locked' => 0,
-    'module' => 'countries',
+    'module' => 'entityreference',
     'settings' => array(
-      'continents' => array(),
-      'countries' => array(),
-      'enabled' => 1,
       'entity_translation_sync' => FALSE,
-      'size' => 5,
+      'handler' => 'base',
+      'handler_settings' => array(
+        'behaviors' => array(
+          'views-select-list' => array(
+            'status' => 0,
+          ),
+        ),
+        'sort' => array(
+          'direction' => 'ASC',
+          'property' => 'title',
+          'type' => 'property',
+        ),
+        'target_bundles' => array(
+          'country' => 'country',
+        ),
+      ),
+      'target_type' => 'node',
     ),
     'translatable' => 0,
-    'type' => 'country',
+    'type' => 'entityreference',
   );
 
   // Exported field_base: 'field_country_party_count'

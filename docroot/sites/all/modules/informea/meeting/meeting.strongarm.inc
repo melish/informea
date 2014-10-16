@@ -275,7 +275,7 @@ function meeting_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '9',
+          'weight' => '8',
         ),
         'language' => array(
           'weight' => '3',

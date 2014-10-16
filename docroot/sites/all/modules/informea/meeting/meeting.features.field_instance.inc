@@ -111,6 +111,46 @@ function meeting_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-event_calendar-event_calendar_status'
+  $field_instances['node-event_calendar-event_calendar_status'] = array(
+    'bundle' => 'event_calendar',
+    'default_value' => array(
+      0 => array(
+        'tid' => 2,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Describe Event status',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
+      'teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'event_calendar_status',
+    'label' => 'Status',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 10,
+    ),
+  );
+
   // Exported field_instance: 'node-event_calendar-field_abbreviation'
   $field_instances['node-event_calendar-field_abbreviation'] = array(
     'bundle' => 'event_calendar',
@@ -188,7 +228,7 @@ function meeting_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 16,
+      'weight' => 15,
     ),
   );
 
@@ -200,11 +240,13 @@ function meeting_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
-        'module' => 'countries',
-        'settings' => array(),
-        'type' => 'country_default',
-        'weight' => 9,
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 21,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -216,17 +258,17 @@ function meeting_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_country',
     'label' => 'Country',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'countries',
+      'active' => 1,
+      'module' => 'options',
       'settings' => array(),
-      'type' => 'countries_continent',
-      'weight' => 17,
+      'type' => 'options_select',
+      'weight' => 16,
     ),
   );
 
@@ -264,7 +306,7 @@ function meeting_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 8,
+      'weight' => 7,
     ),
   );
 
@@ -302,7 +344,7 @@ function meeting_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 25,
+      'weight' => 23,
     ),
   );
 
@@ -391,7 +433,7 @@ function meeting_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
@@ -429,7 +471,7 @@ function meeting_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 5,
+      'weight' => 4,
     ),
   );
 
@@ -467,7 +509,7 @@ function meeting_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 7,
+      'weight' => 6,
     ),
   );
 
@@ -508,7 +550,7 @@ function meeting_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 22,
+      'weight' => 21,
     ),
   );
 
@@ -596,7 +638,7 @@ function meeting_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 15,
+      'weight' => 14,
     ),
   );
 
@@ -724,7 +766,7 @@ function meeting_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 24,
+      'weight' => 22,
     ),
   );
 
@@ -764,7 +806,7 @@ function meeting_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 10,
+      'weight' => 9,
     ),
   );
 
@@ -1232,6 +1274,7 @@ function meeting_field_default_field_instances() {
   t('City');
   t('Country');
   t('Date');
+  t('Describe Event status');
   t('Description');
   t('Event Description');
   t('Event images');
@@ -1245,6 +1288,7 @@ function meeting_field_default_field_instances() {
   t('Original ID');
   t('Repetition');
   t('Select the start and end dates for this event.');
+  t('Status');
   t('Tags');
   t('Title');
   t('Treaty');

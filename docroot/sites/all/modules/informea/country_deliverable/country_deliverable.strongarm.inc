@@ -223,10 +223,10 @@ function country_deliverable_strongarm() {
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '2',
         ),
         'language' => array(
-          'weight' => '5',
+          'weight' => '1',
         ),
       ),
       'display' => array(),
@@ -268,10 +268,10 @@ function country_deliverable_strongarm() {
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '2',
         ),
         'language' => array(
-          'weight' => '5',
+          'weight' => '1',
         ),
       ),
       'display' => array(),

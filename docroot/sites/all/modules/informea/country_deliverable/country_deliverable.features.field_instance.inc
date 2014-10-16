@@ -51,7 +51,7 @@ function country_deliverable_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 31,
+      'weight' => 3,
     ),
   );
 
@@ -89,7 +89,7 @@ function country_deliverable_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 41,
+      'weight' => 10,
     ),
   );
 
@@ -101,11 +101,13 @@ function country_deliverable_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
-        'module' => 'countries',
-        'settings' => array(),
-        'type' => 'country_default',
-        'weight' => 1,
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -123,11 +125,11 @@ function country_deliverable_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'countries',
+      'active' => 1,
+      'module' => 'options',
       'settings' => array(),
-      'type' => 'countries_continent',
-      'weight' => 33,
+      'type' => 'options_select',
+      'weight' => 4,
     ),
   );
 
@@ -182,7 +184,7 @@ function country_deliverable_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 44,
+      'weight' => 12,
     ),
   );
 
@@ -225,7 +227,7 @@ function country_deliverable_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 37,
+      'weight' => 7,
     ),
   );
 
@@ -266,7 +268,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 43,
+      'weight' => 11,
     ),
   );
 
@@ -306,7 +308,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 39,
+      'weight' => 8,
     ),
   );
 
@@ -360,7 +362,7 @@ function country_deliverable_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 40,
+      'weight' => 9,
     ),
   );
 
@@ -400,7 +402,7 @@ function country_deliverable_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 35,
+      'weight' => 6,
     ),
   );
 
@@ -443,7 +445,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -5,
+      'weight' => 0,
     ),
   );
 
@@ -488,7 +490,7 @@ function country_deliverable_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 31,
+      'weight' => 3,
     ),
   );
 
@@ -500,11 +502,13 @@ function country_deliverable_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
-        'module' => 'countries',
-        'settings' => array(),
-        'type' => 'country_default',
-        'weight' => 1,
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -522,11 +526,11 @@ function country_deliverable_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'countries',
+      'active' => 1,
+      'module' => 'options',
       'settings' => array(),
-      'type' => 'countries_continent',
-      'weight' => 33,
+      'type' => 'options_select',
+      'weight' => 5,
     ),
   );
 
@@ -581,7 +585,7 @@ function country_deliverable_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 45,
+      'weight' => 11,
     ),
   );
 
@@ -624,7 +628,7 @@ function country_deliverable_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 37,
+      'weight' => 7,
     ),
   );
 
@@ -665,7 +669,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 43,
+      'weight' => 10,
     ),
   );
 
@@ -705,7 +709,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 39,
+      'weight' => 8,
     ),
   );
 
@@ -759,7 +763,7 @@ function country_deliverable_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 41,
+      'weight' => 9,
     ),
   );
 
@@ -799,7 +803,7 @@ function country_deliverable_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 35,
+      'weight' => 6,
     ),
   );
 
@@ -842,7 +846,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -5,
+      'weight' => 0,
     ),
   );
 
