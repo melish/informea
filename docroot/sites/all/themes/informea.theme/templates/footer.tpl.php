@@ -38,6 +38,12 @@
             <?php print t('UNECE'); ?>
           </a><!-- .logo .logo-un -->
         </li>
+        <li class="pull-right">
+          <a class="logo logo-eu" href="http://ec.europa.eu/" target="_blank">
+            <div class="image"></div>
+            <?php print t('European Union'); ?>
+          </a><!-- .logo .logo-eu -->
+        </li>
       </ul><!-- .list-inline -->
     </div><!-- .footer-section -->
     <div class="footer-section">
