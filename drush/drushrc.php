@@ -293,11 +293,13 @@ $options['init-modules'] = array(
   'i18n_taxonomy',
 
   'jquery_update',
+  'select2',
 
   'country',
   'decision',
   'meeting',
   'country_deliverable',
+  'ecolex',
   'treaty',
   'informea',
   'country_data',
