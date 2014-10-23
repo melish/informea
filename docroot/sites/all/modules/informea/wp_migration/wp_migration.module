@@ -54,3 +54,29 @@ function wp_migrationn_new_old_tags($old) {
   }
   return $ret;
 }
+
+function wp_migration_get_country_id($isoCode) {
+  $countries = &drupal_static(__FUNCTION__);
+  if(!isset($countries)) {
+    $query = new EntityFieldQuery();
+    $result = $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'country')
+      ->execute();
+    if (isset($result['node'])) {
+      $ids = array_keys($result['node']);
+      $rows = entity_load('node', $ids);
+      foreach ($rows as $row) {
+        $code2l = $row->field_country_iso2[LANGUAGE_NONE][0]['safe_value'];
+        $countries[strtolower($code2l)] = $row->nid;
+        $code3l = $row->field_country_iso3[LANGUAGE_NONE][0]['safe_value'];
+        $countries[strtolower($code3l)] = $row->nid;
+      }
+    }
+  }
+  if(!empty($isoCode))
+    $isoCode = strtolower($isoCode);
+  if(array_key_exists($isoCode, $countries)) {
+    return $countries[$isoCode];
+  }
+  return NULL;
+}
