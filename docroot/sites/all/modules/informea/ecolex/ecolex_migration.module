@@ -18,6 +18,14 @@ function ecolex_migration_migrate_api() {
         'class_name' => 'EcolexLegislationMigrate',
         'data_dir' => $base_data_dir . '/documents/',
     );
+    $migrations['EcolexLiterature'] = array(
+        'class_name' => 'EcolexLiteratureMigrate',
+        'data_dir' => $base_data_dir . '/literature/',
+    );
+    $migrations['EcolexCourtDecisions'] = array(
+        'class_name' => 'EcolexCourtDecisionsMigrate',
+        'data_dir' => $base_data_dir . '/courtdecisions/',
+    );
     $api = array(
         'api' => 2,
         'migrations' => $migrations,
