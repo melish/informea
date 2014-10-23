@@ -99,7 +99,7 @@ class MigrateSites extends DynamicMigration {
     if ($row->rec_updated == '0000-00-00 00:00:00') {
       $row->rec_updated = NULL;
     }
-    $row->id_country = $this->countries[$row->id_country];
+    $row->id_country = wp_migration_get_country_id($this->countries[$row->id_country]);
     $row->id_treaty = $this->treaties[$row->id_treaty];
     return TRUE;
   }
