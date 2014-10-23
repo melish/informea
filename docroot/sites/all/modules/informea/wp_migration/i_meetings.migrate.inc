@@ -151,7 +151,7 @@ class MigrateMeetings extends DynamicMigration {
     if (!empty($row->rec_created)) {
       $row->rec_created = strtotime($row->rec_created);
     }
-    $row->id_country = $this->countries[$row->id_country];
+    $row->id_country = wp_migration_get_country_id($this->countries[$row->id_country]);
     $row->id_treaty = $this->treaties[$row->id_treaty];
     return TRUE;
   }

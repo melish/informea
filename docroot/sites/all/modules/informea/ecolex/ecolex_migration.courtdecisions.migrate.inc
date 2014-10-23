@@ -1,6 +1,6 @@
 <?php
 
-class EcolexLegislationMigrate extends DynamicMigration {
+class EcolexCourtDecisionsMigrate extends DynamicMigration {
 
     /**
      * {@inheritdoc}
@@ -8,9 +8,9 @@ class EcolexLegislationMigrate extends DynamicMigration {
     public function __construct($arguments) {
         parent::__construct(MigrateGroup::getInstance('Ecolex'));
         $this->arguments = $arguments;
-        $this->description = 'Import Ecolex legislation from XML web service (files)';
+        $this->description = 'Import Ecolex court decisions from XML web service (files)';
         $data_dir = $arguments['data_dir'];
-        $this->source = new EcolexLegislationMigrateSource($data_dir, array(
+        $this->source = new EcolexCourtDecisionsMigrateSource($data_dir, array(
                 // 'skip_count' => TRUE,
             )
         );
@@ -67,14 +67,13 @@ class EcolexLegislationMigrate extends DynamicMigration {
 
 
         // see prepare() $this->addFieldMapping('field_ecolex_url', 'ecolex_url');
-
     }
 
     /**
      * {@inheritdoc}
      */
     protected function generateMachineName() {
-        return 'EcolexLegislation';
+        return 'EcolexCourtDecisions';
     }
 
     /**
@@ -114,7 +113,7 @@ class EcolexLegislationMigrate extends DynamicMigration {
 }
 
 
-class EcolexLegislationMigrateSource extends MigrateSource {
+class EcolexCourtDecisionsMigrateSource extends MigrateSource {
 
     protected $data_dir;
     protected $parsed = FALSE;
@@ -234,7 +233,13 @@ class EcolexLegislationMigrateSource extends MigrateSource {
             $this->data = array();
             $this->parsed = TRUE;
             $files = file_scan_directory($this->data_dir, '/.*/');
-            $missing_iso = array();
+            $country_objects = countries_get_countries();
+            $iso_mapping = array();
+            foreach($country_objects as $c) {
+                $iso_mapping[strtolower($c->name)] = $c->iso2;
+            }
+            $missing_countries = array();
+            return;
 
             $processed = 0;
             foreach($files as $i => $file) {
@@ -253,34 +258,53 @@ class EcolexLegislationMigrateSource extends MigrateSource {
                         $ob = new stdClass();
                         // Copy all attributes
                         $ob->id = $id;
-                        $ob->ISIS_MFN = (string)$doc->ISIS_MFN;
-                        $ob->FaolexId = (string)$doc->FaolexId;
-                        $ob->Date_of_Entry = (string)$doc->Date_of_Entry;
-                        $ob->Date_of_Modification = (string)$doc->Date_of_Modification;
+                        $ob->isisMfn = (string)$doc->isisMfn;
+                        $ob->id2 = (string)$doc->id2;
+                        $ob->dateOfEntry = (string)$doc->dateOfEntry;
+                        $ob->dateOfModification = (string)$doc->dateOfModification;
 
-                        $iso3 = (string)$doc->country;
-                        if(!empty($iso3)) {
-                            $iso3 = strtoupper($iso3);
-                            if ($country_id = wp_migration_get_country_id($iso3)) {
-                                $ob->country = $country_id;
-                            } else {
-                                $missing_iso[] = $iso3;
+                        $ob->titleOfText['en'] = (string)$doc->titleOfText;
+                        $ob->titleOfText['fr'] = (string)$doc->titleOfTextFr;
+                        $ob->titleOfText['es'] = (string)$doc->titleOfTextSp;
+                        $ob->titleOfText['de'] = (string)$doc->titleOfTextOther;
+                        foreach($ob->titleOfText as $title) {
+                            if(!empty($title)) {
+                                $ob->title = $title;
+                                break;
                             }
                         }
 
-                        $ob->Territorial_Subdivision = (string)$doc->Territorial_Subdivision;
-                        $ob->basin = (string)$doc->basin;
+                        $country_name = (string)$doc->country;
+                        if(!empty($country_name)) {
+                            $country_name = strtolower($country_name);
+                            if(array_key_exists($country_name, $iso_mapping)) {
+                                $ob->country = $iso_mapping[$country_name];
+                            } else {
+                                $missing_countries[] = $country_name;
+                            }
+                        }
 
-                        $ob->Title_of_Text = (string)$doc->Title_of_Text;
-                        $ob->title = (string)$doc->Title_of_Text;
+                        foreach($doc->subject as $s) { $ob->subject[] = MigrationUtil::decodeHTMLText((string)$s); }
 
-                        $ob->Date_of_Text = (string)$doc->Date_of_Text;
-                        $ob->Date_of_original_Text = (string)$doc->Date_of_original_Text;
-                        $ob->Date_of_Consolidation = (string)$doc->Date_of_Consolidation;
-                        $ob->Entry_into_Force = (string)$doc->Entry_into_Force;
-                        $ob->searchDate = (string)$doc->searchDate;
-                        $ob->Related_Web_Site = (string)$doc->Related_Web_Site;
-                        $ob->Internet_Reference = (string)$doc->Internet_Reference;
+                        $ob->languageOfDocument = (string)$doc->languageOfDocument;
+                        $ob->courtName = (string)$doc->courtName;
+
+                        foreach($doc->justices as $s) { $ob->justices[] = MigrationUtil::decodeHTMLText((string)$s); }
+
+                        $ob->dateOfText = (string)$doc->dateOfText;
+                        $ob->referenceNumber = (string)$doc->referenceNumber;
+                        $ob->numberOfPages = (string)$doc->numberOfPages;
+                        $ob->linkToFullText = (string)$doc->linkToFullText;
+                        foreach ($doc->keyword as $s) {
+                            $ob->keyword[] = (string)$s;
+                        }
+
+                        $ob->abstract['en'] = (string)$doc->abstract;
+                        $ob->abstract['fr'] = (string)$doc->abstractFr;
+                        $ob->abstract['es'] = (string)$doc->abstractSp;
+
+                        $ob->internetReference['es'] = (string)$doc->internetReferenceSp;
+
 
                         $filename = (string)$doc->link_to_full_text;
                         if(strpos($filename, '.pdf')) {
@@ -300,9 +324,6 @@ class EcolexLegislationMigrateSource extends MigrateSource {
                         $ob->Abstract = (string)$doc->Abstract;
                         $ob->Comment = (string)$doc->Comment;
 
-                        foreach ($doc->keyword as $s) {
-                            $ob->keyword[] = (string)$s;
-                        }
 
                         $ob->International_Organizations = (string)$doc->International_Organizations;
                         $ob->Record_Language = (string)$doc->Record_Language;

@@ -36,6 +36,12 @@
         "apachesolr_soft_commit": 1
     },
     "variables": {
-        "osha_data_dir": "/var/local/osha/data"
+        "ecolex_data_dir": "",
+        "theme_default": "leo_theme",
+        "date_first_day": "1",
+        "site_default_country": "CH",
+        "date_default_timezone": "UTC",
+        "configurable_timezones": "0",
+        "user_default_timezone": "0"
     }
 }

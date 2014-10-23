@@ -7,21 +7,28 @@
  * Set the API level to 2, for migration classes to be recognized by Migrate.
  */
 function ecolex_migration_migrate_api() {
-
-    $base_data_dir = '/Users/cristiroma/Work/informea/drupal/ecolex_files/xml/';
+  if($base_data_dir = variable_get('ecolex_data_dir')) {
     $migrations = array();
     $migrations['EcolexTreaties'] = array(
-        'class_name' => 'EcolexTreatyMigrateWiki',
-        'data_dir' => $base_data_dir . '/treaties/',
+      'class_name' => 'EcolexTreatyMigrateWiki',
+      'data_dir' => $base_data_dir . '/treaties/',
     );
     $migrations['EcolexLegislation'] = array(
-        'class_name' => 'EcolexLegislationMigrate',
-        'data_dir' => $base_data_dir . '/documents/',
+      'class_name' => 'EcolexLegislationMigrate',
+      'data_dir' => $base_data_dir . '/documents/',
+    );
+    $migrations['EcolexLiterature'] = array(
+      'class_name' => 'EcolexLiteratureMigrate',
+      'data_dir' => $base_data_dir . '/literature/',
+    );
+    $migrations['EcolexCourtDecisions'] = array(
+      'class_name' => 'EcolexCourtDecisionsMigrate',
+      'data_dir' => $base_data_dir . '/courtdecisions/',
     );
     $api = array(
-        'api' => 2,
-        'migrations' => $migrations,
+      'api' => 2,
+      'migrations' => $migrations,
     );
     return $api;
+  }
 }
-

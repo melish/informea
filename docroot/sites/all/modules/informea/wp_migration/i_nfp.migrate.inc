@@ -47,7 +47,7 @@ class MigrateNationalFocalPoints extends DynamicMigration {
           ->select('ai_people_treaty', 'c')->fields('c')->execute();
         $rows = $query->fetchAll();
         foreach($rows as $row) {
-          $this->treaty_assignments[$row->id_people][] = $row->id_treaty;
+          $this->treaty_assignments[$row->id_people][] = $this->treaties[$row->id_treaty];
         }
       }
     } catch(Exception $e) {
@@ -110,7 +110,12 @@ class MigrateNationalFocalPoints extends DynamicMigration {
       $name = $row->first_name;
     }
     if (!empty($row->last_name)) {
-      $name = ' ' . $row->last_name;
+      if (empty($row->first_name)) {
+        $name .= ' ';
+      } else {
+        $name = '';
+      }
+      $name .= $row->last_name;
     }
     if (empty($name) && !empty($row->position)) {
       $name = $row->position;
@@ -118,7 +123,7 @@ class MigrateNationalFocalPoints extends DynamicMigration {
     if (empty($name) && !empty($row->institution)) {
       $name = $row->institution;
     }
-    $row->name = $name;
+    $row->name = trim($name);
 
     $row->id_treaty = $this->treaty_assignments[$row->id];
 
@@ -131,7 +136,7 @@ class MigrateNationalFocalPoints extends DynamicMigration {
     if ($row->rec_updated == '0000-00-00 00:00:00') {
       $row->rec_updated = NULL;
     }
-    $row->id_country = $this->countries[$row->id_country];
+    $row->id_country = wp_migration_get_country_id($this->countries[$row->id_country]);
     return TRUE;
   }
 }
