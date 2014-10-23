@@ -39,7 +39,7 @@ function wp_migration_migrate_api() {
  * @return array
  *   Array of new terms tids
  */
-function informea_tags($old) {
+function wp_migrationn_new_old_tags($old) {
   static $terms_old_new = array();
   if(empty($terms_old_new)) {
     $terms_old_new = db_select('migrate_map_thesaurusinformea', 'm')

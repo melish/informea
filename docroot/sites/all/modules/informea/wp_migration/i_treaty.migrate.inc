@@ -129,7 +129,7 @@ class MigrateTreaties extends DynamicMigration {
       ->fields('d', array('id_concept'))
       ->execute()
       ->fetchCol(0);
-    $row->tags = informea_tags($old_tags);
+    $row->tags = wp_migrationn_new_old_tags($old_tags);
   }
 }
 
@@ -230,7 +230,7 @@ class MigrateTreatiesArticles extends DynamicMigration {
       ->fields('d', array('id_concept'))
       ->execute()
       ->fetchCol(0);
-    $row->tags = informea_tags($old_tags);
+    $row->tags = wp_migrationn_new_old_tags($old_tags);
   }
 }
 
@@ -353,7 +353,7 @@ class MigrateTreatiesParagraphs extends DynamicMigration {
       ->fields('d', array('id_concept'))
       ->execute()
       ->fetchCol(0);
-    $row->tags = informea_tags($old_tags);
+    $row->tags = wp_migrationn_new_old_tags($old_tags);
   }
 }
 
