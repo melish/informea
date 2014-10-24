@@ -7,6 +7,10 @@
  * Set the API level to 2, for migration classes to be recognized by Migrate.
  */
 function ecolex_migration_migrate_api() {
+  $api = array(
+    'api' => 2,
+    'migrations' => array(),
+  );
   if($base_data_dir = variable_get('ecolex_data_dir')) {
     $migrations = array();
     $migrations['EcolexTreaties'] = array(
@@ -25,10 +29,7 @@ function ecolex_migration_migrate_api() {
       'class_name' => 'EcolexCourtDecisionsMigrate',
       'data_dir' => $base_data_dir . '/courtdecisions/',
     );
-    $api = array(
-      'api' => 2,
-      'migrations' => $migrations,
-    );
-    return $api;
+    $api['migrations'] = $migrations;
   }
+  return $api;
 }
