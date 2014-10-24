@@ -2,365 +2,376 @@
 
 class EcolexCourtDecisionsMigrate extends DynamicMigration {
 
-    /**
-     * {@inheritdoc}
-     */
-    public function __construct($arguments) {
-        parent::__construct(MigrateGroup::getInstance('Ecolex'));
-        $this->arguments = $arguments;
-        $this->description = 'Import Ecolex court decisions from XML web service (files)';
-        $data_dir = $arguments['data_dir'];
-        $this->source = new EcolexCourtDecisionsMigrateSource($data_dir, array(
-                // 'skip_count' => TRUE,
-            )
-        );
-        $this->map = new MigrateSQLMap($this->machineName,
-            array(
-                'id' => array(
-                    'type' => 'varchar',
-                    'length' => 255,
-                    'not null' => TRUE,
-                    'description' => 'RecId field remote primary key',
-                ),
-            ),
-            MigrateDestinationNode::getKeySchema()
-        );
-        $this->destination = new MigrateDestinationNode('legislation');
+  /**
+   * {@inheritdoc}
+   */
+  public function __construct($arguments) {
+    parent::__construct(MigrateGroup::getInstance('Ecolex'));
+    $this->arguments = $arguments;
+    $this->description = 'Import Ecolex court decisions from XML web service (files)';
+    $data_dir = $arguments['data_dir'];
+    $this->source = new EcolexCourtDecisionsMigrateSource($data_dir, array(// 'skip_count' => TRUE,
+      )
+    );
+    $this->map = new MigrateSQLMap($this->machineName,
+      array(
+        'id' => array(
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => TRUE,
+          'description' => 'RecId field remote primary key',
+        ),
+      ),
+      MigrateDestinationNode::getKeySchema()
+    );
+    $this->destination = new MigrateDestinationNode('legislation');
 
-        $this->addFieldMapping('field_original_id', 'id');
-        // $this->addFieldMapping('', 'ISIS_MFN');
-        $this->addFieldMapping('field_faolex_id', 'FaolexId');
-        // $this->addFieldMapping('', 'Date_of_Entry');
-        // $this->addFieldMapping('', 'Date_of_Modification');
+    $this->addFieldMapping('field_original_id', 'id');
+    // $this->addFieldMapping('', 'ISIS_MFN');
+    $this->addFieldMapping('field_faolex_id', 'FaolexId');
+    // $this->addFieldMapping('', 'Date_of_Entry');
+    // $this->addFieldMapping('', 'Date_of_Modification');
 
-        $this->addFieldMapping('field_country', 'country');
-        // $this->addFieldMapping('', 'Territorial_Subdivision');
-        // $this->addFieldMapping('', 'basin');
+    $this->addFieldMapping('field_country', 'country');
+    // $this->addFieldMapping('', 'Territorial_Subdivision');
+    // $this->addFieldMapping('', 'basin');
 
-        $this->addFieldMapping('title', 'title');
-        $this->addFieldMapping('title_field', 'Title_of_Text');
+    $this->addFieldMapping('title', 'title');
+    $this->addFieldMapping('title_field', 'Title_of_Text');
 
-        $this->addFieldMapping('field_date_of_text', 'Date_of_Text');
-        $this->addFieldMapping('field_date_of_original_text', 'Date_of_original_Text');
-        $this->addFieldMapping('field_date_of_consolidation', 'Date_of_Consolidation');
-        // $this->addFieldMapping('field_entry_into_force', 'Entry_into_Force');
-        // $this->addFieldMapping('', 'searchDate');
-        $this->addFieldMapping('field_avaiable_web_site', 'Related_Web_Site');
-        $this->addFieldMapping('field_url', 'link_to_full_text');
-        // $this->addFieldMapping('', 'Internet_Reference');
-        $this->addFieldMapping('field_type_of_text', 'Type_of_Text');
-        $this->addFieldMapping('field_type_of_text:create_term')->defaultValue(TRUE);
-        // $this->addFieldMapping('', 'Sub_file_code');
-        $this->addFieldMapping('body', 'Abstract');
-        $this->addFieldMapping('field_abstract', 'Comment');
+    $this->addFieldMapping('field_date_of_text', 'Date_of_Text');
+    $this->addFieldMapping('field_date_of_original_text', 'Date_of_original_Text');
+    $this->addFieldMapping('field_date_of_consolidation', 'Date_of_Consolidation');
+    // $this->addFieldMapping('field_entry_into_force', 'Entry_into_Force');
+    // $this->addFieldMapping('', 'searchDate');
+    $this->addFieldMapping('field_avaiable_web_site', 'Related_Web_Site');
+    $this->addFieldMapping('field_url', 'link_to_full_text');
+    // $this->addFieldMapping('', 'Internet_Reference');
+    $this->addFieldMapping('field_type_of_text', 'Type_of_Text');
+    $this->addFieldMapping('field_type_of_text:create_term')
+      ->defaultValue(TRUE);
+    // $this->addFieldMapping('', 'Sub_file_code');
+    $this->addFieldMapping('body', 'Abstract');
+    $this->addFieldMapping('field_abstract', 'Comment');
 
-        //@todo: Integers instead of real terms.
-        #$this->addFieldMapping('field_keywords', 'keyword');
-        #$this->addFieldMapping('field_keywords:create_term')->defaultValue(TRUE);
+    //@todo: Integers instead of real terms.
+    #$this->addFieldMapping('field_keywords', 'keyword');
+    #$this->addFieldMapping('field_keywords:create_term')->defaultValue(TRUE);
 
-        // $this->addFieldMapping('', 'International_Organizations');
-        // $this->addFieldMapping('', 'Record_Language');
-        // $this->addFieldMapping('', 'Doc_Language');
-        // $this->addFieldMapping('field_repeals', 'Repealed');
-        // $this->addFieldMapping('', 'Serial_Imprint');
-        // $this->addFieldMapping('', 'Publication_reference');
+    // $this->addFieldMapping('', 'International_Organizations');
+    // $this->addFieldMapping('', 'Record_Language');
+    // $this->addFieldMapping('', 'Doc_Language');
+    // $this->addFieldMapping('field_repeals', 'Repealed');
+    // $this->addFieldMapping('', 'Serial_Imprint');
+    // $this->addFieldMapping('', 'Publication_reference');
 
 
-        // see prepare() $this->addFieldMapping('field_ecolex_url', 'ecolex_url');
+    // see prepare() $this->addFieldMapping('field_ecolex_url', 'ecolex_url');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function generateMachineName() {
+    return 'EcolexCourtDecisions';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function prepareRow($row) {
+    return TRUE;
+  }
+
+  /**
+   * Called by destination right before saving.
+   *
+   * @param object $entity
+   *   Entity to save
+   * @param object $row
+   *   Source row
+   */
+  public function prepare($entity, $row) {
+    $migration = Migration::currentMigration();
+    $languages = array_keys(language_list());
+    $entity_type = $migration->getDestination()->getEntityType();
+
+    $entity->field_ecolex_url['en'][0]['url'] = 'http://www.ecolex.org/ecolex/ledge/view/RecordDetails?index=documents&id=' . $row->id;
+    $entity->field_faolex_url['en'][0]['url'] = 'http://faolex.fao.org/cgi-bin/faolex.exe?database=faolex&search_type=link&table=result&lang=eng&format_name=@ERALL&rec_id=' . $row->ISIS_MFN;
+
+    $translation_handler = entity_translation_get_handler($entity_type, $entity);
+    $entity->translations = $translation_handler->getTranslations();
+    $entity->language = 'en';
+    foreach ($languages as $language) {
+      $has_translation = FALSE;
+
+      if ($has_translation) {
+        MigrationUtil::setTranslation($translation_handler, $entity, $row, $language);
+      }
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function generateMachineName() {
-        return 'EcolexCourtDecisions';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function prepareRow($row) {
-        return TRUE;
-    }
-
-    /**
-     * Called by destination right before saving.
-     *
-     * @param object $entity
-     *   Entity to save
-     * @param object $row
-     *   Source row
-     */
-    public function prepare($entity, $row) {
-        $migration = Migration::currentMigration();
-        $languages = array_keys(language_list());
-        $entity_type = $migration->getDestination()->getEntityType();
-
-        $entity->field_ecolex_url['en'][0]['url'] = 'http://www.ecolex.org/ecolex/ledge/view/RecordDetails?index=documents&id=' . $row->id;
-        $entity->field_faolex_url['en'][0]['url'] = 'http://faolex.fao.org/cgi-bin/faolex.exe?database=faolex&search_type=link&table=result&lang=eng&format_name=@ERALL&rec_id=' . $row->ISIS_MFN;
-
-        $translation_handler = entity_translation_get_handler($entity_type, $entity);
-        $entity->translations = $translation_handler->getTranslations();
-        $entity->language = 'en';
-        foreach ($languages as $language) {
-            $has_translation = FALSE;
-
-            if ($has_translation) {
-                MigrationUtil::setTranslation($translation_handler, $entity, $row, $language);
-            }
-        }
-    }
+  }
 }
 
 
 class EcolexCourtDecisionsMigrateSource extends MigrateSource {
 
-    protected $data_dir;
-    protected $parsed = FALSE;
-    protected $data = array();
-    protected $newestItemDate = NULL;
+  protected $data_dir;
+  protected $parsed = FALSE;
+  protected $data = array();
+  protected $newestItemDate = NULL;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function __construct($data_dir, array $options = array()) {
-        parent::__construct($options);
-        $this->data_dir = $data_dir;
-        //$this->newestItemDate = $this->getNewestItemDate();
+  /**
+   * {@inheritdoc}
+   */
+  public function __construct($data_dir, array $options = array()) {
+    parent::__construct($options);
+    $this->data_dir = $data_dir;
+    //$this->newestItemDate = $this->getNewestItemDate();
+  }
+
+  /**
+   * Return a string representing the source, for display in the UI.
+   */
+  public function __toString() {
+    return "Extract treaties from Ecolex XML in {$this->data_dir}";
+  }
+
+  /**
+   * The list of available fields to map from the source, keyed by field name.
+   */
+  public function fields() {
+    return array(
+      'id' => '@todo',
+      'ISIS_MFN' => 'ISIS number',
+      'FaolexId' => 'FAOLEX Identifier',
+      'Date_of_Entry' => '@todo',
+      'Date_of_Modification' => '@todo',
+      'country' => '@todo',
+      'Territorial_Subdivision' => '@todo',
+      'basin' => '@todo',
+      'Title_of_Text' => '@todo',
+      'title' => '@todo',
+      'Date_of_Text' => '@todo',
+      'Date_of_original_Text' => '@todo',
+      'Date_of_Consolidation' => '@todo',
+      'Entry_into_Force' => '@todo',
+      'searchDate' => '@todo',
+      'Related_Web_Site' => '@todo',
+      'Internet_Reference' => '@todo',
+      'link_to_full_text' => '@todo',
+      'Type_of_Text' => '@todo',
+      'Sub_file_code' => '@todo',
+      'Abstract' => '@todo',
+      'Comment' => '@todo',
+      'keyword' => '@todo',
+      'International_Organizations' => '@todo',
+      'Record_Language' => '@todo',
+      'Doc_Language' => '@todo',
+      'Repealed' => '@todo',
+      'Serial_Imprint' => '@todo',
+      'Publication_reference' => '@todo',
+      'ecolex_url' => '@todo',
+    );
+  }
+
+  /**
+   * Return the number of available source records.
+   */
+  public function computeCount() {
+    $files = file_scan_directory($this->data_dir, '/.*/');
+    $ret = 0;
+    foreach ($files as $i => $file) {
+      try {
+        $docs = @simplexml_load_file($file->uri);
+        if (!$docs) {
+          continue;
+        }
+        foreach ($docs as $doc) {
+          $ret++;
+        }
+      }
+      catch (Exception $e) {
+        // Swallow
+      }
     }
+    return $ret;
+  }
 
-    /**
-     * Return a string representing the source, for display in the UI.
-     */
-    public function __toString() {
-        return "Extract treaties from Ecolex XML in {$this->data_dir}";
+  /**
+   * Do whatever needs to be done to start a fresh traversal of the source data.
+   *
+   * This is always called at the start of an import, so tasks such as opening
+   * file handles, running queries, and so on should be performed here.
+   */
+  public function performRewind() {
+    reset($this->data);
+  }
+
+  /**
+   * Fetch the next row of data, returning it as an object.
+   *
+   * @return object
+   *   FALSE data as stdClass, FALSE when there is no more data available.
+   */
+  public function getNextRow() {
+    if (empty($this->data)) {
+      $this->readData();
     }
-
-    /**
-     * The list of available fields to map from the source, keyed by field name.
-     */
-    public function fields() {
-        return array(
-            'id' => '@todo',
-            'ISIS_MFN' => 'ISIS number',
-            'FaolexId' => 'FAOLEX Identifier',
-            'Date_of_Entry' => '@todo',
-            'Date_of_Modification' => '@todo',
-            'country' => '@todo',
-            'Territorial_Subdivision' => '@todo',
-            'basin' => '@todo',
-            'Title_of_Text' => '@todo',
-            'title' => '@todo',
-            'Date_of_Text' => '@todo',
-            'Date_of_original_Text' => '@todo',
-            'Date_of_Consolidation' => '@todo',
-            'Entry_into_Force' => '@todo',
-            'searchDate' => '@todo',
-            'Related_Web_Site' => '@todo',
-            'Internet_Reference' => '@todo',
-            'link_to_full_text' => '@todo',
-            'Type_of_Text' => '@todo',
-            'Sub_file_code' => '@todo',
-            'Abstract' => '@todo',
-            'Comment' => '@todo',
-            'keyword' => '@todo',
-            'International_Organizations' => '@todo',
-            'Record_Language' => '@todo',
-            'Doc_Language' => '@todo',
-            'Repealed' => '@todo',
-            'Serial_Imprint' => '@todo',
-            'Publication_reference' => '@todo',
-            'ecolex_url' => '@todo',
-        );
+    $item = NULL;
+    if (count($this->data)) {
+      $item = current($this->data);
+      next($this->data);
     }
+    return $item;
+  }
 
-    /**
-     * Return the number of available source records.
-     */
-    public function computeCount() {
-        $files = file_scan_directory($this->data_dir, '/.*/');
-        $ret = 0;
-        foreach ($files as $i => $file) {
-            try {
-                $docs = @simplexml_load_file($file->uri);
-                if(!$docs) {
-                    continue;
-                }
-                foreach ($docs as $doc) {
-                    $ret++;
-                }
+  /**
+   * Query the remote source and pull the data.
+   */
+  protected function readData() {
+    if (!$this->parsed) {
+      $this->data = array();
+      $this->parsed = TRUE;
+      $files = file_scan_directory($this->data_dir, '/.*/');
+      $country_objects = countries_get_countries();
+      $iso_mapping = array();
+      foreach ($country_objects as $c) {
+        $iso_mapping[strtolower($c->name)] = $c->iso2;
+      }
+      $missing_countries = array();
+      return;
+
+      $processed = 0;
+      foreach ($files as $i => $file) {
+        try {
+          $docs = @simplexml_load_file($file->uri);
+          if (!$docs) {
+            continue;
+          }
+          foreach ($docs as $doc) {
+            $processed++;
+            if ($processed % 5000 == 0) {
+              $this->setMessage("Processed $processed records");
             }
-            catch (Exception $e) {
-                // Swallow
+            $id = (string) $doc->id;
+
+            $ob = new stdClass();
+            // Copy all attributes
+            $ob->id = $id;
+            $ob->isisMfn = (string) $doc->isisMfn;
+            $ob->id2 = (string) $doc->id2;
+            $ob->dateOfEntry = (string) $doc->dateOfEntry;
+            $ob->dateOfModification = (string) $doc->dateOfModification;
+
+            $ob->titleOfText['en'] = (string) $doc->titleOfText;
+            $ob->titleOfText['fr'] = (string) $doc->titleOfTextFr;
+            $ob->titleOfText['es'] = (string) $doc->titleOfTextSp;
+            $ob->titleOfText['de'] = (string) $doc->titleOfTextOther;
+            foreach ($ob->titleOfText as $title) {
+              if (!empty($title)) {
+                $ob->title = $title;
+                break;
+              }
             }
-        }
-        return $ret;
-    }
 
-    /**
-     * Do whatever needs to be done to start a fresh traversal of the source data.
-     *
-     * This is always called at the start of an import, so tasks such as opening
-     * file handles, running queries, and so on should be performed here.
-     */
-    public function performRewind() {
-        reset($this->data);
-    }
-
-    /**
-     * Fetch the next row of data, returning it as an object.
-     *
-     * @return object
-     *   FALSE data as stdClass, FALSE when there is no more data available.
-     */
-    public function getNextRow() {
-        if (empty($this->data)) {
-            $this->readData();
-        }
-        $item = NULL;
-        if(count($this->data)) {
-            $item = current($this->data);
-            next($this->data);
-        }
-        return $item;
-    }
-
-    /**
-     * Query the remote source and pull the data.
-     */
-    protected function readData() {
-        if (!$this->parsed) {
-            $this->data = array();
-            $this->parsed = TRUE;
-            $files = file_scan_directory($this->data_dir, '/.*/');
-            $country_objects = countries_get_countries();
-            $iso_mapping = array();
-            foreach($country_objects as $c) {
-                $iso_mapping[strtolower($c->name)] = $c->iso2;
+            $country_name = (string) $doc->country;
+            if (!empty($country_name)) {
+              $country_name = strtolower($country_name);
+              if (array_key_exists($country_name, $iso_mapping)) {
+                $ob->country = $iso_mapping[$country_name];
+              }
+              else {
+                $missing_countries[] = $country_name;
+              }
             }
-            $missing_countries = array();
-            return;
 
-            $processed = 0;
-            foreach($files as $i => $file) {
-                try {
-                    $docs = @simplexml_load_file($file->uri);
-                    if(!$docs) {
-                        continue;
-                    }
-                    foreach ($docs as $doc) {
-                        $processed++;
-                        if($processed % 5000 == 0) {
-                            $this->setMessage("Processed $processed records");
-                        }
-                        $id = (string)$doc->id;
+            foreach ($doc->subject as $s) {
+              $ob->subject[] = MigrationUtil::decodeHTMLText((string) $s);
+            }
 
-                        $ob = new stdClass();
-                        // Copy all attributes
-                        $ob->id = $id;
-                        $ob->isisMfn = (string)$doc->isisMfn;
-                        $ob->id2 = (string)$doc->id2;
-                        $ob->dateOfEntry = (string)$doc->dateOfEntry;
-                        $ob->dateOfModification = (string)$doc->dateOfModification;
+            $ob->languageOfDocument = (string) $doc->languageOfDocument;
+            $ob->courtName = (string) $doc->courtName;
 
-                        $ob->titleOfText['en'] = (string)$doc->titleOfText;
-                        $ob->titleOfText['fr'] = (string)$doc->titleOfTextFr;
-                        $ob->titleOfText['es'] = (string)$doc->titleOfTextSp;
-                        $ob->titleOfText['de'] = (string)$doc->titleOfTextOther;
-                        foreach($ob->titleOfText as $title) {
-                            if(!empty($title)) {
-                                $ob->title = $title;
-                                break;
-                            }
-                        }
+            foreach ($doc->justices as $s) {
+              $ob->justices[] = MigrationUtil::decodeHTMLText((string) $s);
+            }
 
-                        $country_name = (string)$doc->country;
-                        if(!empty($country_name)) {
-                            $country_name = strtolower($country_name);
-                            if(array_key_exists($country_name, $iso_mapping)) {
-                                $ob->country = $iso_mapping[$country_name];
-                            } else {
-                                $missing_countries[] = $country_name;
-                            }
-                        }
+            $ob->dateOfText = (string) $doc->dateOfText;
+            $ob->referenceNumber = (string) $doc->referenceNumber;
+            $ob->numberOfPages = (string) $doc->numberOfPages;
+            $ob->linkToFullText = (string) $doc->linkToFullText;
+            foreach ($doc->keyword as $s) {
+              $ob->keyword[] = (string) $s;
+            }
 
-                        foreach($doc->subject as $s) { $ob->subject[] = MigrationUtil::decodeHTMLText((string)$s); }
+            $ob->abstract['en'] = (string) $doc->abstract;
+            $ob->abstract['fr'] = (string) $doc->abstractFr;
+            $ob->abstract['es'] = (string) $doc->abstractSp;
 
-                        $ob->languageOfDocument = (string)$doc->languageOfDocument;
-                        $ob->courtName = (string)$doc->courtName;
-
-                        foreach($doc->justices as $s) { $ob->justices[] = MigrationUtil::decodeHTMLText((string)$s); }
-
-                        $ob->dateOfText = (string)$doc->dateOfText;
-                        $ob->referenceNumber = (string)$doc->referenceNumber;
-                        $ob->numberOfPages = (string)$doc->numberOfPages;
-                        $ob->linkToFullText = (string)$doc->linkToFullText;
-                        foreach ($doc->keyword as $s) {
-                            $ob->keyword[] = (string)$s;
-                        }
-
-                        $ob->abstract['en'] = (string)$doc->abstract;
-                        $ob->abstract['fr'] = (string)$doc->abstractFr;
-                        $ob->abstract['es'] = (string)$doc->abstractSp;
-
-                        $ob->internetReference['es'] = (string)$doc->internetReferenceSp;
+            $ob->internetReference['es'] = (string) $doc->internetReferenceSp;
 
 
-                        $filename = (string)$doc->link_to_full_text;
-                        if(strpos($filename, '.pdf')) {
-                            $ob->link_to_full_text = 'http://faolex.fao.org/docs/pdf/' . $filename;
-                        }
-                        else if(strpos($filename, '.doc')) {
-                            $ob->link_to_full_text = 'http://faolex.fao.org/docs/texts/' . $filename;
-                        }
-                        else if(strpos($filename, '.html')) {
-                            $ob->link_to_full_text = 'http://faolex.fao.org/html/' . $filename;
-                        } else {
-                            $ob->link_to_full_text = $filename;
-                        }
-
-                        $ob->Type_of_Text = (string)$doc->Type_of_Text;
-                        $ob->Sub_file_code = (string)$doc->Sub_file_code;
-                        $ob->Abstract = (string)$doc->Abstract;
-                        $ob->Comment = (string)$doc->Comment;
-
-
-                        $ob->International_Organizations = (string)$doc->International_Organizations;
-                        $ob->Record_Language = (string)$doc->Record_Language;
-                        $ob->Doc_Language = (string)$doc->Doc_Language;
-                        $ob->Repealed = (string)$doc->Repealed;
-                        $ob->Serial_Imprint = (string)$doc->Serial_Imprint;
-                        $ob->Publication_reference = (string)$doc->Publication_reference;
-
-                        if (empty($ob->title)) {
-                            $this->setMessage('Skipping record with empty title:' . $ob->Recid);
-                            continue;
-                        }
-                        $this->data[$id] = $ob;
-                    }
+            $filename = (string) $doc->link_to_full_text;
+            if (strpos($filename, '.pdf')) {
+              $ob->link_to_full_text = 'http://faolex.fao.org/docs/pdf/' . $filename;
+            }
+            else {
+              if (strpos($filename, '.doc')) {
+                $ob->link_to_full_text = 'http://faolex.fao.org/docs/texts/' . $filename;
+              }
+              else {
+                if (strpos($filename, '.html')) {
+                  $ob->link_to_full_text = 'http://faolex.fao.org/html/' . $filename;
                 }
-                catch(Exception $e) {
-                    $this->setMessage('Error parsing ' . $e->getMessage());
+                else {
+                  $ob->link_to_full_text = $filename;
                 }
+              }
             }
-            $this->setMessage("Missing ISO codes: " . implode(',', array_unique($missing_iso)));
-            $this->setMessage("Records: " . count($this->data));
-        }
-    }
 
-    /**
-     * Add messages during data retrieval for debugging.
-     *
-     * @param string $msg
-     *   Message string
-     * @param int $severity
-     *   Migration message level
-     */
-    protected function setMessage($msg, $severity = MigrationBase::MESSAGE_WARNING) {
-        if(function_exists('drush_log')) {
-            drush_log($msg, 'warning');
+            $ob->Type_of_Text = (string) $doc->Type_of_Text;
+            $ob->Sub_file_code = (string) $doc->Sub_file_code;
+            $ob->Abstract = (string) $doc->Abstract;
+            $ob->Comment = (string) $doc->Comment;
+
+
+            $ob->International_Organizations = (string) $doc->International_Organizations;
+            $ob->Record_Language = (string) $doc->Record_Language;
+            $ob->Doc_Language = (string) $doc->Doc_Language;
+            $ob->Repealed = (string) $doc->Repealed;
+            $ob->Serial_Imprint = (string) $doc->Serial_Imprint;
+            $ob->Publication_reference = (string) $doc->Publication_reference;
+
+            if (empty($ob->title)) {
+              $this->setMessage('Skipping record with empty title:' . $ob->Recid);
+              continue;
+            }
+            $this->data[$id] = $ob;
+          }
         }
-        drupal_set_message($msg);
-        $this->activeMigration->queueMessage($msg, $severity);
+        catch (Exception $e) {
+          $this->setMessage('Error parsing ' . $e->getMessage());
+        }
+      }
+      $this->setMessage("Missing ISO codes: " . implode(',', array_unique($missing_iso)));
+      $this->setMessage("Records: " . count($this->data));
     }
+  }
+
+  /**
+   * Add messages during data retrieval for debugging.
+   *
+   * @param string $msg
+   *   Message string
+   * @param int $severity
+   *   Migration message level
+   */
+  protected function setMessage($msg,
+                                $severity = MigrationBase::MESSAGE_WARNING) {
+    if (function_exists('drush_log')) {
+      drush_log($msg, 'warning');
+    }
+    drupal_set_message($msg);
+    $this->activeMigration->queueMessage($msg, $severity);
+  }
 }
