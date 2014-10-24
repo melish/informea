@@ -10,9 +10,7 @@ class EcolexCourtDecisionsMigrate extends DynamicMigration {
     $this->arguments = $arguments;
     $this->description = 'Import Ecolex court decisions from XML web service (files)';
     $data_dir = $arguments['data_dir'];
-    $this->source = new EcolexCourtDecisionsMigrateSource($data_dir, array(// 'skip_count' => TRUE,
-      )
-    );
+    $this->source = new EcolexCourtDecisionsMigrateSource($data_dir, array());
     $this->map = new MigrateSQLMap($this->machineName,
       array(
         'id' => array(
@@ -239,8 +237,6 @@ class EcolexCourtDecisionsMigrateSource extends MigrateSource {
         $iso_mapping[strtolower($c->name)] = $c->iso2;
       }
       $missing_countries = array();
-      return;
-
       $processed = 0;
       foreach ($files as $i => $file) {
         try {
@@ -278,7 +274,7 @@ class EcolexCourtDecisionsMigrateSource extends MigrateSource {
             if (!empty($country_name)) {
               $country_name = strtolower($country_name);
               if (array_key_exists($country_name, $iso_mapping)) {
-                $ob->country = $iso_mapping[$country_name];
+                $ob->country = wp_migration_get_country_id($iso_mapping[$country_name]);
               }
               else {
                 $missing_countries[] = $country_name;
@@ -353,7 +349,7 @@ class EcolexCourtDecisionsMigrateSource extends MigrateSource {
           $this->setMessage('Error parsing ' . $e->getMessage());
         }
       }
-      $this->setMessage("Missing ISO codes: " . implode(',', array_unique($missing_iso)));
+      $this->setMessage("Missing ISO codes: " . implode(',', array_unique($missing_countries)));
       $this->setMessage("Records: " . count($this->data));
     }
   }

@@ -1,3 +1,47 @@
 <?php
 
 informea_configure_entity_translation_types();
+
+
+function informea_install() {
+  $column_size = 768;
+  if (informea_get_mysql_column_size('node', 'title') < $column_size) {
+    drupal_set_message("Changing node.title size to $column_size");
+    db_change_field('node', 'title', 'title', array('type' => 'varchar','length' => $column_size));
+    db_change_field('node_revision', 'title', 'title', array('type' => 'varchar','length' => $column_size));
+  }
+}
+
+/**
+ * Increase node.title size.
+ */
+function informea_update_7001() {
+  $column_size = 768;
+  if (informea_get_mysql_column_size('node', 'title') < $column_size) {
+    drupal_set_message("Changing node.title size to $column_size");
+    db_change_field('node', 'title', 'title', array('type' => 'varchar','length' => $column_size));
+    db_change_field('node_revision', 'title', 'title', array('type' => 'varchar','length' => $column_size));
+  }
+}
+
+/**
+ * Function to retrive the size of a MySQL varchar column from a table.
+ *
+ * @param string $table
+ *   Target database table name
+ * @param string $column
+ *   Target column
+ *
+ * @return int
+ *   Column size in characters
+ */
+function informea_get_mysql_column_size($table, $column) {
+  $result = db_query("
+		SELECT CHARACTER_MAXIMUM_LENGTH
+		FROM information_schema.columns
+		WHERE table_schema = DATABASE()
+			AND table_name = :table AND COLUMN_NAME = :column",
+    array(':table' => $table, ':column' => $column)
+  );
+  return $result->fetchField(0);
+}
