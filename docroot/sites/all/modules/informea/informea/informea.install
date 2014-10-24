@@ -15,8 +15,8 @@ function informea_install() {
 /**
  * Increase node.title size.
  */
-function informea_update_7001() {
-  $column_size = 768;
+function informea_update_7002() {
+  $column_size = 2048;
   if (informea_get_mysql_column_size('node', 'title') < $column_size) {
     drupal_set_message("Changing node.title size to $column_size");
     db_change_field('node', 'title', 'title', array('type' => 'varchar','length' => $column_size));
