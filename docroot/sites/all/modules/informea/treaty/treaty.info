@@ -137,7 +137,6 @@ features[node][] = treaty
 features[node][] = treaty_article
 features[node][] = treaty_paragraph
 features[taxonomy][] = data_source
-features[taxonomy][] = ecolex_glossary
 features[taxonomy][] = field_of_application
 features[taxonomy][] = geographical_region
 features[taxonomy][] = jurisdiction

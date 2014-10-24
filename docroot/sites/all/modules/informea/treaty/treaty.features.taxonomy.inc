@@ -34,31 +34,6 @@ function treaty_taxonomy_default_vocabularies() {
         ),
       ),
     ),
-    'ecolex_glossary' => array(
-      'name' => 'Ecolex glossary',
-      'machine_name' => 'ecolex_glossary',
-      'description' => 'Ecoex vocabulary terms for tagging content',
-      'hierarchy' => 0,
-      'module' => 'taxonomy',
-      'weight' => 0,
-      'language' => 'und',
-      'i18n_mode' => 0,
-      'rdf_mapping' => array(
-        'rdftype' => array(
-          0 => 'skos:ConceptScheme',
-        ),
-        'name' => array(
-          'predicates' => array(
-            0 => 'dc:title',
-          ),
-        ),
-        'description' => array(
-          'predicates' => array(
-            0 => 'rdfs:comment',
-          ),
-        ),
-      ),
-    ),
     'field_of_application' => array(
       'name' => 'Field of application',
       'machine_name' => 'field_of_application',
