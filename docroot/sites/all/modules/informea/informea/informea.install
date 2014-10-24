@@ -4,7 +4,7 @@ informea_configure_entity_translation_types();
 
 
 function informea_install() {
-  $column_size = 768;
+  $column_size = 2048;
   if (informea_get_mysql_column_size('node', 'title') < $column_size) {
     drupal_set_message("Changing node.title size to $column_size");
     db_change_field('node', 'title', 'title', array('type' => 'varchar','length' => $column_size));
@@ -15,12 +15,17 @@ function informea_install() {
 /**
  * Increase node.title size.
  */
-function informea_update_7002() {
+function informea_update_7003() {
   $column_size = 2048;
   if (informea_get_mysql_column_size('node', 'title') < $column_size) {
     drupal_set_message("Changing node.title size to $column_size");
     db_change_field('node', 'title', 'title', array('type' => 'varchar','length' => $column_size));
     db_change_field('node_revision', 'title', 'title', array('type' => 'varchar','length' => $column_size));
+  }
+  if (informea_get_mysql_column_size('field_data_title_field', 'title_field_value') < $column_size) {
+    drupal_set_message("Changing node.title size to $column_size");
+    db_change_field('field_data_title_field', 'title_field_value', 'title_field_value', array('type' => 'varchar','length' => $column_size));
+    db_change_field('field_revision_title_field', 'title_field_value', 'title_field_value', array('type' => 'varchar','length' => $column_size));
   }
 }
 

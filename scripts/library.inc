@@ -117,7 +117,7 @@ function project_configure_solr() {
  * Enlarge title field size to 768 characters
  */
 function project_change_field_size() {
-  $column_size = 768;
+  $column_size = 2048;
   $spec = array('type' => 'varchar', 'length' => $column_size);
   $table = 'field_data_title_field';
   $column = 'title_field_value';
