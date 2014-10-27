@@ -286,11 +286,21 @@ class EcolexTreatyMigrateSource extends MigrateSource {
                         $this->setMessage('Skipping record with empty title:' . $ob->Recid);
                         continue;
                     }
+                    $this->staticFieldFixes($ob);
                     $this->data[$id] = $ob;
                 }
             }
         }
     }
+
+  protected function staticFieldFixes(&$ob) {
+    if($ob->entryIntoForceDate == '2003-14-05') {
+      $ob->entryIntoForceDate = '2003-05-14';
+    }
+    if($ob->entryIntoForceDate == '2103-20-04') {
+      $ob->entryIntoForceDate = '2013-20-04';
+    }
+  }
 
     /**
      * Add messages during data retrieval for debugging.
