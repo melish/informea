@@ -1089,6 +1089,54 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-legislation-field_ecolex_tags'
+  $field_instances['node-legislation-field_ecolex_tags'] = array(
+    'bundle' => 'legislation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 21,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_ecolex_tags',
+    'label' => 'Ecolex Tags',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 29,
+    ),
+  );
+
   // Exported field_instance: 'node-legislation-field_ecolex_url'
   $field_instances['node-legislation-field_ecolex_url'] = array(
     'bundle' => 'legislation',
@@ -1618,6 +1666,7 @@ function ecolex_field_default_field_instances() {
   t('Date of document');
   t('Date of original text');
   t('Date of text');
+  t('Ecolex Tags');
   t('Ecolex URL');
   t('Entry into force notes');
   t('FAOLEX URL');
