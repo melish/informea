@@ -80,3 +80,62 @@ function wp_migration_get_country_id($isoCode) {
   }
   return NULL;
 }
+
+function wp_migration_get_country_id_from_name($name) {
+  $name = strtolower($name);
+  $countries = &drupal_static(__FUNCTION__);
+  if(empty($countries)) {
+    $query = new EntityFieldQuery();
+    $result = $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'country')
+      ->execute();
+    if (isset($result['node'])) {
+      $rows = node_load_multiple(array_keys($result['node']));
+      foreach ($rows as $row) {
+        $countries[strtolower($row->title)] = $row->nid;
+      }
+    }
+  }
+
+  switch($name) {
+    case 'anguilla (uk)':
+      $name = 'anguilla';
+      break;
+
+    case 'bolivia (plurinational state of)':
+      $name = 'bolivia';
+      break;
+
+    case 'korea, republic of':
+      $name = 'south korea';
+      break;
+
+    case 'micronesia, fed. states':
+      $name = 'micronesia';
+      break;
+
+    case 'moldova, republic of':
+      $name = 'moldova';
+      break;
+
+    case 'tanzania, un. rep. of':
+      $name = 'tanzania';
+      break;
+
+    case 'europa island (france)':
+      $name = 'france';
+      break;
+
+    case 'united states of america':
+      $name = 'united states';
+      break;
+  }
+
+  if(!empty($name)) {
+    $name = strtolower($name);
+  }
+  if(array_key_exists($name, $countries)) {
+    return $countries[$name];
+  }
+  return NULL;
+}
