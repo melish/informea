@@ -1985,55 +1985,6 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_subjects'
-  $field_instances['node-treaty-field_subjects'] = array(
-    'bundle' => 'treaty',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'i18n_taxonomy',
-        'settings' => array(),
-        'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 46,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_subjects',
-    'label' => 'Subject(s)',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'select2_integration' => array(
-        'allow_add_onfly' => 0,
-        'show_voc_terms_page_link' => 0,
-        'styling' => array(
-          'dropdownAutoWidth' => 0,
-          'placeholder' => '',
-        ),
-        'use_select2' => 1,
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'use_select2' => FALSE,
-      ),
-      'type' => 'options_select',
-      'weight' => 23,
-    ),
-  );
-
   // Exported field_instance: 'node-treaty-field_title_abbreviation'
   $field_instances['node-treaty-field_title_abbreviation'] = array(
     'bundle' => 'treaty',
@@ -2990,7 +2941,6 @@ function treaty_field_default_field_instances() {
   t('Region');
   t('Related website');
   t('Secondary topic');
-  t('Subject(s)');
   t('Title');
   t('Title abbreviation');
   t('Treaty');
