@@ -298,7 +298,7 @@ class EcolexTreatyMigrateSource extends MigrateSource {
       $ob->entryIntoForceDate = '2003-05-14';
     }
     if($ob->entryIntoForceDate == '2103-20-04') {
-      $ob->entryIntoForceDate = '2013-20-04';
+      $ob->entryIntoForceDate = '2013-04-20';
     }
   }
 
