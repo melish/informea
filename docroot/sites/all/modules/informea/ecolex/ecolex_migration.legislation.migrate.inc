@@ -234,8 +234,6 @@ class EcolexLegislationMigrateSource extends MigrateSource {
             $this->data = array();
             $this->parsed = TRUE;
             $files = file_scan_directory($this->data_dir, '/.*/');
-            $missing_iso = array();
-
             $processed = 0;
             foreach($files as $i => $file) {
                 try {
@@ -260,11 +258,10 @@ class EcolexLegislationMigrateSource extends MigrateSource {
 
                         $iso3 = (string)$doc->country;
                         if(!empty($iso3)) {
-                            $iso3 = strtoupper($iso3);
                             if ($country_id = wp_migration_get_country_id($iso3)) {
                                 $ob->country = $country_id;
                             } else {
-                                $missing_iso[] = $iso3;
+                              $this->setMessage("Cannot match ISO code: " . $iso3);
                             }
                         }
 
@@ -322,7 +319,6 @@ class EcolexLegislationMigrateSource extends MigrateSource {
                     $this->setMessage('Error parsing ' . $e->getMessage());
                 }
             }
-            $this->setMessage("Missing ISO codes: " . implode(',', array_unique($missing_iso)));
             $this->setMessage("Records: " . count($this->data));
         }
     }
