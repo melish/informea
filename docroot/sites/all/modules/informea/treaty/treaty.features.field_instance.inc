@@ -401,7 +401,7 @@ function treaty_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 20,
+      'weight' => 21,
     ),
   );
 
@@ -526,7 +526,7 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 22,
+      'weight' => 23,
     ),
   );
 
@@ -712,54 +712,6 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_ecolex_glossary'
-  $field_instances['node-treaty-field_ecolex_glossary'] = array(
-    'bundle' => 'treaty',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 18,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_ecolex_glossary',
-    'label' => 'Ecolex glossary',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'select2_integration' => array(
-        'styling' => array(
-          'dropdownAutoWidth' => 0,
-          'placeholder' => '',
-        ),
-        'use_select2' => 1,
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
-      'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
-      ),
-      'type' => 'taxonomy_autocomplete',
-      'weight' => 19,
-    ),
-  );
-
   // Exported field_instance: 'node-treaty-field_ecolex_tags'
   $field_instances['node-treaty-field_ecolex_tags'] = array(
     'bundle' => 'treaty',
@@ -807,7 +759,7 @@ function treaty_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 15,
+      'weight' => 20,
     ),
   );
 
@@ -862,7 +814,7 @@ function treaty_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 21,
+      'weight' => 22,
     ),
   );
 
@@ -2912,7 +2864,6 @@ function treaty_field_default_field_instances() {
   t('Description');
   t('Ecolex Tags');
   t('Ecolex URL');
-  t('Ecolex glossary');
   t('Entry into force');
   t('FAOLEX URL');
   t('Field of application');

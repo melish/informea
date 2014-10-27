@@ -40,7 +40,7 @@ function treaty_field_group_info() {
       14 => 'field_place_of_adoption',
       15 => 'field_related_website',
       16 => 'field_type_of_text',
-      17 => 'field_subjects',
+      17 => 'field_ecolex_tags',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
