@@ -10,10 +10,7 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
         $this->arguments = $arguments;
         $this->description = 'Import Ecolex treaties from XML web service (files)';
         $data_dir = $arguments['data_dir'];
-        $this->source = new EcolexTreatyMigrateSource($data_dir, array(
-                'skip_count' => TRUE,
-            )
-        );
+        $this->source = new EcolexTreatyMigrateSource($data_dir, array());
         $this->map = new MigrateSQLMap($this->machineName,
             array(
                 'Recid' => array(
@@ -184,7 +181,10 @@ class EcolexTreatyMigrateSource extends MigrateSource {
      * Return the number of available source records.
      */
     public function computeCount() {
-        return 0;
+      if(empty($this->data)) {
+        $this->readData();
+      }
+      return count($this->data);
     }
 
     /**
