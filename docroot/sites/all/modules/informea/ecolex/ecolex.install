@@ -1,30 +1,6 @@
 <?php
 
-function ecolex_install() {
-  if($voc = taxonomy_vocabulary_machine_name_load('thesaurus_ecolex')) {
-    $terms = array(
-      'Agriculture',
-      'Air & atmosphere',
-      'Cultivated plants',
-      'Energy',
-      'Environment gen.',
-      'Fisheries',
-      'Food',
-      'Forestry',
-      'Land & soil',
-      'Legal questions',
-      'Livestock',
-      'Mineral resources',
-      'Sea',
-      'Waste & hazardous substances',
-      'Water',
-      'Wild species & ecosystems'
-    );
-    foreach($terms as $term) {
-      taxonomy_term_save((object)array(
-        'name' => $term,
-        'vid' => $voc->vid
-      ));
-    }
-  }
+function ecolex_update_7001() {
+  ecolex_create_default_thesaurus_terms();
+  ecolex_create_default_keywords_terms();
 }

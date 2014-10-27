@@ -10,3 +10,6 @@ project_configure_solr();
 project_change_field_size();
 module_disable(array('overlay'));
 project_fix_administrator_role();
+
+ecolex_create_default_thesaurus_terms();
+ecolex_create_default_keywords_terms();

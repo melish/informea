@@ -5,3 +5,54 @@
  */
 
 include_once 'ecolex.features.inc';
+
+/**
+ * Import default Ecolex Thesaurus.
+ */
+function ecolex_create_default_thesaurus_terms() {
+  menu_rebuild();
+  $path = drupal_get_path('module', 'ecolex') . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'thesaurus.json';
+  if (is_readable($path)) {
+    if($voc = taxonomy_vocabulary_machine_name_load('thesaurus_ecolex')) {
+      if ($json = json_decode(file_get_contents($path))) {
+        foreach ($json as $term) {
+          $existing = taxonomy_get_term_by_name($term, 'thesaurus_ecolex');
+          if(empty($existing)) {
+            taxonomy_term_save((object) array(
+              'name' => $term,
+              'vid' => $voc->vid
+            ));
+          }
+          else {
+            drupal_set_message("$term already exists ...", 'warning');
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Import default keywords from Ecolex.
+ */
+function ecolex_create_default_keywords_terms() {
+  $path = drupal_get_path('module', 'ecolex') . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'keywords.json';
+  if (is_readable($path)) {
+    if($voc = taxonomy_vocabulary_machine_name_load('keywords')) {
+      if ($json = json_decode(file_get_contents($path))) {
+        foreach ($json as $term) {
+          $existing = taxonomy_get_term_by_name($term, 'keywords');
+          if(empty($existing)) {
+            taxonomy_term_save((object) array(
+              'name' => $term,
+              'vid' => $voc->vid
+            ));
+          }
+          else {
+            drupal_set_message("$term already exists ...", 'warning');
+          }
+        }
+      }
+    }
+  }
+}

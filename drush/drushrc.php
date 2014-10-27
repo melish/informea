@@ -258,7 +258,12 @@ $options['init-modules'] = array(
   'entity',
   'locale',
   'entity_translation',
+
   'i18n',
+  'i18n_string',
+  'i18n_node',
+  'i18n_taxonomy',
+
   'variable',
   'views',
   'views_ui',
@@ -290,7 +295,6 @@ $options['init-modules'] = array(
   'date_views',
   'calendar',
   'date_popup',
-  'i18n_taxonomy',
 
   'jquery_update',
   'select2',
