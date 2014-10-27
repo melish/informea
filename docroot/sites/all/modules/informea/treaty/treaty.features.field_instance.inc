@@ -760,6 +760,57 @@ function treaty_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-treaty-field_ecolex_tags'
+  $field_instances['node-treaty-field_ecolex_tags'] = array(
+    'bundle' => 'treaty',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 47,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_ecolex_tags',
+    'label' => 'Ecolex Tags',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'allow_add_onfly' => 0,
+        'show_voc_terms_page_link' => 0,
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+        'use_select2' => FALSE,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 15,
+    ),
+  );
+
   // Exported field_instance: 'node-treaty-field_ecolex_url'
   $field_instances['node-treaty-field_ecolex_url'] = array(
     'bundle' => 'treaty',
@@ -1017,7 +1068,7 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 15,
+      'weight' => 16,
     ),
   );
 
@@ -1199,7 +1250,7 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 16,
+      'weight' => 17,
     ),
   );
 
@@ -1250,7 +1301,7 @@ function treaty_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 19,
+      'weight' => 20,
     ),
   );
 
@@ -1689,7 +1740,7 @@ function treaty_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 17,
+      'weight' => 18,
     ),
   );
 
@@ -1883,7 +1934,7 @@ function treaty_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 18,
+      'weight' => 19,
     ),
   );
 
@@ -2908,6 +2959,7 @@ function treaty_field_default_field_instances() {
   t('Date of text');
   t('Depositary');
   t('Description');
+  t('Ecolex Tags');
   t('Ecolex URL');
   t('Ecolex glossary');
   t('Entry into force');
