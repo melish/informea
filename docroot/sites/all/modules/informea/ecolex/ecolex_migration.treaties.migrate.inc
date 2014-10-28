@@ -10,10 +10,7 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
         $this->arguments = $arguments;
         $this->description = 'Import Ecolex treaties from XML web service (files)';
         $data_dir = $arguments['data_dir'];
-        $this->source = new EcolexTreatyMigrateSource($data_dir, array(
-                'skip_count' => TRUE,
-            )
-        );
+        $this->source = new EcolexTreatyMigrateSource($data_dir, array());
         $this->map = new MigrateSQLMap($this->machineName,
             array(
                 'Recid' => array(
@@ -184,7 +181,10 @@ class EcolexTreatyMigrateSource extends MigrateSource {
      * Return the number of available source records.
      */
     public function computeCount() {
-        return 0;
+      if(empty($this->data)) {
+        $this->readData();
+      }
+      return count($this->data);
     }
 
     /**
@@ -286,11 +286,21 @@ class EcolexTreatyMigrateSource extends MigrateSource {
                         $this->setMessage('Skipping record with empty title:' . $ob->Recid);
                         continue;
                     }
+                    $this->staticFieldFixes($ob);
                     $this->data[$id] = $ob;
                 }
             }
         }
     }
+
+  protected function staticFieldFixes(&$ob) {
+    if($ob->entryIntoForceDate == '2003-14-05') {
+      $ob->entryIntoForceDate = '2003-05-14';
+    }
+    if($ob->entryIntoForceDate == '2103-20-04') {
+      $ob->entryIntoForceDate = '2013-04-20';
+    }
+  }
 
     /**
      * Add messages during data retrieval for debugging.

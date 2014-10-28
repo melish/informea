@@ -56,6 +56,7 @@ function wp_migrationn_new_old_tags($old) {
 }
 
 function wp_migration_get_country_id($isoCode) {
+  $isoCode = strtoupper($isoCode);
   $countries = &drupal_static(__FUNCTION__);
   if(!isset($countries)) {
     $query = new EntityFieldQuery();
@@ -73,10 +74,201 @@ function wp_migration_get_country_id($isoCode) {
       }
     }
   }
-  if(!empty($isoCode))
+  if(!empty($isoCode)) {
     $isoCode = strtolower($isoCode);
+  }
+
+  static $equivalents = array(
+    'glo' => 'xxx',
+
+    'den' => 'dnk',
+    'alg' => 'dza',
+    'ams' => 'asm',
+    'ang' => 'ago',
+    'anl' => 'aia',
+    'ant' => 'atg',
+    'bha' => 'bhs',
+    'bah' => 'bhr',
+    'bar' => 'brb',
+    'bvi' => 'vgb',
+    'aru' => 'abw',
+    'anc' => 'zwe', // Zimbabwe
+    'ber' => 'bmu',
+    'bhu' => 'btn',
+    'bkf' => 'bfa',
+    'bot' => 'bwa',
+    'bru' => 'brn',
+    'bul' => 'bgr',
+    'bur' => 'mmr',
+    'cam' => 'khm',
+    'cha' => 'tcd', // Chad
+    'chi' => 'chl',
+    'cli' => 'cpt',
+    'cos' => 'cri',
+    'cro' => 'hrv',
+    'cvi' => 'cpv', // Cabo Verde
+    'cay' => 'cym',
+    'dmi' => 'dma',
+    'els' => 'slv',
+    'eqg' => 'gnq',
+    'fal' => 'flk',
+    'fij' => 'fji',
+    'fgu' => 'guf',
+    'fpl' => 'pyf',
+    'gam' => 'gmb',
+    'ger' => 'deu',
+    'gbs' => 'gnb',
+    'gre' => 'grc',
+    'grn' => 'grd',
+    'gui' => 'gin',
+    'gua' => 'gtm',
+    'gue' => 'ggy',
+    'hai' => 'hti',
+    'hon' => 'hnd',
+    'ice' => 'isl',
+    'ins' => 'idn',
+    'ira' => 'irn',
+    'ire' => 'irl',
+    'ivc' => 'civ',
+    'jap' => 'jpn',
+    'kuw' => 'kwt',
+    'kyr' => 'kgz',
+    'lat' => 'lva',
+    'leb' => 'lbn',
+    'les' => 'lso',
+    'lib' => 'lby',
+    'lit' => 'ltu',
+    'mad' => 'mdg',
+    'mal' => 'mys',
+    'mas' => 'mhl',
+    'mat' => 'mlt',
+    'mau' => 'mrt',
+    'may' => 'myt',
+    'mic' => 'fsm',
+    'mnc' => 'mco',
+    'mol' => 'mda',
+    'mon' => 'mng',
+    'mor' => 'mar',
+    'mrc' => 'mar',
+    'mlw' => 'mwi',
+    'mya' => 'mmr',
+    'nau' => 'nru',
+    'nca' => 'nic',
+    'net' => 'nld',
+    'nep' => 'npl',
+    'nig' => 'ner',
+    'nze' => 'nzl',
+    'oma' => 'omn',
+    'par' => 'pry',
+    'phi' => 'phl',
+    'pit' => 'pcn',
+    'por' => 'prt',
+    'pue' => 'pri',
+    'rom' => 'rou',
+    'saf' => 'zaf',
+    'sam' => 'wsm',
+    'sao' => 'stp', // Sao Tome and Principe
+    'sey' => 'syc',
+    'sie' => 'sle',
+    'sin' => 'sgp',
+    'sol' => 'slb',
+    'slo' => 'svk',
+    'spa' => 'esp',
+    'srl' => 'lka',
+    'stk' => 'kna',
+    'stl' => 'lca',
+    'stv' => 'vct',
+    'sud' => 'sdn',
+    'sva' => 'sjm',
+    'swi' => 'che',
+    'swa' => 'swz',
+    'sth' => 'shn',
+    'tan' => 'tza',
+    'taj' => 'tjk',
+    'tci' => 'tca',
+    'tim' => 'tls',
+    'tog' => 'tgo',
+    'tok' => 'tkl',
+    'tri' => 'tto',
+    'tuk' => 'tkm',
+    'uae' => 'are',
+    'uru' => 'ury',
+    'usr' => 'rus',
+    'van' => 'vut',
+    'vie' => 'vnm',
+    'wal' => 'wlf',
+    'yug' => 'mkd',
+    'zam' => 'zmb',
+    'zim' => 'zwe',
+  );
   if(array_key_exists($isoCode, $countries)) {
     return $countries[$isoCode];
+  } else {
+    if(array_key_exists($isoCode, $equivalents)) {
+      $isoCode = $equivalents[$isoCode];
+      if(array_key_exists($isoCode, $countries)) {
+        return $countries[$isoCode];
+      }
+    }
+  }
+  return NULL;
+}
+
+function wp_migration_get_country_id_from_name($name) {
+  $name = strtolower($name);
+  $countries = &drupal_static(__FUNCTION__);
+  if(empty($countries)) {
+    $query = new EntityFieldQuery();
+    $result = $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'country')
+      ->execute();
+    if (isset($result['node'])) {
+      $rows = node_load_multiple(array_keys($result['node']));
+      foreach ($rows as $row) {
+        $countries[strtolower($row->title)] = $row->nid;
+      }
+    }
+  }
+
+  switch($name) {
+    case 'anguilla (uk)':
+      $name = 'anguilla';
+      break;
+
+    case 'bolivia (plurinational state of)':
+      $name = 'bolivia';
+      break;
+
+    case 'korea, republic of':
+      $name = 'south korea';
+      break;
+
+    case 'micronesia, fed. states':
+      $name = 'micronesia';
+      break;
+
+    case 'moldova, republic of':
+      $name = 'moldova';
+      break;
+
+    case 'tanzania, un. rep. of':
+      $name = 'tanzania';
+      break;
+
+    case 'europa island (france)':
+      $name = 'france';
+      break;
+
+    case 'united states of america':
+      $name = 'united states';
+      break;
+  }
+
+  if(!empty($name)) {
+    $name = strtolower($name);
+  }
+  if(array_key_exists($name, $countries)) {
+    return $countries[$name];
   }
   return NULL;
 }

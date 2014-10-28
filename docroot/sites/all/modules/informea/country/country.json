@@ -1,5 +1,17 @@
 [
   {
+    "id": "999",
+    "enabled": "1",
+    "code3l": "XXX",
+    "code2l": "XX",
+    "name": "International",
+    "flag_32": "",
+    "flag_128": "",
+    "latitude": null,
+    "longitude": null,
+    "zoom": null
+  },
+  {
     "id": "1",
     "enabled": "1",
     "code3l": "AFG",

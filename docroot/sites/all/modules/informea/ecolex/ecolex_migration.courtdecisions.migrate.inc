@@ -231,12 +231,6 @@ class EcolexCourtDecisionsMigrateSource extends MigrateSource {
       $this->data = array();
       $this->parsed = TRUE;
       $files = file_scan_directory($this->data_dir, '/.*/');
-      $country_objects = countries_get_countries();
-      $iso_mapping = array();
-      foreach ($country_objects as $c) {
-        $iso_mapping[strtolower($c->name)] = $c->iso2;
-      }
-      $missing_countries = array();
       $processed = 0;
       foreach ($files as $i => $file) {
         try {
@@ -272,12 +266,9 @@ class EcolexCourtDecisionsMigrateSource extends MigrateSource {
 
             $country_name = (string) $doc->country;
             if (!empty($country_name)) {
-              $country_name = strtolower($country_name);
-              if (array_key_exists($country_name, $iso_mapping)) {
-                $ob->country = wp_migration_get_country_id($iso_mapping[$country_name]);
-              }
-              else {
-                $missing_countries[] = $country_name;
+              $ob->country = wp_migration_get_country_id_from_name($country_name);
+              if(empty($ob->country)) {
+                $this->setMessage("Cannot match country: " . $country_name);
               }
             }
 
@@ -349,7 +340,6 @@ class EcolexCourtDecisionsMigrateSource extends MigrateSource {
           $this->setMessage('Error parsing ' . $e->getMessage());
         }
       }
-      $this->setMessage("Missing ISO codes: " . implode(',', array_unique($missing_countries)));
       $this->setMessage("Records: " . count($this->data));
     }
   }
