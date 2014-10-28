@@ -490,6 +490,11 @@ a:focus {
   padding-bottom: 0;
 }
 
+/* Footer inline lists */
+.footer-section > .list-inline {
+  margin-bottom: 0;
+}
+
 
 /* Footer links */
 
@@ -509,6 +514,7 @@ a:focus {
   display: block;
   padding-left: 5px;
   padding-right: 5px;
+  margin-bottom: 10px;
   text-align: center;
 }
 
