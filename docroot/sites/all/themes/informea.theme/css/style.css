@@ -114,6 +114,27 @@ a:focus {
     padding-top: 15px;
     right: 0;
   }
+
+  .dropdown-full-width > .dropdown-menu > li > ul > li > ul {
+    overflow: hidden;
+  }
+
+  .dropdown-full-width > .dropdown-menu > li > ul > li > ul > li {
+    position: relative;
+  }
+
+  .dropdown-full-width > .dropdown-menu > li > ul > li > ul > li:before {
+    border-bottom: 1px solid #e3e3e3;
+    border-left: 1px solid #e3e3e3;
+    content: '';
+    display: block;
+    height: 100px;
+    left: 25px;
+    position: absolute;
+    top: -85px;
+    width: 10px;
+    z-index: -1;
+  }
 }
 
 @media (max-width: 767px) {
