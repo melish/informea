@@ -423,9 +423,9 @@ a:focus {
   border: 1px dashed #7f6633;
   color: #333;
   font-size: 16px;
+  line-height: 1.4;
   padding: 6px;
   text-align: center;
-  line-height: 1.42857;
 }
 
 @media (min-width: 768px) {
@@ -436,6 +436,7 @@ a:focus {
 
 .broadcast-body em {
   font-family: Georgia, serif;
+  vertical-align: middle;
 }
 
 .broadcast-body .btn-default {
