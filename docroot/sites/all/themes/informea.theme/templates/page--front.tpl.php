@@ -80,7 +80,7 @@
       <div class="broadcast-body">
         <p>
           <em><?php print t('The new InforMEA learning platform is now live!'); ?></em>
-          <?php print l(t('Start learning'), 'http://e-learning.informea.org/', array('attributes' => array('class' => array('btn', 'btn-default')), 'external' => TRUE)); ?>
+          <?php print l(t('Start learning'), 'http://e-learning.informea.org/', array('attributes' => array('class' => array('btn', 'btn-outline')), 'external' => TRUE)); ?>
         </p>
       </div><!-- .broadcast-body -->
     </div><!-- .broadcast -->

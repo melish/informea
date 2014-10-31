@@ -50,6 +50,21 @@ a:focus {
   color: #16232e;
 }
 
+/* Outline buttons */
+
+.btn-outline {
+  background-color: transparent;
+  border-color: #333;
+  color: #333;
+}
+
+.btn-outline:hover,
+.btn-outline:focus,
+.btn-outline:active {
+  background-color: #333;
+  color: #fff;
+}
+
 
 /* Dropdown menus */
 /* -------------- */
@@ -439,14 +454,10 @@ a:focus {
   vertical-align: middle;
 }
 
-.broadcast-body .btn-default {
-  background-color: transparent;
-  border-color: #333;
-}
-
-.broadcast-body .btn-default:hover,
-.broadcast-body .btn-default:focus {
-  background-color: #333;
+/* Outline buttons */
+.broadcast-body .btn-outline:hover,
+.broadcast-body .btn-outline:focus,
+.broadcast-body .btn-outline:active {
   color: #ffcc66;
 }
 
