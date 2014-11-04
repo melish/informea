@@ -504,9 +504,8 @@ a:focus {
   padding: 0 30px;
 }
 
-.carousel-inner > .item {
+.carousel-inner {
   border-radius: 4px;
-  overflow: hidden;
 }
 
 .carousel-indicators {
@@ -928,7 +927,20 @@ a:focus {
 
 /* Front page */
 
-#slideshow > .carousel {
+@media (max-width: 991px) {
+  #col-about {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+}
+
+@media (min-width: 1200px) {
+  #col-about {
+    padding-top: 50px;
+  }
+}
+
+#col-carousel .carousel {
   margin: 0 auto;
   max-width: 495px;
 }

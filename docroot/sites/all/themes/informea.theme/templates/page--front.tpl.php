@@ -85,16 +85,16 @@
       </div><!-- .broadcast-body -->
     </div><!-- .broadcast -->
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6" id="col-about">
         <?php if (!empty($site_slogan)): ?>
           <p class="lead"><?php print $site_slogan; ?></p>
         <?php endif; ?>
         <p><?php print t('InforMEA harvests COP decisions, news, meetings, membership, national focal points and reports from MEAs. Information is organised by terms from MEA COP agendas.'); ?></p>
         <p><?php print t('InforMEA is a project of the MEA Information and Knowledge Management (IKM) Initiative with the support from the United Nations Environment Programme (UNEP).'); ?></p>
         <p><?php print l(t('Learn more about InforMEA') . ' <span class="glyphicon glyphicon-arrow-right"></span>', 'about', array('html' => TRUE)); ?></p>
-      </div><!-- .col-md-6 -->
-      <div class="col-md-6">
-        <div class="carousel-container" id="slideshow">
+      </div><!-- .col-md-6 #col-about -->
+      <div class="col-md-6" id="col-carousel">
+        <div class="carousel-container">
           <div class="carousel slide" data-ride="carousel" id="carousel-updates">
             <ol class="carousel-indicators">
               <li class="active" data-target="#carousel-updates" data-slide-to="0"></li>
@@ -209,8 +209,8 @@
               <i class="glyphicon glyphicon-chevron-right"></i>
             </a>
           </div><!-- #carousel-updates .carousel .slide -->
-        </div><!-- .carousel-container #slideshow -->
-      </div><!-- .col-md-6 -->
+        </div><!-- .carousel-container -->
+      </div><!-- .col-md-6 #col-carousel -->
     </div><!-- .row -->
   </div><!-- .container -->
 </div><!-- .hero-unit -->
