@@ -172,6 +172,7 @@ function treaty_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
@@ -572,6 +573,7 @@ function treaty_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
@@ -969,6 +971,7 @@ function treaty_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
@@ -1151,6 +1154,7 @@ function treaty_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
@@ -1689,6 +1693,7 @@ function treaty_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
@@ -1793,6 +1798,7 @@ function treaty_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
@@ -1883,6 +1889,7 @@ function treaty_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
@@ -2239,6 +2246,7 @@ function treaty_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
@@ -2498,6 +2506,7 @@ function treaty_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
@@ -2714,6 +2723,7 @@ function treaty_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
@@ -2803,6 +2813,7 @@ function treaty_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
@@ -3111,7 +3122,42 @@ function treaty_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => -5,
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-jurisdiction-field_abbreviation'
+  $field_instances['taxonomy_term-jurisdiction-field_abbreviation'] = array(
+    'bundle' => 'jurisdiction',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_abbreviation',
+    'label' => 'Abbreviation',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 1,
     ),
   );
 
@@ -3148,7 +3194,7 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -5,
+      'weight' => 0,
     ),
   );
 
@@ -3230,6 +3276,7 @@ function treaty_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Abbreviation');
   t('Abstract');
   t('Address');
   t('Alternative Record ID');

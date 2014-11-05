@@ -85,7 +85,7 @@ function treaty_taxonomy_default_vocabularies() {
       ),
     ),
     'jurisdiction' => array(
-      'name' => 'Jurisdiction',
+      'name' => 'Court Jurisdiction',
       'machine_name' => 'jurisdiction',
       'description' => 'Jurisdiction of the text (i.e. International)',
       'hierarchy' => 0,
@@ -110,7 +110,7 @@ function treaty_taxonomy_default_vocabularies() {
       ),
     ),
     'type_of_text' => array(
-      'name' => 'Type of text',
+      'name' => 'Type of document',
       'machine_name' => 'type_of_text',
       'description' => 'The type of treaty text (i.e. Multilateral)',
       'hierarchy' => 0,

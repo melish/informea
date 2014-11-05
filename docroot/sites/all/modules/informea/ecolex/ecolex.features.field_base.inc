@@ -450,6 +450,37 @@ function ecolex_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
+  // Exported field_base: 'field_source_language'
+  $field_bases['field_source_language'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_source_language',
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'languagefield',
+    'settings' => array(
+      'enabled' => 1,
+      'entity_translation_sync' => FALSE,
+      'excluded_languages' => array(),
+      'format' => array(
+        'iso' => 0,
+        'name' => 'name',
+        'name_native' => 0,
+      ),
+      'groups' => '',
+      'languages' => array(),
+    ),
+    'translatable' => 0,
+    'type' => 'language_field',
+  );
+
   // Exported field_base: 'field_territorial_subdivision'
   $field_bases['field_territorial_subdivision'] = array(
     'active' => 1,

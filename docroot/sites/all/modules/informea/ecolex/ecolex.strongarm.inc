@@ -120,10 +120,10 @@ function ecolex_strongarm() {
           'weight' => '2',
         ),
         'path' => array(
-          'weight' => '15',
+          'weight' => '0',
         ),
         'language' => array(
-          'weight' => '14',
+          'weight' => '1',
         ),
       ),
       'display' => array(),
@@ -165,10 +165,10 @@ function ecolex_strongarm() {
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '17',
+          'weight' => '0',
         ),
         'language' => array(
-          'weight' => '16',
+          'weight' => '1',
         ),
       ),
       'display' => array(),
