@@ -409,7 +409,6 @@ a:focus {
 
 
 /* Hover effect */
-
 .well-hover:hover {
   -webkit-box-shadow: inset 0 1px 1px rgba(38, 115, 153, .05);
   background-color: #e5f5fb;
@@ -678,12 +677,292 @@ a:focus {
 }
 
 
+/* Brands */
+/* ------ */
+
+
+/* Brand base class */
+
+.brand {
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.brand .image {
+  background-image: url('../img/logos.png');
+  background-repeat: no-repeat;
+  height: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60px;
+}
+
+
+/* Hover effect */
+.brand-hover:hover,
+.brand-hover:focus {
+  border-radius: 2px;
+  background-color: #f3f3f3;
+  color: #444;
+  text-decoration: none;
+}
+
+/* Brand groups */
+
+.brand-group {
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 5px;
+  position: relative;
+  vertical-align: middle;
+}
+
+.brand-group > .brand {
+  border: 1px solid #e3e3e3;
+  float: left;
+  margin-top: 5px;
+  min-width: 110px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  position: relative;
+}
+
+.brand-group > .brand:hover,
+.brand-group > .brand:focus {
+  background-color: #e5f5fb;
+  border-color: #0099d5;
+  text-decoration: none;
+  z-index: 2;
+}
+
+.brand-group .brand + .brand {
+  margin-left: -1px;
+}
+
+.brand-group > .brand:first-child {
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+.brand-group > .brand:last-child {
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+/* Individual brands */
+
+.brand-itpgrfa .image,
+.brand-plant-treaty .image,
+.brand-hover.brand-itpgrfa:hover .image,
+.brand-hover.brand-plant-treaty:hover .image,
+.brand-hover.brand-itpgrfa:focus .image,
+.brand-hover.brand-plant-treaty:focus .image {
+  background-position: -60px 0;
+}
+
+.brand-hover.brand-itpgrfa .image,
+.brand-hover.brand-plant-treaty .image {
+  background-position: -60px -60px;
+}
+
+.brand-stockholm .image,
+.brand-hover.brand-stockholm:hover .image,
+.brand-hover.brand-stockholm:focus .image {
+  background-position: -120px 0;
+}
+
+.brand-hover.brand-stockholm .image {
+  background-position: -120px -60px;
+}
+
+.brand-un .image,
+.brand-hover.brand-un:hover .image,
+.brand-hover.brand-un:focus .image {
+  background-position: -300px 0;
+}
+
+.brand-hover.brand-un .image {
+  background-position: -300px -60px;
+}
+
+.brand-basel .image,
+.brand-hover.brand-basel:hover .image,
+.brand-hover.brand-basel:focus .image {
+  background-position: -360px 0;
+}
+
+.brand-hover.brand-basel .image {
+  background-position: -360px -60px;
+}
+
+.brand-ozone .image,
+.brand-hover.brand-ozone:hover .image,
+.brand-hover.brand-ozone:focus .image {
+  background-position: -420px 0;
+}
+
+.brand-hover.brand-ozone .image {
+  background-position: -420px -60px;
+}
+
+.brand-unccd .image,
+.brand-hover.brand-unccd:hover .image,
+.brand-hover.brand-unccd:focus .image {
+  background-position: -480px 0;
+}
+
+.brand-hover.brand-unccd .image {
+  background-position: -480px -60px;
+}
+
+.brand-cbd .image,
+.brand-cartagena .image,
+.brand-nagoya .image,
+.brand-hover.brand-cbd:hover .image,
+.brand-hover.brand-cartagena:hover .image,
+.brand-hover.brand-nagoya:hover .image,
+.brand-hover.brand-cbd:focus .image,
+.brand-hover.brand-cartagena:focus .image,
+.brand-hover.brand-nagoya:focus .image {
+  background-position: -540px 0;
+}
+
+.brand-hover.brand-cbd .image,
+.brand-hover.brand-cartagena .image,
+.brand-hover.brand-nagoya .image {
+  background-position: -540px -60px;
+}
+
+.brand-unece .image,
+.brand-hover.brand-unece:hover .image,
+.brand-hover.brand-unece:focus .image {
+  background-position: -660px 0;
+}
+
+.brand-hover.brand-unece .image {
+  background-position: -660px -60px;
+}
+
+.brand-cites .image,
+.brand-hover.brand-cites:hover .image,
+.brand-hover.brand-cites:focus .image {
+  background-position: -720px 0;
+}
+
+.brand-hover.brand-cites .image {
+  background-position: -720px -60px;
+}
+
+.brand-ramsar .image,
+.brand-hover.brand-ramsar:hover .image,
+.brand-hover.brand-ramsar:focus .image {
+  background-position: -780px 0;
+}
+
+.brand-hover.brand-ramsar .image {
+  background-position: -780px -60px;
+}
+
+.brand-unep .image,
+.brand-minamata .image,
+.brand-vienna .image,
+.brand-montreal .image,
+.brand-hover.brand-unep:hover .image,
+.brand-hover.brand-minamata:hover .image,
+.brand-hover.brand-vienna:hover .image,
+.brand-hover.brand-montreal:hover .image,
+.brand-hover.brand-unep:focus .image,
+.brand-hover.brand-minamata:focus .image,
+.brand-hover.brand-vienna:focus .image,
+.brand-hover.brand-montreal:focus .image {
+  background-position: -840px 0;
+}
+
+.brand-hover.brand-unep .image,
+.brand-hover.brand-minamata .image,
+.brand-hover.brand-vienna .image,
+.brand-hover.brand-montreal .image {
+  background-position: -840px -60px;
+}
+
+.brand-cms .image,
+.brand-hover.brand-cms:hover .image,
+.brand-hover.brand-cms:focus .image {
+  background-position: -900px 0;
+}
+
+.brand-hover.brand-cms .image {
+  background-position: -900px -60px;
+}
+
+.brand-unesco .image,
+.brand-hover.brand-unesco:hover .image,
+.brand-hover.brand-unesco:focus .image {
+  background-position: -1020px 0;
+}
+
+.brand-hover.brand-unesco .image {
+  background-position: -1020px -60px;
+}
+
+.brand-fao .image,
+.brand-hover.brand-fao:hover .image,
+.brand-hover.brand-fao:focus .image {
+  background-position: -1080px 0;
+}
+
+.brand-hover.brand-fao .image {
+  background-position: -1080px -60px;
+}
+
+.brand-rotterdam .image,
+.brand-hover.brand-rotterdam:hover .image,
+.brand-hover.brand-rotterdam:focus .image {
+  background-position: -1140px 0;
+}
+
+.brand-hover.brand-rotterdam .image {
+  background-position: -1140px -60px;
+}
+
+.brand-unfccc .image,
+.brand-kyoto .image,
+.brand-hover.brand-unfccc:hover .image,
+.brand-hover.brand-kyoto:hover .image,
+.brand-hover.brand-unfccc:focus .image,
+.brand-hover.brand-kyoto:focus .image {
+  background-position: -1200px 0;
+}
+
+.brand-hover.brand-unfccc .image,
+.brand-hover.brand-kyoto .image {
+  background-position: -1200px -60px;
+}
+
+.brand-whc .image,
+.brand-hover.brand-whc:hover .image,
+.brand-hover.brand-whc:focus .image {
+  background-position: -1380px 0;
+}
+
+.brand-hover.brand-whc .image {
+  background-position: -1380px -60px;
+}
+
+.brand-eu .image {
+  background-image: url('../img/logo-eu.png');
+  width: 88px;
+}
+
+
 /* Footer */
 /* ------ */
 
 
 /* Wrapper and base class */
-
 .footer {
   background-color: #16232e;
   border-top: 2px solid #8a95a6;
@@ -723,201 +1002,18 @@ a:focus {
   color: #c6cedb;
 }
 
-
-/* Logo base class */
-
-.footer a.logo {
-  display: block;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.footer a.logo .image {
-  background-image: url('../img/logos.png');
-  background-repeat: no-repeat;
-  height: 60px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 60px;
-}
-
-.footer a.logo:hover,
-.footer a.logo:focus {
-  border-radius: 2px;
-  background-color: #f3f3f3;
-  color: #444;
-  text-decoration: none;
-}
-
-/* Individual logos */
-
-.logo-itpgrfa > .image {
-  background-position: -60px -60px;
-}
-
-.logo-itpgrfa:hover > .image,
-.logo-itpgrfa:focus > .image {
-  background-position: -60px 0;
-}
-
-.logo-stockholm > .image {
-  background-position: -120px -60px;
-}
-
-.logo-stockholm:hover > .image,
-.logo-stockholm:focus > .image {
-  background-position: -120px 0;
-}
-
-.logo-un > .image {
-  background-position: -300px -60px;
-}
-
-.logo-un:hover > .image,
-.logo-un:focus > .image {
-  background-position: -300px 0;
-}
-
-.logo-basel > .image {
-  background-position: -360px -60px;
-}
-
-.logo-basel:hover > .image,
-.logo-basel:focus > .image {
-  background-position: -360px 0;
-}
-
-.logo-ozone > .image {
-  background-position: -420px -60px;
-}
-
-.logo-ozone:hover > .image,
-.logo-ozone:focus > .image {
-  background-position: -420px 0;
-}
-
-.logo-unccd > .image {
-  background-position: -480px -60px;
-}
-
-.logo-unccd:hover > .image,
-.logo-unccd:focus > .image {
-  background-position: -480px 0;
-}
-
-.logo-cbd > .image {
-  background-position: -540px -60px;
-}
-
-.logo-cbd:hover > .image,
-.logo-cbd:focus > .image {
-  background-position: -540px 0;
-}
-
-.logo-unece > .image {
-  background-position: -660px -60px;
-}
-
-.logo-unece:hover > .image,
-.logo-unece:focus > .image {
-  background-position: -660px 0;
-}
-
-.logo-cites > .image {
-  background-position: -720px -60px;
-}
-
-.logo-cites:hover > .image,
-.logo-cites:focus > .image {
-  background-position: -720px 0;
-}
-
-.logo-ramsar > .image {
-  background-position: -780px -60px;
-}
-
-.logo-ramsar:hover > .image,
-.logo-ramsar:focus > .image {
-  background-position: -780px 0;
-}
-
-.logo-unep > .image {
-  background-position: -840px -60px;
-}
-
-.logo-unep:hover > .image,
-.logo-unep:focus > .image {
-  background-position: -840px 0;
-}
-
-.logo-cms > .image {
-  background-position: -900px -60px;
-}
-
-.logo-cms:hover > .image,
-.logo-cms:focus > .image {
-  background-position: -900px 0;
-}
-
-.logo-unesco > .image {
-  background-position: -1020px -60px;
-}
-
-.logo-unesco:hover > .image,
-.logo-unesco:focus > .image {
-  background-position: -1020px 0;
-}
-
-.logo-fao > .image {
-  background-position: -1080px -60px;
-}
-
-.logo-fao:hover > .image,
-.logo-fao:focus > .image {
-  background-position: -1080px 0;
-}
-
-.logo-rotterdam > .image {
-  background-position: -1140px -60px;
-}
-
-.logo-rotterdam:hover > .image,
-.logo-rotterdam:focus > .image {
-  background-position: -1140px 0;
-}
-
-.logo-unfccc > .image {
-  background-position: -1200px -60px;
-}
-
-.logo-unfccc:hover > .image,
-.logo-unfccc:focus > .image {
-  background-position: -1200px 0;
-}
-
-.logo-whc > .image {
-  background-position: -1380px -60px;
-}
-
-.logo-whc:hover > .image,
-.logo-whc:focus > .image {
-  background-position: -1380px 0;
-}
-
-.footer a.logo-eu > .image {
-  background-image: url('../img/logo-eu.png');
-  width: 88px;
-}
-
 /* Horizontal dividers */
-
 .footer ul .divider {
   background-color: #505c6a;
   height: 1px;
   margin: 9px 0;
   overflow: hidden;
+}
+
+/* Footer brands */
+.footer .brand-hover:hover,
+.footer .brand-hover:focus {
+  color: #444;
 }
 
 
