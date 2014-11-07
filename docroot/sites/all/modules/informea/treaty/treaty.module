@@ -21,3 +21,25 @@ function treaty_menu() {
 
   return $items;
 }
+
+/**
+ * Registers module's theme implementations.
+ *
+ * @return
+ *   An associative array of theme hook information.
+ */
+function treaty_theme() {
+  return array(
+    'treaties' => array()
+  );
+}
+
+/**
+ * Displays the treaties page when the user visits the path.
+ *
+ * @return
+ *   String representing the content of the page.
+ */
+function treaty_view() {
+  return theme('treaties');
+}
