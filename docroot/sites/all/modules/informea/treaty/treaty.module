@@ -30,7 +30,12 @@ function treaty_menu() {
  */
 function treaty_theme() {
   return array(
-    'treaties' => array()
+    'treaties' => array(
+      'variables' => array(
+        'regions' => NULL,
+        'treaties' => NULL
+      )
+    )
   );
 }
 
