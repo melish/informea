@@ -108,5 +108,8 @@ function _treaty_get_treaties() {
  *   String representing the content of the page.
  */
 function treaty_view() {
-  return theme('treaties');
+  return theme('treaties', array(
+    'regions' => _treaty_get_regions(),
+    'treaties' => _treaty_get_treaties()
+  ));
 }
