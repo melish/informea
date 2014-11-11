@@ -5,3 +5,41 @@
  */
 
 include_once 'treaty.features.inc';
+
+/**
+ * Defines menu items and page callbacks.
+ *
+ * @return
+ *   An associative array of properties for each path.
+ */
+function treaty_menu() {
+  $items['treaties'] = array(
+    'title' => t('Treaties'),
+    'page callback' => 'treaty_view',
+    'access arguments' => array('access content')
+  );
+
+  return $items;
+}
+
+/**
+ * Registers module's theme implementations.
+ *
+ * @return
+ *   An associative array of theme hook information.
+ */
+function treaty_theme() {
+  return array(
+    'treaties' => array()
+  );
+}
+
+/**
+ * Displays the treaties page when the user visits the path.
+ *
+ * @return
+ *   String representing the content of the page.
+ */
+function treaty_view() {
+  return theme('treaties');
+}
