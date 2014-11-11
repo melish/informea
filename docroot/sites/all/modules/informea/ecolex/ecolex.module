@@ -56,3 +56,19 @@ function ecolex_create_default_keywords_terms() {
     }
   }
 }
+
+/**
+ * Implements hook_form_node_form_alter().
+ *
+ * {@inheritdoc}
+ */
+function ecolex_form_node_form_alter(&$form, &$form_state) {
+  if (!empty($form['field_informea_tags'][LANGUAGE_NONE]['#options'])) {
+    $options =& $form['field_informea_tags'][LANGUAGE_NONE]['#options'];
+    unset($options['_none']);
+    foreach($options as &$value) {
+      $value = preg_replace('/^\-*/', '', $value);
+    }
+    asort($options);
+  }
+}

@@ -183,6 +183,7 @@ function decision_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
@@ -223,6 +224,7 @@ function decision_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
@@ -443,6 +445,7 @@ function decision_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
@@ -660,6 +663,7 @@ function decision_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',

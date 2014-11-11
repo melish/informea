@@ -138,6 +138,7 @@ features[field_instance][] = taxonomy_term-geographical_region-description_field
 features[field_instance][] = taxonomy_term-geographical_region-field_un_region
 features[field_instance][] = taxonomy_term-geographical_region-name_field
 features[field_instance][] = taxonomy_term-jurisdiction-description_field
+features[field_instance][] = taxonomy_term-jurisdiction-field_abbreviation
 features[field_instance][] = taxonomy_term-jurisdiction-name_field
 features[field_instance][] = taxonomy_term-type_of_text-description_field
 features[field_instance][] = taxonomy_term-type_of_text-name_field
