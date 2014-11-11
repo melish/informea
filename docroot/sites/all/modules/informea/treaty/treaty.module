@@ -63,6 +63,44 @@ function _treaty_get_regions() {
   return $regions;
 }
 
+function _treaty_get_treaties() {
+  global $language;
+
+  $query = new EntityFieldQuery();
+
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'treaty')
+    ->propertyCondition('status', NODE_PUBLISHED);
+
+  $result = $query->execute();
+  $nids = array_keys($result['node']);
+  $nodes = entity_load('node', $nids);
+  $treaties = array();
+
+  foreach ($nodes as $node) {
+    $treaty = array();
+
+    $treaty['title'] = $node->title_field[$language->language][0]['safe_value'];
+    $treaty['official_name'] = $node->field_official_name[LANGUAGE_NONE][0]['safe_value'];
+    $treaty['regions'] = array();
+
+    if (!empty($node->field_treaty_year)) {
+      $date = date_create($node->field_treaty_year[LANGUAGE_NONE][0]['value']);
+      $treaty['year'] = date_format($date, 'Y');
+    }
+
+    $treaty['topics'] = NULL;
+
+    if (!empty($node->field_logo)) {
+      $treaty['logo'] = $node->field_logo[LANGUAGE_NONE][0]['uri'];
+    }
+
+    $treaties[] = (object) $treaty;
+  }
+
+  return $treaties;
+}
+
 /**
  * Displays the treaties page when the user visits the path.
  *
