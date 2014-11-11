@@ -1079,6 +1079,13 @@ a:focus {
 }
 
 
+/* Treaties page */
+
+#treaties-table {
+  margin-bottom: 0;
+}
+
+
 /* Countries list page */
 
 .page-countries-list .nav-pills {
