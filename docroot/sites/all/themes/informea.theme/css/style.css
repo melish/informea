@@ -1099,3 +1099,30 @@ a:focus {
   font-size: 14px;
   margin-bottom: 2px;
 }
+
+.table td > .list-group {
+  margin-left: -8px;
+  margin-right: -8px;
+}
+
+.table td > .list-group:first-child {
+  margin-top: -8px;
+}
+
+.table td > .list-group:last-child {
+  margin-bottom: -8px;
+}
+
+.table td > .list-group .list-group-item {
+  border-left-width: 0;
+  border-radius: 0;
+  border-right-width: 0;
+}
+
+.table td > .list-group:first-child .list-group-item:first-child {
+  border-top: 0;
+}
+
+.table td > .list-group:last-child .list-group-item:last-child {
+  border-bottom: 0;
+}
