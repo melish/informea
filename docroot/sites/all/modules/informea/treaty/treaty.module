@@ -76,26 +76,77 @@ function _treaty_get_treaties() {
   $nids = array_keys($result['node']);
   $nodes = entity_load('node', $nids);
   $treaties = array();
+  $protocols = array();
 
-  foreach ($nodes as $node) {
+  foreach ($nodes as $nid => $node) {
+    // Protocols
+    if (!empty($node->field_parent_treaty)) {
+      $target_id = $node->field_parent_treaty[LANGUAGE_NONE][0]['target_id'];
+
+      $protocols[$target_id] = (object) array(
+        'nid' => $node->nid,
+        'title' => $node->title_field[$language->language][0]['safe_value']
+      );
+
+      continue;
+    }
+
     $treaty = array();
-
+    $treaty['nid'] = $node->nid;
     $treaty['title'] = $node->title_field[$language->language][0]['safe_value'];
     $treaty['official_name'] = $node->field_official_name[LANGUAGE_NONE][0]['safe_value'];
-    $treaty['regions'] = array();
 
+    $regions = array();
+
+    // Regions
+    if (!empty($node->field_region)) {
+      foreach ($node->field_region[LANGUAGE_NONE] as $value) {
+        $term = taxonomy_term_load($value['tid']);
+        $regions[] = $term->name_field[$language->language][0]['safe_value'];
+      }
+    }
+
+    if (!empty($regions)) {
+      $treaty['regions'] = implode(', ', $regions);
+    }
+
+    // Year
     if (!empty($node->field_treaty_year)) {
       $date = date_create($node->field_treaty_year[LANGUAGE_NONE][0]['value']);
       $treaty['year'] = date_format($date, 'Y');
     }
 
-    $treaty['topics'] = NULL;
+    $topics = array();
 
+    // Primary topic
+    if (!empty($node->field_primary_topic)) {
+      $tid = $node->field_primary_topic[LANGUAGE_NONE][0]['tid'];
+      $term = taxonomy_term_load($tid);
+      $topics[] = $term->name_field[$language->language][0]['safe_value'];
+    }
+
+    // Secondary topic
+    if (!empty($node->field_secondary_topic)) {
+      $tid = $node->field_secondary_topic[LANGUAGE_NONE][0]['tid'];
+      $term = taxonomy_term_load($tid);
+      $topics[] = $term->name_field[$language->language][0]['safe_value'];
+    }
+
+    if (!empty($topics)) {
+      $treaty['topics'] = implode(', ', $topics);
+    }
+
+    // Logo
     if (!empty($node->field_logo)) {
       $treaty['logo'] = $node->field_logo[LANGUAGE_NONE][0]['uri'];
     }
 
-    $treaties[] = (object) $treaty;
+    $treaties[$nid] = (object) $treaty;
+  }
+
+  // Protocols
+  foreach ($protocols as $target_id => $protocol) {
+    $treaties[$target_id]->protocols[] = $protocol;
   }
 
   return $treaties;
