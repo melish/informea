@@ -102,74 +102,75 @@
       </td>
       <th class="dropdown text-center">
         <a class="text-nowrap" data-toggle="dropdown" href="#">
-          Region
+          <?php print t('Region'); ?>
           <span class="caret"></span>
         </a><!-- .text-nowrap -->
         <ul class="dropdown-menu dropdown-menu-right" role="menu">
-          <li><a href="#">All regions</a></li>
+          <li><?php print l(t('All regions'), NULL, array('fragment' => 0, 'external' => TRUE)); ?></li>
           <?php foreach ($regions as $region): ?>
             <li><?php print l($region->name, NULL, array('fragment' => $region->tid, 'external' => TRUE)); ?></li>
           <?php endforeach; ?>
         </ul><!-- .dropdown-menu .dropdown-menu-right -->
-      </th>
-      <th class="text-center">Year</th>
+      </th><!-- .dropdown .text-center -->
+      <th class="text-center"><?php print t('Year'); ?></th>
     </tr>
   </thead>
   <tbody>
     <?php foreach ($treaties as $treaty): ?>
       <tr>
-      <td class="text-center">
-        <?php if (property_exists($treaty, 'logo')): ?>
-          <?php
-          print theme_image(array(
-            'path' => $treaty->logo,
-            'alt' => $treaty->title,
-            'attributes' => array()
-          ));
-          ?>
-        <?php endif; ?>
-      </td><!-- .text-center -->
-      <td>
-        <h4>
-          <?php print l($treaty->official_name, 'node/' . $treaty->nid); ?>
-          <small><?php print $treaty->title; ?></small>
-        </h4>
-        <p class="small">
-          <strong>Topics:</strong>
-          <?php if (property_exists($treaty, 'topics')): ?>
-            <?php print $treaty->topics; ?>
+        <td class="text-center">
+          <?php if (property_exists($treaty, 'logo')): ?>
+            <?php
+            print theme_image(array(
+              'path' => $treaty->logo,
+              'alt' => $treaty->title,
+              'attributes' => array()
+            ));
+            ?>
+          <?php endif; ?>
+        </td><!-- .text-center -->
+        <td>
+          <h4>
+            <?php print l($treaty->official_name, 'node/' . $treaty->nid); ?>
+            <small><?php print $treaty->title; ?></small>
+          </h4>
+          <div class="small">
+            <strong><?php print t('Topics:'); ?></strong>
+            <?php if (property_exists($treaty, 'topics')): ?>
+              <?php print $treaty->topics; ?>
+            <?php else: ?>
+              <?php print t('N/A'); ?>
+            <?php endif; ?>
+            <?php if (property_exists($treaty, 'protocols')): ?>
+              <br>
+              <?php print l('Toggle protocols', NULL, array('attributes' => array('class' => 'collapsed', 'data-toggle' => 'collapse'), 'fragment' => 'protocols-' . $treaty->nid, 'external' => TRUE)); ?>
+            <?php endif; ?>
+          </div><!-- .small -->
+          <?php if (property_exists($treaty, 'protocols')): ?>
+            <ul class="list-group collapse" id="protocols-<?php print $treaty->nid; ?>">
+              <?php foreach ($treaty->protocols as $protocol): ?>
+                <li class="list-group-item">
+                  <?php print l($protocol->title, 'node/' . $protocol->nid); ?>
+                </li><!-- .list-group-item -->
+              <?php endforeach; ?>
+            </ul><!-- .list-group .collapse -->
+          <?php endif; ?>
+        </td>
+        <td class="text-center">
+          <?php if (property_exists($treaty, 'regions')): ?>
+            <?php print $treaty->regions; ?>
           <?php else: ?>
             <?php print t('N/A'); ?>
           <?php endif; ?>
-        </p><!-- .small -->
-        <?php if (property_exists($treaty, 'protocols')): ?>
-          <p class="small">
-            <a class="collapsed" data-toggle="collapse" href="#protocols-<?php print $treaty->nid; ?>">Toggle protocols</a>
-          </p><!-- .small -->
-          <ul class="list-group collapse" id="protocols-<?php print $treaty->nid; ?>">
-            <?php foreach ($treaty->protocols as $protocol): ?>
-              <li class="list-group-item">
-                <?php print l($protocol->title, 'node/' . $protocol->nid); ?>
-              </li><!-- .list-group-item -->
-            <?php endforeach; ?>
-          </ul><!-- .list-group .collapse -->
-        <?php endif; ?>
-      </td>
-      <td class="text-center">
-        <?php if (property_exists($treaty, 'regions')): ?>
-          <?php print $treaty->regions; ?>
-        <?php else: ?>
-          <?php print t('N/A'); ?>
-        <?php endif; ?>
-      </td><!-- .text-center -->
-      <td class="text-center">
-        <?php if (property_exists($treaty, 'year')): ?>
-          <?php print $treaty->year; ?>
-        <?php else: ?>
-          <?php print t('N/A'); ?>
-        <?php endif; ?>
-      </td>
-    </tr>
+        </td><!-- .text-center -->
+        <td class="text-center">
+          <?php if (property_exists($treaty, 'year')): ?>
+            <?php print $treaty->year; ?>
+          <?php else: ?>
+            <?php print t('N/A'); ?>
+          <?php endif; ?>
+        </td><!-- .text-center -->
+      </tr>
     <?php endforeach; ?>
   </tbody>
 </table><!-- .table .table-bordered #treaties-table -->

@@ -1105,11 +1105,13 @@ a:focus {
 }
 
 .table td > .list-group:first-child {
+  margin-bottom: 8px;
   margin-top: -8px;
 }
 
 .table td > .list-group:last-child {
   margin-bottom: -8px;
+  margin-top: 8px;
 }
 
 .table td > .list-group .list-group-item {
