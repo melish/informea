@@ -596,7 +596,7 @@ a:focus {
   text-shadow: none;
 }
 
-.carousel-caption > .media > .pull-left {
+.carousel-caption .media-left > img {
   background-color: #fff;
   border-radius: 2px;
 }
