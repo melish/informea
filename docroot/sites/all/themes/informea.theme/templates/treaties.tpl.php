@@ -132,6 +132,7 @@
         <td>
           <h4>
             <?php print l($treaty->official_name, 'node/' . $treaty->nid); ?>
+            <br>
             <small><?php print $treaty->title; ?></small>
           </h4>
           <div class="small">
