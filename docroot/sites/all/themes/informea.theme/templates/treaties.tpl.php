@@ -101,16 +101,16 @@
         </small><!-- .text-muted -->
       </td>
       <th class="dropdown text-center">
-        <a data-toggle="dropdown" href="#">
+        <a class="text-nowrap" data-toggle="dropdown" href="#">
           Region
           <span class="caret"></span>
-        </a>
+        </a><!-- .text-nowrap -->
         <ul class="dropdown-menu dropdown-menu-right" role="menu">
           <li><a href="#">All regions</a></li>
           <?php foreach ($regions as $region): ?>
             <li><?php print l($region->name, NULL, array('fragment' => $region->tid, 'external' => TRUE)); ?></li>
           <?php endforeach; ?>
-        </ul>
+        </ul><!-- .dropdown-menu .dropdown-menu-right -->
       </th>
       <th class="text-center">Year</th>
     </tr>
@@ -136,11 +136,15 @@
         </h4>
         <p class="small">
           <strong>Topics:</strong>
-          <?php print $treaty->topics; ?>
+          <?php if (property_exists($treaty, 'topics')): ?>
+            <?php print $treaty->topics; ?>
+          <?php else: ?>
+            <?php print t('N/A'); ?>
+          <?php endif; ?>
         </p><!-- .small -->
         <?php if (property_exists($treaty, 'protocols')): ?>
           <p class="small">
-            <a class="collapsed" data-toggle="protocols-<?php print $treaty->nid; ?>" href="#mycollapse">Toggle protocols</a>
+            <a class="collapsed" data-toggle="collapse" href="#protocols-<?php print $treaty->nid; ?>">Toggle protocols</a>
           </p><!-- .small -->
           <ul class="list-group collapse" id="protocols-<?php print $treaty->nid; ?>">
             <?php foreach ($treaty->protocols as $protocol): ?>
@@ -152,7 +156,11 @@
         <?php endif; ?>
       </td>
       <td class="text-center">
-        <?php print implode(', ', $treaty->regions); ?>
+        <?php if (property_exists($treaty, 'regions')): ?>
+          <?php print $treaty->regions; ?>
+        <?php else: ?>
+          <?php print t('N/A'); ?>
+        <?php endif; ?>
       </td><!-- .text-center -->
       <td class="text-center">
         <?php if (property_exists($treaty, 'year')): ?>
