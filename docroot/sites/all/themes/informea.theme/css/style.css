@@ -1088,6 +1088,10 @@ a:focus {
   vertical-align: middle;
 }
 
+#treaties-table h4 {
+  margin-top: 0;
+}
+
 
 /* Countries list page */
 
