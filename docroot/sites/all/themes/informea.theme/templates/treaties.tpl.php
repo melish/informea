@@ -92,12 +92,16 @@
   </div><!-- .brand-group -->
 </div><!-- .text-center -->
 <h3><?php print t('All treaties'); ?></h3>
-<table class="table table-bordered" id="treaties-table">
+<table class="table table-bordered" id="table-treaties">
   <thead>
     <tr>
       <td colspan="2">
         <small class="text-muted">
-          Showing <strong><?php print count($treaties); ?></strong> of <strong><?php print count($treaties); ?></strong> treaties
+          <?php
+          $total = count($treaties);
+
+          print t('Showing !visible of !total treaties', array('!visible' => '<strong class="rows-visible">' . $total . '</strong>', '!total' => '<strong>' . $total . '</strong>'));
+          ?>
         </small><!-- .text-muted -->
       </td>
       <th class="dropdown text-center">
@@ -106,9 +110,9 @@
           <span class="caret"></span>
         </a><!-- .text-nowrap -->
         <ul class="dropdown-menu dropdown-menu-right" role="menu">
-          <li><?php print l(t('All regions'), NULL, array('fragment' => 0, 'external' => TRUE)); ?></li>
+          <li class="active"><?php print l(t('All regions'), NULL, array('attributes' => array('data-filter' => 'table', 'data-selector' => '.column-region', 'data-value' => NULL), 'fragment' => 'table-treaties', 'external' => TRUE)); ?></li>
           <?php foreach ($regions as $region): ?>
-            <li><?php print l($region->name, NULL, array('fragment' => $region->tid, 'external' => TRUE)); ?></li>
+            <li><?php print l($region->name, NULL, array('attributes' => array('data-filter' => 'table', 'data-selector' => '.column-region', 'data-value' => $region->name), 'fragment' => 'table-treaties', 'external' => TRUE)); ?></li>
           <?php endforeach; ?>
         </ul><!-- .dropdown-menu .dropdown-menu-right -->
       </th><!-- .dropdown .text-center -->
@@ -119,15 +123,15 @@
     <?php foreach ($treaties as $treaty): ?>
       <tr>
         <td class="text-center">
-          <?php if (property_exists($treaty, 'logo')): ?>
-            <?php
+          <?php
+          if (property_exists($treaty, 'logo')) {
             print theme_image(array(
               'path' => $treaty->logo,
               'alt' => $treaty->title,
               'attributes' => array()
             ));
-            ?>
-          <?php endif; ?>
+          }
+          ?>
         </td><!-- .text-center -->
         <td>
           <h4>
@@ -157,13 +161,13 @@
             </ul><!-- .list-group .collapse -->
           <?php endif; ?>
         </td>
-        <td class="text-center">
+        <td class="column-region text-center">
           <?php if (property_exists($treaty, 'regions')): ?>
             <?php print $treaty->regions; ?>
           <?php else: ?>
             <?php print t('N/A'); ?>
           <?php endif; ?>
-        </td><!-- .text-center -->
+        </td><!-- .column-region .text-center -->
         <td class="text-center">
           <?php if (property_exists($treaty, 'year')): ?>
             <?php print $treaty->year; ?>
@@ -174,4 +178,4 @@
       </tr>
     <?php endforeach; ?>
   </tbody>
-</table><!-- .table .table-bordered #treaties-table -->
+</table><!-- .table .table-bordered #table-treaties -->
