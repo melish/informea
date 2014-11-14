@@ -168,6 +168,9 @@ function _treaty_get_treaties() {
  *   String representing the content of the page.
  */
 function treaty_view() {
+  // Adds the treaties JavaScript file to the page.
+  drupal_add_js(drupal_get_path('module', 'treaty') . '/js/treaties.js');
+
   return theme('treaties', array(
     'regions' => _treaty_get_regions(),
     'treaties' => _treaty_get_treaties()
