@@ -1088,15 +1088,15 @@ a:focus {
 
 /* Treaties page */
 
-#treaties-table {
+#table-treaties {
   margin-bottom: 0;
 }
 
-#treaties-table td {
+#table-treaties td {
   vertical-align: middle;
 }
 
-#treaties-table h4 {
+#table-treaties h4 {
   margin-top: 0;
 }
 
