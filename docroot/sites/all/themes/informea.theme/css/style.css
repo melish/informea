@@ -596,9 +596,10 @@ a:focus {
   text-shadow: none;
 }
 
-.carousel-caption .media-left > img {
+.carousel-caption .media-left > a {
   background-color: #fff;
   border-radius: 2px;
+  display: block;
 }
 
 .carousel-caption a {

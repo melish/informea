@@ -110,9 +110,11 @@
                 <img alt="" src="http://www.informea.org/wp-content/uploads/images/syndication/biological-diversity/guillemot-uria-aalge.jpg">
                 <div class="carousel-caption">
                   <div class="media">
-                    <a class="media-left" href="http://www.informea.org/treaties/cbd">
-                      <img alt="CBD" src="http://www.informea.org/wp-content/uploads/images/treaty/logo_cbd.png">
-                    </a><!-- .media-left -->
+                    <div class="media-left">
+                      <a href="http://www.informea.org/treaties/cbd">
+                        <img alt="CBD" src="http://www.informea.org/wp-content/uploads/images/treaty/logo_cbd.png">
+                      </a>
+                    </div><!-- .media-left -->
                     <div class="media-body">
                       <span>27 Oct, 2014</span>
                       <p><a href="http://www.cbd.int/doc/press/2014/pr-2014-10-17-CPW-en.pdf">Recognizing that wildlife is an important renewable natural resource, with ...</a></p>
@@ -124,9 +126,11 @@
                 <img alt="" src="http://www.informea.org/wp-content/uploads/images/syndication/chemicals-waste/icebergs.jpg">
                 <div class="carousel-caption">
                   <div class="media">
-                    <a class="media-left" href="http://www.informea.org/treaties/basel">
-                      <img alt="Basel Convention" src="http://www.informea.org/wp-content/uploads/images/treaty/logo_basel.png">
-                    </a><!-- .media-left -->
+                    <div class="media-left">
+                      <a href="http://www.informea.org/treaties/basel">
+                        <img alt="Basel Convention" src="http://www.informea.org/wp-content/uploads/images/treaty/logo_basel.png">
+                      </a>
+                    </div><!-- .media-left -->
                     <div class="media-body">
                       <span>16 Oct, 2014</span>
                       <p><a href="http://www.basel.int/Implementation/PublicAwareness/NewsFeatures/RepublicofCongoratifiestheBanAmendment/tabid/4165/Default.aspx">Republic of Congo ratifies the Ban Amendment</a></p>
@@ -149,9 +153,11 @@
                 <img alt="" src="http://www.informea.org/wp-content/uploads/images/syndication/species/african-bush-elephants.jpg">
                 <div class="carousel-caption">
                   <div class="media">
-                    <a class="media-left" href="http://www.informea.org/treaties/aewa">
-                      <img alt="AEWA" src="http://www.informea.org/wp-content/uploads/images/treaty/logo_aewa.png">
-                    </a><!-- .media-left -->
+                    <div class="media-left">
+                      <a href="http://www.informea.org/treaties/aewa">
+                        <img alt="AEWA" src="http://www.informea.org/wp-content/uploads/images/treaty/logo_aewa.png">
+                      </a>
+                    </div><!-- .media-left -->
                     <div class="media-body">
                       <span>30 Oct, 2014</span>
                       <p><a href="http://www.unep-aewa.org/en/news/boost-waterbird-conservation-project-senegal-aewa-small-grants-fund">Boost for Waterbird Conservation Project in Senegal from AEWA Small ...</a></p>
@@ -163,9 +169,11 @@
                 <img alt="" src="http://www.informea.org/wp-content/uploads/images/syndication/species/slide-jaguar.jpg">
                 <div class="carousel-caption">
                   <div class="media">
-                    <a class="media-left" href="http://www.informea.org/treaties/cbd">
-                      <img alt="CBD" src="http://www.informea.org/wp-content/uploads/images/treaty/logo_cbd.png">
-                    </a><!-- .media-left -->
+                    <div class="media-left">
+                      <a href="http://www.informea.org/treaties/cbd">
+                        <img alt="CBD" src="http://www.informea.org/wp-content/uploads/images/treaty/logo_cbd.png">
+                      </a>
+                    </div><!-- .media-left -->
                     <div class="media-body">
                       <span>02-03 Nov, 2014</span>
                       <p><a href="http://www.cms.int/node/4499">42nd Standing Committee Meeting</a></p>
@@ -177,9 +185,11 @@
                 <img alt="" src="http://www.informea.org/wp-content/uploads/images/syndication/species/slide-bird.jpg">
                 <div class="carousel-caption">
                   <div class="media">
-                    <a class="media-left" href="http://www.informea.org/treaties/cbd">
-                      <img alt="CBD" src="http://www.informea.org/wp-content/uploads/images/treaty/logo_cbd.png">
-                    </a><!-- .media-left -->
+                    <div class="media-left">
+                      <a href="http://www.informea.org/treaties/cbd">
+                        <img alt="CBD" src="http://www.informea.org/wp-content/uploads/images/treaty/logo_cbd.png">
+                      </a>
+                    </div><!-- .media-left -->
                     <div class="media-body">
                       <span>04-09 Nov, 2014</span>
                       <p><a href="http://www.cms.int/node/4498">Eleventh Meeting of the Conference of the Parties to CMS</a></p>
@@ -191,9 +201,11 @@
                 <img alt="" src="http://www.informea.org/wp-content/uploads/images/syndication/species/rottumerplaat-dutch-wadden-sea.jpg">
                 <div class="carousel-caption">
                   <div class="media">
-                    <a class="media-left" href="http://www.informea.org/treaties/cbd">
-                      <img alt="CBD" src="http://www.informea.org/wp-content/uploads/images/treaty/logo_cbd.png">
-                    </a><!-- .media-left -->
+                    <div class="media-left">
+                      <a href="http://www.informea.org/treaties/cbd">
+                        <img alt="CBD" src="http://www.informea.org/wp-content/uploads/images/treaty/logo_cbd.png">
+                      </a>
+                    </div><!-- .media-left -->
                     <div class="media-body">
                       <span>09-09 Nov, 2014</span>
                       <p><a href="http://www.cms.int/node/4500">43rd Standing Committee Meeting</a></p>
