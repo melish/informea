@@ -19,12 +19,6 @@ function country_data_menu() {
     'access arguments' => array('access content')
   );
 
-  $items['countries/list'] = array(
-    'title' => 'Countries',
-    'page callback' => 'country_data_list_view',
-    'access arguments' => array('access content')
-  );
-
   return $items;
 }
 
@@ -36,11 +30,6 @@ function country_data_menu() {
  */
 function country_data_theme() {
   return array(
-    'countries_list' => array(
-      'variables' => array(
-        'index' => NULL
-      )
-    ),
     'countries_map' => array()
   );
 }
@@ -82,36 +71,4 @@ function country_data_map_view() {
   drupal_add_js(drupal_get_path('module', 'country_data') . '/js/countries-map.js');
 
   return theme('countries_map');
-}
-
-/**
- * Loads the alphabetical index of countries.
- *
- * @return
- *   An associative array of countries indexed by first letter.
- */
-function _country_data_get_index() {
-  $index = array();
-
-  // Loads the names of enabled countries.
-  $countries = countries_get_countries('name', array('enabled' => COUNTRIES_ENABLED));
-
-  foreach ($countries as $iso2 => $name) {
-    $index[mb_substr($name, 0, 1)][$iso2] = $name;
-  }
-
-  return $index;
-}
-
-/**
- * Displays the countries list page when the user visits the path.
- *
- * @return
- *   String representing the content of the page.
- */
-function country_data_list_view() {
-  // Adds the countries list JavaScript file to the page.
-  drupal_add_js(drupal_get_path('module', 'country_data') . '/js/countries-list.js');
-
-  return theme('countries_list', array('index' => _country_data_get_index()));
 }
