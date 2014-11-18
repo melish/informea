@@ -115,26 +115,3 @@ function country_data_list_view() {
 
   return theme('countries_list', array('index' => _country_data_get_index()));
 }
-
-/**
- * Preprocesses variables for page template.
- *
- * @param $variables
- *   An associative array with generated variables.
- *
- * @return
- *   Nothing.
- */
-function country_data_preprocess_page(&$variables) {
-  switch (current_path()) {
-    case 'countries':
-      $variables['theme_hook_suggestions'][] = 'page__countries_map';
-
-      break;
-
-    case 'countries/list':
-      $variables['theme_hook_suggestions'][] = 'page__countries_list';
-
-      break;
-  }
-}
