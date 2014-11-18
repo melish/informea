@@ -68,7 +68,7 @@ function country_data_map_view() {
   drupal_add_js(array('areas' => _country_data_get_areas()), 'setting');
 
   // Adds the countries map JavaScript file to the page.
-  drupal_add_js(drupal_get_path('module', 'country_data') . '/js/countries-map.js');
+  drupal_add_js(drupal_get_path('module', 'country') . '/js/countries-map.js');
 
   return theme('countries_map');
 }
