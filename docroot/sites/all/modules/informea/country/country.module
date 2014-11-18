@@ -12,10 +12,10 @@ include_once 'country.features.inc';
  * @return
  *   An associative array of properties for each path.
  */
-function country_data_menu() {
+function country_menu() {
   $items['countries'] = array(
     'title' => t('Countries'),
-    'page callback' => 'country_data_map_view',
+    'page callback' => 'country_map_view',
     'access arguments' => array('access content')
   );
 
@@ -28,7 +28,7 @@ function country_data_menu() {
  * @return
  *   An associative array of theme hook information.
  */
-function country_data_theme() {
+function country_theme() {
   return array(
     'countries_map' => array()
   );
@@ -40,7 +40,7 @@ function country_data_theme() {
  * @return
  *   An associative array of properties for each area.
  */
-function _country_data_get_areas() {
+function _country_get_areas() {
   // Loads all properties of enabled countries.
   $countries = countries_get_countries('all', array('enabled' => COUNTRIES_ENABLED));
 
@@ -57,7 +57,7 @@ function _country_data_get_areas() {
  * @return
  *   String representing the content of the page.
  */
-function country_data_map_view() {
+function country_map_view() {
   // Adds the amCharts JavaScript files to the page.
   drupal_add_js('http://www.amcharts.com/lib/3/ammap.js', 'external');
   drupal_add_js('http://www.amcharts.com/lib/3/maps/js/worldHigh.js', 'external');
@@ -65,7 +65,7 @@ function country_data_map_view() {
 
   // Adds the properties of areas to Drupal's global storage of JavaScript
   // settings.
-  drupal_add_js(array('areas' => _country_data_get_areas()), 'setting');
+  drupal_add_js(array('areas' => _country_get_areas()), 'setting');
 
   // Adds the countries map JavaScript file to the page.
   drupal_add_js(drupal_get_path('module', 'country') . '/js/countries-map.js');
