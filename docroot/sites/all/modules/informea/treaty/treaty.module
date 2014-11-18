@@ -19,6 +19,12 @@ function treaty_menu() {
     'access arguments' => array('access content')
   );
 
+  $items['terms'] = array(
+    'title' => t('Glossary'),
+    'page callback' => 'terms_view',
+    'access arguments' => array('access content')
+  );
+
   return $items;
 }
 
@@ -35,7 +41,8 @@ function treaty_theme() {
         'regions' => NULL,
         'treaties' => NULL
       )
-    )
+    ),
+    'terms' => array()
   );
 }
 
@@ -175,4 +182,15 @@ function treaty_view() {
     'regions' => _treaty_get_regions(),
     'treaties' => _treaty_get_treaties()
   ));
+}
+
+
+/**
+ * Displays the glossary page when the user visits the path.
+ *
+ * @return
+ *   String representing the content of the page.
+ */
+function terms_view() {
+  return theme('terms');
 }
