@@ -192,5 +192,8 @@ function treaty_view() {
  *   String representing the content of the page.
  */
 function terms_view() {
+  // Adds the terms JavaScript file to the page.
+  drupal_add_js(drupal_get_path('module', 'treaty') . '/js/terms.js');
+
   return theme('terms');
 }
