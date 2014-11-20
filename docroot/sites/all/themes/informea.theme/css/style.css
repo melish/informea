@@ -18,6 +18,12 @@ a:focus {
 /* ---------- */
 
 
+/* Section header */
+.section-header .btn.pull-right {
+  margin-top: -4px;
+}
+
+
 /* Lists */
 
 /* Inline option */
