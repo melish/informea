@@ -17,4 +17,16 @@ jQuery(document).ready(function ($) {
   $('[data-toggle="tree-item"]').click(function () {
     $(this).siblings('.list-tree').collapse('toggle');
   });
+
+  $('.list-tree').on('show.bs.collapse', function (event) {
+    event.stopPropagation();
+
+    $(this).siblings('.toggle').find('.glyphicon').removeClass('glyphicon-plus-sign').addClass('glyphicon-minus-sign');
+  });
+
+  $('.list-tree').on('hide.bs.collapse', function (event) {
+    event.stopPropagation();
+
+    $(this).siblings('.toggle').find('.glyphicon').removeClass('glyphicon-minus-sign').addClass('glyphicon-plus-sign');
+  });
 });
