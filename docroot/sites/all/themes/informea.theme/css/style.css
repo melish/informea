@@ -31,6 +31,17 @@ a:focus {
   margin-right: -5px;
 }
 
+/* Tree list */
+
+.list-tree {
+  list-style: none;
+  padding-left: 28px;
+}
+
+.list-tree .btn-xs {
+  margin-left: -28px;
+}
+
 
 /* Buttons */
 /* ------- */
