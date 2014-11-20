@@ -1,3 +1,9 @@
+<?php
+/**
+ * @file
+ * footer.tpl.php
+ */
+?>
 <footer class="footer">
   <div class="container">
     <?php if (!empty($page['footer'])): ?>

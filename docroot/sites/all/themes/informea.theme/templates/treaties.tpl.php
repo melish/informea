@@ -1,3 +1,11 @@
+<?php
+/**
+ * @file
+ * treaties.tpl.php
+ *
+ * @ingroup themeable
+ */
+?>
 <h3><?php print t('Global treaties and conventions'); ?></h3>
 <div class="text-center">
   <div class="brand-group">

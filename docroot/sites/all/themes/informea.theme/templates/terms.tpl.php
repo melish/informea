@@ -1,3 +1,11 @@
+<?php
+/**
+ * @file
+ * terms.tpl.php
+ *
+ * @ingroup themeable
+ */
+?>
 <div class="row">
   <div class="col-md-6">
     <button class="btn btn-default pull-right" type="button"><?php print t('Expand all'); ?></button>
