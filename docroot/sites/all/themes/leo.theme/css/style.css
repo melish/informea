@@ -22,3 +22,23 @@
 #footer-panel .panel-title > a {
   color: #fff;
 }
+
+#footer-index > .panel-body {
+  font-size: 80%;
+  font-weight: bold;
+  padding-top: 0;
+}
+
+#footer-index .well {
+  background-color: #f7f7f7;
+  border: 0;
+  margin-bottom: 0;
+}
+
+#footer-index .list-unstyled {
+  margin-bottom: 0;
+}
+
+#footer-index a {
+  color: #7a7a7a;
+}
