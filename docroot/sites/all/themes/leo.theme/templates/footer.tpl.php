@@ -6,6 +6,19 @@
 ?>
 <footer class="footer">
   <div class="container">
+    <div class="panel panel-default" id="footer-panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <a aria-controls="footer-index" aria-expanded="false" href="#footer-index" data-toggle="collapse">
+            <?php print t('A&ndash;Z of UNEP'); ?>
+          </a>
+        </h3><!-- .panel-title -->
+      </div><!-- .panel-heading -->
+      <div class="panel-collapse collapse" id="footer-index">
+        <div class="panel-body">
+        </div><!-- .panel-body -->
+      </div><!-- .panel-collapse .collapse #footer-index -->
+    </div><!-- .panel .panel-default #footer-panel -->
     <ul class="list-inline" id="footer-list">
       <li><a href="<?php print url('<front>'); ?>"><?php print theme('image', array('path' => $directory . '/img/logo-footer.jpg')); ?></a></li>
       <li class="hidden-xs hidden-sm">
