@@ -56,3 +56,9 @@
 #footer-list a {
   color: #fff;
 }
+
+#footer-social-media {
+  float: right;
+  font-weight: bold;
+  margin-top: 3px;
+}
