@@ -2,3 +2,23 @@
   padding-bottom: 0;
   padding-top: 0;
 }
+
+#footer-panel {
+  -webkit-box-shadow: none;
+  background-color: #909193;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+#footer-panel > .panel-heading {
+  background-color: transparent;
+  border-bottom: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+#footer-panel .panel-title > a {
+  color: #fff;
+}
