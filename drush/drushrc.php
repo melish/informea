@@ -303,11 +303,13 @@ $options['init-modules'] = array(
   'country',
   'decision',
   'meeting',
+  'goal',
   'country_deliverable',
   'ecolex',
   'treaty',
   'informea',
   'country_data',
+
 
   #'initial_content',
 
