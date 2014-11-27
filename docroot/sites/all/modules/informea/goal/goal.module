@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the goal feature.
+ */
+
+include_once 'goal.features.inc';
