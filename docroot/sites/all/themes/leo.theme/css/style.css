@@ -22,6 +22,24 @@
   color: #fff;
 }
 
+#header-banner {
+  background-image: -o-linear-gradient(top, #8dbffe 0%, #376dcf 100%);
+  background-image: -webkit-linear-gradient(top, #8dbffe 0%, #376dcf 100%);
+  background-image: linear-gradient(to bottom, #8dbffe 0%, #376dcf 100%);
+  background-repeat: repeat-x;
+  color: #fff;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8dbffe', endColorstr='#ff376dcf', GradientType=0);
+  padding: 10px;
+}
+
+#header-banner a {
+  color: #fff;
+  font-size: 80%;
+  text-align: center;
+  display: inline-block;
+  font-weight: bold;
+}
+
 .footer {
   padding-bottom: 0;
   padding-top: 0;
