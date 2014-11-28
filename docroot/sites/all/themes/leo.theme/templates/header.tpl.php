@@ -25,5 +25,64 @@
         <li><?php print l(t('Español'), 'spanish'); ?></li>
       </ul><!-- .list-inline .pull-right -->
     </div><!-- .clearfix #header-list -->
+    <div class="clearfix" id="header-banner">
+      <ul class="list-inline pull-left">
+        <li>
+          <?php if ($logo): ?>
+            <a class="" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+              <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+            </a><!--  -->
+          <?php endif; ?>
+        </li>
+        <li>
+          <strong>
+            <?php if (!empty($site_name)): ?>
+              <?php print $site_name; ?>
+            <?php endif; ?>
+          </strong>
+          <br>
+          <?php if (!empty($site_slogan)): ?>
+            <?php print $site_slogan; ?>
+          <?php endif; ?>
+        </li>
+      </ul><!-- .list-inline .pull-left -->
+      <ul class="list-inline pull-right">
+        <li>
+          <a href="#">
+            Climate<br>Change
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Disasters<br>&amp; Conflicts
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Ecosystem<br>Management
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Environmental<br>Governance
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Chemicals<br>&amp; Waste
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Resource<br>Efficiency
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Environment<br>Under Review
+          </a>
+        </li>
+      </ul><!-- .list-inline .pull-right -->
+    </div><!-- .clearfix #header-banner -->
   </div><!-- .container -->
 </header>
