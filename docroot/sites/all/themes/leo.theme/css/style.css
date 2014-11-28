@@ -32,12 +32,53 @@
   padding: 10px;
 }
 
+#header-banner .list-inline {
+  margin-bottom: 0;
+  margin-left: 0;
+}
+
 #header-banner a {
   color: #fff;
   font-size: 80%;
   text-align: center;
   display: inline-block;
   font-weight: bold;
+}
+
+#header-banner .icon {
+  background-image: url('../img/icons-header.png');
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 36px;
+  width: 50px;
+}
+
+#header-banner .icon-cc {
+  background-position: 8px 0;
+}
+
+#header-banner .icon-dnc {
+  background-position: -47px 0;
+}
+
+#header-banner .icon-em {
+  background-position: -95px 0;
+}
+
+#header-banner .icon-eg {
+  background-position: -138px 0;
+}
+
+#header-banner .icon-hs {
+  background-position: -193px 0;
+}
+
+#header-banner .icon-re {
+  background-position: -246px 0;
+}
+
+#header-banner .icon-eur {
+  background-position: -303px 0;
 }
 
 .footer {

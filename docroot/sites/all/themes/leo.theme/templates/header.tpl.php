@@ -49,36 +49,50 @@
       <ul class="list-inline pull-right">
         <li>
           <a href="#">
+            <span class="icon icon-cc"></span>
+            <br>
             Climate<br>Change
           </a>
         </li>
         <li>
           <a href="#">
+            <span class="icon icon-dnc"></span>
+            <br>
             Disasters<br>&amp; Conflicts
           </a>
         </li>
         <li>
           <a href="#">
+            <span class="icon icon-em"></span>
+            <br>
             Ecosystem<br>Management
           </a>
         </li>
         <li>
           <a href="#">
+            <span class="icon icon-eg"></span>
+            <br>
             Environmental<br>Governance
           </a>
         </li>
         <li>
           <a href="#">
+            <span class="icon icon-hs"></span>
+            <br>
             Chemicals<br>&amp; Waste
           </a>
         </li>
         <li>
           <a href="#">
+            <span class="icon icon-re"></span>
+            <br>
             Resource<br>Efficiency
           </a>
         </li>
         <li>
           <a href="#">
+            <span class="icon icon-eur"></span>
+            <br>
             Environment<br>Under Review
           </a>
         </li>
