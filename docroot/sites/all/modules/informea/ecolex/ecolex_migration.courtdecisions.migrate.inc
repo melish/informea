@@ -340,7 +340,6 @@ class EcolexCourtDecisionsMigrateSource extends MigrateSource {
           $this->setMessage('Error parsing ' . $e->getMessage());
         }
       }
-      $this->setMessage("Records: " . count($this->data));
     }
   }
 

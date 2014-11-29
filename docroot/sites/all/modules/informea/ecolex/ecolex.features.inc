@@ -34,6 +34,14 @@ function ecolex_node_info() {
       'title_label' => t('Title of text'),
       'help' => '',
     ),
+    'literature' => array(
+      'name' => t('Literature'),
+      'base' => 'node_content',
+      'description' => t('Publications'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
   );
   drupal_alter('node_info', $items);
   return $items;
