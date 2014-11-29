@@ -24,7 +24,7 @@ class EcolexLiteratureMigrate extends DynamicMigration {
         );
         $this->destination = new MigrateDestinationNode('literature');
 
-        $this->addFieldMapping('field_original_record_id', 'id');
+        $this->addFieldMapping('field_original_id', 'id');
         $this->addFieldMapping('field_alternative_record_id', 'id2');
         $this->addFieldMapping('field_isis_number', 'isisMfn');
         $this->addFieldMapping('field_date_of_entry', 'dateOfEntry');
@@ -62,6 +62,8 @@ class EcolexLiteratureMigrate extends DynamicMigration {
 
         $this->addFieldMapping('body', 'abstract');
         $this->addFieldMapping('field_territorial_subdivision', 'territorialSubdivision');
+
+        $this->addFieldMapping('uid')->defaultValue(1);
     }
 
     /**
@@ -116,7 +118,7 @@ class EcolexLiteratureMigrate extends DynamicMigration {
 }
 
 
-class EcolexLiteratureMigrateSource extends MigrateSource {
+class EcolexLiteratureMigrateSource extends EcolexMigrateSource {
 
     protected $data_dir;
     protected $parsed = FALSE;
@@ -179,57 +181,6 @@ class EcolexLiteratureMigrateSource extends MigrateSource {
     }
 
     /**
-     * Return the number of available source records.
-     */
-    public function computeCount() {
-      $files = file_scan_directory($this->data_dir, '/.*/');
-      $ret = 0;
-      foreach ($files as $i => $file) {
-        try {
-          $docs = @simplexml_load_file($file->uri);
-          if(!$docs) {
-            continue;
-          }
-          foreach ($docs as $doc) {
-            $ret++;
-          }
-        }
-        catch (Exception $e) {
-          // Swallow
-        }
-      }
-      return $ret;
-    }
-
-    /**
-     * Do whatever needs to be done to start a fresh traversal of the source data.
-     *
-     * This is always called at the start of an import, so tasks such as opening
-     * file handles, running queries, and so on should be performed here.
-     */
-    public function performRewind() {
-        reset($this->data);
-    }
-
-    /**
-     * Fetch the next row of data, returning it as an object.
-     *
-     * @return object
-     *   FALSE data as stdClass, FALSE when there is no more data available.
-     */
-    public function getNextRow() {
-        if (empty($this->data)) {
-            $this->readData();
-        }
-        $item = NULL;
-        if(count($this->data)) {
-            $item = current($this->data);
-            next($this->data);
-        }
-        return $item;
-    }
-
-    /**
      * Query the remote source and pull the data.
      */
     protected function readData() {
@@ -288,21 +239,5 @@ class EcolexLiteratureMigrateSource extends MigrateSource {
                 }
             }
         }
-    }
-
-    /**
-     * Add messages during data retrieval for debugging.
-     *
-     * @param string $msg
-     *   Message string
-     * @param int $severity
-     *   Migration message level
-     */
-    protected function setMessage($msg, $severity = MigrationBase::MESSAGE_WARNING) {
-        if(function_exists('drush_log')) {
-            drush_log($msg, 'warning');
-        }
-        drupal_set_message($msg);
-        $this->activeMigration->queueMessage($msg, $severity);
     }
 }

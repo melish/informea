@@ -114,7 +114,7 @@ class EcolexLegislationMigrate extends DynamicMigration {
 }
 
 
-class EcolexLegislationMigrateSource extends MigrateSource {
+class EcolexLegislationMigrateSource extends EcolexMigrateSource {
 
     protected $data_dir;
     protected $parsed = FALSE;
@@ -173,57 +173,6 @@ class EcolexLegislationMigrateSource extends MigrateSource {
             'Publication_reference' => '@todo',
             'ecolex_url' => '@todo',
         );
-    }
-
-    /**
-     * Return the number of available source records.
-     */
-    public function computeCount() {
-        $files = file_scan_directory($this->data_dir, '/.*/');
-        $ret = 0;
-        foreach ($files as $i => $file) {
-            try {
-                $docs = @simplexml_load_file($file->uri);
-                if(!$docs) {
-                    continue;
-                }
-                foreach ($docs as $doc) {
-                    $ret++;
-                }
-            }
-            catch (Exception $e) {
-                // Swallow
-            }
-        }
-        return $ret;
-    }
-
-    /**
-     * Do whatever needs to be done to start a fresh traversal of the source data.
-     *
-     * This is always called at the start of an import, so tasks such as opening
-     * file handles, running queries, and so on should be performed here.
-     */
-    public function performRewind() {
-        reset($this->data);
-    }
-
-    /**
-     * Fetch the next row of data, returning it as an object.
-     *
-     * @return object
-     *   FALSE data as stdClass, FALSE when there is no more data available.
-     */
-    public function getNextRow() {
-        if (empty($this->data)) {
-            $this->readData();
-        }
-        $item = NULL;
-        if(count($this->data)) {
-            $item = current($this->data);
-            next($this->data);
-        }
-        return $item;
     }
 
     /**
@@ -321,21 +270,5 @@ class EcolexLegislationMigrateSource extends MigrateSource {
             }
             $this->setMessage("Records: " . count($this->data));
         }
-    }
-
-    /**
-     * Add messages during data retrieval for debugging.
-     *
-     * @param string $msg
-     *   Message string
-     * @param int $severity
-     *   Migration message level
-     */
-    protected function setMessage($msg, $severity = MigrationBase::MESSAGE_WARNING) {
-        if(function_exists('drush_log')) {
-            drush_log($msg, 'warning');
-        }
-        drupal_set_message($msg);
-        $this->activeMigration->queueMessage($msg, $severity);
     }
 }
