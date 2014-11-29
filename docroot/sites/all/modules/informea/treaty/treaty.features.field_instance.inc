@@ -361,7 +361,7 @@ function treaty_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -577,7 +577,7 @@ function treaty_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -615,7 +615,7 @@ function treaty_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -870,7 +870,7 @@ function treaty_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -1108,7 +1108,7 @@ function treaty_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 13,
+      'weight' => 14,
     ),
   );
 
@@ -1351,7 +1351,7 @@ function treaty_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 11,
+      'weight' => 12,
     ),
   );
 
@@ -1477,23 +1477,23 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 2,
+      'weight' => 5,
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_original_record_id'
-  $field_instances['node-treaty-field_original_record_id'] = array(
+  // Exported field_instance: 'node-treaty-field_original_id'
+  $field_instances['node-treaty-field_original_id'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
+        'label' => 'above',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 48,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1503,8 +1503,8 @@ function treaty_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_original_record_id',
-    'label' => 'Original Record ID',
+    'field_name' => 'field_original_id',
+    'label' => 'Original ID',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1518,7 +1518,7 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 6,
+      'weight' => 2,
     ),
   );
 
@@ -1562,7 +1562,7 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 3,
+      'weight' => 6,
     ),
   );
 
@@ -1647,7 +1647,7 @@ function treaty_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
@@ -1802,7 +1802,7 @@ function treaty_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -1981,7 +1981,7 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 1,
+      'weight' => 4,
     ),
   );
 
@@ -2200,7 +2200,7 @@ function treaty_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 14,
+      'weight' => 15,
     ),
   );
 
@@ -2293,7 +2293,7 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 0,
+      'weight' => 3,
     ),
   );
 
@@ -3308,7 +3308,7 @@ function treaty_field_default_field_instances() {
   t('Official name');
   t('Official order');
   t('Order');
-  t('Original Record ID');
+  t('Original ID');
   t('Paragraph Indentation');
   t('Parent Treaty Article');
   t('Parent treaty');

@@ -474,10 +474,10 @@ function treaty_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '5',
+          'weight' => '0',
         ),
         'language' => array(
-          'weight' => '4',
+          'weight' => '1',
         ),
       ),
       'display' => array(),
