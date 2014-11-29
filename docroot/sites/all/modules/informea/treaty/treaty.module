@@ -5,3 +5,195 @@
  */
 
 include_once 'treaty.features.inc';
+
+/**
+ * Defines menu items and page callbacks.
+ *
+ * @return
+ *   An associative array of properties for each path.
+ */
+function treaty_menu() {
+  $items['treaties'] = array(
+    'title' => t('Treaties'),
+    'page callback' => 'treaty_view',
+    'access arguments' => array('access content')
+  );
+
+  $items['terms'] = array(
+    'title' => t('Glossary'),
+    'page callback' => 'terms_view',
+    'access arguments' => array('access content')
+  );
+
+  return $items;
+}
+
+/**
+ * Registers module's theme implementations.
+ *
+ * @return
+ *   An associative array of theme hook information.
+ */
+function treaty_theme() {
+  return array(
+    'treaties' => array(
+      'variables' => array(
+        'regions' => NULL,
+        'treaties' => NULL
+      )
+    ),
+    'terms' => array()
+  );
+}
+
+function _treaty_get_regions() {
+  global $language;
+
+  $query = new EntityFieldQuery();
+
+  $query->entityCondition('entity_type', 'taxonomy_term')
+    ->entityCondition('bundle', 'geographical_region')
+    ->propertyOrderBy('weight');
+
+  $result = $query->execute();
+  $regions = array();
+
+  if (!isset($result['taxonomy_term'])) {
+    return $regions;
+  }
+
+  $tids = array_keys($result['taxonomy_term']);
+  $terms = entity_load('taxonomy_term', $tids);
+
+  foreach ($terms as $term) {
+    $regions[] = (object) array(
+      'name' => $term->name_field[$language->language][0]['safe_value']
+    );
+  }
+
+  return $regions;
+}
+
+function _treaty_get_treaties() {
+  global $language;
+
+  $query = new EntityFieldQuery();
+
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'treaty')
+    ->propertyCondition('status', NODE_PUBLISHED);
+
+  $result = $query->execute();
+  $treaties = array();
+  $protocols = array();
+
+  if (!isset($result['node'])) {
+    return $treaties;
+  }
+
+  $nids = array_keys($result['node']);
+  $nodes = entity_load('node', $nids);
+
+  foreach ($nodes as $nid => $node) {
+    // Protocols
+    if (!empty($node->field_parent_treaty)) {
+      $target_id = $node->field_parent_treaty[LANGUAGE_NONE][0]['target_id'];
+
+      $protocols[$target_id] = (object) array(
+        'nid' => $node->nid,
+        'title' => $node->title_field[$language->language][0]['safe_value']
+      );
+
+      continue;
+    }
+
+    $treaty = array();
+    $treaty['nid'] = $node->nid;
+    $treaty['title'] = $node->title_field[$language->language][0]['safe_value'];
+    $treaty['official_name'] = $node->field_official_name[LANGUAGE_NONE][0]['safe_value'];
+
+    $regions = array();
+
+    // Regions
+    if (!empty($node->field_region)) {
+      foreach ($node->field_region[LANGUAGE_NONE] as $value) {
+        $term = taxonomy_term_load($value['tid']);
+        $regions[] = $term->name_field[$language->language][0]['safe_value'];
+      }
+    }
+
+    if (!empty($regions)) {
+      $treaty['regions'] = implode(', ', $regions);
+    }
+
+    // Year
+    if (!empty($node->field_treaty_year)) {
+      $date = date_create($node->field_treaty_year[LANGUAGE_NONE][0]['value']);
+      $treaty['year'] = date_format($date, 'Y');
+    }
+
+    $topics = array();
+
+    // Primary topic
+    if (!empty($node->field_primary_topic)) {
+      $tid = $node->field_primary_topic[LANGUAGE_NONE][0]['tid'];
+      $term = taxonomy_term_load($tid);
+      $topics[] = $term->name_field[$language->language][0]['safe_value'];
+    }
+
+    // Secondary topic
+    if (!empty($node->field_secondary_topic)) {
+      $tid = $node->field_secondary_topic[LANGUAGE_NONE][0]['tid'];
+      $term = taxonomy_term_load($tid);
+      $topics[] = $term->name_field[$language->language][0]['safe_value'];
+    }
+
+    if (!empty($topics)) {
+      $treaty['topics'] = implode(', ', $topics);
+    }
+
+    // Logo
+    if (!empty($node->field_logo)) {
+      $treaty['logo'] = $node->field_logo[LANGUAGE_NONE][0]['uri'];
+    }
+
+    $treaties[$nid] = (object) $treaty;
+  }
+
+  // Protocols
+  foreach ($protocols as $target_id => $protocol) {
+    $treaties[$target_id]->protocols[] = $protocol;
+  }
+
+  return $treaties;
+}
+
+/**
+ * Displays the treaties page when the user visits the path.
+ *
+ * @return
+ *   String representing the content of the page.
+ */
+function treaty_view() {
+  // Adds the treaties JavaScript file to the page.
+  drupal_add_js(drupal_get_path('module', 'treaty') . '/js/treaties.js');
+
+  return theme('treaties', array(
+    'regions' => _treaty_get_regions(),
+    'treaties' => _treaty_get_treaties()
+  ));
+}
+
+
+/**
+ * Displays the glossary page when the user visits the path.
+ *
+ * @return
+ *   String representing the content of the page.
+ */
+function terms_view() {
+  // Adds the terms JavaScript file to the page.
+  drupal_add_js(drupal_get_path('module', 'treaty') . '/js/terms.js');
+
+  return theme('terms');
+}

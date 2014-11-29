@@ -1,3 +1,9 @@
+<?php
+/**
+ * @file
+ * footer.tpl.php
+ */
+?>
 <footer class="footer">
   <div class="container">
     <?php if (!empty($page['footer'])): ?>
@@ -9,40 +15,40 @@
       <h5 class="text-uppercase"><?php print t('Organizations'); ?></h5>
       <ul class="list-inline">
         <li>
-          <a class="logo logo-un" href="http://www.un.org/" target="_blank">
+          <a class="brand brand-hover brand-un" href="http://www.un.org/" target="_blank">
             <div class="image"></div>
             <?php print t('UN'); ?>
-          </a><!-- .logo .logo-un -->
+          </a><!-- .brand .brand-hover .brand-un -->
         </li>
         <li>
-          <a class="logo logo-unep" href="http://www.unep.org/" target="_blank">
+          <a class="brand brand-hover brand-unep" href="http://www.unep.org/" target="_blank">
             <div class="image"></div>
             <?php print t('UNEP'); ?>
-          </a><!-- .logo .logo-un -->
+          </a><!-- .brand .brand-hover .brand-unep -->
         </li>
         <li>
-          <a class="logo logo-fao" href="http://www.fao.org/" target="_blank">
+          <a class="brand brand-hover brand-fao" href="http://www.fao.org/" target="_blank">
             <div class="image"></div>
             <?php print t('FAO'); ?>
-          </a><!-- .logo .logo-un -->
+          </a><!-- .brand .brand-hover .brand-fao -->
         </li>
         <li>
-          <a class="logo logo-unesco" href="http://www.unesco.org/" target="_blank">
+          <a class="brand brand-hover brand-unesco" href="http://www.unesco.org/" target="_blank">
             <div class="image"></div>
             <?php print t('UNESCO'); ?>
-          </a><!-- .logo .logo-un -->
+          </a><!-- .brand .brand-hover .brand-unesco -->
         </li>
         <li>
-          <a class="logo logo-unece" href="http://www.unece.org/" target="_blank">
+          <a class="brand brand-hover brand-unece" href="http://www.unece.org/" target="_blank">
             <div class="image"></div>
             <?php print t('UNECE'); ?>
-          </a><!-- .logo .logo-un -->
+          </a><!-- .brand .brand-hover .brand-unece -->
         </li>
         <li class="pull-right">
-          <a class="logo logo-eu" href="http://ec.europa.eu/" target="_blank">
+          <a class="brand brand-hover brand-eu" href="http://ec.europa.eu/" target="_blank">
             <div class="image"></div>
             <?php print t('European Union'); ?>
-          </a><!-- .logo .logo-eu -->
+          </a><!-- .brand .brand-hover .brand-eu -->
         </li>
       </ul><!-- .list-inline -->
     </div><!-- .footer-section -->
@@ -50,76 +56,76 @@
       <h5 class="text-uppercase"><?php print t('Global treaties'); ?></h5>
       <ul class="list-inline">
         <li>
-          <a class="logo logo-unfccc" href="http://unfccc.int/" target="_blank">
+          <a class="brand brand-hover brand-unfccc" href="http://unfccc.int/" target="_blank">
             <div class="image"></div>
             <?php print t('UNFCCC'); ?>
-          </a><!-- .logo .logo-unfccc -->
+          </a><!-- .brand .brand-hover .brand-unfccc -->
         </li>
         <li>
-          <a class="logo logo-unccd" href="http://www.unccd.int/" target="_blank">
+          <a class="brand brand-hover brand-unccd" href="http://www.unccd.int/" target="_blank">
             <div class="image"></div>
             <?php print t('UNCCD'); ?>
-          </a><!-- .logo .logo-unccd -->
+          </a><!-- .brand .brand-hover .brand-unccd -->
         </li>
         <li>
-          <a class="logo logo-ozone" href="http://ozone.unep.org/" target="_blank">
+          <a class="brand brand-hover brand-ozone" href="http://ozone.unep.org/" target="_blank">
             <div class="image"></div>
             <?php print t('OZONE'); ?>
-          </a><!-- .logo .logo-ozone -->
+          </a><!-- .brand .brand-hover .brand-ozone -->
         </li>
         <li>
-          <a class="logo logo-basel" href="http://www.basel.int/" target="_blank">
+          <a class="brand brand-hover brand-basel" href="http://www.basel.int/" target="_blank">
             <div class="image"></div>
             <?php print t('BASEL'); ?>
-          </a><!-- .logo .logo-basel -->
+          </a><!-- .brand .brand-hover .brand-basel -->
         </li>
         <li>
-          <a class="logo logo-rotterdam" href="http://www.pic.int/" target="_blank">
+          <a class="brand brand-hover brand-rotterdam" href="http://www.pic.int/" target="_blank">
             <div class="image"></div>
             <?php print t('ROTTERDAM'); ?>
-          </a><!-- .logo .logo-rotterdam -->
+          </a><!-- .brand .brand-hover .brand-rotterdam -->
         </li>
         <li>
-          <a class="logo logo-stockholm" href="http://chm.pops.int/" target="_blank">
+          <a class="brand brand-hover brand-stockholm" href="http://chm.pops.int/" target="_blank">
             <div class="image"></div>
             <?php print t('STOCKHOLM'); ?>
-          </a><!-- .logo .logo-stockholm -->
+          </a><!-- .brand .brand-hover .brand-stockholm -->
         </li>
         <li>
-          <a class="logo logo-cbd" href="http://www.cbd.int/" target="_blank">
+          <a class="brand brand-hover brand-cbd" href="http://www.cbd.int/" target="_blank">
             <div class="image"></div>
             <?php print t('CBD'); ?>
-          </a><!-- .logo .logo-cbd -->
+          </a><!-- .brand .brand-hover .brand-cbd -->
         </li>
         <li>
-          <a class="logo logo-cites" href="http://www.cites.org/" target="_blank">
+          <a class="brand brand-hover brand-cites" href="http://www.cites.org/" target="_blank">
             <div class="image"></div>
             <?php print t('CITES'); ?>
-          </a><!-- .logo .logo-cites -->
+          </a><!-- .brand .brand-hover .brand-cites -->
         </li>
         <li>
-          <a class="logo logo-whc" href="http://whc.unesco.org/" target="_blank">
+          <a class="brand brand-hover brand-whc" href="http://whc.unesco.org/" target="_blank">
             <div class="image"></div>
             <?php print t('WHC'); ?>
-          </a><!-- .logo .logo-whc -->
+          </a><!-- .brand .brand-hover .brand-whc -->
         </li>
         <li>
-          <a class="logo logo-ramsar" href="http://www.ramsar.org/" target="_blank">
+          <a class="brand brand-hover brand-ramsar" href="http://www.ramsar.org/" target="_blank">
             <div class="image"></div>
             <?php print t('Ramsar'); ?>
-          </a><!-- .logo .logo-ramsar -->
+          </a><!-- .brand .brand-hover .brand-ramsar -->
         </li>
         <li>
-          <a class="logo logo-itpgrfa" href="http://www.planttreaty.org/" target="_blank">
+          <a class="brand brand-hover brand-itpgrfa" href="http://www.planttreaty.org/" target="_blank">
             <div class="image"></div>
             <?php print t('ITPGRFA'); ?>
-          </a><!-- .logo .logo-itpgrfa -->
+          </a><!-- .brand .brand-hover .brand-itpgrfa -->
         </li>
         <li>
-          <a class="logo logo-cms" href="http://www.cms.int/" target="_blank">
+          <a class="brand brand-hover brand-cms" href="http://www.cms.int/" target="_blank">
             <div class="image"></div>
             <?php print t('CMS'); ?>
-          </a><!-- .logo .logo-cms -->
+          </a><!-- .brand .brand-hover .brand-cms -->
         </li>
       </ul><!-- .list-inline -->
     </div><!-- .footer-section -->
