@@ -25,46 +25,43 @@ class EcolexLiteratureMigrate extends DynamicMigration {
         $this->destination = new MigrateDestinationNode('literature');
 
         $this->addFieldMapping('field_original_record_id', 'id');
-        // $this->addFieldMapping('', 'dateOfEntry');
-        // $this->addFieldMapping('', 'dateOfModification');
+        $this->addFieldMapping('field_alternative_record_id', 'id2');
+        $this->addFieldMapping('field_isis_number', 'isisMfn');
+        $this->addFieldMapping('field_date_of_entry', 'dateOfEntry');
+        $this->addFieldMapping('field_date_of_modification', 'dateOfModification');
+        $this->addFieldMapping('field_author', 'authorM');
+        $this->addFieldMapping('field_author_institution', 'corpAuthorM');
         $this->addFieldMapping('title', 'title');
         $this->addFieldMapping('title_field', 'titleOfText');
-
-        $this->addFieldMapping('field_data_source')->defaultValue('Ecolex');
-        $this->addFieldMapping('field_data_source:create_term')->defaultValue(TRUE);
-
-        $this->addFieldMapping('field_type_of_text', 'typeOfText');
-        $this->addFieldMapping('field_type_of_text:create_term')->defaultValue(TRUE);
-
-        $this->addFieldMapping('field_jurisdiction', 'jurisdiction');
-        $this->addFieldMapping('field_field_of_application', 'fieldOfApplication');
-
-        $this->addFieldMapping('field_subjects', 'subject');
-        $this->addFieldMapping('field_subjects:create_term')->defaultValue(TRUE);
-
-        $this->addFieldMapping('field_keywords', 'keyword');
-        $this->addFieldMapping('field_keywords:create_term')->defaultValue(TRUE);
-
+        $this->addFieldMapping('field_literature_paper_title', 'paperTitleOfText');
         // $this->addFieldMapping('', 'languageOfDocument');
-        $this->addFieldMapping('field_place_of_adoption', 'placeOfAdoption');
-        $this->addFieldMapping('field_depositary', 'depository');
+        $this->addFieldMapping('field_literature_call_number', 'callNo');
+        $this->addFieldMapping('field_isbn', 'isbn');
+        $this->addFieldMapping('field_publisher', 'publisher');
+        $this->addFieldMapping('field_publication_place', 'publPlace');
         $this->addFieldMapping('field_date_of_text', 'dateOfText');
-        // $this->addFieldMapping('', 'searchDate');
-        $this->addFieldMapping('field_entry_into_force', 'entryIntoForceDate');
-        // $this->addFieldMapping('', 'obsolete');
-        // $this->addFieldMapping('', 'officialPublication');
-        $this->addFieldMapping('field_available_in', 'availableIn');
-        $this->addFieldMapping('field_treaty_text_url', 'linkToFullText');
-        $this->addFieldMapping('field_treaty_website_url', 'internetReference');
-        $this->addFieldMapping('body', 'abstract');
-        // $this->addFieldMapping('', 'amendsTreaty');
-        // $this->addFieldMapping('', 'relatedWebSite');
-        // $this->addFieldMapping('', 'citesTreaty');
+        $this->addFieldMapping('field_literature_serial_title', 'serialTitle');
+        $this->addFieldMapping('field_volume_no', 'volumeNo');
+        $this->addFieldMapping('field_collation', 'collation');
+        $this->addFieldMapping('field_literature_type', 'typeOfText');
+        $this->addFieldMapping('field_ecolex_tags', 'subject');
+        $this->addFieldMapping('field_organizations', 'intOrg');
+        $this->addFieldMapping('field_country', 'country');
+        $this->addFieldMapping('field_geographical_scope', 'scope');
 
         $this->addFieldMapping('field_region', 'region');
         $this->addFieldMapping('field_region:create_term')->defaultValue(TRUE);
 
-        $this->addFieldMapping('field_ecolex_url', 'ecolex_url');
+        $this->addFieldMapping('field_url', 'linkToFullText');
+
+        $this->addFieldMapping('field_keywords', 'keyword');
+        $this->addFieldMapping('field_keywords:create_term')->defaultValue(TRUE);
+
+        // $this->addFieldMapping('field_related_literature', 'referenceToLiterature');
+        // $this->addFieldMapping('field_treaty', 'referenceToTreaties');
+
+        $this->addFieldMapping('body', 'abstract');
+        $this->addFieldMapping('field_territorial_subdivision', 'territorialSubdivision');
     }
 
     /**
@@ -147,33 +144,37 @@ class EcolexLiteratureMigrateSource extends MigrateSource {
      */
     public function fields() {
         return array(
-            'Recid' => 'Ecolex unique ID',
-            'dateOfEntry' => '@todo: dateOfEntry',
-            'dateOfModification' => '@todo: dateOfModification',
+            'id' => 'Ecolex unique ID',
+            'id2' => 'Alternative ID',
+            'isisMfn' => 'ISIS Number',
+            'dateOfEntry' => 'Date of entery in the system',
+            'dateOfModification' => 'Date of modification',
+            'authorM' => 'Author(s)',
+            'corpAuthorM' => 'Institution Author(s)',
+            'title' => 'Synonym for titleOfText',
             'titleOfText' => 'Page title multilingual',
-            'typeOfText' => '@todo: typeOfText',
-            'jurisdiction' => '@todo: jurisdiction',
-            'fieldOfApplication' => '@todo: fieldOfApplication',
-            'subject' => '@todo: subject',
-            'languageOfDocument' => '@todo: languageOfDocument',
-
-            'placeOfAdoption' => '@todo: placeOfAdoption',
-            'depository' => '@todo: depository',
-            'dateOfText' => '@todo: dateOfText',
-            'searchDate' => '@todo: searchDate',
-            'entryIntoForceDate' => '@todo: entryIntoForceDate',
-            'obsolete' => '@todo: obsolete',
-            'officialPublication' => '@todo: officialPublication',
-            'availableIn' => '@todo: availableIn',
-            'linkToFullText' => '@todo: linkToFullText',
-            'internetReference' => '@todo: internetReference',
-            'amendsTreaty' => '@todo: amendsTreaty',
-            'relatedWebSite' => '@todo: relatedWebSite',
-            'abstract' => '@todo: abstract',
-            'citesTreaty' => '@todo: citesTreaty',
-            'keyword' => '@todo: keyword',
-            'region' => '@todo: region',
-            'ecolex_url' => 'Web page on Ecolex website',
+            'paperTitleOfText' => 'Paper title',
+            'languageOfDocument' => 'Language(s) for the attached document',
+            'callNo' => '//@TODO',
+            'isbn' => 'Publication ISBN number',
+            'publisher' => 'Publisher',
+            'publPlace' => 'Place of publication',
+            'dateOfText' => 'Date of publication (?)',
+            'serialTitle' => '//@TODO',
+            'volumeNo' => 'Volume number',
+            'collation' => 'Info about pages etc.',
+            'typeOfText' => 'Enumerated type of text',
+            'subject' => 'Ecolex subjects',
+            'intOrg' => 'Organization international (?)',
+            'country' => 'Related countries',
+            'scope' => 'Geographical scope',
+            'region' => 'Related regions',
+            'linkToFullText' => 'Link to document',
+            'keyword' => 'Ecolex keywords',
+            'referenceToLiterature' => 'Related literature entities',
+            'referenceToTreaties' => 'Related treaties entities',
+            'abstract' => 'Short description',
+            'territorialSubdivision' => 'Geographical territories',
         );
     }
 
