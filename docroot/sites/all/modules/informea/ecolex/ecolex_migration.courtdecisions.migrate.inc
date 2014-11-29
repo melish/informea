@@ -7,16 +7,16 @@ class EcolexCourtDecisionsMigrate extends DynamicMigration {
    */
   public function __construct($arguments) {
     parent::__construct(MigrateGroup::getInstance('Ecolex'));
-    $this->arguments = $arguments;
+    $this->arguments   = $arguments;
     $this->description = 'Import Ecolex court decisions from XML web service (files)';
-    $data_dir = $arguments['data_dir'];
-    $this->source = new EcolexCourtDecisionsMigrateSource($data_dir, array());
-    $this->map = new MigrateSQLMap($this->machineName,
+    $data_dir          = $arguments['data_dir'];
+    $this->source      = new EcolexCourtDecisionsMigrateSource($data_dir, array());
+    $this->map         = new MigrateSQLMap($this->machineName,
       array(
         'id' => array(
-          'type' => 'varchar',
-          'length' => 255,
-          'not null' => TRUE,
+          'type'        => 'varchar',
+          'length'      => 255,
+          'not null'    => TRUE,
           'description' => 'RecId field remote primary key',
         ),
       ),
@@ -47,7 +47,7 @@ class EcolexCourtDecisionsMigrate extends DynamicMigration {
     // $this->addFieldMapping('', 'Internet_Reference');
     $this->addFieldMapping('field_type_of_text', 'Type_of_Text');
     $this->addFieldMapping('field_type_of_text:create_term')
-      ->defaultValue(TRUE);
+         ->defaultValue(TRUE);
     // $this->addFieldMapping('', 'Sub_file_code');
     $this->addFieldMapping('body', 'Abstract');
     $this->addFieldMapping('field_abstract', 'Comment');
@@ -90,16 +90,16 @@ class EcolexCourtDecisionsMigrate extends DynamicMigration {
    *   Source row
    */
   public function prepare($entity, $row) {
-    $migration = Migration::currentMigration();
-    $languages = array_keys(language_list());
+    $migration   = Migration::currentMigration();
+    $languages   = array_keys(language_list());
     $entity_type = $migration->getDestination()->getEntityType();
 
     $entity->field_ecolex_url['en'][0]['url'] = 'http://www.ecolex.org/ecolex/ledge/view/RecordDetails?index=documents&id=' . $row->id;
     $entity->field_faolex_url['en'][0]['url'] = 'http://faolex.fao.org/cgi-bin/faolex.exe?database=faolex&search_type=link&table=result&lang=eng&format_name=@ERALL&rec_id=' . $row->ISIS_MFN;
 
-    $translation_handler = entity_translation_get_handler($entity_type, $entity);
+    $translation_handler  = entity_translation_get_handler($entity_type, $entity);
     $entity->translations = $translation_handler->getTranslations();
-    $entity->language = 'en';
+    $entity->language     = 'en';
     foreach ($languages as $language) {
       $has_translation = FALSE;
 
@@ -139,36 +139,36 @@ class EcolexCourtDecisionsMigrateSource extends EcolexMigrateSource {
    */
   public function fields() {
     return array(
-      'id' => '@todo',
-      'ISIS_MFN' => 'ISIS number',
-      'FaolexId' => 'FAOLEX Identifier',
-      'Date_of_Entry' => '@todo',
-      'Date_of_Modification' => '@todo',
-      'country' => '@todo',
-      'Territorial_Subdivision' => '@todo',
-      'basin' => '@todo',
-      'Title_of_Text' => '@todo',
-      'title' => '@todo',
-      'Date_of_Text' => '@todo',
-      'Date_of_original_Text' => '@todo',
-      'Date_of_Consolidation' => '@todo',
-      'Entry_into_Force' => '@todo',
-      'searchDate' => '@todo',
-      'Related_Web_Site' => '@todo',
-      'Internet_Reference' => '@todo',
-      'link_to_full_text' => '@todo',
-      'Type_of_Text' => '@todo',
-      'Sub_file_code' => '@todo',
-      'Abstract' => '@todo',
-      'Comment' => '@todo',
-      'keyword' => '@todo',
+      'id'                          => '@todo',
+      'ISIS_MFN'                    => 'ISIS number',
+      'FaolexId'                    => 'FAOLEX Identifier',
+      'Date_of_Entry'               => '@todo',
+      'Date_of_Modification'        => '@todo',
+      'country'                     => '@todo',
+      'Territorial_Subdivision'     => '@todo',
+      'basin'                       => '@todo',
+      'Title_of_Text'               => '@todo',
+      'title'                       => '@todo',
+      'Date_of_Text'                => '@todo',
+      'Date_of_original_Text'       => '@todo',
+      'Date_of_Consolidation'       => '@todo',
+      'Entry_into_Force'            => '@todo',
+      'searchDate'                  => '@todo',
+      'Related_Web_Site'            => '@todo',
+      'Internet_Reference'          => '@todo',
+      'link_to_full_text'           => '@todo',
+      'Type_of_Text'                => '@todo',
+      'Sub_file_code'               => '@todo',
+      'Abstract'                    => '@todo',
+      'Comment'                     => '@todo',
+      'keyword'                     => '@todo',
       'International_Organizations' => '@todo',
-      'Record_Language' => '@todo',
-      'Doc_Language' => '@todo',
-      'Repealed' => '@todo',
-      'Serial_Imprint' => '@todo',
-      'Publication_reference' => '@todo',
-      'ecolex_url' => '@todo',
+      'Record_Language'             => '@todo',
+      'Doc_Language'                => '@todo',
+      'Repealed'                    => '@todo',
+      'Serial_Imprint'              => '@todo',
+      'Publication_reference'       => '@todo',
+      'ecolex_url'                  => '@todo',
     );
   }
 
@@ -176,15 +176,15 @@ class EcolexCourtDecisionsMigrateSource extends EcolexMigrateSource {
    * Query the remote source and pull the data.
    */
   protected function readData() {
-    if (!$this->parsed) {
-      $this->data = array();
+    if ( ! $this->parsed) {
+      $this->data   = array();
       $this->parsed = TRUE;
-      $files = file_scan_directory($this->data_dir, '/.*/');
-      $processed = 0;
+      $files        = file_scan_directory($this->data_dir, '/.*/');
+      $processed    = 0;
       foreach ($files as $i => $file) {
         try {
           $docs = @simplexml_load_file($file->uri);
-          if (!$docs) {
+          if ( ! $docs) {
             continue;
           }
           foreach ($docs as $doc) {
@@ -196,10 +196,10 @@ class EcolexCourtDecisionsMigrateSource extends EcolexMigrateSource {
 
             $ob = new stdClass();
             // Copy all attributes
-            $ob->id = $id;
-            $ob->isisMfn = (string) $doc->isisMfn;
-            $ob->id2 = (string) $doc->id2;
-            $ob->dateOfEntry = (string) $doc->dateOfEntry;
+            $ob->id                 = $id;
+            $ob->isisMfn            = (string) $doc->isisMfn;
+            $ob->id2                = (string) $doc->id2;
+            $ob->dateOfEntry        = (string) $doc->dateOfEntry;
             $ob->dateOfModification = (string) $doc->dateOfModification;
 
             $ob->titleOfText['en'] = (string) $doc->titleOfText;
@@ -207,16 +207,16 @@ class EcolexCourtDecisionsMigrateSource extends EcolexMigrateSource {
             $ob->titleOfText['es'] = (string) $doc->titleOfTextSp;
             $ob->titleOfText['de'] = (string) $doc->titleOfTextOther;
             foreach ($ob->titleOfText as $title) {
-              if (!empty($title)) {
+              if ( ! empty( $title )) {
                 $ob->title = $title;
                 break;
               }
             }
 
             $country_name = (string) $doc->country;
-            if (!empty($country_name)) {
+            if ( ! empty( $country_name )) {
               $ob->country = wp_migration_get_country_id_from_name($country_name);
-              if(empty($ob->country)) {
+              if (empty( $ob->country )) {
                 $this->setMessage("Cannot match country: " . $country_name);
               }
             }
@@ -226,16 +226,16 @@ class EcolexCourtDecisionsMigrateSource extends EcolexMigrateSource {
             }
 
             $ob->languageOfDocument = (string) $doc->languageOfDocument;
-            $ob->courtName = (string) $doc->courtName;
+            $ob->courtName          = (string) $doc->courtName;
 
             foreach ($doc->justices as $s) {
               $ob->justices[] = MigrationUtil::decodeHTMLText((string) $s);
             }
 
-            $ob->dateOfText = (string) $doc->dateOfText;
+            $ob->dateOfText      = (string) $doc->dateOfText;
             $ob->referenceNumber = (string) $doc->referenceNumber;
-            $ob->numberOfPages = (string) $doc->numberOfPages;
-            $ob->linkToFullText = (string) $doc->linkToFullText;
+            $ob->numberOfPages   = (string) $doc->numberOfPages;
+            $ob->linkToFullText  = (string) $doc->linkToFullText;
             foreach ($doc->keyword as $s) {
               $ob->keyword[] = (string) $s;
             }
@@ -265,27 +265,27 @@ class EcolexCourtDecisionsMigrateSource extends EcolexMigrateSource {
               }
             }
 
-            $ob->Type_of_Text = (string) $doc->Type_of_Text;
+            $ob->Type_of_Text  = (string) $doc->Type_of_Text;
             $ob->Sub_file_code = (string) $doc->Sub_file_code;
-            $ob->Abstract = (string) $doc->Abstract;
-            $ob->Comment = (string) $doc->Comment;
+            $ob->Abstract      = (string) $doc->Abstract;
+            $ob->Comment       = (string) $doc->Comment;
 
 
             $ob->International_Organizations = (string) $doc->International_Organizations;
-            $ob->Record_Language = (string) $doc->Record_Language;
-            $ob->Doc_Language = (string) $doc->Doc_Language;
-            $ob->Repealed = (string) $doc->Repealed;
-            $ob->Serial_Imprint = (string) $doc->Serial_Imprint;
-            $ob->Publication_reference = (string) $doc->Publication_reference;
+            $ob->Record_Language             = (string) $doc->Record_Language;
+            $ob->Doc_Language                = (string) $doc->Doc_Language;
+            $ob->Repealed                    = (string) $doc->Repealed;
+            $ob->Serial_Imprint              = (string) $doc->Serial_Imprint;
+            $ob->Publication_reference       = (string) $doc->Publication_reference;
 
-            if (empty($ob->title)) {
+            if (empty( $ob->title )) {
               $this->setMessage('Skipping record with empty title:' . $ob->Recid);
               continue;
             }
             $this->data[$id] = $ob;
           }
         }
-        catch (Exception $e) {
+        catch ( Exception $e ) {
           $this->setMessage('Error parsing ' . $e->getMessage());
         }
       }
