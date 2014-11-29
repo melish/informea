@@ -102,6 +102,7 @@ function informea_wysiwyg_default_profiles() {
           'HorizontalRule' => 1,
           'Cut' => 1,
           'Copy' => 1,
+          'Paste' => 1,
           'PasteText' => 1,
           'PasteFromWord' => 1,
           'ShowBlocks' => 1,
@@ -117,7 +118,6 @@ function informea_wysiwyg_default_profiles() {
           'CreateDiv' => 1,
           'Iframe' => 1,
           'Maximize' => 1,
-          'SpellChecker' => 1,
         ),
         'imce' => array(
           'imce' => 1,

@@ -299,7 +299,7 @@ function ecolex_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_ecolex_tags',
-    'label' => 'Subject(s)',
+    'label' => 'Ecolex subject(s)',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -349,10 +349,10 @@ function ecolex_field_default_field_instances() {
     'label' => 'Files',
     'required' => 0,
     'settings' => array(
-      'description_field' => 0,
+      'description_field' => 1,
       'entity_translation_sync' => 0,
-      'file_directory' => '',
-      'file_extensions' => 'txt',
+      'file_directory' => 'field_files',
+      'file_extensions' => 'txt pdf doc docx xls rtf odt',
       'max_filesize' => '',
       'user_register_form' => FALSE,
     ),
@@ -2039,6 +2039,7 @@ function ecolex_field_default_field_instances() {
   t('Ecolex Tags');
   t('Ecolex URL');
   t('Ecolex keyword(s)');
+  t('Ecolex subject(s)');
   t('Entry into force notes');
   t('FAOLEX URL');
   t('Files');
@@ -2055,7 +2056,6 @@ function ecolex_field_default_field_instances() {
   t('Repeals');
   t('Seat of court');
   t('Source language');
-  t('Subject(s)');
   t('Summary');
   t('Territorial subdivision');
   t('The language of the source document (can be different from the node\'s language)');
