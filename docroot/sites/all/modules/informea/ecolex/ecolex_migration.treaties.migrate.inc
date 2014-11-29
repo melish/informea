@@ -24,7 +24,7 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
     );
     $this->destination = new MigrateDestinationNode('treaty');
 
-    $this->addFieldMapping('field_original_record_id', 'Recid');
+    $this->addFieldMapping('field_original_id', 'Recid');
     // $this->addFieldMapping('', 'dateOfEntry');
     // $this->addFieldMapping('', 'dateOfModification');
     $this->addFieldMapping('title', 'title');
