@@ -7,6 +7,7 @@ class EcolexLiteratureMigrate extends DynamicMigration {
    */
   public function __construct($arguments) {
     parent::__construct(MigrateGroup::getInstance('Ecolex'));
+    $this->dependencies = array('EcolexTreaties');
     $this->arguments   = $arguments;
     $this->description = 'Import Ecolex literature from XML web service (files)';
     $data_dir          = $arguments['data_dir'];
@@ -58,7 +59,7 @@ class EcolexLiteratureMigrate extends DynamicMigration {
     $this->addFieldMapping('field_keywords:create_term')->defaultValue(TRUE);
 
     // $this->addFieldMapping('field_related_literature', 'referenceToLiterature');
-    // $this->addFieldMapping('field_treaty', 'referenceToTreaties');
+    $this->addFieldMapping('field_treaty', 'referenceToTreaties');
 
     $this->addFieldMapping('body', 'abstract');
     $this->addFieldMapping('field_territorial_subdivision', 'territorialSubdivision');
@@ -77,43 +78,60 @@ class EcolexLiteratureMigrate extends DynamicMigration {
    * {@inheritdoc}
    */
   public function prepareRow($row) {
+
+    /*
+    @todo
+    foreach($row->referenceToLiteratureIds as $lid) {
+      $id = $this->findRelatedLiterature($lid);
+      if (empty( $id )) {
+        $id = $this->handleSourceMigration($this->generateMachineName(), $lid);
+      }
+      $row->referenceToLiterature[] = $id;
+    }
+    */
+
+    foreach($row->referenceToTreatiesIds as $tid) {
+      $id = $this->findRelatedTreaty($tid);
+      if(!empty($id)) {
+        $row->referenceToTreaties[] = $id;
+      }
+    }
+
     return TRUE;
   }
 
-  /**
-   * Called by destination right before saving.
-   *
-   * @param object $entity
-   *   Entity to save
-   * @param object $row
-   *   Source row
-   */
-  public function prepare($entity, $row) {
-    $migration   = Migration::currentMigration();
-    $languages   = array_keys(language_list());
-    $entity_type = $migration->getDestination()->getEntityType();
-
-    $row->field_ecolex_url['en'][0]['url'] = 'http://www.ecolex.org/ecolex/ledge/view/RecordDetails?index=treaties&id=' . $row->Recid;
-
-    $translation_handler  = entity_translation_get_handler($entity_type, $entity);
-    $entity->translations = $translation_handler->getTranslations();
-    $entity->language     = 'en';
-    foreach ($languages as $language) {
-      $has_translation = FALSE;
-
-      if ( ! empty( $row->abstract[$language] )) {
-        $entity->body[$language][0]['value']  = $row->abstract[$language];
-        $entity->body[$language][0]['format'] = 'full_html';
-        $has_translation                      = TRUE;
-      }
-      if ( ! empty( $row->titleOfText[$language] )) {
-        $entity->title_field[$language][0]['value'] = $row->titleOfText[$language];
-        $has_translation                            = TRUE;
-      }
-      if ($has_translation) {
-        MigrationUtil::setTranslation($translation_handler, $entity, $row, $language);
-      }
+  public static function findRelatedLiterature($id) {
+    $query = new EntityFieldQuery();
+    try {
+      $result = $query
+        ->entityCondition('entity_type', 'literature')
+        ->fieldCondition('field_original_id', 'value', $id, '=');
+      $result = $query->execute();
     }
+    catch(Exception $e) {
+      drupal_set_message(
+        sprintf('Cannot find literature due to error: %s', $e->getMessage()),
+        'warning'
+      );
+    }
+    return !empty($result['node']) ? current(array_keys($result['node'])) : NULL;
+  }
+
+  public static function findRelatedTreaty($id) {
+    $query = new EntityFieldQuery();
+    try {
+      $result = $query
+        ->entityCondition('entity_type', 'treaty')
+        ->fieldCondition('field_original_id', 'value', $id, '=');
+      $result = $query->execute();
+    }
+    catch(Exception $e) {
+      drupal_set_message(
+        sprintf('Cannot find related treaty due to error: %s', $e->getMessage()),
+        'warning'
+      );
+    }
+    return !empty($result['node']) ? current(array_keys($result['node'])) : NULL;
   }
 }
 
@@ -243,10 +261,10 @@ class EcolexLiteratureMigrateSource extends EcolexMigrateSource {
             $ob->keyword[] = (string) $s;
           }
           foreach ($doc->referenceToLiterature as $s) {
-            $ob->referenceToLiterature[] = (string) $s;
+            $ob->referenceToLiteratureIds[] = (string) $s;
           }
           foreach ($doc->referenceToTreaties as $s) {
-            $ob->referenceToTreaties[] = (string) $s;
+            $ob->referenceToTreatiesIds[] = (string) $s;
           }
           $ob->abstract = (string) $doc->abstract;
           foreach ($doc->territorialSubdivision as $s) {
