@@ -27,6 +27,13 @@ function ecolex_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_literature';
+  $strongarm->value = 0;
+  $export['comment_anonymous_literature'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_court_decisions';
   $strongarm->value = '1';
   $export['comment_court_decisions'] = $strongarm;
@@ -48,6 +55,13 @@ function ecolex_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_literature';
+  $strongarm->value = 1;
+  $export['comment_default_mode_literature'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_default_per_page_court_decisions';
   $strongarm->value = '50';
   $export['comment_default_per_page_court_decisions'] = $strongarm;
@@ -58,6 +72,13 @@ function ecolex_strongarm() {
   $strongarm->name = 'comment_default_per_page_legislation';
   $strongarm->value = '50';
   $export['comment_default_per_page_legislation'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_literature';
+  $strongarm->value = '50';
+  $export['comment_default_per_page_literature'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -76,9 +97,23 @@ function ecolex_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_literature';
+  $strongarm->value = 1;
+  $export['comment_form_location_literature'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_legislation';
   $strongarm->value = '1';
   $export['comment_legislation'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_literature';
+  $strongarm->value = '1';
+  $export['comment_literature'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -97,6 +132,13 @@ function ecolex_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_literature';
+  $strongarm->value = '1';
+  $export['comment_preview_literature'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_subject_field_court_decisions';
   $strongarm->value = 1;
   $export['comment_subject_field_court_decisions'] = $strongarm;
@@ -107,6 +149,55 @@ function ecolex_strongarm() {
   $strongarm->name = 'comment_subject_field_legislation';
   $strongarm->value = 1;
   $export['comment_subject_field_legislation'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_literature';
+  $strongarm->value = 1;
+  $export['comment_subject_field_literature'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_enable_revisions_page_node_literature';
+  $strongarm->value = 1;
+  $export['diff_enable_revisions_page_node_literature'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_show_preview_changes_node_literature';
+  $strongarm->value = 1;
+  $export['diff_show_preview_changes_node_literature'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_view_mode_preview_node_literature';
+  $strongarm->value = 'full';
+  $export['diff_view_mode_preview_node_literature'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_comment_filter_literature';
+  $strongarm->value = 0;
+  $export['entity_translation_comment_filter_literature'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_hide_translation_links_literature';
+  $strongarm->value = 1;
+  $export['entity_translation_hide_translation_links_literature'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_node_metadata_literature';
+  $strongarm->value = '0';
+  $export['entity_translation_node_metadata_literature'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -179,6 +270,29 @@ function ecolex_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__literature';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'title' => array(
+          'weight' => '0',
+        ),
+        'path' => array(
+          'weight' => '1',
+        ),
+        'language' => array(
+          'weight' => '0',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_node__literature'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'language_content_type_court_decisions';
   $strongarm->value = '4';
   $export['language_content_type_court_decisions'] = $strongarm;
@@ -189,6 +303,13 @@ function ecolex_strongarm() {
   $strongarm->name = 'language_content_type_legislation';
   $strongarm->value = '4';
   $export['language_content_type_legislation'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_literature';
+  $strongarm->value = '4';
+  $export['language_content_type_literature'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -211,6 +332,15 @@ function ecolex_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_literature';
+  $strongarm->value = array(
+    0 => 'main-menu',
+  );
+  $export['menu_options_literature'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_parent_court_decisions';
   $strongarm->value = 'main-menu:0';
   $export['menu_parent_court_decisions'] = $strongarm;
@@ -221,6 +351,13 @@ function ecolex_strongarm() {
   $strongarm->name = 'menu_parent_legislation';
   $strongarm->value = 'main-menu:0';
   $export['menu_parent_legislation'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_literature';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_literature'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -243,6 +380,15 @@ function ecolex_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_literature';
+  $strongarm->value = array(
+    0 => 'status',
+  );
+  $export['node_options_literature'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_court_decisions';
   $strongarm->value = '0';
   $export['node_preview_court_decisions'] = $strongarm;
@@ -257,6 +403,13 @@ function ecolex_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_literature';
+  $strongarm->value = '0';
+  $export['node_preview_literature'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_court_decisions';
   $strongarm->value = 0;
   $export['node_submitted_court_decisions'] = $strongarm;
@@ -267,6 +420,13 @@ function ecolex_strongarm() {
   $strongarm->name = 'node_submitted_legislation';
   $strongarm->value = 1;
   $export['node_submitted_legislation'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_literature';
+  $strongarm->value = 0;
+  $export['node_submitted_literature'] = $strongarm;
 
   return $export;
 }

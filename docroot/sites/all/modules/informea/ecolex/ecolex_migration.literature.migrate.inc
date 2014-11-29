@@ -10,10 +10,7 @@ class EcolexLiteratureMigrate extends DynamicMigration {
         $this->arguments = $arguments;
         $this->description = 'Import Ecolex literature from XML web service (files)';
         $data_dir = $arguments['data_dir'];
-        $this->source = new EcolexLiteratureMigrateSource($data_dir, array(
-                'skip_count' => TRUE,
-            )
-        );
+        $this->source = new EcolexLiteratureMigrateSource($data_dir, array());
         $this->map = new MigrateSQLMap($this->machineName,
             array(
                 'Recid' => array(
@@ -27,7 +24,7 @@ class EcolexLiteratureMigrate extends DynamicMigration {
         );
         $this->destination = new MigrateDestinationNode('literature');
 
-        $this->addFieldMapping('field_original_record_id', 'Recid');
+        $this->addFieldMapping('field_original_record_id', 'id');
         // $this->addFieldMapping('', 'dateOfEntry');
         // $this->addFieldMapping('', 'dateOfModification');
         $this->addFieldMapping('title', 'title');
@@ -184,7 +181,23 @@ class EcolexLiteratureMigrateSource extends MigrateSource {
      * Return the number of available source records.
      */
     public function computeCount() {
-        return 0;
+      $files = file_scan_directory($this->data_dir, '/.*/');
+      $ret = 0;
+      foreach ($files as $i => $file) {
+        try {
+          $docs = @simplexml_load_file($file->uri);
+          if(!$docs) {
+            continue;
+          }
+          foreach ($docs as $doc) {
+            $ret++;
+          }
+        }
+        catch (Exception $e) {
+          // Swallow
+        }
+      }
+      return $ret;
     }
 
     /**
@@ -226,64 +239,48 @@ class EcolexLiteratureMigrateSource extends MigrateSource {
             foreach($files as $file) {
                 $docs = simplexml_load_file($file->uri);
                 foreach($docs as $doc) {
-                    $id = (string)$doc->Recid;
+                    $id = (string) $doc->id;
 
                     $ob = new stdClass();
-                    $ob->language = 'en';
                     // Copy all attributes
-                    $ob->Recid = $id;
+                    $ob->id = $id;
+                    $ob->id2 = (string) $doc->id2;
+                    $ob->isisMfn = (string) $doc->isisMfn;
                     $ob->dateOfEntry = (string)$doc->dateOfEntry;
                     $ob->dateOfModification = (string)$doc->dateOfModification;
 
-                    $ob->titleOfText['en'] = (string)$doc->titleOfText;
-                    $ob->titleOfText['fr'] = (string)$doc->titleOfTextFr;
-                    $ob->titleOfText['es'] = (string)$doc->titleOfTextSp;
-                    $ob->titleOfText['de'] = (string)$doc->titleOfTextOther;
-                    foreach($ob->titleOfText as $title) {
-                        if(!empty($title)) {
-                            $ob->title = $title;
-                            break;
-                        }
-                    }
+                    foreach($doc->authorM as $s) { $ob->author[] = (string)$s; }
+                    foreach($doc->corpAuthorM as $s) { $ob->author_institution[] = (string)$s; }
 
-                    $ob->typeOfText = (string)$doc->typeOfText;
-                    $ob->jurisdiction = (string)$doc->jurisdiction;
-                    $ob->fieldOfApplication = (string)$doc->fieldOfApplication;
+                    $ob->title = (string)$doc->titleOfText;
+                    $ob->titleOfText = (string)$doc->titleOfText;
 
-                    foreach($doc->subject as $s) { $ob->subject[] = MigrationUtil::decodeHTMLText((string)$s); }
+                    $ob->paperTitleOfText = (string)$doc->paperTitleOfText;
+
                     foreach($doc->languageOfDocument as $s) { $ob->languageOfDocument[] = (string)$s; }
-
-                    $ob->placeOfAdoption = (string)$doc->placeOfAdoption;
-                    $ob->depository = (string)$doc->depository;
+                    $ob->callNo = (string)$doc->callNo;
+                    $ob->isbn = (string)$doc->isbn;
+                    $ob->publisher = (string)$doc->publisher;
+                    $ob->publPlace = (string)$doc->publPlace;
                     $ob->dateOfText = (string)$doc->dateOfText;
-                    $ob->dateOfText = ($ob->dateOfText == '0000-00-00') ? NULL : $ob->dateOfText;
-
-                    $ob->searchDate = (string)$doc->searchDate;
-                    $ob->searchDate = ($ob->searchDate == '0000-00-00') ? NULL : $ob->searchDate;
-
-                    $ob->entryIntoForceDate = (string)$doc->entryIntoForceDate;
-                    $ob->entryIntoForceDate = ($ob->entryIntoForceDate == '0000-00-00') ? NULL : $ob->entryIntoForceDate;
-
-                    $ob->obsolete = (string)$doc->obsolete;
-                    $ob->officialPublication = (string)$doc->officialPublication;
-                    $ob->availableIn = (string)$doc->availableIn;
-                    $ob->linkToFullText = (string)$doc->linkToFullText;
-                    $ob->internetReference = (string)$doc->internetReference;
-                    $ob->amendsTreaty = (string)$doc->amendsTreaty;
-                    $ob->relatedWebSite = (string)$doc->relatedWebSite;
-
-                    $ob->abstract['en'] = (string)$doc->abstract;
-                    $ob->abstract['fr'] = (string)$doc->abstractFr;
-                    $ob->abstract['es'] = (string)$doc->abstractSp;
-
-                    $ob->ecolex_url = 'http://www.ecolex.org/ecolex/ledge/view/RecordDetails?index=treaties&id=' . $id;
-
-                    foreach($doc->citesTreaty as $s) { $ob->citesTreaty[] = (string)$s; }
-                    foreach($doc->keyword as $s) { $ob->keyword[] = (string)$s; }
+                    $ob->serialTitle = (string)$doc->serialTitle;
+                    $ob->volumeNo = (string)$doc->volumeNo;
+                    $ob->collation = (string)$doc->collation;
+                    $ob->typeOfText = (string)$doc->typeOfText;
+                    foreach($doc->subject as $s) { $ob->subject[] = (string)$s; }
+                    foreach($doc->intOrg as $s) { $ob->intOrg[] = (string)$s; }
+                    foreach($doc->country as $s) { $ob->country[] = (string)$s; }
+                    $ob->scope = (string)$doc->scope;
                     foreach($doc->region as $s) { $ob->region[] = (string)$s; }
+                    $ob->linkToFullText = (string)$doc->linkToFullText;
+                    foreach($doc->keyword as $s) { $ob->keyword[] = (string)$s; }
+                    foreach($doc->referenceToLiterature as $s) { $ob->referenceToLiterature[] = (string)$s; }
+                    foreach($doc->referenceToTreaties as $s) { $ob->referenceToTreaties[] = (string)$s; }
+                    $ob->abstract = (string)$doc->abstract;
+                    foreach($doc->territorialSubdivision as $s) { $ob->territorialSubdivision[] = (string)$s; }
 
                     if(empty($ob->title)) {
-                        $this->setMessage('Skipping record with empty title:' . $ob->Recid);
+                        $this->setMessage('Skipping record with empty title:' . $ob->id);
                         continue;
                     }
                     $this->data[$id] = $ob;
