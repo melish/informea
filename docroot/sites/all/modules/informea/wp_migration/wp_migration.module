@@ -217,6 +217,7 @@ function wp_migration_get_country_id($isoCode) {
 function wp_migration_get_country_id_from_name($name) {
   $name = strtolower($name);
   $countries = &drupal_static(__FUNCTION__);
+  static $equivalents = array();
   if(empty($countries)) {
     $query = new EntityFieldQuery();
     $result = $query->entityCondition('entity_type', 'node')
@@ -228,47 +229,68 @@ function wp_migration_get_country_id_from_name($name) {
         $countries[strtolower($row->title)] = $row->nid;
       }
     }
+    $equivalents = array(
+      'anguilla (uk)'                       => 'anguilla',
+      'bolivia (plurinational state of)'    => 'bolivia',
+      'korea, republic of'                  => 'south korea',
+      'micronesia, fed. states'             => 'micronesia',
+      'moldova, republic of'                => 'moldova',
+      'tanzania, un. rep. of'               => 'tanzania',
+      'europa island (france)'              => 'france',
+      'united states of america'            => 'united states',
+      'Russian Federation'                  => 'russia',
+      'Iran, Islamic Republic of'           => 'iran',
+      'Macedonia, FYR'                      => 'macedonia',
+      'Libyan Arab Jamahiriya'              => 'libya',
+      'Gambia'                              => 'gambia, the',
+      'Palestinian Authority'               => 'palestinian territory, occupied',
+      'Syrian Arab Republic'                => 'syria',
+      'Congo, Dem. Rep. of'                 => 'democratic republic of the congo',
+      "Lao, People's Dem. Rep."             => 'laos',
+      'Venezuela, Boliv. Rep. of'           => 'venezuela',
+      'Sao Tome and Principe'               => 'são tomé and príncipe',
+      'British Virgin Islands (UK)'         => 'virgin islands',
+      'Cayman Islands (UK)'                 => 'cayman islands',
+      'Montserrat (UK)'                     => 'montserrat',
+      'Turks and Caicos Islands (UK)'       => 'turks and caicos islands',
+      'Guadeloupe (France)'                 => 'guadeloupe',
+      'Martinique (France)'                 => 'martinique',
+      'Puerto Rico (USA)'                   => 'puerto rico',
+      'French Guiana (France)'              => 'guyana',
+      'Greenland (Denmark)'                 => 'greenland',
+      'Brunei Darussalam'                   => 'brunei',
+      // 'Netherlands Antilles (Netherlands)' => '',
+      'French Polynesia (France)'           => 'french polynesia',
+      'New Caledonia (France)'              => 'new caledonia',
+      'Macau (China)'                       => 'macao',
+      'Pitcairn (UK)'                       => 'pitcairn islands',
+      'Bermuda (UK)'                        => 'bermuda',
+      "Korea, Dem. People's Rep."           => 'north korea',
+      'Virgin Islands (USA)'                => 'us virgin islands',
+      'German Democratic Republic (former)' => 'germany',
+      'Réunion (France)'                    => 'réunion',
+      'Cook Islands (New Zealand)'          => 'cook islands',
+      'Niue (New Zealand)'                  => 'niue',
+      'Tokelau (New Zealand)'               => 'tokelau',
+      'Guam (USA)'                          => 'guam',
+      'Gibraltar (UK)'                      => 'gibraltar',
+      'Svalbard (Norway)'                   => 'svalbard and jan mayen',
+    );
+    foreach ($equivalents as $k => &$v) {
+      $k               = strtolower($k);
+      $equivalents[$k] = $v;
+    }
   }
 
-  switch($name) {
-    case 'anguilla (uk)':
-      $name = 'anguilla';
-      break;
-
-    case 'bolivia (plurinational state of)':
-      $name = 'bolivia';
-      break;
-
-    case 'korea, republic of':
-      $name = 'south korea';
-      break;
-
-    case 'micronesia, fed. states':
-      $name = 'micronesia';
-      break;
-
-    case 'moldova, republic of':
-      $name = 'moldova';
-      break;
-
-    case 'tanzania, un. rep. of':
-      $name = 'tanzania';
-      break;
-
-    case 'europa island (france)':
-      $name = 'france';
-      break;
-
-    case 'united states of america':
-      $name = 'united states';
-      break;
-  }
-
-  if(!empty($name)) {
-    $name = strtolower($name);
-  }
   if(array_key_exists($name, $countries)) {
     return $countries[$name];
+  } else {
+    if(array_key_exists($name, $equivalents)) {
+      $name = $equivalents[$name];
+      if(array_key_exists($name, $countries)) {
+        return $countries[$name];
+      }
+    }
   }
   return NULL;
 }

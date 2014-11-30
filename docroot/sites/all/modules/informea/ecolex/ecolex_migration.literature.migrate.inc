@@ -14,11 +14,11 @@ class EcolexLiteratureMigrate extends DynamicMigration {
     $this->source      = new EcolexLiteratureMigrateSource($data_dir, array());
     $this->map         = new MigrateSQLMap($this->machineName,
       array(
-        'Recid' => array(
+        'id' => array(
           'type'        => 'varchar',
           'length'      => 255,
           'not null'    => TRUE,
-          'description' => 'RecId field remote primary key',
+          'description' => 'ID field remote primary key',
         ),
       ),
       MigrateDestinationNode::getKeySchema()
@@ -90,10 +90,12 @@ class EcolexLiteratureMigrate extends DynamicMigration {
     }
     */
 
-    foreach($row->referenceToTreatiesIds as $tid) {
-      $id = $this->findRelatedTreaty($tid);
-      if(!empty($id)) {
-        $row->referenceToTreaties[] = $id;
+    if(!empty($row->referenceToTreatiesIds)) {
+      foreach ($row->referenceToTreatiesIds as $tid) {
+        $id = $this->findRelatedTreaty($tid);
+        if ( ! empty( $id )) {
+          $row->referenceToTreaties[] = $id;
+        }
       }
     }
 
@@ -206,6 +208,7 @@ class EcolexLiteratureMigrateSource extends EcolexMigrateSource {
       $this->data   = array();
       $this->parsed = TRUE;
       $files        = file_scan_directory($this->data_dir, '/.*/');
+      $missing = array();
       foreach ($files as $file) {
         $docs = simplexml_load_file($file->uri);
         foreach ($docs as $doc) {
@@ -226,11 +229,39 @@ class EcolexLiteratureMigrateSource extends EcolexMigrateSource {
             $ob->author_institution[] = (string) $s;
           }
 
-          $ob->title       = (string) $doc->titleOfText;
+          // Compute the title
+          $title = (string) $doc->titleOfText;
+          if(empty($title)) {
+            $title = (string) $doc->paperTitleOfText;
+          }
+          if(empty($title)) {
+            $title = (string) $doc->titleOfTextSp;
+          }
+          if(empty($title)) {
+            $title = (string) $doc->titleOfTextFr;
+          }
+          if(empty($title)) {
+            $title = (string) $doc->titleOfTextOther;
+          }
+          if(empty($title)) {
+            $title = (string) $doc->paperTitleOfTextOther;
+          }
+          if(empty($title)) {
+            $title = (string) $doc->paperTitleOfTextFr;
+          }
+          if(empty($title)) {
+            $title = (string) $doc->paperTitleOfTextEs;
+          }
+          if(empty($title)) {
+            $title = (string) $doc->serialTitle;
+          }
+          if(empty($title)) {
+            $title = $id;
+          }
+
+          $ob->title       = $title;
           $ob->titleOfText = (string) $doc->titleOfText;
-
           $ob->paperTitleOfText = (string) $doc->paperTitleOfText;
-
           foreach ($doc->languageOfDocument as $s) {
             $ob->languageOfDocument[] = (string) $s;
           }
@@ -250,8 +281,15 @@ class EcolexLiteratureMigrateSource extends EcolexMigrateSource {
             $ob->intOrg[] = (string) $s;
           }
           foreach ($doc->country as $s) {
-            $ob->country[] = (string) $s;
+            $cid = wp_migration_get_country_id_from_name((string)$s);
+            if (empty($cid)) {
+              $missing[] = (string)$s;
+              $this->setMessage("Cannot match country: " . $s);
+            } else {
+              $ob->country[] = $cid;
+            }
           }
+
           $ob->scope = (string) $doc->scope;
           foreach ($doc->region as $s) {
             $ob->region[] = (string) $s;
