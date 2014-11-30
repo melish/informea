@@ -402,7 +402,7 @@ function treaty_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 21,
+      'weight' => 31,
     ),
   );
 
@@ -443,7 +443,56 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 7,
+      'weight' => 16,
+    ),
+  );
+
+  // Exported field_instance: 'node-treaty-field_amends_treaty'
+  $field_instances['node-treaty-field_amends_treaty'] = array(
+    'bundle' => 'treaty',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 53,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_amends_treaty',
+    'label' => 'Amends Treaty',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'use_select2' => FALSE,
+      ),
+      'type' => 'options_select',
+      'weight' => 34,
     ),
   );
 
@@ -484,7 +533,7 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 16,
+      'weight' => 27,
     ),
   );
 
@@ -527,7 +576,7 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 23,
+      'weight' => 33,
     ),
   );
 
@@ -619,6 +668,114 @@ function treaty_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-treaty-field_date_of_entry'
+  $field_instances['node-treaty-field_date_of_entry'] = array(
+    'bundle' => 'treaty',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 49,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_date_of_entry',
+    'label' => 'Date of entry',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'j M Y',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_popup',
+      'weight' => 14,
+    ),
+  );
+
+  // Exported field_instance: 'node-treaty-field_date_of_modification'
+  $field_instances['node-treaty-field_date_of_modification'] = array(
+    'bundle' => 'treaty',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 50,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_date_of_modification',
+    'label' => 'Date of modification',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'j M Y',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_popup',
+      'weight' => 15,
+    ),
+  );
+
   // Exported field_instance: 'node-treaty-field_date_of_text'
   $field_instances['node-treaty-field_date_of_text'] = array(
     'bundle' => 'treaty',
@@ -669,7 +826,7 @@ function treaty_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 14,
+      'weight' => 25,
     ),
   );
 
@@ -710,7 +867,7 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 11,
+      'weight' => 20,
     ),
   );
 
@@ -761,7 +918,7 @@ function treaty_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 20,
+      'weight' => 30,
     ),
   );
 
@@ -816,7 +973,7 @@ function treaty_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 22,
+      'weight' => 32,
     ),
   );
 
@@ -975,7 +1132,7 @@ function treaty_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 10,
+      'weight' => 19,
     ),
   );
 
@@ -1064,7 +1221,7 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 17,
+      'weight' => 28,
     ),
   );
 
@@ -1158,7 +1315,7 @@ function treaty_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 9,
+      'weight' => 18,
     ),
   );
 
@@ -1304,7 +1461,7 @@ function treaty_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 15,
+      'weight' => 26,
     ),
   );
 
@@ -1395,7 +1552,7 @@ function treaty_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 13,
+      'weight' => 22,
     ),
   );
 
@@ -1478,6 +1635,47 @@ function treaty_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'node-treaty-field_official_publication'
+  $field_instances['node-treaty-field_official_publication'] = array(
+    'bundle' => 'treaty',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 51,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_official_publication',
+    'label' => 'Official publication',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 23,
     ),
   );
 
@@ -1603,7 +1801,7 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 12,
+      'weight' => 21,
     ),
   );
 
@@ -1806,6 +2004,61 @@ function treaty_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-treaty-field_related_url'
+  $field_instances['node-treaty-field_related_url'] = array(
+    'bundle' => 'treaty',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_default',
+        'weight' => 52,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_related_url',
+    'label' => 'Related Website',
+    'required' => 0,
+    'settings' => array(
+      'attributes' => array(
+        'class' => '',
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => 'default',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
+      'rel_remove' => 'default',
+      'title' => 'optional',
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
+      'user_register_form' => FALSE,
+      'validate_url' => 0,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 24,
+    ),
+  );
+
   // Exported field_instance: 'node-treaty-field_related_website'
   $field_instances['node-treaty-field_related_website'] = array(
     'bundle' => 'treaty',
@@ -1843,7 +2096,7 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 18,
+      'weight' => 29,
     ),
   );
 
@@ -2250,7 +2503,7 @@ function treaty_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 8,
+      'weight' => 17,
     ),
   );
 
@@ -3280,12 +3533,15 @@ function treaty_field_default_field_instances() {
   t('Abstract');
   t('Address');
   t('Alternative Record ID');
+  t('Amends Treaty');
   t('Available in');
   t('Body');
   t('Cited Treaties');
   t('City');
   t('Country');
   t('Data source');
+  t('Date of entry');
+  t('Date of modification');
   t('Date of text');
   t('Depositary');
   t('Description');
@@ -3307,6 +3563,7 @@ function treaty_field_default_field_instances() {
   t('Obsolete');
   t('Official name');
   t('Official order');
+  t('Official publication');
   t('Order');
   t('Original ID');
   t('Paragraph Indentation');
@@ -3318,6 +3575,7 @@ function treaty_field_default_field_instances() {
   t('Primary treaty of parent organisation');
   t('Ratification XML URL');
   t('Region');
+  t('Related Website');
   t('Related website');
   t('Secondary topic');
   t('Title');

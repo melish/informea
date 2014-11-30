@@ -21,7 +21,7 @@ function treaty_field_group_info() {
   $field_group->parent_name = 'group_treaty_field_group';
   $field_group->data = array(
     'label' => 'Ecolex',
-    'weight' => '20',
+    'weight' => '19',
     'children' => array(
       0 => 'field_abstract',
       1 => 'field_alternative_record_id',
@@ -39,6 +39,11 @@ function treaty_field_group_info() {
       13 => 'field_place_of_adoption',
       14 => 'field_related_website',
       15 => 'field_type_of_text',
+      16 => 'field_date_of_entry',
+      17 => 'field_date_of_modification',
+      18 => 'field_official_publication',
+      19 => 'field_related_url',
+      20 => 'field_amends_treaty',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
