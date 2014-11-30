@@ -25,8 +25,8 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
     $this->destination = new MigrateDestinationNode('treaty');
 
     $this->addFieldMapping('field_original_id', 'Recid');
-    // $this->addFieldMapping('', 'dateOfEntry');
-    // $this->addFieldMapping('', 'dateOfModification');
+    $this->addFieldMapping('field_date_of_entry', 'dateOfEntry');
+    $this->addFieldMapping('field_date_of_modification', 'dateOfModification');
     $this->addFieldMapping('title', 'title');
     $this->addFieldMapping('title_field', 'titleOfText');
 
@@ -52,15 +52,15 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
     $this->addFieldMapping('field_date_of_text', 'dateOfText');
     // $this->addFieldMapping('', 'searchDate');
     $this->addFieldMapping('field_entry_into_force', 'entryIntoForceDate');
-    // $this->addFieldMapping('', 'obsolete');
-    // $this->addFieldMapping('', 'officialPublication');
+    $this->addFieldMapping('field_obsolete', 'obsolete');
+    $this->addFieldMapping('field_official_publication', 'officialPublication');
     $this->addFieldMapping('field_available_in', 'availableIn');
     $this->addFieldMapping('field_treaty_text_url', 'linkToFullText');
     $this->addFieldMapping('field_treaty_website_url', 'internetReference');
     $this->addFieldMapping('body', 'abstract');
-    // $this->addFieldMapping('', 'amendsTreaty');
-    // $this->addFieldMapping('', 'relatedWebSite');
-    // $this->addFieldMapping('', 'citesTreaty');
+    // $this->addFieldMapping('field_amends_treaty', 'amendsTreaty');
+    $this->addFieldMapping('field_related_url', 'relatedWebSite');
+    // $this->addFieldMapping('field_cited_treaties', 'citesTreaty');
 
     $this->addFieldMapping('field_region', 'region');
     $this->addFieldMapping('field_region:create_term')->defaultValue(TRUE);
@@ -270,7 +270,7 @@ class EcolexTreatyMigrateSource extends MigrateSource {
           $ob->entryIntoForceDate = (string) $doc->entryIntoForceDate;
           $ob->entryIntoForceDate = ( $ob->entryIntoForceDate == '0000-00-00' ) ? NULL : $ob->entryIntoForceDate;
 
-          $ob->obsolete            = (string) $doc->obsolete;
+          $ob->obsolete            = ((string) $doc->obsolete == 'true' ) ? 1 : 0;
           $ob->officialPublication = (string) $doc->officialPublication;
           $ob->availableIn         = (string) $doc->availableIn;
           $ob->linkToFullText      = (string) $doc->linkToFullText;
@@ -282,8 +282,6 @@ class EcolexTreatyMigrateSource extends MigrateSource {
           $ob->abstract['fr'] = (string) $doc->abstractFr;
           $ob->abstract['es'] = (string) $doc->abstractSp;
 
-          $ob->ecolex_url = 'http://www.ecolex.org/ecolex/ledge/view/RecordDetails?index=treaties&id=' . $id;
-
           foreach ($doc->citesTreaty as $s) {
             $ob->citesTreaty[] = (string) $s;
           }
@@ -293,6 +291,8 @@ class EcolexTreatyMigrateSource extends MigrateSource {
           foreach ($doc->region as $s) {
             $ob->region[] = (string) $s;
           }
+
+          $ob->ecolex_url = 'http://www.ecolex.org/ecolex/ledge/view/RecordDetails?index=treaties&id=' . $id;
 
           if (empty( $ob->title )) {
             $this->setMessage('Skipping record with empty title:' . $ob->Recid);
