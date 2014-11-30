@@ -65,6 +65,7 @@ class EcolexLiteratureMigrate extends DynamicMigration {
     $this->addFieldMapping('field_territorial_subdivision', 'territorialSubdivision');
 
     $this->addFieldMapping('uid')->defaultValue(1);
+    $this->addFieldMapping('language')->defaultValue('en');
   }
 
   /**
@@ -89,16 +90,16 @@ class EcolexLiteratureMigrate extends DynamicMigration {
       $row->referenceToLiterature[] = $id;
     }
     */
-
     if(!empty($row->referenceToTreatiesIds)) {
       foreach ($row->referenceToTreatiesIds as $tid) {
         $id = $this->findRelatedTreaty($tid);
-        if ( ! empty( $id )) {
+        if (!empty($id)) {
           $row->referenceToTreaties[] = $id;
+        } else {
+          $this->saveMessage("Cannot find treaty with original ID: $tid");
         }
       }
     }
-
     return TRUE;
   }
 
@@ -106,9 +107,11 @@ class EcolexLiteratureMigrate extends DynamicMigration {
     $query = new EntityFieldQuery();
     try {
       $result = $query
-        ->entityCondition('entity_type', 'literature')
-        ->fieldCondition('field_original_id', 'value', $id, '=');
-      $result = $query->execute();
+        ->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'literature')
+        ->fieldCondition('field_original_id', 'value', $id, '=')
+        ->execute();
+      return !empty($result['node']) ? current(array_keys($result['node'])) : NULL;
     }
     catch(Exception $e) {
       drupal_set_message(
@@ -116,16 +119,18 @@ class EcolexLiteratureMigrate extends DynamicMigration {
         'warning'
       );
     }
-    return !empty($result['node']) ? current(array_keys($result['node'])) : NULL;
+    return NULL;
   }
 
   public static function findRelatedTreaty($id) {
     $query = new EntityFieldQuery();
     try {
       $result = $query
-        ->entityCondition('entity_type', 'treaty')
-        ->fieldCondition('field_original_id', 'value', $id, '=');
-      $result = $query->execute();
+        ->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'treaty')
+        ->fieldCondition('field_original_id', 'value', $id, '=')
+        ->execute();
+      return !empty($result['node']) ? current(array_keys($result['node'])) : NULL;
     }
     catch(Exception $e) {
       drupal_set_message(
@@ -133,7 +138,7 @@ class EcolexLiteratureMigrate extends DynamicMigration {
         'warning'
       );
     }
-    return !empty($result['node']) ? current(array_keys($result['node'])) : NULL;
+    return NULL;
   }
 }
 
