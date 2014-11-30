@@ -13,6 +13,7 @@ class MigrateNationalFocalPoints extends DynamicMigration {
   public function __construct($arguments) {
     parent::__construct();
 
+    $this->dependencies = array('Treaties');
     $this->description = 'Import InforMEA national focal points';
     $this->map = new MigrateSQLMap($this->machineName,
       array(
@@ -42,12 +43,13 @@ class MigrateNationalFocalPoints extends DynamicMigration {
         }
       }
 
-      if(empty($this->treaty_assignments)) {
+      if(empty($this->treaty_assignments) && !empty($this->treaties)) {
         $query = Database::getConnection('default', 'for_migration')
           ->select('ai_people_treaty', 'c')->fields('c')->execute();
         $rows = $query->fetchAll();
         foreach($rows as $row) {
-          $this->treaty_assignments[$row->id_people][] = $this->treaties[$row->id_treaty];
+          $this->treaty_assignments[$row->id_people][]
+            = $this->treaties[$row->id_treaty];
         }
       }
     } catch(Exception $e) {
