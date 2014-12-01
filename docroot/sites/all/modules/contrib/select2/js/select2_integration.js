@@ -138,7 +138,8 @@
       var skip_element = false;
 
       if (id != undefined) {
-        if (Drupal.settings.select_2.excludes.by_id.values.indexOf(id) >= 0) {
+        var excludeIds = Drupal.settings.select_2.excludes.by_id.values;
+        if ($.inArray(id, excludeIds) >= 0) {
           return;
         } else if (Drupal.settings.select_2.excludes.by_id.reg_exs.length > 0) {
           // check by regexs for ids
@@ -314,11 +315,12 @@
           $element.select2(options);
 
           // need fix select2 container width
-          if ($element.select2("container").width() > 0 && options.width != undefined && (options.width == 'element' || options.width == 'resolve')) {
+          if ($element.select2("container").width() > 0 && options.allowClear
+              && options.width != undefined
+              && (options.width == 'element' || options.width == 'resolve')) {
 
             var cur_width = $element.select2("container").width();
-            $element.select2("container").width(cur_width + 34);
-
+            $element.select2("container").width(cur_width + 15);
           }
 
           if ($element.hasClass('error')) {
