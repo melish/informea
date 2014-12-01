@@ -128,4 +128,5 @@ features_exclude[field_base][field_url] = field_url
 features_exclude[field_base][field_country] = field_country
 features_exclude[field_base][field_latitude] = field_latitude
 features_exclude[field_base][field_longitude] = field_longitude
+mtime = 1417434688
 project path = sites/all/modules/informea

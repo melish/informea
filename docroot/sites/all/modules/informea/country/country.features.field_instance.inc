@@ -133,6 +133,50 @@ function country_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-country-field_eu_member'
+  $field_instances['node-country-field_eu_member'] = array(
+    'bundle' => 'country',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 5,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_eu_member',
+    'label' => 'EU Member',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 6,
+    ),
+  );
+
   // Exported field_instance: 'node-country-title_field'
   $field_instances['node-country-title_field'] = array(
     'bundle' => 'country',
@@ -179,6 +223,7 @@ function country_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('EU Member');
   t('ISO alpha-2 code');
   t('ISO alpha-3 code');
   t('Name');

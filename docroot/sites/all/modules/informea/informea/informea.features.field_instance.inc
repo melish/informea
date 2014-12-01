@@ -10,81 +10,6 @@
 function informea_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'country-country-field_country_party_count'
-  $field_instances['country-country-field_country_party_count'] = array(
-    'bundle' => 'country',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'country',
-    'field_name' => 'field_country_party_count',
-    'label' => 'Party count',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'max' => '',
-      'min' => 0,
-      'prefix' => '',
-      'suffix' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => -13,
-    ),
-  );
-
-  // Exported field_instance: 'country-country-field_is_eu_member'
-  $field_instances['country-country-field_is_eu_member'] = array(
-    'bundle' => 'country',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'country',
-    'field_name' => 'field_is_eu_member',
-    'label' => 'EU member',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'display_label' => 0,
-      ),
-      'type' => 'options_onoff',
-      'weight' => -12,
-    ),
-  );
-
   // Exported field_instance: 'node-article-body'
   $field_instances['node-article-body'] = array(
     'bundle' => 'article',
@@ -902,6 +827,7 @@ function informea_field_default_field_instances() {
     'label' => 'GEG Tools URL',
     'required' => 0,
     'settings' => array(
+      'absolute_url' => 1,
       'attributes' => array(
         'class' => '',
         'configurable_title' => 0,
@@ -916,6 +842,7 @@ function informea_field_default_field_instances() {
       'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
       'title' => 'optional',
+      'title_label_use_field_label' => FALSE,
       'title_maxlength' => 128,
       'title_value' => '',
       'url' => 0,
@@ -1232,7 +1159,6 @@ function informea_field_default_field_instances() {
   t('Agrovoc terms');
   t('Body');
   t('Description');
-  t('EU member');
   t('Ecolex terms');
   t('Enter a comma-separated list of words to describe your content.');
   t('GEG Tools URL');
@@ -1240,7 +1166,6 @@ function informea_field_default_field_instances() {
   t('Image');
   t('Name');
   t('Order');
-  t('Party count');
   t('Popularity');
   t('Reference URL');
   t('Substantive');
