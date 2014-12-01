@@ -4,7 +4,6 @@ core = 7.x
 package = InforMEA
 version = 7.x-0.6
 project = meeting
-dependencies[] = countries
 dependencies[] = country_data
 dependencies[] = country_deliverable
 dependencies[] = ctools

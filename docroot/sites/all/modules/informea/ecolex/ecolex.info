@@ -3,7 +3,6 @@ core = 7.x
 package = Informea
 version = 7.x-0.3
 project = ecolex
-dependencies[] = countries
 dependencies[] = ctools
 dependencies[] = date
 dependencies[] = entityreference

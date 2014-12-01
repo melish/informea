@@ -4,7 +4,6 @@ package = InforMEA
 version = 7.x-1.0
 project = ecolex_migration
 dependencies[] = migrate
-dependencies[] = countries
 files[] = ecolex_migration.courtdecisions.migrate.inc
 files[] = ecolex_migration.legislation.migrate.inc
 files[] = ecolex_migration.literature.migrate.inc
