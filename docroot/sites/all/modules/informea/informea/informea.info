@@ -193,5 +193,5 @@ features[variable][] = views_ui_show_sql_query_where
 features[views_view][] = the_content
 features[wysiwyg][] = filtered_html
 features[wysiwyg][] = full_html
-mtime = 1414423696
+mtime = 1417365924
 project path = sites/all/modules/informea
