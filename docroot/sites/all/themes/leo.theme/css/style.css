@@ -57,28 +57,63 @@
   background-position: 8px 0;
 }
 
+#header-banner a:hover .icon-cc,
+#header-banner a:focus .icon-cc {
+  background-position: 8px -38px;
+}
+
 #header-banner .icon-dnc {
   background-position: -47px 0;
+}
+
+#header-banner a:hover .icon-dnc,
+#header-banner a:focus .icon-dnc {
+  background-position: -47px -38px;
 }
 
 #header-banner .icon-em {
   background-position: -95px 0;
 }
 
+#header-banner a:hover .icon-em,
+#header-banner a:focus .icon-em {
+  background-position: -95px -38px;
+}
+
 #header-banner .icon-eg {
   background-position: -138px 0;
+}
+
+#header-banner a:hover .icon-eg,
+#header-banner a:focus .icon-eg {
+  background-position: -138px -38px;
 }
 
 #header-banner .icon-hs {
   background-position: -193px 0;
 }
 
+#header-banner a:hover .icon-hs,
+#header-banner a:focus .icon-hs {
+  background-position: -193px -38px;
+}
+
 #header-banner .icon-re {
   background-position: -246px 0;
 }
 
+#header-banner a:hover .icon-re,
+#header-banner a:focus .icon-re {
+  background-position: -246px -38px;
+}
+
 #header-banner .icon-eur {
   background-position: -303px 0;
+}
+
+#header-banner a:hover .icon-eur,
+#header-banner a:focus .icon-eur {
+  background-position: -303px -38px;
 }
 
 .footer {
