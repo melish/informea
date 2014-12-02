@@ -6,15 +6,15 @@
 ?>
 <header role="banner">
   <div id="header-nav" class="clearfix">
-    <ul id="header-languages" class="list-inline">
+    <ul id="header-nav-languages" class="list-inline">
       <li><?php print l(t('العربية'), 'arabic'); ?></li>
       <li><?php print l(t('中文'), 'chinese'); ?></li>
       <li><?php print l(t('English'), '<front>'); ?></li>
       <li><?php print l(t('Français'), 'french'); ?></li>
       <li><?php print l(t('Pусский'), 'russian'); ?></li>
       <li><?php print l(t('Español'), 'spanish'); ?></li>
-    </ul><!-- #header-languages .list-inline -->
-    <ul id="header-links" class="list-inline">
+    </ul><!-- #header-nav-languages .list-inline -->
+    <ul id="header-nav-quicklinks" class="list-inline">
       <li><?php print l(t('About'), 'about'); ?></li>
       <li><?php print l(t('Calendar'), 'ecalendar'); ?></li>
       <li><?php print l(t('Multimedia'), 'newscentre/multimedia'); ?></li>
@@ -22,7 +22,7 @@
       <li><?php print l(t('Outreach'), 'outreach'); ?></li>
       <li><?php print l(t('Publications'), 'publications'); ?></li>
       <li><?php print l(t('Vacancies'), 'vacancies'); ?></li>
-    </ul><!-- #header-links .list-inline -->
+    </ul><!-- #header-nav-quicklinks .list-inline -->
   </div><!-- #header-nav .clearfix -->
   <div id="header-unep" class="clearfix">
     <?php if ($logo): ?>
