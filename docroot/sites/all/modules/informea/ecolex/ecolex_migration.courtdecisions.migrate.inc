@@ -22,49 +22,51 @@ class EcolexCourtDecisionsMigrate extends DynamicMigration {
       ),
       MigrateDestinationNode::getKeySchema()
     );
-    $this->destination = new MigrateDestinationNode('legislation');
+    $this->destination = new MigrateDestinationNode('court_decisions');
 
+    $this->addFieldMapping('field_isis_number', 'isisMfn');
     $this->addFieldMapping('field_original_id', 'id');
-    // $this->addFieldMapping('', 'ISIS_MFN');
-    $this->addFieldMapping('field_faolex_id', 'FaolexId');
-    // $this->addFieldMapping('', 'Date_of_Entry');
-    // $this->addFieldMapping('', 'Date_of_Modification');
+    $this->addFieldMapping('field_alternative_record_id', 'id2');
+    $this->addFieldMapping('field_date_of_entry', 'dateOfEntry');
+    $this->addFieldMapping('field_date_of_modification', 'dateOfModification');
+    $this->addFieldMapping('title', 'title');
+    $this->addFieldMapping('title_field', 'titleOfText');
+
+    $this->addFieldMapping('field_type_of_text', 'typeOfText');
+    $this->addFieldMapping('field_type_of_text:create_term')->defaultValue(TRUE);
 
     $this->addFieldMapping('field_country', 'country');
-    // $this->addFieldMapping('', 'Territorial_Subdivision');
-    // $this->addFieldMapping('', 'basin');
 
-    $this->addFieldMapping('title', 'title');
-    $this->addFieldMapping('title_field', 'Title_of_Text');
+    $this->addFieldMapping('field_ecolex_tags', 'subject');
+    $this->addFieldMapping('field_ecolex_tags:create_term')->defaultValue(TRUE);
 
-    $this->addFieldMapping('field_date_of_text', 'Date_of_Text');
-    $this->addFieldMapping('field_date_of_original_text', 'Date_of_original_Text');
-    $this->addFieldMapping('field_date_of_consolidation', 'Date_of_Consolidation');
-    // $this->addFieldMapping('field_entry_into_force', 'Entry_into_Force');
-    // $this->addFieldMapping('', 'searchDate');
-    $this->addFieldMapping('field_avaiable_web_site', 'Related_Web_Site');
-    $this->addFieldMapping('field_url', 'link_to_full_text');
-    // $this->addFieldMapping('', 'Internet_Reference');
-    $this->addFieldMapping('field_type_of_text', 'Type_of_Text');
-    $this->addFieldMapping('field_type_of_text:create_term')
-         ->defaultValue(TRUE);
-    // $this->addFieldMapping('', 'Sub_file_code');
-    $this->addFieldMapping('body', 'Abstract');
-    $this->addFieldMapping('field_abstract', 'Comment');
+    $this->addFieldMapping('field_language_of_document', 'languageOfDocument');
+    $this->addFieldMapping('field_court_name', 'courtName');
+    $this->addFieldMapping('field_court_decision_subdivision', 'subdivision');
+    $this->addFieldMapping('field_justices', 'justices');
+    $this->addFieldMapping('field_date_of_text', 'dateOfText');
+    $this->addFieldMapping('field_reference_number', 'referenceNumber');
+    $this->addFieldMapping('field_number_of_pages', 'numberOfPages');
 
-    //@todo: Integers instead of real terms.
-    #$this->addFieldMapping('field_keywords', 'keyword');
-    #$this->addFieldMapping('field_keywords:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_keywords', 'keyword');
+    $this->addFieldMapping('field_keywords:create_term')->defaultValue(TRUE);
 
-    // $this->addFieldMapping('', 'International_Organizations');
-    // $this->addFieldMapping('', 'Record_Language');
-    // $this->addFieldMapping('', 'Doc_Language');
-    // $this->addFieldMapping('field_repeals', 'Repealed');
-    // $this->addFieldMapping('', 'Serial_Imprint');
-    // $this->addFieldMapping('', 'Publication_reference');
+    $this->addFieldMapping('field_related_url', 'relatedWebSite');
 
+    $this->addFieldMapping('field_territorial_subdivision', 'territorialSubdivision');
+    $this->addFieldMapping('field_territorial_subdivision:create_term')->defaultValue(TRUE);
 
-    // see prepare() $this->addFieldMapping('field_ecolex_url', 'ecolex_url');
+    $this->addFieldMapping('field_internet_reference_url', 'internetReference');
+    $this->addFieldMapping('field_url', 'linkToFullText');
+
+    // @todo: decode entities and make migration dependent on legislation.
+    //$this->addFieldMapping('field_reference_to_legislation', 'referenceToNationalLegislation');
+    $this->addFieldMapping('field_abstract', 'abstract');
+    $this->addFieldMapping('field_faolex_url', 'urlToFaolexDocument');
+    $this->addFieldMapping('field_ecolex_url', 'urlToEcolexRecord');
+
+    $this->addFieldMapping('field_ecolex_decision_status', 'statusOfDecision');
+    $this->addFieldMapping('field_ecolex_decision_status:create_term')->defaultValue(TRUE);
   }
 
   /**
@@ -93,9 +95,6 @@ class EcolexCourtDecisionsMigrate extends DynamicMigration {
     $migration   = Migration::currentMigration();
     $languages   = array_keys(language_list());
     $entity_type = $migration->getDestination()->getEntityType();
-
-    $entity->field_ecolex_url['en'][0]['url'] = 'http://www.ecolex.org/ecolex/ledge/view/RecordDetails?index=documents&id=' . $row->id;
-    $entity->field_faolex_url['en'][0]['url'] = 'http://faolex.fao.org/cgi-bin/faolex.exe?database=faolex&search_type=link&table=result&lang=eng&format_name=@ERALL&rec_id=' . $row->ISIS_MFN;
 
     $translation_handler  = entity_translation_get_handler($entity_type, $entity);
     $entity->translations = $translation_handler->getTranslations();
@@ -139,36 +138,34 @@ class EcolexCourtDecisionsMigrateSource extends EcolexMigrateSource {
    */
   public function fields() {
     return array(
-      'id'                          => '@todo',
-      'ISIS_MFN'                    => 'ISIS number',
-      'FaolexId'                    => 'FAOLEX Identifier',
-      'Date_of_Entry'               => '@todo',
-      'Date_of_Modification'        => '@todo',
-      'country'                     => '@todo',
-      'Territorial_Subdivision'     => '@todo',
-      'basin'                       => '@todo',
-      'Title_of_Text'               => '@todo',
-      'title'                       => '@todo',
-      'Date_of_Text'                => '@todo',
-      'Date_of_original_Text'       => '@todo',
-      'Date_of_Consolidation'       => '@todo',
-      'Entry_into_Force'            => '@todo',
-      'searchDate'                  => '@todo',
-      'Related_Web_Site'            => '@todo',
-      'Internet_Reference'          => '@todo',
-      'link_to_full_text'           => '@todo',
-      'Type_of_Text'                => '@todo',
-      'Sub_file_code'               => '@todo',
-      'Abstract'                    => '@todo',
-      'Comment'                     => '@todo',
-      'keyword'                     => '@todo',
-      'International_Organizations' => '@todo',
-      'Record_Language'             => '@todo',
-      'Doc_Language'                => '@todo',
-      'Repealed'                    => '@todo',
-      'Serial_Imprint'              => '@todo',
-      'Publication_reference'       => '@todo',
-      'ecolex_url'                  => '@todo',
+      'isisMfn'                     => 'ISIS number',
+      'id'                          => 'Primary Key',
+      'id2'                         => 'Alternative identifier',
+      'dateOfEntry'                 => 'Date of entry into the system',
+      'dateOfModification'          => 'Date of last modification',
+      'title'                       => 'English record title',
+      'titleOfText'                 => 'Record title',
+      'typeOfText'                  => 'Type of court decision document',
+      'country'                     => 'Country associated with this record',
+      'subject'                     => 'Ecolex vocabulary tags',
+      'languageOfDocument'          => 'Language for attached document',
+      'courtName'                   => 'Court name for the decision',
+      'subdivision'                 => 'Court subdivision (?)',
+      'justices'                    => 'Justices',
+      'dateOfText'                  => 'Record date',
+      'referenceNumber'             => 'Document reference number',
+      'numberOfPages'               => 'Document number of pages',
+      'keyword'                     => 'Ecolex keywords',
+      'relatedWebSite'              => 'Related website',
+      'territorialSubdivision'      => 'Territory',
+      'basin'                       => 'Geographical basin',
+      'internetReference'           => 'URL',
+      'linkToFullText'              => 'Link to Ecolex document',
+      'statusOfDecision'            => 'Court decision status',
+      'referenceToNationalLegislation' => 'Reference to national legislation record',
+      'abstract'                    => 'Document abstract',
+      'urlToFaolexDocument'         => 'Link to FAOLEX',
+      'urlToEcolexRecord'           => 'Link to Ecolex',
     );
   }
 
@@ -224,59 +221,48 @@ class EcolexCourtDecisionsMigrateSource extends EcolexMigrateSource {
             foreach ($doc->subject as $s) {
               $ob->subject[] = MigrationUtil::decodeHTMLText((string) $s);
             }
-
             $ob->languageOfDocument = (string) $doc->languageOfDocument;
             $ob->courtName          = (string) $doc->courtName;
-
+            $ob->subdivision = (string) $doc->subdivision;
             foreach ($doc->justices as $s) {
               $ob->justices[] = MigrationUtil::decodeHTMLText((string) $s);
             }
-
             $ob->dateOfText      = (string) $doc->dateOfText;
             $ob->referenceNumber = (string) $doc->referenceNumber;
             $ob->numberOfPages   = (string) $doc->numberOfPages;
-            $ob->linkToFullText  = (string) $doc->linkToFullText;
             foreach ($doc->keyword as $s) {
               $ob->keyword[] = (string) $s;
             }
+            $ob->relatedWebSite       = (string) $doc->relatedWebSite;
+            $ob->territorialSubdivision = (string) $doc->territorialSubdivision;
+            $ob->basin = (string) $doc->basin;
 
-            $ob->abstract['en'] = (string) $doc->abstract;
-            $ob->abstract['fr'] = (string) $doc->abstractFr;
-            $ob->abstract['es'] = (string) $doc->abstractSp;
-
+            $ob->internetReference['en'] = (string) $doc->internetReference;
             $ob->internetReference['es'] = (string) $doc->internetReferenceSp;
 
+            $ob->linkToFullText  = (string) $doc->linkToFullText;
 
-            $filename = (string) $doc->link_to_full_text;
-            if (strpos($filename, '.pdf')) {
-              $ob->link_to_full_text = 'http://faolex.fao.org/docs/pdf/' . $filename;
-            }
-            else {
-              if (strpos($filename, '.doc')) {
-                $ob->link_to_full_text = 'http://faolex.fao.org/docs/texts/' . $filename;
-              }
-              else {
-                if (strpos($filename, '.html')) {
-                  $ob->link_to_full_text = 'http://faolex.fao.org/html/' . $filename;
-                }
-                else {
-                  $ob->link_to_full_text = $filename;
-                }
-              }
+            $ob->statusOfDecision  = (string) $doc->statusOfDecision;
+
+            foreach ($doc->referenceToNationalLegislation as $s) {
+              $ob->referenceToNationalLegislation[] = (string) $s;
             }
 
-            $ob->Type_of_Text  = (string) $doc->Type_of_Text;
-            $ob->Sub_file_code = (string) $doc->Sub_file_code;
-            $ob->Abstract      = (string) $doc->Abstract;
-            $ob->Comment       = (string) $doc->Comment;
+            $ob->abstract['en'] = '';
+            foreach ($doc->abstract as $s) {
+              $ob->abstract['en'] .= (string) $s . "\n";
+            }
+            $ob->abstract['fr'] = (string) $doc->abstractFr;
+            $ob->abstract['es'] = (string) $doc->abstractSp;
+            $ob->urlToFaolexDocument = sprintf(
+              'http://faolex.fao.org/cgi-bin/faolex.exe?database=faolex&search_type=link&table=result&lang=eng&format_name=@ERALL&rec_id=%s',
+              $ob->isisMfn
+            );
+            $ob->urlToEcolexRecord = sprintf(
+              'http://www.ecolex.org/ecolex/ledge/view/RecordDetails?index=documents&id=%s',
+              $ob->id
+            );
 
-
-            $ob->International_Organizations = (string) $doc->International_Organizations;
-            $ob->Record_Language             = (string) $doc->Record_Language;
-            $ob->Doc_Language                = (string) $doc->Doc_Language;
-            $ob->Repealed                    = (string) $doc->Repealed;
-            $ob->Serial_Imprint              = (string) $doc->Serial_Imprint;
-            $ob->Publication_reference       = (string) $doc->Publication_reference;
 
             if (empty( $ob->title )) {
               $this->setMessage('Skipping record with empty title:' . $ob->Recid);
