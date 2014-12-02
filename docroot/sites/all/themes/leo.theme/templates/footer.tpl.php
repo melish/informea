@@ -5,7 +5,7 @@
  */
 ?>
 <footer id="footer" class="clearfix">
-  <ul id="footer-links" class="list-inline">
+  <ul id="footer-quicklinks" class="list-inline">
     <li><a href="<?php print url('<front>'); ?>"><?php print theme('image', array('path' => $directory . '/img/logo-footer.jpg')); ?></a></li>
     <li class="hidden-xs hidden-sm">
       <?php print t('Copyright &copy; United Nations Environment Programme'); ?> |
@@ -17,7 +17,7 @@
       <?php print l(t('Site Locator'), NULL); ?> |
       <?php print l(t('UNEP Intranet'), NULL); ?>
     </li><!-- .hidden-xs .hidden-sm -->
-  </ul><!-- #footer-list .list-inline -->
+  </ul><!-- #footer-quicklinks .list-inline -->
   <ul id="footer-social-media" class="list-inline">
     <li>
       <strong><?php print t('Follow UNEP:'); ?></strong>
