@@ -2,11 +2,24 @@
 
 class EcolexCourtDecisionsMigrate extends DynamicMigration {
 
+  protected $timezone = NULL;
+
+  function preImport() {
+    $this->timezone = date_default_timezone();
+    date_default_timezone_set('UTC');
+  }
+
+  function postImport() {
+    date_default_timezone_set($this->timezone);
+  }
+
   /**
    * {@inheritdoc}
    */
   public function __construct($arguments) {
     parent::__construct(MigrateGroup::getInstance('Ecolex'));
+    // @todo: Preserve the dates intact as in XML file.
+    date_default_timezone_set('UTC');
     $this->arguments   = $arguments;
     $this->description = 'Import Ecolex court decisions from XML web service (files)';
     $data_dir          = $arguments['data_dir'];
@@ -22,15 +35,20 @@ class EcolexCourtDecisionsMigrate extends DynamicMigration {
       ),
       MigrateDestinationNode::getKeySchema()
     );
-    $this->destination = new MigrateDestinationNode('court_decisions');
+    $this->destination = new MigrateDestinationNode(
+      'court_decisions',
+      array('language' => 'en', 'text_format' => 'full_html')
+    );
+
+    $this->addFieldMapping('language')->defaultValue('en');
 
     $this->addFieldMapping('field_isis_number', 'isisMfn');
     $this->addFieldMapping('field_original_id', 'id');
     $this->addFieldMapping('field_alternative_record_id', 'id2');
     $this->addFieldMapping('field_date_of_entry', 'dateOfEntry');
     $this->addFieldMapping('field_date_of_modification', 'dateOfModification');
-    $this->addFieldMapping('title', 'title');
-    $this->addFieldMapping('title_field', 'titleOfText');
+    $this->addFieldMapping('title', 'title');//@TODO
+    // $this->addFieldMapping('title_field', 'titleOfText');//@TODO
 
     $this->addFieldMapping('field_type_of_text', 'typeOfText');
     $this->addFieldMapping('field_type_of_text:create_term')->defaultValue(TRUE);
@@ -40,11 +58,14 @@ class EcolexCourtDecisionsMigrate extends DynamicMigration {
     $this->addFieldMapping('field_ecolex_tags', 'subject');
     $this->addFieldMapping('field_ecolex_tags:create_term')->defaultValue(TRUE);
 
-    $this->addFieldMapping('field_language_of_document', 'languageOfDocument');
+    $this->addFieldMapping('field_source_language', 'languageOfDocument');
     $this->addFieldMapping('field_court_name', 'courtName');
     $this->addFieldMapping('field_court_decision_subdivision', 'subdivision');
     $this->addFieldMapping('field_justices', 'justices');
+
     $this->addFieldMapping('field_date_of_text', 'dateOfText');
+    $this->addFieldMapping('field_date_of_text:timezone')->defaultValue('UTC');
+
     $this->addFieldMapping('field_reference_number', 'referenceNumber');
     $this->addFieldMapping('field_number_of_pages', 'numberOfPages');
 
@@ -56,7 +77,7 @@ class EcolexCourtDecisionsMigrate extends DynamicMigration {
     $this->addFieldMapping('field_territorial_subdivision', 'territorialSubdivision');
     $this->addFieldMapping('field_territorial_subdivision:create_term')->defaultValue(TRUE);
 
-    $this->addFieldMapping('field_internet_reference_url', 'internetReference');
+    // $this->addFieldMapping('field_internet_reference_url', 'internetReference');
     $this->addFieldMapping('field_url', 'linkToFullText');
 
     // @todo: decode entities and make migration dependent on legislation.
@@ -96,14 +117,32 @@ class EcolexCourtDecisionsMigrate extends DynamicMigration {
     $languages   = array_keys(language_list());
     $entity_type = $migration->getDestination()->getEntityType();
 
-    $translation_handler  = entity_translation_get_handler($entity_type, $entity);
+    $translation_handler = entity_translation_get_handler($entity_type, $entity);
     $entity->translations = $translation_handler->getTranslations();
-    $entity->language     = 'en';
+    $entity->language = 'en';
+
+    if (!empty($row->languageOfDocument)) {
+      $entity->field_source_language[LANGUAGE_NONE][0]['value'] = $row->languageOfDocument;
+    }
     foreach ($languages as $language) {
       $has_translation = FALSE;
 
-      if ($has_translation) {
-        MigrationUtil::setTranslation($translation_handler, $entity, $row, $language);
+      if (!empty($row->internetReference[$language])) {
+        $entity->field_internet_reference_url[$language][0]['url'] = $row->internetReference[$language];
+        $has_translation = TRUE;
+      }
+      if (!empty($row->titleOfText[$language])) {
+        $entity->title_field[$language][0]['value'] = $row->titleOfText[$language];
+        $has_translation = TRUE;
+      }
+
+      if ($has_translation && $language != 'en') {
+        $translation_handler->setTranslation(array(
+          'translate' => 0, 'status' => 1, 'uid' => 1,
+          'language' => $language,
+          'source' => 'en',
+        ));
+
       }
     }
   }
@@ -221,15 +260,20 @@ class EcolexCourtDecisionsMigrateSource extends EcolexMigrateSource {
             foreach ($doc->subject as $s) {
               $ob->subject[] = MigrationUtil::decodeHTMLText((string) $s);
             }
-            $ob->languageOfDocument = (string) $doc->languageOfDocument;
+            $ob->languageOfDocument = $this->languageCode((string) $doc->languageOfDocument);
+
             $ob->courtName          = (string) $doc->courtName;
             $ob->subdivision = (string) $doc->subdivision;
             foreach ($doc->justices as $s) {
               $ob->justices[] = MigrationUtil::decodeHTMLText((string) $s);
             }
             $ob->dateOfText      = (string) $doc->dateOfText;
+            $ob->typeOfText      = (string) $doc->typeOfText;
             $ob->referenceNumber = (string) $doc->referenceNumber;
             $ob->numberOfPages   = (string) $doc->numberOfPages;
+            if(empty($ob->numberOfPages)) {
+              $ob->numberOfPages = NULL;
+            }
             foreach ($doc->keyword as $s) {
               $ob->keyword[] = (string) $s;
             }

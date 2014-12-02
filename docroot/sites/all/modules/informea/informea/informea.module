@@ -105,13 +105,14 @@ class MigrationUtil {
 
     public static function setTranslation(&$translation_handler, $entity, $row, $language) {
         /* Don't translate en (default) */
-        if ($language != $row->language
+        if ($language != $entity->language
             && !isset($entity->translations->data[$language])) {
             $translation_handler->setTranslation(array(
                 'translate' => 0, 'status' => 1, 'uid' => 1,
                 'language' => $language,
-                'source' => $row->language,
+                'source' => $entity->language,
             ));
+          var_dump($entity);
         }
     }
 }

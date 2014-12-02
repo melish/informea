@@ -103,4 +103,20 @@ abstract class EcolexMigrateSource extends MigrateSource {
     drupal_set_message($msg);
     $this->activeMigration->queueMessage($msg, $severity);
   }
+
+
+  protected function languageCode($languageName) {
+    require_once DRUPAL_ROOT . '/includes/iso.inc';
+    $languages = _locale_get_predefined_list();
+    if ($languageName == 'Portuguese') {
+      $languageName = 'Portuguese, International';
+    }
+    $languageName = strtolower($languageName);
+    foreach($languages as $code => $names) {
+      if (in_array($languageName, array_map('strtolower',$names))) {
+        return $code;
+      }
+    }
+    return $languageName;
+  }
 }
