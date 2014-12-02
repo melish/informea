@@ -9,6 +9,31 @@
  */
 function ecolex_taxonomy_default_vocabularies() {
   return array(
+    'ecolex_decision_status' => array(
+      'name' => 'Ecolex decision status',
+      'machine_name' => 'ecolex_decision_status',
+      'description' => 'Status of an Ecolex Court Decision',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
+      'rdf_mapping' => array(
+        'rdftype' => array(
+          0 => 'skos:ConceptScheme',
+        ),
+        'name' => array(
+          'predicates' => array(
+            0 => 'dc:title',
+          ),
+        ),
+        'description' => array(
+          'predicates' => array(
+            0 => 'rdfs:comment',
+          ),
+        ),
+      ),
+    ),
     'geographical_scope' => array(
       'name' => 'Geographical scope',
       'machine_name' => 'geographical_scope',
