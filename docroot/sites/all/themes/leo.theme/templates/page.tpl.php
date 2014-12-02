@@ -73,8 +73,8 @@
  * @ingroup themeable
  */
 ?>
-<?php include 'header.tpl.php'; ?>
 <div class="container">
+  <?php include 'header.tpl.php'; ?>
   <?php if (!empty($page['header'])): ?>
     <header id="page-header" role="banner">
       <?php print render($page['header']); ?>
@@ -119,5 +119,5 @@
       </aside><!-- #sidebar-second .col-sm-3 -->
     <?php endif; ?>
   </div><!-- .row -->
+  <?php include 'footer.tpl.php'; ?>
 </div><!-- .container -->
-<?php include 'footer.tpl.php'; ?>
