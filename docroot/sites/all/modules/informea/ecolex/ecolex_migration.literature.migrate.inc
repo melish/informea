@@ -323,4 +323,29 @@ class EcolexLiteratureMigrateSource extends EcolexMigrateSource {
       }
     }
   }
+
+
+  /**
+   * Return the number of available source records.
+   */
+  public function computeCount() {
+    $files = file_scan_directory($this->data_dir, '/.*/');
+    $ret = array();
+    foreach ($files as $i => $file) {
+      try {
+        $docs = @simplexml_load_file($file->uri);
+        if (!$docs) {
+          continue;
+        }
+        foreach ($docs as $doc) {
+          $id = (string)$doc->id;
+          $ret[$id] = $id;
+        }
+      }
+      catch (Exception $e) {
+        // Swallow
+      }
+    }
+    return count($ret);
+  }
 }

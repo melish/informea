@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * Update country official names.
+ */
+function country_update_7001() {
+  $list = json_decode(file_get_contents(drupal_get_path('module', 'country') . '/country.json'));
+  foreach($list as $country) {
+    $query = new EntityFieldQuery();
+    $result = $query
+      ->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'country')
+      ->fieldCondition('field_country_iso3', 'value', $country->code3l)
+      ->execute();
+    if ( ! empty( $result['node'] )) {
+      $nid = current($result['node'])->nid;
+      $node = node_load($nid);
+      $node->field_country_official_name['en'][0]['value'] = $country->name_official;
+      field_attach_update('node', $node);
+    }
+  }
+}
