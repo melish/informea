@@ -721,37 +721,6 @@ function ecolex_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_language_of_document'
-  $field_bases['field_language_of_document'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_language_of_document',
-    'foreign keys' => array(),
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'languagefield',
-    'settings' => array(
-      'enabled' => 3,
-      'entity_translation_sync' => FALSE,
-      'excluded_languages' => array(),
-      'format' => array(
-        'iso' => 0,
-        'name' => 'name',
-        'name_native' => 0,
-      ),
-      'groups' => '',
-      'languages' => array(),
-    ),
-    'translatable' => 0,
-    'type' => 'language_field',
-  );
-
   // Exported field_base: 'field_literature_call_number'
   $field_bases['field_literature_call_number'] = array(
     'active' => 1,

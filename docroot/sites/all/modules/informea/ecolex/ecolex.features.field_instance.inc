@@ -1014,57 +1014,6 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_language_of_document'
-  $field_instances['node-court_decisions-field_language_of_document'] = array(
-    'bundle' => 'court_decisions',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'languagefield',
-        'settings' => array(
-          'format' => array(
-            'name' => 'name',
-          ),
-        ),
-        'type' => 'language_default',
-        'weight' => 26,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_language_of_document',
-    'label' => 'Language of document',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'select2_integration' => array(
-        'styling' => array(
-          'dropdownAutoWidth' => 0,
-          'placeholder' => '',
-        ),
-        'use_select2' => 0,
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'use_select2' => FALSE,
-      ),
-      'type' => 'options_select',
-      'weight' => 27,
-    ),
-  );
-
   // Exported field_instance: 'node-court_decisions-field_number_of_pages'
   $field_instances['node-court_decisions-field_number_of_pages'] = array(
     'bundle' => 'court_decisions',
@@ -4031,7 +3980,6 @@ function ecolex_field_default_field_instances() {
   t('Internet Reference');
   t('Justice(s)');
   t('Keyword(s)');
-  t('Language of document');
   t('Legislation ID number');
   t('Link to full text');
   t('Literature type');
