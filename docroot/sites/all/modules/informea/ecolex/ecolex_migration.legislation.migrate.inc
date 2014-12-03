@@ -24,16 +24,18 @@ class EcolexLegislationMigrate extends DynamicMigration {
       ),
       MigrateDestinationNode::getKeySchema()
     );
-    $this->destination = new MigrateDestinationNode('legislation');
+    $this->destination = new MigrateDestinationNode(
+      'legislation',
+      array('language' => 'en', 'text_format' => 'full_html')
+    );
 
     $this->addFieldMapping('field_original_id', 'id');
-    // $this->addFieldMapping('', 'ISIS_MFN');
+    $this->addFieldMapping('field_isis_number', 'ISIS_MFN');
     $this->addFieldMapping('field_faolex_id', 'FaolexId');
-    // $this->addFieldMapping('', 'Date_of_Entry');
-    // $this->addFieldMapping('', 'Date_of_Modification');
-
+    $this->addFieldMapping('field_date_of_entry', 'Date_of_Entry');
+    $this->addFieldMapping('field_date_of_modification', 'Date_of_Modification');
     $this->addFieldMapping('field_country', 'country');
-    // $this->addFieldMapping('', 'Territorial_Subdivision');
+    $this->addFieldMapping('field_territorial_subdivision', 'Territorial_Subdivision');
     // $this->addFieldMapping('', 'basin');
 
     $this->addFieldMapping('title', 'title');
@@ -42,32 +44,30 @@ class EcolexLegislationMigrate extends DynamicMigration {
     $this->addFieldMapping('field_date_of_text', 'Date_of_Text');
     $this->addFieldMapping('field_date_of_original_text', 'Date_of_original_Text');
     $this->addFieldMapping('field_date_of_consolidation', 'Date_of_Consolidation');
-    // $this->addFieldMapping('field_entry_into_force', 'Entry_into_Force');
+    $this->addFieldMapping('field_entry_into_force_notes', 'Entry_into_Force');
     // $this->addFieldMapping('', 'searchDate');
     $this->addFieldMapping('field_avaiable_web_site', 'Related_Web_Site');
+    $this->addFieldMapping('field_internet_reference_url', 'Internet_Reference');
     $this->addFieldMapping('field_url', 'link_to_full_text');
-    // $this->addFieldMapping('', 'Internet_Reference');
-    $this->addFieldMapping('field_type_of_text', 'Type_of_Text');
-    $this->addFieldMapping('field_type_of_text:create_term')
-         ->defaultValue(TRUE);
-    // $this->addFieldMapping('', 'Sub_file_code');
-    $this->addFieldMapping('body', 'Abstract');
-    $this->addFieldMapping('field_abstract', 'Comment');
 
-    //@todo: Integers instead of real terms.
-    #$this->addFieldMapping('field_keywords', 'keyword');
-    #$this->addFieldMapping('field_keywords:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_type_of_text', 'Type_of_Text');
+    $this->addFieldMapping('field_type_of_text:create_term')->defaultValue(TRUE);
+
+    $this->addFieldMapping('field_abstract', 'Abstract');
+    $this->addFieldMapping('field_notes', 'Comment');
+    $this->addFieldMapping('field_sub_file_code', 'Sub_file_code');
+
+    // @todo: Integers instead of real terms.
+    // $this->addFieldMapping('field_keywords', 'keyword');
+    // $this->addFieldMapping('field_keywords:create_term')->defaultValue(TRUE);
 
     // $this->addFieldMapping('', 'International_Organizations');
+    $this->addFieldMapping('field_source_language', 'Doc_Language');
+    $this->addFieldMapping('field_repealed', 'Repealed');
+
     // $this->addFieldMapping('', 'Record_Language');
-    // $this->addFieldMapping('', 'Doc_Language');
-    // $this->addFieldMapping('field_repeals', 'Repealed');
-    // $this->addFieldMapping('', 'Serial_Imprint');
-    // $this->addFieldMapping('', 'Publication_reference');
-
-
-    // see prepare() $this->addFieldMapping('field_ecolex_url', 'ecolex_url');
-
+    $this->addFieldMapping('field_serial_imprint', 'Serial_Imprint');
+    $this->addFieldMapping('field_reference_number', 'Publication_reference');
   }
 
   /**
@@ -99,6 +99,10 @@ class EcolexLegislationMigrate extends DynamicMigration {
 
     $entity->field_ecolex_url['en'][0]['url'] = 'http://www.ecolex.org/ecolex/ledge/view/RecordDetails?index=documents&id=' . $row->id;
     $entity->field_faolex_url['en'][0]['url'] = 'http://faolex.fao.org/cgi-bin/faolex.exe?database=faolex&search_type=link&table=result&lang=eng&format_name=@ERALL&rec_id=' . $row->ISIS_MFN;
+
+    if (!empty($row->Doc_Language)) {
+      $entity->field_source_language[LANGUAGE_NONE][0]['value'] = $row->Doc_Language;
+    }
 
     $translation_handler  = entity_translation_get_handler($entity_type, $entity);
     $entity->translations = $translation_handler->getTranslations();
@@ -142,36 +146,35 @@ class EcolexLegislationMigrateSource extends EcolexMigrateSource {
    */
   public function fields() {
     return array(
-      'id'                          => '@todo',
+      'id'                          => 'Primary Key',
       'ISIS_MFN'                    => 'ISIS number',
       'FaolexId'                    => 'FAOLEX Identifier',
-      'Date_of_Entry'               => '@todo',
-      'Date_of_Modification'        => '@todo',
-      'country'                     => '@todo',
-      'Territorial_Subdivision'     => '@todo',
+      'Date_of_Entry'               => 'Date of entry into the system',
+      'Date_of_Modification'        => 'Date of last modification',
+      'country'                     => 'Related country',
+      'Territorial_Subdivision'     => 'Territory',
       'basin'                       => '@todo',
-      'Title_of_Text'               => '@todo',
-      'title'                       => '@todo',
-      'Date_of_Text'                => '@todo',
-      'Date_of_original_Text'       => '@todo',
-      'Date_of_Consolidation'       => '@todo',
-      'Entry_into_Force'            => '@todo',
+      'Title_of_Text'               => 'Title',
+      'title'                       => 'Title in english',
+      'Date_of_Text'                => 'Date of text',
+      'Date_of_original_Text'       => 'Date of original text',
+      'Date_of_Consolidation'       => 'Date of consolidation',
+      'Entry_into_Force'            => 'Entry into force notes',
       'searchDate'                  => '@todo',
-      'Related_Web_Site'            => '@todo',
-      'Internet_Reference'          => '@todo',
-      'link_to_full_text'           => '@todo',
-      'Type_of_Text'                => '@todo',
-      'Sub_file_code'               => '@todo',
-      'Abstract'                    => '@todo',
-      'Comment'                     => '@todo',
-      'keyword'                     => '@todo',
+      'Related_Web_Site'            => 'Related web site',
+      'Internet_Reference'          => 'Link to record',
+      'link_to_full_text'           => 'Link to document',
+      'Type_of_Text'                => 'Type of legislation text',
+      'Abstract'                    => 'Abstract text',
+      'Comment'                     => 'Comments / Notes',
+      'Sub_file_code'               => 'Sub-file code (?)',
+      'keyword'                     => '@todo - now are integers in XML',
       'International_Organizations' => '@todo',
       'Record_Language'             => '@todo',
-      'Doc_Language'                => '@todo',
-      'Repealed'                    => '@todo',
-      'Serial_Imprint'              => '@todo',
-      'Publication_reference'       => '@todo',
-      'ecolex_url'                  => '@todo',
+      'Doc_Language'                => 'Document language',
+      'Repealed'                    => 'Repealed (Y/N)',
+      'Serial_Imprint'              => 'Serial imprint number',
+      'Publication_reference'       => 'Reference to publication page/no.',
     );
   }
 
@@ -244,9 +247,12 @@ class EcolexLegislationMigrateSource extends EcolexMigrateSource {
             }
 
             $ob->Type_of_Text  = (string) $doc->Type_of_Text;
-            $ob->Sub_file_code = (string) $doc->Sub_file_code;
             $ob->Abstract      = (string) $doc->Abstract;
             $ob->Comment       = (string) $doc->Comment;
+
+            foreach ($doc->Sub_file_code as $s) {
+              $ob->Sub_file_code[] = (string) $s;
+            }
 
             foreach ($doc->keyword as $s) {
               $ob->keyword[] = (string) $s;
@@ -254,8 +260,8 @@ class EcolexLegislationMigrateSource extends EcolexMigrateSource {
 
             $ob->International_Organizations = (string) $doc->International_Organizations;
             $ob->Record_Language             = (string) $doc->Record_Language;
-            $ob->Doc_Language                = (string) $doc->Doc_Language;
-            $ob->Repealed                    = (string) $doc->Repealed;
+            $ob->Doc_Language = $this->languageCode((string) $doc->Doc_Language);
+            $ob->Repealed                    = (((string) $doc->Repealed) == 'Y') ? 1 : 0;
             $ob->Serial_Imprint              = (string) $doc->Serial_Imprint;
             $ob->Publication_reference       = (string) $doc->Publication_reference;
 

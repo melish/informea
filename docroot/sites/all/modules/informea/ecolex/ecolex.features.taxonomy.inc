@@ -59,6 +59,31 @@ function ecolex_taxonomy_default_vocabularies() {
         ),
       ),
     ),
+    'legislation_sub_file_code' => array(
+      'name' => 'Legislation sub-file code',
+      'machine_name' => 'legislation_sub_file_code',
+      'description' => '',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
+      'rdf_mapping' => array(
+        'rdftype' => array(
+          0 => 'skos:ConceptScheme',
+        ),
+        'name' => array(
+          'predicates' => array(
+            0 => 'dc:title',
+          ),
+        ),
+        'description' => array(
+          'predicates' => array(
+            0 => 'rdfs:comment',
+          ),
+        ),
+      ),
+    ),
     'literature_type' => array(
       'name' => 'Literature type',
       'machine_name' => 'literature_type',

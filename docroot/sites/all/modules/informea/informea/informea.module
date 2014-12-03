@@ -112,7 +112,6 @@ class MigrationUtil {
                 'language' => $language,
                 'source' => $entity->language,
             ));
-          var_dump($entity);
         }
     }
 }
