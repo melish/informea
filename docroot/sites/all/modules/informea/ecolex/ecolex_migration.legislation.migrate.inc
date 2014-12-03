@@ -239,8 +239,11 @@ class EcolexLegislationMigrateSource extends EcolexMigrateSource {
             else if (strpos($filename, '.doc')) {
               $ob->link_to_full_text = 'http://faolex.fao.org/docs/texts/' . $filename;
             }
+            else if (strpos($filename, '.htm')) {
+              $ob->link_to_full_text = 'http://faolex.fao.org/docs/html/' . $filename;
+            }
             else if (strpos($filename, '.html')) {
-              $ob->link_to_full_text = 'http://faolex.fao.org/html/' . $filename;
+              $ob->link_to_full_text = 'http://faolex.fao.org/docs/html/' . $filename;
             }
             else {
               $ob->link_to_full_text = $filename;
