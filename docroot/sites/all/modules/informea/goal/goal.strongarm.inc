@@ -92,10 +92,10 @@ function goal_strongarm() {
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '1',
         ),
         'language' => array(
-          'weight' => '5',
+          'weight' => '0',
         ),
       ),
       'display' => array(),
