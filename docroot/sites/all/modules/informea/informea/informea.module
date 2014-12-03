@@ -114,4 +114,24 @@ class MigrationUtil {
             ));
         }
     }
+
+  public static function getOrCreateTerm($name, $vocabulary_name, $language = LANGUAGE_NONE) {
+    if ($t = taxonomy_get_term_by_name($name, $vocabulary_name)) {
+      return current($t);
+    }
+    else {
+      if ($voc = taxonomy_vocabulary_machine_name_load($vocabulary_name)) {
+        $term = (object) array(
+          'name' => $name,
+          'vid' => $voc->vid,
+          'language' => $language,
+          'vocabulary_machine_name' => $vocabulary_name,
+          'tid' => NULL,
+        );
+        taxonomy_term_save($term);
+        return $term;
+      }
+    }
+    return FALSE;
+  }
 }

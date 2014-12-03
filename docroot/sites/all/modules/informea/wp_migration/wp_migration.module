@@ -21,6 +21,8 @@ function wp_migration_migrate_api() {
       'Sites' => array('class_name' => 'MigrateSites'),
       'NationalFocalPoints' => array('class_name' => 'MigrateNationalFocalPoints'),
 
+      'Goals' => array('class_name' => 'MigrateGoals'),
+
       'ThesaurusInforMEA' => array('class_name' => 'MigrateThesaurusInforMEA'),
       'ThesaurusGEG' => array('class_name' => 'MigrateThesaurusGEG'),
       'ThesaurusGEMET' => array('class_name' => 'MigrateThesaurusGEMET'),
@@ -39,10 +41,10 @@ function wp_migration_migrate_api() {
  * @return array
  *   Array of new terms tids
  */
-function wp_migrationn_new_old_tags($old) {
+function wp_migrationn_new_old_tags($old, $map_table = 'migrate_map_thesaurusinformea' ) {
   static $terms_old_new = array();
   if(empty($terms_old_new)) {
-    $terms_old_new = db_select('migrate_map_thesaurusinformea', 'm')
+    $terms_old_new = db_select($map_table, 'm')
       ->fields('m', array('sourceid1', 'destid1'))
       ->execute()->fetchAllKeyed(0);
   }
