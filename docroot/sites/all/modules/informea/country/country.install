@@ -6,16 +6,59 @@
 function country_update_7001() {
   $list = json_decode(file_get_contents(drupal_get_path('module', 'country') . '/country.json'));
   foreach($list as $country) {
-    $query = new EntityFieldQuery();
-    $result = $query
-      ->entityCondition('entity_type', 'node')
-      ->entityCondition('bundle', 'country')
-      ->fieldCondition('field_country_iso3', 'value', $country->code3l)
-      ->execute();
-    if ( ! empty( $result['node'] )) {
-      $nid = current($result['node'])->nid;
-      $node = node_load($nid);
+    if ($node = country_load_by_iso3($country->code3l)) {
       $node->field_country_official_name['en'][0]['value'] = $country->name_official;
+      field_attach_update('node', $node);
+    }
+  }
+}
+
+/**
+ * Create geographical regions and assign them to countries.
+ */
+function country_update_7002() {
+  if ($voc = taxonomy_vocabulary_machine_name_load('geographical_region')) {
+    $regions = array(
+      'Africa',
+      'Asia and the Pacific',
+      'Europe',
+      'Latin America and the Caribbean',
+      'North America',
+      'Polar: Arctic',
+      'West Asia'
+    );
+    $un_regions = array();
+    foreach ($regions as $region) {
+      if ($t = taxonomy_get_term_by_name($region, 'geographical_region')) {
+        $un_regions[$region] = $t->tid;
+      }
+      else {
+        $term = (object) array(
+          'name' => $region,
+          'vid' => $voc->vid,
+        );
+        $term->field_un_region[LANGUAGE_NONE][0]['value'] = 1;
+        $term = taxonomy_term_save($term);
+        $un_regions[$region] = $term->tid;
+      }
+    }
+  }
+  // Assign regions to countries.
+  $rassignments = json_decode(file_get_contents(drupal_get_path('module', 'country') . '/regions.json'), TRUE);
+  $country_region = array();
+  foreach ($rassignments as $arr) {
+    foreach($arr as $k => $v) {
+      if ($t = taxonomy_get_term_by_name($v, 'geographical_region')) {
+        $t = current($t);
+        $country_region[$k][] = $t->tid;
+      }
+    }
+  }
+  foreach ($country_region as $iso3l => $region_tids) {
+    if ($node = country_load_by_iso3($iso3l)) {
+      foreach($region_tids as $i => $tid) {
+        $node->field_region[LANGUAGE_NONE][$i]['tid'] = $tid;
+      }
       field_attach_update('node', $node);
     }
   }

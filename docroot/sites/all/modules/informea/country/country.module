@@ -22,6 +22,21 @@ function country_menu() {
   return $items;
 }
 
+function country_load_by_iso3($iso3l) {
+  $query = new EntityFieldQuery();
+  $result = $query
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'country')
+    ->fieldCondition('field_country_iso3', 'value', $iso3l)
+    ->execute();
+  if (!empty( $result['node'])) {
+    $nid = current($result['node'])->nid;
+    $node = node_load($nid);
+    return $node;
+  }
+  return FALSE;
+}
+
 /**
  * Registers module's theme implementations.
  *
