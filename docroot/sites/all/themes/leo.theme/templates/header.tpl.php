@@ -149,7 +149,7 @@
         </ul><!-- .nav .navbar-nav .navbar-right -->
         <form class="navbar-form navbar-right" action="/search" role="search">
           <div class="input-group input-group-sm">
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="text" class="form-control" placeholder="Search" name="search_api_views_fulltext">
             <span class="input-group-btn">
               <button type="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-search"></span>
