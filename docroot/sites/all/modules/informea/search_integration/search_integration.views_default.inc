@@ -104,7 +104,7 @@ function search_integration_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'filter';
+  $handler->display->display_options['path'] = 'search';
   $translatables['the_search_view'] = array(
     t('Master'),
     t('Search results'),
