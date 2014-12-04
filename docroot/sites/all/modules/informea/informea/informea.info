@@ -188,7 +188,6 @@ features[variable][] = pathauto_taxonomy_term_pattern
 features[variable][] = pathauto_taxonomy_term_thesaurus_informea_pattern
 features[variable][] = site_default_country
 features[variable][] = site_mail
-features[variable][] = site_name
 features[variable][] = views_show_additional_queries
 features[variable][] = views_ui_always_live_preview
 features[variable][] = views_ui_custom_theme

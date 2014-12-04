@@ -680,13 +680,6 @@ function informea_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'site_name';
-  $strongarm->value = 'InforMEA';
-  $export['site_name'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'views_show_additional_queries';
   $strongarm->value = 1;
   $export['views_show_additional_queries'] = $strongarm;
