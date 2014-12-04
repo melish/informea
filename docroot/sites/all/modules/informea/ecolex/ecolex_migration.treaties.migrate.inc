@@ -34,17 +34,24 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
     $this->addFieldMapping('field_data_source:create_term')->defaultValue(TRUE);
 
     $this->addFieldMapping('field_type_of_text', 'typeOfText');
-    $this->addFieldMapping('field_type_of_text:create_term')
-         ->defaultValue(TRUE);
+    $this->addFieldMapping('field_type_of_text:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_type_of_text:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('field_jurisdiction', 'jurisdiction');
-    $this->addFieldMapping('field_field_of_application', 'fieldOfApplication');
+    $this->addFieldMapping('field_jurisdiction:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_jurisdiction:ignore_case')->defaultValue(TRUE);
 
-    $this->addFieldMapping('field_subjects', 'subject');
-    $this->addFieldMapping('field_subjects:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_field_of_application', 'fieldOfApplication');
+    $this->addFieldMapping('field_field_of_application:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_field_of_application:ignore_case')->defaultValue(TRUE);
+
+    $this->addFieldMapping('field_ecolex_tags', 'subject');
+    $this->addFieldMapping('field_ecolex_tags:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_ecolex_tags:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('field_keywords', 'keyword');
     $this->addFieldMapping('field_keywords:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_keywords:ignore_case')->defaultValue(TRUE);
 
     // $this->addFieldMapping('', 'languageOfDocument');
     $this->addFieldMapping('field_place_of_adoption', 'placeOfAdoption');
@@ -64,6 +71,7 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
 
     $this->addFieldMapping('field_region', 'region');
     $this->addFieldMapping('field_region:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_region:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('field_ecolex_url', 'ecolex_url');
   }

@@ -44,25 +44,39 @@ class EcolexLiteratureMigrate extends DynamicMigration {
     $this->addFieldMapping('field_literature_serial_title', 'serialTitle');
     $this->addFieldMapping('field_volume_no', 'volumeNo');
     $this->addFieldMapping('field_collation', 'collation');
+
     $this->addFieldMapping('field_literature_type', 'typeOfText');
+    $this->addFieldMapping('field_literature_type:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_literature_type:ignore_case')->defaultValue(TRUE);
+
     $this->addFieldMapping('field_ecolex_tags', 'subject');
+    $this->addFieldMapping('field_ecolex_tags:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_ecolex_tags:ignore_case')->defaultValue(TRUE);
+
     $this->addFieldMapping('field_organizations', 'intOrg');
     $this->addFieldMapping('field_country', 'country');
+
     $this->addFieldMapping('field_geographical_scope', 'scope');
+    $this->addFieldMapping('field_geographical_scope:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_geographical_scope:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('field_region', 'region');
     $this->addFieldMapping('field_region:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_region:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('field_url', 'linkToFullText');
 
     $this->addFieldMapping('field_keywords', 'keyword');
     $this->addFieldMapping('field_keywords:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_keywords:ignore_case')->defaultValue(TRUE);
 
     // $this->addFieldMapping('field_related_literature', 'referenceToLiterature');
     $this->addFieldMapping('field_treaty', 'referenceToTreaties');
 
     $this->addFieldMapping('body', 'abstract');
     $this->addFieldMapping('field_territorial_subdivision', 'territorialSubdivision');
+    $this->addFieldMapping('field_territorial_subdivision:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_territorial_subdivision:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('uid')->defaultValue(1);
     $this->addFieldMapping('language')->defaultValue('en');

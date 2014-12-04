@@ -52,6 +52,7 @@ class EcolexLegislationMigrate extends DynamicMigration {
 
     $this->addFieldMapping('field_type_of_text', 'Type_of_Text');
     $this->addFieldMapping('field_type_of_text:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_type_of_text:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('field_abstract', 'Abstract');
     $this->addFieldMapping('field_notes', 'Comment');

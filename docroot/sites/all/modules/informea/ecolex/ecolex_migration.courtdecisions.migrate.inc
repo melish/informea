@@ -52,11 +52,13 @@ class EcolexCourtDecisionsMigrate extends DynamicMigration {
 
     $this->addFieldMapping('field_type_of_text', 'typeOfText');
     $this->addFieldMapping('field_type_of_text:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_type_of_text:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('field_country', 'country');
 
     $this->addFieldMapping('field_ecolex_tags', 'subject');
     $this->addFieldMapping('field_ecolex_tags:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_ecolex_tags:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('field_source_language', 'languageOfDocument');
     $this->addFieldMapping('field_court_name', 'courtName');
@@ -71,11 +73,13 @@ class EcolexCourtDecisionsMigrate extends DynamicMigration {
 
     $this->addFieldMapping('field_keywords', 'keyword');
     $this->addFieldMapping('field_keywords:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_keywords:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('field_related_url', 'relatedWebSite');
 
     $this->addFieldMapping('field_territorial_subdivision', 'territorialSubdivision');
     $this->addFieldMapping('field_territorial_subdivision:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_territorial_subdivision:ignore_case')->defaultValue(TRUE);
 
     // $this->addFieldMapping('field_internet_reference_url', 'internetReference');
     $this->addFieldMapping('field_url', 'linkToFullText');
@@ -88,6 +92,7 @@ class EcolexCourtDecisionsMigrate extends DynamicMigration {
 
     $this->addFieldMapping('field_ecolex_decision_status', 'statusOfDecision');
     $this->addFieldMapping('field_ecolex_decision_status:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_ecolex_decision_status:ignore_case')->defaultValue(TRUE);
   }
 
   /**
