@@ -285,6 +285,54 @@ function goal_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-goal-field_informea_tags'
+  $field_instances['node-goal-field_informea_tags'] = array(
+    'bundle' => 'goal',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 13,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_informea_tags',
+    'label' => 'InforMEA tags',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 13,
+    ),
+  );
+
   // Exported field_instance: 'node-goal-field_region'
   $field_instances['node-goal-field_region'] = array(
     'bundle' => 'goal',
@@ -753,6 +801,7 @@ function goal_field_default_field_instances() {
   t('GEG Tags');
   t('Goal Type');
   t('Indicators');
+  t('InforMEA tags');
   t('Name');
   t('Order');
   t('Source');
