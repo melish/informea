@@ -187,3 +187,12 @@ a:focus .navicon-eur {
   margin-left: 0;
   padding: 5px 10px;
 }
+
+/* Global overrides */
+h1 {
+    font-size: 26px;
+}
+
+h2 {
+    font-size: 120%;
+}
