@@ -130,7 +130,7 @@
           <li><a href="/search?f[0]=type%3Alegislation"><?php print('Legislation'); ?></a></li>
           <li><a href="/search?f[0]=type%3Atreaty"><?php print('Treaties'); ?></a></li>
           <li><a href="/search?f[0]=type%3Acountry"><?php print('Countries'); ?></a></li>
-          <li><a href=""><?php print('Terms'); ?></a></li>
+          <li><a href="/terms"><?php print('Terms'); ?></a></li>
           <li><a href="/search?f[0]=type%3Agoal"><?php print('Goals'); ?></a></li>
           <li><a href="/search?f[0]=type%3Aliterature"><?php print('Publications'); ?></a></li>
           <li class="dropdown">
