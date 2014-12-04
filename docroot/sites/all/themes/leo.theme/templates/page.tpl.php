@@ -80,6 +80,7 @@
       <?php print render($page['header']); ?>
     </header><!-- #page-header -->
   <?php endif; ?>
+  <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
   <div class="row">
     <?php if (!empty($page['sidebar_first'])): ?>
       <aside id="sidebar-first" class="col-sm-3" role="complementary">
@@ -92,7 +93,6 @@
           <?php print render($page['highlighted']); ?>
         </div><!-- .highlighted .jumbotron -->
       <?php endif; ?>
-      <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
       <a id="main-content"></a>
       <?php print render($title_prefix); ?>
       <?php if (!empty($title)): ?>
