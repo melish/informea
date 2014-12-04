@@ -39,10 +39,16 @@
 
 .navbar-unep .navbar-brand {
   height: 110px;
+  margin-top: 13px;
 }
 
 .navbar-unep .navbar-text {
   color: #fff;
+  margin-top: 47px;
+}
+
+.navbar-unep .navbar-nav {
+  margin-bottom: 8px;
 }
 
 .navbar-unep .navbar-nav > li > a {
@@ -143,6 +149,7 @@ a:focus .navicon-eur {
 
 .navbar-leo .navbar-text {
   color: #fff;
+  margin-top: 30px;
 }
 
 .navbar-leo .navbar-nav > li > a {
@@ -157,6 +164,14 @@ a:focus .navicon-eur {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.175);
   color: #333;
   border-radius: 4px;
+}
+
+.navbar-leo .navbar-nav {
+  margin-top: 20px;
+}
+
+.navbar-leo .navbar-form {
+  margin-top: 25px;
 }
 
 #footer {
