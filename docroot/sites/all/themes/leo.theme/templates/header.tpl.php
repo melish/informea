@@ -5,16 +5,16 @@
  */
 ?>
 <header role="banner">
-  <div id="header-nav" class="clearfix">
-    <ul id="header-nav-languages" class="list-inline">
+  <div id="nav-header" class="clearfix" role="navigation">
+    <ul class="list-inline list-languages">
       <li><?php print l(t('العربية'), 'arabic'); ?></li>
       <li><?php print l(t('中文'), 'chinese'); ?></li>
       <li><?php print l(t('English'), '<front>'); ?></li>
       <li><?php print l(t('Français'), 'french'); ?></li>
       <li><?php print l(t('Pусский'), 'russian'); ?></li>
       <li><?php print l(t('Español'), 'spanish'); ?></li>
-    </ul><!-- #header-nav-languages .list-inline -->
-    <ul id="header-nav-quicklinks" class="list-inline">
+    </ul><!-- .list-inline .list-languages -->
+    <ul class="list-inline list-quicklinks">
       <li><?php print l(t('About'), 'about'); ?></li>
       <li><?php print l(t('Calendar'), 'ecalendar'); ?></li>
       <li><?php print l(t('Multimedia'), 'newscentre/multimedia'); ?></li>
@@ -22,92 +22,142 @@
       <li><?php print l(t('Outreach'), 'outreach'); ?></li>
       <li><?php print l(t('Publications'), 'publications'); ?></li>
       <li><?php print l(t('Vacancies'), 'vacancies'); ?></li>
-    </ul><!-- #header-nav-quicklinks .list-inline -->
-  </div><!-- #header-nav .clearfix -->
-  <div id="header-unep" class="clearfix">
-    <?php if ($logo): ?>
-      <a href="<?php print $front_page; ?>" class="header-logo" title="<?php print t('UNEP'); ?>">
-        <img src="<?php print $logo; ?>" alt="<?php print t('UNEP'); ?>">
-      </a><!-- .header-logo -->
-    <?php endif; ?>
-    <?php if (!empty($site_name) || !empty($site_slogan)): ?>
-      <div class="header-info">
-        <?php if (!empty($site_name)): ?>
-          <strong><?php print $site_name; ?></strong>
+    </ul><!-- .list-inline .list-quicklinks -->
+  </div><!-- #nav-header .clearfix -->
+  <nav class="navbar navbar-default navbar-unep" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-unep">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button><!-- .navbar-toggle .collapsed -->
+        <?php if ($logo): ?>
+          <a class="navbar-brand" href="<?php print $front_page; ?>">
+            <img src="<?php print $logo; ?>" alt="<?php print t('UNEP'); ?>">
+          </a><!-- .navbar-brand -->
         <?php endif; ?>
-        <?php if (!empty($site_slogan)): ?>
-          <br><?php print $site_slogan; ?>
+        <?php if (!empty($site_name) || !empty($site_slogan)): ?>
+          <p class="navbar-text">
+            <?php if (!empty($site_name)): ?>
+              <strong><?php print $site_name; ?></strong>
+            <?php endif; ?>
+            <?php if (!empty($site_slogan)): ?>
+              <br><?php print $site_slogan; ?>
+            <?php endif; ?>
+          </p><!-- .navbar-text -->
         <?php endif; ?>
-      </div><!-- .header-info -->
-    <?php endif; ?>
-    <ul class="list-inline pull-right">
-      <li>
-        <a href="#">
-          <span class="icon icon-cc"></span>
-          <br>
-          Climate<br>Change
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="icon icon-dnc"></span>
-          <br>
-          Disasters<br>&amp; Conflicts
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="icon icon-em"></span>
-          <br>
-          Ecosystem<br>Management
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="icon icon-eg"></span>
-          <br>
-          Environmental<br>Governance
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="icon icon-hs"></span>
-          <br>
-          Chemicals<br>&amp; Waste
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="icon icon-re"></span>
-          <br>
-          Resource<br>Efficiency
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="icon icon-eur"></span>
-          <br>
-          Environment<br>Under Review
-        </a>
-      </li>
-    </ul><!-- .list-inline .pull-right -->
-  </div><!-- #header-unep .clearfix -->
-  <div id="header-leo" class="clearfix">
-    <a href="<?php print $front_page; ?>" class="header-logo" title="<?php print t('UNEP'); ?>">
-      <img src="<?php print $directory; ?>/img/logo-leo.png" alt="<?php print t('LEO'); ?>">
-    </a><!-- .header-logo -->
-    <div class="header-info">
-      <?php print t('Law &amp; Environment Outlook'); ?>
-    </div><!-- .header-info -->
-    <div id="toolbar-leo">
-      <ul class="nav nav-pills">
-        <li role="presentation" class="active"><a href="#"><?php print('Legislation'); ?></a></li>
-        <li role="presentation"><a href="#"><?php print('Treaties'); ?></a></li>
-        <li role="presentation"><a href="#"><?php print('Countries'); ?></a></li>
-        <li role="presentation"><a href="#"><?php print('Terms'); ?></a></li>
-        <li role="presentation"><a href="#"><?php print('Goals'); ?></a></li>
-        <li role="presentation"><a href="#"><?php print('Publications'); ?></a></li>
-      </ul><!-- .nav .nav-pills -->
-    </div><!-- #toolbar-leo -->
-  </div><!-- #header-leo .clearfix -->
+      </div><!-- .navbar-header -->
+      <div id="navbar-collapse-unep" class="collapse navbar-collapse">
+        <form class="navbar-form navbar-right" action="http://www.unep.org/search.asp" target="_blank" role="search">
+          <div class="input-group input-group-sm">
+            <input type="text" class="form-control" placeholder="Search">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-search"></span>
+              </button><!-- .btn .btn-default -->
+            </span><!-- .input-group-btn -->
+          </div><!-- .input-group .input-group-sm -->
+        </form><!-- .navbar-form .navbar-right -->
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="#">
+              <span class="navicon navicon-cc"></span>
+              <?php print t('Climate Change'); ?>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="navicon navicon-dnc"></span>
+              <?php print t('Disasters &amp; Conflicts'); ?>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="navicon navicon-em"></span>
+              <?php print t('Ecosystem Management'); ?>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="navicon navicon-eg"></span>
+              <?php print t('Environmental Governance'); ?>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="navicon navicon-cnw"></span>
+              <?php print t('Chemicals &amp; Waste'); ?>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="navicon navicon-re"></span>
+              <?php print t('Resource Efficiency'); ?>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="navicon navicon-eur"></span>
+              <?php print t('Environment Under Review'); ?>
+            </a>
+          </li>
+        </ul><!-- .nav .navbar-nav .navbar-right -->
+      </div><!-- #navbar-collapse-unep .collapse .navbar-collapse -->
+    </div><!-- .container-fluid -->
+  </nav><!-- .navbar .navbar-default .navbar-unep -->
+  <nav class="navbar navbar-default navbar-leo" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-leo">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button><!-- .navbar-toggle .collapsed -->
+        <?php if ($logo): ?>
+          <a class="navbar-brand" href="<?php print $front_page; ?>">
+            <img src="<?php print $directory; ?>/img/logo-leo.png" alt="<?php print t('LEO'); ?>">
+          </a><!-- .navbar-brand -->
+        <?php endif; ?>
+        <p class="navbar-text">
+          <?php print t('Law &amp; Environment Outlook'); ?>
+        </p><!-- .navbar-text -->
+      </div><!-- .navbar-header -->
+      <div id="navbar-collapse-leo" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><?php print('Legislation'); ?></a></li>
+          <li><a href="#"><?php print('Treaties'); ?></a></li>
+          <li><a href="#"><?php print('Countries'); ?></a></li>
+          <li><a href="#"><?php print('Terms'); ?></a></li>
+          <li><a href="#"><?php print('Goals'); ?></a></li>
+          <li><a href="#"><?php print('Publications'); ?></a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <?php print('More'); ?>
+              <span class="caret"></span>
+            </a><!-- .dropdown-toggle -->
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul><!-- .dropdown-menu -->
+          </li><!-- .dropdown -->
+        </ul><!-- .nav .navbar-nav .navbar-right -->
+        <form class="navbar-form navbar-right" action="http://www.unep.org/search.asp" target="_blank" role="search">
+          <div class="input-group input-group-sm">
+            <input type="text" class="form-control" placeholder="Search">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-search"></span>
+              </button><!-- .btn .btn-default -->
+            </span><!-- .input-group-btn -->
+          </div><!-- .input-group .input-group-sm -->
+        </form><!-- .navbar-form .navbar-right -->
+      </div><!-- #navbar-collapse-leo .collapse .navbar-collapse -->
+    </div><!-- .container-fluid -->
+  </nav><!-- .navbar .navbar-default .navbar-leo -->
 </header>
