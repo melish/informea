@@ -1,0 +1,51 @@
+
+/* Search results */
+div.view-the-search-view .view-content {
+    margin-top: 25px;
+}
+
+div.view-the-search-view .views-row {
+    margin-bottom: 25px;
+}
+
+div.view-the-search-view .views-field-title {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+
+/* Facets */
+section.block-facetapi h2 {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+section.block-facetapi ul {
+    margin: 0;
+    padding: 0;
+}
+
+section.block-facetapi ul li {
+    margin-top: 5px;
+}
+
+
+section.block-facetapi ul a,
+section.block-facetapi a.facetapi-limit-link {
+    padding: 2px;
+    margin: 2px;
+    color: #777;
+    border-radius: 2px;
+}
+
+section.block-facetapi a.facetapi-limit-link {
+    margin-left: 15px;
+    font-size: 12px;
+}
+
+section.block-facetapi ul a:hover,
+section.block-facetapi a.facetapi-limit-link:hover {
+    background-color: #ddd;
+    color: #000;
+    text-decoration: none;
+}
