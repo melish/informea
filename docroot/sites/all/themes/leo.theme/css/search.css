@@ -13,6 +13,25 @@ div.view-the-search-view .views-field-title {
     margin-bottom: 5px;
 }
 
+/* Search filter */
+div.views-widget-filter-search_api_views_fulltext label,
+div.views-widget-filter-search_api_views_fulltext div.views-operator,
+div.views-widget-filter-search_api_views_fulltext div.views-widget {
+    float: left;
+}
+
+div.view-the-search-view div.views-exposed-form .views-submit-button {
+    margin-top: -22px;
+}
+div.views-widget-filter-search_api_views_fulltext label {
+    margin-top: 5px;
+}
+
+div.views-widget-filter-search_api_views_fulltext div.views-operator,
+div.views-widget-filter-search_api_views_fulltext div.views-widget {
+    margin-left: 15px;
+}
+
 
 /* Facets */
 section.block-facetapi h2 {
