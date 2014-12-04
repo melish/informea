@@ -118,7 +118,7 @@
         </button><!-- .navbar-toggle .collapsed -->
         <?php if ($logo): ?>
           <a class="navbar-brand" href="<?php print $front_page; ?>">
-            <img src="<?php print $directory; ?>/img/logo-leo.png" alt="<?php print t('LEO'); ?>">
+            <?php print theme('image', array('path' => $directory . '/img/logo-leo.png', 'alt' => t('LEO'))); ?>
           </a><!-- .navbar-brand -->
         <?php endif; ?>
         <p class="navbar-text">
