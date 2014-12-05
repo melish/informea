@@ -40,5 +40,17 @@
         <?php print t('Publications'); ?>
       </a><!-- .list-group-item -->
     </div><!-- .list-group -->
+    <h4><?php print t('Keywords'); ?></h4>
+    <p class="keywords">
+      <a href="#" class="label label-default"><?php print t('basic legislation'); ?></a>
+      <a href="#" class="label label-default"><?php print t('biological diversity'); ?></a>
+      <a href="#" class="label label-default"><?php print t('international agreeme&hellip;'); ?></a>
+      <a href="#" class="label label-default"><?php print t('biotechnology'); ?></a>
+      <a href="#" class="label label-default"><?php print t('education'); ?></a>
+      <a href="#" class="label label-default"><?php print t('classification/declassif&hellip;'); ?></a>
+      <a href="#" class="label label-default"><?php print t('data collection/report&hellip;'); ?></a>
+      <a href="#" class="label label-default"><?php print t('ecosystem preservation&hellip;'); ?></a>
+    </p><!-- .keywords -->
+    <p><a href="#"><?php print t('See all @count keywords', array('@count' => 25)); ?></a></p>
   </div><!-- .col-sm-3 -->
 </div><!-- .row -->

@@ -231,6 +231,10 @@ a:focus .navicon-eur {
   height: 200px;
 }
 
+.keywords {
+  line-height: 24px;
+}
+
 #footer {
   background-color: #666;
   color: #fff;
