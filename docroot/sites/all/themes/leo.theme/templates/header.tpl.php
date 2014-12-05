@@ -157,16 +157,16 @@
             </ul><!-- .dropdown-menu -->
           </li><!-- .dropdown -->
         </ul><!-- .nav .navbar-nav .navbar-right -->
-        <form class="navbar-form navbar-right" action="/search" role="search">
+        <form class="navbar-form navbar-search navbar-right" action="/search" role="search">
           <div class="input-group input-group-sm">
-            <input type="text" class="form-control" placeholder="Search" name="search_api_views_fulltext">
+            <input type="text" id="search" class="form-control" placeholder="Search" name="search_api_views_fulltext">
             <span class="input-group-btn">
               <button type="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-search"></span>
               </button><!-- .btn .btn-default -->
             </span><!-- .input-group-btn -->
           </div><!-- .input-group .input-group-sm -->
-        </form><!-- .navbar-form .navbar-right -->
+        </form><!-- .navbar-form .navbar-search .navbar-right -->
       </div><!-- #navbar-collapse-leo .collapse .navbar-collapse -->
     </div><!-- .container-fluid -->
   </nav><!-- .navbar .navbar-default .navbar-leo -->
