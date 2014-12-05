@@ -13,27 +13,46 @@ include_once 'country.features.inc';
  *   An associative array of properties for each path.
  */
 function country_menu() {
-  $items['countries'] = array(
-    'title' => t('Countries'),
-    'page callback' => 'country_map_view',
+  $items['country'] = array(
+    'title' => t('Country'),
+    'page callback' => 'country_view',
     'access arguments' => array('access content')
   );
 
   return $items;
 }
 
-function country_load_by_iso3($iso3l) {
+function _country_load_by_iso2($iso2) {
   $query = new EntityFieldQuery();
-  $result = $query
-    ->entityCondition('entity_type', 'node')
+  $result = $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'country')
-    ->fieldCondition('field_country_iso3', 'value', $iso3l)
+    ->fieldCondition('field_country_iso2', 'value', $iso2)
     ->execute();
-  if (!empty( $result['node'])) {
+
+  if (!empty($result['node'])) {
     $nid = current($result['node'])->nid;
     $node = node_load($nid);
+
     return $node;
   }
+
+  return FALSE;
+}
+
+function _country_load_by_iso3($iso3) {
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'country')
+    ->fieldCondition('field_country_iso3', 'value', $iso3)
+    ->execute();
+
+  if (!empty($result['node'])) {
+    $nid = current($result['node'])->nid;
+    $node = node_load($nid);
+
+    return $node;
+  }
+
   return FALSE;
 }
 
@@ -45,25 +64,12 @@ function country_load_by_iso3($iso3l) {
  */
 function country_theme() {
   return array(
-    'countries_map' => array()
+    'country' => array(
+      'variables' => array(
+        'country' => NULL
+      )
+    )
   );
-}
-
-/**
- * Loads the properties of areas.
- *
- * @return
- *   An associative array of properties for each area.
- */
-function _country_get_areas() {
-  // Loads all properties of enabled countries.
-  $countries = countries_get_countries('all', array('enabled' => COUNTRIES_ENABLED));
-
-  foreach ($countries as $iso2 => $country) {
-    $areas[] = array('id' => $iso2);
-  }
-
-  return $areas;
 }
 
 /**
@@ -72,18 +78,8 @@ function _country_get_areas() {
  * @return
  *   String representing the content of the page.
  */
-function country_map_view() {
-  // Adds the amCharts JavaScript files to the page.
-  drupal_add_js('http://www.amcharts.com/lib/3/ammap.js', 'external');
-  drupal_add_js('http://www.amcharts.com/lib/3/maps/js/worldHigh.js', 'external');
-  drupal_add_js('http://www.amcharts.com/lib/3/themes/light.js', 'external');
-
-  // Adds the properties of areas to Drupal's global storage of JavaScript
-  // settings.
-  drupal_add_js(array('areas' => _country_get_areas()), 'setting');
-
-  // Adds the countries map JavaScript file to the page.
-  drupal_add_js(drupal_get_path('module', 'country') . '/js/countries-map.js');
-
-  return theme('countries_map');
+function country_view($iso2 = NULL) {
+  return theme('country', array(
+    'country' => _country_load_by_iso2($iso2)
+  ));
 }
