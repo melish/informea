@@ -131,7 +131,17 @@
           <li><a href="/search?f[0]=type%3Atreaty"><?php print('Treaties'); ?></a></li>
           <li><a href="/search?f[0]=type%3Acountry"><?php print('Countries'); ?></a></li>
           <li><a href="/terms"><?php print('Terms'); ?></a></li>
-          <li><a href="/search?f[0]=type%3Agoal"><?php print('Goals'); ?></a></li>
+          <li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <?php print('Goals'); ?>
+              <span class="caret"></span>
+            </a><!-- .dropdown-toggle -->
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/search?f[0]=type%3Agoal"><?php print('All goals'); ?></a></li>
+              <li><a href="/goals/aichi-targets">Aichi targets</a></li>
+            </ul><!-- .dropdown-menu -->
+
+          </li>
           <li><a href="/search?f[0]=type%3Aliterature"><?php print('Publications'); ?></a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
