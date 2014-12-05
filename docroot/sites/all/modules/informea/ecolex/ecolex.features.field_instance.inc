@@ -18,7 +18,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -59,7 +59,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -100,7 +100,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -141,7 +141,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'entityreference',
         'settings' => array(
           'link' => FALSE,
@@ -191,7 +191,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -232,7 +232,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -273,7 +273,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -313,7 +313,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'date',
         'settings' => array(
           'format_type' => 'long',
@@ -367,7 +367,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'date',
         'settings' => array(
           'format_type' => 'long',
@@ -421,7 +421,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'date',
         'settings' => array(
           'format_type' => 'long',
@@ -476,7 +476,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
@@ -525,7 +525,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
@@ -573,7 +573,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
@@ -631,7 +631,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
@@ -688,7 +688,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_default',
@@ -732,7 +732,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
@@ -782,7 +782,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
@@ -840,7 +840,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -881,7 +881,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
@@ -931,7 +931,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -972,7 +972,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
@@ -1022,7 +1022,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'number',
         'settings' => array(
           'decimal_separator' => '.',
@@ -1069,10 +1069,9 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'module' => 'text',
+        'label' => 'inline',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'hidden',
         'weight' => 25,
       ),
       'teaser' => array(
@@ -1110,7 +1109,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -1151,7 +1150,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'entityreference',
         'settings' => array(
           'link' => FALSE,
@@ -1195,7 +1194,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
@@ -1253,7 +1252,7 @@ function ecolex_field_default_field_instances() {
     'description' => 'The language of the source document (can be different from the node\'s language)',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'languagefield',
         'settings' => array(
           'format' => array(
@@ -1305,7 +1304,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
@@ -1353,7 +1352,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
@@ -1403,7 +1402,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
@@ -1508,7 +1507,7 @@ function ecolex_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 20,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1547,11 +1546,11 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
+        'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 5,
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1589,10 +1588,9 @@ function ecolex_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 18,
+        'type' => 'hidden',
+        'weight' => 29,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1635,7 +1633,7 @@ function ecolex_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 13,
+        'weight' => 14,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1678,7 +1676,7 @@ function ecolex_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 3,
+        'weight' => 6,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1737,7 +1735,7 @@ function ecolex_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 0,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1790,7 +1788,7 @@ function ecolex_field_default_field_instances() {
           'multiple_to' => '',
         ),
         'type' => 'date_default',
-        'weight' => 10,
+        'weight' => 11,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1834,7 +1832,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'date',
         'settings' => array(
           'format_type' => 'long',
@@ -1844,7 +1842,7 @@ function ecolex_field_default_field_instances() {
           'multiple_to' => '',
         ),
         'type' => 'date_default',
-        'weight' => 24,
+        'weight' => 21,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1888,7 +1886,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'date',
         'settings' => array(
           'format_type' => 'long',
@@ -1898,7 +1896,7 @@ function ecolex_field_default_field_instances() {
           'multiple_to' => '',
         ),
         'type' => 'date_default',
-        'weight' => 25,
+        'weight' => 22,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1952,7 +1950,7 @@ function ecolex_field_default_field_instances() {
           'multiple_to' => '',
         ),
         'type' => 'date_default',
-        'weight' => 11,
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2006,7 +2004,7 @@ function ecolex_field_default_field_instances() {
           'multiple_to' => '',
         ),
         'type' => 'date_default',
-        'weight' => 1,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2051,11 +2049,11 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 21,
+        'weight' => 18,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2161,7 +2159,7 @@ function ecolex_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 9,
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2202,7 +2200,7 @@ function ecolex_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 8,
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2243,7 +2241,7 @@ function ecolex_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 19,
+        'weight' => 17,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2303,7 +2301,7 @@ function ecolex_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 12,
+        'weight' => 13,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2341,11 +2339,11 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 27,
+        'weight' => 24,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2399,11 +2397,11 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 23,
+        'weight' => 20,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2440,11 +2438,11 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 7,
+        'weight' => 8,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2488,11 +2486,11 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 28,
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2532,7 +2530,7 @@ function ecolex_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 17,
+        'weight' => 31,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2569,11 +2567,11 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 32,
+        'weight' => 28,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2618,7 +2616,7 @@ function ecolex_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_key',
-        'weight' => 30,
+        'weight' => 26,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2660,7 +2658,7 @@ function ecolex_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 14,
+        'weight' => 15,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2698,11 +2696,11 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 31,
+        'weight' => 27,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2739,7 +2737,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'languagefield',
         'settings' => array(
           'format' => array(
@@ -2747,7 +2745,7 @@ function ecolex_field_default_field_instances() {
           ),
         ),
         'type' => 'language_default',
-        'weight' => 22,
+        'weight' => 19,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2791,11 +2789,11 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 29,
+        'weight' => 25,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2839,11 +2837,11 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 26,
+        'weight' => 23,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2891,7 +2889,7 @@ function ecolex_field_default_field_instances() {
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 2,
+        'weight' => 5,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2941,7 +2939,7 @@ function ecolex_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 4,
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2997,7 +2995,7 @@ function ecolex_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 15,
+        'weight' => 30,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3083,10 +3081,9 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'module' => 'text',
+        'label' => 'inline',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'hidden',
         'weight' => 4,
       ),
       'teaser' => array(
@@ -3124,7 +3121,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -3165,7 +3162,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -3206,7 +3203,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -3247,7 +3244,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'entityreference',
         'settings' => array(
           'link' => FALSE,
@@ -3295,7 +3292,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'date',
         'settings' => array(
           'format_type' => 'long',
@@ -3349,7 +3346,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'date',
         'settings' => array(
           'format_type' => 'long',
@@ -3403,7 +3400,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'date',
         'settings' => array(
           'format_type' => 'long',
@@ -3458,7 +3455,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
@@ -3506,7 +3503,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
@@ -3555,7 +3552,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -3596,7 +3593,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -3637,7 +3634,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
@@ -3685,7 +3682,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -3726,7 +3723,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -3767,7 +3764,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -3808,7 +3805,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
@@ -3857,7 +3854,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -3899,9 +3896,8 @@ function ecolex_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'hidden',
         'weight' => 28,
       ),
       'teaser' => array(
@@ -3939,7 +3935,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -3980,7 +3976,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -4021,7 +4017,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
@@ -4070,7 +4066,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'entityreference',
         'settings' => array(
           'link' => FALSE,
@@ -4119,7 +4115,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
@@ -4159,7 +4155,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'entityreference',
         'settings' => array(
           'link' => FALSE,
@@ -4208,7 +4204,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
@@ -4265,7 +4261,7 @@ function ecolex_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
