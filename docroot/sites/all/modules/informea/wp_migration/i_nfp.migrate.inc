@@ -107,17 +107,15 @@ class MigrateNationalFocalPoints extends DynamicMigration {
   }
 
   function prepareRow($row) {
-    $name = '<unknown>';
-    if (empty($row->first_name)) {
+    $name = '';
+    if (!empty($row->first_name)) {
       $name = $row->first_name;
     }
     if (!empty($row->last_name)) {
-      if (empty($row->first_name)) {
+      if (!empty($row->first_name)) {
         $name .= ' ';
-      } else {
-        $name = '';
       }
-      $name .= $row->last_name;
+      $name .= $row->last_name;;
     }
     if (empty($name) && !empty($row->position)) {
       $name = $row->position;
@@ -126,6 +124,9 @@ class MigrateNationalFocalPoints extends DynamicMigration {
       $name = $row->institution;
     }
     $row->name = trim($name);
+    if (empty($row->name)) {
+      $row->name = '<unknown>';
+    }
 
     $row->id_treaty = $this->treaty_assignments[$row->id];
 
