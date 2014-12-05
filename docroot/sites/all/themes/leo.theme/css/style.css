@@ -227,6 +227,10 @@ a:focus .navicon-eur {
   color: inherit;
 }
 
+#chart-bar {
+  height: 200px;
+}
+
 #footer {
   background-color: #666;
   color: #fff;

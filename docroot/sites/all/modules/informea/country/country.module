@@ -79,6 +79,14 @@ function country_theme() {
  *   String representing the content of the page.
  */
 function country_view($iso2 = NULL) {
+  // Adds the amCharts JavaScript files to the page.
+  drupal_add_js('http://cdn.amcharts.com/lib/3/amcharts.js', 'external');
+  drupal_add_js('http://cdn.amcharts.com/lib/3/serial.js', 'external');
+  drupal_add_js('http://cdn.amcharts.com/lib/3/themes/light.js', 'external');
+
+  // Adds the country JavaScript file to the page.
+  drupal_add_js(drupal_get_path('module', 'country') . '/js/country.js');
+
   return theme('country', array(
     'country' => _country_load_by_iso2($iso2)
   ));
