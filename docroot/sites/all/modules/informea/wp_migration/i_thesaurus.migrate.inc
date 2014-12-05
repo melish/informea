@@ -74,6 +74,7 @@ class MigrateThesaurusInforMEA extends MigrateThesaurusBase {
 
   public function __construct($arguments) {
     parent::__construct($arguments, 9, INFORMEA_VOC_INFORMEA);
+    $this->dependencies = array('ThesaurusGEG');
     $this->description = 'Import InforMEA thesaurus';
   }
 
