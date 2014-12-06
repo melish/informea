@@ -520,7 +520,7 @@ function informea_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_country_pattern';
-  $strongarm->value = '';
+  $strongarm->value = 'country/[node:field_country_iso3]';
   $export['pathauto_node_country_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
