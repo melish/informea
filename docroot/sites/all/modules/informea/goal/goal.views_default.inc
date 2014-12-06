@@ -104,7 +104,7 @@ function goal_views_default_views() {
   $handler->display->display_options['filters']['field_goal_type_tid']['table'] = 'field_data_field_goal_type';
   $handler->display->display_options['filters']['field_goal_type_tid']['field'] = 'field_goal_type_tid';
   $handler->display->display_options['filters']['field_goal_type_tid']['value'] = array(
-    1030 => '1030',
+    838 => '838',
   );
   $handler->display->display_options['filters']['field_goal_type_tid']['expose']['operator_id'] = 'field_goal_type_tid_op';
   $handler->display->display_options['filters']['field_goal_type_tid']['expose']['label'] = 'Goal Type (field_goal_type)';
