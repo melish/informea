@@ -31,17 +31,58 @@ function goal_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '50';
   $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_strategic_goal',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['columns'] = array(
+    'field_strategic_goal' => 'field_strategic_goal',
+    'title' => 'title',
+    'field_goal_type' => 'field_goal_type',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'field_strategic_goal' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_goal_type' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  /* Field: Content: Strategic goal */
+  $handler->display->display_options['fields']['field_strategic_goal']['id'] = 'field_strategic_goal';
+  $handler->display->display_options['fields']['field_strategic_goal']['table'] = 'field_data_field_strategic_goal';
+  $handler->display->display_options['fields']['field_strategic_goal']['field'] = 'field_strategic_goal';
+  $handler->display->display_options['fields']['field_strategic_goal']['label'] = '';
+  $handler->display->display_options['fields']['field_strategic_goal']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_strategic_goal']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_strategic_goal']['settings'] = array(
+    'link' => 0,
+  );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Goal Type */
-  $handler->display->display_options['fields']['field_goal_type']['id'] = 'field_goal_type';
-  $handler->display->display_options['fields']['field_goal_type']['table'] = 'field_data_field_goal_type';
-  $handler->display->display_options['fields']['field_goal_type']['field'] = 'field_goal_type';
-  $handler->display->display_options['fields']['field_goal_type']['type'] = 'taxonomy_term_reference_plain';
   /* Sort criterion: Field: Order (field_sorting_order) */
   $handler->display->display_options['sorts']['field_sorting_order_value']['id'] = 'field_sorting_order_value';
   $handler->display->display_options['sorts']['field_sorting_order_value']['table'] = 'field_data_field_sorting_order';
@@ -135,7 +176,6 @@ function goal_views_default_views() {
     t('next ›'),
     t('last »'),
     t('Title'),
-    t('Goal Type'),
     t('Goal Type (field_goal_type)'),
     t('All goals'),
   );
