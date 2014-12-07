@@ -1,0 +1,718 @@
+<?php
+/**
+ * @file
+ * country.views_default.inc
+ */
+
+/**
+ * Implements hook_views_default_views().
+ */
+function country_views_default_views() {
+  $export = array();
+
+  $view = new view();
+  $view->name = 'country_related_content';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Country related content';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Country related content';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'time';
+  $handler->display->display_options['cache']['results_lifespan'] = '300';
+  $handler->display->display_options['cache']['results_lifespan_custom'] = '0';
+  $handler->display->display_options['cache']['output_lifespan'] = '300';
+  $handler->display->display_options['cache']['output_lifespan_custom'] = '0';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'node';
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_country_target_id']['id'] = 'field_country_target_id';
+  $handler->display->display_options['relationships']['field_country_target_id']['table'] = 'field_data_field_country';
+  $handler->display->display_options['relationships']['field_country_target_id']['field'] = 'field_country_target_id';
+  $handler->display->display_options['relationships']['field_country_target_id']['required'] = TRUE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Contextual filter: Content: ISO alpha-2 code (field_country_iso2) */
+  $handler->display->display_options['arguments']['field_country_iso2_value']['id'] = 'field_country_iso2_value';
+  $handler->display->display_options['arguments']['field_country_iso2_value']['table'] = 'field_data_field_country_iso2';
+  $handler->display->display_options['arguments']['field_country_iso2_value']['field'] = 'field_country_iso2_value';
+  $handler->display->display_options['arguments']['field_country_iso2_value']['relationship'] = 'field_country_target_id';
+  $handler->display->display_options['arguments']['field_country_iso2_value']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_country_iso2_value']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_country_iso2_value']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_country_iso2_value']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_country_iso2_value']['limit'] = '0';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+
+  /* Display: Focal points */
+  $handler = $view->new_display('page', 'Focal points', 'page_contact_person');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Country focal points';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_treaty',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['uses_fields'] = TRUE;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'title' => 'title',
+  );
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_country_target_id']['id'] = 'field_country_target_id';
+  $handler->display->display_options['relationships']['field_country_target_id']['table'] = 'field_data_field_country';
+  $handler->display->display_options['relationships']['field_country_target_id']['field'] = 'field_country_target_id';
+  $handler->display->display_options['relationships']['field_country_target_id']['required'] = TRUE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_treaty_target_id']['id'] = 'field_treaty_target_id';
+  $handler->display->display_options['relationships']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['relationships']['field_treaty_target_id']['field'] = 'field_treaty_target_id';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Treaty */
+  $handler->display->display_options['fields']['field_treaty']['id'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['field'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['label'] = '';
+  $handler->display->display_options['fields']['field_treaty']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_treaty']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_treaty']['settings'] = array(
+    'link' => 0,
+  );
+  $handler->display->display_options['fields']['field_treaty']['delta_offset'] = '0';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: ISO alpha-2 code (field_country_iso2) */
+  $handler->display->display_options['arguments']['field_country_iso2_value']['id'] = 'field_country_iso2_value';
+  $handler->display->display_options['arguments']['field_country_iso2_value']['table'] = 'field_data_field_country_iso2';
+  $handler->display->display_options['arguments']['field_country_iso2_value']['field'] = 'field_country_iso2_value';
+  $handler->display->display_options['arguments']['field_country_iso2_value']['relationship'] = 'field_country_target_id';
+  $handler->display->display_options['arguments']['field_country_iso2_value']['default_action'] = 'empty';
+  $handler->display->display_options['arguments']['field_country_iso2_value']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_country_iso2_value']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_country_iso2_value']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_country_iso2_value']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_country_iso2_value']['limit'] = '0';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'contact_person' => 'contact_person',
+  );
+  $handler->display->display_options['path'] = 'countries/%/parties';
+
+  /* Display: National reports */
+  $handler = $view->new_display('page', 'National reports', 'page_national_report');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'National reports';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_treaty',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['uses_fields'] = TRUE;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'title' => 'title',
+  );
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_country_target_id']['id'] = 'field_country_target_id';
+  $handler->display->display_options['relationships']['field_country_target_id']['table'] = 'field_data_field_country';
+  $handler->display->display_options['relationships']['field_country_target_id']['field'] = 'field_country_target_id';
+  $handler->display->display_options['relationships']['field_country_target_id']['required'] = TRUE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_treaty_target_id']['id'] = 'field_treaty_target_id';
+  $handler->display->display_options['relationships']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['relationships']['field_treaty_target_id']['field'] = 'field_treaty_target_id';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Treaty */
+  $handler->display->display_options['fields']['field_treaty']['id'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['field'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['label'] = '';
+  $handler->display->display_options['fields']['field_treaty']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_treaty']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_treaty']['settings'] = array(
+    'link' => 0,
+  );
+  $handler->display->display_options['fields']['field_treaty']['delta_offset'] = '0';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Country (field_country) */
+  $handler->display->display_options['arguments']['field_country_target_id']['id'] = 'field_country_target_id';
+  $handler->display->display_options['arguments']['field_country_target_id']['table'] = 'field_data_field_country';
+  $handler->display->display_options['arguments']['field_country_target_id']['field'] = 'field_country_target_id';
+  $handler->display->display_options['arguments']['field_country_target_id']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['field_country_target_id']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'national_report' => 'national_report',
+  );
+  $handler->display->display_options['path'] = 'countries/%/parties';
+
+  /* Display: Action plans */
+  $handler = $view->new_display('page', 'Action plans', 'page_action_plan');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Action plans';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_treaty',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['uses_fields'] = TRUE;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'title' => 'title',
+  );
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_country_target_id']['id'] = 'field_country_target_id';
+  $handler->display->display_options['relationships']['field_country_target_id']['table'] = 'field_data_field_country';
+  $handler->display->display_options['relationships']['field_country_target_id']['field'] = 'field_country_target_id';
+  $handler->display->display_options['relationships']['field_country_target_id']['required'] = TRUE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_treaty_target_id']['id'] = 'field_treaty_target_id';
+  $handler->display->display_options['relationships']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['relationships']['field_treaty_target_id']['field'] = 'field_treaty_target_id';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Treaty */
+  $handler->display->display_options['fields']['field_treaty']['id'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['field'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['label'] = '';
+  $handler->display->display_options['fields']['field_treaty']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_treaty']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_treaty']['settings'] = array(
+    'link' => 0,
+  );
+  $handler->display->display_options['fields']['field_treaty']['delta_offset'] = '0';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Country (field_country) */
+  $handler->display->display_options['arguments']['field_country_target_id']['id'] = 'field_country_target_id';
+  $handler->display->display_options['arguments']['field_country_target_id']['table'] = 'field_data_field_country';
+  $handler->display->display_options['arguments']['field_country_target_id']['field'] = 'field_country_target_id';
+  $handler->display->display_options['arguments']['field_country_target_id']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['field_country_target_id']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'action_plan' => 'action_plan',
+  );
+  $handler->display->display_options['path'] = 'countries/%/parties';
+
+  /* Display: Legislation */
+  $handler = $view->new_display('page', 'Legislation', 'page_legislation');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Legislation';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '50';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_treaty',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['uses_fields'] = TRUE;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'title' => 'title',
+  );
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_country_target_id']['id'] = 'field_country_target_id';
+  $handler->display->display_options['relationships']['field_country_target_id']['table'] = 'field_data_field_country';
+  $handler->display->display_options['relationships']['field_country_target_id']['field'] = 'field_country_target_id';
+  $handler->display->display_options['relationships']['field_country_target_id']['required'] = TRUE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_treaty_target_id']['id'] = 'field_treaty_target_id';
+  $handler->display->display_options['relationships']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['relationships']['field_treaty_target_id']['field'] = 'field_treaty_target_id';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Treaty */
+  $handler->display->display_options['fields']['field_treaty']['id'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['field'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['label'] = '';
+  $handler->display->display_options['fields']['field_treaty']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_treaty']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_treaty']['settings'] = array(
+    'link' => 0,
+  );
+  $handler->display->display_options['fields']['field_treaty']['delta_offset'] = '0';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Country (field_country) */
+  $handler->display->display_options['arguments']['field_country_target_id']['id'] = 'field_country_target_id';
+  $handler->display->display_options['arguments']['field_country_target_id']['table'] = 'field_data_field_country';
+  $handler->display->display_options['arguments']['field_country_target_id']['field'] = 'field_country_target_id';
+  $handler->display->display_options['arguments']['field_country_target_id']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['field_country_target_id']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'legislation' => 'legislation',
+  );
+  $handler->display->display_options['path'] = 'countries/%/parties';
+
+  /* Display: Literature */
+  $handler = $view->new_display('page', 'Literature', 'page_literature');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Legislation';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '50';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_treaty',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['uses_fields'] = TRUE;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'title' => 'title',
+  );
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_country_target_id']['id'] = 'field_country_target_id';
+  $handler->display->display_options['relationships']['field_country_target_id']['table'] = 'field_data_field_country';
+  $handler->display->display_options['relationships']['field_country_target_id']['field'] = 'field_country_target_id';
+  $handler->display->display_options['relationships']['field_country_target_id']['required'] = TRUE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_treaty_target_id']['id'] = 'field_treaty_target_id';
+  $handler->display->display_options['relationships']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['relationships']['field_treaty_target_id']['field'] = 'field_treaty_target_id';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Treaty */
+  $handler->display->display_options['fields']['field_treaty']['id'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['field'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['label'] = '';
+  $handler->display->display_options['fields']['field_treaty']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_treaty']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_treaty']['settings'] = array(
+    'link' => 0,
+  );
+  $handler->display->display_options['fields']['field_treaty']['delta_offset'] = '0';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Country (field_country) */
+  $handler->display->display_options['arguments']['field_country_target_id']['id'] = 'field_country_target_id';
+  $handler->display->display_options['arguments']['field_country_target_id']['table'] = 'field_data_field_country';
+  $handler->display->display_options['arguments']['field_country_target_id']['field'] = 'field_country_target_id';
+  $handler->display->display_options['arguments']['field_country_target_id']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['field_country_target_id']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'literature' => 'literature',
+  );
+  $handler->display->display_options['path'] = 'countries/%/parties';
+
+  /* Display: Court decisions */
+  $handler = $view->new_display('page', 'Court decisions', 'page_court_decisions');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Court decisions';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '50';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_treaty',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['uses_fields'] = TRUE;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'title' => 'title',
+  );
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_country_target_id']['id'] = 'field_country_target_id';
+  $handler->display->display_options['relationships']['field_country_target_id']['table'] = 'field_data_field_country';
+  $handler->display->display_options['relationships']['field_country_target_id']['field'] = 'field_country_target_id';
+  $handler->display->display_options['relationships']['field_country_target_id']['required'] = TRUE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_treaty_target_id']['id'] = 'field_treaty_target_id';
+  $handler->display->display_options['relationships']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['relationships']['field_treaty_target_id']['field'] = 'field_treaty_target_id';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Treaty */
+  $handler->display->display_options['fields']['field_treaty']['id'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['field'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['label'] = '';
+  $handler->display->display_options['fields']['field_treaty']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_treaty']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_treaty']['settings'] = array(
+    'link' => 0,
+  );
+  $handler->display->display_options['fields']['field_treaty']['delta_offset'] = '0';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Country (field_country) */
+  $handler->display->display_options['arguments']['field_country_target_id']['id'] = 'field_country_target_id';
+  $handler->display->display_options['arguments']['field_country_target_id']['table'] = 'field_data_field_country';
+  $handler->display->display_options['arguments']['field_country_target_id']['field'] = 'field_country_target_id';
+  $handler->display->display_options['arguments']['field_country_target_id']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['field_country_target_id']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'court_decisions' => 'court_decisions',
+  );
+  $handler->display->display_options['path'] = 'countries/%/parties';
+
+  /* Display: Geographical sites */
+  $handler = $view->new_display('page', 'Geographical sites', 'page_geographical_site');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Geographical sites';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_treaty',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['uses_fields'] = TRUE;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'title' => 'title',
+  );
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_country_target_id']['id'] = 'field_country_target_id';
+  $handler->display->display_options['relationships']['field_country_target_id']['table'] = 'field_data_field_country';
+  $handler->display->display_options['relationships']['field_country_target_id']['field'] = 'field_country_target_id';
+  $handler->display->display_options['relationships']['field_country_target_id']['required'] = TRUE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_treaty_target_id']['id'] = 'field_treaty_target_id';
+  $handler->display->display_options['relationships']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['relationships']['field_treaty_target_id']['field'] = 'field_treaty_target_id';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Treaty */
+  $handler->display->display_options['fields']['field_treaty']['id'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['field'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['label'] = '';
+  $handler->display->display_options['fields']['field_treaty']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_treaty']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_treaty']['settings'] = array(
+    'link' => 0,
+  );
+  $handler->display->display_options['fields']['field_treaty']['delta_offset'] = '0';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Country (field_country) */
+  $handler->display->display_options['arguments']['field_country_target_id']['id'] = 'field_country_target_id';
+  $handler->display->display_options['arguments']['field_country_target_id']['table'] = 'field_data_field_country';
+  $handler->display->display_options['arguments']['field_country_target_id']['field'] = 'field_country_target_id';
+  $handler->display->display_options['arguments']['field_country_target_id']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['field_country_target_id']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'geographical_site' => 'geographical_site',
+  );
+  $handler->display->display_options['path'] = 'countries/%/parties';
+  $translatables['country_related_content'] = array(
+    t('Master'),
+    t('Country related content'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Content entity referenced from field_country'),
+    t('All'),
+    t('Focal points'),
+    t('Country focal points'),
+    t('Content entity referenced from field_treaty'),
+    t('National reports'),
+    t('Action plans'),
+    t('Legislation'),
+    t('Literature'),
+    t('Court decisions'),
+    t('Geographical sites'),
+  );
+  $export['country_related_content'] = $view;
+
+  return $export;
+}
