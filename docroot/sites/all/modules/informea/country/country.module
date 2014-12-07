@@ -43,6 +43,9 @@ function country_url_context($path) {
 function country_node_view($node, $view_mode, $langcode) {
   if($node->type == 'country' && $view_mode == 'full') {
     $context = country_url_context(request_path());
+    if(empty($context)) {
+      $context = 'map';
+    }
     $node->context = $context;
     switch($context) {
       case 'map':
