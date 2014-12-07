@@ -103,7 +103,11 @@
       <?php print render($title_suffix); ?>
       <?php print $messages; ?>
       <?php if (!empty($tabs)): ?>
-        <?php print render($tabs); ?>
+        <?php
+          // Secondary local task in sidebar_second see hook_preprocess_page().
+          hide($tabs['#secondary']);
+          print render($tabs);
+        ?>
       <?php endif; ?>
       <?php if (!empty($page['help'])): ?>
         <?php print render($page['help']); ?>
