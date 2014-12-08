@@ -53,7 +53,7 @@ function country_node_view($node, $view_mode, $langcode) {
         drupal_add_js('https://maps.googleapis.com/maps/api/js?v=3.exp', 'external');
         // Adds the country JavaScript file to the page.
         drupal_add_js(drupal_get_path('module', 'country') . '/js/map.js');
-        $view = country_get_view_country_related_content($node->nid, 'page_geographical_site');
+        $view = country_get_view_country_related_content($node->nid, 'embed_sites');
         $node->content['context'] = array(
           0 => array(
             '#type' => 'item', '#weight' => 10, '#markup' => '<div id="map-canvas" style="height: 400px;margin: 0px;padding: 0px"></div>',
@@ -65,9 +65,16 @@ function country_node_view($node, $view_mode, $langcode) {
         break;
 
       case 'national-reports':
-        $view = country_get_view_country_related_content($node->nid, 'page_national_report');
+        $view = country_get_view_country_related_content($node->nid, 'embed_national_reports');
         $node->content['context'] = array(
-          '#type' => 'item', '#weight' => 10, '#markup' => $view->render(),
+          '#type' => 'item', '#weight' => 10, '#markup' => $view->preview(),
+        );
+        break;
+
+      case 'action-plans':
+        $view = country_get_view_country_related_content($node->nid, 'embed_action_plans');
+        $node->content['context'] = array(
+          '#type' => 'item', '#weight' => 10, '#markup' => $view->preview(),
         );
         break;
 
@@ -118,13 +125,15 @@ function country_country_contextual_menu_alter(&$contextual_menu, $node) {
   if ($node->type == 'country') {
     $uri = url(drupal_get_path_alias('node/' . $node->nid), array('absolute' => TRUE));
     $links = array(
-      'map' => t('Map <span class="badge">!count</span>', array( '!count' => 56 )),
+      'map' => t('Sites <span class="badge">!count</span>',
+        array('!count' => country_get_view_country_related_content_count($node->nid, 'embed_sites'))
+      ),
       'parties' => t('Membership <span class="badge">!count</span>', array( '!count' => 0 )),
       'action-plans' => t('Action plans <span class="badge">!count</span>',
-        array('!count' => country_get_view_country_related_content_count($node->nid, 'page_action_plan'))
+        array('!count' => country_get_view_country_related_content_count($node->nid, 'embed_action_plans'))
       ),
       'national-reports' => t('National reports <span class="badge">!count</span>',
-        array('!count' => country_get_view_country_related_content_count($node->nid, 'page_national_report'))
+        array('!count' => country_get_view_country_related_content_count($node->nid, 'embed_national_reports'))
       ),
       'legislation' => t('Law <span class="badge">!count</span>',
         array('!count' => country_get_view_country_related_content_count($node->nid, 'page_legislation'))
