@@ -87,15 +87,27 @@ function country_node_view($node, $view_mode, $langcode) {
 
       case 'legislation':
         module_load_include('inc', 'country', 'country.forms');
-        // Adds the amCharts JavaScript files to the page.
-        drupal_add_js('http://cdn.amcharts.com/lib/3/amcharts.js', 'external');
-        drupal_add_js('http://cdn.amcharts.com/lib/3/serial.js', 'external');
-        drupal_add_js('http://cdn.amcharts.com/lib/3/themes/light.js', 'external');
-        // Adds the country JavaScript file to the page.
-        drupal_add_js(drupal_get_path('module', 'country') . '/js/country.js');
+
+        $raw_data = country_get_legislation_statistics($node->nid);
+        $data = array();
+        foreach($raw_data as $t) {
+          $data[] = (object) array('type' => $t->name, 'count' => $t->count);
+        }
+        edw_amcharts_add_chart('country_legislation_chart', 'pie', $data,
+          array(
+            'theme' => 'light', 'valueField' => 'count', 'titleField' => 'type',
+            'width' => '260px',
+            'height' => '260px',
+            'dataProvider' => $data,
+          )
+        );
+
+        // drupal_add_js(drupal_get_path('module', 'country') . '/js/country.js');
         $node->content['context'] = array(
           0 => array(
-            '#type' => 'item', '#weight' => 10, '#markup' => '<div class="well"><div id="chart-bar"></div></div><!-- .well -->',
+            '#type' => 'item', '#weight' => 10, '#markup' => '',
+            '#prefix' => '<p></p><h4>Types of legislation</h4>', '#suffix' => '</div>',
+            '#id' => 'country_legislation_chart',
           ),
           1 => drupal_get_form('country_legislation_filter_form'),
         );
@@ -103,19 +115,32 @@ function country_node_view($node, $view_mode, $langcode) {
 
       case 'literature':
         module_load_include('inc', 'country', 'country.forms');
-        // Adds the amCharts JavaScript files to the page.
-        drupal_add_js('http://cdn.amcharts.com/lib/3/amcharts.js', 'external');
-        drupal_add_js('http://cdn.amcharts.com/lib/3/serial.js', 'external');
-        drupal_add_js('http://cdn.amcharts.com/lib/3/themes/light.js', 'external');
-        // Adds the country JavaScript file to the page.
+        drupal_add_library('edw_amcharts', 'edw_amcharts_library');
         drupal_add_js(drupal_get_path('module', 'country') . '/js/country.js');
         $node->content['context'] = array(
           0 => array(
             '#type' => 'item', '#weight' => 10, '#markup' => '<div class="well"><div id="chart-bar"></div></div><!-- .well -->',
+            '#id' => ''
           ),
           1 => drupal_get_form('country_literature_filter_form'),
         );
         break;
+    }
+  }
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function country_page_alter(&$page) {
+  foreach($page['content']['system_main']['nodes'] as $nid => &$node) {
+    if (isset($node['context']) && is_array($node['context'])) {
+      foreach ($node['context'] as $idx => $item) {
+        if (isset($item['#id']) && $item['#id'] == 'country_legislation_chart') {
+          $page['sidebar_second'][] = $item;
+          unset($node['context'][0]);
+        }
+      }
     }
   }
 }
@@ -175,4 +200,31 @@ function country_menu_local_tasks_alter(&$data, $router_item, $root_path) {
       'output' => $context_menu,
     );
   }
+}
+
+
+function country_get_legislation_statistics($id_country = NULL) {
+  $query = db_select('node', 'n')
+    ->fields('td', array('tid'))
+    ->condition('n.status', 1)
+    ->condition('n.type', 'legislation')
+    ->groupBy('td.tid');
+
+  $query->addExpression('COUNT(td.vid)', 'term_count');
+  $query->join('field_data_field_type_of_text', 'tt', 'n.nid = tt.entity_id');
+  $query->join('taxonomy_term_data', 'td', 'tt.field_type_of_text_tid = td.tid');
+  if ($id_country) {
+    $query->join('field_data_field_country', 'c', 'n.nid = c.entity_id');
+    $query->condition('c.field_country_target_id', $id_country);
+  }
+  $results = $query->execute()->fetchAllKeyed();
+
+  arsort($results);
+  $ret = array();
+  foreach($results as $tid => $count) {
+    $term = taxonomy_term_load($tid);
+    $term->count = $count;
+    $ret[] = $term;
+  }
+  return $ret;
 }

@@ -65,9 +65,7 @@ function country_legislation_filter_form($form, $form_state) {
     '#size' => 30,
     '#maxlength' => 128,
   );
-
-  $voc = taxonomy_vocabulary_machine_name_load('type_of_text');
-  $terms = taxonomy_get_tree($voc->vid);
+  $terms = country_get_legislation_statistics();
   $build['field_type_of_text'] = array(
     '#prefix' => '<div class="col-md-offset-1">',
     '#suffix' => '</div>',
