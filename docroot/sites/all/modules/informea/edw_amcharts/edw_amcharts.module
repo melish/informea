@@ -47,7 +47,7 @@ function edw_amcharts_library() {
   );
 
   $items['edw_amcharts_column_chart'] = array(
-    'title' => 'amCharts pie chart',
+    'title' => 'amCharts column chart',
     'version' => EDW_AMCHARTS_VERSION,
     'js' => $base_js + array(
         'http://www.amcharts.com/lib/3/serial.js' => array(
@@ -79,48 +79,35 @@ function edw_amcharts_library() {
  *  Unique chart id (assigned to the enclosing <div>)
  * @param string $chart_type
  *  Type of chart (see amCharts documentation)
- * @param array $data
+ * @param object $chart_config
  *  The actual chart data (Array of objects which will be serialized to JSON)
  * @param array $options
  *  Extra options (theme, width, height) passed to the amCharts library.
  */
-function edw_amcharts_add_chart($chart_id, $chart_type, $data, $options = array()) {
+function edw_amcharts_add_chart($chart_id, $chart_type, $chart_config, $options = array()) {
   $defaults = $options + array(
       'width' => '100px',
       'height' => '100px',
-      'valueField' => 'value',
-      'titleField' => 'title',
-      'theme' => 'none',
   );
-  drupal_alter('edw_amcharts_chart_data', $data, $chart_id, $defaults);
-  $valueField = $defaults['valueField'];
-  $titleField = $defaults['titleField'];
-  $data = json_encode($data);
-  $theme = $defaults['theme'];
+  drupal_alter('edw_amcharts_chart_data', $chart_config, $chart_id);
   drupal_add_library('edw_amcharts', "edw_amcharts_{$chart_type}_chart");
-  drupal_add_js("http://www.amcharts.com/lib/3/themes/{$theme}.js",
+  drupal_add_js("http://www.amcharts.com/lib/3/themes/{$chart_config->theme}.js",
     array(
       'type' => 'external', 'group' => JS_LIBRARY, 'weight' => 30,
     )
   );
-
-  $config = <<<EOF
+  $config = json_encode($chart_config, JSON_PRETTY_PRINT);
+  $js_config = <<<EOF
 jQuery(document).ready(function ($) {
-    var chart = AmCharts.makeChart("$chart_id", {
-        "type": "pie",
-        "theme": "light",
-        "dataProvider": $data,
-        "valueField": "$valueField",
-        "titleField": "$titleField"
-    });
+    var chart = AmCharts.makeChart("$chart_id", {$config});
 });
 EOF;
 
   $width = $defaults['width'];
   $height = $defaults['height'];
-  drupal_add_js($config, 'inline');
+  drupal_add_js($js_config, 'inline');
   $css = <<<EOF
-    #$chart_id { height: $width; width: $height; }
+    #$chart_id { width: $width; height: $height; }
 EOF;
 
   drupal_add_css($css, 'inline');
@@ -132,4 +119,60 @@ EOF;
 function edw_amcharts_ajax_process() {
   echo '[]';
   drupal_exit();
+}
+
+
+function edw_amcharts_default_config_chart_column() {
+  return (object)array(
+    'type' => 'serial',
+    'theme' => 'none',
+    'valueAxes' => array( (object) array(
+      'gridColor' =>'#FFFFFF',
+      'gridAlpha' => 0.2,
+      'dashLength' => 0
+    )),
+    'gridAboveGraphs' => true,
+    'startDuration' => 1,
+    'graphs' => array( (object) array(
+      'balloonText' => '[[category]] => <b>[[value]]</b>',
+      'fillAlphas' => 0.8,
+      'lineAlpha' => 0.2,
+      'type' => 'column',
+      'valueField' => 'the_value'
+    )),
+    'chartCursor' => (object) array(
+      'categoryBalloonEnabled' => FALSE,
+        'cursorAlpha' => 0,
+        'zoomable' => FALSE
+    ),
+    'categoryField' => 'the_category',
+    'categoryAxis' => (object) array(
+    'gridPosition' => 'start',
+        'gridAlpha' => 0,
+         'tickPosition' =>'start',
+         'tickLength' => 20
+    ),
+    'dataProvider' => array(
+      (object) array('the_category' => 'USA', 'the_value' => 2025),
+      (object) array('the_category' => 'China', 'the_value' => 1882),
+      (object) array('the_category' => 'Japan', 'the_value' => 1809),
+      (object) array('the_category' => 'Germany', 'the_value' => 1322)
+    )
+  );
+}
+
+
+function edw_amcharts_default_config_chart_pie() {
+  return (object)array(
+    'type' => 'pie',
+    'theme' => 'none',
+    'valueField' => 'the_value',
+    'titleField' => 'the_title',
+    'dataProvider' => array(
+      (object) array('the_title' => 'USA', 'the_value' => 2025),
+      (object) array('the_title' => 'China', 'the_value' => 1882),
+      (object) array('the_title' => 'Japan', 'the_value' => 1809),
+      (object) array('the_title' => 'Germany', 'the_value' => 1322)
+    )
+  );
 }
