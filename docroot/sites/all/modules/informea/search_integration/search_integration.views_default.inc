@@ -32,15 +32,15 @@ function search_integration_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '25';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['hide_empty'] = TRUE;
   /* Header: Global: Result summary */
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
-  /* Relationship: Indexed Node: Related treaties */
+  /* Relationship: Indexed Node: Treaty */
   $handler->display->display_options['relationships']['field_treaty']['id'] = 'field_treaty';
   $handler->display->display_options['relationships']['field_treaty']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['relationships']['field_treaty']['field'] = 'field_treaty';
-  $handler->display->display_options['relationships']['field_treaty']['label'] = 'Treaty';
   /* Relationship: Node: Country */
   $handler->display->display_options['relationships']['field_country']['id'] = 'field_country';
   $handler->display->display_options['relationships']['field_country']['table'] = 'entity_node';
@@ -69,11 +69,10 @@ function search_integration_views_default_views() {
   $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['type']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['type']['format_name'] = 1;
-  /* Field: Indexed Node: Related treaties */
+  /* Field: Indexed Node: Treaty */
   $handler->display->display_options['fields']['field_treaty']['id'] = 'field_treaty';
   $handler->display->display_options['fields']['field_treaty']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['fields']['field_treaty']['field'] = 'field_treaty';
-  $handler->display->display_options['fields']['field_treaty']['label'] = 'Treaty';
   $handler->display->display_options['fields']['field_treaty']['link_to_entity'] = 1;
   $handler->display->display_options['fields']['field_treaty']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_treaty']['bypass_access'] = 0;
