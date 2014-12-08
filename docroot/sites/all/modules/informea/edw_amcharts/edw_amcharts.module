@@ -1,0 +1,135 @@
+<?php
+
+define('EDW_AMCHARTS_VERSION', '0.1');
+
+/**
+ *  Implements hook_menu().
+ */
+function edw_amcharts_menu() {
+  $items['amcharts/ajax/%/%'] = array(
+    'title' => t('Ajax endpoint for amcharts plugin'),
+    'page callback' => 'edw_amcharts_ajax_process',
+    'access callback' => 'edw_amcharts_ajax_access',
+    'access arguments' => array(2, 3),
+  );
+  return $items;
+}
+
+/**
+ * Check access to the Ajax endpoint.
+ *
+ * @return bool
+ *   TRUE if access is granted
+ */
+function edw_amcharts_ajax_access($arg0, $arg1) {
+  $ret = TRUE;
+  drupal_alter('edw_amcharts_ajax_access', $ret);
+  return $ret;
+}
+
+
+/**
+ *  Implements hook_library().
+ */
+function edw_amcharts_library() {
+  $base_js = array(
+    'http://cdn.amcharts.com/lib/3/amcharts.js' => array(
+      'type' => 'external',
+      'group' => JS_LIBRARY,
+      'weight' => 10,
+    ),
+  );
+
+  $items['edw_amcharts_library'] = array(
+    'title' => 'amCharts library',
+    'version' => EDW_AMCHARTS_VERSION,
+    'js' => $base_js,
+  );
+
+  $items['edw_amcharts_column_chart'] = array(
+    'title' => 'amCharts pie chart',
+    'version' => EDW_AMCHARTS_VERSION,
+    'js' => $base_js + array(
+        'http://www.amcharts.com/lib/3/serial.js' => array(
+          'type' => 'external',
+          'group' => JS_LIBRARY,
+          'weight' => 20,
+        ),
+      )
+  );
+
+  $items['edw_amcharts_pie_chart'] = array(
+    'title' => 'amCharts pie chart',
+    'version' => EDW_AMCHARTS_VERSION,
+    'js' => $base_js + array(
+        'http://www.amcharts.com/lib/3/pie.js' => array(
+          'type' => 'external',
+          'group' => JS_LIBRARY,
+          'weight' => 20,
+        ),
+      ),
+  );
+  return $items;
+}
+
+/**
+ * Add components needed to generate a chart.
+ *
+ * @param string $chart_id
+ *  Unique chart id (assigned to the enclosing <div>)
+ * @param string $chart_type
+ *  Type of chart (see amCharts documentation)
+ * @param array $data
+ *  The actual chart data (Array of objects which will be serialized to JSON)
+ * @param array $options
+ *  Extra options (theme, width, height) passed to the amCharts library.
+ */
+function edw_amcharts_add_chart($chart_id, $chart_type, $data, $options = array()) {
+  $defaults = $options + array(
+      'width' => '100px',
+      'height' => '100px',
+      'valueField' => 'value',
+      'titleField' => 'title',
+      'theme' => 'none',
+  );
+  drupal_alter('edw_amcharts_chart_data', $data, $chart_id, $defaults);
+  $valueField = $defaults['valueField'];
+  $titleField = $defaults['titleField'];
+  $data = json_encode($data);
+  $theme = $defaults['theme'];
+  drupal_add_library('edw_amcharts', "edw_amcharts_{$chart_type}_chart");
+  drupal_add_js("http://www.amcharts.com/lib/3/themes/{$theme}.js",
+    array(
+      'type' => 'external', 'group' => JS_LIBRARY, 'weight' => 30,
+    )
+  );
+
+  $config = <<<EOF
+jQuery(document).ready(function ($) {
+    var chart = AmCharts.makeChart("$chart_id", {
+        "type": "pie",
+        "theme": "light",
+        "dataProvider": $data,
+        "valueField": "$valueField",
+        "titleField": "$titleField"
+    });
+});
+EOF;
+
+  $width = $defaults['width'];
+  $height = $defaults['height'];
+  drupal_add_js($config, 'inline');
+  $css = <<<EOF
+    #$chart_id { height: $width; width: $height; }
+EOF;
+
+  drupal_add_css($css, 'inline');
+}
+
+/**
+ * Ajax endpoint processor.
+ */
+function edw_amcharts_ajax_process() {
+  echo '[]';
+  drupal_exit();
+}
