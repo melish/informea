@@ -208,5 +208,5 @@ features[views_view][] = term_related_content
 features[views_view][] = the_content
 features[wysiwyg][] = filtered_html
 features[wysiwyg][] = full_html
-mtime = 1417958282
+mtime = 1417958792
 project path = sites/all/modules/informea
