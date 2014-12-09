@@ -272,6 +272,7 @@ $options['init-modules'] = array(
   'taxonomy_access_fix',
   'date',
   'migrate',
+  'migrate_ui',
   'features',
   'entityreference',
   'link',
@@ -283,12 +284,10 @@ $options['init-modules'] = array(
   'event_calendar',
   'advanced_help',
 
-  #'search_api',
-  #'facetapi',
-  #'search_api_facetapi',
-  #'apachesolr',
-  #'apachesolr_search',
-  #'search_api_solr',
+  'search_api',
+  'facetapi',
+  'search_api_facetapi',
+  'search_api_solr',
 
   'strongarm',
   'imce_wysiwyg',
@@ -300,24 +299,24 @@ $options['init-modules'] = array(
   'jquery_update',
   'select2',
 
-  'country',
-  'decision',
-  'meeting',
-  'goal',
-  'country_deliverable',
-  'ecolex',
-  'treaty',
-  'informea',
-  'country_data',
-
-
-  #'initial_content',
-
   'feeds',
   'feeds_news',
   'feeds_ui',
 
   'r4032login',
+
+  'country',
+  'country_deliverable',
+  'country_data',
+  'decision',
+  'ecolex',
+  'edw_amcharts',
+  'goal',
+  'informea',
+  'meeting',
+  'search_integration',
+  'treaty',
+  'wp_migration',
 
   'devel',
   'diff'
