@@ -150,13 +150,30 @@ function country_node_view($node, $view_mode, $langcode) {
 function country_page_alter(&$page) {
   if (!empty($page['content']['system_main']['nodes'])) {
     foreach ($page['content']['system_main']['nodes'] as $nid => &$node) {
-      if (isset( $node['context'] ) && is_array($node['context'])) {
-        foreach ($node['context'] as $idx => $item) {
-          if (isset( $item['#id'] ) && $item['#id'] == 'country_legislation_chart') {
-            $page['sidebar_second'][] = $item;
-            unset( $node['context'][0] );
+      // Move legislation chart to secondary region
+      if (isset($node['#node']->context) && $node['#node']->type == 'country') {
+        if (isset( $node['context'] ) && is_array($node['context'])) {
+          foreach ($node['context'] as $idx => $item) {
+            if (isset( $item['#id'] ) && $item['#id'] == 'country_legislation_chart') {
+              $page['sidebar_second'][] = $item;
+              unset( $node['context'][0] );
+            }
           }
         }
+        // Hide fields in some view modes.
+        switch ($node['#node']->context) {
+          case 'action-plans':
+          case 'court-decisions':
+          case 'legislation':
+          case 'literature':
+          case 'map':
+          case 'national-reports':
+          case 'parties':
+            foreach(element_children($node) as $element_id) {
+              hide($node[$element_id]);
+            }
+            show($node['context']);
+          }
       }
     }
   }
