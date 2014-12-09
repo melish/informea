@@ -111,8 +111,6 @@ function country_node_view($node, $view_mode, $langcode) {
         $chart_config->theme = 'light';
         $chart_config->dataProvider = $data;
         edw_amcharts_add_chart('country_legislation_chart', 'pie', $chart_config, array('width' => '260px', 'height' => '260px'));
-
-        // drupal_add_js(drupal_get_path('module', 'country') . '/js/country.js');
         $node->content['context'] = array(
           0 => array(
             '#type' => 'item', '#weight' => 10, '#markup' => '',
