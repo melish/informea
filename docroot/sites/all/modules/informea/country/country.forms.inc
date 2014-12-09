@@ -27,15 +27,14 @@ function country_literature_filter_form($form, $form_state) {
     '#title' => t('Type of document'),
   );
 
-  $voc = taxonomy_vocabulary_machine_name_load('geographical_region');
-  $terms = taxonomy_get_tree($voc->vid);
+  $terms = country_get_court_literature_statistics();
   $build['field_literature_type'] = array(
     '#type' => 'select',
     '#options' => array_combine(
       array_map(function($t) { return $t->tid; }, $terms),
       array_map(function($t) { return $t->name; }, $terms)
     ),
-    '#title' => t('Related region'),
+    '#title' => t('Type of literature'),
   );
 
   $build['search-button'] = array(

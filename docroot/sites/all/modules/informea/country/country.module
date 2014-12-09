@@ -125,12 +125,19 @@ function country_node_view($node, $view_mode, $langcode) {
 
       case 'literature':
         module_load_include('inc', 'country', 'country.forms');
-        drupal_add_library('edw_amcharts', 'edw_amcharts_library');
-        drupal_add_js(drupal_get_path('module', 'country') . '/js/country.js');
+        $raw_data = country_get_court_literature_statistics($node->nid);
+        $data = array();
+        foreach($raw_data as $t) {
+          $data[] = (object) array('the_category' => $t->name, 'the_value' => (int)$t->count);
+        }
+        $chart_config = edw_amcharts_default_config_chart_column();
+        $chart_config->rotate = TRUE;
+        $chart_config->dataProvider = $data;
+        edw_amcharts_add_chart('country_literature_chart', 'column', $chart_config, array('width' => '800px', 'height' => '350px'));
         $node->content['context'] = array(
           0 => array(
-            '#type' => 'item', '#weight' => 10, '#markup' => '<div class="well"><div id="chart-bar"></div></div><!-- .well -->',
-            '#id' => ''
+            '#type' => 'item', '#weight' => 10, '#markup' => '',
+            '#id' => 'country_literature_chart',
           ),
           1 => drupal_get_form('country_literature_filter_form'),
         );
@@ -244,4 +251,30 @@ function country_get_legislation_statistics($id_country = NULL, $type = 'legisla
 
 function country_get_court_decisions_statistics($id_country = NULL) {
   return country_get_legislation_statistics($id_country, 'court_decisions');
+}
+
+function country_get_court_literature_statistics($id_country = NULL) {
+  $query = db_select('node', 'n')
+    ->fields('td', array('tid'))
+    ->condition('n.status', 1)
+    ->condition('n.type', 'literature')
+    ->groupBy('td.tid');
+
+  $query->addExpression('COUNT(td.vid)', 'term_count');
+  $query->join('field_data_field_literature_type', 'tt', 'n.nid = tt.entity_id');
+  $query->join('taxonomy_term_data', 'td', 'tt.field_literature_type_tid = td.tid');
+  if ($id_country) {
+    $query->join('field_data_field_country', 'c', 'n.nid = c.entity_id');
+    $query->condition('c.field_country_target_id', $id_country);
+  }
+  $results = $query->execute()->fetchAllKeyed();
+
+  arsort($results);
+  $ret = array();
+  foreach($results as $tid => $count) {
+    $term = taxonomy_term_load($tid);
+    $term->count = $count;
+    $ret[] = $term;
+  }
+  return $ret;
 }
