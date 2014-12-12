@@ -108,9 +108,9 @@
       <?php print $messages; ?>
       <?php if (!empty($tabs)): ?>
         <?php
-          // Secondary local task in sidebar_second see hook_preprocess_page().
-          hide($tabs['#secondary']);
-          print render($tabs);
+        // Secondary local task in sidebar_second see hook_preprocess_page().
+        hide($tabs['#secondary']);
+        print render($tabs);
         ?>
       <?php endif; ?>
       <?php if (!empty($page['help'])): ?>

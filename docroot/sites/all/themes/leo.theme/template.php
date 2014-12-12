@@ -47,5 +47,5 @@ function leo_theme_facetapi_count($variables) {
  * @ingroup themable
  */
 function leo_theme_facetapi_deactivate_widget($variables) {
-  return '<span class="glyphicon glyphicon-remove"></span>';
+  return '&times;';
 }
