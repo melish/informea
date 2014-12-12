@@ -22,6 +22,42 @@ function leo_theme_preprocess_page(&$vars) {
 }
 
 /**
+ * Returns HTML for an inactive facet item.
+ *
+ * @param $variables
+ *   An associative array containing the keys 'text', 'path', 'options', and
+ *   'count'. See the l() and theme_facetapi_count() functions for information
+ *   about these variables.
+ *
+ * @ingroup themeable
+ */
+function leo_theme_facetapi_link_inactive($variables) {
+  // Builds accessible markup.
+  // @see http://drupal.org/node/1316580
+  $accessible_vars = array(
+    'text' => $variables['text'],
+    'active' => FALSE,
+  );
+  $accessible_markup = theme('facetapi_accessible_markup', $accessible_vars);
+
+  // Sanitizes the link text if necessary.
+  $sanitize = empty($variables['options']['html']);
+  $variables['text'] = ($sanitize) ? check_plain($variables['text']) : $variables['text'];
+
+  // Adds count to link if one was passed.
+  if (isset($variables['count'])) {
+    $variables['text'] = theme('facetapi_count', $variables) . ' ' . $variables['text'];
+  }
+
+  // Resets link text, sets to options to HTML since we already sanitized the
+  // link text and are providing additional markup for accessibility.
+  $variables['text'] .= $accessible_markup;
+  $variables['options']['html'] = TRUE;
+
+  return theme_link($variables);
+}
+
+/**
  * Returns HTML for the active facet item's count.
  *
  * @param $variables
