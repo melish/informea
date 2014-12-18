@@ -32,6 +32,12 @@ function search_integration_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '25';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'type' => 'type',
+    'field_treaty' => 'field_treaty',
+    'field_country_1' => 'field_country_1',
+    'field_entry_into_force' => 'field_entry_into_force',
+  );
   $handler->display->display_options['row_options']['hide_empty'] = TRUE;
   /* Header: Global: Result summary */
   $handler->display->display_options['header']['result']['id'] = 'result';
@@ -51,6 +57,7 @@ function search_integration_views_default_views() {
   $handler->display->display_options['fields']['title']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['element_type'] = 'h3';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_entity'] = 1;
   /* Field: Indexed Node: Node ID */
@@ -66,6 +73,7 @@ function search_integration_views_default_views() {
   $handler->display->display_options['fields']['type']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['fields']['type']['field'] = 'type';
   $handler->display->display_options['fields']['type']['label'] = '';
+  $handler->display->display_options['fields']['type']['element_type'] = 'strong';
   $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['type']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['type']['format_name'] = 1;
@@ -73,6 +81,10 @@ function search_integration_views_default_views() {
   $handler->display->display_options['fields']['field_treaty']['id'] = 'field_treaty';
   $handler->display->display_options['fields']['field_treaty']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['fields']['field_treaty']['field'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['label'] = '';
+  $handler->display->display_options['fields']['field_treaty']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_treaty']['alter']['text'] = '&middot; <span class="glyphicon glyphicon-file"></span> [field_treaty]';
+  $handler->display->display_options['fields']['field_treaty']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_treaty']['link_to_entity'] = 1;
   $handler->display->display_options['fields']['field_treaty']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_treaty']['bypass_access'] = 0;
@@ -80,9 +92,26 @@ function search_integration_views_default_views() {
   $handler->display->display_options['fields']['field_country_1']['id'] = 'field_country_1';
   $handler->display->display_options['fields']['field_country_1']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['fields']['field_country_1']['field'] = 'field_country';
+  $handler->display->display_options['fields']['field_country_1']['label'] = '';
+  $handler->display->display_options['fields']['field_country_1']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_country_1']['alter']['text'] = '&middot; <span class="glyphicon glyphicon-globe"></span> [field_country_1]';
+  $handler->display->display_options['fields']['field_country_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_country_1']['link_to_entity'] = 1;
   $handler->display->display_options['fields']['field_country_1']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_country_1']['bypass_access'] = 0;
+  /* Field: Indexed Node: Entry into force */
+  $handler->display->display_options['fields']['field_entry_into_force']['id'] = 'field_entry_into_force';
+  $handler->display->display_options['fields']['field_entry_into_force']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['fields']['field_entry_into_force']['field'] = 'field_entry_into_force';
+  $handler->display->display_options['fields']['field_entry_into_force']['label'] = '';
+  $handler->display->display_options['fields']['field_entry_into_force']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_entry_into_force']['settings'] = array(
+    'format_type' => 'long',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
   /* Filter criterion: Search: Fulltext search */
   $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_default_node_index';
@@ -110,6 +139,69 @@ function search_integration_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Indexed Node: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['element_type'] = 'h3';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_entity'] = 1;
+  /* Field: Indexed Node: Node ID */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nid']['link_to_entity'] = 0;
+  /* Field: Indexed Node: Content type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['label'] = '';
+  $handler->display->display_options['fields']['type']['element_type'] = 'strong';
+  $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['type']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['type']['format_name'] = 1;
+  /* Field: Indexed Node: Treaty */
+  $handler->display->display_options['fields']['field_treaty']['id'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['fields']['field_treaty']['field'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['label'] = '';
+  $handler->display->display_options['fields']['field_treaty']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_treaty']['alter']['text'] = '&middot; <span class="glyphicon glyphicon-file"></span> [field_treaty]';
+  $handler->display->display_options['fields']['field_treaty']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_treaty']['link_to_entity'] = 1;
+  $handler->display->display_options['fields']['field_treaty']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_treaty']['bypass_access'] = 0;
+  /* Field: Indexed Node: Country */
+  $handler->display->display_options['fields']['field_country_1']['id'] = 'field_country_1';
+  $handler->display->display_options['fields']['field_country_1']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['fields']['field_country_1']['field'] = 'field_country';
+  $handler->display->display_options['fields']['field_country_1']['label'] = '';
+  $handler->display->display_options['fields']['field_country_1']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_country_1']['alter']['text'] = '&middot; <span class="glyphicon glyphicon-globe"></span> [field_country_1]';
+  $handler->display->display_options['fields']['field_country_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_country_1']['link_to_entity'] = 1;
+  $handler->display->display_options['fields']['field_country_1']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_country_1']['bypass_access'] = 0;
+  /* Field: Indexed Node: Entry into force */
+  $handler->display->display_options['fields']['field_entry_into_force']['id'] = 'field_entry_into_force';
+  $handler->display->display_options['fields']['field_entry_into_force']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['fields']['field_entry_into_force']['field'] = 'field_entry_into_force';
+  $handler->display->display_options['fields']['field_entry_into_force']['label'] = '';
+  $handler->display->display_options['fields']['field_entry_into_force']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_entry_into_force']['alter']['text'] = '&middot; <span class="glyphicon glyphicon-calendar"></span> [field_entry_into_force]';
+  $handler->display->display_options['fields']['field_entry_into_force']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_entry_into_force']['settings'] = array(
+    'format_type' => 'long',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
   $handler->display->display_options['path'] = 'search';
   $translatables['the_search_view'] = array(
     t('Master'),
@@ -132,9 +224,12 @@ function search_integration_views_default_views() {
     t('Country'),
     t('.'),
     t(','),
+    t('&middot; <span class="glyphicon glyphicon-file"></span> [field_treaty]'),
+    t('&middot; <span class="glyphicon glyphicon-globe"></span> [field_country_1]'),
     t('Search text'),
     t('Fulltext search'),
     t('Page'),
+    t('&middot; <span class="glyphicon glyphicon-calendar"></span> [field_entry_into_force]'),
   );
   $export['the_search_view'] = $view;
 
