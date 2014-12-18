@@ -294,6 +294,18 @@ a:focus .navicon-eur {
 }
 
 
+/* Breadcrumbs */
+/* ----------- */
+
+
+.breadcrumb {
+  background-color: transparent;
+  font-size: 80%;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+
 /* Keywords */
 /* -------- */
 
