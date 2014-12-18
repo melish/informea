@@ -2,22 +2,53 @@
 /* --------------- */
 
 
-div.views-widget-filter-search_api_views_fulltext label,
-div.views-widget-filter-search_api_views_fulltext div.views-operator,
-div.views-widget-filter-search_api_views_fulltext div.views-widget {
+#edit-search-api-views-fulltext-wrapper > label {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 34px;
+  margin-bottom: 0;
+}
+
+.select2-container .select2-choice {
+  background-color: #fff;
+  background-image: none;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  height: 34px;
+  line-height: 34px;
+}
+
+.select2-container .select2-choice .select2-arrow {
+  background-color: #fff;
+  background-image: none;
+  border-radius: 0;
+}
+
+.select2-container .select2-choice .select2-arrow b {
+  background-position: 0 3px;
+}
+
+.views-operator {
+  margin-left: 15px;
+}
+
+.views-widget {
+  margin-left: -1px;
+}
+
+#edit-search-api-views-fulltext {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+#edit-search-api-views-fulltext-wrapper label,
+#edit-search-api-views-fulltext-wrapper .views-operator,
+#edit-search-api-views-fulltext-wrapper .views-widget {
   float: left;
 }
 
-div.view-the-search-view div.views-exposed-form .views-submit-button {
-  margin-top: -22px;
-}
-div.views-widget-filter-search_api_views_fulltext label {
-  margin-top: 5px;
-}
-
-div.views-widget-filter-search_api_views_fulltext div.views-operator,
-div.views-widget-filter-search_api_views_fulltext div.views-widget {
-  margin-left: 15px;
+.views-exposed-form .views-exposed-widget .form-submit {
+  margin-top: 0;
 }
 
 
