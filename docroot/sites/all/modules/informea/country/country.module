@@ -184,7 +184,7 @@ function country_country_contextual_menu_alter(&$contextual_menu, $node) {
   if ($node->type == 'country') {
     $uri = url(drupal_get_path_alias('node/' . $node->nid), array('absolute' => TRUE));
     $links = array(
-      'map' => t('Sites <span class="badge">!count</span>',
+      'map' => t('Map and sites <span class="badge">!count</span>',
         array('!count' => country_get_view_country_related_content_count($node->nid, 'embed_sites'))
       ),
       'parties' => t('Membership <span class="badge">!count</span>', array( '!count' => 0 )),
@@ -194,7 +194,7 @@ function country_country_contextual_menu_alter(&$contextual_menu, $node) {
       'national-reports' => t('National reports <span class="badge">!count</span>',
         array('!count' => country_get_view_country_related_content_count($node->nid, 'embed_national_reports'))
       ),
-      'legislation' => t('Laws <span class="badge">!count</span>',
+      'legislation' => t('Legislation <span class="badge">!count</span>',
         array('!count' => country_get_view_country_related_content_count($node->nid, 'page_legislation'))
       ),
       'literature' => t('Literature <span class="badge">!count</span>',
