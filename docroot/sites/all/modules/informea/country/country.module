@@ -242,6 +242,16 @@ function country_country_contextual_menu_alter(&$contextual_menu, $node) {
       }
       $contextual_menu[] = $link;
     }
+
+    // Downloads menu item
+    $contextual_menu[] = array(
+      '#type' => 'link',
+      '#title' => t('Downloads'),
+      '#href' => '',
+      '#attributes' => array('class' => 'list-group-item'),
+      '#options' => array('external' => TRUE, 'fragment' => 'modal-downloads', 'html' => TRUE),
+      '#active' => FALSE,
+    );
   }
   return $ret;
 }
