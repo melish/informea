@@ -74,12 +74,14 @@ function country_node_view($node, $view_mode, $langcode) {
         drupal_add_js('https://maps.googleapis.com/maps/api/js?v=3.exp', 'external');
         // Adds the country JavaScript file to the page.
         drupal_add_js(drupal_get_path('module', 'country') . '/js/map.js');
+        $view_ramsar = country_get_view_country_related_content($node->nid, 'ramsar_sites');
+        $view_whc = country_get_view_country_related_content($node->nid, 'whc_sites');
         $node->content['context'] = array(
-          0 => array(
+          array(
             '#type' => 'item', '#weight' => 10, '#markup' => country_bs_tabs(array(
               'tab-map' => array('title' => t('Map of sites'), 'active' => TRUE, 'content' => '<div id="map-canvas" style="height: 400px;margin: 0px;padding: 0px"></div>'),
-              'tab-ramsar' => array('title' => t('Ramsar sites'), 'content' => country_get_view_country_related_content($node->nid, 'ramsar_sites')->render()),
-              'tab-whc' => array('title' => t('WHC sites'), 'content' => country_get_view_country_related_content($node->nid, 'whc_sites')->render()),
+              'tab-ramsar' => array('title' => t('Ramsar sites <span class="badge">!count</span>', array('!count' => $view_ramsar->total_rows)), 'content' => $view_ramsar->render()),
+              'tab-whc' => array('title' => t('WHC sites <span class="badge">!count</span>', array('!count' => $view_whc->total_rows)), 'content' => $view_whc->render()),
             )),
           ),
         );
