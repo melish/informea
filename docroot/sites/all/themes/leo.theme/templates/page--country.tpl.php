@@ -40,6 +40,16 @@
       <?php print render($title_prefix); ?>
       <?php if (!empty($title)): ?>
         <div class="page-header">
+          <div class="country-selector">
+            <form role="form">
+              <select class="form-control">
+                <option value=""><?php print t('Select a country&hellip;'); ?></option>
+                <?php foreach ($countries as $iso2 => $country): ?>
+                  <option value="<?php print strtolower($iso2); ?>"<?php print $wrapper->field_country_iso2->value() == $iso2 ? ' selected' : ''; ?>><?php print $country; ?></option>
+                <?php endforeach; ?>
+              </select><!-- .form-control -->
+            </form>
+          </div><!-- .country-selector -->
           <h1>
             <?php print theme('image', array('path' => $directory . '/img/flags/flag-' . strtolower($wrapper->field_country_iso2->value()) . '.png', 'attributes' => array('class' => 'img-thumbnail'))); ?>
             <?php print $title; ?>
