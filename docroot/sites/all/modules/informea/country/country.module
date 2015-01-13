@@ -249,7 +249,7 @@ function country_country_contextual_menu_alter(&$contextual_menu, $node) {
       '#title' => t('Downloads'),
       '#href' => '',
       '#attributes' => array('class' => 'list-group-item'),
-      '#options' => array('external' => TRUE, 'fragment' => 'modal-downloads', 'html' => TRUE),
+      '#options' => array('attributes' => array('data-toggle' => 'modal'), 'external' => TRUE, 'fragment' => 'modal-downloads', 'html' => TRUE),
       '#active' => FALSE,
     );
   }
