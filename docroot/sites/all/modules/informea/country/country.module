@@ -162,13 +162,18 @@ function country_node_view($node, $view_mode, $langcode) {
         $chart_config->theme = 'light';
         $chart_config->dataProvider = $data;
         edw_amcharts_add_chart('country_legislation_chart', 'pie', $chart_config, array('width' => '260px', 'height' => '260px'));
+        $filter_form = drupal_get_form('country_legislation_filter_form', $node);
+        // Unset form attributes to make keyword filter work.
+        unset($filter_form['form_id']);
+        unset($filter_form['form_token']);
+        unset($filter_form['form_build_id']);
         $node->content['context'] = array(
           0 => array(
             '#type' => 'item', '#weight' => 10, '#markup' => '',
             '#prefix' => '<p></p><h4>Types of legislation</h4>', '#suffix' => '</div>',
             '#id' => 'country_legislation_chart',
           ),
-          1 => drupal_get_form('country_legislation_filter_form'),
+          1 =>$filter_form
         );
         break;
 
@@ -183,12 +188,17 @@ function country_node_view($node, $view_mode, $langcode) {
         $chart_config->rotate = TRUE;
         $chart_config->dataProvider = $data;
         edw_amcharts_add_chart('country_literature_chart', 'column', $chart_config, array('width' => '800px', 'height' => '350px'));
+        $filter_form = drupal_get_form('country_literature_filter_form', $node);
+        // Unset form attributes to make keyword filter work.
+        unset($filter_form['form_id']);
+        unset($filter_form['form_token']);
+        unset($filter_form['form_build_id']);
         $node->content['context'] = array(
           0 => array(
             '#type' => 'item', '#weight' => 10, '#markup' => '',
             '#id' => 'country_literature_chart',
           ),
-          1 => drupal_get_form('country_literature_filter_form'),
+          1 => $filter_form,
         );
         break;
     }

@@ -1,37 +1,30 @@
 <?php
 
-function country_literature_filter_form($form, $form_state) {
+function country_literature_filter_form($form, $form_state, $country) {
   $form = array(
     '#action' => '/search',
+    '#method' => 'get',
     '#weight' => 15
   );
 
   $build = array();
-  $build['search-string'] = array(
+  // Add the hidden fields
+  // &f[0]=field_country%3A4&f[1]=type%3Alegislation&f[2]=field_type_of_text%3A839
+  $build['f[0]'] = array('#type' => 'hidden', '#value' => 'field_country:' . $country->nid);
+  $build['f[1]'] = array('#type' => 'hidden', '#value' => 'type:' . 'literature');
+  $build['search_api_views_fulltext_op'] = array('#type' => 'hidden', '#value' => 'AND');
+  $build['search_api_views_fulltext'] = array(
     '#type' => 'textfield',
     '#title' => t('Search string'),
     '#size' => 30,
     '#maxlength' => 128,
   );
 
-  $voc = taxonomy_vocabulary_machine_name_load('literature_type');
-  $terms = taxonomy_get_tree($voc->vid);
-  $build['field_literature_type'] = array(
-    '#prefix' => '<div class="col-md-offset-1">',
-    '#suffix' => '</div>',
-    '#type' => 'radios',
-    '#options' => array_combine(
-      array_map(function($t) { return $t->tid; }, $terms),
-      array_map(function($t) { return $t->name; }, $terms)
-    ),
-    '#title' => t('Type of document'),
-  );
-
   $terms = country_get_court_literature_statistics();
-  $build['field_literature_type'] = array(
+  $build['f[2]'] = array(
     '#type' => 'select',
     '#options' => array_combine(
-      array_map(function($t) { return $t->tid; }, $terms),
+      array_map(function($t) { return 'field_literature_type:' . $t->tid; }, $terms),
       array_map(function($t) { return $t->name; }, $terms)
     ),
     '#title' => t('Type of literature'),
@@ -51,26 +44,31 @@ function country_literature_filter_form($form, $form_state) {
   return $form;
 }
 
-function country_legislation_filter_form($form, $form_state) {
+function country_legislation_filter_form($form, $form_state, $country) {
   $form = array(
     '#action' => '/search',
+    '#method' => 'get',
     '#weight' => 15
   );
-
   $build = array();
-  $build['search-string'] = array(
+  // Add the hidden fields
+  // &f[0]=field_country%3A4&f[1]=type%3Alegislation&f[2]=field_type_of_text%3A839
+  $build['f[0]'] = array('#type' => 'hidden', '#value' => 'field_country:' . $country->nid);
+  $build['f[1]'] = array('#type' => 'hidden', '#value' => 'type:' . 'legislation');
+  $build['search_api_views_fulltext_op'] = array('#type' => 'hidden', '#value' => 'AND');
+  $build['search_api_views_fulltext'] = array(
     '#type' => 'textfield',
     '#title' => t('Search string'),
     '#size' => 30,
     '#maxlength' => 128,
   );
   $terms = country_get_legislation_statistics();
-  $build['field_type_of_text'] = array(
+  $build['f[2]'] = array(
     '#prefix' => '<div class="col-md-offset-1">',
     '#suffix' => '</div>',
     '#type' => 'radios',
     '#options' => array_combine(
-      array_map(function($t) { return $t->tid; }, $terms),
+      array_map(function($t) { return 'field_type_of_text:' . $t->tid; }, $terms),
       array_map(function($t) { return $t->name; }, $terms)
     ),
     '#title' => t('Type of document'),
