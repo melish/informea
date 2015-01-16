@@ -141,6 +141,7 @@ function edw_amcharts_default_config_chart_column() {
       'balloonText' => '[[category]] => <b>[[value]]</b>',
       'fillAlphas' => 0.8,
       'lineAlpha' => 0.2,
+      'showHandOnHover' => true,
       'type' => 'column',
       'valueField' => 'the_value'
     )),
@@ -169,6 +170,7 @@ function edw_amcharts_default_config_chart_column() {
 function edw_amcharts_default_config_chart_pie() {
   return (object)array(
     'type' => 'pie',
+    'hoverAlpha' => 0.5,
     'theme' => 'none',
     'valueField' => 'the_value',
     'titleField' => 'the_title',
