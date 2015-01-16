@@ -183,7 +183,7 @@
         <h3><?php print t('Treaties'); ?></h3>
         <p class="description"><?php print t('Browse more than 50 global and regional &ndash; environmental related treaties. Read texts, decisions, consult the list of parties and focal points. Print nice reports about treaties with geographical coverage maps and figures.'); ?></p>
         <ul class="list-inline regions">
-          <li><strong><?php print t('Regions:'); ?></strong></li>
+          <li><strong><?php print t('Regions'); ?>:</strong></li>
           <li><?php print l(t('Global'), 'treaties', array('fragment' => t('Global'))); ?></li>
           <li><?php print l(t('Africa'), 'treaties', array('fragment' => t('Africa'))); ?></li>
           <li><?php print l(t('Asia and the Pacific'), 'treaties', array('fragment' => t('Asia and the Pacific'))); ?></li>

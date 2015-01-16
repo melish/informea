@@ -137,7 +137,7 @@
           <ul class="list-unstyled">
             <li><?php print l(t('Aarhus Convention'), 'http://www.unece.org/env/pp/welcome.html', array('attributes' => array('target' => '_blank'))); ?></li>
             <li><?php print l(t('Espoo Convention'), 'http://www.unece.org/env/eia/welcome.html', array('attributes' => array('target' => '_blank'))); ?></li>
-            <li><?php print l(t('Long-Renage Transboundary Air Pollution'), 'http://www.unece.org/env/lrtap/', array('attributes' => array('target' => '_blank'))); ?></li>
+            <li><?php print l(t('Long-Range Transboundary Air Pollution'), 'http://www.unece.org/env/lrtap/', array('attributes' => array('target' => '_blank'))); ?></li>
             <li><?php print l(t('The Kyiv Protocol'), 'http://www.unece.org/env/eia/sea_protocol.html', array('attributes' => array('target' => '_blank'))); ?></li>
             <li><?php print l(t('Protocol on Water and Health'), 'http://www.unece.org/?id=2975', array('attributes' => array('target' => '_blank'))); ?></li>
             <li><?php print l(t('Water Convention'), 'http://www.unece.org/env/water/', array('attributes' => array('target' => '_blank'))); ?></li>
