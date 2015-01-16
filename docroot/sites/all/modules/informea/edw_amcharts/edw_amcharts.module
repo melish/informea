@@ -99,7 +99,35 @@ function edw_amcharts_add_chart($chart_id, $chart_type, $chart_config, $options 
   $config = json_encode($chart_config, JSON_PRETTY_PRINT);
   $js_config = <<<EOF
 jQuery(document).ready(function ($) {
-    var chart = AmCharts.makeChart("$chart_id", {$config});
+  var chart = AmCharts.makeChart("$chart_id", {$config});
+
+  // Legislation
+  chart.addListener('clickSlice', function (event) {
+    var params = {
+      f: [
+        'field_country:' + event.dataItem.dataContext.nid,
+        'type:legislation',
+        'field_type_of_text:' + event.dataItem.dataContext.tid
+      ],
+      search_api_views_fulltext_op: 'AND'
+    };
+
+    window.location.href = Drupal.settings.basePath + 'search?' + $.param(params);
+  });
+
+  // Literature
+  chart.addListener('clickGraphItem', function (event) {
+    var params = {
+      f: [
+        'field_country:' + event.item.dataContext.nid,
+        'type:literature',
+        'field_literature_type:' + event.item.dataContext.tid
+      ],
+      search_api_views_fulltext_op: 'AND'
+    };
+
+    window.location.href = Drupal.settings.basePath + 'search?' + $.param(params);
+  });
 });
 EOF;
 

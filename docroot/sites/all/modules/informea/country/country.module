@@ -156,7 +156,12 @@ function country_node_view($node, $view_mode, $langcode) {
         $raw_data = country_get_legislation_statistics($node->nid);
         $data = array();
         foreach($raw_data as $t) {
-          $data[] = (object) array('the_title' => $t->name, 'the_value' => (int)$t->count);
+          $data[] = (object) array(
+            'nid' => $node->nid,
+            'the_title' => $t->name,
+            'the_value' => (int)$t->count,
+            'tid' => $t->tid
+          );
         }
         $chart_config = edw_amcharts_default_config_chart_pie();
         $chart_config->theme = 'light';
@@ -182,7 +187,12 @@ function country_node_view($node, $view_mode, $langcode) {
         $raw_data = country_get_court_literature_statistics($node->nid);
         $data = array();
         foreach($raw_data as $t) {
-          $data[] = (object) array('the_category' => $t->name, 'the_value' => (int)$t->count);
+          $data[] = (object) array(
+            'nid' => $node->nid,
+            'the_category' => $t->name,
+            'the_value' => (int) $t->count,
+            'tid' => $t->tid
+          );
         }
         $chart_config = edw_amcharts_default_config_chart_column();
         $chart_config->rotate = TRUE;
