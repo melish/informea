@@ -139,7 +139,7 @@ function country_node_view($node, $view_mode, $langcode) {
         $chart_config = edw_amcharts_default_config_chart_column();
         $chart_config->rotate = TRUE;
         $chart_config->dataProvider = $data;
-        edw_amcharts_add_chart('country_decisions_chart', 'column', $chart_config, array('width' => '850px', 'height' => '300px'));
+        edw_amcharts_add_chart('country_decisions_chart', 'column', $chart_config, array(), array('width' => '850px', 'height' => '300px'));
         $node->content['context'] = array(
           0 => array(
             '#type' => 'item', '#weight' => 1, '#markup' => '',
@@ -166,7 +166,25 @@ function country_node_view($node, $view_mode, $langcode) {
         $chart_config = edw_amcharts_default_config_chart_pie();
         $chart_config->theme = 'light';
         $chart_config->dataProvider = $data;
-        edw_amcharts_add_chart('country_legislation_chart', 'pie', $chart_config, array('width' => '260px', 'height' => '260px'));
+
+        $listeners = array(
+          'clickSlice' => <<<EOF
+function (event) {
+  var params = {
+    f: [
+      'field_country:' + event.dataItem.dataContext.nid,
+      'type:legislation',
+      'field_type_of_text:' + event.dataItem.dataContext.tid
+    ],
+    search_api_views_fulltext_op: 'AND'
+  };
+
+  window.location.href = Drupal.settings.basePath + 'search?' + $.param(params);
+}
+EOF
+        );
+
+        edw_amcharts_add_chart('country_legislation_chart', 'pie', $chart_config, $listeners, array('width' => '260px', 'height' => '260px'));
         $filter_form = drupal_get_form('country_legislation_filter_form', $node);
         // Unset form attributes to make keyword filter work.
         unset($filter_form['form_id']);
@@ -197,7 +215,25 @@ function country_node_view($node, $view_mode, $langcode) {
         $chart_config = edw_amcharts_default_config_chart_column();
         $chart_config->rotate = TRUE;
         $chart_config->dataProvider = $data;
-        edw_amcharts_add_chart('country_literature_chart', 'column', $chart_config, array('width' => '800px', 'height' => '350px'));
+
+        $listeners = array(
+          'clickGraphItem' => <<<EOF
+function (event) {
+  var params = {
+    f: [
+      'field_country:' + event.item.dataContext.nid,
+      'type:literature',
+      'field_literature_type:' + event.item.dataContext.tid
+    ],
+    search_api_views_fulltext_op: 'AND'
+  };
+
+  window.location.href = Drupal.settings.basePath + 'search?' + $.param(params);
+}
+EOF
+        );
+
+        edw_amcharts_add_chart('country_literature_chart', 'column', $chart_config, $listeners, array('width' => '800px', 'height' => '350px'));
         $filter_form = drupal_get_form('country_literature_filter_form', $node);
         // Unset form attributes to make keyword filter work.
         unset($filter_form['form_id']);
