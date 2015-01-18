@@ -9,6 +9,9 @@ function informea_drush_command() {
       'options' => array(
         'test' => 'Validate the terms from CSV. Errors are printed in console',
       )
+    ),
+    'informea-i18n-strings' => array(
+      'description' => 'Register InforMEA UI strings with the i18n system',
     )
   );
 }
@@ -95,4 +98,13 @@ function drush_informea_taxonomy_mappings() {
       taxonomy_term_save($informea);
     }
   }
+}
+
+function drush_informea_i18n_strings() {
+  module_load_include('inc', 'informea', 'informea.translation');
+  $strings = _informea_localizable_strings();
+  foreach ($strings as $string) {
+    locale($string);
+  }
+  drush_log(sprintf('Registered %d strings ...', count($strings)), 'success');
 }

@@ -210,3 +210,5 @@ features[wysiwyg][] = filtered_html
 features[wysiwyg][] = full_html
 mtime = 1417958792
 project path = sites/all/modules/informea
+
+file[] = informea.translation.inc
