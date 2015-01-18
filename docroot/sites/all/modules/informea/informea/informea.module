@@ -137,9 +137,9 @@ class MigrationUtil {
 }
 
 /**
- * Implements hook_localizable_strings().
+ * Implements hook_i18n_string_helper_strings().
  */
-function informea_localizable_strings() {
+function informea_i18n_string_helper_strings() {
   module_load_include('inc', 'informea', 'informea.translation');
   return _informea_localizable_strings();
 }

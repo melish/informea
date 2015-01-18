@@ -102,7 +102,7 @@ function drush_informea_taxonomy_mappings() {
 
 function drush_informea_i18n_strings() {
   module_load_include('inc', 'informea', 'informea.translation');
-  $strings = _informea_localizable_strings();
+  $strings = informea_i18n_string_helper_strings();
   foreach ($strings as $string) {
     locale($string);
   }
