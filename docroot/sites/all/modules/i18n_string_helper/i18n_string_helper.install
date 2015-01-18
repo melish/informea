@@ -1,0 +1,14 @@
+<?php
+
+function i18n_string_helper_install() {
+  $weight = db_select('system', 's')
+    ->fields('s', array('weight'))
+    ->condition('name', 'locale', '=')
+    ->execute()
+    ->fetchField();
+
+  db_update('system')
+    ->fields(array('weight' => $weight + 1))
+    ->condition('name', 'i18n_string_helper', '=')
+    ->execute();
+}

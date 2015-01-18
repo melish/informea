@@ -1,0 +1,7 @@
+name = String translation helper
+description = Provides support to filter the strings in your application from internal Drupal strings
+dependencies[] = i18n_string
+package = Eau de Web
+core = 7.x
+
+files[] = i18n_string_helper.admin.inc
