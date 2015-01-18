@@ -101,8 +101,7 @@ function i18n_string_helper_locale_translation_filter_form_submit($form, &$form_
 
 function i18n_string_helper_locale_translate_seek_screen() {
   // Add CSS.
-  drupal_add_css(drupal_get_path('module', 'locale') . '/locale.css');
-
+  drupal_add_css(drupal_get_path('module', 'i18n_string_helper') . '/i18n_string_helper_locale.css');
   $elements = drupal_get_form('i18n_string_helper_locale_translation_filter_form');
   $output = drupal_render($elements);
   $output .= _i18n_string_helper_locale_translate_seek();
