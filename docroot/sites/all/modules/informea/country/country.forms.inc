@@ -20,12 +20,12 @@ function country_literature_filter_form($form, $form_state, $country) {
     '#maxlength' => 128,
   );
 
-  $terms = country_get_court_literature_statistics();
+  $terms = country_get_court_literature_statistics($country->nid);
   $build['f[2]'] = array(
     '#type' => 'select',
     '#options' => array_combine(
       array_map(function($t) { return 'field_literature_type:' . $t->tid; }, $terms),
-      array_map(function($t) { return $t->name; }, $terms)
+      array_map(function($t) { return sprintf('%s (%d)', $t->name, $t->count) ; }, $terms)
     ),
     '#title' => t('Type of literature'),
   );
@@ -38,7 +38,7 @@ function country_literature_filter_form($form, $form_state, $country) {
 
   $form['fieldset'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Find literature'),
+    '#title' => t('Search literature metadata'),
     0 => $build,
   );
   return $form;
@@ -62,14 +62,14 @@ function country_legislation_filter_form($form, $form_state, $country) {
     '#size' => 30,
     '#maxlength' => 128,
   );
-  $terms = country_get_legislation_statistics();
+  $terms = country_get_legislation_statistics($country->nid);
   $build['f[2]'] = array(
     '#prefix' => '<div class="col-md-offset-1">',
     '#suffix' => '</div>',
     '#type' => 'radios',
     '#options' => array_combine(
       array_map(function($t) { return 'field_type_of_text:' . $t->tid; }, $terms),
-      array_map(function($t) { return $t->name; }, $terms)
+        array_map(function($t) { return sprintf('%s (%d)', $t->name, $t->count) ; }, $terms)
     ),
     '#title' => t('Type of document'),
   );
