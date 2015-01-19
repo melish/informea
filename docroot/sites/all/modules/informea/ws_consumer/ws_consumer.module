@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Implements hook_cron().
+ */
+function ws_consumer_cron() {
+  ws_consumer_update_treaties_ratification();
+}
+
 function ws_consumer_update_treaties_ratification() {
   $query = new EntityFieldQuery('entity_type', 'node');
   $result = $query->entityCondition('entity_type', 'node')
