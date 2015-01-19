@@ -410,3 +410,33 @@ function country_get_court_literature_statistics($id_country = NULL) {
   }
   return $ret;
 }
+
+function country_get_by_name($name) {
+  $name = strtolower($name);
+  $countries = &drupal_static(__FUNCTION__);
+  if(empty($countries)) {
+    $query = new EntityFieldQuery();
+    $result = $query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'country')
+        ->execute();
+    if (isset($result['node'])) {
+      $rows = node_load_multiple(array_keys($result['node']));
+      foreach ($rows as $row) {
+        $wrapper = entity_metadata_wrapper('node', $row);
+        $countries[strtolower($wrapper->label())] = $row;
+        $official = $wrapper->field_country_official_name->value();
+        if (!empty($official)) {
+          $countries[strtolower($official)] = $row;
+        }
+      }
+    }
+  }
+  if(array_key_exists($name, $countries)) {
+    return $countries[$name];
+  } else {
+    if (array_key_exists($name, $countries)) {
+      return $countries[$name];
+    }
+  }
+  return FALSE;
+}
