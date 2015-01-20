@@ -253,6 +253,7 @@ EOF
         $parties = country_get_parties($node->nid);
         foreach ($parties as $party) {
           $wrapper = entity_metadata_wrapper('node', $party);
+          $treaty = $wrapper->field_treaty->value()[0];
           $date1 = $wrapper->field_party_date_1->value();
           $date1 = empty($date1) ? '&nbsp;' : format_date($date1, 'short');
           $date2 = $wrapper->field_party_date_1->value();
@@ -260,8 +261,22 @@ EOF
           $row = array(
             $wrapper->field_treaty->label(), $date1, $date2,
           );
-          $row[] = '<a href="javascript:alert(\'Under construction\')"><i class="glyphicon glyphicon-user" style="color: rgb(0, 128, 213);"></i></a>';
+          $nfps = country_get_treaty_focal_points($node->nid, $treaty->nid);
+          $row[] = count($nfps) ? sprintf('<a href="javascript:jQuery(\'#nfp-%s\').toggle()"><i class="glyphicon glyphicon-user" style="color: rgb(0, 128, 213);"></i></a>', $treaty->nid) : '&nbsp;';
           $rows[] = $row;
+          if (count($nfps)) {
+            $nfp_style = '';
+            foreach ($nfps as $nfp) {
+              $nfp_style .= sprintf('<div><h2>%s</h2></div>', $nfp->title);
+            }
+
+            $row = array(
+                'data' => array(array('data' => $nfp_style, 'colspan' => 4)),
+                'style' => array('display:none'),
+                'id' => array('nfp-' . $treaty->nid)
+            );
+            $rows[] = $row;
+          }
         }
         $table = array(
           'header' => array(t('Treaty'), t('Signature'), t('Ratification'), t('Focal points')),

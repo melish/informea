@@ -110,3 +110,20 @@ function country_get_view_country_related_content_count($nid, $display) {
   $view = country_get_view_country_related_content($nid, $display);
   return $view->total_rows;
 }
+
+
+function country_get_treaty_focal_points($id_country, $id_treaty) {
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'contact_person')
+      ->fieldCondition('field_treaty', 'target_id', $id_treaty)
+      ->fieldCondition('field_country', 'target_id', $id_country)
+      ->execute();
+  if (isset($result['node'])) {
+    $result_nids = array_keys($result['node']);
+    $rows = entity_load('node', $result_nids);
+    uasort($rows, function($a, $b) { return $a->title < $b->title; });
+    return $rows;
+  }
+  return array();
+}
