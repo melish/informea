@@ -330,9 +330,12 @@ function country_country_contextual_menu_alter(&$contextual_menu, $node) {
   $ret = array();
   if ($node->type == 'country') {
     $uri = url(drupal_get_path_alias('node/' . $node->nid), array('absolute' => TRUE));
+
+    $view_ramsar = country_get_view_country_related_content($node->nid, 'ramsar_sites');
+    $view_whc = country_get_view_country_related_content($node->nid, 'whc_sites');
     $links = array(
       'map' => t('Map and sites <span class="badge">!count</span>',
-        array('!count' => country_get_view_country_related_content_count($node->nid, 'embed_sites'))
+        array('!count' => $view_ramsar->total_rows + $view_whc->total_rows)
       ),
       'parties' => t('Membership <span class="badge">!count</span>',
           array('!count' => count(country_get_parties($node->nid)))
