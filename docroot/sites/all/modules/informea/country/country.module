@@ -247,6 +247,31 @@ EOF
           1 => $filter_form,
         );
         break;
+
+      case 'parties':
+        $rows = array();
+        $parties = country_get_parties($node->nid);
+        foreach ($parties as $party) {
+          $wrapper = entity_metadata_wrapper('node', $party);
+          $date1 = $wrapper->field_party_date_1->value();
+          $date1 = empty($date1) ? '&nbsp;' : format_date($date1, 'short');
+          $date2 = $wrapper->field_party_date_1->value();
+          $date2 = empty($date2) ? '&nbsp;' : format_date($date2, 'short');
+          $row = array(
+            $wrapper->field_treaty->label(), $date1, $date2,
+          );
+          $row[] = '<a href="javascript:alert(\'Under construction\')"><i class="glyphicon glyphicon-user" style="color: rgb(0, 128, 213);"></i></a>';
+          $rows[] = $row;
+        }
+        $table = array(
+          'header' => array(t('Treaty'), t('Signature'), t('Ratification'), t('Focal points')),
+          'rows' => $rows,
+        );
+        $node->content['context'] = array(
+            '#type' => 'item', '#weight' => 10, '#markup' => theme('table', $table)
+        );
+        break;
+
     }
   }
 }
@@ -294,7 +319,9 @@ function country_country_contextual_menu_alter(&$contextual_menu, $node) {
       'map' => t('Map and sites <span class="badge">!count</span>',
         array('!count' => country_get_view_country_related_content_count($node->nid, 'embed_sites'))
       ),
-      'parties' => t('Membership <span class="badge">!count</span>', array( '!count' => 0 )),
+      'parties' => t('Membership <span class="badge">!count</span>',
+          array('!count' => count(country_get_parties($node->nid)))
+      ),
       'action-plans' => t('Action plans <span class="badge">!count</span>',
         array('!count' => country_get_view_country_related_content_count($node->nid, 'embed_action_plans'))
       ),
@@ -409,34 +436,4 @@ function country_get_court_literature_statistics($id_country = NULL) {
     $ret[] = $term;
   }
   return $ret;
-}
-
-function country_get_by_name($name) {
-  $name = strtolower($name);
-  $countries = &drupal_static(__FUNCTION__);
-  if(empty($countries)) {
-    $query = new EntityFieldQuery();
-    $result = $query->entityCondition('entity_type', 'node')
-        ->entityCondition('bundle', 'country')
-        ->execute();
-    if (isset($result['node'])) {
-      $rows = node_load_multiple(array_keys($result['node']));
-      foreach ($rows as $row) {
-        $wrapper = entity_metadata_wrapper('node', $row);
-        $countries[strtolower($wrapper->label())] = $row;
-        $official = $wrapper->field_country_official_name->value();
-        if (!empty($official)) {
-          $countries[strtolower($official)] = $row;
-        }
-      }
-    }
-  }
-  if(array_key_exists($name, $countries)) {
-    return $countries[$name];
-  } else {
-    if (array_key_exists($name, $countries)) {
-      return $countries[$name];
-    }
-  }
-  return FALSE;
 }
