@@ -8,11 +8,19 @@
 function country_drush_command() {
   $items = array();
 
-  $items['country_import'] = array(
+  $items['informea-country-import'] = array(
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
     'description' => 'Imports data from country.json.',
     'examples' => array(
-      'drush country_import' => 'Imports data from country.json.'
+      'drush informea-country-import' => 'Imports data from country.json.'
+    ),
+  );
+
+  $items['informea-country-update'] = array(
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'description' => 'Update data from country.json into the existing nodes.',
+    'examples' => array(
+      'drush informea-country-update' => 'Updates Drupal nodes'
     ),
   );
 
@@ -20,22 +28,9 @@ function country_drush_command() {
 }
 
 /**
- * Implementation of hook_drush_help().
- *
- * @return
- *   A string with the help text for the command.
- */
-function country_drush_help() {
-  return dt('Imports data from country.json.');
-}
-
-/**
  * Imports data from country.json.
- *
- * @return
- *   Nothing.
  */
-function drush_country_import() {
+function drush_country_informea_country_import() {
   $path = drupal_get_path('module', 'country') . DIRECTORY_SEPARATOR . 'country.json';
   $countries = json_decode(file_get_contents($path));
   $language = language_default()->language;
