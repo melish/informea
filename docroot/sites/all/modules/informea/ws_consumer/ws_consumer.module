@@ -36,7 +36,7 @@ function ws_consumer_update_treaty_ratification_odata_name($odata_name) {
     $treaty = current($treaties);
     ws_consumer_update_treaty_ratification($treaty);
   } else {
-    drush_log('Given treaty does not exist or does not have field_ratification_xml_url data: ' . $odata_name, 'error');
+    drupal_set_message('Given treaty does not exist or does not have field_ratification_xml_url data: ' . $odata_name, 'error');
   }
 }
 
@@ -198,7 +198,7 @@ function ws_consumer_service_process_xml($url) {
       $country_ob = NULL;
       $country_ob = ws_consumer_un_database_get_country($country);
       if (empty($country_ob)) {
-        drush_log(sprintf('Cannot find country: %s', $country), 'warning');
+        drupal_set_message(sprintf('Cannot find country: %s', $country), 'warning');
       }
 
       $ob = new stdClass();

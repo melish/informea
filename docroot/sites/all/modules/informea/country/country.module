@@ -98,20 +98,55 @@ function country_node_view($node, $view_mode, $langcode) {
     $node->context = $context;
     switch($context) {
       case 'map':
-        // Adds the amCharts JavaScript files to the page.
-        drupal_add_js('https://maps.googleapis.com/maps/api/js?v=3.exp', 'external');
-        // Adds the country JavaScript file to the page.
-        drupal_add_js(drupal_get_path('module', 'country') . '/js/map.js');
+        $wrapper = entity_metadata_wrapper('node', $node);
+        $latitude = $wrapper->field_latitude->value();
+        $longitude = $wrapper->field_longitude->value();
+        $zoom = $wrapper->field_zoom->value();
+        $has_map = $latitude && $longitude && $zoom;
+        $sites = country_get_sites($node->nid);
+        $js_sites = array();
+        foreach($sites as $site) {
+          $js_sites[] = entity_metadata_wrapper('node', $site)->value();
+        }
+        if ($has_map) {
+          // Adds the amCharts JavaScript files to the page.
+          drupal_add_js( 'https://maps.googleapis.com/maps/api/js?v=3.exp', 'external' );
+          // Adds the country JavaScript file to the page.
+          drupal_add_js( drupal_get_path( 'module', 'country' ) . '/js/map.js' );
+          drupal_add_js(
+              array(
+                  'map' => array(
+                      'latitude'  => $wrapper->field_latitude->value(),
+                      'longitude' => $wrapper->field_longitude->value(),
+                      'zoom'      => $wrapper->field_zoom->value(),
+                      'sites' => $js_sites,
+                  )
+              ),
+              array( 'type' => 'setting' )
+          );
+        }
         $view_ramsar = country_get_view_country_related_content($node->nid, 'ramsar_sites');
         $view_whc = country_get_view_country_related_content($node->nid, 'whc_sites');
-        $node->content['context'] = array(
-          array(
-            '#type' => 'item', '#weight' => 10, '#markup' => _country_bs_tabs(array(
-              'tab-map' => array('title' => t('Map of sites'), 'active' => TRUE, 'content' => '<div id="map-canvas" style="height: 400px;margin: 0px;padding: 0px"></div>'),
-              'tab-ramsar' => array('title' => t('Ramsar sites <span class="badge">!count</span>', array('!count' => $view_ramsar->total_rows)), 'content' => $view_ramsar->render()),
-              'tab-whc' => array('title' => t('WHC sites <span class="badge">!count</span>', array('!count' => $view_whc->total_rows)), 'content' => $view_whc->render()),
-            )),
+        $tabs = array(
+          'tab-map' => array(
+            'title' => t('Map of sites'), 'active' => TRUE,
+            'content' => '<div id="map-canvas" style="height: 400px;margin: 0;padding: 0"></div>'
           ),
+          'tab-ramsar' => array(
+            'title' => t('Ramsar sites <span class="badge">!count</span>', array('!count' => $view_ramsar->total_rows)),
+            'content' => $view_ramsar->render(),
+            'active' => !($has_map),
+          ),
+          'tab-whc' => array(
+            'title' => t('WHC sites <span class="badge">!count</span>', array('!count' => $view_whc->total_rows)),
+            'content' => $view_whc->render()
+          )
+        );
+        if (!$has_map) {
+          unset($tabs['tab-map']);
+        }
+        $node->content['context'] = array(
+          array('#type' => 'item', '#weight' => 10, '#markup' => _country_bs_tabs($tabs))
         );
         break;
 
