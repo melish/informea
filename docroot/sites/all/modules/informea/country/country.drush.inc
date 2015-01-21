@@ -41,18 +41,36 @@ function drush_country_informea_country_import() {
       'title' => $country->name,
       'language' => $language
     );
-
     node_object_prepare($node);
-
     $node->uid = 1;
     $node->field_country_iso2[LANGUAGE_NONE][0]['value'] = $country->code2l;
     $node->field_country_iso3[LANGUAGE_NONE][0]['value'] = $country->code3l;
     $node->field_country_official_name[$node->language][0]['value'] = '';
-
     $node = node_submit($node);
-
     node_save($node);
   }
-
   drush_log(dt('Country data succesfully imported'), 'ok');
+}
+
+/**
+ * Updates data from country.json.
+ */
+function drush_country_informea_country_update() {
+  $path = drupal_get_path('module', 'country') . DIRECTORY_SEPARATOR . 'country.json';
+  $countries = json_decode(file_get_contents($path));
+  foreach ($countries as $country) {
+    $query = new EntityFieldQuery();
+    $result = $query->entityCondition('entity_type', 'node')
+                    ->entityCondition('bundle', 'country')
+                    ->fieldCondition('field_country_iso3', 'value', $country->code3l)
+                    ->execute();
+    if (isset($result['node'])) {
+      $wrapper = entity_metadata_wrapper('node', key($result['node']));
+      $wrapper->field_country_official_name->set($country->name_official);
+      $wrapper->field_country_iso2->set($country->code2l);
+      $wrapper->title->set($country->name);
+      $wrapper->save();
+    }
+  }
+  drush_log(dt('Country data succesfully updated'), 'ok');
 }
