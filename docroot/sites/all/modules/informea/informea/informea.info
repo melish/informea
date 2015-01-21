@@ -66,6 +66,7 @@ features[field_instance][] = node-article-body
 features[field_instance][] = node-article-field_image
 features[field_instance][] = node-article-field_tags
 features[field_instance][] = node-page-body
+features[field_instance][] = node-page-title_field
 features[field_instance][] = taxonomy_term-keywords-description_field
 features[field_instance][] = taxonomy_term-keywords-name_field
 features[field_instance][] = taxonomy_term-tags-description_field
@@ -208,7 +209,6 @@ features[views_view][] = term_related_content
 features[views_view][] = the_content
 features[wysiwyg][] = filtered_html
 features[wysiwyg][] = full_html
-mtime = 1417958792
-project path = sites/all/modules/informea
-
 file[] = informea.translation.inc
+mtime = 1421843003
+project path = sites/all/modules/informea
