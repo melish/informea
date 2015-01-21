@@ -24,7 +24,6 @@ function country_update_7002() {
       'Europe',
       'Latin America and the Caribbean',
       'North America',
-      'Polar: Arctic',
       'West Asia'
     );
     $un_regions = array();

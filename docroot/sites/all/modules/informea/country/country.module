@@ -37,11 +37,60 @@ function country_url_context($path) {
   return $parts[0];
 }
 
+function _country_bs_tabs($tabs) {
+  $markup = '<div role="tabpanel">';
+  $markup .= '<ul class="nav nav-tabs" role="tablist">';
+
+  foreach ($tabs as $id => $tab) {
+    $markup .= '<li role="presentation"' . (isset($tab['active']) && $tab['active'] ? ' class="active"' : '') . '><a href="#' . $id . '" aria-controls="' . $id . '" role="tab" data-toggle="tab">' . $tab['title'] . '</a></li>';
+  }
+
+  $markup .= '</ul>';
+  $markup .= '<div class="tab-content">';
+
+  foreach ($tabs as $id => $tab) {
+    $markup .= '<div role="tabpanel" class="tab-pane' . (isset($tab['active']) && $tab['active'] ? ' active' : '') . '" id="' . $id . '">' . $tab['content'] . '</div>';
+  }
+
+  $markup .= '</div>';
+  $markup .= '</div>';
+
+  return $markup;
+}
+
+function country_get_countries() {
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'country')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->fieldOrderBy('title_field', 'value')
+    ->execute();
+
+  $countries = array();
+
+  if (!isset($result['node'])) {
+    return array();
+  }
+
+  $nodes = entity_load('node', array_keys($result['node']));
+
+  foreach ($nodes as $nid => $node) {
+    $wrapper = entity_metadata_wrapper('node', $node);
+
+    $countries[$wrapper->field_country_iso2->value()] = $wrapper->title_field->value();
+  }
+
+  return $countries;
+}
+
 /**
  *  Implements hook_node_view().
  */
 function country_node_view($node, $view_mode, $langcode) {
   if($node->type == 'country' && $view_mode == 'full') {
+    // Adds the country JavaScript file to the page.
+    drupal_add_js(drupal_get_path('module', 'country') . '/js/country.js');
+
     $context = country_url_context(request_path());
     if(empty($context)) {
       $context = 'map';
@@ -53,13 +102,15 @@ function country_node_view($node, $view_mode, $langcode) {
         drupal_add_js('https://maps.googleapis.com/maps/api/js?v=3.exp', 'external');
         // Adds the country JavaScript file to the page.
         drupal_add_js(drupal_get_path('module', 'country') . '/js/map.js');
-        $view = country_get_view_country_related_content($node->nid, 'embed_sites');
+        $view_ramsar = country_get_view_country_related_content($node->nid, 'ramsar_sites');
+        $view_whc = country_get_view_country_related_content($node->nid, 'whc_sites');
         $node->content['context'] = array(
-          0 => array(
-            '#type' => 'item', '#weight' => 10, '#markup' => '<div id="map-canvas" style="height: 400px;margin: 0px;padding: 0px"></div>',
-          ),
-          1 => array(
-            '#type' => 'item', '#weight' => 20, '#markup' => $view->render(),
+          array(
+            '#type' => 'item', '#weight' => 10, '#markup' => _country_bs_tabs(array(
+              'tab-map' => array('title' => t('Map of sites'), 'active' => TRUE, 'content' => '<div id="map-canvas" style="height: 400px;margin: 0px;padding: 0px"></div>'),
+              'tab-ramsar' => array('title' => t('Ramsar sites <span class="badge">!count</span>', array('!count' => $view_ramsar->total_rows)), 'content' => $view_ramsar->render()),
+              'tab-whc' => array('title' => t('WHC sites <span class="badge">!count</span>', array('!count' => $view_whc->total_rows)), 'content' => $view_whc->render()),
+            )),
           ),
         );
         break;
@@ -88,7 +139,7 @@ function country_node_view($node, $view_mode, $langcode) {
         $chart_config = edw_amcharts_default_config_chart_column();
         $chart_config->rotate = TRUE;
         $chart_config->dataProvider = $data;
-        edw_amcharts_add_chart('country_decisions_chart', 'column', $chart_config, array('width' => '850px', 'height' => '300px'));
+        edw_amcharts_add_chart('country_decisions_chart', 'column', $chart_config, array(), array('width' => '850px', 'height' => '300px'));
         $node->content['context'] = array(
           0 => array(
             '#type' => 'item', '#weight' => 1, '#markup' => '',
@@ -105,19 +156,47 @@ function country_node_view($node, $view_mode, $langcode) {
         $raw_data = country_get_legislation_statistics($node->nid);
         $data = array();
         foreach($raw_data as $t) {
-          $data[] = (object) array('the_title' => $t->name, 'the_value' => (int)$t->count);
+          $data[] = (object) array(
+            'nid' => $node->nid,
+            'the_title' => $t->name,
+            'the_value' => (int)$t->count,
+            'tid' => $t->tid
+          );
         }
         $chart_config = edw_amcharts_default_config_chart_pie();
         $chart_config->theme = 'light';
         $chart_config->dataProvider = $data;
-        edw_amcharts_add_chart('country_legislation_chart', 'pie', $chart_config, array('width' => '260px', 'height' => '260px'));
+
+        $listeners = array(
+          'clickSlice' => <<<EOF
+function (event) {
+  var params = {
+    f: [
+      'field_country:' + event.dataItem.dataContext.nid,
+      'type:legislation',
+      'field_type_of_text:' + event.dataItem.dataContext.tid
+    ],
+    search_api_views_fulltext_op: 'AND'
+  };
+
+  window.location.href = Drupal.settings.basePath + 'search?' + $.param(params);
+}
+EOF
+        );
+
+        edw_amcharts_add_chart('country_legislation_chart', 'pie', $chart_config, $listeners, array('width' => '260px', 'height' => '260px'));
+        $filter_form = drupal_get_form('country_legislation_filter_form', $node);
+        // Unset form attributes to make keyword filter work.
+        unset($filter_form['form_id']);
+        unset($filter_form['form_token']);
+        unset($filter_form['form_build_id']);
         $node->content['context'] = array(
           0 => array(
             '#type' => 'item', '#weight' => 10, '#markup' => '',
             '#prefix' => '<p></p><h4>Types of legislation</h4>', '#suffix' => '</div>',
             '#id' => 'country_legislation_chart',
           ),
-          1 => drupal_get_form('country_legislation_filter_form'),
+          1 =>$filter_form
         );
         break;
 
@@ -126,20 +205,88 @@ function country_node_view($node, $view_mode, $langcode) {
         $raw_data = country_get_court_literature_statistics($node->nid);
         $data = array();
         foreach($raw_data as $t) {
-          $data[] = (object) array('the_category' => $t->name, 'the_value' => (int)$t->count);
+          $data[] = (object) array(
+            'nid' => $node->nid,
+            'the_category' => $t->name,
+            'the_value' => (int) $t->count,
+            'tid' => $t->tid
+          );
         }
         $chart_config = edw_amcharts_default_config_chart_column();
         $chart_config->rotate = TRUE;
         $chart_config->dataProvider = $data;
-        edw_amcharts_add_chart('country_literature_chart', 'column', $chart_config, array('width' => '800px', 'height' => '350px'));
+
+        $listeners = array(
+          'clickGraphItem' => <<<EOF
+function (event) {
+  var params = {
+    f: [
+      'field_country:' + event.item.dataContext.nid,
+      'type:literature',
+      'field_literature_type:' + event.item.dataContext.tid
+    ],
+    search_api_views_fulltext_op: 'AND'
+  };
+
+  window.location.href = Drupal.settings.basePath + 'search?' + $.param(params);
+}
+EOF
+        );
+
+        edw_amcharts_add_chart('country_literature_chart', 'column', $chart_config, $listeners, array('width' => '800px', 'height' => '350px'));
+        $filter_form = drupal_get_form('country_literature_filter_form', $node);
+        // Unset form attributes to make keyword filter work.
+        unset($filter_form['form_id']);
+        unset($filter_form['form_token']);
+        unset($filter_form['form_build_id']);
         $node->content['context'] = array(
           0 => array(
             '#type' => 'item', '#weight' => 10, '#markup' => '',
             '#id' => 'country_literature_chart',
           ),
-          1 => drupal_get_form('country_literature_filter_form'),
+          1 => $filter_form,
         );
         break;
+
+      case 'parties':
+        $rows = array();
+        $parties = country_get_parties($node->nid);
+        foreach ($parties as $party) {
+          $wrapper = entity_metadata_wrapper('node', $party);
+          $treaty = $wrapper->field_treaty->value()[0];
+          $date1 = $wrapper->field_party_date_1->value();
+          $date1 = empty($date1) ? '&nbsp;' : format_date($date1, 'short');
+          $date2 = $wrapper->field_party_date_1->value();
+          $date2 = empty($date2) ? '&nbsp;' : format_date($date2, 'short');
+          $row = array(
+            $wrapper->field_treaty->label(), $date1, $date2,
+          );
+          $nfps = country_get_treaty_focal_points($node->nid, $treaty->nid);
+          $row[] = count($nfps) ? sprintf('<a href="javascript:jQuery(\'#nfp-%s\').toggle()"><i class="glyphicon glyphicon-user" style="color: rgb(0, 128, 213);"></i></a>', $treaty->nid) : '&nbsp;';
+          $rows[] = $row;
+          if (count($nfps)) {
+            $nfp_style = '';
+            foreach ($nfps as $nfp) {
+              $nfp_style .= sprintf('<div><h2>%s</h2></div>', $nfp->title);
+            }
+
+            $row = array(
+                'data' => array(array('data' => $nfp_style, 'colspan' => 4)),
+                'style' => array('display:none'),
+                'id' => array('nfp-' . $treaty->nid)
+            );
+            $rows[] = $row;
+          }
+        }
+        $table = array(
+          'header' => array(t('Treaty'), t('Signature'), t('Ratification'), t('Focal points')),
+          'rows' => $rows,
+        );
+        $node->content['context'] = array(
+            '#type' => 'item', '#weight' => 10, '#markup' => theme('table', $table)
+        );
+        break;
+
     }
   }
 }
@@ -183,18 +330,23 @@ function country_country_contextual_menu_alter(&$contextual_menu, $node) {
   $ret = array();
   if ($node->type == 'country') {
     $uri = url(drupal_get_path_alias('node/' . $node->nid), array('absolute' => TRUE));
+
+    $view_ramsar = country_get_view_country_related_content($node->nid, 'ramsar_sites');
+    $view_whc = country_get_view_country_related_content($node->nid, 'whc_sites');
     $links = array(
-      'map' => t('Sites <span class="badge">!count</span>',
-        array('!count' => country_get_view_country_related_content_count($node->nid, 'embed_sites'))
+      'map' => t('Map and sites <span class="badge">!count</span>',
+        array('!count' => $view_ramsar->total_rows + $view_whc->total_rows)
       ),
-      'parties' => t('Membership <span class="badge">!count</span>', array( '!count' => 0 )),
+      'parties' => t('Membership <span class="badge">!count</span>',
+          array('!count' => count(country_get_parties($node->nid)))
+      ),
       'action-plans' => t('Action plans <span class="badge">!count</span>',
         array('!count' => country_get_view_country_related_content_count($node->nid, 'embed_action_plans'))
       ),
       'national-reports' => t('National reports <span class="badge">!count</span>',
         array('!count' => country_get_view_country_related_content_count($node->nid, 'embed_national_reports'))
       ),
-      'legislation' => t('Laws <span class="badge">!count</span>',
+      'legislation' => t('Legislation <span class="badge">!count</span>',
         array('!count' => country_get_view_country_related_content_count($node->nid, 'page_legislation'))
       ),
       'literature' => t('Literature <span class="badge">!count</span>',
@@ -219,6 +371,16 @@ function country_country_contextual_menu_alter(&$contextual_menu, $node) {
       }
       $contextual_menu[] = $link;
     }
+
+    // Downloads menu item
+    $contextual_menu[] = array(
+      '#type' => 'link',
+      '#title' => t('Downloads'),
+      '#href' => '',
+      '#attributes' => array('class' => 'list-group-item'),
+      '#options' => array('attributes' => array('data-toggle' => 'modal'), 'external' => TRUE, 'fragment' => 'modal-downloads', 'html' => TRUE),
+      '#active' => FALSE,
+    );
   }
   return $ret;
 }

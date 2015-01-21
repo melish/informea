@@ -10,9 +10,9 @@ function leo_theme_preprocess_page(&$vars) {
 
     if($node->type == 'country') {
       $vars['content_column_class'] = ' class="col-sm-9"';
-      $secondary = menu_secondary_local_tasks();
+      $vars['countries'] = country_get_countries();
 
-      array_unshift($vars['page']['sidebar_second'], $secondary);
+      array_unshift($vars['page']['sidebar_second'], menu_secondary_local_tasks());
     }
   }
 

@@ -537,8 +537,8 @@ function country_views_default_views() {
     'national_report' => 'national_report',
   );
 
-  /* Display: Embed geographical sites */
-  $handler = $view->new_display('embed', 'Embed geographical sites', 'embed_sites');
+  /* Display: Ramsar sites */
+  $handler = $view->new_display('embed', 'Ramsar sites', 'ramsar_sites');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Sites';
   $handler->display->display_options['defaults']['pager'] = FALSE;
@@ -612,6 +612,92 @@ function country_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'geographical_site' => 'geographical_site',
   );
+  /* Filter criterion: Content: Treaty (field_treaty) */
+  $handler->display->display_options['filters']['field_treaty_target_id']['id'] = 'field_treaty_target_id';
+  $handler->display->display_options['filters']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['filters']['field_treaty_target_id']['field'] = 'field_treaty_target_id';
+  $handler->display->display_options['filters']['field_treaty_target_id']['value']['value'] = '269';
+
+  /* Display: WHC sites */
+  $handler = $view->new_display('embed', 'WHC sites', 'whc_sites');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Sites';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_treaty',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['uses_fields'] = TRUE;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'title' => 'title',
+  );
+  $handler->display->display_options['row_options']['hide_empty'] = TRUE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Treaty */
+  $handler->display->display_options['fields']['field_treaty']['id'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['field'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['label'] = '';
+  $handler->display->display_options['fields']['field_treaty']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_treaty']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_treaty']['settings'] = array(
+    'link' => 0,
+  );
+  $handler->display->display_options['fields']['field_treaty']['delta_offset'] = '0';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Title (title_field) */
+  $handler->display->display_options['sorts']['title_field_value']['id'] = 'title_field_value';
+  $handler->display->display_options['sorts']['title_field_value']['table'] = 'field_data_title_field';
+  $handler->display->display_options['sorts']['title_field_value']['field'] = 'title_field_value';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Country (field_country) */
+  $handler->display->display_options['arguments']['field_country_target_id']['id'] = 'field_country_target_id';
+  $handler->display->display_options['arguments']['field_country_target_id']['table'] = 'field_data_field_country';
+  $handler->display->display_options['arguments']['field_country_target_id']['field'] = 'field_country_target_id';
+  $handler->display->display_options['arguments']['field_country_target_id']['default_action'] = 'empty';
+  $handler->display->display_options['arguments']['field_country_target_id']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_country_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'geographical_site' => 'geographical_site',
+  );
+  /* Filter criterion: Content: Treaty (field_treaty) */
+  $handler->display->display_options['filters']['field_treaty_target_id']['id'] = 'field_treaty_target_id';
+  $handler->display->display_options['filters']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['filters']['field_treaty_target_id']['field'] = 'field_treaty_target_id';
+  $handler->display->display_options['filters']['field_treaty_target_id']['value']['value'] = '267';
 
   /* Display: Embed action plans */
   $handler = $view->new_display('embed', 'Embed action plans', 'embed_action_plans');
@@ -745,8 +831,9 @@ function country_views_default_views() {
     t('National reports'),
     t('Document(s)'),
     t('<a href="[field_document_url-url]">View</a>'),
-    t('Embed geographical sites'),
+    t('Ramsar sites'),
     t('Sites'),
+    t('WHC sites'),
     t('Embed action plans'),
     t('Action plans'),
   );

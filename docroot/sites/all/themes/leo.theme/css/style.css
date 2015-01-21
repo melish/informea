@@ -306,6 +306,16 @@ a:focus .navicon-eur {
 }
 
 
+/* Country selector */
+/* ---------------- */
+
+
+.country-selector {
+  float: right;
+  margin-top: 12px;
+}
+
+
 /* Keywords */
 /* -------- */
 

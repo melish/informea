@@ -84,7 +84,7 @@ function edw_amcharts_library() {
  * @param array $options
  *  Extra options (theme, width, height) passed to the amCharts library.
  */
-function edw_amcharts_add_chart($chart_id, $chart_type, $chart_config, $options = array()) {
+function edw_amcharts_add_chart($chart_id, $chart_type, $chart_config, $listeners = array(), $options = array()) {
   $defaults = $options + array(
       'width' => '100px',
       'height' => '100px',
@@ -97,11 +97,15 @@ function edw_amcharts_add_chart($chart_id, $chart_type, $chart_config, $options 
     )
   );
   $config = json_encode($chart_config, JSON_PRETTY_PRINT);
-  $js_config = <<<EOF
-jQuery(document).ready(function ($) {
-    var chart = AmCharts.makeChart("$chart_id", {$config});
-});
-EOF;
+
+  $js_config = 'jQuery(document).ready(function ($) {';
+  $js_config .= 'var chart = AmCharts.makeChart(\'' . $chart_id . '\', ' . $config . ');';
+
+  foreach ($listeners as $event => $callback) {
+    $js_config .= 'chart.addListener(\'' . $event . '\', ' . $callback . ');';
+  }
+
+  $js_config .= '});';
 
   $width = $defaults['width'];
   $height = $defaults['height'];
@@ -137,6 +141,7 @@ function edw_amcharts_default_config_chart_column() {
       'balloonText' => '[[category]] => <b>[[value]]</b>',
       'fillAlphas' => 0.8,
       'lineAlpha' => 0.2,
+      'showHandOnHover' => true,
       'type' => 'column',
       'valueField' => 'the_value'
     )),
@@ -165,6 +170,7 @@ function edw_amcharts_default_config_chart_column() {
 function edw_amcharts_default_config_chart_pie() {
   return (object)array(
     'type' => 'pie',
+    'hoverAlpha' => 0.5,
     'theme' => 'none',
     'valueField' => 'the_value',
     'titleField' => 'the_title',
