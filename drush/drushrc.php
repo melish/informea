@@ -170,14 +170,6 @@
 
 /**
  * Customize this associative array with your own tables. This is the list of
- * tables whose *data* is skipped by the 'sql-dump' and 'sql-sync' commands when
- * a structure-tables-key is provided. You may add new tables to the existing
- * array or add a new element.
- */
-# $options['structure-tables']['common'] = array('cache', 'cache_filter', 'cache_menu', 'cache_page', 'history', 'sessions', 'watchdog');
-
-/**
- * Customize this associative array with your own tables. This is the list of
  * tables that are entirely omitted by the 'sql-dump' and 'sql-sync' commands
  * when a skip-tables-key is provided. This is useful if your database contains
  * non Drupal tables used by some other application or during a migration for
@@ -252,6 +244,10 @@ if (file_exists($json_path)) {
     'site-mail' => $cfg->site_mail
   );
 }
+
+$command_specific['sql-sync'] = array(
+  'structure-tables-list' => 'cache*,history,sessions,watchdog,ctools_css_cache,ctools_object_cache',
+);
 
 $options['init-modules'] = array(
   'ctools',

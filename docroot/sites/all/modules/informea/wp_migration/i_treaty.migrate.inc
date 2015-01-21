@@ -28,7 +28,9 @@ class MigrateTreaties extends DynamicMigration {
 
     $this->source = new EntityWithTagsMigrateSourceSQL($query);
 
-    $this->destination = new MigrateDestinationNode('treaty');
+    $this->destination = new MigrateDestinationNode('treaty', array(
+      'language' => 'en', 'text_format' => 'full_html',
+    ));
 
     $this->addFieldMapping('title_field', 'short_title');
     $this->addFieldMapping('title_field:language')->defaultValue('en');
@@ -71,6 +73,9 @@ class MigrateTreaties extends DynamicMigration {
     $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_informea_tags:create_term')->defaultValue(FALSE);
 
+    $this->addFieldMapping('field_parent_treaty', 'id_parent');
+    $this->addFieldMapping('field_region', 'regions');
+
     $this->addFieldMapping('created', 'rec_created');
     $this->addFieldMapping('changed', 'rec_updated');
     $this->addFieldMapping('language')->defaultValue('en');
@@ -100,7 +105,53 @@ class MigrateTreaties extends DynamicMigration {
     ));
   }
 
+  function createStub(Migration $migration, array $source_id) {
+    $node = new stdClass();
+    $node->title = t('Stub for treaty @id', array('@id' => $source_id[0]));
+    $node->body['en'][0] = t('Stub body');
+    $node->type = $this->destination->getBundle();
+    $node->uid = 1;
+    $node->status = 1;
+    node_object_prepare($node);
+    node_save($node);
+    if (isset($node->nid)) {
+      return array($node->nid);
+    }
+    else {
+      return FALSE;
+    }
+  }
+
   function prepareRow($row) {
+
+    $id_parent = db_select('migrate_map_treaties', 't')
+      ->fields('t', array('destid1'))->where('sourceid1=:id', array('id' => $row->id_parent))
+      ->execute()->fetchCol(0);
+    if (!$id_parent) {
+      $id_parent =  $this->handleSourceMigration('Treaties', array($id_parent));
+    }
+    $row->id_parent = $id_parent;
+
+    // Region
+    $region_ids = Database::getConnection('default', 'for_migration')
+      ->select('ai_treaty_region', 't')
+      ->condition('aitreaty_id', $row->id)
+      ->fields('t', array('airegion_id'))
+      ->execute()
+      ->fetchCol(0);
+
+    if (!empty($region_ids)) {
+      $region_names = Database::getConnection('default', 'for_migration')
+                              ->select('ai_region', 't')
+                              ->condition('id', $region_ids, 'IN')
+                              ->fields('t', array( 'name' ))
+                              ->execute()
+                              ->fetchCol(0);
+      $row->regions = $region_names;
+    }
+
+
+
     if ($row->rec_created == '0000-00-00 00:00:00') {
       $row->rec_created = NULL;
     }
