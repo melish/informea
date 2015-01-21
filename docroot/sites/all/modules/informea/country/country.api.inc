@@ -127,3 +127,16 @@ function country_get_treaty_focal_points($id_country, $id_treaty) {
   }
   return array();
 }
+
+
+function country_get_sites($id_country) {
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+                  ->entityCondition('bundle', 'geographical_site')
+                  ->fieldCondition('field_country', 'target_id', $id_country)
+                  ->execute();
+  if (isset($result['node'])) {
+    return entity_load('node', array_keys($result['node']));
+  }
+  return array();
+}

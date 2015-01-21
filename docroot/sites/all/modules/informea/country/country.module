@@ -103,6 +103,11 @@ function country_node_view($node, $view_mode, $langcode) {
         $longitude = $wrapper->field_longitude->value();
         $zoom = $wrapper->field_zoom->value();
         $has_map = $latitude && $longitude && $zoom;
+        $sites = country_get_sites($node->nid);
+        $js_sites = array();
+        foreach($sites as $site) {
+          $js_sites[] = entity_metadata_wrapper('node', $site)->value();
+        }
         if ($has_map) {
           // Adds the amCharts JavaScript files to the page.
           drupal_add_js( 'https://maps.googleapis.com/maps/api/js?v=3.exp', 'external' );
@@ -114,6 +119,7 @@ function country_node_view($node, $view_mode, $langcode) {
                       'latitude'  => $wrapper->field_latitude->value(),
                       'longitude' => $wrapper->field_longitude->value(),
                       'zoom'      => $wrapper->field_zoom->value(),
+                      'sites' => $js_sites,
                   )
               ),
               array( 'type' => 'setting' )
