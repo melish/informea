@@ -251,6 +251,7 @@ EOF
       case 'parties':
         $rows = array();
         $parties = country_get_parties($node->nid);
+
         foreach ($parties as $party) {
           $wrapper = entity_metadata_wrapper('node', $party);
           $treaty = $wrapper->field_treaty->value()[0];
@@ -258,35 +259,61 @@ EOF
           $date1 = empty($date1) ? '&nbsp;' : format_date($date1, 'short');
           $date2 = $wrapper->field_party_date_1->value();
           $date2 = empty($date2) ? '&nbsp;' : format_date($date2, 'short');
+
           $row = array(
-            $wrapper->field_treaty->label(), $date1, $date2,
+            'data' => array(
+              $wrapper->field_treaty->label(),
+              array('data' => $date1, 'class' => 'text-center'),
+              array('data' => $date2, 'class' => 'text-center')
+            )
           );
+
           $nfps = country_get_treaty_focal_points($node->nid, $treaty->nid);
-          $row[] = count($nfps) ? sprintf('<a href="javascript:jQuery(\'#nfp-%s\').toggle()"><i class="glyphicon glyphicon-user" style="color: rgb(0, 128, 213);"></i></a>', $treaty->nid) : '&nbsp;';
-          $rows[] = $row;
+
           if (count($nfps)) {
-            $nfp_style = '';
+            $row['data'][] = array(
+              'data' => sprintf('<a data-toggle="collapse" href="#nfp-%1$s"><i class="glyphicon glyphicon-user" aria-expanded="false" aria-controls="nfp-%1$s"></i></a>', $treaty->nid),
+              'class' => 'text-center'
+            );
+          } else {
+            $row['data'][] = '';
+          }
+
+          $rows[] = $row;
+
+          if (count($nfps)) {
+            $nfp_data = '';
+
             foreach ($nfps as $nfp) {
-              $nfp_style .= sprintf('<div><h2>%s</h2></div>', $nfp->title);
+              $nfp_data .= sprintf('<div><h2>%s</h2></div>', $nfp->title);
             }
 
             $row = array(
-                'data' => array(array('data' => $nfp_style, 'colspan' => 4)),
-                'style' => array('display:none'),
-                'id' => array('nfp-' . $treaty->nid)
+              'data' => array(array('data' => $nfp_data, 'colspan' => 4)),
+              'id' => array('nfp-' . $treaty->nid),
+              'class' => array('collapse')
             );
+
             $rows[] = $row;
           }
         }
-        $table = array(
-          'header' => array(t('Treaty'), t('Signature'), t('Ratification'), t('Focal points')),
-          'rows' => $rows,
-        );
-        $node->content['context'] = array(
-            '#type' => 'item', '#weight' => 10, '#markup' => theme('table', $table)
-        );
-        break;
 
+        $table = array(
+          'attributes' => array('class' => 'table-no-striping'),
+          'header' => array(
+            t('Treaty'),
+            array('data' => t('Signature'), 'class' => array('text-center')),
+            array('data' => t('Ratification'), 'class' => array('text-center')),
+            array('data' => t('Focal points'), 'class' => array('text-center'))
+          ),
+          'rows' => $rows
+        );
+
+        $node->content['context'] = array(
+          '#type' => 'item', '#weight' => 10, '#markup' => theme('table', $table)
+        );
+
+        break;
     }
   }
 }
