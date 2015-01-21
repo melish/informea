@@ -243,6 +243,7 @@ function search_integration_default_search_api_index() {
         "field_keywords" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_literature_paper_title" : { "type" : "text" },
         "field_literature_serial_title" : { "type" : "text" },
+        "field_literature_type" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_location" : { "type" : "text" },
         "field_meeting" : { "type" : "integer", "entity_type" : "node" },
         "field_notes" : { "type" : "text" },
