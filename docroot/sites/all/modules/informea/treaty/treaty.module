@@ -13,12 +13,6 @@ include_once 'treaty.features.inc';
  *   An associative array of properties for each path.
  */
 function treaty_menu() {
-  $items['treaties'] = array(
-    'title' => t('Treaties'),
-    'page callback' => 'treaty_view',
-    'access arguments' => array('access content')
-  );
-
   $items['terms'] = array(
     'title' => t('Glossary'),
     'page callback' => 'terms_view',
@@ -29,97 +23,166 @@ function treaty_menu() {
 }
 
 /**
- * Registers module's theme implementations.
- *
- * @return
- *   An associative array of theme hook information.
+ *  Implements hook_url_inbound_alter().
  */
-function treaty_theme() {
-  return array(
-    'treaties' => array(
-      'variables' => array(
-        'regions' => NULL,
-        'treaties' => NULL
-      )
-    ),
-    'terms' => array()
-  );
+function treaty_url_inbound_alter(&$path, $original_path, $path_language) {
+  if($node = treaty_url_match_node($path)) {
+    $path = 'node/' . $node->nid;
+  }
 }
 
-function _treaty_get_treaties() {
-  $source_informea = current(taxonomy_get_term_by_name('InforMEA', 'data_source'));
-  $query = new EntityFieldQuery();
-  $result = $query->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'treaty')
-    ->propertyCondition('status', NODE_PUBLISHED)
-    ->fieldCondition('field_data_source', 'tid', $source_informea->tid)
-    ->fieldOrderBy('field_official_name', 'value')
-    ->execute();
-
-  $treaties = array();
-  $protocols = array();
-  if (!isset($result['node'])) {
-    return array();
-  }
-
-  $nodes = entity_load('node', array_keys($result['node']));
-  foreach ($nodes as $nid => $node) {
-    $wrapper = entity_metadata_wrapper('node', $node);
-    $node->official_name = $wrapper->field_official_name->value();
-    $node->logo = $wrapper->field_logo->value();
-    // Protocols
-    $parent = $wrapper->field_parent_treaty->value();
-    if ($parent) {
-      $protocols[$parent->nid][] = $node;
-      continue;
+function treaty_url_match_node($path) {
+  module_load_include('inc', 'treaty', 'treaty.api');
+  if (arg(0, $path) == 'treaties') {
+    if ($node = treaty_load_by_odata_name(arg(1, $path))) {
+      return $node;
     }
-    $treaties[$nid] = $node;
-  }
-  // Protocols
-  foreach ($protocols as $parent_nid => $protocols) {
-    if (array_key_exists($parent_nid, $treaties)) { // Kuala Lumpur 3rd level
-      $parent              = $treaties[$nid];
-      $parent->protocols = $protocols;
+  } else if(strlen(arg(0, $path)) == 2) { // Assume language prefix @todo enhance
+    if (arg(1, $path) == 'treaties') {
+      if ($node = treaty_load_by_odata_name(arg(2, $path))) {
+        return $node;
+      }
     }
   }
-  return $treaties;
+  return FALSE;
 }
 
 /**
- * Displays the treaties page when the user visits the path.
- *
- * @return
- *   String representing the content of the page.
+ * Implements hook_node_view().
  */
-function treaty_view() {
-  // Adds the treaties JavaScript file to the page.
-  drupal_add_js(drupal_get_path('module', 'treaty') . '/js/treaties.js');
+function treaty_node_view($node, $view_mode, $langcode) {
+  dpm($node);
+  if($node->type == 'treaty' && $view_mode == 'full') {
+    $context = treaty_url_context(request_path());
+    if (empty($context)) {
+      $context = 'text';
+    }
+    // $wrapper = entity_metadata_wrapper('node', $node);
+    // $is_ecolex = $wrapper-> ...
+    $node->context = $context;
+    $node->content['context'] = array(
+      '#type' => 'item', '#weight' => 10, '#markup' => '<b>Hello world</b>'
+    );
+    switch ($context) {
+      case 'summary':
+        break;
 
-  $regions = array();
-  $treaties = _treaty_get_treaties();
-  foreach ($treaties as $node) {
-    $wrapper = entity_metadata_wrapper('node', $node);
-    $rs = $wrapper->field_region->value();
-    foreach($rs as $t) {
-      $t_wrapper = entity_metadata_wrapper('taxonomy_term', $t);
-      $t->name = $t_wrapper->label();
-      $regions[$t->tid] = $t;
+      case 'text':
+        break;
+
+      case 'protocols':
+        break;
+
+      case 'decisions':
+        break;
+
+      case 'parties':
+        break;
+
+      case 'reports':
+        break;
+
+      case 'plans':
+        break;
     }
   }
-  uasort($regions, function($a, $b) { return strcasecmp($a->name, $b->name); });
-
-
-  return theme('treaties', array(
-    'regions' => $regions,
-    'treaties' => _treaty_get_treaties()
-  ));
 }
 
+/**
+ * Implements hook_page_alter().
+ */
+function treaty_page_alter(&$page) {
+  if (!empty($page['content']['system_main']['nodes'])) {
+    foreach ($page['content']['system_main']['nodes'] as $nid => &$node) {
+      // Move legislation chart to secondary region
+      if (isset($node['#node']->context) && $node['#node']->type == 'treaty') {
+        // Hide fields in some view modes.
+        foreach(element_children($node) as $element_id) {
+          hide($node[$element_id]);
+        }
+        switch ($node['#node']->context) {
+          case 'summary':
+          case 'text':
+          case 'protocols':
+          case 'decisions':
+          case 'parties':
+          case 'reports':
+          case 'plans':
+            show($node['context']);
+        }
+      }
+    }
+  }
+}
+
+function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
+  $ret = array();
+  if ($node->type == 'treaty') {
+    $uri = url(drupal_get_path_alias('node/' . $node->nid), array('absolute' => TRUE));
+    $links = array(
+      'summary' => t('Summary'),
+      'protocols' => t('Protocols <span class="badge">!count</span>',
+        array('!count' => 2)
+      ),
+      'text' => t('Treaty text'),
+      'decisions' => t('Decisions <span class="badge">!count</span>',
+        array('!count' => 562)
+      ),
+      'parties' => t('Parties <span class="badge">!count</span>',
+        array('!count' => 129)
+      ),
+      'reports' => t('National reports <span class="badge">!count</span>',
+        array('!count' => 44)
+      ),
+      'plans' => t('National plans <span class="badge">!count</span>',
+        array('!count' => 12)
+      ),
+    );
+
+    foreach($links as $path => $title) {
+      $link = array(
+        '#type' => 'link',
+        '#title' => $title,
+        '#href' => $uri . '/' . $path,
+        '#attributes' => array( 'class' => array( 'list-group-item' ) ),
+        '#options' => array( 'html' => TRUE ),
+        '#active' => FALSE,
+      );
+      if (isset($node->context) && $node->context == $path) {
+        $link['#attributes']['class'][] = 'active';
+      }
+      $contextual_menu[] = $link;
+    }
+
+    // Downloads menu item
+    $contextual_menu[] = array(
+      '#type' => 'link',
+      '#title' => t('Downloads'),
+      '#href' => '',
+      '#attributes' => array('class' => 'list-group-item'),
+      '#options' => array('attributes' => array('data-toggle' => 'modal'), 'external' => TRUE, 'fragment' => 'modal-downloads', 'html' => TRUE),
+      '#active' => FALSE,
+    );
+  }
+  return $ret;
+}
+
+function treaty_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  if (isset($router_item['page_arguments'][0]->type) && $router_item['page_arguments'][0]->type == 'treaty') {
+    $context_menu = array();
+    $node = $router_item['page_arguments'][0];
+    drupal_alter('treaty_contextual_menu', $context_menu, $node);
+    $data['tabs'][1] = array(
+      'count' => count($context_menu),
+      'output' => $context_menu,
+    );
+  }
+}
 
 /**
  * Displays the glossary page when the user visits the path.
  *
- * @return
+ * @return string
  *   String representing the content of the page.
  */
 function terms_view() {

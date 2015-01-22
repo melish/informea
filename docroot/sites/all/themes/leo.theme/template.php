@@ -7,15 +7,18 @@
 function leo_theme_preprocess_page(&$vars) {
   if(isset($vars['node'])) {
     $node = $vars['node'];
+    switch ($node->type) {
+      case 'country':
+        $vars['content_column_class'] = ' class="col-sm-9"';
+        $vars['countries'] = country_get_countries_select_options();
+        array_unshift($vars['page']['sidebar_second'], menu_secondary_local_tasks());
+        break;
 
-    if($node->type == 'country') {
-      $vars['content_column_class'] = ' class="col-sm-9"';
-      $vars['countries'] = country_get_countries_select_options();
-
-      array_unshift($vars['page']['sidebar_second'], menu_secondary_local_tasks());
+      case 'treaty':
+        $vars['content_column_class'] = ' class="col-sm-9"';
+        array_unshift($vars['page']['sidebar_second'], menu_secondary_local_tasks());
     }
   }
-
   if (isset($vars['node']->type)) {
     $vars['theme_hook_suggestions'][] = 'page__' . $vars['node']->type;
   }
