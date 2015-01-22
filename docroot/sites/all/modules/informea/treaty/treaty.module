@@ -51,7 +51,6 @@ function treaty_url_match_node($path) {
  * Implements hook_node_view().
  */
 function treaty_node_view($node, $view_mode, $langcode) {
-  dpm($node);
   if($node->type == 'treaty' && $view_mode == 'full') {
     $context = treaty_url_context(request_path());
     if (empty($context)) {
@@ -118,24 +117,28 @@ function treaty_page_alter(&$page) {
 function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
   $ret = array();
   if ($node->type == 'treaty') {
+    module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
+    module_load_include('inc', 'country_data', 'country_data.api');
+    module_load_include('inc', 'decision', 'decision.api');
+    module_load_include('inc', 'treaty', 'treaty.api');
     $uri = url(drupal_get_path_alias('node/' . $node->nid), array('absolute' => TRUE));
     $links = array(
       'summary' => t('Summary'),
       'protocols' => t('Protocols <span class="badge">!count</span>',
-        array('!count' => 2)
+        array('!count' => count(treaty_get_child_protocols($node->nid)))
       ),
       'text' => t('Treaty text'),
       'decisions' => t('Decisions <span class="badge">!count</span>',
-        array('!count' => 562)
+        array('!count' => decision_count_treaty_decisions($node->nid))
       ),
       'parties' => t('Parties <span class="badge">!count</span>',
-        array('!count' => 129)
+        array('!count' => count(country_data_treaty_get_membership($node->nid)))
       ),
       'reports' => t('National reports <span class="badge">!count</span>',
-        array('!count' => 44)
+        array('!count' => country_deliverable_count_treaty_national_reports($node->nid))
       ),
       'plans' => t('National plans <span class="badge">!count</span>',
-        array('!count' => 12)
+        array('!count' => country_deliverable_count_treaty_action_plans($node->nid))
       ),
     );
 

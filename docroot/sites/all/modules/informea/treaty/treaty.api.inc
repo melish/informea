@@ -17,3 +17,15 @@ function treaty_load_by_odata_name($odata_name) {
   }
   return FALSE;
 }
+
+function treaty_get_child_protocols($id_treaty) {
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+                  ->entityCondition('bundle', 'treaty')
+                  ->fieldCondition('field_parent_treaty', 'target_id', $id_treaty)
+                  ->execute();
+  if (!empty($result['node'])) {
+    return node_load_multiple(array_keys($result['node']));
+  }
+  return array();
+}
