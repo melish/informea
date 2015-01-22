@@ -354,15 +354,13 @@ a:focus .navicon-eur {
 }
 
 
-/* Country selector */
-/* ---------------- */
+/* Main content */
+/* ------------ */
 
 
-.country-selector {
-  float: right;
-  margin-top: 12px;
+#main-content {
+  margin-top: 0;
 }
-
 
 /* Panels */
 /* ------ */
