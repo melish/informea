@@ -123,7 +123,7 @@ function country_node_view($node, $view_mode, $langcode) {
       case 'national-reports':
         // $view = country_get_view_country_related_content($node->nid, 'embed_national_reports');
         module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
-        $rows = get_national_reports_by_treaty($node->nid);
+        $rows = country_deliverable_national_reports_group_by_treaty($node->nid);
         $html = '<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">';
         foreach ($rows as $id => $row) {
           $table = '<table class="table"><tr><th>Report title</th><th>Submission date</th><th>Files</th></tr>';
@@ -168,7 +168,7 @@ EOD;
       case 'action-plans':
         // $view = country_get_view_country_related_content($node->nid, 'embed_action_plans');
         module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
-        $rows = get_action_plans_by_treaty($node->nid);
+        $rows = country_deliverable_action_plans_group_by_treaty($node->nid);
         $html = '<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">';
         foreach ($rows as $id => $row) {
           $table = '<table class="table"><tr><th>Title</th><th>Submission date</th><th>Files</th></tr>';

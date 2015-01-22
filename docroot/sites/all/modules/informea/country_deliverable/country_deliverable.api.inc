@@ -1,6 +1,6 @@
 <?php
 
-function get_national_reports_by_treaty($id_country) {
+function country_deliverable_national_reports_group_by_treaty($id_country) {
   $query  = new EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')
                   ->entityCondition('bundle', 'national_report')
@@ -34,7 +34,7 @@ function get_national_reports_by_treaty($id_country) {
   return array();
 }
 
-function get_action_plans_by_treaty($id_country) {
+function country_deliverable_action_plans_group_by_treaty($id_country) {
   $query  = new EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')
                   ->entityCondition('bundle', 'action_plan')
