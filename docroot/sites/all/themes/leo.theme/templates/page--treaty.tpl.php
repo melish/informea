@@ -43,7 +43,7 @@
           <div class="treaty-selector">
             <form role="form">
               <select class="form-control">
-                <option value=""><?php print t('Select a treaty&hellip;'); ?></option>
+                <option value=""><?php print t('Select another treaty&hellip;'); ?></option>
               </select><!-- .form-control -->
             </form>
           </div><!-- .treaty-selector -->
