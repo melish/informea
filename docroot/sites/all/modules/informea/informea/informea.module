@@ -82,6 +82,26 @@ function informea_date_formats() {
   );
 }
 
+/**
+ * Implements hook_library().
+ */
+function informea_library() {
+  $smallipop_path = libraries_get_path('smallipop');
+  return array(
+    'smallipop' => array(
+      'title' => 'Smallipop',
+      'website' => 'http://projects.sebastianhelzle.net/jquery.smallipop/index.html',
+      'version' => '0.6.2',
+      'js' => array(
+        $smallipop_path . '/lib/jquery.smallipop.min.js' => array(),
+        $smallipop_path . '/lib/contrib/modernizr.js' => array(),
+      ),
+      'css' => array(
+        $smallipop_path . '/css/jquery.smallipop.min.css' => array(),
+      ),
+    )
+  );
+}
 
 class MigrationUtil {
 
