@@ -20,4 +20,8 @@ jQuery(document).ready(function ($) {
       window.location.href = Drupal.settings.basePath + 'treaties/' + odata_name;
     }
   });
+
+  if($('.smallipop').length > 0) {
+    $('.smallipop').smallipop({preferredPosition: 'left'});
+  }
 });
