@@ -364,13 +364,55 @@ a:focus .navicon-eur {
 }
 
 
-/* Keywords */
-/* -------- */
+/* Panels */
+/* ------ */
 
 
-/* Wrapper and base class */
-.keywords {
-  line-height: 24px;
+/* Collapsable panels */
+
+.panel-group .panel {
+  -webkit-box-shadow: none;
+  border: 0;
+  box-shadow: none;
+}
+
+.panel-group .panel + .panel {
+  border-top: 1px solid #ddd;
+  margin-top: 0;
+}
+
+.panel-group .panel-heading {
+  background-color: #fff;
+  padding: 8px;
+}
+
+.panel-group .panel-heading:hover {
+  cursor: pointer;
+}
+
+.panel-group .panel-heading:hover,
+.panel-group .panel-heading.collapsed:hover {
+  background-color: #e8e8e8;
+}
+
+.panel-group .panel-title:before {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  content: "\e082";
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  margin-right: 5px;
+  vertical-align: top;
+}
+
+.panel-group .collapsed .panel-title:before {
+  content: "\e081";
+}
+
+.panel-group .panel-collapse > .table {
+  border-top: 1px solid #ddd;
 }
 
 
