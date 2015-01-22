@@ -337,6 +337,7 @@ EOF
 
       case 'parties':
         $rows = array();
+        module_load_include('inc', 'country_data', 'country_data.api');
         $parties = country_data_country_get_parties($node->nid);
 
         foreach ($parties as $party) {

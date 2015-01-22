@@ -34,10 +34,10 @@ function treaty_get_treaties() {
   $query = new EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')
                   ->entityCondition('bundle', 'treaty')
+                  ->fieldOrderBy('title_field', 'value')
                   ->execute();
   if (!empty($result['node'])) {
     $rows = node_load_multiple(array_keys($result['node']));
-    uasort($rows, function($a, $b) { return strcmp($a->title, $b->title); });
     return $rows;
   }
   return array();

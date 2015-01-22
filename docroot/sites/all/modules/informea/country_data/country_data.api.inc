@@ -5,11 +5,11 @@ function country_data_country_get_parties($id_country) {
   $result = $query->entityCondition('entity_type', 'node')
                   ->entityCondition('bundle', 'member_party')
                   ->fieldCondition('field_country', 'target_id', $id_country)
+                  ->propertyOrderBy('title')
                   ->execute();
   if (isset($result['node'])) {
     $result_nids = array_keys($result['node']);
     $parties = entity_load('node', $result_nids);
-    uasort($parties, function($a, $b) { return $a->title < $b->title; });
     return $parties;
   }
   return array();
@@ -20,12 +20,10 @@ function country_data_treaty_get_membership($id_treaty) {
   $result = $query->entityCondition('entity_type', 'node')
                   ->entityCondition('bundle', 'member_party')
                   ->fieldCondition('field_treaty', 'target_id', $id_treaty)
+                  ->propertyOrderBy('title')
                   ->execute();
   if (isset($result['node'])) {
-    $result_nids = array_keys($result['node']);
-    $parties = entity_load('node', $result_nids);
-    uasort($parties, function($a, $b) { return $a->title < $b->title; });
-    return $parties;
+    return entity_load('node', array_keys($result['node']));
   }
   return array();
 }
