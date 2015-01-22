@@ -11,16 +11,13 @@ function get_national_reports_by_treaty($id_country) {
     $parties = array();
     foreach ($rows as $row) {
       $wrapper = entity_metadata_wrapper('node', $row);
+      $treaty  = $wrapper->field_treaty->value()[0];
+      $parties[$treaty->nid] = $treaty;
+    }
+    foreach ($rows as $row) {
+      $wrapper = entity_metadata_wrapper('node', $row);
       $treaty = $wrapper->field_treaty->value()[0];
-      if (!isset($parties[$treaty->nid])) {
-        $parties[$treaty->nid] = $treaty;
-      }
-      else {
-        $treaty =& $parties[$treaty->nid];
-      }
-      if (!isset($treaty->national_reports)) {
-        $treaty->national_reports = array();
-      }
+      $treaty = $parties[$treaty->nid];
       $treaty->national_reports[] = $row;
     }
     uasort($parties, function($a, $b) { return strcmp($a->title, $b->title); });
@@ -48,16 +45,13 @@ function get_action_plans_by_treaty($id_country) {
     $parties = array();
     foreach ($rows as $row) {
       $wrapper = entity_metadata_wrapper('node', $row);
+      $treaty  = $wrapper->field_treaty->value()[0];
+      $parties[$treaty->nid] = $treaty;
+    }
+    foreach ($rows as $row) {
+      $wrapper = entity_metadata_wrapper('node', $row);
       $treaty = $wrapper->field_treaty->value()[0];
-      if (!isset($parties[$treaty->nid])) {
-        $parties[$treaty->nid] = $treaty;
-      }
-      else {
-        $treaty =& $parties[$treaty->nid];
-      }
-      if (!isset($treaty->action_plans)) {
-        $treaty->action_plans = array();
-      }
+      $treaty = $parties[$treaty->nid];
       $treaty->action_plans[] = $row;
     }
     uasort($parties, function($a, $b) { return strcmp($a->title, $b->title); });
