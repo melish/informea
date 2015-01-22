@@ -25,37 +25,37 @@
   <?php endif; ?>
   <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
   <div class="row">
+    <div class="col-sm-9">
+      <?php if (!empty($title)): ?>
+        <?php print render($title_prefix); ?>
+        <h1><?php print $title; ?></h1>
+        <?php print render($title_suffix); ?>
+      <?php endif; ?>
+    </div><!-- .col-sm-9 -->
+    <div class="col-sm-3">
+      <form role="form">
+        <select class="form-control">
+          <option value=""><?php print t('Select another treaty&hellip;'); ?></option>
+          <?php foreach ($treaties as $odata_name => $treaty_name): ?>
+            <option value="<?php print strtolower($odata_name); ?>"<?php print $wrapper->field_odata_identifier->value() == $odata_name ? ' selected' : ''; ?>><?php print $treaty_name ?></option>
+          <?php endforeach; ?>
+        </select><!-- .form-control -->
+      </form>
+    </div><!-- .col-sm-3 -->
+  </div><!-- .row -->
+  <div class="row">
     <?php if (!empty($page['sidebar_first'])): ?>
       <aside id="sidebar-first" class="col-sm-3" role="complementary">
         <?php print render($page['sidebar_first']); ?>
       </aside><!-- #sidebar-first .col-sm-3 -->
     <?php endif; ?>
     <section<?php print $content_column_class; ?>>
+      <hr id="main-content">
       <?php if (!empty($page['highlighted'])): ?>
         <div class="highlighted jumbotron">
           <?php print render($page['highlighted']); ?>
         </div><!-- .highlighted .jumbotron -->
       <?php endif; ?>
-      <a id="main-content"></a>
-      <?php print render($title_prefix); ?>
-      <?php if (!empty($title)): ?>
-        <div class="page-header">
-          <div class="treaty-selector">
-            <form role="form">
-              <select class="form-control">
-                <option value=""><?php print t('Select another treaty&hellip;'); ?></option>
-                <?php foreach ($treaties as $odata_name => $treaty_name): ?>
-                  <option value="<?php print strtolower($odata_name); ?>"<?php print $wrapper->field_odata_identifier->value() == $odata_name ? ' selected' : ''; ?>><?php print $treaty_name ?></option>
-                <?php endforeach; ?>
-              </select><!-- .form-control -->
-            </form>
-          </div><!-- .treaty-selector -->
-          <h1>
-            <?php print $title; ?>
-          </h1>
-        </div><!-- .page-header -->
-      <?php endif; ?>
-      <?php print render($title_suffix); ?>
       <?php print $messages; ?>
       <?php if (!empty($tabs)): ?>
         <?php
