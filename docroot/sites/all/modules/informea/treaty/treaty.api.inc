@@ -29,3 +29,26 @@ function treaty_get_child_protocols($id_treaty) {
   }
   return array();
 }
+
+function treaty_get_treaties() {
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+                  ->entityCondition('bundle', 'treaty')
+                  ->execute();
+  if (!empty($result['node'])) {
+    $rows = node_load_multiple(array_keys($result['node']));
+    uasort($rows, function($a, $b) { return strcmp($a->title, $b->title); });
+    return $rows;
+  }
+  return array();
+}
+
+function treaty_get_treaties_as_select_options() {
+  $nodes = treaty_get_treaties();
+  $rows = array();
+  foreach ($nodes as $nid => $node) {
+    $wrapper = entity_metadata_wrapper('node', $nid);
+    $rows[$wrapper->field_odata_identifier->value()] = $wrapper->title_field->value();
+  }
+  return $rows;
+}

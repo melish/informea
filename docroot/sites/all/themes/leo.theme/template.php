@@ -16,6 +16,7 @@ function leo_theme_preprocess_page(&$vars) {
 
       case 'treaty':
         $vars['content_column_class'] = ' class="col-sm-9"';
+        $vars['treaties'] = treaty_get_treaties_as_select_options();
         array_unshift($vars['page']['sidebar_second'], menu_secondary_local_tasks());
     }
   }

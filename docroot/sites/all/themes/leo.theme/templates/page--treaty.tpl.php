@@ -44,6 +44,9 @@
             <form role="form">
               <select class="form-control">
                 <option value=""><?php print t('Select another treaty&hellip;'); ?></option>
+                <?php foreach ($treaties as $odata_name => $treaty_name): ?>
+                  <option value="<?php print strtolower($odata_name); ?>"<?php print $wrapper->field_odata_identifier->value() == $odata_name ? ' selected' : ''; ?>><?php print $treaty_name ?></option>
+                <?php endforeach; ?>
               </select><!-- .form-control -->
             </form>
           </div><!-- .treaty-selector -->

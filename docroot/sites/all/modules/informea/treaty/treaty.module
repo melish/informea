@@ -52,6 +52,8 @@ function treaty_url_match_node($path) {
  */
 function treaty_node_view($node, $view_mode, $langcode) {
   if($node->type == 'treaty' && $view_mode == 'full') {
+    // Adds the country JavaScript file to the page.
+    drupal_add_js(drupal_get_path('module', 'treaty') . '/js/treaty.js');
     $context = treaty_url_context(request_path());
     if (empty($context)) {
       $context = 'text';

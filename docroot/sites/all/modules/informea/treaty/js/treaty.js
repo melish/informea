@@ -13,4 +13,11 @@ jQuery(document).ready(function ($) {
 
     $('.rows-visible', target).html(rows);
   });
+
+  $('.treaty-selector .form-control').change(function () {
+    var odata_name = $(this).val();
+    if (odata_name) {
+      window.location.href = Drupal.settings.basePath + 'treaties/' + odata_name;
+    }
+  });
 });
