@@ -26,14 +26,14 @@
   <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
   <div class="row">
     <div class="col-sm-9">
-      <?php if (!empty($title)): ?>
-        <?php print render($title_prefix); ?>
+      <?php print render($title_prefix); ?>
+      <?php if ($title): ?>
         <h1>
           <?php print theme('image', array('path' => $directory . '/img/flags/flag-' . strtolower($wrapper->field_country_iso2->value()) . '.png', 'attributes' => array('class' => 'img-thumbnail'))); ?>
           <?php print $title; ?>
         </h1>
-        <?php print render($title_suffix); ?>
       <?php endif; ?>
+      <?php print render($title_suffix); ?>
     </div><!-- .col-sm-9 -->
     <div class="col-sm-3">
       <form role="form">
