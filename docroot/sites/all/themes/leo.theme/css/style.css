@@ -18,6 +18,54 @@ h1, h2, h3, h4, h5, h6,
 }
 
 
+/* Tables */
+/* ------ */
+
+
+/* Sticky header */
+
+.sticky-header {
+  z-index: 10;
+}
+
+.sticky-header > thead > tr > th,
+.sticky-header > tbody > tr > th,
+.sticky-header > tfoot > tr > th {
+  border-bottom: 2px solid #ddd;
+  padding: 8px;
+  vertical-align: bottom;
+}
+
+/* List groups in tables */
+
+.table td > .list-group {
+  margin: -8px;
+}
+
+.table td > .list-group > .list-group-item {
+  border-left: 0;
+  border-right: 0;
+}
+
+.table td > .list-group > .list-group-item:first-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top: 0;
+}
+
+.table td > .list-group > .list-group-item:last-child {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 0;
+}
+
+/* Parties table */
+
+#table-parties .dl-horizontal {
+  margin-bottom: 0;
+}
+
+
 /* Navs */
 /* ---- */
 
