@@ -383,7 +383,7 @@ EOF
 
           if (count($nfps)) {
             $row['data'][] = array(
-              'data' => sprintf('<a data-toggle="collapse" href="#nfp-%1$s" aria-expanded="false" aria-controls="nfp-%1$s"><i class="glyphicon glyphicon-user"></i></a>', $treaty->nid),
+              'data' => sprintf('<a data-toggle="collapse" data-parent="#table-parties" href="#nfp-%1$s" aria-expanded="false" aria-controls="nfp-%1$s"><i class="glyphicon glyphicon-user"></i></a>', $treaty->nid),
               'class' => 'text-center'
             );
           } else {
@@ -393,16 +393,28 @@ EOF
           $rows[] = $row;
 
           if (count($nfps)) {
-            $nfp_data = '';
+            $nfp_data = '<ul class="list-group">';
 
             foreach ($nfps as $nfp) {
-              $nfp_data .= sprintf('<div><h2>%s</h2></div>', $nfp->title);
+              $nfp_wrapper = entity_metadata_wrapper('node', $nfp);
+              $nfp_data .= '<li class="list-group-item">';
+              $nfp_data .= sprintf('<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> %s</h4>', $nfp_wrapper->title->value());
+              $nfp_data .= '<dl class="dl-horizontal">';
+              $nfp_data .= sprintf('<dt>%s</dt><dd>%s</dd>', t('Position'), $nfp_wrapper->field_person_position->value());
+              $nfp_data .= sprintf('<dt>%s</dt><dd>%s</dd>', t('Department'), $nfp_wrapper->field_person_department->value());
+              $nfp_data .= sprintf('<dt>%s</dt><dd>%s</dd>', t('Institution'), $nfp_wrapper->field_person_institution->value());
+              $nfp_data .= sprintf('<dt>%s</dt><dd>%s</dd>', t('Address'), $nfp_wrapper->field_address->value());
+              $nfp_data .= sprintf('<dt>%s</dt><dd>%s</dd>', t('Fax'), $nfp_wrapper->field_contact_fax->value());
+              $nfp_data .= '</dl>';
+              $nfp_data .= '</li>';
             }
 
+            $nfp_data .= '</ul>';
+
             $row = array(
+              'class' => array('collapse'),
               'data' => array(array('data' => $nfp_data, 'colspan' => 4)),
-              'id' => array('nfp-' . $treaty->nid),
-              'class' => array('collapse')
+              'id' => array('nfp-' . $treaty->nid)
             );
 
             $rows[] = $row;
@@ -410,7 +422,7 @@ EOF
         }
 
         $table = array(
-          'attributes' => array('class' => 'table-no-striping'),
+          'attributes' => array('class' => 'table-no-striping table-hover', 'id' => 'table-parties', 'role' => 'tablist', 'aria-multiselectable' => 'true'),
           'header' => array(
             t('Treaty'),
             array('data' => t('Signature'), 'class' => array('text-center')),
