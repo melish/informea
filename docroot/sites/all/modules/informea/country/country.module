@@ -331,7 +331,7 @@ EOF
 
       case 'parties':
         $rows = array();
-        $parties = country_get_parties($node->nid);
+        $parties = country_data_country_get_parties($node->nid);
 
         foreach ($parties as $party) {
           $wrapper = entity_metadata_wrapper('node', $party);
@@ -449,8 +449,8 @@ function country_page_alter(&$page) {
 function country_country_contextual_menu_alter(&$contextual_menu, $node) {
   $ret = array();
   if ($node->type == 'country') {
+    module_load_include('inc', 'country_data', 'country_data.api');
     $uri = url(drupal_get_path_alias('node/' . $node->nid), array('absolute' => TRUE));
-
     $view_ramsar = country_get_view_country_related_content($node->nid, 'ramsar_sites');
     $view_whc = country_get_view_country_related_content($node->nid, 'whc_sites');
     $links = array(
@@ -458,7 +458,7 @@ function country_country_contextual_menu_alter(&$contextual_menu, $node) {
         array('!count' => $view_ramsar->total_rows + $view_whc->total_rows)
       ),
       'parties' => t('Membership <span class="badge">!count</span>',
-          array('!count' => count(country_get_parties($node->nid)))
+          array('!count' => count(country_data_country_get_parties($node->nid)))
       ),
       'action-plans' => t('Action plans <span class="badge">!count</span>',
         array('!count' => country_get_view_country_related_content_count($node->nid, 'embed_action_plans'))

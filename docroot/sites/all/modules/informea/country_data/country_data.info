@@ -211,3 +211,4 @@ variable[] = node_preview_member_party
 variable[] = node_submitted_contact_person
 variable[] = node_submitted_geographical_site
 variable[] = node_submitted_member_party
+files[] = country_data.api.inc
