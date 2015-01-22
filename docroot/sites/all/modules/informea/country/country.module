@@ -383,7 +383,7 @@ EOF
 
           if (count($nfps)) {
             $row['data'][] = array(
-              'data' => sprintf('<a data-toggle="collapse" href="#nfp-%1$s"><i class="glyphicon glyphicon-user" aria-expanded="false" aria-controls="nfp-%1$s"></i></a>', $treaty->nid),
+              'data' => sprintf('<a data-toggle="collapse" href="#nfp-%1$s" aria-expanded="false" aria-controls="nfp-%1$s"><i class="glyphicon glyphicon-user"></i></a>', $treaty->nid),
               'class' => 'text-center'
             );
           } else {
