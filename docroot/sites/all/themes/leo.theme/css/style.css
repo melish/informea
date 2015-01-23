@@ -414,6 +414,16 @@ a:focus .navicon-eur {
 }
 
 
+/* Maps */
+/* ---- */
+
+
+/* Wrapper and base class */
+#map-canvas {
+  height: 400px;
+}
+
+
 /* Pagination (multiple pages) */
 /* --------------------------- */
 
