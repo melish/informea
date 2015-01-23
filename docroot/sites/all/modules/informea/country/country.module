@@ -99,11 +99,11 @@ function country_node_view($node, $view_mode, $langcode) {
         $view_whc = country_get_view_country_related_content($node->nid, 'whc_sites');
 
         $content = '<div id="map-canvas" style="height: 400px;margin: 0;padding: 0"></div>';
-        $content .= '<h3>Legend</h3>';
+        $content .= '<h3>' . t('Legend') . '</h3>';
         $content .= '<p>';
-        $content .= '<span class="glyphicon glyphicon-map-marker text-primary"></span> <strong style="display:inline-block; width: 30px">r</strong> Ramsar sites';
+        $content .= '<span class="glyphicon glyphicon-map-marker text-primary"></span> <strong style="display:inline-block; width: 30px">' . t('r') . '</strong> ' . t('Ramsar sites');
         $content .= '<br>';
-        $content .= '<span class="glyphicon glyphicon-map-marker text-danger"></span> <strong style="display:inline-block; width: 30px">w</strong> WHC sites';
+        $content .= '<span class="glyphicon glyphicon-map-marker text-danger"></span> <strong style="display:inline-block; width: 30px">' . t('w') . '</strong> ' . t('WHC sites');
         $content .= '</p>';
 
         $tabs = array(
