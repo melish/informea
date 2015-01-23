@@ -99,5 +99,11 @@ function leo_theme_theme() {
       'variables' => array('id', 'elements', 'no-panel-body'),
       'path' => drupal_get_path('theme', 'leo_theme'),
     ),
+    'informea_bootstrap_tabs' => array(
+      'render element' => 'element',
+      'template' => 'templates/informea-bootstrap-tabs',
+      'variables' => array('id', 'elements', 'active'),
+      'path' => drupal_get_path('theme', 'leo_theme'),
+    ),
   );
 }
