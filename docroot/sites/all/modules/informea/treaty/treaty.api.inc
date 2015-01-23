@@ -119,7 +119,7 @@ function treaty_format_meeting_description($meeting) {
   $ret .= $start;
   $location = $w->field_location->value();
   if (!empty($location)) {
-    $ret .= ' ,' . $location;
+    $ret .= ', ' . $location;
   }
   if (!empty($meeting->decisions)) {
     $ret .= ' - ' . format_plural(count($meeting->decisions), 'one decision', '@count decisions');
