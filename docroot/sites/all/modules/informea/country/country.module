@@ -250,9 +250,7 @@ EOF
         $rows = array();
         module_load_include('inc', 'country_data', 'country_data.api');
         module_load_include('php', 'informea', 'recaptcha/recaptchalib');
-
         $parties = country_data_country_get_parties($node->nid);
-
         foreach ($parties as $party) {
           $wrapper = entity_metadata_wrapper('node', $party);
           $treaty = $wrapper->field_treaty->value()[0];
@@ -260,7 +258,6 @@ EOF
           $date1 = empty($date1) ? '&nbsp;' : format_date($date1, 'short');
           $date2 = $wrapper->field_party_date_1->value();
           $date2 = empty($date2) ? '&nbsp;' : format_date($date2, 'short');
-
           $row = array(
             'data' => array(
               $wrapper->field_treaty->label(),
@@ -268,9 +265,7 @@ EOF
               array('data' => $date2, 'class' => 'text-center')
             )
           );
-
-          $nfps = country_get_treaty_focal_points($node->nid, $treaty->nid);
-
+          $nfps = country_data_get_treaty_focal_points($node->nid, $treaty->nid);
           if (count($nfps)) {
             $row['data'][] = array(
               'data' => sprintf('<a data-toggle="collapse" href="#nfp-%1$s" aria-expanded="false" aria-controls="nfp-%1$s"><i class="glyphicon glyphicon-user"></i></a>', $treaty->nid),
@@ -279,52 +274,17 @@ EOF
           } else {
             $row['data'][] = '';
           }
-
           $rows[] = $row;
-
           if (count($nfps)) {
-            $nfp_data = '<ul class="list-group">';
-
-            foreach ($nfps as $nfp) {
-              $nfp_wrapper = entity_metadata_wrapper('node', $nfp);
-              $nfp_data .= '<li class="list-group-item">';
-              $nfp_data .= sprintf('<h4 class="list-group-item-heading"><span class="glyphicon glyphicon-user"></span> %s</h4>', $nfp_wrapper->title->value());
-              $nfp_data .= '<dl class="dl-horizontal">';
-              $nfp_data .= sprintf('<dt>%s</dt><dd>%s</dd>', t('Position'), $nfp_wrapper->field_person_position->value());
-              $nfp_data .= sprintf('<dt>%s</dt><dd>%s</dd>', t('Department'), $nfp_wrapper->field_person_department->value());
-              $nfp_data .= sprintf('<dt>%s</dt><dd>%s</dd>', t('Institution'), $nfp_wrapper->field_person_institution->value());
-              $nfp_data .= sprintf('<dt>%s</dt><dd>%s</dd>', t('Address'), $nfp_wrapper->field_address->value());
-              $nfp_data .= sprintf('<dt>%s</dt><dd>%s</dd>', t('Fax'), $nfp_wrapper->field_contact_fax->value());
-
-              $email_url = recaptcha_mailhide_url(variable_get('recaptcha_public'), variable_get('recaptcha_private'), $nfp_wrapper->field_person_email->value());
-              $email_part = implode('&hellip;@', _recaptcha_mailhide_email_parts($nfp_wrapper->field_person_email->value()));
-
-              $email = l($email_part, $email_url, array(
-                'attributes' => array(
-                  'onclick' => sprintf('window.open(\'%s\', \'\', \'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300\'); return false;', $email_url)
-                ),
-                'external' => TRUE,
-                'html' => TRUE
-              ));
-
-              $nfp_data .= sprintf('<dt>%s</dt><dd>%s</dd>', t('Email'), $email);
-
-              $nfp_data .= '</dl>';
-              $nfp_data .= '</li>';
-            }
-
-            $nfp_data .= '</ul>';
-
+            $nfp_data = country_data_render_focal_points($nfps);
             $row = array(
               'class' => array('collapse'),
-              'data' => array(array('data' => $nfp_data, 'colspan' => 4)),
+              'data' => array(array('data' => drupal_render($nfp_data), 'colspan' => 4)),
               'id' => array('nfp-' . $treaty->nid)
             );
-
             $rows[] = $row;
           }
         }
-
         $table = array(
           'attributes' => array('id' => 'table-parties', 'class' => 'table-no-striping table-hover'),
           'header' => array(
@@ -335,11 +295,9 @@ EOF
           ),
           'rows' => $rows
         );
-
         $node->content['context'] = array(
           '#type' => 'item', '#weight' => 10, '#markup' => theme('table', $table)
         );
-
         break;
     }
   }
