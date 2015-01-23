@@ -124,6 +124,5 @@ function treaty_format_meeting_description($meeting) {
   if (!empty($meeting->decisions)) {
     $ret .= ' - ' . format_plural(count($meeting->decisions), 'one decision', '@count decisions');
   }
-  dpm($ret);
   return $ret;
 }
