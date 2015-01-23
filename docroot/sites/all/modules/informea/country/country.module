@@ -256,7 +256,7 @@ EOF
           $treaty = $wrapper->field_treaty->value()[0];
           $date1 = $wrapper->field_party_date_1->value();
           $date1 = empty($date1) ? '&nbsp;' : format_date($date1, 'short');
-          $date2 = $wrapper->field_party_date_1->value();
+          $date2 = $wrapper->field_party_date_2->value();
           $date2 = empty($date2) ? '&nbsp;' : format_date($date2, 'short');
           $row = array(
             'data' => array(

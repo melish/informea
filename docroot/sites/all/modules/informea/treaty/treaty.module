@@ -122,15 +122,66 @@ function treaty_node_view($node, $view_mode, $langcode) {
         break;
 
       case 'parties':
+        module_load_include('inc', 'country_data', 'country_data.api');
+        module_load_include('php', 'informea', 'recaptcha/recaptchalib');
+        $rows = array();
+        $members = country_data_treaty_get_membership($node->nid);
+        foreach ($members as $member) {
+          $wrapper = entity_metadata_wrapper('node', $member);
+          $country = $wrapper->field_country->value()[0];
+          $date1 = $wrapper->field_party_date_1->value();
+          $date1 = empty($date1) ? '&nbsp;' : format_date($date1, 'short');
+          $date2 = $wrapper->field_party_date_2->value();
+          $date2 = empty($date2) ? '&nbsp;' : format_date($date2, 'short');
+          $row = array(
+            'data' => array(
+              $wrapper->field_country->label(),
+              array('data' => $date1, 'class' => 'text-center'),
+              array('data' => $date2, 'class' => 'text-center')
+            )
+          );
+          $nfps = country_data_get_treaty_focal_points($country->nid, $node->nid);
+          if (count($nfps)) {
+            $row['data'][] = array(
+              'data' => sprintf('<a data-toggle="collapse" href="#nfp-%1$s" aria-expanded="false" aria-controls="nfp-%1$s"><i class="glyphicon glyphicon-user"></i></a>', $country->nid),
+              'class' => 'text-center'
+            );
+          } else {
+            $row['data'][] = '';
+          }
+          $rows[] = $row;
+          if (count($nfps)) {
+            $nfp_data = country_data_render_focal_points($nfps);
+            $row = array(
+              'class' => array('collapse'),
+              'data' => array(array('data' => drupal_render($nfp_data), 'colspan' => 4)),
+              'id' => array('nfp-' . $country->nid)
+            );
+            $rows[] = $row;
+          }
+        }
+        $table = array(
+          'attributes' => array('id' => 'table-parties', 'class' => 'table-no-striping table-hover'),
+          'header' => array(
+            t('Treaty'),
+            array('data' => t('Signature'), 'class' => array('text-center')),
+            array('data' => t('Ratification'), 'class' => array('text-center')),
+            array('data' => t('Focal points'), 'class' => array('text-center'))
+          ),
+          'rows' => $rows
+        );
+        $node->content['context'] = array(
+          '#type' => 'item', '#weight' => 10, '#markup' => theme('table', $table)
+        );
         break;
 
-      case 'reports':
+      case 'national-reports':
         module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
         $rows = country_deliverable_national_reports_group_by_country($node->nid);
         $node->content['context'] = country_deliverable_render_reports($rows, 'national_reports');
         break;
 
-      case 'plans':
+      case 'action-plans':
         module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
         $rows = country_deliverable_action_plans_group_by_country($node->nid);
         $node->content['context'] = country_deliverable_render_reports($rows, 'action_plans');
@@ -186,10 +237,10 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
       'parties' => t('Parties <span class="badge">!count</span>',
         array('!count' => count(country_data_treaty_get_membership($node->nid)))
       ),
-      'reports' => t('National reports <span class="badge">!count</span>',
+      'national-reports' => t('National reports <span class="badge">!count</span>',
         array('!count' => country_deliverable_count_treaty_national_reports($node->nid))
       ),
-      'plans' => t('National plans <span class="badge">!count</span>',
+      'action-plans' => t('National plans <span class="badge">!count</span>',
         array('!count' => country_deliverable_count_treaty_action_plans($node->nid))
       ),
     );
