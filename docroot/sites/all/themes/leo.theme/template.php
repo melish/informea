@@ -89,3 +89,15 @@ function leo_theme_facetapi_count($variables) {
 function leo_theme_facetapi_deactivate_widget($variables) {
   return '&times;';
 }
+
+
+function leo_theme_theme() {
+  return array(
+    'informea_bootstrap_collapse' => array(
+      'render element' => 'element',
+      'template' => 'templates/informea-bootstrap-collapse',
+      'variables' => array('id', 'elements', 'no-panel-body'),
+      'path' => drupal_get_path('theme', 'leo_theme'),
+    ),
+  );
+}
