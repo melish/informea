@@ -128,7 +128,7 @@ function country_node_view($node, $view_mode, $langcode) {
 
         foreach ($rows as $id => $row) {
           $table = '<table class="table table-hover">';
-          $table .= sprintf('<thead><tr><th>%s</th><th class="text-center">%s</th><th class="text-center">%s</th></tr></thead>', t('Title'), t('Submission date'), t('Files'));
+          $table .= sprintf('<thead><tr><th>%s</th><th class="text-center text-nowrap">%s</th><th class="text-center">%s</th></tr></thead>', t('Title'), t('Submission date'), t('Files'));
           $table .= '<tbody>';
 
           foreach ($row->national_reports as $report) {
@@ -176,7 +176,7 @@ EOD;
 
         foreach ($rows as $id => $row) {
           $table = '<table class="table table-hover">';
-          $table .= sprintf('<thead><tr><th>%s</th><th class="text-center">%s</th><th class="text-center">%s</th></tr></thead>', t('Title'), t('Submission date'), t('Files'));
+          $table .= sprintf('<thead><tr><th>%s</th><th class="text-center text-nowrap">%s</th><th class="text-center">%s</th></tr></thead>', t('Title'), t('Submission date'), t('Files'));
           $table .= '<tbody>';
 
           foreach ($row->action_plans as $report) {
