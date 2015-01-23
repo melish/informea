@@ -12,10 +12,10 @@ function country_deliverable_get_country_national_reports($id_country) {
   return array();
 }
 
-function country_deliverable_get_country_national_plans($id_country) {
+function country_deliverable_get_country_action_plans($id_country) {
   $query  = new EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')
-                  ->entityCondition('bundle', 'national_plan')
+                  ->entityCondition('bundle', 'action_plan')
                   ->fieldCondition('field_country', 'target_id', $id_country)
                   ->execute();
   if (isset($result['node'])) {
@@ -78,7 +78,7 @@ function country_deliverable_national_reports_group_by_treaty($id_country) {
 }
 
 function country_deliverable_action_plans_group_by_treaty($id_country) {
-  $rows = country_deliverable_get_country_national_plans($id_country);
+  $rows = country_deliverable_get_country_action_plans($id_country);
   if (!empty($rows)) {
     $parties = array();
     foreach ($rows as $row) {
@@ -180,4 +180,27 @@ function country_deliverable_action_plans_group_by_country($id_treaty) {
     return $parties;
   }
   return array();
+}
+
+
+function country_deliverable_render_reports($rows, $field) {
+  $elements = array();
+  foreach ($rows as $id => $row) {
+    $rw = entity_metadata_wrapper('node', $row);
+    $table_rows = array();
+    foreach($row->$field as $report) {
+      $nrw = entity_metadata_wrapper('node', $report);
+      $date = $nrw->field_report_submission_date->value();
+      $date = !empty($date) ? format_date($date, 'short') : '';
+      $files_field = field_view_field('node', $report, 'field_files', 'full');
+      $table_rows[] = array($report->title, $date, render($files_field));
+    }
+    $elements[$id] = array(
+      'header' => $rw->label(),
+      'body' => theme('table', array('rows' => $table_rows, 'header' => array(t('Title'), t('Submission date'), t('Files')))),
+    );
+  }
+  return array(
+    '#type' => 'item', '#weight' => 10, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'decisions', 'elements' => $elements)),
+  );
 }
