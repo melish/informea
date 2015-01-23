@@ -338,6 +338,8 @@ EOF
       case 'parties':
         $rows = array();
         module_load_include('inc', 'country_data', 'country_data.api');
+        module_load_include('php', 'informea', 'recaptcha/recaptchalib');
+
         $parties = country_data_country_get_parties($node->nid);
 
         foreach ($parties as $party) {
@@ -382,6 +384,20 @@ EOF
               $nfp_data .= sprintf('<dt>%s</dt><dd>%s</dd>', t('Institution'), $nfp_wrapper->field_person_institution->value());
               $nfp_data .= sprintf('<dt>%s</dt><dd>%s</dd>', t('Address'), $nfp_wrapper->field_address->value());
               $nfp_data .= sprintf('<dt>%s</dt><dd>%s</dd>', t('Fax'), $nfp_wrapper->field_contact_fax->value());
+
+              $email_url = recaptcha_mailhide_url(variable_get('recaptcha_public'), variable_get('recaptcha_private'), $nfp_wrapper->field_person_email->value());
+              $email_part = implode('&hellip;@', _recaptcha_mailhide_email_parts($nfp_wrapper->field_person_email->value()));
+
+              $email = l($email_part, $email_url, array(
+                'attributes' => array(
+                  'onclick' => sprintf('window.open(\'%s\', \'\', \'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300\'); return false;', $email_url)
+                ),
+                'external' => TRUE,
+                'html' => TRUE
+              ));
+
+              $nfp_data .= sprintf('<dt>%s</dt><dd>%s</dd>', t('Email'), $email);
+
               $nfp_data .= '</dl>';
               $nfp_data .= '</li>';
             }
