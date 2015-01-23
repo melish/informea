@@ -111,3 +111,19 @@ function treaty_format_article_title($article) {
   }
   return sprintf('%s %s', $number, $w->label());
 }
+
+function treaty_format_meeting_description($meeting) {
+  $ret = '';
+  $w = entity_metadata_wrapper('node', $meeting);
+  $start = format_date(strtotime($w->event_calendar_date->value()['value']), 'short');
+  $ret .= $start;
+  $location = $w->field_location->value();
+  if (!empty($location)) {
+    $ret .= ' ,' . $location;
+  }
+  if (!empty($meeting->decisions)) {
+    $ret .= ' - ' . format_plural(count($meeting->decisions), 'one decision', '@count decisions');
+  }
+  dpm($ret);
+  return $ret;
+}
