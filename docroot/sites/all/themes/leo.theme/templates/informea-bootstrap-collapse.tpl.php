@@ -1,5 +1,4 @@
 <?php
-dpm('zzz');
 $id = isset($variables['id']) ? $variables['id'] : 'accordion';
 $elements = $variables['elements'];
 ?>
