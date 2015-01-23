@@ -113,11 +113,10 @@ function treaty_node_view($node, $view_mode, $langcode) {
           $rw = entity_metadata_wrapper('node', $row);
           $body = theme('treaty_decisions', array('decisions' => $row->decisions));
           $elements[$id] = array(
-            'header' => $rw->label() . '<div><small class="muted"> 8 Oct, 2012,  in Hyderabad, India - 33 decisions</small></div>',
+            'header' => sprintf('%s <div><small class="muted">%s</small></div>', $rw->label(), treaty_format_meeting_description($row)),
             'body' => $body,
           );
         }
-        // dpm($elements);
         $node->content['context'] = array(
           '#type' => 'item', '#weight' => 10, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'decisions', 'elements' => $elements)),
         );
