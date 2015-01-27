@@ -8,7 +8,14 @@ $elements = $variables['elements'];
 	foreach($elements as $eid => $element):
 		$collapsed = empty($element['in']) ? ' class="collapsed"' : '';
 		$in = empty($collapsed) ? ' in' : '';
-		$add_panel_body = empty($element['no-panel-body']) || empty($variables['no-panel-body']);
+
+		// Global property
+		$add_panel_body = empty($variables['no-panel-body']);
+
+		// Override with local property
+		if (!empty($element['no-panel-body'])) {
+			$add_panel_body = FALSE;
+		}
 ?>
 	<div class="panel panel-default">
 		<div id="heading-<?php print $eid; ?>" class="panel-heading collapsed" data-toggle="collapse" data-parent="#<?php print $id; ?>" data-target="#collapse-<?php print $eid; ?>" aria-expanded="false" aria-controls="collapse-<?php print $eid; ?>" role="tab">

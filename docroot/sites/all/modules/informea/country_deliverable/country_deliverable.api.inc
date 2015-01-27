@@ -204,6 +204,6 @@ function country_deliverable_render_reports($rows, $field) {
     );
   }
   return array(
-    '#type' => 'item', '#weight' => 10, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'decisions', 'elements' => $elements)),
+    '#type' => 'item', '#weight' => 10, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'decisions', 'elements' => $elements, 'no-panel-body' => TRUE)),
   );
 }
