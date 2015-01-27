@@ -24,36 +24,36 @@
   }
 ?>
 <h4 class="list-group-item-heading">
-	<span class="glyphicon glyphicon-user"></span> <?php print $wrapper->label(); ?>
+  <span class="glyphicon glyphicon-user"></span> <?php print $wrapper->label(); ?>
 </h4>
 <dl class="dl-horizontal">
 <?php if ($position): ?>
-	<dt><?php print t('Position'); ?></dt>
-	<dd><?php print $position; ?></dd>
+  <dt><?php print t('Position'); ?></dt>
+  <dd><?php print $position; ?></dd>
 <?php endif; ?>
 
 <?php if ($department): ?>
-	<dt><?php print t('Department'); ?></dt>
-	<dd><?php print $department; ?></dd>
+  <dt><?php print t('Department'); ?></dt>
+  <dd><?php print $department; ?></dd>
 <?php endif; ?>
 
 <?php if ($institution): ?>
-	<dt><?php print t('Institution'); ?></dt>
-	<dd><?php print $institution; ?></dd>
+  <dt><?php print t('Institution'); ?></dt>
+  <dd><?php print $institution; ?></dd>
 <?php endif; ?>
 
 <?php if ($address): ?>
-	<dt><?php print t('Address'); ?></dt>
-	<dd><?php print $address; ?></dd>
+  <dt><?php print t('Address'); ?></dt>
+  <dd><?php print $address; ?></dd>
 <?php endif; ?>
 
 <?php if ($fax): ?>
-		<dt><?php print t('Fax'); ?></dt>
-	<dd><?php print $fax; ?></dd>
+  <dt><?php print t('Fax'); ?></dt>
+  <dd><?php print $fax; ?></dd>
 <?php endif; ?>
 
 <?php if ($mail_link): ?>
-	<dt><?php print t('E-Mail'); ?></dt>
-	<dd><?php print $mail_link; ?></dd>
+  <dt><?php print t('E-Mail'); ?></dt>
+  <dd><?php print $mail_link; ?></dd>
 <?php endif; ?>
 </dl>

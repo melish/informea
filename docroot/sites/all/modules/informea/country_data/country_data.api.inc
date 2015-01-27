@@ -52,7 +52,7 @@ function country_data_render_focal_points($rows) {
     );
   }
   return array(
-    '#theme' => 'item_list',  '#attributes' => array('class' => array('nav', 'nav-pills', 'nav-stacked')),
+    '#theme' => 'item_list',  '#attributes' => array('class' => array('list-group')),
     '#items' => $nfp_rows,
   );
 }
