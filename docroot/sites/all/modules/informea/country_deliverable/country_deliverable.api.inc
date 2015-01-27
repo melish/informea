@@ -197,7 +197,10 @@ function country_deliverable_render_reports($rows, $field) {
     }
     $elements[$id] = array(
       'header' => $rw->label(),
-      'body' => theme('table', array('rows' => $table_rows, 'header' => array(t('Title'), t('Submission date'), t('Files')))),
+      'body' => theme('table', array(
+        'rows' => $table_rows,
+        'header' => array(t('Title'), array('data' => t('Submission date'), 'class' => array('text-nowrap')), t('Files'))
+      )),
     );
   }
   return array(
