@@ -413,6 +413,10 @@ a:focus .navicon-eur {
   content: "\e081";
 }
 
+.panel-group .panel-body {
+  padding: 16px 8px;
+}
+
 .panel-group .panel-collapse > .table {
   border-top: 1px solid #ddd;
 }
