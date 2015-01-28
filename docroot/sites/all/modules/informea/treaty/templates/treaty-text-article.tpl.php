@@ -47,6 +47,19 @@
             <?php print drupal_render(field_view_field('node', $article, 'body', 'teaser')); ?>
           </div><!-- .article .tagged-content .content -->
         <?php endif; ?>
+        <?php if (user_access('administer nodes')): ?>
+          <div class="text-right">
+            <?php
+            print l('<i class="glyphicon glyphicon-plus"></i> ' . t('Add paragraph'), 'node/add/treaty-paragraph', array(
+              'html' => TRUE,
+              'query' => array('edit' => array(
+                'field_parent_treaty_article' => array('und' => $article->nid),
+                'field_treaty' => array('und' => $aw->field_treaty->value()[0]->nid)
+              ))
+            ));
+            ?>
+          </div><!-- .text-right -->
+        <?php endif; ?>
       </div><!-- .panel-body -->
     </div><!-- .panel-collapse .collapse -->
   </div><!-- .panel .panel-default -->
