@@ -8,16 +8,22 @@
   <?php
   $aw = entity_metadata_wrapper('node', $article);
   $tags = $aw->field_informea_tags->value();
+  $permalink = url('treaties/cbd', array(
+    'absolute' => TRUE,
+    'fragment' => 'article-' . $article->nid,
+    'query' => array('article' => $article->nid)
+  ));
+  $expanded = isset($_GET['article']) ? $_GET['article'] == $article->nid : FALSE;
   ?>
   <div class="panel panel-default">
-    <div class="panel-heading smallipop collapsed" role="tab" id="heading-<?php echo $article->nid; ?>" data-toggle="collapse" data-parent="#treaty-text" data-target="#article-<?php echo $article->nid; ?>" aria-expanded="false" aria-controls="article-<?php echo $article->nid; ?>">
+    <div class="panel-heading smallipop<?php print $expanded ? '' : ' collapsed' ;?>" role="tab" id="heading-<?php echo $article->nid; ?>" data-toggle="collapse" data-parent="#treaty-text" data-target="#article-<?php echo $article->nid; ?>" aria-expanded="<?php print $expanded ? 'true' : 'false' ;?>" aria-controls="article-<?php echo $article->nid; ?>">
       <h4 class="panel-title">
+        <a target="_blank" class="permalink pull-right" href="<?php echo $permalink; ?>"><i class="glyphicon glyphicon-link"></i></a>
         <?php echo $article->official_title; ?>
-        <a target="_blank" class="permalink pull-right" href="#article-<?php echo $article->nid; ?>"><i class="glyphicon glyphicon-link"></i></a>
       </h4><!-- .panel-title -->
       <?php print theme('treaty_text_tags', array('tags' => $tags)); ?>
     </div><!-- .panel-heading .smallipop -->
-    <div id="article-<?php echo $article->nid; ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-<?php echo $article->nid; ?>">
+    <div id="article-<?php echo $article->nid; ?>" class="panel-collapse collapse<?php print $expanded ? ' in' : '' ;?>" role="tabpanel" aria-labelledby="heading-<?php echo $article->nid; ?>">
       <div class="panel-body">
         <?php if (!empty($article->paragraphs)): ?>
           <?php foreach ($article->paragraphs as $paragraph): ?>

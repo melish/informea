@@ -21,7 +21,22 @@ jQuery(document).ready(function ($) {
     }
   });
 
-  if($('.smallipop').length > 0) {
+  if ($('.smallipop').length > 0) {
     $('.smallipop').smallipop({preferredPosition: 'left'});
+  }
+
+  var target;
+
+  if (target = window.location.hash) {
+    var $el = $(target);
+
+    if ($el.length) {
+      $.scrollTo(target, {
+        offset: -49,
+        onAfter: function () {
+          $el.effect('highlight', 'slow');
+        }
+      });
+    }
   }
 });

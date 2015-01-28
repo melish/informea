@@ -1,14 +1,10 @@
 /* Treaty paragraph indentation */
-/*.indent-1 { padding-left: 20px; }*/
-.indent-2 { padding-left: 40px; }
-.indent-3 { padding-left: 60px; }
-.indent-4 { padding-left: 70px; }
+.indent-2 { margin-left: 40px; }
+.indent-3 { margin-left: 80px; }
+.indent-4 { margin-left: 120px; }
 
 #treaty-text a.permalink, #treaty-text .smallipop-hint { display: none; }
 #treaty-text .panel-heading:hover a.permalink { display: inline-block; }
 #treaty-text .paragraph:hover a.permalink { display: block; float: right; }
 
-/*#treaty-text .panel { border: 0; }
-#treaty-text .panel-title:before { content: ""; }*/
-
-#treaty-text div.paragraph { margin-bottom: 10px; text-align: justify; }
+#treaty-text .paragraph { margin-bottom: 10px; text-align: justify; }
