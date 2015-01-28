@@ -32,7 +32,7 @@ jQuery(document).ready(function ($) {
 
     if ($el.length) {
       $.scrollTo(target, {
-        offset: -49
+        offset: -50
       });
     }
   }
