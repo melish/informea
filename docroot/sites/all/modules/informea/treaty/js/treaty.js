@@ -32,10 +32,7 @@ jQuery(document).ready(function ($) {
 
     if ($el.length) {
       $.scrollTo(target, {
-        offset: -49,
-        onAfter: function () {
-          $el.effect('highlight', 'slow');
-        }
+        offset: -49
       });
     }
   }

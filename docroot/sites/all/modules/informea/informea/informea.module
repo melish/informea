@@ -94,12 +94,20 @@ function informea_library() {
       'version' => '0.6.2',
       'js' => array(
         $smallipop_path . '/lib/jquery.smallipop.min.js' => array(),
-        $smallipop_path . '/lib/contrib/modernizr.js' => array(),
+        $smallipop_path . '/lib/contrib/modernizr.js' => array()
       ),
       'css' => array(
-        $smallipop_path . '/css/jquery.smallipop.min.css' => array(),
-      ),
-    )
+        $smallipop_path . '/css/jquery.smallipop.min.css' => array()
+      )
+    ),
+    'scrollto' => array(
+      'title' => 'jquery.scrollTo',
+      'website' => 'https://github.com/flesler/jquery.scrollTo',
+      'version' => '1.4.14',
+      'js' => array(
+        libraries_get_path('scrollto') . '/jquery.scrollTo.min.js' => array()
+      )
+    ),
   );
 }
 
