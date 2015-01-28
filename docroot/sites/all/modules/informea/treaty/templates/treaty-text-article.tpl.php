@@ -8,18 +8,30 @@
   <?php
   $aw = entity_metadata_wrapper('node', $article);
   $tags = $aw->field_informea_tags->value();
-  $permalink = url('treaties/cbd', array(
-    'absolute' => TRUE,
-    'fragment' => 'article-' . $article->nid,
-    'query' => array('article' => $article->nid)
-  ));
   $expanded = isset($_GET['article']) ? $_GET['article'] == $article->nid : FALSE;
   $highlight = $expanded && !isset($_GET['paragraph']) ? ' highlight' : '';
   ?>
   <div class="panel panel-default">
     <div class="panel-heading smallipop<?php print $expanded ? '' : ' collapsed' ;?>" role="tab" id="heading-<?php echo $article->nid; ?>" data-toggle="collapse" data-parent="#treaty-text" data-target="#article-<?php echo $article->nid; ?>" aria-expanded="<?php print $expanded ? 'true' : 'false' ;?>" aria-controls="article-<?php echo $article->nid; ?>">
       <h4 class="panel-title">
-        <a target="_blank" class="permalink pull-right" href="<?php echo $permalink; ?>"><i class="glyphicon glyphicon-link"></i></a>
+        <span class="pull-right">
+          <?php if (user_access('administer nodes')): ?>
+            <?php
+            print l('<i class="glyphicon glyphicon-pencil"></i>', 'node/' . $article->nid . '/edit', array(
+              'attributes' => array('class' => array('permalink')),
+              'html' => TRUE
+            ));
+            ?>
+          <?php endif; ?>
+          <?php
+          print l('<i class="glyphicon glyphicon-link"></i>', 'treaties/cbd', array(
+            'attributes' => array('class' => array('permalink'), 'target' => '_blank'),
+            'fragment' => 'article-' . $article->nid,
+            'html' => TRUE,
+            'query' => array('article' => $article->nid)
+          ));
+          ?>
+        </span>
         <?php echo $article->official_title; ?>
       </h4><!-- .panel-title -->
       <?php print theme('treaty_text_tags', array('tags' => $tags)); ?>
