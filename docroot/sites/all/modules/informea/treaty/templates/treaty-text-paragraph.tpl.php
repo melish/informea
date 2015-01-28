@@ -11,10 +11,14 @@ $indent = $pw->field_paragraph_indentation->value();
 $permalink = url('treaties/cbd', array(
   'absolute' => TRUE,
   'fragment' => 'paragraph-' . $paragraph->nid,
-  'query' => array('article' => $article->nid)
+  'query' => array(
+    'article' => $article->nid,
+    'paragraph' => $paragraph->nid
+  )
 ));
+$highlight = isset($_GET['paragraph']) ? $_GET['paragraph'] == $paragraph->nid : FALSE;
 ?>
-<div class="paragraph indent-<?php print $indent; ?>" id="paragraph-<?php print $paragraph->nid; ?>">
+<div class="paragraph indent-<?php print $indent; ?><?php print $highlight ? ' highlight' : '' ;?>" id="paragraph-<?php print $paragraph->nid; ?>">
   <p class="smallipop">
     <?php
     $body = field_view_field('node', $paragraph, 'body', 'teaser');

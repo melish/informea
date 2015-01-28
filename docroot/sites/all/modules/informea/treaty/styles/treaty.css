@@ -8,3 +8,7 @@
 #treaty-text .paragraph:hover a.permalink { display: block; float: right; }
 
 #treaty-text .paragraph { margin-bottom: 10px; text-align: justify; }
+
+.highlight {
+  background-color: #ffff99;
+}
