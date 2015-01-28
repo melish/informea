@@ -11,6 +11,7 @@ drush init
 drush build
 
 drush en -y wp_migration
+drush en -y prepopulate
 drush migrate-auto-register
 
 drush php-script ../scripts/drupal_post_install.php
