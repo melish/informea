@@ -317,7 +317,7 @@ $options['init-modules'] = array(
   'ws_consumer',
 
   'devel',
-  'diff'
+  'diff',
 );
 
 
