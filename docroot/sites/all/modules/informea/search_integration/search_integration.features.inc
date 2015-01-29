@@ -300,7 +300,7 @@ function search_integration_default_search_api_server() {
       "scheme" : "http",
       "host" : "localhost",
       "port" : "8983",
-      "path" : "\\/solr\\/core-leo",
+      "path" : "\\/solr\\/leo",
       "http_user" : "admin",
       "http_pass" : "admin",
       "excerpt" : 0,
