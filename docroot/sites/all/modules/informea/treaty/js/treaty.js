@@ -22,7 +22,11 @@ jQuery(document).ready(function ($) {
   });
 
   if ($('.smallipop').length > 0) {
-    $('.smallipop').smallipop({preferredPosition: 'left'});
+    $('.smallipop').smallipop({
+      invertAnimation: true,
+      preferredPosition: 'right',
+      theme: 'white'
+    });
   }
 
   var target;
