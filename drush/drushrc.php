@@ -313,6 +313,8 @@ $options['init-modules'] = array(
   'search_integration',
   'treaty',
   'wp_migration',
+  'ecolex_migration',
+  'ws_consumer',
 
   'devel',
   'diff'
