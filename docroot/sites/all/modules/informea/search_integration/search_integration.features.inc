@@ -35,7 +35,7 @@ function search_integration_default_search_api_index() {
     "server" : "local_solr_server",
     "item_type" : "node",
     "options" : {
-      "index_directly" : 1,
+      "index_directly" : 0,
       "cron_limit" : "50",
       "data_alter_callbacks" : {
         "search_api_alter_bundle_filter" : {
