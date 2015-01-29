@@ -171,3 +171,10 @@ function informea_i18n_string_helper_strings() {
   module_load_include('inc', 'informea', 'informea.translation');
   return _informea_localizable_strings();
 }
+
+function informea_fix_title_field() {
+  drupal_set_message('Changing the size of title_field value');
+  $column_size = 2048;
+  db_change_field('field_data_title_field', 'title_field_value', 'title_field_value', array('type' => 'varchar','length' => $column_size));
+  db_change_field('field_revision_title_field', 'title_field_value', 'title_field_value', array('type' => 'varchar','length' => $column_size));
+}

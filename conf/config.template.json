@@ -44,6 +44,11 @@
         "configurable_timezones": "0",
         "user_default_timezone": "0",
         "recaptcha_public": "",
-        "recaptcha_private": ""
+        "recaptcha_private": "",
+        "jquery_update_compression_type": "min",
+        "jquery_update_jquery_admin_version": "",
+        "jquery_update_jquery_cdn": "none",
+        "jquery_update_jquery_version": "1.8"
+
     }
 }

@@ -31,6 +31,6 @@ if [ "$1" == "--migrate" ]; then
 
 fi
 
-drush country_import
+drush informea-country-import
 
 drush cc all
