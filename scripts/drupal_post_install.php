@@ -6,7 +6,6 @@
 
 require_once 'library.inc';
 
-project_configure_solr();
 project_change_field_size();
 project_fix_administrator_role();
 
