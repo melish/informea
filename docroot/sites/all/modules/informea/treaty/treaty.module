@@ -228,15 +228,18 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
     $uri = url(drupal_get_path_alias('node/' . $node->nid), array('absolute' => TRUE));
     $links = array(
       'summary' => t('Summary'),
+      'rod' => t('Reporting obligations <span class="badge">!count</span>',
+        array('!count' => treaty_count_reporting_obligations($node->nid))
+      ),
       'protocols' => t('Protocols <span class="badge">!count</span>',
-        array('!count' => count(treaty_get_child_protocols($node->nid)))
+        array('!count' => treaty_count_child_protocols($node->nid))
       ),
       'text' => t('Treaty text'),
       'decisions' => t('Decisions <span class="badge">!count</span>',
         array('!count' => decision_count_treaty_decisions($node->nid))
       ),
       'parties' => t('Parties <span class="badge">!count</span>',
-        array('!count' => count(country_data_treaty_get_membership($node->nid)))
+        array('!count' => country_data_treaty_count_membership($node->nid))
       ),
       'national-reports' => t('National reports <span class="badge">!count</span>',
         array('!count' => country_deliverable_count_treaty_national_reports($node->nid))

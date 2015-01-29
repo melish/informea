@@ -28,6 +28,18 @@ function country_data_treaty_get_membership($id_treaty) {
   return array();
 }
 
+function country_data_treaty_count_membership($id_treaty) {
+  return EdwCacheDomain::cache_get_array('country_data', __FUNCTION__, function($id_treaty) {
+    $query = new EntityFieldQuery();
+    return $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'member_party')
+      ->fieldCondition('field_treaty', 'target_id', $id_treaty)
+      ->propertyOrderBy('title')
+      ->count()
+      ->execute();
+  }, $id_treaty);
+}
+
 function country_data_get_treaty_focal_points($id_country, $id_treaty) {
   $query = new EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')

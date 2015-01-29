@@ -20,6 +20,7 @@ dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = text
 dependencies[] = treaty
+dependencies[] = edw_extras
 ctools[] = strongarm:strongarm:1
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2

@@ -107,21 +107,25 @@ function country_deliverable_action_plans_group_by_treaty($id_country) {
 }
 
 function country_deliverable_count_treaty_national_reports($id_treaty) {
-  $query  = new EntityFieldQuery();
-  $result = $query->entityCondition('entity_type', 'node')
-                  ->entityCondition('bundle', 'national_report')
-                  ->fieldCondition('field_treaty', 'target_id', $id_treaty)
-                  ->execute();
-  return isset($result['node']) ? count($result['node']) : 0;
+  return EdwCacheDomain::cache_get_array('country_deliverable', __FUNCTION__, function($id_treaty) {
+    $query  = new EntityFieldQuery();
+    return $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'national_report')
+      ->fieldCondition('field_treaty', 'target_id', $id_treaty)
+      ->count()
+      ->execute();
+  }, $id_treaty);
 }
 
 function country_deliverable_count_treaty_action_plans($id_treaty) {
-  $query  = new EntityFieldQuery();
-  $result = $query->entityCondition('entity_type', 'node')
-                  ->entityCondition('bundle', 'action_plan')
-                  ->fieldCondition('field_treaty', 'target_id', $id_treaty)
-                  ->execute();
-  return isset($result['node']) ? count($result['node']) : 0;
+  return EdwCacheDomain::cache_get_array('country_deliverable', __FUNCTION__, function($id_treaty) {
+    $query  = new EntityFieldQuery();
+    return $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'action_plan')
+      ->fieldCondition('field_treaty', 'target_id', $id_treaty)
+      ->count()
+      ->execute();
+  }, $id_treaty);
 }
 
 function country_deliverable_national_reports_group_by_country($id_treaty) {

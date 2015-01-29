@@ -45,6 +45,25 @@ function treaty_get_child_protocols($id_treaty) {
   return array();
 }
 
+function treaty_count_child_protocols($id_treaty) {
+  return EdwCacheDomain::cache_get_array('treaty', __FUNCTION__, function($id_treaty) {
+    $query = new EntityFieldQuery();
+    return $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'treaty')
+      ->fieldCondition('field_parent_treaty', 'target_id', $id_treaty)
+      ->count()
+      ->execute();
+  }, $id_treaty);
+}
+
+function treaty_get_reporting_obligations($id_treaty) {
+  return array();
+}
+
+function treaty_count_reporting_obligations($id_treaty) {
+  return 0;
+}
+
 function treaty_get_treaties() {
   $query = new EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')
