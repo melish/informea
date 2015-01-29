@@ -422,6 +422,30 @@ a:focus .navicon-eur {
 }
 
 
+/* Smallipop */
+/* --------- */
+
+
+/* White theme */
+
+.smallipop-theme-white {
+  background-color: #fff;
+  color: #333;
+  max-width: 400px;
+  text-shadow: none;
+  width: auto;
+}
+
+.smallipop-theme-white a {
+  color: #337ab7;
+}
+
+.smallipop-theme-white a:hover,
+.smallipop-theme-white a:focus {
+  color: #23527c;
+}
+
+
 /* Maps */
 /* ---- */
 

@@ -23,9 +23,9 @@ jQuery(document).ready(function ($) {
 
   if ($('.smallipop').length > 0) {
     $('.smallipop').smallipop({
+      invertAnimation: true,
       preferredPosition: 'right',
-      theme: 'white',
-      invertAnimation: true
+      theme: 'white'
     });
   }
 
