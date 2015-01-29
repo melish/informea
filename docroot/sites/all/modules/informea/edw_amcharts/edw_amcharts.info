@@ -1,7 +1,7 @@
 name = amcharts
 description = Amcharts support plugin
 core = 7.x
-package = Other
+package = edw
 version = 7.x-1.0
 project = edw_amcharts
 
