@@ -219,62 +219,80 @@ function treaty_page_alter(&$page) {
 }
 
 function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
-  $ret = array();
   if ($node->type == 'treaty') {
     module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
     module_load_include('inc', 'country_data', 'country_data.api');
     module_load_include('inc', 'decision', 'decision.api');
     module_load_include('inc', 'treaty', 'treaty.api');
-    $uri = url(drupal_get_path_alias('node/' . $node->nid), array('absolute' => TRUE));
-    $links = array(
-      'summary' => t('Summary'),
-      'rod' => t('Reporting obligations <span class="badge">!count</span>',
-        array('!count' => treaty_count_reporting_obligations($node->nid))
-      ),
-      'protocols' => t('Protocols <span class="badge">!count</span>',
-        array('!count' => treaty_count_child_protocols($node->nid))
-      ),
-      'text' => t('Treaty text'),
-      'decisions' => t('Decisions <span class="badge">!count</span>',
-        array('!count' => decision_count_treaty_decisions($node->nid))
-      ),
-      'parties' => t('Parties <span class="badge">!count</span>',
-        array('!count' => country_data_treaty_count_membership($node->nid))
-      ),
-      'national-reports' => t('National reports <span class="badge">!count</span>',
-        array('!count' => country_deliverable_count_treaty_national_reports($node->nid))
-      ),
-      'action-plans' => t('National plans <span class="badge">!count</span>',
-        array('!count' => country_deliverable_count_treaty_action_plans($node->nid))
-      ),
+
+    $node_url = url(drupal_get_path_alias('node/' . $node->nid), array('absolute' => TRUE));
+
+    $contextual_menu = array(
+      '#theme' => 'item_list',
+      '#attributes' => array('class' => array('nav', 'nav-pills', 'nav-stacked'))
     );
 
-    foreach($links as $path => $title) {
-      $link = array(
-        '#type' => 'link',
-        '#title' => $title,
-        '#href' => $uri . '/' . $path,
-        '#attributes' => array( 'class' => array( 'list-group-item' ) ),
-        '#options' => array( 'html' => TRUE ),
-        '#active' => FALSE,
+    $menu_items = array(
+      'summary' => array(
+        'title' => t('Summary')
+      ),
+      'rod' => array(
+        'title' => t('Reporting obligations'),
+        'count' => treaty_count_reporting_obligations($node->nid)
+      ),
+      'protocols' => array(
+        'title' => t('Protocols'),
+        'count' => treaty_count_child_protocols($node->nid)
+      ),
+      'text' => array(
+        'title' => t('Treaty text')
+      ),
+      'decisions' => array(
+        'title' => t('Decisions'),
+        'count' => decision_count_treaty_decisions($node->nid)
+      ),
+      'parties' => array(
+        'title' => t('Parties'),
+        'count' => country_data_treaty_count_membership($node->nid)
+      ),
+      'national-reports' => array(
+        'title' => t('National reports'),
+        'count' => country_deliverable_count_treaty_national_reports($node->nid)
+      ),
+      'action-plans' => array(
+        'title' => t('National plans'),
+        'count' => country_deliverable_count_treaty_action_plans($node->nid)
+      )
+    );
+
+    foreach ($menu_items as $path => $menu_item) {
+      $text = isset($menu_item['count'])
+        ? sprintf('<span class="counter">%d</span>%s', $menu_item['count'], $menu_item['title'])
+        : $menu_item['title'];
+
+      $list_item = array(
+        'data' => l($text, $node_url . '/' . $path, array('html' => TRUE)),
+        'role' => 'presentation'
       );
+
       if (isset($node->context) && $node->context == $path) {
-        $link['#attributes']['class'][] = 'active';
+        $list_item['class'][] = 'active';
       }
-      $contextual_menu[] = $link;
+
+      $contextual_menu['#items'][] = $list_item;
     }
 
-    // Downloads menu item
-    $contextual_menu[] = array(
-      '#type' => 'link',
-      '#title' => t('Downloads'),
-      '#href' => '',
-      '#attributes' => array('class' => 'list-group-item'),
-      '#options' => array('attributes' => array('data-toggle' => 'modal'), 'external' => TRUE, 'fragment' => 'modal-downloads', 'html' => TRUE),
-      '#active' => FALSE,
+    // Downloads nav menu item
+    $contextual_menu['#items'][] = array(
+      'data' => l(t('Downloads'), '', array(
+        'attributes' => array('data-toggle' => 'modal'),
+        'external' => TRUE,
+        'fragment' => 'modal-downloads',
+        'html' => TRUE
+      )),
+      'role' => 'presentation'
     );
   }
-  return $ret;
 }
 
 function treaty_menu_local_tasks_alter(&$data, $router_item, $root_path) {

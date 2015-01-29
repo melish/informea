@@ -383,7 +383,9 @@ function country_country_contextual_menu_alter(&$contextual_menu, $node) {
     );
 
     foreach ($menu_items as $path => $menu_item) {
-      $text = sprintf('<span class="counter">%d</span>%s', $menu_item['count'], $menu_item['title']);
+      $text = isset($menu_item['count'])
+        ? sprintf('<span class="counter">%d</span>%s', $menu_item['count'], $menu_item['title'])
+        : $menu_item['title'];
 
       $list_item = array(
         'data' => l($text, $node_url . '/' . $path, array('html' => TRUE)),
