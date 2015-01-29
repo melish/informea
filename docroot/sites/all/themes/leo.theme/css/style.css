@@ -9,6 +9,14 @@ h1, h2, h3, h4, h5, h6,
   font-weight: 300;
 }
 
+/* Emphasis & misc */
+
+/* Highlight */
+.highlight {
+  background-color: #ffff99;
+  padding: .2em;
+}
+
 /* Blocks */
 
 .block-title {
@@ -354,13 +362,64 @@ a:focus .navicon-eur {
 }
 
 
-/* Main content */
-/* ------------ */
+/* Pagination (multiple pages) */
+/* --------------------------- */
 
 
-#main-content {
-  margin-top: 0;
+.pagination {
+  display: block;
 }
+
+.pagination > li {
+  display: inline-block;
+}
+
+.pagination > li.prev {
+  float: left;
+}
+
+.pagination > li.next {
+  float: right;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+  border-color: transparent;
+  border-radius: 4px;
+  border-width: 2px;
+  color: #777;
+}
+
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  background-color: #fff;
+  border-color: #eee;
+  color: #777;
+}
+
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  color: #777;
+  background-color: #eee;
+  border-color: #eee;
+}
+
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  border-color: transparent;
+  color: #999;
+}
+
 
 /* Panels */
 /* ------ */
@@ -422,6 +481,16 @@ a:focus .navicon-eur {
 }
 
 
+/* Maps */
+/* ---- */
+
+
+/* Wrapper and base class */
+#map-canvas {
+  height: 400px;
+}
+
+
 /* Smallipop */
 /* --------- */
 
@@ -446,72 +515,12 @@ a:focus .navicon-eur {
 }
 
 
-/* Maps */
-/* ---- */
+/* Main content */
+/* ------------ */
 
 
-/* Wrapper and base class */
-#map-canvas {
-  height: 400px;
-}
-
-
-/* Pagination (multiple pages) */
-/* --------------------------- */
-
-
-.pagination {
-  display: block;
-}
-
-.pagination > li {
-  display: inline-block;
-}
-
-.pagination > li.prev {
-  float: left;
-}
-
-.pagination > li.next {
-  float: right;
-}
-
-.pagination > li > a,
-.pagination > li > span {
-  border-color: transparent;
-  border-radius: 4px;
-  border-width: 2px;
-  color: #777;
-}
-
-.pagination > li > a:hover,
-.pagination > li > span:hover,
-.pagination > li > a:focus,
-.pagination > li > span:focus {
-  background-color: #fff;
-  border-color: #eee;
-  color: #777;
-}
-
-.pagination > .active > a,
-.pagination > .active > span,
-.pagination > .active > a:hover,
-.pagination > .active > span:hover,
-.pagination > .active > a:focus,
-.pagination > .active > span:focus {
-  color: #777;
-  background-color: #eee;
-  border-color: #eee;
-}
-
-.pagination > .disabled > span,
-.pagination > .disabled > span:hover,
-.pagination > .disabled > span:focus,
-.pagination > .disabled > a,
-.pagination > .disabled > a:hover,
-.pagination > .disabled > a:focus {
-  border-color: transparent;
-  color: #999;
+#main-content {
+  margin-top: 0;
 }
 
 

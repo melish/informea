@@ -12,7 +12,3 @@
 
 #treaty-text .paragraph { margin-bottom: 10px; text-align: justify; }
 #treaty-text .paragraph:last-child { margin-bottom: 0; }
-
-.highlight {
-  background-color: #ffff99;
-}

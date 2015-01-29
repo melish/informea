@@ -35,7 +35,7 @@ jQuery(document).ready(function ($) {
     var $el = $(target);
 
     if ($el.length) {
-      $.scrollTo(target, {
+      $.scrollTo(0).scrollTo(target, 'slow', {
         offset: -50
       });
     }
