@@ -44,7 +44,7 @@
           <?php endforeach; ?>
         <?php else: ?>
           <div class="article tagged-content content">
-            <?php print drupal_render(field_view_field('node', $article, 'body', 'teaser')); ?>
+            <?php $f = field_view_field('node', $article, 'body', 'teaser'); print drupal_render($f); ?>
           </div><!-- .article .tagged-content .content -->
         <?php endif; ?>
         <?php if (user_access('administer nodes')): ?>
