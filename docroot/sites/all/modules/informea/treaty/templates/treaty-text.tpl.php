@@ -10,7 +10,7 @@
       <?php print theme('treaty_text_article', array('article' => $article)); ?>
     <?php endforeach; ?>
   </div>
-  <?php if (user_access('administer nodes')): ?>
+  <?php if (user_access('administer nodes') && isset($article)): ?>
     <?php
     print l('<i class="glyphicon glyphicon-plus"></i> ' . t('Add article'), 'node/add/treaty-article', array(
       'html' => TRUE,
