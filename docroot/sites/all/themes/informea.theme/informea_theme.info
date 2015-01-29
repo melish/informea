@@ -2,7 +2,7 @@ name = InforMEA
 description = The InforMEA front-end theme.
 core = 7.x
 base theme = bootstrap
-
+package = InforMEA
 
 ; Regions
 

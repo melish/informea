@@ -1,6 +1,6 @@
-name = "WordPress migration"
-description = "Migrate InforMEA from WordPress to Drupal"
-package = "InforMEA"
+name = WordPress migration
+description = Migrate InforMEA from WordPress to Drupal
+package = InforMEA
 core = 7.x
 dependencies[] = migrate
 dependencies[] = field
