@@ -11,12 +11,12 @@
   $expanded = isset($_GET['article']) ? $_GET['article'] == $article->nid : FALSE;
   $highlight = $expanded && !isset($_GET['paragraph']) ? ' highlight' : '';
   ?>
-  <div class="panel panel-default">
+  <div class="panel <?php print $expanded ? 'panel-warning' : 'panel-default'; ?>">
     <div class="panel-heading smallipop<?php print $expanded ? '' : ' collapsed' ;?>" role="tab" id="heading-<?php echo $article->nid; ?>" data-toggle="collapse" data-parent="#treaty-text" data-target="#article-<?php echo $article->nid; ?>" aria-expanded="<?php print $expanded ? 'true' : 'false' ;?>" aria-controls="article-<?php echo $article->nid; ?>">
       <ul class="list-inline actions">
         <?php if (!empty($tags) && is_array($tags)): ?>
           <li>
-            <span class="glyphicon glyphicon-tag" data-toggle="tooltip" data-placement="top" title="<?php print t('Tagged article'); ?>"></span>
+            <span class="glyphicon glyphicon-tag" data-toggle="tooltip" data-placement="top" title="<?php print t('Tagged terms'); ?>"></span>
           </li>
         <?php endif; ?>
         <?php if (user_access('administer nodes')): ?>
