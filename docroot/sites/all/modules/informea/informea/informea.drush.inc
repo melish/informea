@@ -89,7 +89,7 @@ function drush_informea_taxonomy_mappings() {
     foreach ($geg_terms as $i => $t) {
       $geg_term = taxonomy_get_term_by_name($t, 'thesaurus_geg');
       $geg_term = current($geg_term);
-      $informea->field_geg_tags[LANGUAGE_NONE][$i]['tid'] = $geg_term->tid;
+      $informea->field_thesaurus_map_geg[LANGUAGE_NONE][$i]['tid'] = $geg_term->tid;
     }
     if (!$test) {
       taxonomy_term_save($informea);

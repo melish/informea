@@ -848,7 +848,7 @@ function informea_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 4,
+      'weight' => 6,
     ),
   );
 
@@ -891,7 +891,7 @@ function informea_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 5,
+      'weight' => 8,
     ),
   );
 
@@ -932,7 +932,7 @@ function informea_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 11,
+      'weight' => 12,
     ),
   );
 
@@ -983,7 +983,7 @@ function informea_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 13,
+      'weight' => 14,
     ),
   );
 
@@ -1028,7 +1028,7 @@ function informea_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -1063,7 +1063,7 @@ function informea_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -1101,7 +1101,7 @@ function informea_field_default_field_instances() {
         'display_label' => 0,
       ),
       'type' => 'options_onoff',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
@@ -1136,7 +1136,7 @@ function informea_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -1171,7 +1171,7 @@ function informea_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -1211,6 +1211,49 @@ function informea_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'taxonomy_term-thesaurus_informea-field_thesaurus_map_geg'
+  $field_instances['taxonomy_term-thesaurus_informea-field_thesaurus_map_geg'] = array(
+    'bundle' => 'thesaurus_informea',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 13,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_thesaurus_map_geg',
+    'label' => 'GEG terms',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'allow_add_onfly' => 0,
+        'show_voc_terms_page_link' => 0,
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'use_select2' => FALSE,
+      ),
+      'type' => 'options_select',
+      'weight' => 5,
+    ),
+  );
+
   // Exported field_instance: 'taxonomy_term-thesaurus_informea-field_thesaurus_map_gemet'
   $field_instances['taxonomy_term-thesaurus_informea-field_thesaurus_map_gemet'] = array(
     'bundle' => 'thesaurus_informea',
@@ -1243,7 +1286,7 @@ function informea_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -1294,6 +1337,7 @@ function informea_field_default_field_instances() {
   t('Ecolex terms');
   t('Enter a comma-separated list of words to describe your content.');
   t('GEG Tools URL');
+  t('GEG terms');
   t('Gemet terms');
   t('Image');
   t('Name');
