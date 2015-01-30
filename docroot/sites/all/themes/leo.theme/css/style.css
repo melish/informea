@@ -9,14 +9,6 @@ h1, h2, h3, h4, h5, h6,
   font-weight: 300;
 }
 
-/* Emphasis & misc */
-
-/* Highlight */
-.highlight {
-  background-color: #ffff99;
-  padding: .2em;
-}
-
 /* Blocks */
 
 .block-title {
@@ -488,6 +480,7 @@ a:focus .navicon-eur {
 }
 
 .panel-heading > .actions {
+  color: #777;
   float: right;
 }
 
@@ -560,6 +553,58 @@ a:focus .navicon-eur {
   background-color: #fff;
 }
 
+.article {
+  border-top: 1px solid transparent;
+}
+
+.panel-default .article {
+  border-top-color: #ddd;
+}
+
+.panel-warning .article {
+  border-top-color: #faebcc;
+}
+
+.paragraph {
+  padding: 15px;
+  text-align: justify;
+}
+
+.paragraph + .paragraph {
+  border-top: 1px solid #eee;
+}
+
+.paragraph .actions {
+  color: #777;
+  font-size: 85%;
+  margin: 0;
+  text-align: right;
+}
+
+.paragraph .actions a:hover,
+.paragraph .actions a:focus {
+  text-decoration: none;
+}
+
+/* Highlight */
+
+.article.highlight,
+.paragraph.highlight {
+  background-color: #fcf8e3;
+}
+
+.article.highlight .paragraph,
+.paragraph.highlight {
+  border-top-color: #faebcc;
+}
+
+.paragraph.highlight {
+  border-bottom: 1px solid #faebcc;
+}
+
+.paragraph.highlight + .paragraph {
+  border-top: 0;
+}
 
 /* Maps */
 /* ---- */
