@@ -574,7 +574,7 @@ function country_views_default_views() {
     'link' => 0,
   );
   $handler->display->display_options['fields']['field_treaty']['delta_offset'] = '0';
-  /* Field: Field: URL */
+  /* Field: Content: URL */
   $handler->display->display_options['fields']['field_url']['id'] = 'field_url';
   $handler->display->display_options['fields']['field_url']['table'] = 'field_data_field_url';
   $handler->display->display_options['fields']['field_url']['field'] = 'field_url';
@@ -669,7 +669,7 @@ function country_views_default_views() {
     'link' => 0,
   );
   $handler->display->display_options['fields']['field_treaty']['delta_offset'] = '0';
-  /* Field: Field: URL */
+  /* Field: Content: URL */
   $handler->display->display_options['fields']['field_url']['id'] = 'field_url';
   $handler->display->display_options['fields']['field_url']['table'] = 'field_data_field_url';
   $handler->display->display_options['fields']['field_url']['field'] = 'field_url';
