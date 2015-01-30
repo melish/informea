@@ -487,6 +487,23 @@ a:focus .navicon-eur {
   padding: 15px;
 }
 
+.panel-heading > .actions {
+  float: right;
+}
+
+.panel-heading > .actions a:hover,
+.panel-heading > .actions a:focus {
+  text-decoration: none;
+}
+
+.panel-heading > .actions > .action-hover {
+  display: none;
+}
+
+.panel-heading:hover > .actions > .action-hover {
+  display: inline-block;
+}
+
 /* Optional footer */
 .panel-footer {
   border-bottom-left-radius: 0;

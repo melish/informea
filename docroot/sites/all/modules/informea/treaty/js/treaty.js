@@ -40,4 +40,8 @@ jQuery(document).ready(function ($) {
       });
     }
   }
+
+  $('.panel-heading > .actions a').click(function (event) {
+    event.stopPropagation();
+  });
 });

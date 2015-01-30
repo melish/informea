@@ -13,25 +13,46 @@
   ?>
   <div class="panel panel-default">
     <div class="panel-heading smallipop<?php print $expanded ? '' : ' collapsed' ;?>" role="tab" id="heading-<?php echo $article->nid; ?>" data-toggle="collapse" data-parent="#treaty-text" data-target="#article-<?php echo $article->nid; ?>" aria-expanded="<?php print $expanded ? 'true' : 'false' ;?>" aria-controls="article-<?php echo $article->nid; ?>">
-      <h4 class="panel-title">
-        <span class="pull-right">
-          <?php if (user_access('administer nodes')): ?>
+      <ul class="list-inline actions">
+        <?php if (!empty($tags) && is_array($tags)): ?>
+          <li>
+            <span class="glyphicon glyphicon-tag" data-toggle="tooltip" data-placement="top" title="<?php print t('Tagged article'); ?>"></span>
+          </li>
+        <?php endif; ?>
+        <?php if (user_access('administer nodes')): ?>
+          <li class="action-hover">
+            <?php
+            print l('<i class="glyphicon glyphicon-plus"></i>', 'node/add/treaty-paragraph', array(
+              'attributes' => array('data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => t('Add paragraph')),
+              'html' => TRUE,
+              'query' => array('edit' => array(
+                'field_parent_treaty_article' => array('und' => $article->nid),
+                'field_treaty' => array('und' => $aw->field_treaty->value()[0]->nid)
+              ))
+            ));
+            ?>
+          </li>
+          <li class="action-hover">
             <?php
             print l('<i class="glyphicon glyphicon-pencil"></i>', 'node/' . $article->nid . '/edit', array(
-              'attributes' => array('class' => array('permalink')),
+              'attributes' => array('data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => t('Edit article')),
               'html' => TRUE
             ));
             ?>
-          <?php endif; ?>
+          </li>
+        <?php endif; ?>
+        <li class="action-hover">
           <?php
           print l('<i class="glyphicon glyphicon-link"></i>', 'treaties/cbd', array(
-            'attributes' => array('class' => array('permalink'), 'target' => '_blank'),
+            'attributes' => array('data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => t('Permalink'), 'target' => '_blank'),
             'fragment' => 'article-' . $article->nid,
             'html' => TRUE,
             'query' => array('article' => $article->nid)
           ));
           ?>
-        </span>
+        </li>
+      </ul><!-- .list-inline .actions -->
+      <h4 class="panel-title">
         <?php echo $article->official_title; ?>
       </h4><!-- .panel-title -->
       <?php print theme('treaty_text_tags', array('tags' => $tags)); ?>
