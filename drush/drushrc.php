@@ -279,6 +279,7 @@ $options['init-modules'] = array(
   'uuid_features',
   'event_calendar',
   'advanced_help',
+  'edw_extras',
 
   'search_api',
   'facetapi',
@@ -313,6 +314,8 @@ $options['init-modules'] = array(
   'search_integration',
   'treaty',
   'wp_migration',
+  'ws_consumer',
+  'i18n_string_helper',
 
   'devel',
   'diff'

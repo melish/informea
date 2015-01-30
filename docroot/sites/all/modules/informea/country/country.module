@@ -31,56 +31,20 @@ function country_url_match_node($path) {
   return FALSE;
 }
 
-function country_url_context($path) {
-  $path = preg_replace('/([A-Za-z]{2})?\/?countries\/[A-Za-z]{2}\/?/', '', $path);
-  $parts = explode('/', $path);
-  return $parts[0];
-}
-
-function _country_bs_tabs($tabs) {
-  $markup = '<div role="tabpanel">';
-  $markup .= '<ul class="nav nav-tabs" role="tablist">';
-
-  foreach ($tabs as $id => $tab) {
-    $markup .= '<li role="presentation"' . (isset($tab['active']) && $tab['active'] ? ' class="active"' : '') . '><a href="#' . $id . '" aria-controls="' . $id . '" role="tab" data-toggle="tab">' . $tab['title'] . '</a></li>';
-  }
-
-  $markup .= '</ul>';
-  $markup .= '<div class="tab-content">';
-
-  foreach ($tabs as $id => $tab) {
-    $markup .= '<div role="tabpanel" class="tab-pane' . (isset($tab['active']) && $tab['active'] ? ' active' : '') . '" id="' . $id . '">' . $tab['content'] . '</div>';
-  }
-
-  $markup .= '</div>';
-  $markup .= '</div>';
-
-  return $markup;
-}
-
-function country_get_countries() {
-  $query = new EntityFieldQuery();
-  $result = $query->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'country')
-    ->propertyCondition('status', NODE_PUBLISHED)
-    ->fieldOrderBy('title_field', 'value')
-    ->execute();
-
-  $countries = array();
-
-  if (!isset($result['node'])) {
-    return array();
-  }
-
-  $nodes = entity_load('node', array_keys($result['node']));
-
-  foreach ($nodes as $nid => $node) {
-    $wrapper = entity_metadata_wrapper('node', $node);
-
-    $countries[$wrapper->field_country_iso2->value()] = $wrapper->title_field->value();
-  }
-
-  return $countries;
+/**
+ * Implements hook_theme().
+ *
+ * {@inheritdoc}
+ */
+function country_theme() {
+  return array(
+    'country_map' => array(
+      'render element' => 'element',
+      'template' => 'templates/country-map',
+      'variables' => array(),
+      'path' => drupal_get_path('module', 'country'),
+    ),
+  );
 }
 
 /**
@@ -98,35 +62,69 @@ function country_node_view($node, $view_mode, $langcode) {
     $node->context = $context;
     switch($context) {
       case 'map':
-        // Adds the amCharts JavaScript files to the page.
-        drupal_add_js('https://maps.googleapis.com/maps/api/js?v=3.exp', 'external');
-        // Adds the country JavaScript file to the page.
-        drupal_add_js(drupal_get_path('module', 'country') . '/js/map.js');
+        $wrapper = entity_metadata_wrapper('node', $node);
+        $latitude = $wrapper->field_latitude->value();
+        $longitude = $wrapper->field_longitude->value();
+        $zoom = $wrapper->field_zoom->value();
+        $has_map = $latitude && $longitude && $zoom;
+        $sites = country_get_sites($node->nid);
+        $js_sites = array();
+        foreach($sites as $site) {
+          $js_sites[] = entity_metadata_wrapper('node', $site)->value();
+        }
+        if ($has_map) {
+          // Adds the amCharts JavaScript files to the page.
+          drupal_add_js( 'https://maps.googleapis.com/maps/api/js?v=3.exp', 'external' );
+          // Adds the country JavaScript file to the page.
+          drupal_add_js( drupal_get_path( 'module', 'country' ) . '/js/map.js' );
+          drupal_add_js(
+              array(
+                  'map' => array(
+                      'latitude'  => $wrapper->field_latitude->value(),
+                      'longitude' => $wrapper->field_longitude->value(),
+                      'zoom'      => $wrapper->field_zoom->value(),
+                      'sites' => $js_sites,
+                  )
+              ),
+              array( 'type' => 'setting' )
+          );
+        }
         $view_ramsar = country_get_view_country_related_content($node->nid, 'ramsar_sites');
         $view_whc = country_get_view_country_related_content($node->nid, 'whc_sites');
-        $node->content['context'] = array(
-          array(
-            '#type' => 'item', '#weight' => 10, '#markup' => _country_bs_tabs(array(
-              'tab-map' => array('title' => t('Map of sites'), 'active' => TRUE, 'content' => '<div id="map-canvas" style="height: 400px;margin: 0px;padding: 0px"></div>'),
-              'tab-ramsar' => array('title' => t('Ramsar sites <span class="badge">!count</span>', array('!count' => $view_ramsar->total_rows)), 'content' => $view_ramsar->render()),
-              'tab-whc' => array('title' => t('WHC sites <span class="badge">!count</span>', array('!count' => $view_whc->total_rows)), 'content' => $view_whc->render()),
-            )),
+        $tabs = array(
+          'map' => array(
+            'header' => t('Map of sites'),
+            'body' => theme('country_map'),
+            'active' => $has_map,
           ),
+          'ramsar' => array(
+            'header' => t('Ramsar sites <span class="badge">!count</span>', array('!count' => $view_ramsar->total_rows)),
+            'body' => $view_ramsar->render(),
+            'active' => !$has_map,
+          ),
+          'whc' => array(
+            'header' => t('WHC sites <span class="badge">!count</span>', array('!count' => $view_whc->total_rows)),
+            'body' => $view_whc->render()
+          )
+        );
+        if (!$has_map) {
+          unset($tabs['map']);
+        }
+        $node->content['context'] = array(
+          array('#type' => 'item', '#weight' => 10, '#markup' => theme('informea_bootstrap_tabs', array('elements' => $tabs)))
         );
         break;
 
       case 'national-reports':
-        $view = country_get_view_country_related_content($node->nid, 'embed_national_reports');
-        $node->content['context'] = array(
-          '#type' => 'item', '#weight' => 10, '#markup' => $view->preview(),
-        );
+        module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
+        $rows = country_deliverable_national_reports_group_by_treaty($node->nid);
+        $node->content['context'] = country_deliverable_render_reports($rows, 'national_reports');
         break;
 
       case 'action-plans':
-        $view = country_get_view_country_related_content($node->nid, 'embed_action_plans');
-        $node->content['context'] = array(
-          '#type' => 'item', '#weight' => 10, '#markup' => $view->preview(),
-        );
+        module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
+        $rows = country_deliverable_action_plans_group_by_treaty($node->nid);
+        $node->content['context'] = country_deliverable_render_reports($rows, 'action_plans');
         break;
 
       case 'court-decisions':
@@ -250,43 +248,57 @@ EOF
 
       case 'parties':
         $rows = array();
-        $parties = country_get_parties($node->nid);
+        module_load_include('inc', 'country_data', 'country_data.api');
+        module_load_include('php', 'informea', 'recaptcha/recaptchalib');
+        $parties = country_data_country_get_parties($node->nid);
         foreach ($parties as $party) {
           $wrapper = entity_metadata_wrapper('node', $party);
           $treaty = $wrapper->field_treaty->value()[0];
           $date1 = $wrapper->field_party_date_1->value();
           $date1 = empty($date1) ? '&nbsp;' : format_date($date1, 'short');
-          $date2 = $wrapper->field_party_date_1->value();
+          $date2 = $wrapper->field_party_date_2->value();
           $date2 = empty($date2) ? '&nbsp;' : format_date($date2, 'short');
           $row = array(
-            $wrapper->field_treaty->label(), $date1, $date2,
+            'data' => array(
+              $wrapper->field_treaty->label(),
+              array('data' => $date1, 'class' => 'text-center'),
+              array('data' => $date2, 'class' => 'text-center')
+            )
           );
-          $nfps = country_get_treaty_focal_points($node->nid, $treaty->nid);
-          $row[] = count($nfps) ? sprintf('<a href="javascript:jQuery(\'#nfp-%s\').toggle()"><i class="glyphicon glyphicon-user" style="color: rgb(0, 128, 213);"></i></a>', $treaty->nid) : '&nbsp;';
+          $nfps = country_data_get_treaty_focal_points($node->nid, $treaty->nid);
+          if (count($nfps)) {
+            $row['data'][] = array(
+              'data' => sprintf('<a data-toggle="collapse" href="#nfp-%1$s" aria-expanded="false" aria-controls="nfp-%1$s"><i class="glyphicon glyphicon-user"></i></a>', $treaty->nid),
+              'class' => 'text-center'
+            );
+          } else {
+            $row['data'][] = '';
+          }
           $rows[] = $row;
           if (count($nfps)) {
-            $nfp_style = '';
-            foreach ($nfps as $nfp) {
-              $nfp_style .= sprintf('<div><h2>%s</h2></div>', $nfp->title);
-            }
-
+            $nfp_data = country_data_render_focal_points($nfps);
             $row = array(
-                'data' => array(array('data' => $nfp_style, 'colspan' => 4)),
-                'style' => array('display:none'),
-                'id' => array('nfp-' . $treaty->nid)
+              'class' => array('collapse'),
+              'data' => array(array('data' => drupal_render($nfp_data), 'colspan' => 4)),
+              'id' => array('nfp-' . $treaty->nid)
             );
             $rows[] = $row;
           }
         }
         $table = array(
-          'header' => array(t('Treaty'), t('Signature'), t('Ratification'), t('Focal points')),
-          'rows' => $rows,
+          'attributes' => array('id' => 'table-parties', 'class' => 'table-no-striping table-hover'),
+          'header' => array(
+            t('Treaty'),
+            array('data' => t('Signature'), 'class' => array('text-center')),
+            array('data' => t('Ratification'), 'class' => array('text-center')),
+            array('data' => t('Focal points'), 'class' => array('text-center'))
+          ),
+          'rows' => $rows
         );
         $node->content['context'] = array(
-            '#type' => 'item', '#weight' => 10, '#markup' => theme('table', $table)
+          '#type' => 'item', '#weight' => 10, '#markup' => theme('table', $table)
         );
         break;
-
     }
   }
 }
@@ -327,62 +339,77 @@ function country_page_alter(&$page) {
 }
 
 function country_country_contextual_menu_alter(&$contextual_menu, $node) {
-  $ret = array();
   if ($node->type == 'country') {
-    $uri = url(drupal_get_path_alias('node/' . $node->nid), array('absolute' => TRUE));
+    module_load_include('inc', 'country_data', 'country_data.api');
 
+    $node_url = url(drupal_get_path_alias('node/' . $node->nid), array('absolute' => TRUE));
     $view_ramsar = country_get_view_country_related_content($node->nid, 'ramsar_sites');
     $view_whc = country_get_view_country_related_content($node->nid, 'whc_sites');
-    $links = array(
-      'map' => t('Map and sites <span class="badge">!count</span>',
-        array('!count' => $view_ramsar->total_rows + $view_whc->total_rows)
-      ),
-      'parties' => t('Membership <span class="badge">!count</span>',
-          array('!count' => count(country_get_parties($node->nid)))
-      ),
-      'action-plans' => t('Action plans <span class="badge">!count</span>',
-        array('!count' => country_get_view_country_related_content_count($node->nid, 'embed_action_plans'))
-      ),
-      'national-reports' => t('National reports <span class="badge">!count</span>',
-        array('!count' => country_get_view_country_related_content_count($node->nid, 'embed_national_reports'))
-      ),
-      'legislation' => t('Legislation <span class="badge">!count</span>',
-        array('!count' => country_get_view_country_related_content_count($node->nid, 'page_legislation'))
-      ),
-      'literature' => t('Literature <span class="badge">!count</span>',
-        array('!count' => country_get_view_country_related_content_count($node->nid, 'page_literature'))
-      ),
-      'court-decisions' => t('Court decisions <span class="badge">!count</span>',
-        array('!count' => country_get_view_country_related_content_count($node->nid, 'page_court_decisions'))
-      ),
+
+    $contextual_menu = array(
+      '#theme' => 'item_list',
+      '#attributes' => array('class' => array('nav', 'nav-pills', 'nav-stacked'))
     );
 
-    foreach($links as $path => $title) {
-      $link = array(
-        '#type' => 'link',
-        '#title' => $title,
-        '#href' => $uri . '/' . $path,
-        '#attributes' => array( 'class' => array( 'list-group-item' ) ),
-        '#options' => array( 'html' => TRUE ),
-        '#active' => FALSE,
+    $menu_items = array(
+      'map' => array(
+        'title' => t('Map and sites'),
+        'count' => ($view_ramsar->total_rows + $view_whc->total_rows)
+      ),
+      'parties' => array(
+        'title' => t('Membership'),
+        'count' => count(country_data_country_get_parties($node->nid))
+      ),
+      'action-plans' => array(
+        'title' => t('Action plans'),
+        'count' => country_get_view_country_related_content_count($node->nid, 'embed_action_plans')
+      ),
+      'national-reports' => array(
+        'title' => t('National reports'),
+        'count' => country_get_view_country_related_content_count($node->nid, 'embed_national_reports')
+      ),
+      'legislation' => array(
+        'title' => t('Legislation'),
+        'count' => country_get_view_country_related_content_count($node->nid, 'page_legislation')
+      ),
+      'literature' => array(
+        'title' => t('Literature'),
+        'count' => country_get_view_country_related_content_count($node->nid, 'page_literature')
+      ),
+      'court-decisions' => array(
+        'title' => t('Court decisions'),
+        'count' => country_get_view_country_related_content_count($node->nid, 'page_court_decisions')
+      )
+    );
+
+    foreach ($menu_items as $path => $menu_item) {
+      $text = isset($menu_item['count'])
+        ? sprintf('<span class="counter">%d</span>%s', $menu_item['count'], $menu_item['title'])
+        : $menu_item['title'];
+
+      $list_item = array(
+        'data' => l($text, $node_url . '/' . $path, array('html' => TRUE)),
+        'role' => 'presentation'
       );
+
       if (isset($node->context) && $node->context == $path) {
-        $link['#attributes']['class'][] = 'active';
+        $list_item['class'][] = 'active';
       }
-      $contextual_menu[] = $link;
+
+      $contextual_menu['#items'][] = $list_item;
     }
 
-    // Downloads menu item
-    $contextual_menu[] = array(
-      '#type' => 'link',
-      '#title' => t('Downloads'),
-      '#href' => '',
-      '#attributes' => array('class' => 'list-group-item'),
-      '#options' => array('attributes' => array('data-toggle' => 'modal'), 'external' => TRUE, 'fragment' => 'modal-downloads', 'html' => TRUE),
-      '#active' => FALSE,
+    // Downloads nav menu item
+    $contextual_menu['#items'][] = array(
+      'data' => l(t('Downloads'), '', array(
+        'attributes' => array('data-toggle' => 'modal'),
+        'external' => TRUE,
+        'fragment' => 'modal-downloads',
+        'html' => TRUE
+      )),
+      'role' => 'presentation'
     );
   }
-  return $ret;
 }
 
 
@@ -396,62 +423,4 @@ function country_menu_local_tasks_alter(&$data, $router_item, $root_path) {
       'output' => $context_menu,
     );
   }
-}
-
-
-function country_get_legislation_statistics($id_country = NULL, $type = 'legislation') {
-  $query = db_select('node', 'n')
-    ->fields('td', array('tid'))
-    ->condition('n.status', 1)
-    ->condition('n.type', $type)
-    ->groupBy('td.tid');
-
-  $query->addExpression('COUNT(td.vid)', 'term_count');
-  $query->join('field_data_field_type_of_text', 'tt', 'n.nid = tt.entity_id');
-  $query->join('taxonomy_term_data', 'td', 'tt.field_type_of_text_tid = td.tid');
-  if ($id_country) {
-    $query->join('field_data_field_country', 'c', 'n.nid = c.entity_id');
-    $query->condition('c.field_country_target_id', $id_country);
-  }
-  $results = $query->execute()->fetchAllKeyed();
-
-  arsort($results);
-  $ret = array();
-  foreach($results as $tid => $count) {
-    $term = taxonomy_term_load($tid);
-    $term->count = $count;
-    $ret[] = $term;
-  }
-  return $ret;
-}
-
-
-function country_get_court_decisions_statistics($id_country = NULL) {
-  return country_get_legislation_statistics($id_country, 'court_decisions');
-}
-
-function country_get_court_literature_statistics($id_country = NULL) {
-  $query = db_select('node', 'n')
-    ->fields('td', array('tid'))
-    ->condition('n.status', 1)
-    ->condition('n.type', 'literature')
-    ->groupBy('td.tid');
-
-  $query->addExpression('COUNT(td.vid)', 'term_count');
-  $query->join('field_data_field_literature_type', 'tt', 'n.nid = tt.entity_id');
-  $query->join('taxonomy_term_data', 'td', 'tt.field_literature_type_tid = td.tid');
-  if ($id_country) {
-    $query->join('field_data_field_country', 'c', 'n.nid = c.entity_id');
-    $query->condition('c.field_country_target_id', $id_country);
-  }
-  $results = $query->execute()->fetchAllKeyed();
-
-  arsort($results);
-  $ret = array();
-  foreach($results as $tid => $count) {
-    $term = taxonomy_term_load($tid);
-    $term->count = $count;
-    $ret[] = $term;
-  }
-  return $ret;
 }

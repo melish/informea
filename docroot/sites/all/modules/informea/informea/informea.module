@@ -82,6 +82,34 @@ function informea_date_formats() {
   );
 }
 
+/**
+ * Implements hook_library().
+ */
+function informea_library() {
+  $smallipop_path = libraries_get_path('smallipop');
+  return array(
+    'smallipop' => array(
+      'title' => 'Smallipop',
+      'website' => 'http://projects.sebastianhelzle.net/jquery.smallipop/index.html',
+      'version' => '0.6.2',
+      'js' => array(
+        $smallipop_path . '/lib/jquery.smallipop.min.js' => array(),
+        $smallipop_path . '/lib/contrib/modernizr.js' => array()
+      ),
+      'css' => array(
+        $smallipop_path . '/css/jquery.smallipop.min.css' => array()
+      )
+    ),
+    'scrollto' => array(
+      'title' => 'jquery.scrollTo',
+      'website' => 'https://github.com/flesler/jquery.scrollTo',
+      'version' => '1.4.14',
+      'js' => array(
+        libraries_get_path('scrollto') . '/jquery.scrollTo.min.js' => array()
+      )
+    ),
+  );
+}
 
 class MigrationUtil {
 
@@ -142,4 +170,11 @@ class MigrationUtil {
 function informea_i18n_string_helper_strings() {
   module_load_include('inc', 'informea', 'informea.translation');
   return _informea_localizable_strings();
+}
+
+function informea_fix_title_field() {
+  drupal_set_message('Changing the size of title_field value');
+  $column_size = 2048;
+  db_change_field('field_data_title_field', 'title_field_value', 'title_field_value', array('type' => 'varchar','length' => $column_size));
+  db_change_field('field_revision_title_field', 'title_field_value', 'title_field_value', array('type' => 'varchar','length' => $column_size));
 }

@@ -1,6 +1,7 @@
 <?php
 
 function ecolex_update_7001() {
+  module_load_include('module', 'ecolex');
   ecolex_create_default_thesaurus_terms();
   ecolex_create_default_keywords_terms();
 }

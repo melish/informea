@@ -35,7 +35,7 @@ function search_integration_default_search_api_index() {
     "server" : "local_solr_server",
     "item_type" : "node",
     "options" : {
-      "index_directly" : 1,
+      "index_directly" : 0,
       "cron_limit" : "50",
       "data_alter_callbacks" : {
         "search_api_alter_bundle_filter" : {
@@ -243,6 +243,7 @@ function search_integration_default_search_api_index() {
         "field_keywords" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_literature_paper_title" : { "type" : "text" },
         "field_literature_serial_title" : { "type" : "text" },
+        "field_literature_type" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_location" : { "type" : "text" },
         "field_meeting" : { "type" : "integer", "entity_type" : "node" },
         "field_notes" : { "type" : "text" },
@@ -299,7 +300,7 @@ function search_integration_default_search_api_server() {
       "scheme" : "http",
       "host" : "localhost",
       "port" : "8983",
-      "path" : "\\/solr\\/core-leo",
+      "path" : "\\/solr\\/leo",
       "http_user" : "admin",
       "http_pass" : "admin",
       "excerpt" : 0,

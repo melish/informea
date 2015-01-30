@@ -68,6 +68,9 @@ function drush_country_informea_country_update() {
       $wrapper = entity_metadata_wrapper('node', key($result['node']));
       $wrapper->field_country_official_name->set($country->name_official);
       $wrapper->field_country_iso2->set($country->code2l);
+      $wrapper->field_latitude->set($country->latitude);
+      $wrapper->field_longitude->set($country->longitude);
+      $wrapper->field_zoom->set($country->zoom);
       $wrapper->title->set($country->name);
       $wrapper->save();
     }

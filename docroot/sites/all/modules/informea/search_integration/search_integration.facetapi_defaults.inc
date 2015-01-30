@@ -24,6 +24,7 @@ function search_integration_facetapi_default_facet_settings() {
     'dependencies' => array(
       'bundle' => 'none',
       'bundle_selected' => array(),
+      'roles' => array(),
     ),
     'facet_mincount' => '1',
     'facet_missing' => '0',
@@ -140,8 +141,8 @@ function search_integration_facetapi_default_facet_settings() {
     'filters' => array(),
     'active_sorts' => array(
       'active' => 'active',
-      'count' => 'count',
       'display' => 'display',
+      'count' => 0,
       'indexed' => 0,
     ),
     'sort_weight' => array(
@@ -581,7 +582,7 @@ function search_integration_facetapi_default_facet_settings() {
   $facet->searcher = 'search_api@default_node_index';
   $facet->realm = 'block';
   $facet->facet = 'field_literature_type';
-  $facet->enabled = FALSE;
+  $facet->enabled = TRUE;
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_links',
