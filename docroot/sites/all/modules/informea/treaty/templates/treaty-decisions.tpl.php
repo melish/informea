@@ -5,19 +5,15 @@
  */
 ?>
 <table class="table">
-	<tbody>
-<?php
-	foreach ($decisions as $id => $decision):
-		$w = entity_metadata_wrapper('node', $decision);
-?>
-	<tr>
-		<td class="col-sm-1 nobreak">
-			<?php print $w->field_decision_number->value(); ?>
-		</td><!-- .col-sm-1 -->
-		<td>
-			<a data-toggle="modal" href="<?php print url('node/' . $w->getIdentifier(), array('absolute' => TRUE)); ?>"><?php print $w->label(); ?></a>
-		</td>
-	</tr>
-	<?php endforeach; ?>
-	</tbody>
-</table>
+  <tbody>
+    <?php foreach ($decisions as $id => $decision): ?>
+      <tr>
+        <td class="col-sm-1">
+          <?php $w = entity_metadata_wrapper('node', $decision); ?>
+          <?php print $w->field_decision_number->value(); ?>
+        </td><!-- .col-sm-1 -->
+        <td><?php print l($w->label(), 'node/' . $w->getIdentifier()); ?></td>
+      </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table><!-- .table -->
