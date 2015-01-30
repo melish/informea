@@ -553,58 +553,61 @@ a:focus .navicon-eur {
   background-color: #fff;
 }
 
-.article {
+/* Articles in panels */
+
+.panel > .panel-collapse > .article {
   border-top: 1px solid transparent;
 }
 
-.panel-default .article {
+.panel-default > .panel-collapse > .article {
   border-top-color: #ddd;
 }
 
-.panel-warning .article {
+.panel-warning > .panel-collapse > .article {
   border-top-color: #faebcc;
 }
 
-.paragraph {
+.article > .paragraph {
   padding: 15px;
   text-align: justify;
 }
 
-.paragraph + .paragraph {
+.article > .paragraph + .paragraph {
   border-top: 1px solid #eee;
 }
 
-.paragraph .actions {
+.article > .paragraph > .actions {
   color: #777;
   font-size: 85%;
   margin: 0;
   text-align: right;
 }
 
-.paragraph .actions a:hover,
-.paragraph .actions a:focus {
+.article > .paragraph > .actions a:hover,
+.article > .paragraph > .actions a:focus {
   text-decoration: none;
 }
 
 /* Highlight */
 
 .article.highlight,
-.paragraph.highlight {
+.article > .paragraph.highlight {
   background-color: #fcf8e3;
 }
 
-.article.highlight .paragraph,
-.paragraph.highlight {
+.article.highlight > .paragraph,
+.article > .paragraph.highlight {
   border-top-color: #faebcc;
 }
 
-.paragraph.highlight {
+.article > .paragraph.highlight {
   border-bottom: 1px solid #faebcc;
 }
 
-.paragraph.highlight + .paragraph {
+.article > .paragraph.highlight + .paragraph {
   border-top: 0;
 }
+
 
 /* Maps */
 /* ---- */
