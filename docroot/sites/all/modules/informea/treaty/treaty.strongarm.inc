@@ -245,7 +245,7 @@ function treaty_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_hide_translation_links_treaty';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['entity_translation_hide_translation_links_treaty'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -376,7 +376,7 @@ function treaty_strongarm() {
     'default_language' => 'xx-et-default',
     'hide_language_selector' => 1,
     'exclude_language_none' => 1,
-    'lock_language' => 1,
+    'lock_language' => 0,
     'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_taxonomy_term__geographical_region'] = $strongarm;
@@ -474,10 +474,10 @@ function treaty_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '0',
+          'weight' => '5',
         ),
         'language' => array(
-          'weight' => '1',
+          'weight' => '4',
         ),
       ),
       'display' => array(),
