@@ -95,4 +95,4 @@
       </div><!-- .modal-footer -->
     </div><!-- .modal-content -->
   </div><!-- .modal-dialog -->
-</div><!-- .modal.fade #modal-downloads -->
+</div><!-- .modal .fade #modal-downloads -->
