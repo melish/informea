@@ -59,6 +59,12 @@ function informea_menu() {
   return $items;
 }
 
+function informea_ajax_get_ajax($nid) {
+  $node = node_load($nid);
+
+  return node_view($node);
+}
+
 
 /**
  * Configure Entity translation to handle nodes and taxonomy terms.
