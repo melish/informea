@@ -65,6 +65,10 @@ function informea_ajax_get_ajax($nid) {
   return node_view($node);
 }
 
+function informea_ajax_callback($page_callback_result) {
+  print drupal_render($page_callback_result);
+}
+
 
 /**
  * Configure Entity translation to handle nodes and taxonomy terms.
