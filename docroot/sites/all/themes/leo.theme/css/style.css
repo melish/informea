@@ -473,6 +473,7 @@ a:focus .navicon-eur {
 }
 
 /* Optional heading */
+
 .panel-heading {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -495,6 +496,14 @@ a:focus .navicon-eur {
 
 .panel-heading:hover > .actions > .action-hover {
   display: inline-block;
+}
+
+.panel-title > .meta {
+  color: #777;
+  font-size: 75%;
+  font-weight: normal;
+  margin: 5px 0 0;
+  line-height: 1;
 }
 
 /* Optional footer */

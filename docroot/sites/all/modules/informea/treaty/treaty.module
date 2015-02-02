@@ -113,7 +113,7 @@ function treaty_node_view($node, $view_mode, $langcode) {
         foreach ($data as $id => $row) {
           $rw = entity_metadata_wrapper('node', $row);
           $elements[$id] = array(
-            'header' => sprintf('%s <div><small class="muted">%s</small></div>', $rw->label(), treaty_format_meeting_description($row)),
+            'header' => $rw->label() . treaty_format_meeting_description($row),
             'body' => theme('treaty_decisions', array('decisions' => $row->decisions)),
           );
         }

@@ -132,16 +132,23 @@ function treaty_format_article_title($article) {
 }
 
 function treaty_format_meeting_description($meeting) {
-  $ret = '';
   $w = entity_metadata_wrapper('node', $meeting);
-  $start = format_date(strtotime($w->event_calendar_date->value()['value']), 'short');
-  $ret .= $start;
+  $description = array(
+    '#theme' => 'item_list',
+    '#attributes' => array('class' => array('list-inline', 'meta'))
+  );
+
+  $description['#items'][] = format_date(strtotime($w->event_calendar_date->value()['value']), 'short');
+
   $location = $w->field_location->value();
+
   if (!empty($location)) {
-    $ret .= ', ' . $location;
+    $description['#items'][] = $location;
   }
+
   if (!empty($meeting->decisions)) {
-    $ret .= ' - ' . format_plural(count($meeting->decisions), 'one decision', '@count decisions');
+    $description['#items'][] = format_plural(count($meeting->decisions), 'one decision', '@count decisions');
   }
-  return $ret;
+
+  return drupal_render($description);
 }
