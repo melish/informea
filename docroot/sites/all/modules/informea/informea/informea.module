@@ -42,6 +42,25 @@ function informea_migration_schema_alter(&$schema) {
 
 
 /**
+ * Defines menu items and page callbacks.
+ *
+ * @return
+ *   An associative array of properties for each path.
+ */
+function informea_menu() {
+  $items['node/%/ajax'] = array(
+    'page callback'     => 'informea_ajax_get_ajax',
+    'page arguments'    => array(1),
+    'type'              => MENU_CALLBACK,
+    'access arguments'  => array('access content'),
+    'delivery callback' => 'informea_ajax_callback'
+  );
+
+  return $items;
+}
+
+
+/**
  * Configure Entity translation to handle nodes and taxonomy terms.
  */
 function informea_configure_entity_translation_types() {
