@@ -1,7 +1,3 @@
-/* Treaty paragraph indentation */
 .indent-2 { margin-left: 40px; }
 .indent-3 { margin-left: 80px; }
 .indent-4 { margin-left: 120px; }
-
-#treaty-text .paragraph { margin-bottom: 10px; text-align: justify; }
-#treaty-text .paragraph:last-child { margin-bottom: 0; }
