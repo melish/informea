@@ -4,7 +4,7 @@
  * treaty-decisions.tpl.php
  */
 ?>
-<table class="table">
+<table class="table table-hover">
   <tbody>
     <?php foreach ($decisions as $id => $decision): ?>
       <tr>
@@ -16,4 +16,4 @@
       </tr>
     <?php endforeach; ?>
   </tbody>
-</table><!-- .table -->
+</table><!-- .table .table-hover -->
