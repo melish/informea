@@ -523,6 +523,11 @@ a:focus .navicon-eur {
   cursor: pointer;
 }
 
+.panel-group .panel-title {
+  padding-left: 21px;
+  position: relative;
+}
+
 .panel-group .panel-title:before {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -533,8 +538,9 @@ a:focus .navicon-eur {
   font-family: 'Glyphicons Halflings';
   font-style: normal;
   font-weight: normal;
-  margin-right: 5px;
+  left: 0;
   opacity: .2;
+  position: absolute;
   vertical-align: top;
 }
 
