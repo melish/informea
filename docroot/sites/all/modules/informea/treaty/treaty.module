@@ -69,6 +69,11 @@ function treaty_theme() {
       'variables' => array('decisions'),
       'path' => drupal_get_path('module', 'treaty'),
     ),
+    'treaty_modal' => array(
+      'path' => drupal_get_path('module', 'treaty'),
+      'render element' => 'element',
+      'template' => 'templates/treaty-modal'
+    )
   );
 }
 
