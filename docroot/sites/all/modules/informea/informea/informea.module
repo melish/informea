@@ -41,6 +41,23 @@ function informea_migration_schema_alter(&$schema) {
 }
 
 
+function informea_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['ajax'] = array(
+    'custom settings' => TRUE,
+    'label' => t('AJAX')
+  );
+}
+
+
+function informea_preprocess_node(&$vars) {
+  if ($vars['view_mode'] == 'ajax') {
+    $vars['theme_hook_suggestions'][] = 'node__ajax';
+    $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->type . '__ajax';
+    $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->nid . '__ajax';
+  }
+}
+
+
 /**
  * Defines menu items and page callbacks.
  *
@@ -59,11 +76,13 @@ function informea_menu() {
   return $items;
 }
 
+
 function informea_ajax_get_ajax($nid) {
   $node = node_load($nid);
 
-  return node_view($node);
+  return node_view($node, 'ajax');
 }
+
 
 function informea_ajax_callback($page_callback_result) {
   print drupal_render($page_callback_result);
