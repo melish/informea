@@ -45,7 +45,7 @@ jQuery(document).ready(function ($) {
     event.stopPropagation();
   });
 
-  $('#modal-decision').on('hidden.bs.modal', function (event) {
-    $(event.target).removeData('bs.modal');
+  $('#modal-decision').on('hidden.bs.modal', function () {
+    $(this).removeData('bs.modal');
   });
 });
