@@ -483,6 +483,8 @@ a:focus .navicon-eur {
 .panel-heading > .actions {
   color: #777;
   float: right;
+  position: relative;
+  z-index: 10;
 }
 
 .panel-heading > .actions a:hover,
