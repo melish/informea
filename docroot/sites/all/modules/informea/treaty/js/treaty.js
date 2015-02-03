@@ -45,6 +45,10 @@ jQuery(document).ready(function ($) {
     event.stopPropagation();
   });
 
+  $('#modal-decision').on('loaded.bs.modal', function () {
+    $(window).trigger('resize');
+  });
+
   $('#modal-decision').on('hidden.bs.modal', function () {
     $(this).removeData('bs.modal');
   });
