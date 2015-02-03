@@ -41,6 +41,14 @@ function informea_migration_schema_alter(&$schema) {
 }
 
 
+function informea_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['ajax'] = array(
+    'custom settings' => TRUE,
+    'label' => t('AJAX')
+  );
+}
+
+
 /**
  * Defines menu items and page callbacks.
  *
