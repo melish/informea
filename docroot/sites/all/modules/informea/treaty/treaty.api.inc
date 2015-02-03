@@ -34,25 +34,49 @@ function treaty_load_by_odata_name($odata_name) {
 }
 
 function treaty_get_child_protocols($id_treaty) {
-  $query = new EntityFieldQuery();
-  $result = $query->entityCondition('entity_type', 'node')
-                  ->entityCondition('bundle', 'treaty')
-                  ->fieldCondition('field_parent_treaty', 'target_id', $id_treaty)
-                  ->execute();
-  if (!empty($result['node'])) {
-    return node_load_multiple(array_keys($result['node']));
-  }
-  return array();
+  return EdwCacheDomain::cache_get_array('treaty', __FUNCTION__, function($id_treaty) {
+    $ret = array();
+    $query = new EntityFieldQuery();
+    $result = $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'treaty')
+      ->fieldCondition('field_parent_treaty', 'target_id', $id_treaty)
+      ->execute();
+    if (!empty($result['node'])) {
+      $ret = node_load_multiple(array_keys($result['node']));
+      $wrapper = entity_metadata_wrapper('node', $id_treaty);
+      $odata_identifier = $wrapper->field_odata_identifier->value();
+      if ($odata_identifier == 'cbd') {
+        // Add also 3rd level - the Kuala Lumpur to CBD
+        if ($nkl = treaty_load_by_odata_name('NKL')) {
+          foreach ($ret as &$treaty) {
+            $w = entity_metadata_wrapper('node', $treaty->nid);
+            if ($w->field_odata_identifier->value() == 'cartagena') {
+              $treaty->protocols = array($nkl->nid => $nkl);
+            }
+          }
+        }
+      }
+    }
+    return $ret;
+  }, $id_treaty);
 }
 
 function treaty_count_child_protocols($id_treaty) {
   return EdwCacheDomain::cache_get_array('treaty', __FUNCTION__, function($id_treaty) {
     $query = new EntityFieldQuery();
-    return $query->entityCondition('entity_type', 'node')
+    $ret = $query->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', 'treaty')
       ->fieldCondition('field_parent_treaty', 'target_id', $id_treaty)
       ->count()
       ->execute();
+    $wrapper = entity_metadata_wrapper('node', $id_treaty);
+    $odata_identifier = $wrapper->field_odata_identifier->value();
+    if ($odata_identifier == 'cbd') {
+      if ($nkl = treaty_load_by_odata_name('NKL')) {
+        $ret += 1;
+      }
+    }
+    return $ret;
   }, $id_treaty);
 }
 

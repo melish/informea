@@ -69,6 +69,12 @@ function treaty_theme() {
       'variables' => array('decisions'),
       'path' => drupal_get_path('module', 'treaty'),
     ),
+    'treaty_protocols' => array(
+      'render element' => 'element',
+      'template' => 'templates/treaty-protocols',
+      'variables' => array('protocols'),
+      'path' => drupal_get_path('module', 'treaty'),
+    ),
     'treaty_modal' => array(
       'path' => drupal_get_path('module', 'treaty'),
       'render element' => 'element',
@@ -109,6 +115,11 @@ function treaty_node_view($node, $view_mode, $langcode) {
         break;
 
       case 'protocols':
+        module_load_include('inc', 'treaty', 'treaty.api');
+        $data = treaty_get_child_protocols($node->nid);
+        $node->content['context'] = array(
+          '#type' => 'item', '#weight' => 10, '#markup' => theme('treaty_protocols', array('protocols' => $data)),
+        );
         break;
 
       case 'decisions':
