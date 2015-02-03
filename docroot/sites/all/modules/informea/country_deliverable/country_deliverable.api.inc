@@ -197,13 +197,22 @@ function country_deliverable_render_reports($rows, $field) {
       $date = $nrw->field_report_submission_date->value();
       $date = !empty($date) ? format_date($date, 'short') : '';
       $files_field = field_view_field('node', $report, 'field_files', 'full');
-      $table_rows[] = array($report->title, $date, render($files_field));
+      $table_rows[] = array(
+        $report->title,
+        array('data' => $date, 'class' => 'text-center'),
+        array('data' => render($files_field), 'class' => 'text-center')
+      );
     }
     $elements[$id] = array(
       'header' => $rw->label(),
       'body' => theme('table', array(
+        'attributes' => array('class' => 'table-no-striping table-hover'),
         'rows' => $table_rows,
-        'header' => array(t('Title'), array('data' => t('Submission date'), 'class' => array('text-nowrap')), t('Files'))
+        'header' => array(
+          t('Title'),
+          array('data' => t('Submission date'), 'class' => array('col-sm-2 text-center text-nowrap')),
+          array('data' => t('Files'), 'class' => array('col-sm-2 text-center'))
+        )
       )),
     );
   }

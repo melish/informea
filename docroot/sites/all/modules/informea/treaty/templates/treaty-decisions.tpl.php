@@ -9,7 +9,7 @@
     <?php foreach ($decisions as $decision): ?>
       <?php $wrapper = entity_metadata_wrapper('node', $decision); ?>
       <tr>
-        <td><?php print $wrapper->field_decision_number->value(); ?></td>
+        <td class="col-sm-1 text-center"><?php print $wrapper->field_decision_number->value(); ?></td>
         <td>
           <?php
           print l($wrapper->label(), 'node/' . $wrapper->getIdentifier(), array(
