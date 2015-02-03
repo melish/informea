@@ -44,4 +44,8 @@ jQuery(document).ready(function ($) {
   $('.panel-heading > .actions a').click(function (event) {
     event.stopPropagation();
   });
+
+  $('#modal-decision').on('hidden.bs.modal', function (event) {
+    $(event.target).removeData('bs.modal');
+  });
 });
