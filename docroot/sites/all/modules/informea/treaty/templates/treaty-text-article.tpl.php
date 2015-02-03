@@ -11,7 +11,7 @@
   $expanded = isset($_GET['article']) ? $_GET['article'] == $article->nid : FALSE;
   ?>
   <div class="panel <?php print $expanded ? 'panel-warning' : 'panel-default'; ?>">
-    <div class="panel-heading smallipop<?php print $expanded ? '' : ' collapsed' ;?>" role="tab" id="heading-<?php echo $article->nid; ?>" data-toggle="collapse" data-parent="#treaty-text" data-target="#article-<?php echo $article->nid; ?>" aria-expanded="<?php print $expanded ? 'true' : 'false' ;?>" aria-controls="article-<?php echo $article->nid; ?>">
+    <div class="panel-heading smallipop<?php print $expanded ? '' : ' collapsed' ;?>" role="tab" id="heading-<?php echo $article->nid; ?>" data-toggle="collapse" data-target="#article-<?php echo $article->nid; ?>" aria-expanded="<?php print $expanded ? 'true' : 'false' ;?>" aria-controls="article-<?php echo $article->nid; ?>">
       <ul class="list-inline actions">
         <?php if (!empty($tags) && is_array($tags)): ?>
           <li>

@@ -135,7 +135,10 @@ function treaty_node_view($node, $view_mode, $langcode) {
         }
         $node->content['context'] = array(
           '#markup' => theme('informea_bootstrap_collapse', array(
-            'id' => 'decisions', 'elements' => $elements, 'no-panel-body' => TRUE
+            'elements' => $elements,
+            'id' => 'decisions',
+            'no-data-parent' => TRUE,
+            'no-panel-body' => TRUE
           )) . theme('treaty_modal'),
           '#type' => 'item',
           '#weight' => 10

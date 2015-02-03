@@ -1,6 +1,7 @@
 <?php
 $id = isset($variables['id']) ? $variables['id'] : 'accordion';
 $elements = $variables['elements'];
+$add_data_parent = empty($variables['no-data-parent']);
 ?>
 <?php if (!empty($elements)): ?>
   <div class="panel-group" id="<?php print $id; ?>" role="tablist" aria-multiselectable="true">
@@ -18,7 +19,7 @@ $elements = $variables['elements'];
     }
   ?>
   <div class="panel panel-default">
-    <div id="heading-<?php print $eid; ?>" class="panel-heading collapsed" data-toggle="collapse" data-parent="#<?php print $id; ?>" data-target="#collapse-<?php print $eid; ?>" aria-expanded="false" aria-controls="collapse-<?php print $eid; ?>" role="tab">
+    <div id="heading-<?php print $eid; ?>" class="panel-heading collapsed" data-toggle="collapse"<?php print $add_data_parent ? ' data-parent="#' . $id . '"' : ''; ?> data-target="#collapse-<?php print $eid; ?>" aria-expanded="false" aria-controls="collapse-<?php print $eid; ?>" role="tab">
       <h4 class="panel-title"><?php print $element['header']; ?></h4>
     </div>
     <div id="collapse-<?php print $eid; ?>" class="panel-collapse collapse<?php print $in; ?>" role="tabpanel" aria-labelledby="heading-<?php print $eid; ?>" aria-expanded="false">

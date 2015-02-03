@@ -96,7 +96,7 @@ function leo_theme_theme() {
     'informea_bootstrap_collapse' => array(
       'render element' => 'element',
       'template' => 'templates/informea-bootstrap-collapse',
-      'variables' => array('id', 'elements', 'no-panel-body'),
+      'variables' => array('elements', 'id', 'no-data-parent', 'no-panel-body'),
       'path' => drupal_get_path('theme', 'leo_theme'),
     ),
     'informea_bootstrap_tabs' => array(
