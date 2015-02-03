@@ -232,8 +232,8 @@ function treaty_page_alter(&$page) {
           case 'protocols':
           case 'decisions':
           case 'parties':
-          case 'reports':
-          case 'plans':
+          case 'national-reports':
+          case 'action-plans':
             show($node['context']);
         }
       }
