@@ -203,8 +203,22 @@ function country_deliverable_render_reports($rows, $field) {
         array('data' => render($files_field), 'class' => 'text-center')
       );
     }
+    switch ($field) {
+      case 'national_reports':
+      case 'action_plans':
+        $img = theme('image', array(
+          'path' => drupal_get_path('theme', 'leo_theme') . '/img/flags/flag-' . strtolower($rw->field_country_iso2->value()) . '.png',
+          'height' => '24'
+        ));
+        $header = $img . ' ' . $rw->label();
+        break;
+
+      default:
+        $header = $rw->label();
+        break;
+    }
     $elements[$id] = array(
-      'header' => $rw->label(),
+      'header' => $header,
       'body' => theme('table', array(
         'attributes' => array('class' => 'table-no-striping table-hover'),
         'rows' => $table_rows,
