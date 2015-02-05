@@ -259,10 +259,6 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
       'summary' => array(
         'title' => t('Summary')
       ),
-      'rod' => array(
-        'title' => t('Reporting obligations'),
-        'count' => treaty_count_reporting_obligations($node->nid)
-      ),
       'protocols' => array(
         'title' => t('Protocols'),
         'count' => treaty_count_child_protocols($node->nid)
