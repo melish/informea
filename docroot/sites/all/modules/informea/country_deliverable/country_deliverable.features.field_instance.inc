@@ -1184,6 +1184,56 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-reporting_obligation_cycle-field_decision_paragraph'
+  $field_instances['node-reporting_obligation_cycle-field_decision_paragraph'] = array(
+    'bundle' => 'reporting_obligation_cycle',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 10,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_decision_paragraph',
+    'label' => 'Decision paragraph',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 12,
+    ),
+  );
+
   // Exported field_instance: 'node-reporting_obligation_cycle-field_official_order'
   $field_instances['node-reporting_obligation_cycle-field_official_order'] = array(
     'bundle' => 'reporting_obligation_cycle',
@@ -1560,6 +1610,7 @@ function country_deliverable_field_default_field_instances() {
   t('Country');
   t('Cycle');
   t('Decision');
+  t('Decision paragraph');
   t('Description');
   t('Document URL');
   t('Files');
