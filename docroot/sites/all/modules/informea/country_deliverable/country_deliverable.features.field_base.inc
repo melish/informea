@@ -322,40 +322,6 @@ function country_deliverable_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_reporting_format_file'
-  $field_bases['field_reporting_format_file'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_reporting_format_file',
-    'foreign keys' => array(
-      'fid' => array(
-        'columns' => array(
-          'fid' => 'fid',
-        ),
-        'table' => 'file_managed',
-      ),
-    ),
-    'indexes' => array(
-      'fid' => array(
-        0 => 'fid',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'file',
-    'settings' => array(
-      'display_default' => 1,
-      'display_field' => 1,
-      'entity_translation_sync' => array(
-        0 => 'fid',
-      ),
-      'uri_scheme' => 'public',
-    ),
-    'translatable' => 0,
-    'type' => 'file',
-  );
-
   // Exported field_base: 'field_reporting_frequency'
   $field_bases['field_reporting_frequency'] = array(
     'active' => 1,

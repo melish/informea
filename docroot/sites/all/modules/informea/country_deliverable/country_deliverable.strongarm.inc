@@ -406,7 +406,7 @@ function country_deliverable_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '1',
+          'weight' => '0',
         ),
         'language' => array(
           'weight' => '0',

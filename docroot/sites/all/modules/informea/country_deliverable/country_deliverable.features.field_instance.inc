@@ -1030,7 +1030,7 @@ function country_deliverable_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 4,
+      'weight' => 3,
     ),
   );
 
@@ -1080,7 +1080,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
@@ -1130,7 +1130,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 8,
+      'weight' => 6,
     ),
   );
 
@@ -1180,7 +1180,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 9,
+      'weight' => 7,
     ),
   );
 
@@ -1230,6 +1230,55 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-reporting_obligation_cycle-field_files'
+  $field_instances['node-reporting_obligation_cycle-field_files'] = array(
+    'bundle' => 'reporting_obligation_cycle',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 11,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_files',
+    'label' => 'Reporting format document',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'entity_translation_sync' => 0,
+      'file_directory' => 'rod/formats',
+      'file_extensions' => 'txt pdf doc docx xls xlsx',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'file',
+      'settings' => array(
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
       'weight' => 12,
     ),
   );
@@ -1277,7 +1326,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 
@@ -1328,55 +1377,6 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-reporting_obligation_cycle-field_reporting_format_file'
-  $field_instances['node-reporting_obligation_cycle-field_reporting_format_file'] = array(
-    'bundle' => 'reporting_obligation_cycle',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'ajax' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'file',
-        'settings' => array(),
-        'type' => 'file_default',
-        'weight' => 9,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_reporting_format_file',
-    'label' => 'Reporting format',
-    'required' => 0,
-    'settings' => array(
-      'description_field' => 1,
-      'entity_translation_sync' => FALSE,
-      'file_directory' => 'reporting-obligations/formats',
-      'file_extensions' => 'txt doc rtf pdf docx xsl xslx',
-      'max_filesize' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'file',
-      'settings' => array(
-        'progress_indicator' => 'throbber',
-      ),
-      'type' => 'file_generic',
-      'weight' => 11,
-    ),
-  );
-
   // Exported field_instance: 'node-reporting_obligation_cycle-field_reporting_frequency'
   $field_instances['node-reporting_obligation_cycle-field_reporting_frequency'] = array(
     'bundle' => 'reporting_obligation_cycle',
@@ -1418,7 +1418,7 @@ function country_deliverable_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 7,
+      'weight' => 9,
     ),
   );
 
@@ -1473,7 +1473,7 @@ function country_deliverable_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 5,
+      'weight' => 4,
     ),
   );
 
@@ -1522,7 +1522,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 2,
+      'weight' => 1,
     ),
   );
 
@@ -1618,7 +1618,7 @@ function country_deliverable_field_default_field_instances() {
   t('Name');
   t('Official order');
   t('Original ID');
-  t('Reporting format');
+  t('Reporting format document');
   t('Reporting frequency');
   t('Submission date');
   t('Title');
