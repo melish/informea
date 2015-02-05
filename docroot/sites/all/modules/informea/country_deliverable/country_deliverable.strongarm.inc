@@ -13,6 +13,13 @@ function country_deliverable_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'additional_settings__active_tab_reporting_obligation_cycle';
+  $strongarm->value = 'edit-submission';
+  $export['additional_settings__active_tab_reporting_obligation_cycle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_action_plan';
   $strongarm->value = '1';
   $export['comment_action_plan'] = $strongarm;
@@ -34,6 +41,13 @@ function country_deliverable_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_reporting_obligation_cycle';
+  $strongarm->value = 0;
+  $export['comment_anonymous_reporting_obligation_cycle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_default_mode_action_plan';
   $strongarm->value = 1;
   $export['comment_default_mode_action_plan'] = $strongarm;
@@ -44,6 +58,13 @@ function country_deliverable_strongarm() {
   $strongarm->name = 'comment_default_mode_national_report';
   $strongarm->value = 1;
   $export['comment_default_mode_national_report'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_reporting_obligation_cycle';
+  $strongarm->value = 1;
+  $export['comment_default_mode_reporting_obligation_cycle'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -62,6 +83,13 @@ function country_deliverable_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_reporting_obligation_cycle';
+  $strongarm->value = '50';
+  $export['comment_default_per_page_reporting_obligation_cycle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_form_location_action_plan';
   $strongarm->value = 1;
   $export['comment_form_location_action_plan'] = $strongarm;
@@ -72,6 +100,13 @@ function country_deliverable_strongarm() {
   $strongarm->name = 'comment_form_location_national_report';
   $strongarm->value = 1;
   $export['comment_form_location_national_report'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_reporting_obligation_cycle';
+  $strongarm->value = 1;
+  $export['comment_form_location_reporting_obligation_cycle'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -97,6 +132,20 @@ function country_deliverable_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_reporting_obligation_cycle';
+  $strongarm->value = '1';
+  $export['comment_preview_reporting_obligation_cycle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_reporting_obligation_cycle';
+  $strongarm->value = '1';
+  $export['comment_reporting_obligation_cycle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_subject_field_action_plan';
   $strongarm->value = 1;
   $export['comment_subject_field_action_plan'] = $strongarm;
@@ -107,6 +156,34 @@ function country_deliverable_strongarm() {
   $strongarm->name = 'comment_subject_field_national_report';
   $strongarm->value = 1;
   $export['comment_subject_field_national_report'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_reporting_obligation_cycle';
+  $strongarm->value = 1;
+  $export['comment_subject_field_reporting_obligation_cycle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_enable_revisions_page_node_reporting_obligation_cycle';
+  $strongarm->value = 1;
+  $export['diff_enable_revisions_page_node_reporting_obligation_cycle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_show_preview_changes_node_reporting_obligation_cycle';
+  $strongarm->value = 0;
+  $export['diff_show_preview_changes_node_reporting_obligation_cycle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_view_mode_preview_node_reporting_obligation_cycle';
+  $strongarm->value = 'full';
+  $export['diff_view_mode_preview_node_reporting_obligation_cycle'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -125,6 +202,13 @@ function country_deliverable_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_comment_filter_reporting_obligation_cycle';
+  $strongarm->value = 0;
+  $export['entity_translation_comment_filter_reporting_obligation_cycle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_hide_translation_links_action_plan';
   $strongarm->value = 1;
   $export['entity_translation_hide_translation_links_action_plan'] = $strongarm;
@@ -139,6 +223,13 @@ function country_deliverable_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_hide_translation_links_reporting_obligation_cycle';
+  $strongarm->value = 1;
+  $export['entity_translation_hide_translation_links_reporting_obligation_cycle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_node_metadata_action_plan';
   $strongarm->value = '0';
   $export['entity_translation_node_metadata_action_plan'] = $strongarm;
@@ -149,6 +240,13 @@ function country_deliverable_strongarm() {
   $strongarm->name = 'entity_translation_node_metadata_national_report';
   $strongarm->value = '0';
   $export['entity_translation_node_metadata_national_report'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_node_metadata_reporting_obligation_cycle';
+  $strongarm->value = '0';
+  $export['entity_translation_node_metadata_reporting_obligation_cycle'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -179,6 +277,19 @@ function country_deliverable_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_node__reporting_obligation_cycle';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_node__reporting_obligation_cycle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_taxonomy_term__action_plan_type';
   $strongarm->value = array(
     'default_language' => 'xx-et-default',
@@ -188,6 +299,13 @@ function country_deliverable_strongarm() {
     'shared_fields_original_only' => 1,
   );
   $export['entity_translation_settings_taxonomy_term__action_plan_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_comment__comment_node_reporting_obligation_cycle';
+  $strongarm->value = array();
+  $export['field_bundle_settings_comment__comment_node_reporting_obligation_cycle'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -282,6 +400,40 @@ function country_deliverable_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__reporting_obligation_cycle';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'path' => array(
+          'weight' => '1',
+        ),
+        'language' => array(
+          'weight' => '0',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_node__reporting_obligation_cycle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_extended_reporting_obligation_cycle';
+  $strongarm->value = 1;
+  $export['i18n_node_extended_reporting_obligation_cycle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_options_reporting_obligation_cycle';
+  $strongarm->value = array();
+  $export['i18n_node_options_reporting_obligation_cycle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'language_content_type_action_plan';
   $strongarm->value = '4';
   $export['language_content_type_action_plan'] = $strongarm;
@@ -292,6 +444,13 @@ function country_deliverable_strongarm() {
   $strongarm->name = 'language_content_type_national_report';
   $strongarm->value = '4';
   $export['language_content_type_national_report'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_reporting_obligation_cycle';
+  $strongarm->value = '4';
+  $export['language_content_type_reporting_obligation_cycle'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -314,6 +473,15 @@ function country_deliverable_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_reporting_obligation_cycle';
+  $strongarm->value = array(
+    0 => 'main-menu',
+  );
+  $export['menu_options_reporting_obligation_cycle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_parent_action_plan';
   $strongarm->value = 'main-menu:0';
   $export['menu_parent_action_plan'] = $strongarm;
@@ -324,6 +492,13 @@ function country_deliverable_strongarm() {
   $strongarm->name = 'menu_parent_national_report';
   $strongarm->value = 'main-menu:0';
   $export['menu_parent_national_report'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_reporting_obligation_cycle';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_reporting_obligation_cycle'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -346,6 +521,15 @@ function country_deliverable_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_reporting_obligation_cycle';
+  $strongarm->value = array(
+    0 => 'status',
+  );
+  $export['node_options_reporting_obligation_cycle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_action_plan';
   $strongarm->value = '0';
   $export['node_preview_action_plan'] = $strongarm;
@@ -360,6 +544,13 @@ function country_deliverable_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_reporting_obligation_cycle';
+  $strongarm->value = '1';
+  $export['node_preview_reporting_obligation_cycle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_action_plan';
   $strongarm->value = 0;
   $export['node_submitted_action_plan'] = $strongarm;
@@ -370,6 +561,13 @@ function country_deliverable_strongarm() {
   $strongarm->name = 'node_submitted_national_report';
   $strongarm->value = 0;
   $export['node_submitted_national_report'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_reporting_obligation_cycle';
+  $strongarm->value = 0;
+  $export['node_submitted_reporting_obligation_cycle'] = $strongarm;
 
   return $export;
 }
