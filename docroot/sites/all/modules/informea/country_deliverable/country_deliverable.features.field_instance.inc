@@ -1034,106 +1034,6 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-reporting_obligation_cycle-field_article'
-  $field_instances['node-reporting_obligation_cycle-field_article'] = array(
-    'bundle' => 'reporting_obligation_cycle',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'ajax' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 3,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_article',
-    'label' => 'Article',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
-      ),
-      'type' => 'entityreference_autocomplete',
-      'weight' => 5,
-    ),
-  );
-
-  // Exported field_instance: 'node-reporting_obligation_cycle-field_article_paragraph'
-  $field_instances['node-reporting_obligation_cycle-field_article_paragraph'] = array(
-    'bundle' => 'reporting_obligation_cycle',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'ajax' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 5,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_article_paragraph',
-    'label' => 'Article paragraph',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
-      ),
-      'type' => 'entityreference_autocomplete',
-      'weight' => 6,
-    ),
-  );
-
   // Exported field_instance: 'node-reporting_obligation_cycle-field_decision'
   $field_instances['node-reporting_obligation_cycle-field_decision'] = array(
     'bundle' => 'reporting_obligation_cycle',
@@ -1148,10 +1048,10 @@ function country_deliverable_field_default_field_instances() {
         'weight' => 0,
       ),
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'link' => 1,
         ),
         'type' => 'entityreference_label',
         'weight' => 7,
@@ -1201,7 +1101,7 @@ function country_deliverable_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'link' => 1,
         ),
         'type' => 'entityreference_label',
         'weight' => 10,
@@ -1297,10 +1197,9 @@ function country_deliverable_field_default_field_instances() {
         'weight' => 0,
       ),
       'default' => array(
-        'label' => 'above',
-        'module' => 'text',
+        'label' => 'inline',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'hidden',
         'weight' => 6,
       ),
       'teaser' => array(
@@ -1330,53 +1229,6 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-reporting_obligation_cycle-field_reporting_cycle'
-  $field_instances['node-reporting_obligation_cycle-field_reporting_cycle'] = array(
-    'bundle' => 'reporting_obligation_cycle',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'ajax' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 8,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_reporting_cycle',
-    'label' => 'Cycle',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 10,
-    ),
-  );
-
   // Exported field_instance: 'node-reporting_obligation_cycle-field_reporting_frequency'
   $field_instances['node-reporting_obligation_cycle-field_reporting_frequency'] = array(
     'bundle' => 'reporting_obligation_cycle',
@@ -1391,7 +1243,7 @@ function country_deliverable_field_default_field_instances() {
         'weight' => 0,
       ),
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
@@ -1436,10 +1288,10 @@ function country_deliverable_field_default_field_instances() {
         'weight' => 0,
       ),
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'link' => 1,
         ),
         'type' => 'entityreference_label',
         'weight' => 2,
@@ -1604,11 +1456,8 @@ function country_deliverable_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Article');
-  t('Article paragraph');
   t('Body');
   t('Country');
-  t('Cycle');
   t('Decision');
   t('Decision paragraph');
   t('Description');
