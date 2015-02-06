@@ -14,7 +14,7 @@ function decision_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'additional_settings__active_tab_decision_paragraph';
-  $strongarm->value = 'edit-submission';
+  $strongarm->value = 'edit-workflow';
   $export['additional_settings__active_tab_decision_paragraph'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -251,7 +251,7 @@ function decision_strongarm() {
         'custom_settings' => TRUE,
       ),
       'full' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'rss' => array(
         'custom_settings' => FALSE,
@@ -267,6 +267,9 @@ function decision_strongarm() {
       ),
       'token' => array(
         'custom_settings' => FALSE,
+      ),
+      'ajax' => array(
+        'custom_settings' => TRUE,
       ),
     ),
     'extra_fields' => array(
@@ -285,6 +288,20 @@ function decision_strongarm() {
     ),
   );
   $export['field_bundle_settings_node__decision_paragraph'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_extended_decision_paragraph';
+  $strongarm->value = 1;
+  $export['i18n_node_extended_decision_paragraph'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_options_decision_paragraph';
+  $strongarm->value = array();
+  $export['i18n_node_options_decision_paragraph'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
