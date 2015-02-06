@@ -186,51 +186,14 @@ function country_deliverable_action_plans_group_by_country($id_treaty) {
   return array();
 }
 
-
-function country_deliverable_render_reports($rows, $field) {
-  $elements = array();
-  foreach ($rows as $id => $row) {
-    $rw = entity_metadata_wrapper('node', $row);
-    $table_rows = array();
-    foreach($row->$field as $report) {
-      $nrw = entity_metadata_wrapper('node', $report);
-      $date = $nrw->field_report_submission_date->value();
-      $date = !empty($date) ? format_date($date, 'short') : '';
-      $files_field = field_view_field('node', $report, 'field_files', 'full');
-      $table_rows[] = array(
-        $report->title,
-        array('data' => $date, 'class' => 'text-center'),
-        array('data' => render($files_field), 'class' => 'text-center')
-      );
-    }
-    switch ($field) {
-      case 'national_reports':
-      case 'action_plans':
-        $img = theme('image', array(
-          'path' => drupal_get_path('theme', 'leo_theme') . '/img/flags/flag-' . strtolower($rw->field_country_iso2->value()) . '.png',
-          'height' => '24'
-        ));
-        $header = $img . ' ' . $rw->label();
-        break;
-
-      default:
-        $header = $rw->label();
-        break;
-    }
-    $elements[$id] = array(
-      'header' => $header,
-      'body' => theme('table', array(
-        'attributes' => array('class' => 'table-no-striping table-hover'),
-        'rows' => $table_rows,
-        'header' => array(
-          t('Title'),
-          array('data' => t('Submission date'), 'class' => array('col-sm-2 text-center text-nowrap')),
-          array('data' => t('Files'), 'class' => array('col-sm-2 text-center'))
-        )
-      )),
-    );
+function country_deliverable_get_reporting_obligation_cycles($id_treaty) {
+  $query  = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'reporting_obligation_cycle')
+    ->fieldCondition('field_treaty', 'target_id', $id_treaty)
+    ->execute();
+  if (isset($result['node'])) {
+    return node_load_multiple(array_keys($result['node']));
   }
-  return array(
-    '#type' => 'item', '#weight' => 10, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'decisions', 'elements' => $elements, 'no-panel-body' => TRUE)),
-  );
+  return array();
 }

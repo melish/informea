@@ -201,14 +201,36 @@ function treaty_node_view($node, $view_mode, $langcode) {
 
       case 'national-reports':
         module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
+        module_load_include('inc', 'country_deliverable');
+        $render = array();
+        // Reporting obligations
+        $rod = country_deliverable_get_reporting_obligation_cycles($node->nid);
+        $rod_rendered = country_deliverable_render_rod($node->nid, $rod);
+        if (!empty($rod_rendered)) {
+          $render[] = $rod_rendered;
+        }
+        // National reports
         $rows = country_deliverable_national_reports_group_by_country($node->nid);
-        $node->content['context'] = country_deliverable_render_reports($rows, 'national_reports');
+        if (!empty($rows)) {
+          if (!empty($rod)) {
+            $render[] = array(
+              '#type' => 'item',
+              '#weight' => 5,
+              '#markup' => t('National reports'),
+              '#prefix' => '<h2>',
+              '#suffix' => '</h2>'
+            );
+            $render[] = country_deliverable_render_national_reports($rows);
+          }
+        }
+        $node->content['context'] = $render;
         break;
 
       case 'action-plans':
         module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
+        module_load_include('inc', 'country_deliverable');
         $rows = country_deliverable_action_plans_group_by_country($node->nid);
-        $node->content['context'] = country_deliverable_render_reports($rows, 'action_plans');
+        $node->content['context'] = country_deliverable_render_action_plans($rows);
         break;
     }
   }
