@@ -5,39 +5,48 @@
  */
 ?>
 <?php if (count($protocols)): ?>
-<ul class="media-list">
-<?php foreach ($protocols as $id => $treaty): ?>
-<?php $w = entity_metadata_wrapper('node', $treaty); ?>
-  <li class="media">
-    <div class="media">
-      <div class="media-left">
-        <a href="<?php print(url('node/' . $treaty->nid)) ;?>">
-          <img class="media-object" src="http://placehold.it/64x64" alt="<?php print $w->field_official_name->value() ;?>">
-        </a>
-      </div>
-      <div class="media-body">
-        <h4 class="media-heading"><?php print $w->label(); ?></h4>
-        <?php if (!empty($treaty->protocols)): ?>
-        <?php
-          $protocol = current($treaty->protocols);
-          $pw = entity_metadata_wrapper('node', $protocol->nid);
-        ?>
-          <div class="media">
-            <div class="media-left">
-              <a href="<?php print(url('node/' . $protocol->nid)) ;?>">
-                <img class="media-object" src="http://placehold.it/64x64" alt="<?php print $pw->field_official_name->value() ;?>">
-              </a>
-            </div>
-            <div class="media-body">
-              <h4 class="media-heading"><?php print $pw->label(); ?></h4>
-              <?php print $pw->label(); ?>
-            </div>
-          </div> <!-- .media -->
-
-        <?php endif; ?>
-      </div>
-    </div> <!-- .media -->
-  </li>
-<?php endforeach; ?>
-</ul> <!-- .media-list -->
+  <ul class="media-list">
+    <?php foreach ($protocols as $id => $treaty): ?>
+      <?php $w = entity_metadata_wrapper('node', $treaty); ?>
+      <li class="media">
+        <div class="media-left">
+          <a href="<?php print(url('node/' . $treaty->nid)) ;?>">
+            <?php
+            print theme('image', array(
+              'path' => $w->field_logo->value() ? $w->field_logo->file->url->value() : 'http://placehold.it/64x64',
+              'alt' => $w->field_official_name->value(),
+              'attributes' => array('class' => 'media-object')
+            ));
+            ?>
+          </a>
+        </div><!-- .media-left -->
+        <div class="media-body">
+          <h4 class="media-heading"><?php print $w->label(); ?></h4>
+          <?php if (!empty($treaty->protocols)): ?>
+            <?php
+            $protocol = current($treaty->protocols);
+            $pw = entity_metadata_wrapper('node', $protocol->nid);
+            ?>
+            <div class="media">
+              <div class="media-left">
+                <a href="<?php print(url('node/' . $protocol->nid)) ;?>">
+                  <?php
+                  print theme('image', array(
+                    'path' => $pw->field_logo->value() ? $pw->field_logo->file->url->value() : 'http://placehold.it/64x64',
+                    'alt' => $pw->field_official_name->value(),
+                    'attributes' => array('class' => 'media-object')
+                  ));
+                  ?>
+                </a>
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading"><?php print $pw->label(); ?></h4>
+                <?php print $pw->label(); ?>
+              </div><!-- .media-body -->
+            </div><!-- .media -->
+          <?php endif; ?>
+        </div><!-- .media-body -->
+      </li><!-- .media -->
+    <?php endforeach; ?>
+  </ul><!-- .media-list -->
 <?php endif; ?>
