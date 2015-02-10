@@ -21,7 +21,7 @@
           </a>
         </div><!-- .media-left -->
         <div class="media-body">
-          <h4 class="media-heading"><?php print $w->label(); ?></h4>
+          <h4 class="media-heading"><?php print l($w->label(), 'node/' . $treaty->nid); ?></h4>
           <?php if (!empty($treaty->protocols)): ?>
             <?php
             $protocol = current($treaty->protocols);
@@ -40,8 +40,7 @@
                 </a>
               </div>
               <div class="media-body">
-                <h4 class="media-heading"><?php print $pw->label(); ?></h4>
-                <?php print $pw->label(); ?>
+                <h4 class="media-heading"><?php print l($pw->label(), 'node/' . $protocol->nid); ?></h4>
               </div><!-- .media-body -->
             </div><!-- .media -->
           <?php endif; ?>
