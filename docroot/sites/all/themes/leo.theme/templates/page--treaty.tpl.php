@@ -28,7 +28,10 @@
     <div class="col-sm-9">
       <?php print render($title_prefix); ?>
       <?php if ($title): ?>
-        <h1><?php print $title; ?></h1>
+        <h1>
+          <?php print theme('image', array('path' => $wrapper->field_logo->file->url->value(), 'attributes' => array('class' => 'img-thumbnail'))); ?>
+          <?php print $title; ?>
+        </h1>
       <?php endif; ?>
       <?php print render($title_suffix); ?>
     </div><!-- .col-sm-9 -->
