@@ -127,13 +127,25 @@ function country_get_countries() {
 }
 
 function country_get_countries_select_options() {
-  $nodes = country_get_countries();
-  $countries = array();
-  foreach ($nodes as $nid => $node) {
-    $wrapper = entity_metadata_wrapper('node', $node);
-    $countries[$wrapper->field_country_iso2->value()] = $wrapper->title_field->value();
+  $ret = array();
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'country')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->fieldOrderBy('title_field', 'value')
+    ->execute();
+  if (isset($result['node'])) {
+    $rows = $result['node'];
+    $fields = field_info_instances('node', 'country');
+    field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_country_iso2']['field_id']));
+    field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['title_field']['field_id']));
+    foreach ($rows as $nid => $node) {
+      $label = field_get_items('node', $node, 'title_field');
+      $label = isset($label[0]['value']) ? $label[0]['value'] : $node->title;
+      $ret[$node->field_country_iso2[LANGUAGE_NONE][0]['value']] = $label;
+    }
   }
-  return $countries;
+  return $ret;
 }
 
 function country_get_legislation_statistics($id_country = NULL, $type = 'legislation') {

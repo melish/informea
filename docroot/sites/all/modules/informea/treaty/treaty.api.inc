@@ -102,13 +102,25 @@ function treaty_get_treaties() {
 }
 
 function treaty_get_treaties_as_select_options() {
-  $nodes = treaty_get_treaties();
-  $rows = array();
-  foreach ($nodes as $nid => $node) {
-    $wrapper = entity_metadata_wrapper('node', $nid);
-    $rows[$wrapper->field_odata_identifier->value()] = $wrapper->title_field->value();
+  $ret = array();
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'treaty')
+    ->fieldCondition('field_odata_identifier', 'value', NULL, 'IS NOT NULL')
+    ->fieldOrderBy('title_field', 'value')
+    ->execute();
+  if (!empty($result['node'])) {
+    $rows = $result['node'];
+    $fields = field_info_instances('node', 'treaty');
+    field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['title_field']['field_id']));
+    field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_odata_identifier']['field_id']));
+    foreach ($rows as $nid => $node) {
+      $label = field_get_items('node', $node, 'title_field');
+      $label = isset($label[0]['value']) ? $label[0]['value'] : $node->title;
+      $ret[$node->field_odata_identifier[LANGUAGE_NONE][0]['value']] = $label;
+    }
   }
-  return $rows;
+  return $ret;
 }
 
 function treaty_get_treaty_text($id_treaty) {
