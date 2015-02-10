@@ -31,8 +31,9 @@ function decision_get_treaty_decisions_group_by_meeting($id_treaty) {
     $rows = $result['node'];
     $fields = field_info_instances('node', 'decision');
     field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_meeting']['field_id']));
+    field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_decision_number']['field_id']));
+    field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_decision_status']['field_id']));
     field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['title_field']['field_id']));
-
     foreach ($rows as $row) {
       $meeting_id = $row->field_meeting[LANGUAGE_NONE][0]['target_id'];
       $ret[$meeting_id] = node_load($meeting_id);
