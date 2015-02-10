@@ -21,7 +21,11 @@
           </a>
         </div><!-- .media-left -->
         <div class="media-body">
-          <h4 class="media-heading"><?php print l($w->label(), 'node/' . $treaty->nid); ?></h4>
+          <h4 class="media-heading">
+            <?php print l($w->field_official_name->value(), 'node/' . $treaty->nid); ?>
+            <br>
+            <small><?php print $w->label(); ?></small>
+          </h4>
           <?php if (!empty($treaty->protocols)): ?>
             <?php
             $protocol = current($treaty->protocols);
@@ -38,9 +42,13 @@
                   ));
                   ?>
                 </a>
-              </div>
+              </div><!-- .media-left -->
               <div class="media-body">
-                <h4 class="media-heading"><?php print l($pw->label(), 'node/' . $protocol->nid); ?></h4>
+                <h4 class="media-heading">
+                  <?php print l($pw->label(), 'node/' . $protocol->nid); ?>
+                  <br>
+                  <small><?php print $pw->label(); ?></small>
+                </h4>
               </div><!-- .media-body -->
             </div><!-- .media -->
           <?php endif; ?>
