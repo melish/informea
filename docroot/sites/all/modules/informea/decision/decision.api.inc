@@ -21,23 +21,27 @@ function decision_get_treaty_decisions($id_treaty) {
 }
 
 function decision_get_treaty_decisions_group_by_meeting($id_treaty) {
-  $rows = decision_get_treaty_decisions($id_treaty);
   $ret = array();
-  foreach ($rows as $row) {
-    $wrapper = entity_metadata_wrapper('node', $row);
-    $meeting = $wrapper->field_meeting->value();
-    $ret[$meeting->nid] = $meeting;
+  $query  = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'decision')
+    ->fieldCondition('field_treaty', 'target_id', $id_treaty)
+    ->execute();
+  if (!empty($result['node'])) {
+    $rows = $result['node'];
+    $fields = field_info_instances('node', 'decision');
+    field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_meeting']['field_id']));
+    field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['title_field']['field_id']));
+
+    foreach ($rows as $row) {
+      $meeting_id = $row->field_meeting[LANGUAGE_NONE][0]['target_id'];
+      $ret[$meeting_id] = node_load($meeting_id);
+    }
+    foreach ($rows as $row) {
+      $meeting_id = $row->field_meeting[LANGUAGE_NONE][0]['target_id'];
+      $meeting = $ret[$meeting_id];
+      $meeting->decisions[] = $row;
+    }
   }
-  foreach ($rows as $row) {
-    $wrapper = entity_metadata_wrapper('node', $row);
-    $m = $wrapper->field_meeting->value();
-    $meeting = $ret[$m->nid];
-    $meeting->decisions[] = $row;
-  }
-  uasort($ret, function($m1, $m2) {
-    $w1 = entity_metadata_wrapper('node', $m1);
-    $w2 = entity_metadata_wrapper('node', $m2);
-    return strtotime($w1->event_calendar_date->value()['value']) < strtotime($w2->event_calendar_date->value()['value']);
-  });
   return $ret;
 }
