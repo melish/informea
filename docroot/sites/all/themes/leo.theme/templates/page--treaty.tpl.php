@@ -29,7 +29,9 @@
       <?php print render($title_prefix); ?>
       <?php if ($title): ?>
         <h1>
-          <?php print theme('image', array('path' => $wrapper->field_logo->file->url->value(), 'attributes' => array('class' => 'img-thumbnail'))); ?>
+          <?php if ($wrapper->field_logo->value()): ?>
+            <?php print theme('image', array('path' => $wrapper->field_logo->file->url->value(), 'attributes' => array('class' => 'img-thumbnail'))); ?>
+          <?php endif; ?>
           <?php print $title; ?>
         </h1>
       <?php endif; ?>
