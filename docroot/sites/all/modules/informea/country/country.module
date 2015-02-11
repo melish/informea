@@ -116,15 +116,17 @@ function country_node_view($node, $view_mode, $langcode) {
         break;
 
       case 'national-reports':
+        module_load_include('inc', 'country_deliverable');
         module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
         $rows = country_deliverable_national_reports_group_by_treaty($node->nid);
-        $node->content['context'] = country_deliverable_render_reports($rows, 'national_reports');
+        $node->content['context'] = country_deliverable_render_national_reports($rows, 'national_reports');
         break;
 
       case 'action-plans':
+        module_load_include('inc', 'country_deliverable');
         module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
         $rows = country_deliverable_action_plans_group_by_treaty($node->nid);
-        $node->content['context'] = country_deliverable_render_reports($rows, 'action_plans');
+        $node->content['context'] = country_deliverable_render_action_plans($rows, 'action_plans');
         break;
 
       case 'court-decisions':
