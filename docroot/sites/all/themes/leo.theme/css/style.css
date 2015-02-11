@@ -564,7 +564,9 @@ a:focus .navicon-eur {
   content: "\e081";
 }
 
-.panel-group .panel-body {
+.panel-group .panel-body,
+.panel-group .panel-collapse > .table td:first-child,
+.panel-group .panel-collapse > .table th:first-child {
   padding-left: 36px;
 }
 
