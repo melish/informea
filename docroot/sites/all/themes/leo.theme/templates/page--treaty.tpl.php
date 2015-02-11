@@ -39,7 +39,7 @@
     </div><!-- .col-sm-9 -->
     <div class="col-sm-3">
       <form role="form">
-        <select class="form-control">
+        <select class="form-control" id="selector-treaty">
           <option value=""><?php print t('Select another treaty&hellip;'); ?></option>
           <?php foreach ($treaties as $odata_name => $treaty_name): ?>
             <option value="<?php print strtolower($odata_name); ?>"<?php print $wrapper->field_odata_identifier->value() == $odata_name ? ' selected' : ''; ?>><?php print $treaty_name ?></option>

@@ -37,7 +37,7 @@
     </div><!-- .col-sm-9 -->
     <div class="col-sm-3">
       <form role="form">
-        <select class="form-control">
+        <select class="form-control" id="selector-country">
           <option value=""><?php print t('Select another country&hellip;'); ?></option>
           <?php foreach ($countries as $iso2 => $country): ?>
             <option value="<?php print strtolower($iso2); ?>"<?php print $wrapper->field_country_iso2->value() == $iso2 ? ' selected' : ''; ?>><?php print $country; ?></option>
