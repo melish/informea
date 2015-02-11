@@ -564,6 +564,10 @@ a:focus .navicon-eur {
   content: "\e081";
 }
 
+.panel-group .panel-body {
+  padding-left: 36px;
+}
+
 /* Contextual variations */
 
 .panel-default > .panel-heading {
