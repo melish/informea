@@ -564,6 +564,16 @@ a:focus .navicon-eur {
   content: "\e081";
 }
 
+.panel-group .panel-body,
+.panel-group .panel-collapse > .table td:first-child,
+.panel-group .panel-collapse > .table th:first-child {
+  padding-left: 36px;
+}
+
+#decisions .panel-title:before {
+  top: 3px;
+}
+
 /* Contextual variations */
 
 .panel-default > .panel-heading {
@@ -692,4 +702,20 @@ a:focus .navicon-eur {
   margin-bottom: 0;
   margin-left: 0;
   padding: 5px 10px;
+}
+
+.modal-body > .field-name-body {
+  max-height: 320px;
+  overflow: auto;
+}
+
+.media-list > .media + .media,
+.media-list .media > .media-list {
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+}
+
+.media-list .media > .media-list {
+  margin-left: 70px;
+  margin-top: 15px;
 }

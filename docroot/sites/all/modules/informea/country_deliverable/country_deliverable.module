@@ -178,7 +178,7 @@ function country_deliverable_render_rod($id_treaty, $rows) {
       );
     }
     $ret[] = array(
-      '#type' => 'item', '#weight' => 30, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'reporting-cycles', 'elements' => $render_rows, 'no-panel-body' => TRUE)),
+      '#type' => 'item', '#weight' => 30, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'reporting-cycles', 'elements' => $render_rows)),
     );
   }
   return $ret;
