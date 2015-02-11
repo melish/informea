@@ -7,6 +7,7 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
    */
   public function __construct($arguments) {
     parent::__construct(MigrateGroup::getInstance('Ecolex'));
+    $this->dependencies = array('Treaties');
     $this->arguments   = $arguments;
     $this->description = 'Import Ecolex treaties from XML web service (files)';
     $data_dir          = $arguments['data_dir'];
@@ -53,6 +54,10 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
     $this->addFieldMapping('field_keywords:create_term')->defaultValue(TRUE);
     $this->addFieldMapping('field_keywords:ignore_case')->defaultValue(TRUE);
 
+    $this->addFieldMapping('field_informea_tags', 'mapped_informea_keywords');
+    $this->addFieldMapping('field_informea_tags:create_term')->defaultValue(FALSE);
+    $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
+
     // $this->addFieldMapping('', 'languageOfDocument');
     $this->addFieldMapping('field_place_of_adoption', 'placeOfAdoption');
     $this->addFieldMapping('field_depositary', 'depository');
@@ -87,6 +92,19 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
    * {@inheritdoc}
    */
   public function prepareRow($row) {
+    // mapped_informea_keywords
+    $row->mapped_informea_keywords = array();
+    $ecolex_terms = array();
+    if (!empty($row->keyword)) {
+      $ecolex_terms = array_merge($ecolex_terms, $row->keyword);
+    }
+    if (!empty($row->subject)) {
+      $ecolex_terms = array_merge($ecolex_terms, $row->subject);
+    }
+    if (!empty($ecolex_terms)) {
+      module_load_include('inc', 'informea', 'informea.api');
+      $row->mapped_informea_keywords = array_keys(informea_map_ecolex_terms($ecolex_terms));
+    }
     return TRUE;
   }
 
@@ -182,6 +200,7 @@ class EcolexTreatyMigrateSource extends MigrateSource {
       'keyword'             => '@todo: keyword',
       'region'              => '@todo: region',
       'ecolex_url'          => 'Web page on Ecolex website',
+      'mapped_informea_keywords'  => 'Mapped terms computed during import from subject & keyword fields',
     );
   }
 

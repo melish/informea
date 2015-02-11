@@ -82,7 +82,20 @@ function drush_informea_taxonomy_mappings() {
     foreach ($ecolex_terms as $i => $t) {
       $ecolex_term = taxonomy_get_term_by_name($t, 'keywords');
       $ecolex_term = current($ecolex_term);
-      $informea->field_keywords[LANGUAGE_NONE][$i]['tid'] = $ecolex_term->tid;
+      if ($ecolex_term = current($ecolex_term)) {
+        $t1 = taxonomy_term_load($ecolex_term);
+        echo sprintf("[ecolex keyword] %s => %s\n", $t1->name, $informea->name);
+        $informea->field_keywords[LANGUAGE_NONE][$i]['tid'] = $t1->tid;
+      }
+    }
+
+    foreach ($ecolex_terms as $i => $t) {
+      $ecolex_term = taxonomy_get_term_by_name($t, 'thesaurus_ecolex');
+      if ($ecolex_term = current($ecolex_term)) {
+        $t1 = taxonomy_term_load($ecolex_term);
+        echo sprintf("[ecolex subject] %s => %s\n", $t1->name, $informea->name);
+        $informea->field_thesaurus_map_ecolex[LANGUAGE_NONE][$i]['tid'] = $t1->tid;
+      }
     }
 
     $geg_terms = $mappings['geg'];
