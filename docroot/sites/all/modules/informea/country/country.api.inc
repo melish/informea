@@ -19,6 +19,94 @@ function hook_country_contextual_menu_alter(&$contextual_menu, $node) {
   $contextual_menu[] = $link;
 }
 
+function country_map_region($region) {
+  $mappings = array(
+    'africa' => 'Africa',
+    'alps' => 'Europe',
+    'amazonia' => 'Latin America and the Caribbean',
+    // 'americas' => 'Americas',
+    'andean states' => 'Latin America and the Caribbean',
+    // 'antarctica' => 'Antarctica',
+    'aral sea' => 'Asia and the Pacific',
+    // 'arctic' => 'Arctic',
+    'asia' => 'Asia and the Pacific',
+    'asia and the pacific' => 'Asia and the Pacific',
+    'atlantic ocean islands' => 'Asia and the Pacific',
+    // 'baltic and north sea' => 'Baltic and North Sea',
+    'benelux' => 'Europe',
+    'black sea' => 'Europe',
+    'caribbean' => 'Latin America and the Caribbean',
+    'caspian sea' => 'Asia and the Pacific',
+    'central africa' => 'Africa',
+    'central america' => 'Latin America and the Caribbean',
+    'central asia' => 'Asia and the Pacific',
+    'central europe' => 'Europe',
+    // 'cis (com. of indep. states)' => 'CIS (Com. of Indep. States)',
+    'east asian seas' => 'Asia and the Pacific',
+    'east pacific' => 'Asia and the Pacific',
+    'eastern africa' => 'Asia and the Pacific',
+    'eastern asia' => 'Asia and the Pacific',
+    'eastern europe' => 'Europe',
+    // 'eurasia' => 'Eurasia',
+    'europe' => 'Europe',
+    'european union countries' => 'Europe',
+    'global' => 'Global',
+    // 'guernsey (uk)' => 'Guernsey (UK)',
+    'indian ocean' => 'Asia and the Pacific',
+    // 'interregional' => 'interregional',
+    // 'interregional: western hemisphere' => 'Interregional: Western Hemisphere',
+    // 'latin america and the caribbean' => 'Latin America and the Caribbean',
+    // 'mediterranean' => 'Mediterranean',
+    // 'mediterranean sea' => 'Mediterranean Sea',
+    'melanesia' => 'Asia and the Pacific',
+    'micronesia' =>  'Asia and the Pacific',
+    'middle east' =>  'Asia and the Pacific',
+    'north america' => 'North America',
+    'north asia' => 'Asia and the Pacific',
+    'north atlantic' => 'North America',
+    'north east atlantic' => 'North America',
+    'north pacific' => 'Asia and the Pacific',
+    // 'north sea' => 'North Sea',
+    'north-east atlantic' => 'North America',
+    'north-east pacific' => 'Asia and the Pacific',
+    'north-west pacific' => 'Asia and the Pacific',
+    'northern africa' => 'Africa',
+    'northern europe' => 'Europe',
+    // 'oceania' => 'Oceania',
+    'persian gulf' => 'Asia and the Pacific',
+    'polynesia' => 'Asia and the Pacific',
+    // 'red sea & gulf of aden' => 'Red Sea & Gulf of Aden',
+    // 'regional' => 'Regional',
+    'sahel' => 'Africa',
+    'selected countries in africa' => 'Africa',
+    'selected countries in europe' => 'Europe',
+    'selected countries in latin america' => 'Latin America and the Caribbean',
+    // 'south america' => 'South America',
+    'south asian seas' => 'Asia and the Pacific',
+    // 'south atlantic' => 'South Atlantic',
+    // 'south east atlantic ocean' => 'South East Atlantic Ocean',
+    'south pacific' => 'Asia and the Pacific',
+    'south-eastern asia' => 'Asia and the Pacific',
+    'south-eastern pacific' => 'Asia and the Pacific',
+    'southeast asia' => 'Asia and the Pacific',
+    'southern africa' => 'Africa',
+    'southern asia' => 'Asia and the Pacific',
+    'southern europe' => 'Europe',
+    'west asia' => 'Asia and the Pacific',
+    'western africa' => 'Africa',
+    'western asia' => 'Asia and the Pacific',
+    'western europe' => 'Europe',
+  );
+  $l_region = strtolower($region);
+  if (array_key_exists($l_region, $mappings)) {
+    return $mappings[$l_region];
+  }
+  else {
+    drupal_set_message("Unable to map region: $region");
+    return FALSE;
+  }
+}
+
 function country_url_context($path) {
   $path = preg_replace('/([A-Za-z]{2})?\/?countries\/[A-Za-z]{2}\/?/', '', $path);
   $parts = explode('/', $path);

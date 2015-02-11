@@ -105,6 +105,16 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
       module_load_include('inc', 'informea', 'informea.api');
       $row->mapped_informea_keywords = array_keys(informea_map_ecolex_terms($ecolex_terms));
     }
+    if (!empty($row->region)) {
+      if (is_string($row->region)) {
+        $row->region = country_map_region($row->region);
+      }
+      else if (is_array($row->region)) {
+        foreach ($row->region as &$region) {
+          $region = country_map_region($region);
+        }
+      }
+    }
     return TRUE;
   }
 
