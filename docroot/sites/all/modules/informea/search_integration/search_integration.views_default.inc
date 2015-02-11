@@ -118,7 +118,7 @@ function search_integration_views_default_views() {
   $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
-  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Search text';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Search for';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['use_operator'] = TRUE;
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'search_api_views_fulltext';
@@ -226,7 +226,7 @@ function search_integration_views_default_views() {
     t(','),
     t('&middot; <span class="glyphicon glyphicon-file"></span> [field_treaty]'),
     t('&middot; <span class="glyphicon glyphicon-globe"></span> [field_country_1]'),
-    t('Search text'),
+    t('Search for'),
     t('Fulltext search'),
     t('Page'),
     t('&middot; <span class="glyphicon glyphicon-calendar"></span> [field_entry_into_force]'),
