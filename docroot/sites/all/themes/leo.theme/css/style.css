@@ -570,6 +570,10 @@ a:focus .navicon-eur {
   padding-left: 36px;
 }
 
+#decisions .panel-title:before {
+  top: 3px;
+}
+
 /* Contextual variations */
 
 .panel-default > .panel-heading {
