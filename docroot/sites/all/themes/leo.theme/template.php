@@ -107,3 +107,12 @@ function leo_theme_theme() {
     ),
   );
 }
+
+/**
+ * Implements hook_preprocess_button().
+ */
+function leo_theme_preprocess_button(&$vars) {
+  if ($vars['element']['#id'] == 'edit-submit-the-search-view') {
+    $vars['element']['#attributes']['class'][1] = 'btn-default';
+  }
+}
