@@ -418,6 +418,11 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'node';
   $handler->display->display_options['fields']['type']['field'] = 'type';
+  /* Field: Content: Data source */
+  $handler->display->display_options['fields']['field_data_source']['id'] = 'field_data_source';
+  $handler->display->display_options['fields']['field_data_source']['table'] = 'field_data_field_data_source';
+  $handler->display->display_options['fields']['field_data_source']['field'] = 'field_data_source';
+  $handler->display->display_options['fields']['field_data_source']['delta_offset'] = '0';
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
@@ -531,6 +536,22 @@ function informea_views_default_views() {
     1 => 0,
     3 => 0,
   );
+  /* Filter criterion: Content: Data source (field_data_source) */
+  $handler->display->display_options['filters']['field_data_source_tid']['id'] = 'field_data_source_tid';
+  $handler->display->display_options['filters']['field_data_source_tid']['table'] = 'field_data_field_data_source';
+  $handler->display->display_options['filters']['field_data_source_tid']['field'] = 'field_data_source_tid';
+  $handler->display->display_options['filters']['field_data_source_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_data_source_tid']['expose']['operator_id'] = 'field_data_source_tid_op';
+  $handler->display->display_options['filters']['field_data_source_tid']['expose']['label'] = 'Data source';
+  $handler->display->display_options['filters']['field_data_source_tid']['expose']['operator'] = 'field_data_source_tid_op';
+  $handler->display->display_options['filters']['field_data_source_tid']['expose']['identifier'] = 'field_data_source_tid';
+  $handler->display->display_options['filters']['field_data_source_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  $handler->display->display_options['filters']['field_data_source_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_data_source_tid']['vocabulary'] = 'data_source';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -557,6 +578,7 @@ function informea_views_default_views() {
     t('- Choose an operation -'),
     t('Title'),
     t('Type'),
+    t('Data source'),
     t('Author'),
     t('Status'),
     t('Updated'),
