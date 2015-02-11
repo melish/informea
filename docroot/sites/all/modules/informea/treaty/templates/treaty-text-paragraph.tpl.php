@@ -20,17 +20,16 @@ $highlight = isset($_GET['paragraph']) ? $_GET['paragraph'] == $paragraph->nid :
     <?php if (!empty($tags) && is_array($tags)): ?>
       <li>
         <span class="glyphicon glyphicon-tag"></span>
-        <?php print t('Tagged terms'); ?>
+      </li>
+    <?php endif; ?>
+    <?php if (user_access('administer nodes')): ?>
+      <li>
+        <?php print l('<span class="glyphicon glyphicon-pencil"></span> ' . t('Edit paragraph'), 'node/' . $paragraph->nid . '/edit', array('html' => TRUE)); ?>
       </li>
     <?php endif; ?>
     <li>
-      <?php if (user_access('administer nodes')): ?>
-        <?php print l('<span class="glyphicon glyphicon-pencil"></span> ' . t('Edit paragraph'), 'node/' . $paragraph->nid . '/edit', array('html' => TRUE)); ?>
-      <?php endif; ?>
-    </li>
-    <li>
       <?php
-      print l('<span class="glyphicon glyphicon-link"></span> ' . t('Permalink'), 'treaties/cbd', array(
+      print l('<span class="glyphicon glyphicon-link"></span>', 'treaties/cbd', array(
         'attributes' => array('target' => '_blank'),
         'fragment' => 'paragraph-' . $paragraph->nid,
         'html' => TRUE,
