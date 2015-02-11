@@ -708,3 +708,14 @@ a:focus .navicon-eur {
   max-height: 320px;
   overflow: auto;
 }
+
+.media-list > .media + .media,
+.media-list .media > .media-list {
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+}
+
+.media-list .media > .media-list {
+  margin-left: 70px;
+  margin-top: 15px;
+}
