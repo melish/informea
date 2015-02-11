@@ -48,8 +48,7 @@ function country_deliverable_render_action_plans($rows) {
     } else { // treaty
       if ($uri = $rw->field_logo->value()['uri']) {
         $img = theme('image', array(
-          'path' => file_create_url($uri),
-          'height' => '24'
+          'path' => file_create_url($uri)
         ));
       }
     }

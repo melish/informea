@@ -571,7 +571,8 @@ a:focus .navicon-eur {
 }
 
 #decisions .panel-title:before {
-  top: 3px;
+  margin-top: -9px;
+  top: 50%;
 }
 
 /* Contextual variations */
