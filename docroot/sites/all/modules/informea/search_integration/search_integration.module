@@ -47,5 +47,7 @@ function search_integration_form_alter(&$form, &$form_state) {
       'OR' => t('Any of these words'),
       'NOT' => t('None of these words')
     );
+
+    $form['submit']['#value'] = t('Search');
   }
 }
