@@ -703,3 +703,8 @@ a:focus .navicon-eur {
   margin-left: 0;
   padding: 5px 10px;
 }
+
+.modal-body > .field-name-body {
+  max-height: 320px;
+  overflow: auto;
+}
