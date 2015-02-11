@@ -42,14 +42,12 @@ function country_deliverable_render_action_plans($rows) {
     $img = NULL;
     if ($row->type == 'country') {
       $img = theme('image', array(
-        'path' => drupal_get_path('theme', 'leo_theme') . '/img/flags/flag-' . strtolower($rw->field_country_iso2->value()) . '.png',
-        'height' => '24'
+        'path' => drupal_get_path('theme', 'leo_theme') . '/img/flags/flag-' . strtolower($rw->field_country_iso2->value()) . '.png'
       ));
     } else { // treaty
       if ($uri = $rw->field_logo->value()['uri']) {
         $img = theme('image', array(
-          'path' => file_create_url($uri),
-          'height' => '24'
+          'path' => file_create_url($uri)
         ));
       }
     }
@@ -91,14 +89,12 @@ function country_deliverable_render_national_reports($rows) {
     $img = NULL;
     if ($row->type == 'country') {
       $img = theme('image', array(
-        'path' => drupal_get_path('theme', 'leo_theme') . '/img/flags/flag-' . strtolower($rw->field_country_iso2->value()) . '.png',
-        'height' => '24'
+        'path' => drupal_get_path('theme', 'leo_theme') . '/img/flags/flag-' . strtolower($rw->field_country_iso2->value()) . '.png'
       ));
     } else { // treaty
       if ($uri = $rw->field_logo->value()['uri']) {
         $img = theme('image', array(
-          'path' => file_create_url($uri),
-          'height' => '24'
+          'path' => file_create_url($uri)
         ));
       }
     }
