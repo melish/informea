@@ -12,9 +12,9 @@ h1, h2, h3, h4, h5, h6,
 /* Blocks */
 
 .block-title {
-  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
   font-size: 18px;
-  padding-bottom: 9px;
+  padding-top: 9px;
 }
 
 
@@ -719,4 +719,28 @@ a:focus .navicon-eur {
 .media-list .media > .media-list {
   margin-left: 70px;
   margin-top: 15px;
+}
+
+.btn {
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  border-width: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.btn-default {
+  color: #777;
+  border-color: #e4e4e4;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default.focus,
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+  background-color: #f8f8f8;
+  border-color: #d8d8d8;
 }
