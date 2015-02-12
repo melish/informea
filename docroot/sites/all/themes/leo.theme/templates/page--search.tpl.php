@@ -121,9 +121,7 @@
     </section>
     <?php if (!empty($page['sidebar_second'])): ?>
       <aside id="sidebar-second" class="col-sm-3" role="complementary">
-        <div class="page-header">
-          <h3><?php print t('Narrow results'); ?></h3>
-        </div><!-- .page-header -->
+        <h3><?php print t('Narrow results'); ?></h3>
         <?php print render($page['sidebar_second']); ?>
       </aside><!-- #sidebar-second .col-sm-3 -->
     <?php endif; ?>
