@@ -4,6 +4,7 @@
 
 #edit-search-api-views-fulltext-wrapper > label {
   font-size: 18px;
+  font-weight: normal;
   line-height: 34px;
   margin-bottom: 0;
 }
