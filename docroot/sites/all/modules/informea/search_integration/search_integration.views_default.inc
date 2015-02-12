@@ -22,7 +22,6 @@ function search_integration_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Search results';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -43,6 +42,7 @@ function search_integration_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
+  $handler->display->display_options['header']['result']['content'] = 'Showing @start&ndash;@end of @total results';
   /* Relationship: Indexed Node: Treaty */
   $handler->display->display_options['relationships']['field_treaty']['id'] = 'field_treaty';
   $handler->display->display_options['relationships']['field_treaty']['table'] = 'search_api_index_default_node_index';
@@ -205,7 +205,6 @@ function search_integration_views_default_views() {
   $handler->display->display_options['path'] = 'search';
   $translatables['the_search_view'] = array(
     t('Master'),
-    t('Search results'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -219,7 +218,7 @@ function search_integration_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('Displaying @start - @end of @total'),
+    t('Showing @start&ndash;@end of @total results'),
     t('Treaty'),
     t('Country'),
     t('.'),
