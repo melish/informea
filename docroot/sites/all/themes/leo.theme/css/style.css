@@ -93,11 +93,11 @@ h1, h2, h3, h4, h5, h6,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
   background-color: #00d554;
-  background-image: -o-linear-gradient(left, #00d554 0%, #00b273 100%);
-  background-image: -webkit-linear-gradient(left, #00d554 0%, #00b273 100%);
-  background-image: linear-gradient(to right, #00d554 0%, #00b273 100%);
+  background-image: -o-linear-gradient(left, #ed9f0d 0%, #ea7c0f 100%);
+  background-image: -webkit-linear-gradient(left, #ed9f0d 0%, #ea7c0f 100%);
+  background-image: linear-gradient(to right, #ed9f0d 0%, #ea7c0f 100%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff00d554', endColorstr='#ff00b273', GradientType=1);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffed9f0d', endColorstr='#ffea7c0f', GradientType=1);
 }
 
 .nav-pills > li.active > a > .counter {
@@ -107,13 +107,13 @@ h1, h2, h3, h4, h5, h6,
 /* Stacked pills */
 
 .nav-stacked {
-  border-radius: 6px;
-  border: 2px solid #eee;
-  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  padding: 4px;
 }
 
 .nav-stacked > li + li {
-  margin-top: 5px;
+  margin-top: 4px;
 }
 
 /* Header */
