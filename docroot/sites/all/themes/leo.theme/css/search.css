@@ -12,13 +12,24 @@
 .select2-container .select2-choice {
   background-color: #fff;
   background-image: none;
-  border-color: #e8e8e8;
+  border-color: #e4e4e4;
   border-radius: 3px;
-  border-width: 2px;
   color: #999;
   height: 34px;
-  line-height: 30px;
+  line-height: 32px;
   padding-left: 8px;
+}
+
+.select2-container-active .select2-choice,
+.select2-container-active .select2-choices {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.select2-drop {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-color: #e4e4e4;
 }
 
 #edit-search-api-views-fulltext-wrapper .select2-container .select2-choice {
