@@ -5,6 +5,7 @@
 /* Body */
 body {
   font-family: 'PT Sans', sans-serif;
+  font-size: 15px;
 }
 
 /* Links */
@@ -19,13 +20,6 @@ a:focus {
 /* Typography */
 /* ---------- */
 
-
-/* Headings */
-
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-  font-weight: 300;
-}
 
 /* Blocks */
 

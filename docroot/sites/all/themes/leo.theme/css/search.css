@@ -4,7 +4,6 @@
 
 #edit-search-api-views-fulltext-wrapper > label {
   font-size: 18px;
-  font-weight: 300;
   line-height: 34px;
   margin-bottom: 0;
 }
@@ -17,7 +16,7 @@
   color: #999;
   height: 34px;
   line-height: 32px;
-  padding-left: 8px;
+  padding-left: 11px;
 }
 
 .select2-container-active .select2-choice,
