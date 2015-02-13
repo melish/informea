@@ -75,6 +75,10 @@ class EcolexCourtDecisionsMigrate extends DynamicMigration {
     $this->addFieldMapping('field_keywords:create_term')->defaultValue(TRUE);
     $this->addFieldMapping('field_keywords:ignore_case')->defaultValue(TRUE);
 
+    $this->addFieldMapping('field_informea_tags', 'mapped_informea_keywords');
+    $this->addFieldMapping('field_informea_tags:create_term')->defaultValue(FALSE);
+    $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
+
     $this->addFieldMapping('field_related_url', 'relatedWebSite');
 
     $this->addFieldMapping('field_territorial_subdivision', 'territorialSubdivision');
@@ -106,6 +110,20 @@ class EcolexCourtDecisionsMigrate extends DynamicMigration {
    * {@inheritdoc}
    */
   public function prepareRow($row) {
+    // Map Ecolex subjects/keywords to InforMEA vocabulary
+    $row->mapped_informea_keywords = array();
+    $ecolex_terms = array();
+    if (!empty($row->keyword)) {
+      $ecolex_terms = array_merge($ecolex_terms, $row->keyword);
+    }
+    if (!empty($row->subject)) {
+      $ecolex_terms = array_merge($ecolex_terms, $row->subject);
+    }
+    if (!empty($ecolex_terms)) {
+      module_load_include('inc', 'informea', 'informea.api');
+      $row->mapped_informea_keywords = array_keys(informea_map_ecolex_terms($ecolex_terms));
+    }
+
     return TRUE;
   }
 
@@ -210,6 +228,7 @@ class EcolexCourtDecisionsMigrateSource extends EcolexMigrateSource {
       'abstract'                    => 'Document abstract',
       'urlToFaolexDocument'         => 'Link to FAOLEX',
       'urlToEcolexRecord'           => 'Link to Ecolex',
+      'mapped_informea_keywords'    => 'Mapped terms computed during import from subject & keyword fields',
     );
   }
 
