@@ -80,16 +80,6 @@
       <?php print render($page['header']); ?>
     </header><!-- #page-header -->
   <?php endif; ?>
-  <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
-  <div class="row">
-    <div<?php print $content_column_class; ?>>
-      <?php print render($title_prefix); ?>
-      <?php if ($title): ?>
-        <h1><?php print $title; ?></h1>
-      <?php endif; ?>
-      <?php print render($title_suffix); ?>
-    </div>
-  </div><!-- .row -->
   <div class="row">
     <?php if (!empty($page['sidebar_first'])): ?>
       <aside id="sidebar-first" class="col-sm-3" role="complementary">
