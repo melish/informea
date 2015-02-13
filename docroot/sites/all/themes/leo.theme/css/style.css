@@ -110,6 +110,26 @@ h6, .h6 {
 }
 
 
+/* Forms */
+/* ----- */
+
+
+/* Common form controls */
+
+.form-control {
+  -webkit-box-shadow: none;
+  border-color: #ddd;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+.form-control:focus {
+  -webkit-box-shadow: none;
+  border-color: #336696;
+  box-shadow: none;
+}
+
+
 /* Buttons */
 /* ------- */
 
@@ -384,19 +404,19 @@ a:focus .navicon-eur {
 /* Navbar nav links */
 
 .navbar-leo .navbar-nav {
-  margin-top: 25px;
+  margin-top: 24px;
 }
 
 .navbar-leo .navbar-nav > li > a {
   color: #fff;
-  padding: 5px 10px;
+  padding: 6px 12px;
 }
 
 .navbar-leo .navbar-nav > li > a:hover,
 .navbar-leo .navbar-nav > li > a:focus {
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
   background-color: #fff;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   color: #333;
   border-radius: 4px;
 }
@@ -813,24 +833,4 @@ a:focus .navicon-eur {
 .view-the-search-view .meta {
   font-size: 13px;
   color: #666;
-}
-
-
-/* Forms */
-/* ----- */
-
-
-/* Common form controls */
-
-.form-control {
-  -webkit-box-shadow: none;
-  border-color: #ddd;
-  border-radius: 3px;
-  box-shadow: none;
-}
-
-.form-control:focus {
-  -webkit-box-shadow: none;
-  border-color: #336696;
-  box-shadow: none;
 }
