@@ -4,25 +4,29 @@
  * template.php
  */
 
-function leo_theme_preprocess_page(&$vars) {
-  if(isset($vars['node'])) {
-    $node = $vars['node'];
+function leo_theme_preprocess_page(&$variabless) {
+  if(isset($variabless['node'])) {
+    $node = $variabless['node'];
     switch ($node->type) {
       case 'country':
-        $vars['content_column_class'] = ' class="col-sm-9"';
-        $vars['countries'] = country_get_countries_select_options();
-        array_unshift($vars['page']['sidebar_second'], menu_secondary_local_tasks());
+        $variabless['content_column_class'] = ' class="col-sm-9"';
+        $variabless['countries'] = country_get_countries_select_options();
+        array_unshift($variabless['page']['sidebar_second'], menu_secondary_local_tasks());
         break;
 
       case 'treaty':
-        $vars['content_column_class'] = ' class="col-sm-9"';
-        $vars['treaties'] = treaty_get_treaties_as_select_options();
-        array_unshift($vars['page']['sidebar_second'], menu_secondary_local_tasks());
+        $variabless['content_column_class'] = ' class="col-sm-9"';
+        $variabless['treaties'] = treaty_get_treaties_as_select_options();
+        array_unshift($variabless['page']['sidebar_second'], menu_secondary_local_tasks());
     }
   }
-  if (isset($vars['node']->type)) {
-    $vars['theme_hook_suggestions'][] = 'page__' . $vars['node']->type;
+  if (isset($variabless['node']->type)) {
+    $variabless['theme_hook_suggestions'][] = 'page__' . $variabless['node']->type;
   }
+}
+
+function leo_theme_preprocess_html(&$variables) {
+  drupal_add_js('http://fonts.googleapis.com/css?family=PT+Sans', array('type' => 'external'));
 }
 
 /**

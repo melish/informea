@@ -22,7 +22,6 @@ function search_integration_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Search results';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -43,6 +42,7 @@ function search_integration_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
+  $handler->display->display_options['header']['result']['content'] = 'Showing @start&ndash;@end of @total results';
   /* Relationship: Indexed Node: Treaty */
   $handler->display->display_options['relationships']['field_treaty']['id'] = 'field_treaty';
   $handler->display->display_options['relationships']['field_treaty']['table'] = 'search_api_index_default_node_index';
@@ -161,7 +161,7 @@ function search_integration_views_default_views() {
   $handler->display->display_options['fields']['type']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['fields']['type']['field'] = 'type';
   $handler->display->display_options['fields']['type']['label'] = '';
-  $handler->display->display_options['fields']['type']['element_type'] = 'strong';
+  $handler->display->display_options['fields']['type']['exclude'] = TRUE;
   $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['type']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['type']['format_name'] = 1;
@@ -170,8 +170,9 @@ function search_integration_views_default_views() {
   $handler->display->display_options['fields']['field_treaty']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['fields']['field_treaty']['field'] = 'field_treaty';
   $handler->display->display_options['fields']['field_treaty']['label'] = '';
+  $handler->display->display_options['fields']['field_treaty']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_treaty']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_treaty']['alter']['text'] = '&middot; <span class="glyphicon glyphicon-file"></span> [field_treaty]';
+  $handler->display->display_options['fields']['field_treaty']['alter']['text'] = ' &middot; <span class="glyphicon glyphicon-file"></span> [field_treaty]';
   $handler->display->display_options['fields']['field_treaty']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_treaty']['link_to_entity'] = 1;
   $handler->display->display_options['fields']['field_treaty']['view_mode'] = 'full';
@@ -181,8 +182,9 @@ function search_integration_views_default_views() {
   $handler->display->display_options['fields']['field_country_1']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['fields']['field_country_1']['field'] = 'field_country';
   $handler->display->display_options['fields']['field_country_1']['label'] = '';
+  $handler->display->display_options['fields']['field_country_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_country_1']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_country_1']['alter']['text'] = '&middot; <span class="glyphicon glyphicon-globe"></span> [field_country_1]';
+  $handler->display->display_options['fields']['field_country_1']['alter']['text'] = ' &middot; <span class="glyphicon glyphicon-globe"></span> [field_country_1]';
   $handler->display->display_options['fields']['field_country_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_country_1']['link_to_entity'] = 1;
   $handler->display->display_options['fields']['field_country_1']['view_mode'] = 'full';
@@ -192,8 +194,9 @@ function search_integration_views_default_views() {
   $handler->display->display_options['fields']['field_entry_into_force']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['fields']['field_entry_into_force']['field'] = 'field_entry_into_force';
   $handler->display->display_options['fields']['field_entry_into_force']['label'] = '';
+  $handler->display->display_options['fields']['field_entry_into_force']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_entry_into_force']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_entry_into_force']['alter']['text'] = '&middot; <span class="glyphicon glyphicon-calendar"></span> [field_entry_into_force]';
+  $handler->display->display_options['fields']['field_entry_into_force']['alter']['text'] = ' &middot; <span class="glyphicon glyphicon-calendar"></span> [field_entry_into_force]';
   $handler->display->display_options['fields']['field_entry_into_force']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_entry_into_force']['settings'] = array(
     'format_type' => 'long',
@@ -202,10 +205,16 @@ function search_integration_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="meta"><strong>[type]</strong>[field_treaty][field_country_1][field_entry_into_force]</div>';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   $handler->display->display_options['path'] = 'search';
   $translatables['the_search_view'] = array(
     t('Master'),
-    t('Search results'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -219,7 +228,7 @@ function search_integration_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('Displaying @start - @end of @total'),
+    t('Showing @start&ndash;@end of @total results'),
     t('Treaty'),
     t('Country'),
     t('.'),
@@ -229,7 +238,10 @@ function search_integration_views_default_views() {
     t('Search for'),
     t('Fulltext search'),
     t('Page'),
-    t('&middot; <span class="glyphicon glyphicon-calendar"></span> [field_entry_into_force]'),
+    t(' &middot; <span class="glyphicon glyphicon-file"></span> [field_treaty]'),
+    t(' &middot; <span class="glyphicon glyphicon-globe"></span> [field_country_1]'),
+    t(' &middot; <span class="glyphicon glyphicon-calendar"></span> [field_entry_into_force]'),
+    t('<div class="meta"><strong>[type]</strong>[field_treaty][field_country_1][field_entry_into_force]</div>'),
   );
   $export['the_search_view'] = $view;
 
