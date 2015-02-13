@@ -96,12 +96,12 @@
   display: inline-block;
   filter: alpha(opacity=20);
   font-size: 21px;
-  font-weight: bold;
   line-height: 1;
   margin-left: 7px;
   margin-right: 5px;
   opacity: .2;
   text-shadow: 0 1px 0 #fff;
+  vertical-align: middle;
 }
 
 .facetapi-facetapi-links > li > .facetapi-active:hover {

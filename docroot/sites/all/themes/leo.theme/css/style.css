@@ -795,6 +795,19 @@ a:focus .navicon-eur {
   margin-top: 15px;
 }
 
-.view-header {
+.view-the-search-view > .view-header {
   color: #969696;
+}
+
+.view-the-search-view .view-content > .views-row + .views-row {
+  margin-top: 30px;
+}
+
+.view-the-search-view h3 {
+  margin-bottom: 5px;
+}
+
+.view-the-search-view .meta {
+  font-size: 13px;
+  color: #666;
 }
