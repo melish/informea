@@ -116,7 +116,7 @@ h6, .h6 {
 
 /* Base styles */
 .btn {
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   padding-left: 24px;
@@ -264,7 +264,7 @@ h6, .h6 {
   font-weight: bold;
   padding: 0;
   text-align: center;
-  width: 80px;
+  width: 90px;
 }
 
 .navbar-unep .navbar-nav > li > a:hover,
@@ -446,11 +446,13 @@ a:focus .navicon-eur {
 }
 
 .navbar-search > .input-group > .input-group-btn > .btn {
+  -o-transition: color 0.3s ease;
+  -webkit-box-shadow: none;
+  -webkit-transition: color 0.3s ease;
   background-color: transparent;
   border-color: transparent;
+  box-shadow: none;
   color: #fff;
-  -o-transition: color 0.3s ease;
-  -webkit-transition: color 0.3s ease;
   transition: color 0.3s ease;
 }
 
