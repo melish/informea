@@ -92,7 +92,7 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
    * {@inheritdoc}
    */
   public function prepareRow($row) {
-    // mapped_informea_keywords
+    // Map Ecolex subjects/keywords to InforMEA vocabulary
     $row->mapped_informea_keywords = array();
     $ecolex_terms = array();
     if (!empty($row->keyword)) {
@@ -105,6 +105,7 @@ class EcolexTreatyMigrateWiki extends DynamicMigration {
       module_load_include('inc', 'informea', 'informea.api');
       $row->mapped_informea_keywords = array_keys(informea_map_ecolex_terms($ecolex_terms));
     }
+    // Map regions to UNEP regions
     if (!empty($row->region)) {
       if (is_string($row->region)) {
         $row->region = country_map_region($row->region);
