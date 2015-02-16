@@ -108,6 +108,15 @@ class EcolexLiteratureMigrate extends DynamicMigration {
         }
       }
     }
+    // Map also regions from countries
+    $regions = country_get_regions_from_country($row->country);
+    if (empty($row->region)) {
+      $row->region = array();
+    }
+    foreach($regions as $region) {
+      $row->region[] = $region->name;
+    }
+
     // Map Ecolex subjects/keywords to InforMEA vocabulary
     $row->mapped_informea_keywords = array();
     $ecolex_terms = array();

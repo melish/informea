@@ -107,6 +107,38 @@ function country_map_region($region) {
   }
 }
 
+/**
+ * Retrive the list of regions associated to a list of countries
+ *
+ * @param array $countries
+ *   Array of node IDs for country
+ *
+ * @return array
+ *   Array of region taxonomy terms
+ */
+function country_get_regions_from_country($country_ids) {
+  if (empty($country_ids)) {
+    return array();
+  }
+  $ret = array();
+  $load = array();
+  foreach($country_ids as $nid) {
+    $load[$nid] = (object)array(
+      'nid' => $nid,
+      'type' => 'country',
+    );
+  }
+  $fields = field_info_instances('node', 'country');
+  field_attach_load('node', $load, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_region']['field_id']));
+  foreach($load as $node) {
+    $w = entity_metadata_wrapper('node', $node);
+    foreach($w->field_region->value() as $region) {
+      $ret[$region->tid] = $region;
+    };
+  }
+  return $ret;
+}
+
 function country_url_context($path) {
   $path = preg_replace('/([A-Za-z]{2})?\/?countries\/[A-Za-z]{2}\/?/', '', $path);
   $parts = explode('/', $path);
