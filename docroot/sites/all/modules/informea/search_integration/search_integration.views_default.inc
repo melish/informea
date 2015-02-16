@@ -112,6 +112,18 @@ function search_integration_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
+  /* Sort criterion: Search: Relevance */
+  $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
+  $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['sorts']['search_api_relevance']['field'] = 'search_api_relevance';
+  $handler->display->display_options['sorts']['search_api_relevance']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['search_api_relevance']['expose']['label'] = 'Relevance';
+  /* Sort criterion: Indexed Node: Title */
+  $handler->display->display_options['sorts']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['sorts']['title_field']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['sorts']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['sorts']['title_field']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['title_field']['expose']['label'] = 'Title';
   /* Filter criterion: Search: Fulltext search */
   $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_default_node_index';
@@ -235,6 +247,8 @@ function search_integration_views_default_views() {
     t(','),
     t('&middot; <span class="glyphicon glyphicon-file"></span> [field_treaty]'),
     t('&middot; <span class="glyphicon glyphicon-globe"></span> [field_country_1]'),
+    t('Relevance'),
+    t('Title'),
     t('Search for'),
     t('Fulltext search'),
     t('Page'),
