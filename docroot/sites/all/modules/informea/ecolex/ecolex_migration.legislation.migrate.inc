@@ -35,6 +35,7 @@ class EcolexLegislationMigrate extends DynamicMigration {
     $this->addFieldMapping('field_date_of_entry', 'Date_of_Entry');
     $this->addFieldMapping('field_date_of_modification', 'Date_of_Modification');
     $this->addFieldMapping('field_country', 'country');
+    $this->addFieldMapping('field_region', 'region');
     $this->addFieldMapping('field_territorial_subdivision', 'Territorial_Subdivision');
     // $this->addFieldMapping('', 'basin');
 
@@ -82,6 +83,21 @@ class EcolexLegislationMigrate extends DynamicMigration {
    * {@inheritdoc}
    */
   public function prepareRow($row) {
+    // Map also regions from countries
+    if (!empty($row->country)) {
+      if (empty($row->region)) {
+        $row->region = array();
+      }
+      $countries = $row->country;
+      if (!is_array($row->country)) {
+        $countries = array($row->country);
+      }
+      $regions = country_get_regions_from_country($countries);
+      foreach ($regions as $region) {
+        $row->region[] = $region->name;
+      }
+    }
+
     return TRUE;
   }
 
@@ -176,6 +192,7 @@ class EcolexLegislationMigrateSource extends EcolexMigrateSource {
       'Repealed'                    => 'Repealed (Y/N)',
       'Serial_Imprint'              => 'Serial imprint number',
       'Publication_reference'       => 'Reference to publication page/no.',
+      'region'                      => 'Automatically computed from country',
     );
   }
 
