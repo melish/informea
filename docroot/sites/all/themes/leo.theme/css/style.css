@@ -845,3 +845,19 @@ a:focus .navicon-eur {
   font-size: 13px;
   color: #666;
 }
+
+.view-the-search-view .views-field-field-country-iso2,
+.view-the-search-view .views-field-field-logo {
+  position: absolute;
+}
+
+.view-the-search-view .views-field-field-country-iso2 img,
+.view-the-search-view .views-field-field-logo img {
+  max-width: 40px;
+  height: auto;
+}
+
+.view-the-search-view .views-field-title,
+.view-the-search-view .views-field-nothing {
+  margin-left: 50px;
+}
