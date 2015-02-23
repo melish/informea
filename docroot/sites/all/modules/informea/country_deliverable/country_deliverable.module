@@ -5,3 +5,177 @@
  */
 
 include_once 'country_deliverable.features.inc';
+
+
+/**
+ * Implement hook_theme().
+ *
+ * {@inheritdoc}
+ */
+function country_deliverable_theme() {
+  return array(
+    'country_deliverable_rod_cycle' => array(
+      'render element' => 'element',
+      'template' => 'templates/country-deliverable-rod-cycle',
+      'variables' => array('cycle'),
+      'path' => drupal_get_path('module', 'country_deliverable'),
+    ),
+  );
+}
+
+function country_deliverable_render_action_plans($rows) {
+  $elements = array();
+  foreach ($rows as $id => $row) {
+    $rw = entity_metadata_wrapper('node', $row);
+    $table_rows = array();
+    foreach($row->action_plans as $report) {
+      $nrw = entity_metadata_wrapper('node', $report);
+      $date = $nrw->field_report_submission_date->value();
+      $date = !empty($date) ? format_date($date, 'short') : '';
+      $files_field = field_view_field('node', $report, 'field_files', 'full');
+      $table_rows[] = array(
+        $report->title,
+        array('data' => $date, 'class' => 'text-center'),
+        array('data' => render($files_field), 'class' => 'text-center')
+      );
+    }
+    $img = NULL;
+    if ($row->type == 'country') {
+      $img = theme('image', array(
+        'path' => drupal_get_path('theme', 'leo_theme') . '/img/flags/flag-' . strtolower($rw->field_country_iso2->value()) . '.png'
+      ));
+    } else { // treaty
+      if ($uri = $rw->field_logo->value()['uri']) {
+        $img = theme('image', array(
+          'path' => file_create_url($uri)
+        ));
+      }
+    }
+    $header = (!empty($img) ? $img . ' ' : '') . $rw->label();
+    $elements[$id] = array(
+      'header' => $header,
+      'body' => theme('table', array(
+        'attributes' => array('class' => 'table-no-striping table-hover'),
+        'rows' => $table_rows,
+        'header' => array(
+          t('Title'),
+          array('data' => t('Submission date'), 'class' => array('col-sm-2 text-center text-nowrap')),
+          array('data' => t('Files'), 'class' => array('col-sm-2 text-center'))
+        )
+      )),
+    );
+  }
+  return array(
+    '#type' => 'item', '#weight' => 10, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'decisions', 'elements' => $elements, 'no-panel-body' => TRUE)),
+  );
+}
+
+function country_deliverable_render_national_reports($rows) {
+  $elements = array();
+  foreach ($rows as $id => $row) {
+    $rw = entity_metadata_wrapper('node', $row);
+    $table_rows = array();
+    foreach($row->national_reports as $report) {
+      $nrw = entity_metadata_wrapper('node', $report);
+      $date = $nrw->field_report_submission_date->value();
+      $date = !empty($date) ? format_date($date, 'short') : '';
+      $files_field = field_view_field('node', $report, 'field_files', 'full');
+      $table_rows[] = array(
+        $report->title,
+        array('data' => $date, 'class' => 'text-center'),
+        array('data' => render($files_field), 'class' => 'text-center')
+      );
+    }
+    $img = NULL;
+    if ($row->type == 'country') {
+      $img = theme('image', array(
+        'path' => drupal_get_path('theme', 'leo_theme') . '/img/flags/flag-' . strtolower($rw->field_country_iso2->value()) . '.png'
+      ));
+    } else { // treaty
+      if ($uri = $rw->field_logo->value()['uri']) {
+        $img = theme('image', array(
+          'path' => file_create_url($uri)
+        ));
+      }
+    }
+    $header = (!empty($img) ? $img . ' ' : '') . $rw->label();
+    $elements[$id] = array(
+      'header' => $header,
+      'body' => theme('table', array(
+        'attributes' => array('class' => 'table-no-striping table-hover'),
+        'rows' => $table_rows,
+        'header' => array(
+          t('Title'),
+          array('data' => t('Submission date'), 'class' => array('col-sm-2 text-center text-nowrap')),
+          array('data' => t('Files'), 'class' => array('col-sm-2 text-center'))
+        )
+      )),
+    );
+  }
+  return array(
+    '#type' => 'item', '#weight' => 50, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'decisions', 'elements' => $elements, 'no-panel-body' => TRUE)),
+  );
+}
+
+function country_deliverable_render_rod($id_treaty, $rows) {
+  $ret = array();
+  if (!empty($rows)) {
+    $ret[] = array(
+      '#type' => 'item',
+      '#weight' => 5,
+      '#markup' => t('Reporting obligations'),
+      '#prefix' => '<h2>',
+      '#suffix' => '</h2>'
+    );
+    $w = entity_metadata_wrapper('node', $id_treaty);
+    $articles = $w->field_treaty_article->value();
+    if (!empty($articles)) {
+      $article = current($articles);
+      $aw = entity_metadata_wrapper('node', $article);
+      $official_order = $aw->field_official_order->value();
+      if ($official_order) {
+        $official_order = strpos($official_order, '.') > 0 ? $official_order : $official_order . '.';
+        $msg1 = t('The reporting obligation stems from <em>Article !number !title</em>', array(
+          '!number' => $official_order,
+          '!title' => $aw->label()
+        ));
+      }
+      else {
+        $msg1 = t('The reporting obligation stems from Article !title', array('!title' => $aw->label()));
+      }
+      $ret[] = array(
+        '#type' => 'item',
+        '#weight' => 5,
+        '#markup' => $msg1,
+        '#prefix' => '<p class="article-stem">',
+        '#suffix' => '</p>'
+      );
+    }
+    $paragraphs = $w->field_treaty_article_paragraph->value();
+    if (!empty($paragraphs)) {
+      foreach ($paragraphs as $i => $p) {
+        $vf = field_view_field('node', $p, 'body', 'full');
+        $ret[] = array(
+          '#type' => 'item',
+          '#weight' => 8 + (++$i),
+          '#markup' => render($vf),
+          '#prefix' => '<em class="paragraph-stem">',
+          '#suffix' => '</em>'
+        );
+      }
+    }
+
+    $render_rows = array();
+    foreach ($rows as $id => $row) {
+      $rw = entity_metadata_wrapper('node', $row);
+      $render_rows[$id] = array(
+        'header' => $rw->label(),
+        'body' => theme('country_deliverable_rod_cycle', array('cycle' => $row))
+      );
+    }
+    $ret[] = array(
+      '#type' => 'item', '#weight' => 30, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'reporting-cycles', 'elements' => $render_rows)),
+    );
+  }
+  return $ret;
+}

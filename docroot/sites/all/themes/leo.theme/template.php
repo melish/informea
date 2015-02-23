@@ -4,21 +4,29 @@
  * template.php
  */
 
-function leo_theme_preprocess_page(&$vars) {
-  if(isset($vars['node'])) {
-    $node = $vars['node'];
+function leo_theme_preprocess_page(&$variabless) {
+  if(isset($variabless['node'])) {
+    $node = $variabless['node'];
+    switch ($node->type) {
+      case 'country':
+        $variabless['content_column_class'] = ' class="col-sm-9"';
+        $variabless['countries'] = country_get_countries_select_options();
+        array_unshift($variabless['page']['sidebar_second'], menu_secondary_local_tasks());
+        break;
 
-    if($node->type == 'country') {
-      $vars['content_column_class'] = ' class="col-sm-9"';
-      $vars['countries'] = country_get_countries();
-
-      array_unshift($vars['page']['sidebar_second'], menu_secondary_local_tasks());
+      case 'treaty':
+        $variabless['content_column_class'] = ' class="col-sm-9"';
+        $variabless['treaties'] = treaty_get_treaties_as_select_options();
+        array_unshift($variabless['page']['sidebar_second'], menu_secondary_local_tasks());
     }
   }
-
-  if (isset($vars['node']->type)) {
-    $vars['theme_hook_suggestions'][] = 'page__' . $vars['node']->type;
+  if (isset($variabless['node']->type)) {
+    $variabless['theme_hook_suggestions'][] = 'page__' . $variabless['node']->type;
   }
+}
+
+function leo_theme_preprocess_html(&$variables) {
+  drupal_add_js('http://fonts.googleapis.com/css?family=PT+Sans', array('type' => 'external'));
 }
 
 /**
@@ -84,4 +92,31 @@ function leo_theme_facetapi_count($variables) {
  */
 function leo_theme_facetapi_deactivate_widget($variables) {
   return '&times;';
+}
+
+
+function leo_theme_theme() {
+  return array(
+    'informea_bootstrap_collapse' => array(
+      'render element' => 'element',
+      'template' => 'templates/informea-bootstrap-collapse',
+      'variables' => array('elements', 'id', 'no-data-parent', 'no-panel-body'),
+      'path' => drupal_get_path('theme', 'leo_theme'),
+    ),
+    'informea_bootstrap_tabs' => array(
+      'render element' => 'element',
+      'template' => 'templates/informea-bootstrap-tabs',
+      'variables' => array('id', 'elements', 'active'),
+      'path' => drupal_get_path('theme', 'leo_theme'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_preprocess_button().
+ */
+function leo_theme_preprocess_button(&$vars) {
+  if ($vars['element']['#id'] == 'edit-submit-the-search-view') {
+    $vars['element']['#attributes']['class'][1] = 'btn-default';
+  }
 }

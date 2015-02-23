@@ -17,6 +17,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -58,6 +64,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -99,6 +111,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -140,6 +158,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'entityreference',
@@ -190,6 +214,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -231,6 +261,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -272,6 +308,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -312,6 +354,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'date',
@@ -366,6 +414,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'date',
@@ -420,6 +474,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'date',
@@ -475,6 +535,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'i18n_taxonomy',
@@ -524,6 +590,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'i18n_taxonomy',
@@ -572,6 +644,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'link',
@@ -630,6 +708,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'link',
@@ -687,6 +771,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'file',
@@ -731,6 +821,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'i18n_taxonomy',
@@ -781,6 +877,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'link',
@@ -839,6 +941,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -880,6 +988,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'i18n_taxonomy',
@@ -930,6 +1044,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -971,6 +1091,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'i18n_taxonomy',
@@ -1021,6 +1147,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'number',
@@ -1068,6 +1200,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'settings' => array(),
@@ -1108,6 +1246,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -1149,6 +1293,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'entityreference',
@@ -1193,6 +1343,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'link',
@@ -1251,6 +1407,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'The language of the source document (can be different from the node\'s language)',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'languagefield',
@@ -1303,6 +1465,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'i18n_taxonomy',
@@ -1351,6 +1519,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'i18n_taxonomy',
@@ -1401,6 +1575,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'link',
@@ -1459,6 +1639,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1502,6 +1688,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -1534,7 +1726,7 @@ function ecolex_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 27,
+      'weight' => 28,
     ),
   );
 
@@ -1545,6 +1737,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -1575,7 +1773,7 @@ function ecolex_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 17,
+      'weight' => 18,
     ),
   );
 
@@ -1586,6 +1784,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'settings' => array(),
@@ -1615,7 +1819,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 25,
+      'weight' => 26,
     ),
   );
 
@@ -1626,6 +1830,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'entityreference',
@@ -1660,7 +1870,7 @@ function ecolex_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 21,
+      'weight' => 22,
     ),
   );
 
@@ -1671,6 +1881,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'link',
@@ -1717,7 +1933,7 @@ function ecolex_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 14,
+      'weight' => 15,
     ),
   );
 
@@ -1728,6 +1944,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'entityreference',
@@ -1777,6 +1999,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'date',
@@ -1821,7 +2049,7 @@ function ecolex_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
@@ -1831,6 +2059,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'date',
@@ -1885,6 +2119,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'date',
@@ -1939,6 +2179,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'date',
@@ -1983,7 +2229,7 @@ function ecolex_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 11,
+      'weight' => 12,
     ),
   );
 
@@ -1993,6 +2239,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'date',
@@ -2037,7 +2289,7 @@ function ecolex_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -2048,6 +2300,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'i18n_taxonomy',
@@ -2085,7 +2343,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 28,
+      'weight' => 29,
     ),
   );
 
@@ -2096,6 +2354,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'link',
@@ -2143,7 +2407,7 @@ function ecolex_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 24,
+      'weight' => 25,
     ),
   );
 
@@ -2154,6 +2418,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -2184,7 +2454,7 @@ function ecolex_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 13,
+      'weight' => 14,
     ),
   );
 
@@ -2195,6 +2465,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -2236,6 +2512,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'link',
@@ -2283,7 +2565,7 @@ function ecolex_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 26,
+      'weight' => 27,
     ),
   );
 
@@ -2294,6 +2576,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'entityreference',
@@ -2327,7 +2615,61 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 22,
+      'weight' => 23,
+    ),
+  );
+
+  // Exported field_instance: 'node-legislation-field_informea_tags'
+  $field_instances['node-legislation-field_informea_tags'] = array(
+    'bundle' => 'legislation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 32,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_informea_tags',
+    'label' => 'InforMEA tags',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 35,
     ),
   );
 
@@ -2338,6 +2680,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'link',
@@ -2385,7 +2733,7 @@ function ecolex_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 32,
+      'weight' => 33,
     ),
   );
 
@@ -2396,6 +2744,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -2437,6 +2791,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'i18n_taxonomy',
@@ -2474,7 +2834,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 20,
+      'weight' => 21,
     ),
   );
 
@@ -2485,6 +2845,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -2515,7 +2881,7 @@ function ecolex_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 18,
+      'weight' => 19,
     ),
   );
 
@@ -2526,6 +2892,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -2566,6 +2938,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -2596,7 +2974,61 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 33,
+      'weight' => 34,
+    ),
+  );
+
+  // Exported field_instance: 'node-legislation-field_region'
+  $field_instances['node-legislation-field_region'] = array(
+    'bundle' => 'legislation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 33,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_region',
+    'label' => 'Region',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 8,
     ),
   );
 
@@ -2611,6 +3043,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'list',
@@ -2640,7 +3078,7 @@ function ecolex_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 30,
+      'weight' => 31,
     ),
   );
 
@@ -2651,6 +3089,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'entityreference',
@@ -2684,7 +3128,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 23,
+      'weight' => 24,
     ),
   );
 
@@ -2695,6 +3139,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -2725,7 +3175,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 31,
+      'weight' => 32,
     ),
   );
 
@@ -2736,6 +3186,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'languagefield',
@@ -2777,7 +3233,7 @@ function ecolex_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 29,
+      'weight' => 30,
     ),
   );
 
@@ -2788,6 +3244,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'i18n_taxonomy',
@@ -2825,7 +3287,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 19,
+      'weight' => 20,
     ),
   );
 
@@ -2836,6 +3298,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'i18n_taxonomy',
@@ -2873,7 +3341,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -2884,6 +3352,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'i18n_taxonomy',
@@ -2923,7 +3397,7 @@ function ecolex_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 16,
+      'weight' => 17,
     ),
   );
 
@@ -2934,6 +3408,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'link',
@@ -2980,7 +3460,7 @@ function ecolex_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 15,
+      'weight' => 16,
     ),
   );
 
@@ -2991,6 +3471,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -3023,7 +3509,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -3034,6 +3520,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -3080,6 +3572,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'settings' => array(),
@@ -3120,6 +3618,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -3161,6 +3665,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -3202,6 +3712,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -3243,6 +3759,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'entityreference',
@@ -3276,11 +3798,14 @@ function ecolex_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'entityreference',
       'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
         'use_select2' => FALSE,
       ),
-      'type' => 'options_select',
+      'type' => 'entityreference_autocomplete_tags',
       'weight' => 22,
     ),
   );
@@ -3291,6 +3816,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'date',
@@ -3345,6 +3876,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'date',
@@ -3399,6 +3936,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'date',
@@ -3454,6 +3997,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'i18n_taxonomy',
@@ -3502,6 +4051,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'i18n_taxonomy',
@@ -3544,6 +4099,60 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-literature-field_informea_tags'
+  $field_instances['node-literature-field_informea_tags'] = array(
+    'bundle' => 'literature',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 29,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_informea_tags',
+    'label' => 'InforMEA tags',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 32,
+    ),
+  );
+
   // Exported field_instance: 'node-literature-field_isbn'
   $field_instances['node-literature-field_isbn'] = array(
     'bundle' => 'literature',
@@ -3551,6 +4160,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -3592,6 +4207,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -3633,6 +4254,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'i18n_taxonomy',
@@ -3681,6 +4308,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -3722,6 +4355,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -3763,6 +4402,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -3804,6 +4449,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'i18n_taxonomy',
@@ -3853,6 +4504,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -3894,6 +4551,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -3934,6 +4597,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -3975,6 +4644,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -4016,6 +4691,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'i18n_taxonomy',
@@ -4049,11 +4730,13 @@ function ecolex_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'taxonomy',
       'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
         'use_select2' => FALSE,
       ),
-      'type' => 'options_select',
+      'type' => 'taxonomy_autocomplete',
       'weight' => 24,
     ),
   );
@@ -4065,6 +4748,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'entityreference',
@@ -4098,11 +4787,14 @@ function ecolex_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'entityreference',
       'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
         'use_select2' => FALSE,
       ),
-      'type' => 'options_select',
+      'type' => 'entityreference_autocomplete_tags',
       'weight' => 27,
     ),
   );
@@ -4114,6 +4806,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'i18n_taxonomy',
@@ -4154,6 +4852,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'entityreference',
@@ -4187,11 +4891,14 @@ function ecolex_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'entityreference',
       'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
         'use_select2' => FALSE,
       ),
-      'type' => 'options_select',
+      'type' => 'entityreference_autocomplete_tags',
       'weight' => 28,
     ),
   );
@@ -4203,6 +4910,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'link',
@@ -4260,6 +4973,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'text',
@@ -4301,6 +5020,12 @@ function ecolex_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -4446,6 +5171,7 @@ function ecolex_field_default_field_instances() {
   t('ISIS Number');
   t('Implements');
   t('InforMEA keyword(s)');
+  t('InforMEA tags');
   t('Internet Reference');
   t('Justice(s)');
   t('Keyword(s)');

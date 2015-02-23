@@ -25,38 +25,40 @@
   <?php endif; ?>
   <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
   <div class="row">
+    <div class="col-sm-9">
+      <?php print render($title_prefix); ?>
+      <?php if ($title): ?>
+        <h1>
+          <?php print theme('image', array('path' => $directory . '/img/flags/flag-' . strtolower($wrapper->field_country_iso2->value()) . '.png', 'attributes' => array('class' => 'img-thumbnail'))); ?>
+          <?php print $title; ?>
+        </h1>
+      <?php endif; ?>
+      <?php print render($title_suffix); ?>
+    </div><!-- .col-sm-9 -->
+    <div class="col-sm-3">
+      <form role="form">
+        <select class="form-control" id="selector-country">
+          <option value=""><?php print t('Select another country&hellip;'); ?></option>
+          <?php foreach ($countries as $iso2 => $country): ?>
+            <option value="<?php print strtolower($iso2); ?>"<?php print $wrapper->field_country_iso2->value() == $iso2 ? ' selected' : ''; ?>><?php print $country; ?></option>
+          <?php endforeach; ?>
+        </select><!-- .form-control -->
+      </form>
+    </div><!-- .col-sm-3 -->
+  </div><!-- .row -->
+  <div class="row">
     <?php if (!empty($page['sidebar_first'])): ?>
       <aside id="sidebar-first" class="col-sm-3" role="complementary">
         <?php print render($page['sidebar_first']); ?>
       </aside><!-- #sidebar-first .col-sm-3 -->
     <?php endif; ?>
     <section<?php print $content_column_class; ?>>
+      <hr id="main-content">
       <?php if (!empty($page['highlighted'])): ?>
         <div class="highlighted jumbotron">
           <?php print render($page['highlighted']); ?>
         </div><!-- .highlighted .jumbotron -->
       <?php endif; ?>
-      <a id="main-content"></a>
-      <?php print render($title_prefix); ?>
-      <?php if (!empty($title)): ?>
-        <div class="page-header">
-          <div class="country-selector">
-            <form role="form">
-              <select class="form-control">
-                <option value=""><?php print t('Select a country&hellip;'); ?></option>
-                <?php foreach ($countries as $iso2 => $country): ?>
-                  <option value="<?php print strtolower($iso2); ?>"<?php print $wrapper->field_country_iso2->value() == $iso2 ? ' selected' : ''; ?>><?php print $country; ?></option>
-                <?php endforeach; ?>
-              </select><!-- .form-control -->
-            </form>
-          </div><!-- .country-selector -->
-          <h1>
-            <?php print theme('image', array('path' => $directory . '/img/flags/flag-' . strtolower($wrapper->field_country_iso2->value()) . '.png', 'attributes' => array('class' => 'img-thumbnail'))); ?>
-            <?php print $title; ?>
-          </h1>
-        </div><!-- .page-header -->
-      <?php endif; ?>
-      <?php print render($title_suffix); ?>
       <?php print $messages; ?>
       <?php if (!empty($tabs)): ?>
         <?php

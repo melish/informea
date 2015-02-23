@@ -1,5 +1,5 @@
 jQuery(document).ready(function ($) {
-  $('.country-selector .form-control').change(function () {
+  $('#selector-country').change(function () {
     var iso2 = $(this).val();
 
     if (iso2) {

@@ -470,6 +470,9 @@ function treaty_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'ajax' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

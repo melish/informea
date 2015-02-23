@@ -41,6 +41,54 @@ function informea_migration_schema_alter(&$schema) {
 }
 
 
+function informea_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['ajax'] = array(
+    'custom settings' => TRUE,
+    'label' => t('AJAX')
+  );
+}
+
+
+function informea_preprocess_node(&$vars) {
+  if ($vars['view_mode'] == 'ajax') {
+    $vars['theme_hook_suggestions'][] = 'node__ajax';
+    $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->type . '__ajax';
+    $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->nid . '__ajax';
+  }
+}
+
+
+/**
+ * Defines menu items and page callbacks.
+ *
+ * @return
+ *   An associative array of properties for each path.
+ */
+function informea_menu() {
+  $items['node/%/ajax'] = array(
+    'page callback'     => 'informea_ajax_get_ajax',
+    'page arguments'    => array(1),
+    'type'              => MENU_CALLBACK,
+    'access arguments'  => array('access content'),
+    'delivery callback' => 'informea_ajax_callback'
+  );
+
+  return $items;
+}
+
+
+function informea_ajax_get_ajax($nid) {
+  $node = node_load($nid);
+
+  return node_view($node, 'ajax');
+}
+
+
+function informea_ajax_callback($page_callback_result) {
+  print drupal_render($page_callback_result);
+}
+
+
 /**
  * Configure Entity translation to handle nodes and taxonomy terms.
  */

@@ -2,6 +2,7 @@ name = LEO
 description = The Law and Environment Observatory front-end theme.
 core = 7.x
 base theme = bootstrap
+project = leo_theme
 
 
 ; Regions

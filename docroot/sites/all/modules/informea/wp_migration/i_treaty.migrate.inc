@@ -67,7 +67,6 @@ class MigrateTreaties extends DynamicMigration {
 
     $this->addFieldMapping('field_logo', 'logo_medium');
     $this->addFieldMapping('field_logo:file_replace')->defaultValue(FILE_EXISTS_REPLACE);
-    $this->addFieldMapping('field_logo:source_dir')->defaultValue('/Work/informea/www.old/wp-content/uploads');
 
     $this->addFieldMapping('field_informea_tags', 'tags');
     $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
@@ -123,7 +122,7 @@ class MigrateTreaties extends DynamicMigration {
   }
 
   function prepareRow($row) {
-
+    $row->logo_medium = 'http://www.informea.org/wp-content/uploads/' . $row->logo_medium;
     $id_parent = db_select('migrate_map_treaties', 't')
       ->fields('t', array('destid1'))->where('sourceid1=:id', array('id' => $row->id_parent))
       ->execute()->fetchCol(0);

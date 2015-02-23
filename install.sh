@@ -3,6 +3,7 @@
 # Setup a clean site in docroot/
 cd docroot/
 drush site-install -y
+drush en -y leo_theme
 
 # Save configuration to database for later usage
 drush php-script ../scripts/drupal_pre_install.php
@@ -10,7 +11,6 @@ drush php-script ../scripts/drupal_pre_install.php
 drush init
 drush build
 
-drush en -y wp_migration
 drush migrate-auto-register
 
 drush php-script ../scripts/drupal_post_install.php
@@ -30,6 +30,6 @@ if [ "$1" == "--migrate" ]; then
 
 fi
 
-drush country_import
+drush informea-country-import
 
 drush cc all

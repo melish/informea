@@ -3,9 +3,9 @@
 function country_deliverable_get_country_national_reports($id_country) {
   $query  = new EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')
-                  ->entityCondition('bundle', 'national_report')
-                  ->fieldCondition('field_country', 'target_id', $id_country)
-                  ->execute();
+    ->entityCondition('bundle', 'national_report')
+    ->fieldCondition('field_country', 'target_id', $id_country)
+    ->execute();
   if (isset($result['node'])) {
     return node_load_multiple(array_keys($result['node']));
   }
@@ -15,9 +15,9 @@ function country_deliverable_get_country_national_reports($id_country) {
 function country_deliverable_get_country_action_plans($id_country) {
   $query  = new EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')
-                  ->entityCondition('bundle', 'action_plan')
-                  ->fieldCondition('field_country', 'target_id', $id_country)
-                  ->execute();
+    ->entityCondition('bundle', 'action_plan')
+    ->fieldCondition('field_country', 'target_id', $id_country)
+    ->execute();
   if (isset($result['node'])) {
     return node_load_multiple(array_keys($result['node']));
   }
@@ -27,9 +27,9 @@ function country_deliverable_get_country_action_plans($id_country) {
 function country_deliverable_get_treaty_national_reports($id_treaty) {
   $query  = new EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')
-                  ->entityCondition('bundle', 'national_report')
-                  ->fieldCondition('field_treaty', 'target_id', $id_treaty)
-                  ->execute();
+    ->entityCondition('bundle', 'national_report')
+    ->fieldCondition('field_treaty', 'target_id', $id_treaty)
+    ->execute();
   if (isset($result['node'])) {
     return node_load_multiple(array_keys($result['node']));
   }
@@ -39,9 +39,9 @@ function country_deliverable_get_treaty_national_reports($id_treaty) {
 function country_deliverable_get_treaty_action_plans($id_treaty) {
   $query  = new EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')
-                  ->entityCondition('bundle', 'action_plan')
-                  ->fieldCondition('field_treaty', 'target_id', $id_treaty)
-                  ->execute();
+    ->entityCondition('bundle', 'action_plan')
+    ->fieldCondition('field_treaty', 'target_id', $id_treaty)
+    ->execute();
   if (isset($result['node'])) {
     return node_load_multiple(array_keys($result['node']));
   }
@@ -186,28 +186,14 @@ function country_deliverable_action_plans_group_by_country($id_treaty) {
   return array();
 }
 
-
-function country_deliverable_render_reports($rows, $field) {
-  $elements = array();
-  foreach ($rows as $id => $row) {
-    $rw = entity_metadata_wrapper('node', $row);
-    $table_rows = array();
-    foreach($row->$field as $report) {
-      $nrw = entity_metadata_wrapper('node', $report);
-      $date = $nrw->field_report_submission_date->value();
-      $date = !empty($date) ? format_date($date, 'short') : '';
-      $files_field = field_view_field('node', $report, 'field_files', 'full');
-      $table_rows[] = array($report->title, $date, render($files_field));
-    }
-    $elements[$id] = array(
-      'header' => $rw->label(),
-      'body' => theme('table', array(
-        'rows' => $table_rows,
-        'header' => array(t('Title'), array('data' => t('Submission date'), 'class' => array('text-nowrap')), t('Files'))
-      )),
-    );
+function country_deliverable_get_reporting_obligation_cycles($id_treaty) {
+  $query  = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'reporting_obligation_cycle')
+    ->fieldCondition('field_treaty', 'target_id', $id_treaty)
+    ->execute();
+  if (isset($result['node'])) {
+    return node_load_multiple(array_keys($result['node']));
   }
-  return array(
-    '#type' => 'item', '#weight' => 10, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'decisions', 'elements' => $elements, 'no-panel-body' => TRUE)),
-  );
+  return array();
 }

@@ -316,9 +316,9 @@ $options['init-modules'] = array(
   'wp_migration',
   'ws_consumer',
   'i18n_string_helper',
-
+  'ws_consumer',
   'devel',
-  'diff'
+  'diff',
 );
 
 

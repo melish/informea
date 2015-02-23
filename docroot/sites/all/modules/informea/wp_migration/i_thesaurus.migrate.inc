@@ -5,6 +5,8 @@ class MigrateThesaurusBase extends DynamicMigration {
   public function __construct($arguments, $source_voc_id, $destination_voc) {
     parent::__construct();
 
+    $this->addFieldMapping('language')->defaultValue('en');
+
     $this->addFieldMapping('name_field', 'term');
     $this->addFieldMapping('name_field:language')->defaultValue('en');
     $this->addFieldMapping('name', 'term');
@@ -102,18 +104,23 @@ class MigrateThesaurusInforMEA extends MigrateThesaurusBase {
 
     $terms = taxonomy_get_tree($voc->vid);
     foreach($terms as &$term) {
-      $original_id = $mappings_new_old[$term->tid];
-      $parents = array();
-      foreach($relations as $oterm) {
-        if($original_id == $oterm->id_concept) {
-          $oparent_id = $oterm->target_term;
-          $parent_id = $mappings_old_new[$oparent_id];
-          $parents[] = $parent_id;
+      if (array_key_exists($term->tid, $mappings_new_old)) {
+        $original_id = $mappings_new_old[$term->tid];
+        $parents = array();
+        foreach ($relations as $oterm) {
+          if ($original_id == $oterm->id_concept) {
+            $oparent_id = $oterm->target_term;
+            $parent_id = $mappings_old_new[$oparent_id];
+            $parents[] = $parent_id;
+          }
+        }
+        if (!empty($parents)) {
+          $term->parent = $parents;
+          taxonomy_term_save($term);
         }
       }
-      if(!empty($parents)) {
-        $term->parent = $parents;
-        taxonomy_term_save($term);
+      else {
+        self::saveMessage("Could not find mapping for term: " . $term->name, MigrationBase::MESSAGE_WARNING);
       }
     }
   }

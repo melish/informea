@@ -40,4 +40,14 @@ function search_integration_form_alter(&$form, &$form_state) {
       }
     }
   }
+
+  if (isset($form_state['view']) && $form_state['view']->name == 'the_search_view') {
+    $form['search_api_views_fulltext_op']['#options'] = array(
+      'AND' => t('All of these words'),
+      'OR' => t('Any of these words'),
+      'NOT' => t('None of these words')
+    );
+
+    $form['submit']['#value'] = t('Search');
+  }
 }

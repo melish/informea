@@ -34,25 +34,49 @@ function treaty_load_by_odata_name($odata_name) {
 }
 
 function treaty_get_child_protocols($id_treaty) {
-  $query = new EntityFieldQuery();
-  $result = $query->entityCondition('entity_type', 'node')
-                  ->entityCondition('bundle', 'treaty')
-                  ->fieldCondition('field_parent_treaty', 'target_id', $id_treaty)
-                  ->execute();
-  if (!empty($result['node'])) {
-    return node_load_multiple(array_keys($result['node']));
-  }
-  return array();
+  return EdwCacheDomain::cache_get_array('treaty', __FUNCTION__, function($id_treaty) {
+    $ret = array();
+    $query = new EntityFieldQuery();
+    $result = $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'treaty')
+      ->fieldCondition('field_parent_treaty', 'target_id', $id_treaty)
+      ->execute();
+    if (!empty($result['node'])) {
+      $ret = node_load_multiple(array_keys($result['node']));
+      $wrapper = entity_metadata_wrapper('node', $id_treaty);
+      $odata_identifier = $wrapper->field_odata_identifier->value();
+      if ($odata_identifier == 'cbd') {
+        // Add also 3rd level - the Kuala Lumpur to CBD
+        if ($nkl = treaty_load_by_odata_name('NKL')) {
+          foreach ($ret as &$treaty) {
+            $w = entity_metadata_wrapper('node', $treaty->nid);
+            if ($w->field_odata_identifier->value() == 'cartagena') {
+              $treaty->protocols = array($nkl->nid => $nkl);
+            }
+          }
+        }
+      }
+    }
+    return $ret;
+  }, $id_treaty);
 }
 
 function treaty_count_child_protocols($id_treaty) {
   return EdwCacheDomain::cache_get_array('treaty', __FUNCTION__, function($id_treaty) {
     $query = new EntityFieldQuery();
-    return $query->entityCondition('entity_type', 'node')
+    $ret = $query->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', 'treaty')
       ->fieldCondition('field_parent_treaty', 'target_id', $id_treaty)
       ->count()
       ->execute();
+    $wrapper = entity_metadata_wrapper('node', $id_treaty);
+    $odata_identifier = $wrapper->field_odata_identifier->value();
+    if ($odata_identifier == 'cbd') {
+      if ($nkl = treaty_load_by_odata_name('NKL')) {
+        $ret += 1;
+      }
+    }
+    return $ret;
   }, $id_treaty);
 }
 
@@ -78,13 +102,25 @@ function treaty_get_treaties() {
 }
 
 function treaty_get_treaties_as_select_options() {
-  $nodes = treaty_get_treaties();
-  $rows = array();
-  foreach ($nodes as $nid => $node) {
-    $wrapper = entity_metadata_wrapper('node', $nid);
-    $rows[$wrapper->field_odata_identifier->value()] = $wrapper->title_field->value();
+  $ret = array();
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'treaty')
+    ->fieldCondition('field_odata_identifier', 'value', NULL, 'IS NOT NULL')
+    ->fieldOrderBy('title_field', 'value')
+    ->execute();
+  if (!empty($result['node'])) {
+    $rows = $result['node'];
+    $fields = field_info_instances('node', 'treaty');
+    field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['title_field']['field_id']));
+    field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_odata_identifier']['field_id']));
+    foreach ($rows as $nid => $node) {
+      $label = field_get_items('node', $node, 'title_field');
+      $label = isset($label[0]['value']) ? $label[0]['value'] : $node->title;
+      $ret[$node->field_odata_identifier[LANGUAGE_NONE][0]['value']] = $label;
+    }
   }
-  return $rows;
+  return $ret;
 }
 
 function treaty_get_treaty_text($id_treaty) {
@@ -132,16 +168,23 @@ function treaty_format_article_title($article) {
 }
 
 function treaty_format_meeting_description($meeting) {
-  $ret = '';
   $w = entity_metadata_wrapper('node', $meeting);
-  $start = format_date(strtotime($w->event_calendar_date->value()['value']), 'short');
-  $ret .= $start;
+  $description = array(
+    '#theme' => 'item_list',
+    '#attributes' => array('class' => array('list-inline', 'meta'))
+  );
+
+  $description['#items'][] = format_date(strtotime($w->event_calendar_date->value()['value']), 'short');
+
   $location = $w->field_location->value();
+
   if (!empty($location)) {
-    $ret .= ', ' . $location;
+    $description['#items'][] = $location;
   }
+
   if (!empty($meeting->decisions)) {
-    $ret .= ' - ' . format_plural(count($meeting->decisions), 'one decision', '@count decisions');
+    $description['#items'][] = format_plural(count($meeting->decisions), 'one decision', '@count decisions');
   }
-  return $ret;
+
+  return drupal_render($description);
 }

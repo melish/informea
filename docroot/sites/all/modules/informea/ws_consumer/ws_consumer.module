@@ -70,10 +70,10 @@ function ws_consumer_update_treaty_ratification($node_treaty) {
         $party_w = entity_metadata_wrapper('node', $party);
         try {
           if (empty($party->nid)) {
-            $party_w->field_country[] = intval($ratification->country_ob->nid);
+            $party_w->field_country->set(array(intval($ratification->country_ob->nid)));
           }
           if (empty($party->nid)) {
-            $party_w->field_treaty[] = intval($treaty_w->getIdentifier());
+            $party_w->field_treaty->set(array(intval($treaty_w->getIdentifier())));
           }
           if (!empty($date1) && $party_w->field_party_date_1->value() != $date1) {
             $save = TRUE;
