@@ -18,7 +18,11 @@ function treaty_menu() {
     'page callback' => 'terms_view',
     'access arguments' => array('access content')
   );
-
+  $items['treaties'] = array(
+    'title' => t('Treaties'),
+    'page callback' => 'treaty_view',
+    'access arguments' => array('access content')
+  );
   return $items;
 }
 
@@ -79,6 +83,12 @@ function treaty_theme() {
       'path' => drupal_get_path('module', 'treaty'),
       'render element' => 'element',
       'template' => 'templates/treaty-modal'
+    ),
+    'treaties' => array(
+      'render element' => 'element',
+      'template' => 'templates/treaties',
+      'variables' => array('regions', 'treaties'),
+      'path' => drupal_get_path('theme', 'informea_theme'),
     )
   );
 }
@@ -359,4 +369,79 @@ function terms_view() {
   drupal_add_js(drupal_get_path('module', 'treaty') . '/js/terms.js');
 
   return theme('terms');
+}
+
+function _treaty_get_treaties() {
+  $source_informea = current(taxonomy_get_term_by_name('InforMEA', 'data_source'));
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'treaty')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->fieldCondition('field_data_source', 'tid', $source_informea->tid)
+    ->fieldOrderBy('field_official_name', 'value')
+    ->execute();
+
+  $treaties = array();
+  $protocols = array();
+  if (!isset($result['node'])) {
+    return array();
+  }
+  $nodes = entity_load('node', array_keys($result['node']));
+  foreach ($nodes as $nid => $node) {
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $node->official_name = $wrapper->field_official_name->value();
+    $node->logo = file_create_url($wrapper->field_logo->value()['uri']);
+    // Protocols
+    $parent = $wrapper->field_parent_treaty->value();
+    if ($parent) {
+      $protocols[$parent->nid][] = $node;
+      continue;
+    }
+    $rs = $wrapper->field_region->value();
+    $node->regions = array();
+    foreach ($rs as $t) {
+      $t_wrapper = entity_metadata_wrapper('taxonomy_term', $t);
+      $t->name = $t_wrapper->label();
+      $node->regions[] = $t->name;
+    }
+    $node->regions = implode(', ', $node->regions);
+    $treaties[$nid] = $node;
+  }
+  // Protocols
+  foreach ($protocols as $parent_nid => $protocols) {
+    if (array_key_exists($parent_nid, $treaties)) { // Kuala Lumpur 3rd level
+      $parent              = $treaties[$nid];
+      $parent->protocols = $protocols;
+    }
+  }
+  return $treaties;
+}
+
+/**
+ * Displays the treaties page when the user visits the path.
+ *
+ * @return
+ *   String representing the content of the page.
+ */
+function treaty_view() {
+  // Adds the treaties JavaScript file to the page.
+  drupal_add_js(drupal_get_path('module', 'treaty') . '/js/treaties.js');
+  $regions = array();
+  $treaties = _treaty_get_treaties();
+  foreach ($treaties as $node) {
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $rs = $wrapper->field_region->value();
+    foreach ($rs as $t) {
+      $t_wrapper = entity_metadata_wrapper('taxonomy_term', $t);
+      $t->name = $t_wrapper->label();
+      $regions[$t->tid] = $t;
+    }
+  }
+
+  uasort($regions, function($a, $b) { return strcasecmp($a->name, $b->name); });
+  $ret = theme('treaties', array(
+    'regions' => $regions,
+    'treaties' => _treaty_get_treaties()
+  ));
+  return $ret;
 }

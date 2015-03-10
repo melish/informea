@@ -1,4 +1,5 @@
 name = InforMEA
+project = informea_theme
 description = The InforMEA front-end theme.
 core = 7.x
 base theme = bootstrap
