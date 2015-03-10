@@ -23,6 +23,10 @@ a:focus {
   margin-top: -4px;
 }
 
+.breadcrumb {
+  background-color: transparent;
+  padding: 0;
+}
 
 /* Lists */
 

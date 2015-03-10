@@ -16,12 +16,14 @@ function treaty_menu() {
   $items['terms'] = array(
     'title' => t('Glossary'),
     'page callback' => 'terms_view',
-    'access arguments' => array('access content')
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
   );
   $items['treaties'] = array(
     'title' => t('Treaties'),
     'page callback' => 'treaty_view',
-    'access arguments' => array('access content')
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
   );
   return $items;
 }
@@ -420,10 +422,11 @@ function _treaty_get_treaties() {
 /**
  * Displays the treaties page when the user visits the path.
  *
- * @return
+ * @return string
  *   String representing the content of the page.
  */
 function treaty_view() {
+//  drupal_set_title('');
   // Adds the treaties JavaScript file to the page.
   drupal_add_js(drupal_get_path('module', 'treaty') . '/js/treaties.js');
   $regions = array();

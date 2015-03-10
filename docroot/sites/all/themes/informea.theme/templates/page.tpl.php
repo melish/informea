@@ -74,6 +74,13 @@
  */
 ?>
 <?php include 'header.tpl.php'; ?>
+<div class="page-header">
+  <div class="container">
+    <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
+    <?php print render($title_prefix); ?>
+    <h1><?php print $title; ?></h1>
+  </div>
+</div><!-- .page-header -->
 <div class="container">
   <?php if (!empty($page['header'])): ?>
     <header id="page-header" role="banner">
@@ -92,15 +99,7 @@
           <?php print render($page['highlighted']); ?>
         </div><!-- .highlighted .jumbotron -->
       <?php endif; ?>
-      <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
       <a id="main-content"></a>
-      <?php print render($title_prefix); ?>
-      <?php if (!empty($title)): ?>
-        <div class="page-header">
-          <h1><?php print $title; ?></h1>
-        </div><!-- .page-header -->
-      <?php endif; ?>
-      <?php print render($title_suffix); ?>
       <?php print $messages; ?>
       <?php if (!empty($tabs)): ?>
         <?php print render($tabs); ?>
