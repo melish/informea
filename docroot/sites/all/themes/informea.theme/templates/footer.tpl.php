@@ -181,7 +181,10 @@
       </div><!-- .row -->
     </div><!-- .footer-section -->
     <div class="footer-section">
-      <p><?php print t('<a href="@url">Terms and conditions</a> &dash; Portions Copyright &copy; United Nations, FAO, UNEP, UNESCO', array('@url' => url('disclaimer'))); ?></p>
+      <p>
+        <?php print t('<a href="@url">Terms and conditions</a> &dash; Portions Copyright &copy; United Nations, FAO, UNEP, UNESCO', array('@url' => url('disclaimer'))); ?>
+        &nbsp; &middot; &nbsp;<?php print $user->uid == 0 ? l(t('Log in'), 'user/login') : l(t('Log out'), 'user/logout'); ?>
+      </p>
     </div><!-- .footer-section -->
   </div><!-- .container -->
 </footer><!-- .footer -->
