@@ -317,6 +317,7 @@ $options['init-modules'] = array(
   'ws_consumer',
   'i18n_string_helper',
   'ws_consumer',
+  'edw_amcharts',
   'devel',
   'diff',
 );

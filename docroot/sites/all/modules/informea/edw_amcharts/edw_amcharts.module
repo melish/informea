@@ -1,6 +1,6 @@
 <?php
 
-define('EDW_AMCHARTS_VERSION', '0.1');
+define('EDW_AMCHARTS_VERSION', '0.2');
 
 /**
  *  Implements hook_menu().
@@ -69,7 +69,34 @@ function edw_amcharts_library() {
         ),
       ),
   );
+
+  $items['edw_ammap_world_high'] = array(
+    'title' => 'amCharts pie chart',
+    'version' => EDW_AMCHARTS_VERSION,
+    'js' => array(
+      'http://www.amcharts.com/lib/3/ammap.js' => array(
+        'type' => 'external',
+        'group' => JS_LIBRARY,
+        'weight' => 20,
+      ),
+      'http://www.amcharts.com/lib/3/themes/light.js' => array(
+        'type' => 'external',
+        'group' => JS_LIBRARY,
+        'weight' => 30,
+      ),
+      'http://www.amcharts.com/lib/3/maps/js/worldHigh.js' => array(
+        'type' => 'external',
+        'group' => JS_LIBRARY,
+        'weight' => 40,
+      ),
+    ),
+  );
   return $items;
+}
+
+
+function edw_amcharts_add_map($resolution) {
+  drupal_add_library('edw_amcharts', "edw_ammap_world_$resolution");
 }
 
 /**
@@ -88,7 +115,7 @@ function edw_amcharts_add_chart($chart_id, $chart_type, $chart_config, $listener
   $defaults = $options + array(
       'width' => '100px',
       'height' => '100px',
-  );
+    );
   drupal_alter('edw_amcharts_chart_data', $chart_config, $chart_id);
   drupal_add_library('edw_amcharts', "edw_amcharts_{$chart_type}_chart");
   drupal_add_js("http://www.amcharts.com/lib/3/themes/{$chart_config->theme}.js",
@@ -147,15 +174,15 @@ function edw_amcharts_default_config_chart_column() {
     )),
     'chartCursor' => (object) array(
       'categoryBalloonEnabled' => FALSE,
-        'cursorAlpha' => 0,
-        'zoomable' => FALSE
+      'cursorAlpha' => 0,
+      'zoomable' => FALSE
     ),
     'categoryField' => 'the_category',
     'categoryAxis' => (object) array(
-    'gridPosition' => 'start',
-        'gridAlpha' => 0,
-         'tickPosition' =>'start',
-         'tickLength' => 20
+      'gridPosition' => 'start',
+      'gridAlpha' => 0,
+      'tickPosition' =>'start',
+      'tickLength' => 20
     ),
     'dataProvider' => array(
       (object) array('the_category' => 'USA', 'the_value' => 2025),

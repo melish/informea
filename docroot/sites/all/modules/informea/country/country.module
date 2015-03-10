@@ -32,6 +32,21 @@ function country_url_match_node($path) {
 }
 
 /**
+ * Implements hook_menu().
+ */
+function country_menu() {
+  return array(
+    'countries' => array(
+      'title' => t('Countries'),
+      'description' => t('Map of countries'),
+      'type' => MENU_NORMAL_ITEM,
+      'page callback' => 'country_level1_page',
+      'access arguments' =>  array('access content'),
+    ),
+  );
+}
+
+/**
  * Implements hook_theme().
  *
  * {@inheritdoc}
@@ -425,4 +440,40 @@ function country_menu_local_tasks_alter(&$data, $router_item, $root_path) {
       'output' => $context_menu,
     );
   }
+}
+
+function country_get_stats() {
+  module_load_include('inc', 'country_data', 'country_data.api');
+  $countries = country_get_countries();
+  $stats = array();
+  foreach ($countries as $country) {
+    if ($cache = cache_get('country_stats_' . $country->nid)) {
+      $data = $cache->data;
+    } else {
+      $view_ramsar = country_get_view_country_related_content($country->nid, 'ramsar_sites');
+      $view_whc = country_get_view_country_related_content($country->nid, 'whc_sites');
+      $data = array(
+        t('!count UNESCO and WHC sites,<br />', array('!count' => $view_ramsar->total_rows + $view_whc->total_rows)),
+        t('Party to !count treaties', array('!count' => count(country_data_country_get_parties($country->nid)))),
+      );
+      $data = implode(', ', $data);
+      cache_set('country_stats_' . $country->nid, $data, 'cache', time() + 60 * 60 * 24);
+    }
+    $stats[$country->field_country_iso2['und'][0]['value']] = sprintf('<strong>%s</strong><br>%s', $country->title, $data);
+  }
+  return $stats;
+}
+
+function country_level1_page() {
+  edw_amcharts_add_map('high');
+  drupal_add_js(array('country' => array('stats' => country_get_stats())), array('type' => 'setting'));
+  drupal_add_js(drupal_get_path('module', 'country') . '/js/countries.js');
+  drupal_add_js(drupal_get_path('module', 'country') . '/js/country.js');
+  $ret = array(
+    'map' => array(
+      '#type' => 'item',
+      '#markup' => '<div id="ammap_div" style="width: 100%; height: 600px"></div>',
+    )
+  );
+  return $ret;
 }

@@ -16,6 +16,25 @@
 function informea_theme_preprocess_page(&$variables) {
   $search_form = drupal_get_form('search_form');
 
+  if(isset($variables['node'])) {
+    $node = $variables['node'];
+    switch ($node->type) {
+      case 'country':
+        $variables['content_column_class'] = ' class="col-sm-9"';
+        $variables['countries'] = country_get_countries_select_options();
+        array_unshift($variables['page']['sidebar_first'], menu_secondary_local_tasks());
+        break;
+
+      case 'treaty':
+        $variables['content_column_class'] = ' class="col-sm-9"';
+        $variables['treaties'] = treaty_get_treaties_as_select_options();
+        array_unshift($variables['page']['sidebar_first'], menu_secondary_local_tasks());
+    }
+  }
+  if (isset($variables['node']->type)) {
+    // $variables['theme_hook_suggestions'][] = 'page__' . $variables['node']->type;
+  }
+
   $variables['search_box'] = drupal_render($search_form);
 
   if ($variables['is_front']) {

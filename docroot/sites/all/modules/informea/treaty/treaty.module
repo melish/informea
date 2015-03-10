@@ -320,7 +320,7 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
 
     foreach ($menu_items as $path => $menu_item) {
       $text = isset($menu_item['count'])
-        ? sprintf('<span class="counter">%d</span>%s', $menu_item['count'], $menu_item['title'])
+        ? sprintf('%s <span class="badge pull-right">%d</span>', $menu_item['title'], $menu_item['count'])
         : $menu_item['title'];
 
       $list_item = array(
@@ -331,7 +331,6 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
       if (isset($node->context) && $node->context == $path) {
         $list_item['class'][] = 'active';
       }
-
       $contextual_menu['#items'][] = $list_item;
     }
 
