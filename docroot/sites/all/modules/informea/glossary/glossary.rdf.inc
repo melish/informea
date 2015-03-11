@@ -13,7 +13,7 @@ class InforMEAExportRDF {
     // Start building up a RDF graph
     $ret = array(
       <<<EOT
-      <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <rdf:RDF
         xmlns="$scheme"
         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
@@ -43,9 +43,8 @@ EOT
         $slug = self::slugify($label);
         $uri = $scheme . '/' . $slug;
 
-        $output =
-          <<<EOT
-              <rdf:Description rdf:about="$uri">
+        $output =<<<EOT
+<rdf:Description rdf:about="$uri">
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <skos:inScheme rdf:resource="$scheme"/>
 EOT;
@@ -59,25 +58,14 @@ EOT;
         $label_uri = self::addPrefLabel($tid, $label, $prefLabel);
         $output .= "\n        " . sprintf('<skosxl:prefLabel rdf:resource="%s"/>', $label_uri);
 
-        // skos:narrower
-        /*
-        $narrower = $thesaurus->get_narrower_terms($term->id);
-        foreach($narrower as $n) {
-            $n_slug = self::slugify($n->term);
-            $n_uri = $scheme . '/' . $n_slug;
-            $output .= "\n        " .sprintf('<skos:narrower rdf:resource="%s"/>', $n_uri);
-        }
-        */
-
         // skos:broader
-        /*
-        $broader = $thesaurus->get_broader_terms_full($tid);
-        foreach ($broader as $b) {
-          $b_slug = self::slugify($b->term);
+        $broader = taxonomy_get_parents($tid);
+        foreach ($broader as $bid => $b) {
+          $bw = entity_metadata_wrapper('taxonomy_term', $bid);
+          $b_slug = self::slugify($bw->label());
           $b_uri = $scheme . '/' . $b_slug;
           $output .= "\n        " . sprintf('<skos:broader rdf:resource="%s"/>', $b_uri);
         }
-        */
 
         $output .= "\n    </rdf:Description>\n";
         $output .= $prefLabel;

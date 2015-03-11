@@ -68,6 +68,7 @@ function glossary_export_rdf() {
   $query->fieldOrderBy('name_field', 'value');
   if ($terms = $query->execute()) {
     module_load_include('inc', 'glossary', 'glossary.rdf');
+    header('Content-Type: application/xml; charset=utf-8');
     echo InforMEAExportRDF::toXML($terms['taxonomy_term']);
     drupal_exit();
     return;
