@@ -1,0 +1,110 @@
+<?php
+
+/**
+ * Defines menu items and page callbacks.
+ *
+ * @return
+ *   An associative array of properties for each path.
+ */
+function glossary_menu() {
+  $items['terms'] = array(
+    'title' => t('Glossary'),
+    'page callback' => 'glossary_view',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['terms.rdf'] = array(
+    'title' => t('Export RDF XML file'),
+    'page callback' => 'glossary_export_rdf',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['terms.xls'] = array(
+    'title' => t('Export Excel file'),
+    'page callback' => 'glossary_export_xls',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+
+/**
+ * Implement hook_theme().
+ *
+ * {@inheritdoc}
+ */
+function glossary_theme() {
+  return array(
+    'terms' => array(
+      'render element' => 'element',
+      'template' => 'templates/terms',
+      'variables' => array('substantive', 'generic'),
+      'path' => drupal_get_path('theme', 'informea_theme'),
+    )
+  );
+}
+
+/**
+ * Displays the terms page when the user visits the path.
+ *
+ * @return string
+ *   String representing the content of the page.
+ */
+function glossary_view() {
+  // Adds the treaties JavaScript file to the page.
+  drupal_add_js(drupal_get_path('module', 'treaty') . '/js/treaties.js');
+   $ret = theme('treaties', array(
+    'substantive' => array(),
+    'generic' => array()
+  ));
+  return $ret;
+}
+
+function glossary_export_rdf() {
+  echo "Not implemented";
+}
+
+function glossary_export_xls() {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'taxonomy_term');
+  $query->entityCondition('bundle', 'thesaurus_informea');
+  $query->fieldOrderBy('name_field', 'value');
+  if ($terms = $query->execute()) {
+    $filename = sprintf('informea-glossary-%s.xls', date('Ymd'));
+    header("Content-Type: 'application/vnd.ms-excel'");
+    header("Content-Disposition: attachment; filename=$filename;");
+    libraries_load('PHPExcel');
+    $xls = new PHPExcel();
+    $xls->getProperties()->setCreator('http://www.informea.org/terms.xls');
+    $xls->getProperties()->setTitle('InforMEA glossary export');
+    $xls->setActiveSheetIndex(0);
+    $xls->getActiveSheet()->SetCellValue('A1', 'Term');
+    $xls->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE);
+    $xls->getActiveSheet()->SetCellValue('B1', 'Definition');
+    $xls->getActiveSheet()->getStyle('B1')->getFont()->setBold(TRUE);
+
+    $i = 2;
+    foreach ($terms['taxonomy_term'] as $tid => $meta) {
+      $w = entity_metadata_wrapper('taxonomy_term', $tid);
+      $label = $w->name_field->value();
+      $description = $w->description_field->value();
+      $description = !empty($description['safe_value']) ? $description['safe_value'] : '';
+      if (!empty($label)) {
+        $cell_name = 'A' . $i;
+        $xls->getActiveSheet()->fromArray(array(
+          $label,
+          $description
+        ), NULL, $cell_name);
+        $i++;
+      }
+    }
+    // @TODO Configure caching as phpexcel does.
+    $xls_writer = PHPExcel_IOFactory::createWriter($xls, 'Excel5');
+    $xls_writer->save('php://output');
+    drupal_exit();
+    return;
+  }
+  drupal_set_message('Internal error while retrieving the list of terms from the taxonomy');
+  drupal_not_found();
+}

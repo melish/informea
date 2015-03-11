@@ -315,6 +315,7 @@ $options['init-modules'] = array(
   'treaty',
   'wp_migration',
   'ws_consumer',
+  'glossary',
   'i18n_string_helper',
   'ws_consumer',
   'edw_amcharts',
