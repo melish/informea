@@ -145,6 +145,7 @@ class MigrateThesaurusInforMEAUpdateDescriptions extends Migration {
     parent::__construct($arguments);
     $this->description = 'Update descriptions from the WordPress version for migrated terms';
     $source_voc_id = 9;
+    $this->dependencies = array('ThesaurusInforMEA');
     $destination_voc = INFORMEA_VOC_INFORMEA;
     $this->map = new MigrateSQLMap($this->getMachineName(),
       array(
@@ -165,8 +166,15 @@ class MigrateThesaurusInforMEAUpdateDescriptions extends Migration {
     $this->setSystemOfRecord(Migration::DESTINATION);
 
     $this->addFieldMapping('tid', 'id')->sourceMigration('ThesaurusInforMEA');
+
+    $this->addFieldMapping('name_field', 'term');
+    $this->addFieldMapping('name_field:language')->defaultValue('en');
+    $this->addFieldMapping('name', 'term');
+
     $this->addFieldMapping('description', 'description');
     $this->addFieldMapping('description_field', 'description');
+    $this->addFieldMapping('description_field:language')->defaultValue('en');
+    $this->addFieldMapping('description_field:format')->defaultValue('plain_text');
   }
 }
 
