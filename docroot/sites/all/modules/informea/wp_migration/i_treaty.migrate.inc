@@ -72,6 +72,11 @@ class MigrateTreaties extends DynamicMigration {
     $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_informea_tags:create_term')->defaultValue(FALSE);
 
+    // All InforMEA treaties are multilateral
+    $this->addFieldMapping('field_type_of_text')->defaultValue('Multilateral');
+    $this->addFieldMapping('field_type_of_text:create_term')->defaultValue(TRUE);
+    $this->addFieldMapping('field_type_of_text:ignore_case')->defaultValue(TRUE);
+
     $this->addFieldMapping('field_parent_treaty', 'id_parent');
     $this->addFieldMapping('field_region', 'regions');
 

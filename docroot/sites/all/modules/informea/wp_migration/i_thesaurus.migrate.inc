@@ -98,20 +98,38 @@ class MigrateThesaurusInforMEA extends MigrateThesaurusBase {
       ->fields('e')
       ->execute()->fetchAllKeyed(0);
 
-    $relations = Database::getConnection('default', 'for_migration')
+    $relations = array();
+    $relations1 = Database::getConnection('default', 'for_migration')
       ->select('voc_relation', 'e')->where('relation=1')
       ->fields('e', array('id_concept', 'target_term'))->execute()->fetchAll();
+    $relations2 = Database::getConnection('default', 'for_migration')
+      ->select('voc_relation', 'e')->where('relation=2')
+      ->fields('e', array('id_concept', 'target_term'))->execute()->fetchAll();
+
+    foreach ($relations1 as $r) {
+      $relations[$r->id_concept][] = $r->target_term;
+    }
+    foreach ($relations2 as $r) {
+      if (array_key_exists($r->target_term, $relations)) {
+        if (!in_array($r->id_concept, $relations[$r->target_term])) {
+          $relations[$r->target_term][] = $r->id_concept;
+        }
+      }
+      else {
+        $relations[$r->target_term][] = $r->id_concept;
+      }
+    }
 
     $terms = taxonomy_get_tree($voc->vid);
     foreach($terms as &$term) {
       if (array_key_exists($term->tid, $mappings_new_old)) {
         $original_id = $mappings_new_old[$term->tid];
         $parents = array();
-        foreach ($relations as $oterm) {
-          if ($original_id == $oterm->id_concept) {
-            $oparent_id = $oterm->target_term;
-            $parent_id = $mappings_old_new[$oparent_id];
-            $parents[] = $parent_id;
+
+        if (array_key_exists($original_id, $relations)) {
+          $ops = $relations[$original_id];
+          foreach($ops as $opid) {
+            $parents[] = $mappings_old_new[$opid];
           }
         }
         if (!empty($parents)) {
