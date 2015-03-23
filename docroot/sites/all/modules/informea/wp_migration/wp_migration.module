@@ -30,6 +30,7 @@ function wp_migration_migrate_api() {
       'Goals' => array('class_name' => 'MigrateGoals', 'group_name' => 'informea'),
 
       'ThesaurusInforMEA' => array('class_name' => 'MigrateThesaurusInforMEA', 'group_name' => 'informea'),
+      'ThesaurusInforMEAUpdate' => array('class_name' => 'MigrateThesaurusInforMEAUpdateDescriptions', 'group_name' => 'informea'),
       'ThesaurusGEG' => array('class_name' => 'MigrateThesaurusGEG', 'group_name' => 'informea'),
       'ThesaurusGEMET' => array('class_name' => 'MigrateThesaurusGEMET', 'group_name' => 'informea'),
       'ThesaurusIEG' => array('class_name' => 'MigrateThesaurusIEG', 'group_name' => 'informea'),

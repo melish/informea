@@ -5,8 +5,6 @@ class MigrateThesaurusBase extends Migration {
   public function __construct($arguments, $source_voc_id, $destination_voc) {
     parent::__construct($arguments);
 
-    $this->addFieldMapping('language')->defaultValue('en');
-
     $this->addFieldMapping('name_field', 'term');
     $this->addFieldMapping('name_field:language')->defaultValue('en');
     $this->addFieldMapping('name', 'term');
@@ -56,14 +54,14 @@ class MigrateThesaurusBase extends Migration {
           'description' => 'Source PK',
         )
       ),
-      MigrateDestinationNode::getKeySchema()
+      MigrateDestinationTerm::getKeySchema()
     );
     $query = Database::getConnection('default', 'for_migration')
       ->select('voc_concept', 'e')->condition('id_source', $source_voc_id, '=')
       ->fields('e');
 
     $this->source = new MigrateSourceSQL($query);
-    $this->destination = new MigrateDestinationTerm($destination_voc);
+    $this->destination = new MigrateDestinationTerm($destination_voc, array('language' => 'en'));
   }
 
 }
@@ -140,6 +138,37 @@ class MigrateThesaurusInforMEA extends MigrateThesaurusBase {
   }
 }
 
+
+class MigrateThesaurusInforMEAUpdateDescriptions extends Migration {
+
+  public function __construct($arguments) {
+    parent::__construct($arguments);
+    $this->description = 'Update descriptions from the WordPress version for migrated terms';
+    $source_voc_id = 9;
+    $destination_voc = INFORMEA_VOC_INFORMEA;
+    $this->map = new MigrateSQLMap($this->getMachineName(),
+      array(
+        'id' => array('type' => 'int',
+          'length' => 4,
+          'not null' => TRUE,
+          'description' => 'Source PK',
+        )
+      ),
+      MigrateDestinationTerm::getKeySchema()
+    );
+    $query = Database::getConnection('default', 'for_migration')
+      ->select('voc_concept', 'e')->condition('id_source', $source_voc_id, '=')
+      ->fields('e');
+
+    $this->source = new MigrateSourceSQL($query);
+    $this->destination = new MigrateDestinationTerm($destination_voc, array('language' => 'en'));
+    $this->setSystemOfRecord(Migration::DESTINATION);
+
+    $this->addFieldMapping('tid', 'id')->sourceMigration('ThesaurusInforMEA');
+    $this->addFieldMapping('description', 'description');
+    $this->addFieldMapping('description_field', 'description');
+  }
+}
 
 class MigrateThesaurusGEG extends MigrateThesaurusBase {
 
