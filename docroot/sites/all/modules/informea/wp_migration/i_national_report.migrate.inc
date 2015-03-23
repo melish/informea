@@ -5,10 +5,6 @@ class MigrateNationalReports extends Migration {
   protected $countries = array();
   protected $treaties = array();
 
-  protected function generateMachineName() {
-    return 'NationalReports';
-  }
-
   public function __construct($arguments) {
     parent::__construct($arguments);
 
@@ -104,10 +100,6 @@ class MigrateReportingObligations extends Migration {
   protected $treaties_paragraphs = array();
   protected $decisions = array();
   protected $decisions_paragraphs = array();
-
-  protected function generateMachineName() {
-    return 'ReportingObligations';
-  }
 
   public function __construct($arguments) {
     parent::__construct($arguments);

@@ -4,11 +4,6 @@ class MigrateGoals extends Migration {
 
   protected $regions = array();
 
-
-  protected function generateMachineName() {
-    return 'Goals';
-  }
-
   public function __construct($arguments) {
     parent::__construct($arguments);
 

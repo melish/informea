@@ -5,10 +5,6 @@ class MigrateSites extends Migration {
   protected $countries = array();
   protected $treaties = array();
 
-  protected function generateMachineName() {
-    return 'Sites';
-  }
-
   public function __construct($arguments) {
     parent::__construct($arguments);
 

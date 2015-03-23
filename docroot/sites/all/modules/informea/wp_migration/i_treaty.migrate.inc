@@ -2,10 +2,6 @@
 
 class MigrateTreaties extends Migration {
 
-  protected function generateMachineName() {
-    return 'Treaties';
-  }
-
   public function __construct($arguments) {
     parent::__construct($arguments);
 
@@ -192,10 +188,6 @@ class MigrateTreaties extends Migration {
 
 class MigrateTreatiesArticles extends Migration {
 
-  protected function generateMachineName() {
-    return 'TreatiesArticles';
-  }
-
   public function __construct($arguments) {
     parent::__construct($arguments);
 
@@ -353,10 +345,6 @@ class MigrateTreatiesParagraphs extends Migration {
     $this->addUnmigratedDestinations(array(
       'log', 'tnid', 'translate', 'revision_uid', 'is_new', 'body:summary', 'path'
     ));
-  }
-
-  protected function generateMachineName() {
-    return 'TreatiesParagraphs';
   }
 
   function prepareRow($row) {

@@ -6,10 +6,6 @@ class MigrateNationalFocalPoints extends Migration {
   protected $treaties = array();
   protected $treaty_assignments = array();
 
-  protected function generateMachineName() {
-    return 'NationalFocalPoints';
-  }
-
   public function __construct($arguments) {
     parent::__construct($arguments);
 

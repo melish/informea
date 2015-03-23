@@ -70,10 +70,6 @@ class MigrateThesaurusBase extends Migration {
 
 class MigrateThesaurusInforMEA extends MigrateThesaurusBase {
 
-  protected function generateMachineName() {
-    return 'ThesaurusInforMEA';
-  }
-
   public function __construct($arguments) {
     parent::__construct($arguments, 9, INFORMEA_VOC_INFORMEA);
     $this->dependencies = array('ThesaurusGEG');
@@ -147,10 +143,6 @@ class MigrateThesaurusInforMEA extends MigrateThesaurusBase {
 
 class MigrateThesaurusGEG extends MigrateThesaurusBase {
 
-  protected function generateMachineName() {
-    return 'ThesaurusGEG';
-  }
-
   public function __construct($arguments) {
     parent::__construct($arguments, 10, INFORMEA_VOC_GEG);
     $this->description = 'Import GEG thesaurus';
@@ -160,10 +152,6 @@ class MigrateThesaurusGEG extends MigrateThesaurusBase {
 
 class MigrateThesaurusIEG extends MigrateThesaurusBase {
 
-  protected function generateMachineName() {
-    return 'ThesaurusIEG';
-  }
-
   public function __construct($arguments) {
     parent::__construct($arguments, 13, INFORMEA_VOC_IEG);
     $this->description = 'Import IEG thesaurus';
@@ -172,10 +160,6 @@ class MigrateThesaurusIEG extends MigrateThesaurusBase {
 
 
 class MigrateThesaurusGEMET extends MigrateThesaurusBase {
-
-  protected function generateMachineName() {
-    return 'ThesaurusGEMET';
-  }
 
   public function __construct($arguments) {
     parent::__construct($arguments, 13, INFORMEA_VOC_GEMET);

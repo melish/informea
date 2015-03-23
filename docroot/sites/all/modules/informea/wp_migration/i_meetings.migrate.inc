@@ -5,10 +5,6 @@ class MigrateMeetings extends Migration {
   protected $countries = array();
   protected $treaties = array();
 
-  protected function generateMachineName() {
-    return 'Meetings';
-  }
-
   public function __construct($arguments) {
     parent::__construct($arguments);
 

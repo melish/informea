@@ -5,10 +5,6 @@ class MigrateActionPlans extends Migration {
   protected $countries = array();
   protected $treaties = array();
 
-  protected function generateMachineName() {
-    return 'ActionPlans';
-  }
-
   public function __construct($arguments) {
     parent::__construct($arguments);
 

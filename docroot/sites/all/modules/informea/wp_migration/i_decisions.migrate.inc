@@ -1,9 +1,6 @@
 <?php
 
 class MigrateDecisionsDocuments extends Migration {
-  protected function generateMachineName() {
-      return 'DecisionsDocuments';
-  }
 
   public function __construct($arguments) {
     parent::__construct($arguments);
@@ -66,10 +63,6 @@ class MigrateDecisions extends Migration {
 
   protected $meetings = array();
   protected $treaties = array();
-
-  protected function generateMachineName() {
-    return 'Decisions';
-  }
 
   public function __construct($arguments) {
     parent::__construct($arguments);
@@ -264,10 +257,6 @@ class MigrateDecisions extends Migration {
 class MigrateDecisionsParagraphs extends Migration {
 
   private $decisions_mapping = array();
-
-  protected function generateMachineName() {
-    return 'DecisionsParagraphs';
-  }
 
   public function __construct($arguments) {
     parent::__construct($arguments);
