@@ -188,7 +188,7 @@ function informea_taxonomy_default_vocabularies() {
       'name' => 'Thesaurus - InforMEA',
       'machine_name' => 'thesaurus_informea',
       'description' => 'Main InforMEA thesaurus',
-      'hierarchy' => 0,
+      'hierarchy' => 2,
       'module' => 'taxonomy',
       'weight' => 3,
       'language' => 'und',

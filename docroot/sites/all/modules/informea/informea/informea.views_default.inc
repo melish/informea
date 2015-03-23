@@ -33,13 +33,18 @@ function informea_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Field: Taxonomy term: Name */
-  $handler->display->display_options['fields']['name']['id'] = 'name';
-  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
-  $handler->display->display_options['fields']['name']['field'] = 'name';
-  $handler->display->display_options['fields']['name']['label'] = '';
-  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['name']['link_to_taxonomy'] = TRUE;
+  $handler->display->display_options['fields']['name_field']['id'] = 'name_field';
+  $handler->display->display_options['fields']['name_field']['table'] = 'field_data_name_field';
+  $handler->display->display_options['fields']['name_field']['field'] = 'name_field';
+  $handler->display->display_options['fields']['name_field']['label'] = '';
+  $handler->display->display_options['fields']['name_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['name_field']['type'] = 'title_linked';
+  $handler->display->display_options['fields']['name_field']['settings'] = array(
+    'title_style' => '_none',
+    'title_link' => 'content',
+    'title_class' => '',
+  );
+  $handler->display->display_options['fields']['name_field']['link_to_entity'] = 0;
   /* Field: Taxonomy term: Term description */
   $handler->display->display_options['fields']['description']['id'] = 'description';
   $handler->display->display_options['fields']['description']['table'] = 'taxonomy_term_data';
@@ -139,10 +144,6 @@ function informea_views_default_views() {
       'empty_column' => 0,
     ),
   );
-  /* Relationship: Taxonomy term: Entity translation: translations */
-  $handler->display->display_options['relationships']['entity_translations']['id'] = 'entity_translations';
-  $handler->display->display_options['relationships']['entity_translations']['table'] = 'taxonomy_term_data';
-  $handler->display->display_options['relationships']['entity_translations']['field'] = 'entity_translations';
   /* Field: Taxonomy term: Term ID */
   $handler->display->display_options['fields']['tid']['id'] = 'tid';
   $handler->display->display_options['fields']['tid']['table'] = 'taxonomy_term_data';
@@ -152,6 +153,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['link_to_taxonomy'] = TRUE;
   /* Field: Field: Keyword(s) */
   $handler->display->display_options['fields']['field_keywords']['id'] = 'field_keywords';
   $handler->display->display_options['fields']['field_keywords']['table'] = 'field_data_field_keywords';
@@ -182,15 +184,6 @@ function informea_views_default_views() {
     'thesaurus_informea' => 'thesaurus_informea',
   );
   $handler->display->display_options['filters']['machine_name']['group'] = 1;
-  /* Filter criterion: Entity translation: Language */
-  $handler->display->display_options['filters']['language_1']['id'] = 'language_1';
-  $handler->display->display_options['filters']['language_1']['table'] = 'entity_translation';
-  $handler->display->display_options['filters']['language_1']['field'] = 'language';
-  $handler->display->display_options['filters']['language_1']['relationship'] = 'entity_translations';
-  $handler->display->display_options['filters']['language_1']['value'] = array(
-    'en' => 'en',
-  );
-  $handler->display->display_options['filters']['language_1']['group'] = 1;
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -209,7 +202,6 @@ function informea_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
-    t('Translations'),
     t('ID'),
     t('.'),
     t(','),
