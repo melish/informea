@@ -8,7 +8,7 @@
  */
 function glossary_menu() {
   $items['terms'] = array(
-    'title' => t('Glossary'),
+    'title' => t('Glossary1'),
     'page callback' => 'glossary_view',
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
@@ -52,9 +52,15 @@ function glossary_theme() {
  *   String representing the content of the page.
  */
 function glossary_view() {
+  module_load_include('inc', 'glossary', 'glossary.api');
   // Adds the treaties JavaScript file to the page.
   drupal_add_js(drupal_get_path('module', 'treaty') . '/js/treaties.js');
-   $ret = theme('treaties', array(
+  $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
+  $tree = taxonomy_get_tree($voc->vid);
+//  $substantives = glossary_informea_substantive_root_terms();
+  $generic = glossary_informea_generic_terms();
+
+   $ret = theme('terms', array(
     'substantive' => array(),
     'generic' => array()
   ));
