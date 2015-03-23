@@ -7,31 +7,38 @@
  * Set the API level to 2, for migration classes to be recognized by Migrate.
  */
 function ecolex_migration_migrate_api() {
-  $api = array(
+  $ret = array(
     'api' => 2,
-    'migrations' => array(),
+    'groups' => array(
+      'ecolex' => array(
+        'title' => 'Ecolex content migration'
+      )
+    ),
+    'migrations' => array()
   );
   if($base_data_dir = variable_get('ecolex_data_dir')) {
-    $migrations = array();
-    $migrations['EcolexTreaties'] = array(
+    $ret['migrations']['EcolexTreaties'] = array(
       'class_name' => 'EcolexTreatyMigrateWiki',
       'data_dir' => $base_data_dir . '/treaties/',
+      'group_name' => 'ecolex',
     );
-    $migrations['EcolexLegislation'] = array(
+    $ret['migrations']['EcolexLegislation'] = array(
       'class_name' => 'EcolexLegislationMigrate',
       'data_dir' => $base_data_dir . '/documents/',
+      'group_name' => 'ecolex',
     );
-    $migrations['EcolexLiterature'] = array(
+    $ret['migrations']['EcolexLiterature'] = array(
       'class_name' => 'EcolexLiteratureMigrate',
       'data_dir' => $base_data_dir . '/literature/',
+      'group_name' => 'ecolex',
     );
-    $migrations['EcolexCourtDecisions'] = array(
+    $ret['migrations']['EcolexCourtDecisions'] = array(
       'class_name' => 'EcolexCourtDecisionsMigrate',
       'data_dir' => $base_data_dir . '/courtdecisions/',
+      'group_name' => 'ecolex',
     );
-    $api['migrations'] = $migrations;
   }
-  return $api;
+  return $ret;
 }
 
 abstract class EcolexMigrateSource extends MigrateSource {

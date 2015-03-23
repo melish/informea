@@ -1,6 +1,6 @@
 <?php
 
-class MigrateGoals extends DynamicMigration {
+class MigrateGoals extends Migration {
 
   protected $regions = array();
 
@@ -10,7 +10,7 @@ class MigrateGoals extends DynamicMigration {
   }
 
   public function __construct($arguments) {
-    parent::__construct();
+    parent::__construct($arguments);
 
     $this->dependencies = array('ThesaurusGEG');
     $this->description = 'Import InforMEA sites';

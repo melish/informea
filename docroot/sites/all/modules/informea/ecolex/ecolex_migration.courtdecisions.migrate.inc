@@ -1,6 +1,6 @@
 <?php
 
-class EcolexCourtDecisionsMigrate extends DynamicMigration {
+class EcolexCourtDecisionsMigrate extends Migration {
 
   protected $timezone = NULL;
 
@@ -17,7 +17,7 @@ class EcolexCourtDecisionsMigrate extends DynamicMigration {
    * {@inheritdoc}
    */
   public function __construct($arguments) {
-    parent::__construct(MigrateGroup::getInstance('Ecolex'));
+    parent::__construct($arguments);
     // @todo: Preserve the dates intact as in XML file.
     date_default_timezone_set('UTC');
     $this->arguments   = $arguments;

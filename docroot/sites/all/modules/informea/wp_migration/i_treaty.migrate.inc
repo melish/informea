@@ -1,13 +1,13 @@
 <?php
 
-class MigrateTreaties extends DynamicMigration {
+class MigrateTreaties extends Migration {
 
   protected function generateMachineName() {
     return 'Treaties';
   }
 
   public function __construct($arguments) {
-    parent::__construct();
+    parent::__construct($arguments);
 
     $this->dependencies = array('ThesaurusInforMEA');
     $this->description = 'Import InforMEA treaties';
@@ -190,14 +190,14 @@ class MigrateTreaties extends DynamicMigration {
 
 
 
-class MigrateTreatiesArticles extends DynamicMigration {
+class MigrateTreatiesArticles extends Migration {
 
   protected function generateMachineName() {
     return 'TreatiesArticles';
   }
 
   public function __construct($arguments) {
-    parent::__construct();
+    parent::__construct($arguments);
 
     $this->dependencies = array('Treaties');
     $this->description = 'Import articles of treaties';
@@ -290,10 +290,10 @@ class MigrateTreatiesArticles extends DynamicMigration {
 }
 
 
-class MigrateTreatiesParagraphs extends DynamicMigration {
+class MigrateTreatiesParagraphs extends Migration {
 
   public function __construct($arguments) {
-    parent::__construct();
+    parent::__construct($arguments);
 
     $this->dependencies = array('TreatiesArticles');
     $this->description = 'Import articles of treaties';

@@ -27,7 +27,7 @@ function ws_consumer_drush_command() {
  * Implements hook_drush_help().
  */
 function ws_consumer_drush_help() {
-  return dt('Update ratification status for a specific treaty or all treaties');
+  // return dt('Update ratification status for a specific treaty or all treaties');
 }
 
 function drush_ws_consumer_update_ratification() {

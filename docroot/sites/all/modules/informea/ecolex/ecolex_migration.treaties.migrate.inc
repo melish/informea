@@ -1,12 +1,12 @@
 <?php
 
-class EcolexTreatyMigrateWiki extends DynamicMigration {
+class EcolexTreatyMigrateWiki extends Migration {
 
   /**
    * {@inheritdoc}
    */
   public function __construct($arguments) {
-    parent::__construct(MigrateGroup::getInstance('Ecolex'));
+    parent::__construct($arguments);
     $this->dependencies = array('Treaties');
     $this->arguments   = $arguments;
     $this->description = 'Import Ecolex treaties from XML web service (files)';

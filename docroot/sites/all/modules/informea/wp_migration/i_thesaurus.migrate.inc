@@ -1,9 +1,9 @@
 <?php
 
-class MigrateThesaurusBase extends DynamicMigration {
+class MigrateThesaurusBase extends Migration {
 
   public function __construct($arguments, $source_voc_id, $destination_voc) {
-    parent::__construct();
+    parent::__construct($arguments);
 
     $this->addFieldMapping('language')->defaultValue('en');
 

@@ -1,6 +1,6 @@
 <?php
 
-class MigrateNationalReports extends DynamicMigration {
+class MigrateNationalReports extends Migration {
 
   protected $countries = array();
   protected $treaties = array();
@@ -10,7 +10,7 @@ class MigrateNationalReports extends DynamicMigration {
   }
 
   public function __construct($arguments) {
-    parent::__construct();
+    parent::__construct($arguments);
 
     $this->description = 'Import InforMEA national reports';
     $this->map = new MigrateSQLMap($this->machineName,
@@ -97,7 +97,7 @@ class MigrateNationalReports extends DynamicMigration {
   }
 }
 
-class MigrateReportingObligations extends DynamicMigration {
+class MigrateReportingObligations extends Migration {
 
   protected $treaties = array();
   protected $treaties_articles = array();
@@ -110,7 +110,7 @@ class MigrateReportingObligations extends DynamicMigration {
   }
 
   public function __construct($arguments) {
-    parent::__construct();
+    parent::__construct($arguments);
 
     $this->description = 'Import InforMEA reporting obligations database';
     $this->map = new MigrateSQLMap($this->machineName,

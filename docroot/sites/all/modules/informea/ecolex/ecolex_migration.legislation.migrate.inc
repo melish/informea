@@ -1,12 +1,12 @@
 <?php
 
-class EcolexLegislationMigrate extends DynamicMigration {
+class EcolexLegislationMigrate extends Migration {
 
   /**
    * {@inheritdoc}
    */
   public function __construct($arguments) {
-    parent::__construct(MigrateGroup::getInstance('Ecolex'));
+    parent::__construct($arguments);
     $this->arguments   = $arguments;
     $this->description = 'Import Ecolex legislation from XML web service (files)';
     $data_dir          = $arguments['data_dir'];

@@ -1,6 +1,6 @@
 <?php
 
-class MigrateNationalFocalPoints extends DynamicMigration {
+class MigrateNationalFocalPoints extends Migration {
 
   protected $countries = array();
   protected $treaties = array();
@@ -11,7 +11,7 @@ class MigrateNationalFocalPoints extends DynamicMigration {
   }
 
   public function __construct($arguments) {
-    parent::__construct();
+    parent::__construct($arguments);
 
     $this->dependencies = array('Treaties');
     $this->description = 'Import InforMEA national focal points';

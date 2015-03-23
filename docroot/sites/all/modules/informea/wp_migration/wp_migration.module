@@ -7,27 +7,32 @@
 function wp_migration_migrate_api() {
   $api = array(
     'api' => 2,
+    'groups' => array(
+      'informea' => array(
+        'title' => t('InforMEA WordPress migrations'),
+      )
+    ),
     'migrations' => array(
-      'Treaties' => array('class_name' => 'MigrateTreaties'),
-      'TreatiesArticles' => array('class_name' => 'MigrateTreatiesArticles'),
-      'TreatiesParagraphs' => array('class_name' => 'MigrateTreatiesParagraphs'),
+      'Treaties' => array('class_name' => 'MigrateTreaties', 'group_name' => 'informea'),
+      'TreatiesArticles' => array('class_name' => 'MigrateTreatiesArticles', 'group_name' => 'informea'),
+      'TreatiesParagraphs' => array('class_name' => 'MigrateTreatiesParagraphs', 'group_name' => 'informea'),
 
-      'Meetings' => array('class_name' => 'MigrateMeetings'),
-      'Decisions' => array('class_name' => 'MigrateDecisions'),
-      'DecisionsDocuments' => array('class_name' => 'MigrateDecisionsDocuments'),
-      'DecisionsParagraphs' => array('class_name' => 'MigrateDecisionsParagraphs'),
-      'ActionPlans' => array('class_name' => 'MigrateActionPlans'),
-      'NationalReports' => array('class_name' => 'MigrateNationalReports'),
-      'ReportingObligations' => array('class_name' => 'MigrateReportingObligations'),
-      'Sites' => array('class_name' => 'MigrateSites'),
-      'NationalFocalPoints' => array('class_name' => 'MigrateNationalFocalPoints'),
+      'Meetings' => array('class_name' => 'MigrateMeetings', 'group_name' => 'informea'),
+      'Decisions' => array('class_name' => 'MigrateDecisions', 'group_name' => 'informea'),
+      'DecisionsDocuments' => array('class_name' => 'MigrateDecisionsDocuments', 'group_name' => 'informea'),
+      'DecisionsParagraphs' => array('class_name' => 'MigrateDecisionsParagraphs', 'group_name' => 'informea'),
+      'ActionPlans' => array('class_name' => 'MigrateActionPlans', 'group_name' => 'informea'),
+      'NationalReports' => array('class_name' => 'MigrateNationalReports', 'group_name' => 'informea'),
+      'ReportingObligations' => array('class_name' => 'MigrateReportingObligations', 'group_name' => 'informea'),
+      'Sites' => array('class_name' => 'MigrateSites', 'group_name' => 'informea'),
+      'NationalFocalPoints' => array('class_name' => 'MigrateNationalFocalPoints', 'group_name' => 'informea'),
 
-      'Goals' => array('class_name' => 'MigrateGoals'),
+      'Goals' => array('class_name' => 'MigrateGoals', 'group_name' => 'informea'),
 
-      'ThesaurusInforMEA' => array('class_name' => 'MigrateThesaurusInforMEA'),
-      'ThesaurusGEG' => array('class_name' => 'MigrateThesaurusGEG'),
-      'ThesaurusGEMET' => array('class_name' => 'MigrateThesaurusGEMET'),
-      'ThesaurusIEG' => array('class_name' => 'MigrateThesaurusIEG'),
+      'ThesaurusInforMEA' => array('class_name' => 'MigrateThesaurusInforMEA', 'group_name' => 'informea'),
+      'ThesaurusGEG' => array('class_name' => 'MigrateThesaurusGEG', 'group_name' => 'informea'),
+      'ThesaurusGEMET' => array('class_name' => 'MigrateThesaurusGEMET', 'group_name' => 'informea'),
+      'ThesaurusIEG' => array('class_name' => 'MigrateThesaurusIEG', 'group_name' => 'informea'),
     )
   );
   return $api;

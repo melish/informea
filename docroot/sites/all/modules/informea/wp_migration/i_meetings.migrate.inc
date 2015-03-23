@@ -1,6 +1,6 @@
 <?php
 
-class MigrateMeetings extends DynamicMigration {
+class MigrateMeetings extends Migration {
 
   protected $countries = array();
   protected $treaties = array();
@@ -10,7 +10,7 @@ class MigrateMeetings extends DynamicMigration {
   }
 
   public function __construct($arguments) {
-    parent::__construct();
+    parent::__construct($arguments);
 
     $this->description = 'Import InforMEA meetings';
     $this->map = new MigrateSQLMap($this->machineName,

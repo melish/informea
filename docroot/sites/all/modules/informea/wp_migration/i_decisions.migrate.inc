@@ -1,12 +1,12 @@
 <?php
 
-class MigrateDecisionsDocuments extends DynamicMigration {
+class MigrateDecisionsDocuments extends Migration {
   protected function generateMachineName() {
-    return 'DecisionsDocuments';
+      return 'DecisionsDocuments';
   }
 
   public function __construct($arguments) {
-    parent::__construct();
+    parent::__construct($arguments);
     $this->source_dir = '/Work/informea/resources/';
 
     $this->description = 'Import InforMEA decisions documents';
@@ -62,7 +62,7 @@ class MigrateDecisionsDocuments extends DynamicMigration {
   }
 }
 
-class MigrateDecisions extends DynamicMigration {
+class MigrateDecisions extends Migration {
 
   protected $meetings = array();
   protected $treaties = array();
@@ -72,7 +72,7 @@ class MigrateDecisions extends DynamicMigration {
   }
 
   public function __construct($arguments) {
-    parent::__construct();
+    parent::__construct($arguments);
 
     $this->dependencies = array('ThesaurusInforMEA');
     $this->description = 'Import InforMEA decisions and documents';
@@ -261,7 +261,7 @@ class MigrateDecisions extends DynamicMigration {
 }
 
 
-class MigrateDecisionsParagraphs extends DynamicMigration {
+class MigrateDecisionsParagraphs extends Migration {
 
   private $decisions_mapping = array();
 
@@ -270,7 +270,7 @@ class MigrateDecisionsParagraphs extends DynamicMigration {
   }
 
   public function __construct($arguments) {
-    parent::__construct();
+    parent::__construct($arguments);
 
     $this->dependencies = array('Decisions');
     $this->description = 'Import InforMEA decisions paragraphs';
