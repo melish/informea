@@ -208,7 +208,6 @@ features[variable][] = views_ui_show_performance_statistics
 features[variable][] = views_ui_show_preview_information
 features[variable][] = views_ui_show_sql_query
 features[variable][] = views_ui_show_sql_query_where
-features[views_view][] = glossary_of_terms
 features[views_view][] = taxonomy_mappings
 features[views_view][] = term_related_content
 features[views_view][] = the_content

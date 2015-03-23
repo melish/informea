@@ -79,10 +79,3 @@
     </ul><!-- .list-tree #terms-generic -->
   </div>
 </div>
-<p>
-  <a href="<?php print url('rdf-xml'); ?>" title="<?php print t('RDF Resource Description Framework'); ?>">
-    <?php print theme('image', array('path' => 'http://www.w3.org/RDF/icons/rdf_w3c_icon.64', 'alt' => t('RDF Resource Description Framework Icon'))); ?>
-    <?php print t('Download RDF'); ?>
-  </a>
-</p>
-<p><?php print t('The InforMEA glossary was developed with the MEA Secretariats represented in the MEA Information and Knowledge Management (IKM) Initiative. Over the coming months, the InforMEA glossary will be upgraded to a Thesaurus on Environmental Law and Conventions in cooperation with partners such as FAO, IUCN, The European Environment Agency.'); ?></p>

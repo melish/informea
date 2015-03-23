@@ -13,12 +13,6 @@ include_once 'treaty.features.inc';
  *   An associative array of properties for each path.
  */
 function treaty_menu() {
-  $items['terms'] = array(
-    'title' => t('Glossary'),
-    'page callback' => 'terms_view',
-    'access arguments' => array('access content'),
-    'type' => MENU_CALLBACK,
-  );
   $items['treaties'] = array(
     'title' => t('Treaties'),
     'page callback' => 'treaty_view',
@@ -357,19 +351,6 @@ function treaty_menu_local_tasks_alter(&$data, $router_item, $root_path) {
       'output' => $context_menu,
     );
   }
-}
-
-/**
- * Displays the glossary page when the user visits the path.
- *
- * @return string
- *   String representing the content of the page.
- */
-function terms_view() {
-  // Adds the terms JavaScript file to the page.
-  drupal_add_js(drupal_get_path('module', 'treaty') . '/js/terms.js');
-
-  return theme('terms');
 }
 
 function _treaty_get_treaties() {
