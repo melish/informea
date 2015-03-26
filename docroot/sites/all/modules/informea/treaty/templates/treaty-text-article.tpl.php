@@ -18,7 +18,7 @@
             <span class="glyphicon glyphicon-tag" data-toggle="tooltip" data-placement="top" title="<?php print t('Tagged terms'); ?>"></span>
           </li>
         <?php endif; ?>
-        <?php if (user_access('administer nodes')): ?>
+        <?php if (user_access('create treaty_paragraph content')): ?>
           <li class="action-hover">
             <?php
             print l('<i class="glyphicon glyphicon-plus"></i>', 'node/add/treaty-paragraph', array(
@@ -31,6 +31,8 @@
             ));
             ?>
           </li>
+        <?php endif; ?>
+        <?php if (user_access('edit any treaty_article content')): ?>
           <li class="action-hover">
             <?php
             print l('<i class="glyphicon glyphicon-pencil"></i>', 'node/' . $article->nid . '/edit', array(

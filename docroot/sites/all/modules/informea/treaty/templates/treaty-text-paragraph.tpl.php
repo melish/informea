@@ -22,7 +22,7 @@ $highlight = isset($_GET['paragraph']) ? $_GET['paragraph'] == $paragraph->nid :
         <span class="glyphicon glyphicon-tag"></span>
       </li>
     <?php endif; ?>
-    <?php if (user_access('administer nodes')): ?>
+    <?php if (user_access('edit any treaty_paragraph content')): ?>
       <li>
         <?php print l('<span class="glyphicon glyphicon-pencil"></span> ' . t('Edit paragraph'), 'node/' . $paragraph->nid . '/edit', array('html' => TRUE)); ?>
       </li>
