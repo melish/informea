@@ -55,7 +55,7 @@ class MigrateActionPlans extends Migration {
     $this->addFieldMapping('field_original_id', 'original_id');
     $this->addFieldMapping('field_country', 'id_country');
     $this->addFieldMapping('field_treaty', 'id_treaty');
-    $this->addFieldMapping('field_report_submission_date', 'submission');
+    $this->addFieldMapping('field_sorting_date', 'submission');
     $this->addFieldMapping('field_files', 'document_url');
     $this->addFieldMapping('field_document_url', 'document_url');
     $this->addFieldMapping('field_document_url:title')->defaultValue('View on MEA website');
@@ -86,7 +86,6 @@ class MigrateActionPlans extends Migration {
       'field_files:destination_dir', 'field_files:destination_file', 'field_files:file_class',
 
       'field_original_id:language',
-      'field_report_submission_date:timezone', 'field_report_submission_date:rrule', 'field_report_submission_date:to',
       'field_document_url:attributes', 'field_document_url:language',
       'field_informea_tags', 'field_informea_tags:source_type', 'field_informea_tags:create_term',
       'field_informea_tags:ignore_case',

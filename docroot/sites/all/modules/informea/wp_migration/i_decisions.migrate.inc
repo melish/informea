@@ -133,8 +133,9 @@ class MigrateDecisions extends Migration {
     $this->addFieldMapping('field_informea_tags:create_term')->defaultValue(FALSE);
 
     $this->addFieldMapping('field_treaty', 'id_treaty');
-    $this->addFieldMapping('field_decision_published', 'published');
-    $this->addFieldMapping('field_decision_updated', 'updated');
+    $this->addFieldMapping('field_sorting_date', 'published');
+    $this->addFieldMapping('field_last_update', 'updated');
+    $this->addFieldMapping('field_last_update:timezone')->defaultValue('UTC');
     $this->addFieldMapping('field_meeting', 'id_meeting');
 
     $this->addFieldMapping('field_meeting_title_en', 'meeting_title');
@@ -157,11 +158,9 @@ class MigrateDecisions extends Migration {
     $this->addUnmigratedDestinations(array(
       'field_decision_number:language',
       'field_decision_published:timezone', 'field_decision_published:rrule',
-      'field_decision_updated:timezone', 'field_decision_updated:rrule',
-      'field_decision_updated:to', 'field_meeting_title_en:language',
-      'field_decision_published:to', 'field_decision_status:source_type',
-      'field_decision_status:ignore_case', 'field_decision_type:source_type',
-      'field_decision_type:ignore_case',
+      'field_meeting_title_en:language', 'field_decision_published:to',
+      'field_decision_status:source_type', 'field_decision_status:ignore_case',
+      'field_decision_type:source_type', 'field_decision_type:ignore_case',
       'field_meeting_url:title', 'field_meeting_url:attributes', 'field_meeting_url:language',
       'field_original_id:language', 'field_url:title', 'field_url:attributes', 'field_url:language',
 
@@ -170,8 +169,7 @@ class MigrateDecisions extends Migration {
       'field_files:file_class', 'field_files:language', 'field_files:destination_dir',
       'field_files:destination_file', 'field_files:file_replace', 'field_files:preserve_files',
       'field_files:source_dir', 'field_files:description', 'field_files:display',
-      'field_last_update', 'field_last_update:timezone', 'field_last_update:rrule',
-      'field_last_update:to',
+      'field_last_update:rrule', 'field_last_update:to',
 
       'field_informea_tags:ignore_case',
       'log', 'tnid', 'translate', 'revision_uid', 'is_new', 'path',

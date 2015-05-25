@@ -34,6 +34,17 @@ function wp_migration_migrate_api() {
       'ThesaurusGEG' => array('class_name' => 'MigrateThesaurusGEG', 'group_name' => 'informea'),
       'ThesaurusGEMET' => array('class_name' => 'MigrateThesaurusGEMET', 'group_name' => 'informea'),
       'ThesaurusIEG' => array('class_name' => 'MigrateThesaurusIEG', 'group_name' => 'informea'),
+
+      'InforMEAEcolexLegislation' => array('class_name' => 'MigrateInforMEAEcolexLegislation', 'group_name' => 'informea'),
+      'InforMEAEcolexCourtDecisions' => array('class_name' => 'MigrateInforMEAEcolexCourtDecisions', 'group_name' => 'informea'),
+      'EcolexManualCourtDecisions' => array(
+        'class_name' => 'MigrateEcolexManualCourtDecisions',
+        'group_name' => 'informea',
+        'source_type' => 'court_decisions',
+        'source_connection' => 'ecolex_edw_ro',
+        'source_version' => 7,
+        'destination_type' => 'court_decisions',
+      ),
     )
   );
   return $api;

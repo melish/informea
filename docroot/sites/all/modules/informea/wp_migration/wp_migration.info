@@ -19,3 +19,4 @@ files[] = i_sites.migrate.inc
 files[] = i_nfp.migrate.inc
 files[] = i_thesaurus.migrate.inc
 files[] = i_goals.migrate.inc
+files[] = i_ecolex.migrate.inc

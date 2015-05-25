@@ -40,7 +40,7 @@ class MigrateTreaties extends Migration {
     $this->addFieldMapping('body:language')->defaultValue('en');
     $this->addFieldMapping('body:format')->defaultValue('full_html');
     $this->addFieldMapping('field_primary', 'primary');
-    $this->addFieldMapping('field_entry_into_force', 'start');
+    $this->addFieldMapping('field_sorting_date', 'start');
 
     $this->addFieldMapping('field_treaty_text_url', 'url_treaty_text');
     $this->addFieldMapping('field_treaty_text_url:language')->defaultValue('en');
@@ -91,7 +91,7 @@ class MigrateTreaties extends Migration {
       'regional', 'use_informea', 'rec_author', 'rec_updated_author', 'is_indexed'
     ));
     $this->addUnmigratedDestinations(array(
-      'log', 'tnid', 'translate', 'revision_uid', 'is_new', 'body:summary',
+      'log', 'tnid', 'translate', 'revision_uid', 'is_new', 'body:summary', 'field_entry_into_force',
       'field_entry_into_force:timezone', 'field_entry_into_force:rrule', 'field_entry_into_force:to',
       'field_logo:file_class',
       'field_logo:destination_dir', 'field_logo:destination_file', 'field_logo:preserve_files', 'field_logo:alt', 'field_logo:title',

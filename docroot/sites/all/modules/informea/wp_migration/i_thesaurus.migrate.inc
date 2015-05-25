@@ -5,6 +5,8 @@ class MigrateThesaurusBase extends Migration {
   public function __construct($arguments, $source_voc_id, $destination_voc) {
     parent::__construct($arguments);
 
+    $this->addFieldMapping('language')->defaultValue('en');
+
     $this->addFieldMapping('name_field', 'term');
     $this->addFieldMapping('name_field:language')->defaultValue('en');
     $this->addFieldMapping('name', 'term');
@@ -54,14 +56,14 @@ class MigrateThesaurusBase extends Migration {
           'description' => 'Source PK',
         )
       ),
-      MigrateDestinationTerm::getKeySchema()
+      MigrateDestinationNode::getKeySchema()
     );
     $query = Database::getConnection('default', 'for_migration')
       ->select('voc_concept', 'e')->condition('id_source', $source_voc_id, '=')
       ->fields('e');
 
     $this->source = new MigrateSourceSQL($query);
-    $this->destination = new MigrateDestinationTerm($destination_voc, array('language' => 'en'));
+    $this->destination = new MigrateDestinationTerm($destination_voc);
   }
 
 }
