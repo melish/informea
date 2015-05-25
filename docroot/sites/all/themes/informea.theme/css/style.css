@@ -1200,3 +1200,4 @@ body.node-type-treaty div.field-name-body { margin-bottom: 10px; }
 body.node-type-treaty div.field-label {
   min-width: 150px; }
 
+ul.media-list>li.media>ul.media-list li { padding-left: 50px; }
