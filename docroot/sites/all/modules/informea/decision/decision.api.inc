@@ -40,7 +40,7 @@ function decision_get_treaty_decisions_group_by_meeting($id_treaty) {
       $meeting->decisions = array();
       $meeting_w = entity_metadata_wrapper('node', $meeting);
       $type = $meeting_w->field_event_type->value();
-      if ($type && strtolower($type->name_original) == 'cop') {
+      if (($type && strtolower($type->name_original) == 'cop') || empty($type)) {
         $ret[$meeting_id] = $meeting;
       }
     }
@@ -69,6 +69,36 @@ function decision_get_treaty_decisions_group_by_meeting($id_treaty) {
         return $starta > $startb ? -1 : 1;
       }
     });
+    foreach($ret as $id => $meeting) {
+      decision_sort_decisions($meeting->decisions);
+    }
+
   }
   return $ret;
+}
+
+function decision_sort_decisions(&$decisions) {
+  $ret = array();
+  foreach($decisions as $decision) {
+    $w = entity_metadata_wrapper('node', $decision);
+    $original = $w->field_decision_number->value();
+    $number = preg_replace('/\(.*\)/', '', $original);
+    $number = preg_replace('/[^0-9\/.]/', '', $number);
+    $number = preg_replace('/\./', '/', $number);
+    $number = preg_replace('/\/\//', '/', $number);
+    $number = preg_replace('/^\//', '', $number);
+    $exploded = explode('/', $number);
+    $exploded = array_reverse(array_filter($exploded));
+    $sum = 0;
+    foreach($exploded as $idx => $v) {
+      $sum += $v * pow(10, $idx);
+    }
+    if(array_key_exists($sum, $ret)) {
+      $dup =$ret[$sum];
+      drupal_set_message('Duplicate decision number:' . $original . ':' . $number . ':' . $dup->nid . ':' . $decision->nid, 'error');
+    }
+    $ret[$sum] = $decision;
+  }
+  ksort($ret);
+  $decisions = $ret;
 }
