@@ -109,6 +109,11 @@ function treaty_node_view($node, $view_mode, $langcode) {
     // $wrapper = entity_metadata_wrapper('node', $node);
     // $is_ecolex = $wrapper-> ...
     $node->context = $context;
+    if ($context != 'summary') {
+      foreach(element_children($node->content) as $field_name) {
+        hide($node->content[$field_name]);
+      }
+    }
     switch ($context) {
       case 'summary':
         break;
