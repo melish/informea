@@ -1175,7 +1175,6 @@ button.toggle {
   }
 }
 
-
 /* Treaties page */
 
 body.page-treaties h3 { font-size: 1.2em; margin-top: 0; font-weight: normal; }
@@ -1194,4 +1193,10 @@ body.page-treaties div.regional { margin-top: 25px; }
 #table-treaties h4 {
   margin-top: 0;
 }
+
+/* Treaty page */
+body.node-type-treaty div.field { margin-bottom: 3px; }
+body.node-type-treaty div.field-name-body { margin-bottom: 10px; }
+body.node-type-treaty div.field-label {
+  min-width: 150px; }
 

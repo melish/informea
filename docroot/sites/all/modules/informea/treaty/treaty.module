@@ -109,9 +109,6 @@ function treaty_node_view($node, $view_mode, $langcode) {
     // $wrapper = entity_metadata_wrapper('node', $node);
     // $is_ecolex = $wrapper-> ...
     $node->context = $context;
-    $node->content['context'] = array(
-      '#type' => 'item', '#weight' => 10, '#markup' => '<b>Hello world</b>'
-    );
     switch ($context) {
       case 'summary':
         break;
