@@ -112,7 +112,8 @@ function treaty_node_view($node, $view_mode, $langcode) {
     if (empty($context)) {
       $context = 'text';
     }
-    // $is_ecolex = $wrapper-> ...
+    $odata_identifier = treaty_get_odata_identifier($node);
+      // $is_ecolex = $wrapper-> ...
     $node->context = $context;
     if ($context != 'summary') {
       foreach(element_children($node->content) as $field_name) {
@@ -151,24 +152,42 @@ function treaty_node_view($node, $view_mode, $langcode) {
       case 'decisions':
         module_load_include('inc', 'decision', 'decision.api');
         $data = decision_get_treaty_decisions_group_by_meeting($node->nid);
-        $elements = array();
-        foreach ($data as $id => $row) {
-          $rw = entity_metadata_wrapper('node', $row);
-          $elements[$id] = array(
-            'header' => $rw->label() . treaty_format_meeting_description($row),
-            'body' => theme('treaty_decisions', array('decisions' => $row->decisions)),
+        if ($odata_identifier != 'cites') {
+          $elements = array();
+          foreach ($data as $id => $row) {
+            $rw = entity_metadata_wrapper('node', $row);
+            $elements[$id] = array(
+              'header' => $rw->label() . treaty_format_meeting_description($row),
+              'body' => theme('treaty_decisions', array('decisions' => $row->decisions)),
+            );
+          }
+          $node->content['context'] = array(
+            '#markup' => theme('informea_bootstrap_collapse', array(
+                'elements' => $elements,
+                'id' => 'decisions',
+                'no-data-parent' => TRUE,
+                'no-panel-body' => TRUE
+              )) . theme('treaty_modal'),
+            '#type' => 'item',
+            '#weight' => 10
           );
         }
-        $node->content['context'] = array(
-          '#markup' => theme('informea_bootstrap_collapse', array(
-            'elements' => $elements,
-            'id' => 'decisions',
-            'no-data-parent' => TRUE,
-            'no-panel-body' => TRUE
-          )) . theme('treaty_modal'),
-          '#type' => 'item',
-          '#weight' => 10
-        );
+        else {
+          $tabs = array(
+            'decisions' => array(
+              'header' => t('Decisions'),
+              'body' => theme('treaty_decisions', array('decisions' => $data['decisions'])),
+              'active' => TRUE,
+            ),
+            'resolutions' => array(
+              'header' => t('Resolutions'),
+              'body' => theme('treaty_decisions', array('decisions' => $data['resolutions'])),
+            )
+          );
+          $node->content['context'] = array(
+            array('#type' => 'item', '#weight' => 10, '#markup' => theme('informea_bootstrap_tabs', array('elements' => $tabs)))
+          );
+        }
         break;
 
       case 'parties':
@@ -449,4 +468,16 @@ function treaty_view() {
     'treaties' => _treaty_get_treaties()
   ));
   return $ret;
+}
+
+
+function treaty_get_odata_identifier($treaty) {
+  if(is_object($treaty)) {
+    $id = $treaty->nid;
+  }
+  else {
+    $id = $treaty;
+  }
+  $w = entity_metadata_wrapper('node', $id);
+  return $w->field_odata_identifier->value();
 }
