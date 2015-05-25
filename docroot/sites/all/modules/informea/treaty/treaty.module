@@ -335,17 +335,6 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
       }
       $contextual_menu['#items'][] = $list_item;
     }
-
-    // Downloads nav menu item
-    $contextual_menu['#items'][] = array(
-      'data' => l(t('Downloads'), '', array(
-        'attributes' => array('data-toggle' => 'modal'),
-        'external' => TRUE,
-        'fragment' => 'modal-downloads',
-        'html' => TRUE
-      )),
-      'role' => 'presentation'
-    );
   }
 }
 
