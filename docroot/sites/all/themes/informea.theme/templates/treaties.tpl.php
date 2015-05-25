@@ -6,7 +6,7 @@
  * @ingroup themeable
  */
 ?>
-<h3><?php print t('Global treaties and conventions'); ?></h3>
+<h3 class="text-center medium"><?php print t('Global treaties and conventions'); ?></h3>
 <div class="text-center">
   <div class="brand-group">
     <a class="brand brand-cbd" href="<?php print url('treaties/cbd'); ?>">
@@ -99,7 +99,8 @@
     </a><!-- .brand .brand-kyoto -->
   </div><!-- .brand-group -->
 </div><!-- .text-center -->
-<h3><?php print t('All treaties'); ?></h3>
+<div class="regional">
+<h3 class="pull-right"><?php print t('All treaties'); ?></h3>
 <table class="table table-bordered" id="table-treaties">
   <thead>
     <tr>
@@ -187,3 +188,4 @@
     <?php endforeach; ?>
   </tbody>
 </table><!-- .table .table-bordered #table-treaties -->
+</div>

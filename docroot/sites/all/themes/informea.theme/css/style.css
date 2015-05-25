@@ -16,7 +16,11 @@ a:focus {
 
 /* Typography */
 /* ---------- */
-
+h1 {
+  font-size: 2.2em;
+  font-weight: normal;
+  margin-top: 5px;
+}
 
 /* Section header */
 .section-header .btn.pull-right {
@@ -24,8 +28,18 @@ a:focus {
 }
 
 .breadcrumb {
+  margin: -15px 0 0 0;
+  font-size: 85%;
   background-color: transparent;
   padding: 0;
+}
+
+.breadcrumb>.last {
+  color: #c6cedb;
+}
+
+.page-header {
+  border-bottom: 1px solid #c6cedb;
 }
 
 /* Lists */
@@ -808,8 +822,8 @@ button.toggle {
   border: 1px solid #e3e3e3;
   float: left;
   min-width: 110px;
-  padding-bottom: 5px;
-  padding-top: 5px;
+  padding-bottom: 10px;
+  padding-top: 10px;
   position: relative;
 }
 
@@ -1164,6 +1178,11 @@ button.toggle {
 
 /* Treaties page */
 
+body.page-treaties h3 { font-size: 1.2em; margin-top: 0; font-weight: normal; }
+body.page-treaties div.regional { margin-top: 25px; }
+
+#table-treaties thead th, #table-treaties thead td { border: 0; }
+
 #table-treaties {
   margin-bottom: 0;
 }
@@ -1175,3 +1194,4 @@ button.toggle {
 #table-treaties h4 {
   margin-top: 0;
 }
+
