@@ -35,6 +35,7 @@ function informea_theme_preprocess_page(&$variables) {
     // $variables['theme_hook_suggestions'][] = 'page__' . $variables['node']->type;
   }
 
+  $search_form['basic']['keys']['#attributes']['placeholder'] = t('Explore InforMEA');
   $variables['search_box'] = drupal_render($search_form);
 
   if ($variables['is_front']) {

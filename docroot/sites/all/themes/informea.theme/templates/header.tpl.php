@@ -40,7 +40,6 @@
                 <li><?php print l(t('CITES'), 'treaties/cites'); ?></li>
                 <li><?php print l(t('CMS'), 'treaties/cms'); ?></li>
                 <li><?php print l(t('EUROBATS'), 'treaties/eurobats'); ?></li>
-                <li><?php print l(t('Minamata'), 'treaties/minamataunep'); ?></li>
                 <li><?php print l(t('Plant Treaty'), 'treaties/plant-treaty'); ?></li>
                 <li><?php print l(t('Ramsar'), 'treaties/ramsar'); ?></li>
                 <li><?php print l(t('WHC'), 'treaties/whc'); ?></li>
@@ -52,6 +51,7 @@
                 <li><?php print l(t('Basel'), 'treaties/basel'); ?></li>
                 <li><?php print l(t('Rotterdam'), 'treaties/rotterdam'); ?></li>
                 <li><?php print l(t('Stockholm'), 'treaties/stockholm'); ?></li>
+                <li><?php print l(t('Minamata'), 'treaties/minamataunep'); ?></li>
                 <li class="dropdown-header"><?php print t('Climate/Atmosphere'); ?></li>
                 <li><?php print l(t('UNCCD'), 'treaties/unccd'); ?></li>
                 <li>
