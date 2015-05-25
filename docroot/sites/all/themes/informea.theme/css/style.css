@@ -1212,6 +1212,7 @@ body.page-treaties div.regional { margin-top: 25px; }
 }
 
 /* Treaty page */
+body.node-type-treaty .highlight { background-color: #fc3; }
 body.node-type-treaty div.field { margin-bottom: 3px; }
 body.node-type-treaty div.field-name-body { margin-bottom: 10px; }
 body.node-type-treaty div.field-label { min-width: 150px; }
@@ -1228,3 +1229,4 @@ body.node-type-treaty div.paragraph:hover a.permalink { display: inline; }
 .smallipop-instance a{ color: white; text-transform: none; text-shadow: none; }
 
 ul.media-list>li.media>ul.media-list li { padding-left: 50px; }
+

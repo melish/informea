@@ -19,7 +19,7 @@ $highlight = isset($_GET['paragraph']) ? $_GET['paragraph'] == $paragraph->nid :
     <?php $body = field_view_field('node', $paragraph, 'body', 'teaser'); ?>
     <?php print strip_tags($body[0]['#markup']); // calling render adds unwanted div's @todo ?>
     <?php
-    print l('<span class="glyphicon glyphicon-link"></span>', 'treaties/' . $odata_identifier, array(
+    print l('<span class="glyphicon glyphicon-link"></span>', 'treaties/' . $odata_identifier . '/text', array(
       'attributes' => array(
         'data-toggle' => 'tooltip', 'data-placement' => 'top',
         'title' => t('Permalink'),

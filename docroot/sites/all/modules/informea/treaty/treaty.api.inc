@@ -16,9 +16,20 @@ function treaty_url_match_node($path) {
 }
 
 function treaty_url_context($path) {
-  $path = preg_replace('/([A-Za-z]{2})?\/?treaties\/[A-Za-z\-]*\/?/', '', $path);
-  $parts = explode('/', $path);
-  return $parts[0];
+  if (preg_match('/^node/', $path)) {
+    $path = preg_replace('/node\/?[0-9]*\/?/', '', $path);
+    $parts = explode('/', $path);
+    $ret = $parts[0];
+  }
+  else {
+    $path = preg_replace('/([A-Za-z]{2})?\/?treaties\/[A-Za-z\-\_]*\/?/', '', $path);
+    $parts = explode('/', $path);
+    $ret = $parts[0];
+  }
+  if (!in_array($ret, array('print', 'text', 'protocols', 'decisions', 'parties', 'national-reports', 'action-plans'))) {
+    $ret = 'summary';
+  }
+  return $ret;
 }
 
 function treaty_load_by_odata_name($odata_name) {

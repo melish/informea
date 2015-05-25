@@ -9,10 +9,10 @@
 $node = $variables['node'];
 $node_wrapper = entity_metadata_wrapper('node', $node);
 $odata_identifier = $node_wrapper->field_odata_identifier->value();
-$print = sprintf('/treaties/%s/text/print', $odata_identifier);
+$print = sprintf('/treaties/%s/print', $odata_identifier);
 ?>
 <p class="text-right">
-  <button class="btn btn-default" data-toggle="group" data-target="#treaty-text-accordion">Expand all</button>
+  <button class="btn btn-default" data-toggle="group" data-target="#treaty-text">Expand all</button>
   <a class="btn btn-primary btn-print" href="<?php print url($print); ?>" target="_blank">
     <i class="glyphicon glyphicon-print"></i>
     Print treaty text

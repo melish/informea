@@ -51,6 +51,12 @@ function treaty_theme() {
       'variables' => array('articles', 'node'),
       'path' => drupal_get_path('module', 'treaty'),
     ),
+    'treaty_print' => array(
+      'render element' => 'element',
+      'template' => 'templates/treaty-print',
+      'variables' => array('articles', 'node'),
+      'path' => drupal_get_path('module', 'treaty'),
+    ),
     'treaty_text_article' => array(
       'render element' => 'element',
       'template' => 'templates/treaty-text-article',
@@ -125,6 +131,13 @@ function treaty_node_view($node, $view_mode, $langcode) {
         $node->content['context'] = array(
           '#type' => 'item', '#weight' => 10, '#markup' => theme('treaty_text', array('articles' => $articles, 'node' => $node)),
         );
+        break;
+
+      case 'print':
+        $articles = treaty_get_treaty_text($node->nid);
+        echo theme('treaty_print', array('treaty' => $node, 'articles' => $articles));
+        drupal_exit();
+
         break;
 
       case 'protocols':

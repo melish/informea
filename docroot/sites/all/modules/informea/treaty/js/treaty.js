@@ -21,8 +21,9 @@ jQuery(document).ready(function ($) {
     }
   });
 
-  if ($('.smallipop').length > 0) {
-    $('.smallipop').smallipop({
+  var smallIpop = $('.smallipop');
+  if (smallIpop.length > 0) {
+    smallIpop.smallipop({
       invertAnimation: true,
       preferredPosition: 'left',
       theme: 'default',
@@ -31,14 +32,14 @@ jQuery(document).ready(function ($) {
   }
 
   var target;
-
   if (target = window.location.hash) {
-    var $el = $(target);
-
-    if ($el.length) {
+    var el = $(target);
+    if (el.length) {
       $.scrollTo(0).scrollTo(target, 'slow', {
-        offset: -50
+        offset: -200
       });
+      el.addClass('highlight');
+
     }
   }
 
@@ -46,11 +47,26 @@ jQuery(document).ready(function ($) {
     event.stopPropagation();
   });
 
-  $('#modal-decision').on('loaded.bs.modal', function () {
+  var dlgModalDecision = $('#modal-decision');
+  dlgModalDecision.on('loaded.bs.modal', function () {
     $(window).trigger('resize');
   });
 
-  $('#modal-decision').on('hidden.bs.modal', function () {
+  dlgModalDecision.on('hidden.bs.modal', function () {
     $(this).removeData('bs.modal');
+  });
+
+  $('[data-toggle="group"]').click(function () {
+    var $element = $(this);
+    var target = $element.data('target');
+    if ($element.data('pressed')) {
+      $element.data('pressed', false);
+      $element.html('Expand all');
+      $('.panel-collapse', target).collapse('hide');
+    } else {
+      $element.data('pressed', true);
+      $element.html('Close all');
+      $('.panel-collapse', target).collapse('show');
+    }
   });
 });
