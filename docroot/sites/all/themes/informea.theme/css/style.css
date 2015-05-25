@@ -67,6 +67,8 @@ h1 {
 
 /* Alternate buttons */
 
+.btn { border-radius: 0; }
+
 .btn-primary {
   background-color: #0099d5;
   border-color: #267399;
@@ -74,15 +76,30 @@ h1 {
 
 .btn-primary:hover,
 .btn-primary:focus {
-  background-color: #f3f3f3;
+  text-decoration: none;
+  color: #999;
   border-color: #c6cedb;
-  color: #8a95a6;
+  text-shadow: none;
+  background: #F3F3F3;
 }
 
 .btn-primary:active {
   background-color: #ffcc66;
   border-color: #ffcc33;
   color: #16232e;
+}
+
+.btn-print {
+  text-shadow: none;
+  color: #fff;
+  background-color: #0099D5;
+  background-image: -moz-linear-gradient(top,#0099D5,#267399);
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#0099D5),to(#267399));
+  background-image: -webkit-linear-gradient(top,#0099D5,#267399);
+  background-image: -o-linear-gradient(top,#0099D5,#267399);
+  background-image: linear-gradient(to bottom,#0099D5,#267399);
+  background-repeat: repeat-x;
+  border-color: #267399;
 }
 
 /* Outline buttons */
@@ -1197,7 +1214,17 @@ body.page-treaties div.regional { margin-top: 25px; }
 /* Treaty page */
 body.node-type-treaty div.field { margin-bottom: 3px; }
 body.node-type-treaty div.field-name-body { margin-bottom: 10px; }
-body.node-type-treaty div.field-label {
-  min-width: 150px; }
+body.node-type-treaty div.field-label { min-width: 150px; }
+
+body.node-type-treaty div.panel { border: 0; box-shadow: none; -moz-box-shadow: none; }
+body.node-type-treaty div.panel-heading { padding-left: 0; background-color: transparent; }
+
+body.node-type-treaty div.panel-heading a.permalink { display: none;  }
+body.node-type-treaty div.panel-heading:hover a.permalink { display: block; }
+
+body.node-type-treaty div.paragraph a.permalink { display: none;  }
+body.node-type-treaty div.paragraph:hover a.permalink { display: inline; }
+
+.smallipop-instance a{ color: white; text-transform: none; text-shadow: none; }
 
 ul.media-list>li.media>ul.media-list li { padding-left: 50px; }

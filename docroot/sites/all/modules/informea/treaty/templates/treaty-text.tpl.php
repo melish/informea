@@ -4,21 +4,35 @@
  * treaty-text.tpl.php
  */
 ?>
+<?php
+/** @var array $variables */
+$node = $variables['node'];
+$node_wrapper = entity_metadata_wrapper('node', $node);
+$odata_identifier = $node_wrapper->field_odata_identifier->value();
+$print = sprintf('/treaties/%s/text/print', $odata_identifier);
+?>
+<p class="text-right">
+  <button class="btn btn-default" data-toggle="group" data-target="#treaty-text-accordion">Expand all</button>
+  <a class="btn btn-primary btn-print" href="<?php print url($print); ?>" target="_blank">
+    <i class="glyphicon glyphicon-print"></i>
+    Print treaty text
+  </a>
+</p>
 <?php if (isset($articles) && is_array($articles)): ?>
   <div class="panel-group tagged-content" id="treaty-text" role="tablist" aria-multiselectable="true">
     <?php foreach ($articles as $article) : ?>
       <?php print theme('treaty_text_article', array('article' => $article)); ?>
     <?php endforeach; ?>
   </div>
-  <?php if (user_access('create treaty_article content') && isset($article)): ?>
-    <?php
-    print l('<i class="glyphicon glyphicon-plus"></i> ' . t('Add article'), 'node/add/treaty-article', array(
-      'attributes' => array('class' => array('btn', 'btn-default')),
-      'html' => TRUE,
-      'query' => array('edit' => array(
-        'field_treaty' => array('und' => entity_metadata_wrapper('node', $article)->field_treaty->value()[0]->nid)
-      ))
-    ));
-    ?>
-  <?php endif; ?>
+<?php endif; ?>
+<?php if (user_access('create treaty_article content') && isset($article)): ?>
+  <?php
+  print l('<i class="glyphicon glyphicon-plus"></i> ' . t('Add article'), 'node/add/treaty-article', array(
+    'attributes' => array('class' => array('btn', 'btn-default')),
+    'html' => TRUE,
+    'query' => array('edit' => array(
+      'field_treaty' => array('und' => entity_metadata_wrapper('node', $article)->field_treaty->value()[0]->nid)
+    ))
+  ));
+  ?>
 <?php endif; ?>

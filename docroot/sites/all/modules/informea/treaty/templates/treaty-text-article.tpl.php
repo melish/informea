@@ -13,11 +13,6 @@
   <div class="panel <?php print $expanded ? 'panel-warning' : 'panel-default'; ?>">
     <div class="panel-heading smallipop<?php print $expanded ? '' : ' collapsed' ;?>" role="tab" id="heading-<?php echo $article->nid; ?>" data-toggle="collapse" data-target="#article-<?php echo $article->nid; ?>" aria-expanded="<?php print $expanded ? 'true' : 'false' ;?>" aria-controls="article-<?php echo $article->nid; ?>">
       <ul class="list-inline actions">
-        <?php if (!empty($tags) && is_array($tags)): ?>
-          <li>
-            <span class="glyphicon glyphicon-tag" data-toggle="tooltip" data-placement="top" title="<?php print t('Tagged terms'); ?>"></span>
-          </li>
-        <?php endif; ?>
         <?php if (user_access('create treaty_paragraph content')): ?>
           <li class="action-hover">
             <?php
@@ -42,19 +37,22 @@
             ?>
           </li>
         <?php endif; ?>
-        <li class="action-hover">
-          <?php
-          print l('<i class="glyphicon glyphicon-link"></i>', 'treaties/cbd', array(
-            'attributes' => array('data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => t('Permalink'), 'target' => '_blank'),
-            'fragment' => 'article-' . $article->nid,
-            'html' => TRUE,
-            'query' => array('article' => $article->nid)
-          ));
-          ?>
-        </li>
       </ul><!-- .list-inline .actions -->
       <h4 class="panel-title">
-        <?php echo $article->official_title; ?>
+        <a href="#"><?php echo $article->official_title; ?></a>
+        <?php
+        print l('<i class="glyphicon glyphicon-link"></i>', 'treaties/cbd', array(
+          'attributes' => array(
+            'data-toggle' => 'tooltip', 'data-placement' => 'top',
+            'title' => t('Permalink'),
+            'class' => array('pull-right permalink'),
+            'target' => '_blank'
+          ),
+          'fragment' => 'article-' . $article->nid,
+          'html' => TRUE,
+          'query' => array('article' => $article->nid)
+        ));
+        ?>
       </h4><!-- .panel-title -->
       <?php print theme('treaty_text_tags', array('tags' => $tags)); ?>
     </div><!-- .panel-heading .smallipop -->
