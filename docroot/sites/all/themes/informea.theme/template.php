@@ -66,3 +66,20 @@ function informea_theme_form_alter(&$form, &$form_state, $form_id) {
     $form['#attributes']['class'][] = 'navbar-right';
   }
 }
+
+function informea_theme_theme() {
+  return array(
+    'informea_bootstrap_collapse' => array(
+      'render element' => 'element',
+      'template' => 'templates/informea-bootstrap-collapse',
+      'variables' => array('elements', 'id', 'no-data-parent', 'no-panel-body'),
+      'path' => drupal_get_path('theme', 'informea_theme'),
+    ),
+    'informea_bootstrap_tabs' => array(
+      'render element' => 'element',
+      'template' => 'templates/informea-bootstrap-tabs',
+      'variables' => array('id', 'elements', 'active'),
+      'path' => drupal_get_path('theme', 'informea_theme'),
+    ),
+  );
+}

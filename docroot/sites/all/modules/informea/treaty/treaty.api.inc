@@ -184,18 +184,13 @@ function treaty_format_meeting_description($meeting) {
     '#theme' => 'item_list',
     '#attributes' => array('class' => array('list-inline', 'meta'))
   );
-
   $description['#items'][] = format_date(strtotime($w->event_calendar_date->value()['value']), 'short');
-
   $location = $w->field_location->value();
-
   if (!empty($location)) {
     $description['#items'][] = $location;
   }
-
   if (!empty($meeting->decisions)) {
     $description['#items'][] = format_plural(count($meeting->decisions), 'one decision', '@count decisions');
   }
-
   return drupal_render($description);
 }
