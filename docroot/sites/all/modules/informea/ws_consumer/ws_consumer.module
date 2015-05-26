@@ -93,28 +93,28 @@ function ws_consumer_update_treaty_ratification($node_treaty) {
           }
           else {
             watchdog(
-                'ws_consumer',
-                "Cannot set party status: '!status' because term is not in vocabulary 'party status'",
-                array('!status' => $ratification->status)
+              'ws_consumer',
+              "Cannot set party status: '!status' because term is not in vocabulary 'party status'",
+              array('!status' => $ratification->status)
             );
           }
           if ($save) {
             $new = empty($party->nid);
             node_save($party);
             watchdog(
-                'ws_consumer',
-                '!status member party status !title (nid:!nid)',
-                array('!status' => $new ? 'New' : 'Updated',  '!title' => $party_w->label(), '!nid' => $party->nid),
-                WATCHDOG_INFO
+              'ws_consumer',
+              '!status member party status !title (nid:!nid)',
+              array('!status' => $new ? 'New' : 'Updated',  '!title' => $party_w->label(), '!nid' => $party->nid),
+              WATCHDOG_INFO
             );
           }
         }
         catch(Exception $e) {
           watchdog_exception(
-              'ws_consumer',
-              $e,
-              "Error updating treaty membership party for pair !title (!cause) \n<pre>!trace</pre>",
-              array('!title' => $party_w->label(), '!cause' => $e->getMessage(), '!trace' => $e->getTraceAsString())
+            'ws_consumer',
+            $e,
+            "Error updating treaty membership party for pair !title (!cause) \n<pre>!trace</pre>",
+            array('!title' => $party_w->label(), '!cause' => $e->getMessage(), '!trace' => $e->getTraceAsString())
           );
         }
       }
@@ -127,7 +127,7 @@ function ws_consumer_update_treaty_ratification($node_treaty) {
  * @param string $url URL to the XML
  * @return stdClass Object with data extracted from XML. Fields:
  * - source_url - Original URL
-  * - ratification - array with ratification information (keys are country names in English)
+ * - ratification - array with ratification information (keys are country names in English)
  */
 function ws_consumer_service_process_xml($url) {
   $ret = new stdClass();
@@ -149,7 +149,7 @@ function ws_consumer_service_process_xml($url) {
         $row = $row->children();
         $new_row = array((string)$row[0], (string)$row[1], (string)$row[2]);
         if (!empty($row[3])) {
-         $new_row[] = (string)$row[3];
+          $new_row[] = (string)$row[3];
         }
         $row = $new_row;
         $country = $row[0];
@@ -230,9 +230,9 @@ function ws_consumer_service_process_xml($url) {
 function ws_consumer_get_party_by_key($id_treaty, $id_country) {
   $query = new EntityFieldQuery();
   $query = $query->entityCondition('entity_type', 'node')
-      ->entityCondition('bundle', 'member_party')
-      ->fieldCondition('field_treaty', 'target_id', $id_treaty, '=')
-      ->fieldCondition('field_country', 'target_id', $id_country, '=');
+    ->entityCondition('bundle', 'member_party')
+    ->fieldCondition('field_treaty', 'target_id', $id_treaty, '=')
+    ->fieldCondition('field_country', 'target_id', $id_country, '=');
   $result = $query->execute();
   if (!empty($result['node'])) {
     return node_load(key($result['node']));
@@ -245,18 +245,18 @@ function ws_consumer_un_database_get_country($country_name) {
   // Some hardcodings for their broken country names
   $fixed_country_name = htmlspecialchars_decode($country_name, ENT_QUOTES);
   $mappings = array(
-      'Cabo Verde' => 'Cape Verde',
-      'Gambia' => 'The Gambia',
-      'Iran (Islamic Republic of)' => 'Iran',
-      'Lao People\'s Democratic Republic' => 'Laos',
-      'Micronesia (Federated States of)' => 'Micronesia',
-      'St. Kitts and Nevis' => 'Saint Kitts and Nevis',
-      'St. Lucia' => 'Saint Lucia',
-      'St. Vincent and the Grenadines' => 'Saint Vincent and the Grenadines',
-      'State of Palestine' => 'Palestinian Territory, Occupied',
-      'Venezuela (Bolivarian Republic of)' => 'Venezuela',
-      'Bolivia (Plurinational State of)' => 'Bolivia',
-      'Lao People&#039;s Democratic Republic' => 'Laos',
+    'Cabo Verde' => 'Cape Verde',
+    'Gambia' => 'The Gambia',
+    'Iran (Islamic Republic of)' => 'Iran',
+    'Lao People\'s Democratic Republic' => 'Laos',
+    'Micronesia (Federated States of)' => 'Micronesia',
+    'St. Kitts and Nevis' => 'Saint Kitts and Nevis',
+    'St. Lucia' => 'Saint Lucia',
+    'St. Vincent and the Grenadines' => 'Saint Vincent and the Grenadines',
+    'State of Palestine' => 'Palestinian Territory, Occupied',
+    'Venezuela (Bolivarian Republic of)' => 'Venezuela',
+    'Bolivia (Plurinational State of)' => 'Bolivia',
+    'Lao People&#039;s Democratic Republic' => 'Laos',
   );
   if (array_key_exists($country_name, $mappings)) {
     $fixed_country_name = $mappings[$country_name];
