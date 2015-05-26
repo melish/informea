@@ -18,10 +18,11 @@ function decision_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'ajax' => array(
-        'label' => 'above',
+        'label' => 'hidden',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'text_default',
+        'weight' => 9,
       ),
       'default' => array(
         'label' => 'hidden',
@@ -69,10 +70,11 @@ function decision_field_default_field_instances() {
     'description' => 'Unique MEA internal decision number',
     'display' => array(
       'ajax' => array(
-        'label' => 'above',
+        'label' => 'inline',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'text_plain',
+        'weight' => 1,
       ),
       'default' => array(
         'label' => 'inline',
@@ -115,10 +117,17 @@ function decision_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'ajax' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'label' => 'inline',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'short',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 8,
       ),
       'default' => array(
         'label' => 'inline',
@@ -176,10 +185,11 @@ function decision_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'ajax' => array(
-        'label' => 'above',
+        'label' => 'inline',
+        'module' => 'i18n_taxonomy',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'i18n_taxonomy_term_reference_plain',
+        'weight' => 3,
       ),
       'default' => array(
         'label' => 'inline',
@@ -223,9 +233,10 @@ function decision_field_default_field_instances() {
     'description' => 'Type of decision (decision, resolution, recommendation etc.)',
     'display' => array(
       'ajax' => array(
-        'label' => 'above',
+        'label' => 'inline',
+        'module' => 'i18n_taxonomy',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'i18n_taxonomy_term_reference_plain',
         'weight' => 0,
       ),
       'default' => array(
@@ -272,7 +283,7 @@ function decision_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 7,
       ),
       'default' => array(
         'label' => 'above',
@@ -323,9 +334,10 @@ function decision_field_default_field_instances() {
     'display' => array(
       'ajax' => array(
         'label' => 'above',
+        'module' => 'file',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'file_table',
+        'weight' => 4,
       ),
       'default' => array(
         'label' => 'inline',
@@ -373,9 +385,17 @@ function decision_field_default_field_instances() {
     'display' => array(
       'ajax' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'module' => 'taxonomy_formatter',
+        'settings' => array(
+          'element_class' => '',
+          'element_option' => '- None -',
+          'links_option' => 0,
+          'separator_option' => ', ',
+          'wrapper_class' => '',
+          'wrapper_option' => '- None -',
+        ),
+        'type' => 'taxonomy_term_reference_csv',
+        'weight' => 5,
       ),
       'default' => array(
         'label' => 'inline',
@@ -419,9 +439,16 @@ function decision_field_default_field_instances() {
     'display' => array(
       'ajax' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'short',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 6,
       ),
       'default' => array(
         'label' => 'above',
@@ -472,10 +499,13 @@ function decision_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'ajax' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'label' => 'inline',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => 1,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 2,
       ),
       'default' => array(
         'label' => 'inline',
@@ -527,7 +557,7 @@ function decision_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 16,
       ),
       'default' => array(
         'label' => 'hidden',
@@ -573,7 +603,7 @@ function decision_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 12,
       ),
       'default' => array(
         'label' => 'hidden',
@@ -635,7 +665,7 @@ function decision_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 11,
       ),
       'default' => array(
         'label' => 'hidden',
@@ -681,7 +711,7 @@ function decision_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 13,
       ),
       'default' => array(
         'label' => 'hidden',
@@ -728,7 +758,7 @@ function decision_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 14,
       ),
       'default' => array(
         'label' => 'inline',
@@ -780,7 +810,7 @@ function decision_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 15,
       ),
       'default' => array(
         'label' => 'inline',
@@ -840,10 +870,10 @@ function decision_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'ajax' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 10,
       ),
       'default' => array(
         'label' => 'above',

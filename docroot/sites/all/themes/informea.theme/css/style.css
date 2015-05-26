@@ -1130,6 +1130,11 @@ button.toggle {
   color: #444;
 }
 
+/* Modal dialog */
+.modal-body {
+  margin-top: 0;
+}
+
 
 /* Pages */
 /* ----- */

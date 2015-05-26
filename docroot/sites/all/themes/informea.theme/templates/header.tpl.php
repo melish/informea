@@ -4,6 +4,12 @@
  * header.tpl.php
  */
 ?>
+<div class="modal fade" id="dialog-modal-ajax" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content"></div>
+  </div><!-- .modal-dialog .modal-lg -->
+</div><!-- .modal .fade #dialog-modal-ajax -->
+
 <header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
   <div class="container">
     <div class="navbar-header">

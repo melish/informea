@@ -19,8 +19,8 @@ $decisions = $variables['decisions'];
           print l($wrapper->label(), 'node/' . $wrapper->getIdentifier(), array(
             'attributes' => array(
               'data-toggle' => 'modal',
-              'data-target' => '#modal-decision',
-              'data-remote' => url('node/' . $wrapper->getIdentifier() . '/ajax')
+              'data-target' => '#dialog-modal-ajax',
+              'data-remote' => url('ajax/modal/node/' . $wrapper->getIdentifier())
             )
           ));
           ?>

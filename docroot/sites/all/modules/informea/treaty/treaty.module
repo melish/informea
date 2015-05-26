@@ -87,11 +87,6 @@ function treaty_theme() {
       'variables' => array('protocols'),
       'path' => drupal_get_path('module', 'treaty'),
     ),
-    'treaty_modal' => array(
-      'path' => drupal_get_path('module', 'treaty'),
-      'render element' => 'element',
-      'template' => 'templates/treaty-modal'
-    ),
     'treaties' => array(
       'render element' => 'element',
       'template' => 'templates/treaties',
@@ -167,7 +162,7 @@ function treaty_node_view($node, $view_mode, $langcode) {
                 'id' => 'decisions',
                 'no-data-parent' => TRUE,
                 'no-panel-body' => TRUE
-              )) . theme('treaty_modal'),
+              )),
             '#type' => 'item',
             '#weight' => 10
           );

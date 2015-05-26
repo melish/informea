@@ -65,27 +65,30 @@ function informea_preprocess_node(&$vars) {
  *   An associative array of properties for each path.
  */
 function informea_menu() {
-  $items['node/%/ajax'] = array(
-    'page callback'     => 'informea_ajax_get_ajax',
-    'page arguments'    => array(1),
+  $items['ajax/modal/node/%node'] = array(
+    'page callback'     => 'informea_ajax_node_modal',
+    'page arguments'    => array(3),
     'type'              => MENU_CALLBACK,
     'access arguments'  => array('access content'),
-    'delivery callback' => 'informea_ajax_callback'
   );
-
   return $items;
 }
 
 
-function informea_ajax_get_ajax($nid) {
-  $node = node_load($nid);
-
-  return node_view($node, 'ajax');
-}
-
-
-function informea_ajax_callback($page_callback_result) {
-  print drupal_render($page_callback_result);
+function informea_ajax_node_modal($node) {
+  $arr = node_view($node, 'ajax');
+  $html = drupal_render($arr);
+  print <<<EOT
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title" id="modal-decision-label">{$node->title}</h4>
+</div><!-- .modal-header -->
+<div class="modal-body">$html</div><!-- .modal-body -->
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div><!-- .modal-footer -->
+EOT;
+  drupal_exit();
 }
 
 
