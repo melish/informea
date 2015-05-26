@@ -37,13 +37,14 @@ function decision_get_treaty_decisions_group_by_meeting($id_treaty) {
       field_attach_load('node', $decisions, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_decision_status']['field_id']));
       field_attach_load('node', $decisions, FIELD_LOAD_CURRENT, array('field_id' => $fields['title_field']['field_id']));
       foreach ($decisions as $decision) {
-        $meeting_id = $decision->field_meeting[LANGUAGE_NONE][0]['target_id'];
-        $meeting = node_load($meeting_id);
-        $meeting->decisions = array();
-        $meeting_w = entity_metadata_wrapper('node', $meeting);
-        $type = $meeting_w->field_event_type->value();
-        if (($type && strtolower($type->name_original) == 'cop') || empty($type)) {
-          $ret[$meeting_id] = $meeting;
+        $dw = entity_metadata_wrapper('node', $decision);
+        if ($meeting = $dw->field_meeting->value()) {
+          $meeting->decisions = array();
+          $mw = entity_metadata_wrapper('node', $meeting);
+          $type = $mw->field_event_type->value();
+          if (($type && strtolower($type->name_original) == 'cop') || empty($type)) {
+            $ret[$mw->getIdentifier()] = $meeting;
+          }
         }
       }
       // Remove non-active decisions
@@ -58,10 +59,13 @@ function decision_get_treaty_decisions_group_by_meeting($id_treaty) {
       });
 
       foreach ($decisions as $decision) {
-        $meeting_id = $decision->field_meeting[LANGUAGE_NONE][0]['target_id'];
-        if (array_key_exists($meeting_id, $ret)) {
-          $meeting = $ret[$meeting_id];
-          $meeting->decisions[] = $decision;
+        $dw = entity_metadata_wrapper('node', $decision);
+        if ($meeting = $dw->field_meeting->value()) {
+          $meeting_id = $decision->field_meeting[LANGUAGE_NONE][0]['target_id'];
+          if (array_key_exists($meeting_id, $ret)) {
+            $meeting = $ret[$meeting_id];
+            $meeting->decisions[] = $decision;
+          }
         }
       }
       uasort($ret, function ($a, $b) {
