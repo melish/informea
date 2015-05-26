@@ -19,6 +19,12 @@ $highlight = isset($_GET['paragraph']) ? $_GET['paragraph'] == $paragraph->nid :
     <?php $body = field_view_field('node', $paragraph, 'body', 'teaser'); ?>
     <?php print strip_tags($body[0]['#markup']); // calling render adds unwanted div's @todo ?>
     <?php
+    if (user_access('edit any treaty_paragraph content')):
+      print l('<i class="glyphicon glyphicon-pencil"></i>', 'node/' . $paragraph->nid . '/edit', array(
+        'attributes' => array('data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => t('Edit this paragraph'), 'class' => array('administrative')),
+        'html' => TRUE
+      ));
+    endif;
     print l('<span class="glyphicon glyphicon-link"></span>', 'treaties/' . $odata_identifier . '/text', array(
       'attributes' => array(
         'data-toggle' => 'tooltip', 'data-placement' => 'top',
@@ -36,11 +42,4 @@ $highlight = isset($_GET['paragraph']) ? $_GET['paragraph'] == $paragraph->nid :
     ?>
   </p>
   <?php print theme('treaty_text_tags', array('tags' => $tags)); ?>
-  <ul class="list-inline actions">
-    <?php if (user_access('edit any treaty_paragraph content')): ?>
-      <li>
-        <?php print l('<span class="glyphicon glyphicon-pencil"></span> ' . t('Edit paragraph'), 'node/' . $paragraph->nid . '/edit', array('html' => TRUE)); ?>
-      </li>
-    <?php endif; ?>
-  </ul><!-- .list-inline .actions -->
 </div><!-- .paragraph .smallipop -->
