@@ -95,7 +95,8 @@ function ws_consumer_update_treaty_ratification($node_treaty) {
             watchdog(
               'ws_consumer',
               "Cannot set party status: '!status' because term is not in vocabulary 'party status'",
-              array('!status' => $ratification->status)
+              array('!status' => $ratification->status),
+              WATCHDOG_ERROR
             );
           }
           if ($save) {
@@ -191,15 +192,18 @@ function ws_consumer_service_process_xml($url) {
           }
         }
 
-        if (preg_match('/\ a$/', $row[2]) || (isset($row[3]) && $row[3] == 'Accession')) { // a
+        if(preg_match('/\ a$/', $row[2]) || (isset($row[3]) && $row[3] == 'Accession')) { // a
           $status = 'accession';
-        } elseif (preg_match('/\ AA$/', $row[2])) { // AA
+        } elseif(preg_match('/\ AA$/', $row[2])) { // AA
           $status = 'approval';
-        } elseif (preg_match('/\ A$/', $row[2]) || (isset($row[3]) && $row[3] == 'Acceptance')) { // A
+        } elseif(preg_match('/\ A$/', $row[2]) || (isset($row[3]) && $row[3] == 'Acceptance')) { // A
           $status = 'acceptance';
-        } else {
+        } elseif (!empty($date2)) {
           $status = 'ratification';
+        } else {
+          $status = 'signatory';
         }
+
 
         $country_ob = NULL;
         $country_ob = ws_consumer_un_database_get_country($country);

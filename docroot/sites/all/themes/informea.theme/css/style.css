@@ -1245,3 +1245,4 @@ ul.media-list>li.media>ul.media-list li { padding-left: 50px; }
 #decisions .panel { margin: 0; border-bottom: 1px solid #ddd; border-radius: 0; }
 #decisions .panel-heading { border: 1px solid transparent; cursor: pointer; padding-bottom: 0; margin: 0; }
 #decisions .panel-heading:hover { border: 1px solid #39c; background-color: #D2EEFC; }
+img.flag-small { max-height: 32px; }

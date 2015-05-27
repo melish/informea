@@ -190,7 +190,6 @@ function treaty_node_view($node, $view_mode, $langcode) {
         module_load_include('inc', 'country_data', 'country_data.api');
         module_load_include('php', 'informea', 'recaptcha/recaptchalib');
         $members = country_data_treaty_get_membership($node->nid);
-        $map_tab = '';
         if (count($members)) {
           // Add map with parties
           $map_config = array();
@@ -213,64 +212,95 @@ function treaty_node_view($node, $view_mode, $langcode) {
             'body' => drupal_render($elements),
             'active' => TRUE
           );
-        }
-        // Table with parties
-        $rows = array();
-        foreach ($members as $member) {
-          $wrapper = entity_metadata_wrapper('node', $member);
-          $country = $wrapper->field_country->value()[0];
-          $c_wrapper = entity_metadata_wrapper('node', $country);
-          $themedir = drupal_get_path('theme', 'informea_theme');
-          $flag = theme('image', array('path' => $themedir . '/img/flags/flag-' . strtolower($c_wrapper->field_country_iso2->value()) . '.png', 'attributes' => array('class' => 'img-thumbnail')));
-          $date1 = $wrapper->field_party_date_1->value();
-          $date1 = empty($date1) ? '&nbsp;' : format_date($date1, 'short');
-          $date2 = $wrapper->field_party_date_2->value();
-          $date2 = empty($date2) ? '&nbsp;' : format_date($date2, 'short');
-          $row = array(
-            'data' => array(
-              sprintf('%s <span>%s</span>', $flag, $wrapper->field_country->label()),
-              array('data' => $date1, 'class' => 'text-center'),
-              array('data' => $date2, 'class' => 'text-center')
+          // Table with parties
+          $rows = array();
+          foreach ($members as $member) {
+            $wrapper = entity_metadata_wrapper('node', $member);
+            $country = $wrapper->field_country->value()[0];
+            $c_wrapper = entity_metadata_wrapper('node', $country);
+            $themedir = drupal_get_path('theme', 'informea_theme');
+            $flag = theme('image', array(
+              'path' => $themedir . '/img/flags/flag-' . strtolower($c_wrapper->field_country_iso2->value()) . '.png',
+              'attributes' => array('class' => 'img-thumbnail flag-small')
+            ));
+            $date1 = $wrapper->field_party_date_1->value();
+            $date1 = empty($date1) ? '&nbsp;' : format_date($date1, 'short');
+            $date2 = $wrapper->field_party_date_2->value();
+            $date2 = empty($date2) ? '&nbsp;' : format_date($date2, 'short');
+            $status_label = '';
+            if ($status = $wrapper->field_party_status->value()) {
+              $status_label = $status->name;
+            }
+            $row = array(
+              'data' => array(
+                sprintf('%s <span>%s</span>', $flag, $wrapper->field_country->label()),
+                array('data' => $date1, 'class' => 'text-center'),
+                array('data' => $date2, 'class' => 'text-center'),
+                array('data' => $status_label, 'class' => 'text-center')
+              )
+            );
+            $nfps = country_data_get_treaty_focal_points($country->nid, $node->nid);
+            if (count($nfps)) {
+              $row['data'][] = array(
+                'data' => sprintf('<a data-toggle="collapse" href="#nfp-%1$s" aria-expanded="false" aria-controls="nfp-%1$s"><i class="glyphicon glyphicon-user"></i></a>', $country->nid),
+                'class' => 'text-center'
+              );
+            }
+            else {
+              $row['data'][] = '';
+            }
+            $rows[] = $row;
+            if (count($nfps)) {
+              $nfp_data = country_data_render_focal_points($nfps);
+              $row = array(
+                'class' => array('collapse'),
+                'data' => array(
+                  array(
+                    'data' => drupal_render($nfp_data),
+                    'colspan' => 4
+                  )
+                ),
+                'id' => array('nfp-' . $country->nid)
+              );
+              $rows[] = $row;
+            }
+          }
+          $table = array(
+            'attributes' => array(
+              'id' => 'table-parties',
+              'class' => 'table-no-striping table-hover'
+            ),
+            'header' => array(
+              t('Country'),
+              array('data' => t('Signature'), 'class' => array('text-center')),
+              array('data' => t('Ratification'), 'class' => array('text-center')),
+              array('data' => t('Status'), 'class' => array('text-center')),
+              array('data' => t('Focal points'), 'class' => array('text-center'))
+            ),
+            'rows' => $rows
+          );
+          $elements = array(
+            '#type' => 'item',
+            '#weight' => 10,
+            '#markup' => theme('table', $table)
+          );
+          $parties_tab = array(
+            'header' => t('List of member parties'),
+            'body' => drupal_render($elements),
+          );
+          $node->content['context'] = array(
+            array(
+              '#type' => 'item',
+              '#weight' => 10,
+              '#markup' => theme('informea_bootstrap_tabs', array(
+                'elements' => array(
+                  $map_tab,
+                  $parties_tab
+                )
+              ))
             )
           );
-          $nfps = country_data_get_treaty_focal_points($country->nid, $node->nid);
-          if (count($nfps)) {
-            $row['data'][] = array(
-              'data' => sprintf('<a data-toggle="collapse" href="#nfp-%1$s" aria-expanded="false" aria-controls="nfp-%1$s"><i class="glyphicon glyphicon-user"></i></a>', $country->nid),
-              'class' => 'text-center'
-            );
-          } else {
-            $row['data'][] = '';
-          }
-          $rows[] = $row;
-          if (count($nfps)) {
-            $nfp_data = country_data_render_focal_points($nfps);
-            $row = array(
-              'class' => array('collapse'),
-              'data' => array(array('data' => drupal_render($nfp_data), 'colspan' => 4)),
-              'id' => array('nfp-' . $country->nid)
-            );
-            $rows[] = $row;
-          }
         }
-        $table = array(
-          'attributes' => array('id' => 'table-parties', 'class' => 'table-no-striping table-hover'),
-          'header' => array(
-            t('Country'),
-            array('data' => t('Signature'), 'class' => array('text-center')),
-            array('data' => t('Ratification'), 'class' => array('text-center')),
-            array('data' => t('Focal points'), 'class' => array('text-center'))
-          ),
-          'rows' => $rows
-        );
-        $elements = array('#type' => 'item', '#weight' => 10, '#markup' => theme('table', $table));
-        $parties_tab = array(
-          'header' => t('List of member parties'),
-          'body' => drupal_render($elements),
-        );
-        $node->content['context'] = array(
-          array('#type' => 'item', '#weight' => 10, '#markup' => theme('informea_bootstrap_tabs', array('elements' => array($map_tab, $parties_tab))))
-        );
         break;
       case 'national-reports':
         module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
