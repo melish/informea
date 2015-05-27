@@ -75,6 +75,11 @@ function country_node_view($node, $view_mode, $langcode) {
       $context = 'map';
     }
     $node->context = $context;
+    if ($context != 'summary') {
+      foreach(element_children($node->content) as $field_name) {
+        hide($node->content[$field_name]);
+      }
+    }
     switch($context) {
       case 'map':
         $wrapper = entity_metadata_wrapper('node', $node);
@@ -358,10 +363,9 @@ function country_page_alter(&$page) {
 function country_country_contextual_menu_alter(&$contextual_menu, $node) {
   if ($node->type == 'country') {
     module_load_include('inc', 'country_data', 'country_data.api');
-
-    $node_url = url(drupal_get_path_alias('node/' . $node->nid), array('absolute' => TRUE));
-    $view_ramsar = country_get_view_country_related_content($node->nid, 'ramsar_sites');
-    $view_whc = country_get_view_country_related_content($node->nid, 'whc_sites');
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $iso2l = $wrapper->field_country_iso2->value();
+    $node_url = url('countries/' . $iso2l, array('absolute' => TRUE));
 
     $contextual_menu = array(
       '#theme' => 'item_list',
@@ -371,37 +375,36 @@ function country_country_contextual_menu_alter(&$contextual_menu, $node) {
     $menu_items = array(
       'map' => array(
         'title' => t('Map and sites'),
-        'count' => ($view_ramsar->total_rows + $view_whc->total_rows)
       ),
       'parties' => array(
         'title' => t('Membership'),
-        'count' => count(country_data_country_get_parties($node->nid))
+        'count' => country_data_get_member_party_count($node->nid)
       ),
       'action-plans' => array(
         'title' => t('Action plans'),
-        'count' => country_get_view_country_related_content_count($node->nid, 'embed_action_plans')
+        'count' => country_get_action_plan_count($node->nid)
       ),
       'national-reports' => array(
         'title' => t('National reports'),
-        'count' => country_get_view_country_related_content_count($node->nid, 'embed_national_reports')
+        'count' => country_get_national_report_count($node->nid)
       ),
       'legislation' => array(
         'title' => t('Legislation'),
-        'count' => country_get_view_country_related_content_count($node->nid, 'page_legislation')
+        'count' => country_get_legislation_count($node->nid)
       ),
       'literature' => array(
         'title' => t('Literature'),
-        'count' => country_get_view_country_related_content_count($node->nid, 'page_literature')
+        'count' => country_get_literature_count($node->nid)
       ),
       'court-decisions' => array(
         'title' => t('Court decisions'),
-        'count' => country_get_view_country_related_content_count($node->nid, 'page_court_decisions')
+        'count' => country_get_court_decision_count($node->nid)
       )
     );
 
     foreach ($menu_items as $path => $menu_item) {
       $text = isset($menu_item['count'])
-        ? sprintf('<span class="counter">%d</span>%s', $menu_item['count'], $menu_item['title'])
+        ? sprintf('<span class="badge pull-right">%d</span>%s', $menu_item['count'], $menu_item['title'])
         : $menu_item['title'];
 
       $list_item = array(
@@ -412,18 +415,23 @@ function country_country_contextual_menu_alter(&$contextual_menu, $node) {
       if (isset($node->context) && $node->context == $path) {
         $list_item['class'][] = 'active';
       }
-
+      if (empty($menu_item['count'])) {
+        $list_item['class'][] = 'disabled';
+      }
       $contextual_menu['#items'][] = $list_item;
     }
-
-    // Downloads nav menu item
     $contextual_menu['#items'][] = array(
-      'data' => l(t('Downloads'), '', array(
-        'attributes' => array('data-toggle' => 'modal'),
-        'external' => TRUE,
-        'fragment' => 'modal-downloads',
-        'html' => TRUE
-      )),
+      'data' => l(
+        'View on UNEPLive' . '<span class="glyphicon glyphicon-new-window pull-right" style="color: #999"></span>',
+        sprintf('http://uneplive.org/country/index/%s', $iso2l),
+        array(
+          'attributes' => array(
+            'target' => '_blank',
+            'title' => t('View the available UNEPLive country profile.') . ' ' . t('Opens in a new window'),
+          ),
+          'html' => TRUE
+        )
+      ),
       'role' => 'presentation'
     );
   }

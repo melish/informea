@@ -1222,8 +1222,8 @@ body.node-type-treaty div.field { margin-bottom: 3px; }
 body.node-type-treaty div.field-name-body { margin-bottom: 10px; }
 body.node-type-treaty div.field-label { min-width: 150px; }
 
-body.node-type-treaty div.panel { border: 0; box-shadow: none; -moz-box-shadow: none; }
-body.node-type-treaty div.panel-heading { padding-left: 0; background-color: transparent; }
+#accordion div.panel { border: 0; box-shadow: none; -moz-box-shadow: none; }
+#accordion div.panel-heading { padding-left: 0; background-color: transparent; }
 
 body.node-type-treaty div.panel-heading a.permalink, a.administrative { display: none;  }
 body.node-type-treaty div.panel-heading:hover a.permalink,

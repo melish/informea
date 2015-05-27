@@ -324,3 +324,47 @@ function country_get_court_literature_statistics($id_country = NULL) {
   }
   return $ret;
 }
+
+function country_data_get_member_party_count($id_country) {
+  return db_select('field_data_field_country')
+    ->condition('bundle', 'member_party')
+    ->condition('field_country_target_id', $id_country)
+    ->countQuery()->execute()->fetchField();
+}
+
+function country_get_action_plan_count($id_country) {
+  return db_select('field_data_field_country')
+    ->condition('bundle', 'action_plan')
+    ->condition('field_country_target_id', $id_country)
+    ->countQuery()->execute()->fetchField();
+}
+
+function country_get_national_report_count($id_country) {
+  return db_select('field_data_field_country')
+    ->condition('bundle', 'national_report')
+    ->condition('field_country_target_id', $id_country)
+    ->countQuery()->execute()->fetchField();
+}
+
+function country_get_legislation_count($id_country) {
+  return db_select('field_data_field_country')
+    ->condition('bundle', 'legislation')
+    ->condition('field_country_target_id', $id_country)
+    ->countQuery()->execute()->fetchField();
+}
+
+function country_get_literature_count($id_country) {
+  return db_select('field_data_field_country')
+    ->condition('bundle', 'literature')
+    ->condition('field_country_target_id', $id_country)
+    ->countQuery()->execute()->fetchField();
+}
+
+function country_get_court_decision_count($id_country) {
+  return db_select('field_data_field_country')
+    ->condition('bundle', 'court_decisions')
+    ->condition('field_country_target_id', $id_country)
+    ->countQuery()->execute()->fetchField();
+}
+
+
