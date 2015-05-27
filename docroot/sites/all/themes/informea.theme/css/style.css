@@ -1238,11 +1238,13 @@ body.node-type-treaty div.paragraph:hover { background-color: #f0f0f0; }
 
 ul.media-list>li.media>ul.media-list li { padding-left: 50px; }
 
-#decisions .panel-heading h4 { display: inline; margin-left: 15px; }
-#decisions .panel-heading .meta { text-align: right; font-size: 12px; color: #999; font-weight: normal; }
-#decisions .panel-heading ul { margin: 0; }
-#decisions .panel-heading .glyphicon-plus-sign { color: #c6cedb; font-size: 14px; }
-#decisions .panel { margin: 0; border-bottom: 1px solid #ddd; border-radius: 0; }
-#decisions .panel-heading { border: 1px solid transparent; cursor: pointer; padding-bottom: 0; margin: 0; }
-#decisions .panel-heading:hover { border: 1px solid #39c; background-color: #D2EEFC; }
+#accordion .panel-heading h4 { display: inline; margin-left: 15px; }
+#accordion .panel-heading .meta { text-align: right; font-size: 12px; color: #999; font-weight: normal; }
+#accordion .panel-heading ul { margin: 0; }
+#accordion .panel-heading .glyphicon-plus-sign { color: #c6cedb; font-size: 14px; }
+#accordion .panel { margin: 0; border-bottom: 1px solid #ddd; border-radius: 0; }
+#accordion .panel-heading { padding: 5px 0 5px 5px; border: 1px solid transparent; cursor: pointer; margin: 0; border-radius: 0; }
+#accordion .panel-heading:hover { border: 1px solid #39c; background-color: #D2EEFC; }
+#accordion .panel-collapse { margin-left: 5px; }
+img.flag-xs { max-height: 16px; }
 img.flag-small { max-height: 32px; }

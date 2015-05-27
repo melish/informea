@@ -160,7 +160,7 @@ function treaty_node_view($node, $view_mode, $langcode) {
           $node->content['context'] = array(
             '#markup' => theme('informea_bootstrap_collapse', array(
                 'elements' => $elements,
-                'id' => 'decisions',
+                'id' => 'accordion',
                 'no-data-parent' => TRUE,
                 'no-panel-body' => TRUE
               )),
@@ -323,8 +323,8 @@ function treaty_node_view($node, $view_mode, $langcode) {
               '#prefix' => '<h2>',
               '#suffix' => '</h2>'
             );
-            $render[] = country_deliverable_render_national_reports($rows);
           }
+          $render[] = country_deliverable_render_national_reports($rows);
         }
         $node->content['context'] = $render;
         break;

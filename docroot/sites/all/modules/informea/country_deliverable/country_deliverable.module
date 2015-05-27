@@ -42,7 +42,8 @@ function country_deliverable_render_action_plans($rows) {
     $img = NULL;
     if ($row->type == 'country') {
       $img = theme('image', array(
-        'path' => drupal_get_path('theme', 'leo_theme') . '/img/flags/flag-' . strtolower($rw->field_country_iso2->value()) . '.png'
+        'path' => drupal_get_path('theme', 'informea_theme') . '/img/flags/flag-' . strtolower($rw->field_country_iso2->value()) . '.png',
+        'attributes' => array('class' => array('flag-xs'))
       ));
     } else { // treaty
       if ($uri = $rw->field_logo->value()['uri']) {
@@ -66,7 +67,7 @@ function country_deliverable_render_action_plans($rows) {
     );
   }
   return array(
-    '#type' => 'item', '#weight' => 10, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'decisions', 'elements' => $elements, 'no-panel-body' => TRUE)),
+    '#type' => 'item', '#weight' => 10, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'accordion', 'elements' => $elements, 'no-panel-body' => TRUE, 'no-data-parent' => TRUE)),
   );
 }
 
@@ -89,7 +90,8 @@ function country_deliverable_render_national_reports($rows) {
     $img = NULL;
     if ($row->type == 'country') {
       $img = theme('image', array(
-        'path' => drupal_get_path('theme', 'leo_theme') . '/img/flags/flag-' . strtolower($rw->field_country_iso2->value()) . '.png'
+        'path' => drupal_get_path('theme', 'informea_theme') . '/img/flags/flag-' . strtolower($rw->field_country_iso2->value()) . '.png',
+        'attributes' => array('class' => array('flag-xs'))
       ));
     } else { // treaty
       if ($uri = $rw->field_logo->value()['uri']) {
@@ -113,7 +115,7 @@ function country_deliverable_render_national_reports($rows) {
     );
   }
   return array(
-    '#type' => 'item', '#weight' => 50, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'decisions', 'elements' => $elements, 'no-panel-body' => TRUE)),
+    '#type' => 'item', '#weight' => 50, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'accordion', 'elements' => $elements, 'no-panel-body' => TRUE, 'no-data-parent' => TRUE)),
   );
 }
 
