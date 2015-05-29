@@ -240,7 +240,11 @@ h1 {
 }
 
 
-/* Stacked pills*/
+/* Stacked pills */
+
+.nav-stacked > li + li {
+  margin-top: 0;
+}
 
 .nav-pills.nav-stacked {
   -webkit-box-shadow: 0 0 1px rgba(138, 149, 166, 0.5) inset;
