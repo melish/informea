@@ -252,6 +252,7 @@ h1 {
 
 .nav-pills.nav-stacked > li > a {
   border-radius: 0;
+  border-right: 4px solid transparent;
   padding: 6px 12px;
 }
 
@@ -273,8 +274,8 @@ h1 {
 
 .nav-pills.nav-stacked > li.active > a {
   background-color: transparent;
+  border-right-color: #39c;
   color: #0080d5;
-  border-right: 4px solid #39c;
 }
 
 .nav-pills.nav-stacked > li.active > a > .badge {
