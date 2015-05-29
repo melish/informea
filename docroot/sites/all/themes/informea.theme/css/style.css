@@ -355,8 +355,8 @@ h1 {
 /* Navbar nav links */
 
 .navbar-nav > li > a {
-  padding-bottom: 25px;
-  padding-top: 25px;
+  padding-bottom: 24px;
+  padding-top: 24px;
 }
 
 @media (max-width: 767px) {
