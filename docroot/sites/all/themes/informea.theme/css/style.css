@@ -470,6 +470,16 @@ h1 {
 }
 
 
+/* Badges */
+/* ------ */
+
+
+/* Base class */
+.badge {
+  background-color: #999;
+}
+
+
 /* Wells */
 /* ----- */
 
