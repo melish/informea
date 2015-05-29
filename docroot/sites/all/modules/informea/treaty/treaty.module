@@ -411,7 +411,7 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
     );
     if ($course_url = $wrapper->field_online_course_link->value()) {
       $menu_items['course'] = array(
-        'title' => t('e-Learning course'),
+        'title' => t('<span class="glyphicon glyphicon-book" aria-hidden="true"></span> e-Learning course'),
         'url' => $course_url['display_url'],
       );
     }
