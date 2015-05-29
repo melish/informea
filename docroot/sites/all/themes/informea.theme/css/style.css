@@ -617,7 +617,7 @@ button.toggle {
   padding: 0 30px;
 }
 
-.carousel-inner>.item {
+.carousel-inner {
   border-radius: 4px;
 }
 
