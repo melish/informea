@@ -241,8 +241,22 @@ h1 {
 
 
 /* Tabs */
+
 .nav-tabs > li > a {
   border-radius: 0;
+}
+
+.tab-content {
+  border: 1px solid #c6cedb;
+  padding: 15px;
+}
+
+.nav-tabs + .tab-content {
+  margin-top: -11px;
+}
+
+#ammap_div {
+  margin-bottom: 10px;
 }
 
 /* Stacked pills */
