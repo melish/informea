@@ -240,6 +240,49 @@ h1 {
 }
 
 
+/* Stacked pills*/
+
+.nav-pills.nav-stacked {
+  -webkit-box-shadow: 0 0 1px rgba(138, 149, 166, 0.5) inset;
+  background-color: #f3f3f3;
+  box-shadow: 0 0 1px rgba(138, 149, 166, 0.5) inset;
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+
+.nav-pills.nav-stacked > li > a {
+  border-radius: 0;
+  padding: 6px 12px;
+}
+
+.nav-pills.nav-stacked > li > a:hover,
+.nav-pills.nav-stacked > li > a:focus,
+.nav-pills.nav-stacked > li.active > a:hover,
+.nav-pills.nav-stacked > li.active > a:focus {
+  background-color: #0099d5;
+  color: #fff;
+}
+
+.nav-pills.nav-stacked > li > a:hover > .badge,
+.nav-pills.nav-stacked > li > a:focus > .badge,
+.nav-pills.nav-stacked > li.active > a:hover > .badge,
+.nav-pills.nav-stacked > li.active > a:focus > .badge {
+  background-color: #fff;
+  color: #0099d5;
+}
+
+.nav-pills.nav-stacked > li.active > a {
+  background-color: transparent;
+  color: #0080d5;
+  border-right: 4px solid #39c;
+}
+
+.nav-pills.nav-stacked > li.active > a > .badge {
+  background-color: #999;
+  color: #fff;
+}
+
+
 /* Navbars */
 /* ------- */
 
