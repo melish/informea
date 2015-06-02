@@ -1,0 +1,208 @@
+<?php
+
+if(!function_exists('slugify')) {
+  function slugify($phrase, $maxLength = 50) {
+    $result = strtolower($phrase);
+    $result = preg_replace("/[^a-z0-9\s-]/", "", $result);
+    $result = trim(preg_replace("/[\s-]+/", " ", $result));
+    $result = preg_replace("/\s/", "-", $result);
+    return $result;
+  }
+}
+
+function thesaurus_menu() {
+  return array(
+    'terms' => array(
+      'title' => 'Glossary',
+      'page callback' => 'thesaurus_terms_page_view',
+      'access arguments' => array('access content'),
+      'type' => MENU_CALLBACK,
+    ),
+    'terms/export/thesaurus.rdf' => array(
+      'title' => 'Export in RDF',
+      'page callback' => 'thesaurus_export_rdf',
+      'delivery callback' => 'thesaurus_menu_export_rdf',
+      'access arguments' => array('access content'),
+      'type' => MENU_CALLBACK,
+    ),
+    'terms/export/thesaurus.xls' => array(
+      'title' => 'Export in MS Excel',
+      'page callback' => 'thesaurus_export_xls',
+      'delivery callback' => 'thesaurus_menu_export_xls',
+      'access arguments' => array('access content'),
+      'type' => MENU_CALLBACK,
+    )
+  );
+}
+
+/**
+ * Implements hook_libraries_info().
+ */
+function thesaurus_libraries_info() {
+  return array(
+    'PHPExcel' => array(
+      'name' => 'PHPExcel',
+      'vendor url' => 'http://phpexcel.codeplex.com/',
+      'download url' => 'https://github.com/PHPOffice/PHPExcel',
+      'version callback' => 'thesaurus_get_library_version',
+      'path' => 'Classes',
+      'files' => array(
+        'php' => array(
+          'PHPExcel.php',
+        ),
+      ),
+    ),
+  );
+}
+
+function thesaurus_menu_export_rdf() {
+  if ($xml = thesaurus_export_rdf()) {
+    $filename = sprintf('thesaurus-%s.rdf', date('Ymd-Hi'));
+    header("Content-Disposition: attachment; filename=$filename;");
+    header('Content-type: application/rdf+xml; charset=utf-8');
+    print $xml;
+    drupal_exit();
+    return;
+  }
+  // Fail with error
+  drupal_page_header();
+  header("HTTP/1.1 500 Internal Server Error", true, 500);
+  watchdog('thesaurus', 'An error has occurred while generating the thesaurus RDF xml');
+  // Perform end-of-request tasks.
+  drupal_page_footer();
+  print 'An error has occurred while generating the response. Please contact technical support';
+  drupal_exit();
+}
+
+
+function thesaurus_theme() {
+  return array(
+    'term-tree' => array(
+      'render element' => 'element',
+      'template' => 'templates/term-tree',
+      'variables' => array('term'),
+      'path' => drupal_get_path('module', 'thesaurus'),
+    ),
+    'terms' => array(
+      'render element' => 'element',
+      'template' => 'templates/terms',
+      'variables' => array('substantives', 'generic'),
+      'path' => drupal_get_path('module', 'thesaurus'),
+    ),
+  );
+}
+
+/************************************ </HOOKS> ********************************/
+
+/**
+ * Libraries API version callback.
+ */
+function thesaurus_get_library_version() {
+  $library = libraries_load('PHPExcel');
+  $changelog_file = $library['library path'] . '/changelog.txt';
+
+  if (file_exists($changelog_file)) {
+    $changelog = file_get_contents($changelog_file);
+    $match;
+
+    if (preg_match('/\d{4}-\d{2}-\d{2}\s+\(v([0-9\.]+)/', $changelog, $match)) {
+      return $match[1];
+    }
+    elseif (preg_match('/@version\s+([0-9\.]+)/', $changelog, $match)) {
+      return $match[1];
+    }
+  }
+
+  return 'n/a';
+}
+
+function thesaurus_menu_export_xls() {
+  thesaurus_export_xls();
+}
+
+function thesaurus_terms_page_view() {
+  // Adds the terms JavaScript file to the page.
+  drupal_add_js(drupal_get_path('module', 'treaty') . '/js/terms.js');
+  $substantives = array();
+  $generic = array();
+
+  $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
+
+  // Substantives
+  $q = new EntityFieldQuery();
+  $tids = $q->entityCondition('entity_type', 'taxonomy_term')
+    ->propertyCondition('vid', $voc->vid)
+    ->fieldCondition('field_term_substantive', 'value', 1)
+    ->execute();
+  $q = db_select('taxonomy_term_hierarchy', 'a')
+    ->fields('a', array('tid'))
+    ->condition('tid', array_keys($tids['taxonomy_term']), 'IN')
+    ->condition('parent', 0);
+  $tids = $q->execute()->fetchCol();
+  foreach($tids as $tid) {
+    $term = taxonomy_term_load($tid);
+    $children = taxonomy_get_tree($voc->vid, $tid);
+    $term->children = thesaurus_get_nested_tree($children, NULL, $tid);
+    $substantives[$tid] = $term;
+  }
+  // Generic
+  $q = new EntityFieldQuery();
+  $tids = $q->entityCondition('entity_type', 'taxonomy_term')
+    ->propertyCondition('vid', $voc->vid)
+    ->fieldCondition('field_term_substantive', 'value', 0)
+    ->execute();
+  $q = db_select('taxonomy_term_hierarchy', 'a')
+    ->fields('a', array('tid'))
+    ->condition('tid', array_keys($tids['taxonomy_term']), 'IN')
+    ->condition('parent', 0);
+  $tids = $q->execute()->fetchCol();
+  foreach($tids as $tid) {
+    $term = taxonomy_term_load($tid);
+    $children = taxonomy_get_tree($voc->vid, $tid);
+    $term->children = thesaurus_get_nested_tree($children, NULL, $tid);
+    $generic[$tid] = $term;
+  }
+
+  return theme('terms', array('substantives' => $substantives, 'generic' => $generic));
+}
+
+function thesaurus_get_nested_tree($terms = array(), $max_depth = NULL, $parent = 0, $parents_index = array(), $depth = 0) {
+  $return = array();
+  foreach($terms as $term) {
+    foreach($term->parents as $term_parent) {
+      if ($term_parent == $parent) {
+        $return[$term->tid] = $term;
+      }
+      else {
+        $parents_index[$term_parent][$term->tid] = $term;
+      }
+    }
+  }
+
+  foreach($return as &$term) {
+    if (isset($parents_index[$term->tid]) && (is_null($max_depth) || $depth < $max_depth)) {
+      $term->children = thesaurus_get_nested_tree($parents_index[$term->tid], $max_depth, $term->tid, $parents_index, $depth + 1);
+    }
+  }
+  return $return;
+}
+
+function thesaurus_url_term($term) {
+  return url('/terms/' . slugify($term->name_original));
+}
+
+/**
+ * Generate the RDF XML to export
+ */
+function thesaurus_export_rdf() {
+  $export = new InforMEAThesaurusExportRDF();
+  return $export->toXML();
+}
+
+function thesaurus_export_xls() {
+  libraries_load('PHPExcel');
+  $filename = sprintf('thesaurus-%s.xls', date('Ymd-Hi'));
+  header("Content-Type: 'application/vnd.ms-excel'");
+  header("Content-Disposition: attachment; filename=$filename;");
+  InforMEAThesaurusExportXLS::toXLS();
+}

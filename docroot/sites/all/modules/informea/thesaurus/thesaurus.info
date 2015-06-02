@@ -1,0 +1,7 @@
+name = thesaurus
+description = Provide InforMEA thesaurus integraiton
+core = 7.x
+package = InforMEA
+version = 7.x-2.0
+files[] = export/rdf.inc
+files[] = export/xls.inc
