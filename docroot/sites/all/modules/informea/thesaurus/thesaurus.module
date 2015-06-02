@@ -103,8 +103,7 @@ function thesaurus_get_library_version() {
 
   if (file_exists($changelog_file)) {
     $changelog = file_get_contents($changelog_file);
-    $match;
-
+    $match = array(0 => 0, 1 => 'n/a');
     if (preg_match('/\d{4}-\d{2}-\d{2}\s+\(v([0-9\.]+)/', $changelog, $match)) {
       return $match[1];
     }
@@ -112,7 +111,6 @@ function thesaurus_get_library_version() {
       return $match[1];
     }
   }
-
   return 'n/a';
 }
 
