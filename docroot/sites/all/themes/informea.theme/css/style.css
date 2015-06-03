@@ -244,7 +244,22 @@ h1 {
 /* Tabs */
 
 .nav-tabs > li > a {
+  border: 0;
+  border-bottom: 3px solid transparent;
   border-radius: 0;
+  padding: 6px 12px 3px;
+}
+
+.nav-tabs > li > a:hover {
+  background-color: #fff;
+  border-bottom-color: #0099d5;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  border-bottom: 3px solid #fff;
+  border-color: #c6cedb;
 }
 
 .tab-content {
