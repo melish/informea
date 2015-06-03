@@ -107,6 +107,7 @@ h1 {
 .btn-outline {
   background-color: transparent;
   border-color: #333;
+  border-radius: 4px;
   color: #333;
 }
 
