@@ -316,18 +316,13 @@ h1 {
 
 .navbar {
   border: 0;
-  height: 68px;
+  min-height: 68px;
 }
 
-.navbar-nav>li>.dropdown-menu {
-  margin-top: -4px;
-}
-
-.navbar ul li { text-transform: uppercase; }
-.navbar ul li a { padding-left: 10px; padding-right: 10px; }
-
-.navbar ul.dropdown-menu li {
-  text-transform: none;
+/* Navbar logo */
+.navbar .logo {
+  margin-bottom: 7px;
+  margin-top: 7px;
 }
 
 @media (min-width: 768px) {
@@ -375,8 +370,8 @@ h1 {
 /* Navbar nav links */
 
 .navbar-nav > li > a {
-  padding-bottom: 24px;
-  padding-top: 24px;
+  padding: 24px 10px;
+  text-transform: uppercase;
 }
 
 @media (max-width: 767px) {
