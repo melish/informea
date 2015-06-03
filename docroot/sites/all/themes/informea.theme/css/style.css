@@ -1310,8 +1310,8 @@ body.node-type-treaty div.field { margin-bottom: 3px; }
 body.node-type-treaty div.field-name-body { margin-bottom: 10px; }
 body.node-type-treaty div.field-label { min-width: 150px; }
 
-#accordion div.panel { border: 0; box-shadow: none; -moz-box-shadow: none; }
-#accordion div.panel-heading { padding-left: 0; background-color: transparent; }
+#accordion div.panel { border: 0; box-shadow: none; -webkit-box-shadow: none; }
+#accordion div.panel-heading { background-color: transparent; }
 
 body.node-type-treaty div.panel-heading a.permalink, a.administrative { display: none;  }
 body.node-type-treaty div.panel-heading:hover a.permalink,
@@ -1331,7 +1331,7 @@ ul.media-list>li.media>ul.media-list li { padding-left: 50px; }
 #accordion .panel-heading ul { margin: 0; }
 #accordion .panel-heading .glyphicon-plus-sign { color: #c6cedb; font-size: 14px; }
 #accordion .panel { margin: 0; border-bottom: 1px solid #ddd; border-radius: 0; }
-#accordion .panel-heading { padding: 5px 0 5px 5px; border: 1px solid transparent; cursor: pointer; margin: 0; border-radius: 0; }
+#accordion .panel-heading { border: 1px solid transparent; cursor: pointer; margin: 0; border-radius: 0; }
 #accordion .panel-heading:hover { border: 1px solid #39c; background-color: #D2EEFC; }
 #accordion .panel-collapse { margin-left: 5px; }
 img.flag-xs { max-height: 16px; }
