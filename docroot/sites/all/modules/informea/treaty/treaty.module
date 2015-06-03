@@ -391,7 +391,7 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
         'count' => decision_count_treaty_decisions($node->nid)
       ),
       'parties' => array(
-        'title' => t('Parties'),
+        'title' => t('Parties &amp; contact points'),
         'count' => country_data_treaty_count_membership($node->nid)
       ),
       'national-reports' => array(
