@@ -1311,7 +1311,7 @@ body.node-type-treaty div.field-name-body { margin-bottom: 10px; }
 body.node-type-treaty div.field-label { min-width: 150px; }
 
 #accordion .panel { border: 0; box-shadow: none; -webkit-box-shadow: none; }
-#accordion .panel-heading { background-color: transparent; }
+#accordion .panel-heading { background-color: transparent; padding-left: 15px; padding-right: 15px; }
 
 body.node-type-treaty div.panel-heading a.permalink, a.administrative { display: none;  }
 body.node-type-treaty div.panel-heading:hover a.permalink,
