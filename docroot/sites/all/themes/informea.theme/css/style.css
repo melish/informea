@@ -107,6 +107,7 @@ h1 {
 .btn-outline {
   background-color: transparent;
   border-color: #333;
+  border-radius: 4px;
   color: #333;
 }
 
@@ -243,7 +244,22 @@ h1 {
 /* Tabs */
 
 .nav-tabs > li > a {
+  border: 0;
+  border-bottom: 3px solid transparent;
   border-radius: 0;
+  padding: 6px 12px 3px;
+}
+
+.nav-tabs > li > a:hover {
+  background-color: #fff;
+  border-bottom-color: #0099d5;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  border-color: #c6cedb;
+  border-bottom: 3px solid #fff;
 }
 
 .tab-content {
@@ -315,18 +331,13 @@ h1 {
 
 .navbar {
   border: 0;
-  height: 68px;
+  min-height: 68px;
 }
 
-.navbar-nav>li>.dropdown-menu {
-  margin-top: -4px;
-}
-
-.navbar ul li { text-transform: uppercase; }
-.navbar ul li a { padding-left: 10px; padding-right: 10px; }
-
-.navbar ul.dropdown-menu li {
-  text-transform: none;
+/* Navbar logo */
+.navbar .logo {
+  margin-bottom: 7px;
+  margin-top: 7px;
 }
 
 @media (min-width: 768px) {
@@ -374,8 +385,8 @@ h1 {
 /* Navbar nav links */
 
 .navbar-nav > li > a {
-  padding-bottom: 24px;
-  padding-top: 24px;
+  padding: 24px 10px;
+  text-transform: uppercase;
 }
 
 @media (max-width: 767px) {
@@ -1299,8 +1310,10 @@ body.node-type-treaty div.field { margin-bottom: 3px; }
 body.node-type-treaty div.field-name-body { margin-bottom: 10px; }
 body.node-type-treaty div.field-label { min-width: 150px; }
 
-#accordion div.panel { border: 0; box-shadow: none; -moz-box-shadow: none; }
-#accordion div.panel-heading { padding-left: 0; background-color: transparent; }
+#accordion .panel,
+#reporting-cycles .panel { border: 0; box-shadow: none; -webkit-box-shadow: none; }
+#accordion .panel-heading,
+#reporting-cycles .panel-heading { background-color: transparent; padding-left: 15px; padding-right: 15px; }
 
 body.node-type-treaty div.panel-heading a.permalink, a.administrative { display: none;  }
 body.node-type-treaty div.panel-heading:hover a.permalink,
@@ -1315,13 +1328,37 @@ body.node-type-treaty div.paragraph:hover { background-color: #f0f0f0; }
 
 ul.media-list>li.media>ul.media-list li { padding-left: 50px; }
 
-#accordion .panel-heading h4 { display: inline; margin-left: 15px; }
-#accordion .panel-heading .meta { text-align: right; font-size: 12px; color: #999; font-weight: normal; }
-#accordion .panel-heading ul { margin: 0; }
-#accordion .panel-heading .glyphicon-plus-sign { color: #c6cedb; font-size: 14px; }
-#accordion .panel { margin: 0; border-bottom: 1px solid #ddd; border-radius: 0; }
-#accordion .panel-heading { padding: 5px 0 5px 5px; border: 1px solid transparent; cursor: pointer; margin: 0; border-radius: 0; }
-#accordion .panel-heading:hover { border: 1px solid #39c; background-color: #D2EEFC; }
-#accordion .panel-collapse { margin-left: 5px; }
+#accordion .panel-heading h4,
+#reporting-cycles .panel-heading h4 { display: inline; margin-left: 15px; }
+#accordion .panel-heading .meta,
+#reporting-cycles .panel-heading .meta { text-align: right; font-size: 12px; color: #999; font-weight: normal; }
+#accordion .panel-heading ul,
+#reporting-cycles .panel-heading ul { margin: 0; }
+#accordion .panel-heading .glyphicon-plus-sign,
+#reporting-cycles .panel-heading .glyphicon-plus-sign { color: #c6cedb; font-size: 14px; }
+#accordion .panel,
+#reporting-cycles .panel { margin: 0; border-bottom: 1px solid #ddd; border-radius: 0; }
+#accordion .panel-heading,
+#reporting-cycles .panel-heading { border: 1px solid transparent; cursor: pointer; margin: 0; border-radius: 0; }
+#accordion .panel-heading:hover,
+#reporting-cycles .panel-heading:hover { border: 1px solid #39c; background-color: #D2EEFC; }
+#accordion .panel-collapse,
+#reporting-cycles .panel-collapse { margin-left: 5px; }
 img.flag-xs { max-height: 16px; }
 img.flag-small { max-height: 32px; }
+
+.panel-group .panel {
+  -webkit-box-shadow: none;
+  border: 0;
+  box-shadow: none;
+}
+
+.panel-group .panel-heading {
+  background-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.panel-group .panel-heading:hover {
+  cursor: pointer;
+}
