@@ -1336,3 +1336,19 @@ ul.media-list>li.media>ul.media-list li { padding-left: 50px; }
 #accordion .panel-collapse { margin-left: 5px; }
 img.flag-xs { max-height: 16px; }
 img.flag-small { max-height: 32px; }
+
+.panel-group .panel {
+  -webkit-box-shadow: none;
+  border: 0;
+  box-shadow: none;
+}
+
+.panel-group .panel-heading {
+  background-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.panel-group .panel-heading:hover {
+  cursor: pointer;
+}
