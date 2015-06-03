@@ -258,8 +258,8 @@ h1 {
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-  border-bottom: 3px solid #fff;
   border-color: #c6cedb;
+  border-bottom: 3px solid #fff;
 }
 
 .tab-content {
