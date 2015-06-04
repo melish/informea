@@ -1375,5 +1375,19 @@ img.flag-small { max-height: 32px; }
   cursor: pointer;
 }
 
+#table-parties .list-group {
+  margin: -10px;
+}
+
+#table-parties .list-group > .list-group-item {
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+}
+
+#table-parties .list-group dl {
+  margin-bottom: 0;
+}
+
 /* Terms page */
 div.accordion ol.paragraphs { list-style-type: none; margin-left: 10px; padding: 0; }
