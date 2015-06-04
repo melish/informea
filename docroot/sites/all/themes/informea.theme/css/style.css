@@ -1352,7 +1352,6 @@ div.accordion .panel-heading .glyphicon-plus-sign { color: #c6cedb; font-size: 1
 div.accordion .panel { margin: 0; border-bottom: 1px solid #ddd; border-radius: 0; }
 div.accordion .panel-heading { border: 1px solid transparent; cursor: pointer; margin: 0; border-radius: 0; }
 div.accordion .panel-heading:hover { border: 1px solid #39c; background-color: #D2EEFC; }
-div.accordion .panel-collapse { margin-left: 5px; }
 
 img.flag-xs { max-height: 16px; }
 img.flag-small { max-height: 32px; }
