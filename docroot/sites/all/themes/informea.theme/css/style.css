@@ -1377,7 +1377,7 @@ img.flag-small { max-height: 32px; }
 }
 
 #table-parties .list-group {
-  margin: -10px;
+  margin: -9px -8px;
 }
 
 #table-parties .list-group > .list-group-item {
