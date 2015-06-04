@@ -72,13 +72,12 @@ function informea_theme_theme() {
     'informea_bootstrap_collapse' => array(
       'render element' => 'element',
       'template' => 'templates/informea-bootstrap-collapse',
-      'variables' => array('elements', 'id', 'no-data-parent', 'no-panel-body'),
-      'path' => drupal_get_path('theme', 'informea_theme'),
+      'variables' => array('elements' => array(), 'id' => 0, 'no-data-parent' => FALSE, 'no-panel-body' => FALSE),
     ),
     'informea_bootstrap_tabs' => array(
       'render element' => 'element',
       'template' => 'templates/informea-bootstrap-tabs',
-      'variables' => array('id', 'elements', 'active'),
+      'variables' => array('id' => 0, 'elements' => array(), 'active' => FALSE),
       'path' => drupal_get_path('theme', 'informea_theme'),
     ),
   );

@@ -4,7 +4,7 @@ $elements = $variables['elements'];
 $add_data_parent = empty($variables['no-data-parent']);
 ?>
 <?php if (!empty($elements)): ?>
-  <div class="panel-group" id="<?php print $id; ?>" role="tablist" aria-multiselectable="true">
+  <div class="accordion panel-group" id="<?php print $id; ?>" role="tablist" aria-multiselectable="true">
   <?php
   foreach($elements as $eid => $element):
     $collapsed = empty($element['in']) ? ' class="collapsed"' : '';
@@ -26,7 +26,14 @@ $add_data_parent = empty($variables['no-data-parent']);
       <?php if ($add_panel_body): ?>
       <div class="panel-body">
         <?php endif; ?>
-        <?php print $element['body']; ?>
+        <?php
+          if (isset($element['body'])) {
+            print $element['body'];
+          }
+          if (isset($element['#children'])) {
+            print drupal_render($element['#children']);
+          }
+        ?>
         <?php if ($add_panel_body): ?>
       </div>
     <?php endif; ?>
