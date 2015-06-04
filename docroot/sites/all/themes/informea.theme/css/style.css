@@ -1326,7 +1326,26 @@ body.node-type-treaty div.paragraph:hover { background-color: #f0f0f0; }
 
 .smallipop-instance a{ color: white; text-transform: none; text-shadow: none; }
 
-ul.media-list>li.media>ul.media-list li { padding-left: 50px; }
+.media-list .media-list > .media {
+  margin-left: 50px;
+  margin-top: -1px;
+}
+
+.media-left {
+  border: 1px solid #c6cedb;
+  border-right: 0;
+}
+
+.media-body {
+  border: 1px solid #c6cedb;
+  border-left: 0;
+  padding-top: 8px;
+  width: 100%;
+}
+
+.media {
+  margin-top: -1px;
+}
 
 div.accordion .panel-heading h4 { display: inline; margin-left: 15px; }
 div.accordion .panel-heading .meta { text-align: right; font-size: 12px; color: #999; font-weight: normal; }
