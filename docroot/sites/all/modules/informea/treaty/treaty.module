@@ -251,7 +251,7 @@ function treaty_node_view($node, $view_mode, $langcode) {
                 'data' => array(
                   array(
                     'data' => drupal_render($nfp_data),
-                    'colspan' => 4
+                    'colspan' => 5
                   )
                 ),
                 'id' => array('nfp-' . $country->nid)
@@ -262,7 +262,7 @@ function treaty_node_view($node, $view_mode, $langcode) {
           $table = array(
             'attributes' => array(
               'id' => 'table-parties',
-              'class' => 'table-no-striping table-hover'
+              'class' => 'table-no-striping'
             ),
             'header' => array(
               t('Country'),
