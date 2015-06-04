@@ -15,7 +15,21 @@
  */
 function informea_theme_preprocess_page(&$variables) {
   $search_form = drupal_get_form('search_form');
-
+  menu_secondary_local_tasks();
+  if (arg(0) == 'taxonomy') {
+    // Unset related terms
+    unset($variables['page']['content']['system_main']['nodes']);
+    unset($variables['page']['content']['system_main']['pager']);
+    $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
+    /** @var stdClass $term */
+    if ($term = taxonomy_term_load(arg(2))) {
+      if ($term->vid == $voc->vid) {
+        $variables['theme_hook_suggestions'][] = 'page__taxonomy__thesaurus_informea';
+        $variables['content_column_class'] = ' class="col-sm-9"';
+        array_unshift($variables['page']['sidebar_first'], menu_secondary_local_tasks());
+      }
+    }
+  }
   if(isset($variables['node'])) {
     $node = $variables['node'];
     switch ($node->type) {

@@ -525,3 +525,21 @@ function treaty_get_odata_identifier($treaty) {
   $w = entity_metadata_wrapper('node', $id);
   return $w->field_odata_identifier->value();
 }
+
+/**
+ * Absolute URL to a treaty article paragraph (in treaty text page).
+ * @param $id_treaty
+ * @param $id_article
+ * @param $id_paragraph
+ *
+ * @return string
+ */
+function treaty_url_paragraph($id_treaty, $id_article, $id_paragraph) {
+  $options = array(
+    'absolute' => TRUE,
+  );
+  $link = url('node/' . $id_treaty, $options) . '/text?';
+  $query = array('article' => $id_article, 'paragraph' => $id_paragraph);
+  $fragment = 'paragraph-' . $id_paragraph;
+  return $link . drupal_http_build_query($query) . '#' . $fragment;
+}

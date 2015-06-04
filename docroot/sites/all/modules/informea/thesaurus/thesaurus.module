@@ -10,6 +10,32 @@ if(!function_exists('slugify')) {
   }
 }
 
+/**
+ *  Implements hook_url_inbound_alter().
+ */
+function thesaurus_url_inbound_alter(&$path, $original_path, $path_language) {
+  if((arg(0, $path) == 'terms' || arg(1, $path) == 'terms') && preg_match('/\/ecolex$/', $path)) {
+    global $language;
+    $prefix = $language->language . '/';
+    if (strpos($path, $prefix) === 0) {
+      $path = substr($path, strlen($prefix));
+    }
+    $q = db_select('url_alias', 'a');
+    $q->addField('a', 'source');
+    $q->where("CONCAT(a.alias, '/ecolex') LIKE :p", array(':p' => '%' . $path));
+    if ($source = $q->execute()->fetchField()) {
+      $path = $source;
+    }
+  }
+}
+
+function thesaurus_get_section($path) {
+  if((arg(0, $path) == 'terms' || arg(1, $path) == 'terms') && preg_match('/\/ecolex$/', $path)) {
+    return 'ecolex';
+  }
+  return FALSE;
+}
+
 function thesaurus_menu() {
   return array(
     'terms' => array(
@@ -80,16 +106,102 @@ function thesaurus_theme() {
     'term-tree' => array(
       'render element' => 'element',
       'template' => 'templates/term-tree',
-      'variables' => array('term'),
+      'variables' => array('term' => FALSE),
+      'path' => drupal_get_path('module', 'thesaurus'),
+    ),
+    'term-hierarchy' => array(
+      'render element' => 'element',
+      'template' => 'templates/term-hierarchy',
+      'variables' => array('parents' => array(), 'children' => array(), 'term' => FALSE),
       'path' => drupal_get_path('module', 'thesaurus'),
     ),
     'terms' => array(
       'render element' => 'element',
       'template' => 'templates/terms',
-      'variables' => array('substantives', 'generic'),
+      'variables' => array('substantives' => array(), 'generic' => array()),
       'path' => drupal_get_path('module', 'thesaurus'),
     ),
   );
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function thesaurus_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  if (arg(0) == 'taxonomy') {
+    $section = thesaurus_get_section(request_path());
+    $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
+    /** @var stdClass $term */
+    if ($term = taxonomy_term_load(arg(2))) {
+      if ($term->vid == $voc->vid) {
+        $contextual_menu = array();
+        $contextual_menu[] = array(
+          '#theme' => 'menu_local_task',
+          '#link' => array(
+            'title' => t('Treaties'),
+            'href' => thesaurus_url_term($term),
+            'localized_options' => array(),
+          ),
+          '#active' => empty($section),
+        );
+        $contextual_menu[] = array(
+          '#theme' => 'menu_local_task',
+          '#link' => array(
+            'title' => t('ECOLEX'),
+            'href' => thesaurus_url_term($term) . '/ecolex',
+            'localized_options' => array(),
+          ),
+          '#active' => $section == 'ecolex',
+        );
+        $data['tabs'][1] = array(
+          'count' => count($contextual_menu),
+          'output' => $contextual_menu,
+        );
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_taxonomy_term_view().
+ */
+function thesaurus_taxonomy_term_view($term, $view_mode, $langcode) {
+  if ($view_mode == 'full') {
+    $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
+    if ($term->vid == $voc->vid) {
+      $section = thesaurus_get_section(request_path());
+      if ($section == 'ecolex') {
+        foreach (element_children($term->content) as $element_id) {
+          hide($term->content[$element_id]);
+          // Load the Ecolex content.
+        }
+      }
+      else {
+        module_load_include('inc', 'thesaurus', 'thesaurus.related');
+        $dp = new InforMEAThesaurusTermRelatedContent($term);
+        $related_data = $dp->getRelatedContent($term);
+        $related_content = InforMEAThesaurusTermRelatedContent::view($term, $related_data['treaties']);
+        $term->content['tagged_content'] = array(
+          '#markup' => drupal_render($related_content),
+          '#weight' => 10,
+        );
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function thesaurus_page_alter(&$page) {
+  if ($ob = menu_get_object('taxonomy_term', 2)) {
+    $hierarchy = thesaurus_term_hierarchy($ob);
+    $hierarchy['term'] = $ob;
+    $page['sidebar_first']['hierarchy'] = array(
+      '#type' => 'item',
+      '#markup' => theme('term-hierarchy', $hierarchy),
+    );
+  }
 }
 
 /************************************ </HOOKS> ********************************/
@@ -186,7 +298,7 @@ function thesaurus_get_nested_tree($terms = array(), $max_depth = NULL, $parent 
 }
 
 function thesaurus_url_term($term) {
-  return url('/terms/' . slugify($term->name_original));
+  return url('taxonomy/term/' . $term->tid, array('absolute' => TRUE));
 }
 
 /**
@@ -203,4 +315,16 @@ function thesaurus_export_xls() {
   header("Content-Type: 'application/vnd.ms-excel'");
   header("Content-Disposition: attachment; filename=$filename;");
   InforMEAThesaurusExportXLS::toXLS();
+}
+
+function thesaurus_term_hierarchy($term) {
+  if (!is_object($term) || empty($term->tid)) {
+    $term = taxonomy_term_load($term);
+  }
+  $parents = taxonomy_get_parents($term->tid);
+  $children = taxonomy_get_tree($term->vid, $term->tid, 1);
+  return array(
+    'parents' => $parents,
+    'children' => $children,
+  );
 }

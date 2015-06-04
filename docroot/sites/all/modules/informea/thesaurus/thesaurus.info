@@ -5,3 +5,4 @@ package = InforMEA
 version = 7.x-2.0
 files[] = export/rdf.inc
 files[] = export/xls.inc
+files[] = thesaurus.related.inc

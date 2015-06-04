@@ -31,7 +31,6 @@ if(count($decisions)): ?>
     $paragraph->title = '';
     $render = node_view($paragraph, 'teaser');
     unset($render['links']['node']['#links']['node-readmore']);
-    dpm($render);
     echo drupal_render($render);
   endforeach;
 

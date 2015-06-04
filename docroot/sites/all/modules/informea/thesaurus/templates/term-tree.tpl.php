@@ -5,7 +5,7 @@
   <?php if(!empty($term->children)): ?>
   <button class="toggle" data-toggle="tree-item" type="button"><span class="glyphicon glyphicon-plus-sign"></span></button>
   <?php endif; ?>
-  <a href="<?php thesaurus_url_term($term) ;?>"><?php print $term->name; ?></a>
+  <a href="<?php print thesaurus_url_term($term) ;?>"><?php print $term->name; ?></a>
   <?php if(!empty($term->children)): ?>
   <ul class="list-tree collapse">
     <?php
