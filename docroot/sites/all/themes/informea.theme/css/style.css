@@ -1310,10 +1310,8 @@ body.node-type-treaty div.field { margin-bottom: 3px; }
 body.node-type-treaty div.field-name-body { margin-bottom: 10px; }
 body.node-type-treaty div.field-label { min-width: 150px; }
 
-#accordion .panel,
-#reporting-cycles .panel { border: 0; box-shadow: none; -webkit-box-shadow: none; }
-#accordion .panel-heading,
-#reporting-cycles .panel-heading { background-color: transparent; padding-left: 15px; padding-right: 15px; }
+div.accordion .panel { border: 0; box-shadow: none; -webkit-box-shadow: none; }
+div.accordion .panel-heading { background-color: transparent; padding-left: 15px; padding-right: 15px; }
 
 body.node-type-treaty div.panel-heading a.permalink, a.administrative { display: none;  }
 body.node-type-treaty div.panel-heading:hover a.permalink,
@@ -1381,8 +1379,8 @@ img.flag-small { max-height: 32px; }
 
 #table-parties .list-group > .list-group-item {
   border-left: 0;
-  border-right: 0;
   border-radius: 0;
+  border-right: 0;
 }
 
 #table-parties .list-group dl {
