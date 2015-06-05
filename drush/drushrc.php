@@ -302,6 +302,7 @@ $options['init-modules'] = array(
 
   'r4032login',
 
+  'better_exposed_filters',
   'country',
   'country_deliverable',
   'country_data',
