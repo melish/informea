@@ -11,8 +11,8 @@ include_once 'ecolex.features.inc';
  */
 function ecolex_menu() {
   return array(
-    // ecolex/ajax/taxonomy/234/legislation/1/;DIDPFDSIjsessionid=3ABDF6EE381C2C24D3D5A0D51188AADF?
-    'ecolex/ajax/%/%/%/%/%' => array(
+    // ecolex/ajax/taxonomy/234/legislation/1
+    'ecolex/ajax/%/%/%/%' => array(
       'title' => 'Ecolex content loaded via ajax',
       'page callback' => 'ecolex_ajax_content',
       'page arguments' => array(2, 3, 4, 5, 6),

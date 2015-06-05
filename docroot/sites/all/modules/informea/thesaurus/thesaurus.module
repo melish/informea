@@ -44,14 +44,14 @@ function thesaurus_menu() {
       'access arguments' => array('access content'),
       'type' => MENU_CALLBACK,
     ),
-    'terms/export/thesaurus.rdf' => array(
+    'export/thesaurus.rdf' => array(
       'title' => 'Export in RDF',
       'page callback' => 'thesaurus_export_rdf',
       'delivery callback' => 'thesaurus_menu_export_rdf',
       'access arguments' => array('access content'),
       'type' => MENU_CALLBACK,
     ),
-    'terms/export/thesaurus.xls' => array(
+    'export/thesaurus.xls' => array(
       'title' => 'Export in MS Excel',
       'page callback' => 'thesaurus_export_xls',
       'delivery callback' => 'thesaurus_menu_export_xls',
