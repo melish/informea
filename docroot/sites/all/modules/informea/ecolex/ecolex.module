@@ -117,7 +117,8 @@ function ecolex_remote_content($context, $item, $type, $page = 0, $sid = '') {
       $base_url .= format_string('&keyword="!keyword"', array('!keyword' => $search));
       break;
     case 'country':
-      $search = str_replace(' ', '+', $item);
+      $c = node_load($item);
+      $search = str_replace(' ', '+', $c->title_original);
       $search = str_replace('&', '%26', $search);
       $base_url .= format_string('&country="!country"', array('!country' => $search));
       break;
