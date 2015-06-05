@@ -445,6 +445,7 @@ function treaty_menu_local_tasks_alter(&$data, $router_item, $root_path) {
 }
 
 function _treaty_get_treaties() {
+  $source_informea = current(taxonomy_get_term_by_name('InforMEA', 'data_source'));
   $query = new EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'treaty')
