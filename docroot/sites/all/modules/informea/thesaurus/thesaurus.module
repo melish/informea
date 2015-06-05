@@ -175,6 +175,38 @@ function thesaurus_taxonomy_term_view($term, $view_mode, $langcode) {
           hide($term->content[$element_id]);
           // Load the Ecolex content.
         }
+        $elements = array(
+          'legislation' => array(
+            'header' => t('Legislation'),
+            'header-attributes' => array('data-source' => sprintf('/ecolex/ajax/taxonomy/%d/legislation/1', $term->tid)),
+            'body' => '<div class="ajax-progress ajax-progress-throbber"><div class="throbber">&nbsp;</div></div>',
+          ),
+          'courtdecisions' => array(
+            'header' => t('Court decisions'),
+            'header-attributes' => array('data-source' => sprintf('/ecolex/ajax/taxonomy/%d/courtdecisions/1', $term->tid)),
+            'body' => '<div class="ajax-progress ajax-progress-throbber"><div class="throbber">&nbsp;</div></div>',
+          ),
+          'literature' => array(
+            'header' => t('Literature'),
+            'header-attributes' => array('data-source' => sprintf('/ecolex/ajax/taxonomy/%d/literature/1', $term->tid)),
+            'body' => '<div class="ajax-progress ajax-progress-throbber"><div class="throbber">&nbsp;</div></div>',
+          )
+        );
+        $term->content['ecolex'] = array(
+          'heading' => array(
+            '#id' => 'disclaimer',
+            '#type' => 'item',
+            '#markup' =>
+              theme_image(array('path' => drupal_get_path('theme', 'informea_theme') . '/img/ecolex_header.png', 'attributes' => array()))
+              . '<br />'
+              . t('The content of this this area is exclusively provided by <a href="http://www.ecolex.org">ECOLEX</a> - the gateway to environmental law, which is a collaboration of IUCN, FAO and UNEP.')
+          ),
+          'tabs' => array(
+            '#id' => 'ecolex-tabs',
+            '#theme' => 'informea_bootstrap_tabs',
+            '#elements' => $elements,
+        ));
+        drupal_add_js(drupal_get_path('module', 'thesaurus') . '/js/concept.js');
       }
       else {
         module_load_include('inc', 'thesaurus', 'thesaurus.related');

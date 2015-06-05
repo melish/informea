@@ -7,6 +7,22 @@
 include_once 'ecolex.features.inc';
 
 /**
+ * Implements hook_menu().
+ */
+function ecolex_menu() {
+  return array(
+    // ecolex/ajax/taxonomy/234/legislation/1/;DIDPFDSIjsessionid=3ABDF6EE381C2C24D3D5A0D51188AADF?
+    'ecolex/ajax/%/%/%/%/%' => array(
+      'title' => 'Ecolex content loaded via ajax',
+      'page callback' => 'ecolex_ajax_content',
+      'page arguments' => array(2, 3, 4, 5, 6),
+      'access arguments' => array('access content'),
+      'type' => MENU_CALLBACK,
+    ),
+  );
+}
+
+/**
  * Import default Ecolex Thesaurus.
  */
 function ecolex_create_default_thesaurus_terms() {
@@ -71,4 +87,65 @@ function ecolex_form_node_form_alter(&$form, &$form_state) {
     }
     asort($options);
   }
+}
+
+function ecolex_ajax_content($context, $item, $type, $page = 0, $sid = '') {
+  $data = ecolex_remote_content($context, $item, $type, $page, $sid);
+  print $data;
+  drupal_exit();
+}
+
+
+function ecolex_remote_content($context, $item, $type, $page = 0, $sid = '') {
+  module_load_include('inc', 'ecolex', 'ecolex.parser');
+  $output = NULL;
+  $base_url = NULL;
+  $base_url = 'http://www.ecolex.org/ecolex/ledge/view/SearchResults';
+  if (!empty($sid)) {
+    // ;DIDPFDSIjsessionid=9DED006886116382A8E145E725EE9D44?
+    $base_url .= $sid;
+  }
+  else {
+    $base_url .= '?';
+  }
+  $base_url .= 'sortField=searchDate';
+  switch ($context) {
+    case 'taxonomy':
+      $t = taxonomy_term_load($item);
+      $search = str_replace(' ', '+', $t->name_original);
+      $search = str_replace('&', '%26', $search);
+      $base_url .= format_string('&keyword="!keyword"', array('!keyword' => $search));
+      break;
+    case 'country':
+      $search = str_replace(' ', '+', $item);
+      $search = str_replace('&', '%26', $search);
+      $base_url .= format_string('&country="!country"', array('!country' => $search));
+      break;
+  }
+  switch($type) {
+    case 'treaties':
+      $base_url .= '&screen=Treaties&index=treaties';
+      break;
+    case 'legislation':
+      $base_url .= '&screen=Legislation&index=documents';
+      break;
+    case 'literature':
+      $base_url .= '&screen=Literature&index=literature';
+      break;
+    case 'courtdecisions':
+      $base_url .= '&screen=CourtDecisions&index=courtdecisions';
+      break;
+  }
+  $parser = new EcolexParser($base_url);
+  $data = $parser->get_content();
+  $data .= l(t('View more results on ECOLEX website'), $base_url, array('attributes' => array('class' => array('ecolex-link'), 'target' => '_blank')));
+  return $data;
+  if ($cache = cache_get($base_url)) {
+    $data = $cache->data;
+  }
+  else {
+    $data = $parser->get_content();
+    cache_set($base_url, $data, 'cache', date('U') + 3600 * 24 * 5);
+  }
+  return $data;
 }

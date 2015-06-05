@@ -17,9 +17,10 @@ function informea_theme_preprocess_page(&$variables) {
   $search_form = drupal_get_form('search_form');
   menu_secondary_local_tasks();
   if (arg(0) == 'taxonomy') {
-    // Unset related terms
+    // Unset related terms in taxonomy page
     unset($variables['page']['content']['system_main']['nodes']);
     unset($variables['page']['content']['system_main']['pager']);
+    unset($variables['page']['content']['system_main']['no_content']);
     $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
     /** @var stdClass $term */
     if ($term = taxonomy_term_load(arg(2))) {
@@ -91,7 +92,7 @@ function informea_theme_theme() {
     'informea_bootstrap_tabs' => array(
       'render element' => 'element',
       'template' => 'templates/informea-bootstrap-tabs',
-      'variables' => array('id' => 0, 'elements' => array(), 'active' => FALSE),
+      'variables' => array('id' => 0, 'elements' => array(), 'active' => FALSE, 'header-attributes' => array()),
       'path' => drupal_get_path('theme', 'informea_theme'),
     ),
   );
