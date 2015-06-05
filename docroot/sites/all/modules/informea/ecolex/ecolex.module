@@ -136,15 +136,13 @@ function ecolex_remote_content($context, $item, $type, $page = 0, $sid = '') {
       $base_url .= '&screen=CourtDecisions&index=courtdecisions';
       break;
   }
-  $parser = new EcolexParser($base_url);
-  $data = $parser->get_content();
-  $data .= l(t('View more results on ECOLEX website'), $base_url, array('attributes' => array('class' => array('ecolex-link'), 'target' => '_blank')));
-  return $data;
   if ($cache = cache_get($base_url)) {
     $data = $cache->data;
   }
   else {
+    $parser = new EcolexParser($base_url);
     $data = $parser->get_content();
+    $data .= l(t('View more results on ECOLEX website'), $base_url, array('attributes' => array('class' => array('ecolex-link'), 'target' => '_blank')));
     cache_set($base_url, $data, 'cache', date('U') + 3600 * 24 * 5);
   }
   return $data;
