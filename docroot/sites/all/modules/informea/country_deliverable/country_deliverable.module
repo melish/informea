@@ -46,11 +46,7 @@ function country_deliverable_render_action_plans($rows) {
         'attributes' => array('class' => array('flag-xs'))
       ));
     } else { // treaty
-      if ($uri = $rw->field_logo->value()['uri']) {
-        $img = theme('image', array(
-          'path' => file_create_url($uri)
-        ));
-      }
+      $img = treaty_url_logo($row);
     }
     $header = (!empty($img) ? $img . ' ' : '') . $rw->label();
     $elements[$id] = array(
@@ -95,9 +91,7 @@ function country_deliverable_render_national_reports($rows) {
       ));
     } else { // treaty
       if ($uri = $rw->field_logo->value()['uri']) {
-        $img = theme('image', array(
-          'path' => file_create_url($uri)
-        ));
+        $img = treaty_url_logo($row);
       }
     }
     $header = (!empty($img) ? $img . ' ' : '') . $rw->label();

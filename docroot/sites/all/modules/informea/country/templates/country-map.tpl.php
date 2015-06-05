@@ -1,4 +1,4 @@
-<div id="map-canvas"></div>
+<div id="map-canvas" style="width: 815px; height: 450px;"></div>
 <h3><?php print t('Legend'); ?></h3>
 <ul class="list-inline">
   <li>

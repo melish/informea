@@ -93,7 +93,6 @@ function country_node_view($node, $view_mode, $langcode) {
           $js_sites[] = entity_metadata_wrapper('node', $site)->value();
         }
         if ($has_map) {
-          // Adds the amCharts JavaScript files to the page.
           drupal_add_js( 'https://maps.googleapis.com/maps/api/js?v=3.exp', 'external' );
           // Adds the country JavaScript file to the page.
           drupal_add_js( drupal_get_path( 'module', 'country' ) . '/js/map.js' );
@@ -149,125 +148,6 @@ function country_node_view($node, $view_mode, $langcode) {
         $node->content['context'] = country_deliverable_render_action_plans($rows, 'action_plans');
         break;
 
-      case 'court-decisions':
-        $view = country_get_view_country_related_content($node->nid, 'page_court_decisions');
-        $raw_data = country_get_court_decisions_statistics($node->nid);
-        $data = array();
-        foreach($raw_data as $t) {
-          $data[] = (object) array('the_category' => $t->name, 'the_value' =>(int) $t->count);
-        }
-        $chart_config = edw_amcharts_default_config_chart_column();
-        $chart_config->rotate = TRUE;
-        $chart_config->dataProvider = $data;
-        edw_amcharts_add_chart('country_decisions_chart', 'column', $chart_config, array(), array('width' => '850px', 'height' => '300px'));
-        $node->content['context'] = array(
-          0 => array(
-            '#type' => 'item', '#weight' => 1, '#markup' => '',
-            '#id' => 'country_decisions_chart',
-          ),
-          1 => array(
-            '#type' => 'item', '#weight' => 10, '#markup' => $view->render(),
-          )
-        );
-        break;
-
-      case 'legislation':
-        module_load_include('inc', 'country', 'country.forms');
-        $raw_data = country_get_legislation_statistics($node->nid);
-        $data = array();
-        foreach($raw_data as $t) {
-          $data[] = (object) array(
-            'nid' => $node->nid,
-            'the_title' => $t->name,
-            'the_value' => (int)$t->count,
-            'tid' => $t->tid
-          );
-        }
-        $chart_config = edw_amcharts_default_config_chart_pie();
-        $chart_config->theme = 'light';
-        $chart_config->dataProvider = $data;
-
-        $listeners = array(
-          'clickSlice' => <<<EOF
-function (event) {
-  var params = {
-    f: [
-      'field_country:' + event.dataItem.dataContext.nid,
-      'type:legislation',
-      'field_type_of_text:' + event.dataItem.dataContext.tid
-    ],
-    search_api_views_fulltext_op: 'AND'
-  };
-
-  window.location.href = Drupal.settings.basePath + 'search?' + $.param(params);
-}
-EOF
-        );
-
-        edw_amcharts_add_chart('country_legislation_chart', 'pie', $chart_config, $listeners, array('width' => '260px', 'height' => '260px'));
-        $filter_form = drupal_get_form('country_legislation_filter_form', $node);
-        // Unset form attributes to make keyword filter work.
-        unset($filter_form['form_id']);
-        unset($filter_form['form_token']);
-        unset($filter_form['form_build_id']);
-        $node->content['context'] = array(
-          0 => array(
-            '#type' => 'item', '#weight' => 10, '#markup' => '',
-            '#prefix' => '<p></p><h4>Types of legislation</h4>', '#suffix' => '</div>',
-            '#id' => 'country_legislation_chart',
-          ),
-          1 =>$filter_form
-        );
-        break;
-
-      case 'literature':
-        module_load_include('inc', 'country', 'country.forms');
-        $raw_data = country_get_court_literature_statistics($node->nid);
-        $data = array();
-        foreach($raw_data as $t) {
-          $data[] = (object) array(
-            'nid' => $node->nid,
-            'the_category' => $t->name,
-            'the_value' => (int) $t->count,
-            'tid' => $t->tid
-          );
-        }
-        $chart_config = edw_amcharts_default_config_chart_column();
-        $chart_config->rotate = TRUE;
-        $chart_config->dataProvider = $data;
-
-        $listeners = array(
-          'clickGraphItem' => <<<EOF
-function (event) {
-  var params = {
-    f: [
-      'field_country:' + event.item.dataContext.nid,
-      'type:literature',
-      'field_literature_type:' + event.item.dataContext.tid
-    ],
-    search_api_views_fulltext_op: 'AND'
-  };
-
-  window.location.href = Drupal.settings.basePath + 'search?' + $.param(params);
-}
-EOF
-        );
-
-        edw_amcharts_add_chart('country_literature_chart', 'column', $chart_config, $listeners, array('width' => '800px', 'height' => '350px'));
-        $filter_form = drupal_get_form('country_literature_filter_form', $node);
-        // Unset form attributes to make keyword filter work.
-        unset($filter_form['form_id']);
-        unset($filter_form['form_token']);
-        unset($filter_form['form_build_id']);
-        $node->content['context'] = array(
-          0 => array(
-            '#type' => 'item', '#weight' => 10, '#markup' => '',
-            '#id' => 'country_literature_chart',
-          ),
-          1 => $filter_form,
-        );
-        break;
-
       case 'parties':
         $rows = array();
         module_load_include('inc', 'country_data', 'country_data.api');
@@ -280,11 +160,14 @@ EOF
           $date1 = empty($date1) ? '&nbsp;' : format_date($date1, 'short');
           $date2 = $wrapper->field_party_date_2->value();
           $date2 = empty($date2) ? '&nbsp;' : format_date($date2, 'short');
+          $status = $wrapper->field_party_status->value();
+          $logo = treaty_url_logo($treaty);
           $row = array(
             'data' => array(
-              $wrapper->field_treaty->label(),
+              $img = $logo . $wrapper->field_treaty->label(),
               array('data' => $date1, 'class' => 'text-center'),
-              array('data' => $date2, 'class' => 'text-center')
+              array('data' => $date2, 'class' => 'text-center'),
+              array('data' => $status->name, 'class' => 'text-center')
             )
           );
           $nfps = country_data_get_treaty_focal_points($node->nid, $treaty->nid);
@@ -313,6 +196,7 @@ EOF
             t('Treaty'),
             array('data' => t('Signature'), 'class' => array('text-center')),
             array('data' => t('Ratification'), 'class' => array('text-center')),
+            array('data' => t('Status'), 'class' => array('text-center')),
             array('data' => t('Focal points'), 'class' => array('text-center'))
           ),
           'rows' => $rows
@@ -388,18 +272,12 @@ function country_country_contextual_menu_alter(&$contextual_menu, $node) {
         'title' => t('National reports'),
         'count' => country_get_national_report_count($node->nid)
       ),
-      'legislation' => array(
-        'title' => t('Legislation'),
-        'count' => country_get_legislation_count($node->nid)
+      'ecolex' => array(
+        'title' => t('ECOLEX'),
       ),
-      'literature' => array(
-        'title' => t('Literature'),
-        'count' => country_get_literature_count($node->nid)
+      'summary' => array(
+        'title' => t('Summary'),
       ),
-      'court-decisions' => array(
-        'title' => t('Court decisions'),
-        'count' => country_get_court_decision_count($node->nid)
-      )
     );
 
     foreach ($menu_items as $path => $menu_item) {
@@ -415,7 +293,7 @@ function country_country_contextual_menu_alter(&$contextual_menu, $node) {
       if (isset($node->context) && $node->context == $path) {
         $list_item['class'][] = 'active';
       }
-      if (empty($menu_item['count'])) {
+      if (isset($menu_item['count']) && $menu_item['count'] == 0) {
         $list_item['class'][] = 'disabled';
       }
       $contextual_menu['#items'][] = $list_item;
