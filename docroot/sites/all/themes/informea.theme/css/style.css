@@ -1310,10 +1310,8 @@ body.node-type-treaty div.field { margin-bottom: 3px; }
 body.node-type-treaty div.field-name-body { margin-bottom: 10px; }
 body.node-type-treaty div.field-label { min-width: 150px; }
 
-#accordion .panel,
-#reporting-cycles .panel { border: 0; box-shadow: none; -webkit-box-shadow: none; }
-#accordion .panel-heading,
-#reporting-cycles .panel-heading { background-color: transparent; padding-left: 15px; padding-right: 15px; }
+div.accordion .panel { border: 0; box-shadow: none; -webkit-box-shadow: none; }
+div.accordion .panel-heading { background-color: transparent; padding-left: 15px; padding-right: 15px; }
 
 body.node-type-treaty div.panel-heading a.permalink, a.administrative { display: none;  }
 body.node-type-treaty div.panel-heading:hover a.permalink,
@@ -1350,11 +1348,14 @@ body.node-type-treaty div.paragraph:hover { background-color: #f0f0f0; }
 div.accordion .panel-heading h4 { display: inline; margin-left: 15px; }
 div.accordion .panel-heading .meta { text-align: right; font-size: 12px; color: #999; font-weight: normal; }
 div.accordion .panel-heading ul { margin: 0; }
-div.accordion .panel-heading .glyphicon-plus-sign { color: #c6cedb; font-size: 14px; }
+div.accordion .panel-heading .glyphicon-plus-sign { color: #777; font-size: 14px; }
+div.accordion .panel-heading .glyphicon-plus-sign:before { content: "\e082"; }
+div.accordion .panel-heading.collapsed .glyphicon-plus-sign { color: #c6cedb; }
+div.accordion .panel-heading.collapsed .glyphicon-plus-sign:before { content: "\e081"; }
+
 div.accordion .panel { margin: 0; border-bottom: 1px solid #ddd; border-radius: 0; }
 div.accordion .panel-heading { border: 1px solid transparent; cursor: pointer; margin: 0; border-radius: 0; }
 div.accordion .panel-heading:hover { border: 1px solid #39c; background-color: #D2EEFC; }
-div.accordion .panel-collapse { margin-left: 5px; }
 
 img.flag-xs { max-height: 16px; }
 img.flag-small { max-height: 32px; }
@@ -1373,6 +1374,20 @@ img.flag-small { max-height: 32px; }
 
 .panel-group .panel-heading:hover {
   cursor: pointer;
+}
+
+#table-parties .list-group {
+  margin: -9px -8px;
+}
+
+#table-parties .list-group > .list-group-item {
+  border-left: 0;
+  border-radius: 0;
+  border-right: 0;
+}
+
+#table-parties .list-group dl {
+  margin-bottom: 0;
 }
 
 /* Terms page */
