@@ -107,7 +107,22 @@ class InforMEAThesaurusTermRelatedContent {
             $content = array_merge($content, $decisions);
           }
 
-          $elements = array('header' => $row->title, '#children' => $content);
+          $elements = array(
+            'header' =>
+                treaty_url_logo($row)
+                . $row->title
+                . l(
+                '<i class="glyphicon glyphicon-link"></i>',
+                treaty_url_text($row->nid),
+                array(
+                  'html' => TRUE,
+                  'attributes' => array(
+                    'class' => array('pull-right'),
+                  ),
+                )
+              ),
+            '#children' => $content
+          );
           if (empty($content)) {
             $elements['body'] = t('Treaty is tagged with %term', array('%term' => $term->name));
           }
@@ -128,7 +143,16 @@ class InforMEAThesaurusTermRelatedContent {
       foreach ($treaty->articles as $row) {
         $paragraphs = self::view_article_paragraphs($row, $treaty);
         $elements = array(
-          'header' => $row->title,
+          'header' => $row->title . l(
+              '<i class="glyphicon glyphicon-link"></i>',
+              treaty_url_article($treaty->nid, $row->nid),
+              array(
+                'html' => TRUE,
+                'attributes' => array(
+                  'class' => array('pull-right'),
+                ),
+              )
+            ),
           '#children' => $paragraphs,
         );
         if (empty($paragraphs)) {
@@ -177,7 +201,16 @@ class InforMEAThesaurusTermRelatedContent {
       foreach ($treaty->decisions as $row) {
         $paragraphs = self::view_decision_paragraphs($row, $treaty);
         $elements = array(
-          'header' => $row->title,
+          'header' => $row->title . l(
+              '<i class="glyphicon glyphicon-link"></i>',
+              treaty_url_decision($treaty->nid, $row->nid),
+              array(
+                'html' => TRUE,
+                'attributes' => array(
+                  'class' => array('pull-right'),
+                ),
+              )
+            ),
           '#children' => $paragraphs,
         );
         if (empty($paragraphs)) {

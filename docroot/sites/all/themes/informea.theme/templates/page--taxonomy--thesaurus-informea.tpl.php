@@ -89,7 +89,6 @@
   <?php endif; ?>
   <div class="row">
     <?php if (!empty($page['sidebar_first'])): ?>
-      <h4><?php print t('Contents'); ?></h4>
       <aside id="sidebar-first" class="col-sm-3" role="complementary">
         <?php print render($page['sidebar_first']); ?>
       </aside><!-- #sidebar-first .col-sm-3 -->

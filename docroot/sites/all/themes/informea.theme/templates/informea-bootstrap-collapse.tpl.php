@@ -2,12 +2,13 @@
 $id = isset($variables['id']) ? $variables['id'] : 'accordion';
 $elements = $variables['elements'];
 $add_data_parent = empty($variables['no-data-parent']);
+$add_data_parent_text = $add_data_parent ? (' data-parent="#' . $id . '"') : '';
 ?>
 <?php if (!empty($elements)): ?>
   <div class="accordion panel-group" id="<?php print $id; ?>" role="tablist" aria-multiselectable="true">
   <?php
   foreach($elements as $eid => $element):
-    $collapsed = empty($element['in']) ? ' class="collapsed"' : '';
+    $collapsed = empty($element['in']) ? ' collapsed' : '';
     $in = empty($collapsed) ? ' in' : '';
 
     // Global property
@@ -19,7 +20,7 @@ $add_data_parent = empty($variables['no-data-parent']);
     }
   ?>
   <div class="panel panel-default">
-    <div id="heading-<?php print $eid; ?>" class="panel-heading collapsed" data-toggle="collapse"<?php print $add_data_parent ? ' data-parent="#' . $id . '"' : ''; ?> data-target="#collapse-<?php print $eid; ?>" aria-expanded="false" aria-controls="collapse-<?php print $eid; ?>" role="tab">
+    <div id="heading-<?php print $eid; ?>" class="panel-heading<?php print $collapsed; ?>" data-toggle="collapse"<?php print $add_data_parent_text; ?> data-target="#collapse-<?php print $eid; ?>" aria-expanded="false" aria-controls="collapse-<?php print $eid; ?>" role="tab">
       <i class="glyphicon glyphicon-plus-sign"></i> <h4 class="panel-title"><?php print $element['header']; ?></a></h4>
     </div>
     <div id="collapse-<?php print $eid; ?>" class="panel-collapse collapse<?php print $in; ?>" role="tabpanel" aria-labelledby="heading-<?php print $eid; ?>" aria-expanded="false">

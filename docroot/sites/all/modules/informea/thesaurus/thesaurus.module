@@ -134,27 +134,29 @@ function thesaurus_menu_local_tasks_alter(&$data, $router_item, $root_path) {
     /** @var stdClass $term */
     if ($term = taxonomy_term_load(arg(2))) {
       if ($term->vid == $voc->vid) {
-        $contextual_menu = array();
-        $contextual_menu[] = array(
-          '#theme' => 'menu_local_task',
-          '#link' => array(
-            'title' => t('Treaties'),
-            'href' => thesaurus_url_term($term),
-            'localized_options' => array(),
+        $menu_items = array(
+          array(
+            'data' => l(t('Treaties'), thesaurus_url_term($term)),
+            'role' => 'presentation',
           ),
-          '#active' => empty($section),
+          array(
+            'data' => l(t('ECOLEX'), thesaurus_url_term($term) . '/ecolex'),
+            'role' => 'presentation',
+          )
         );
-        $contextual_menu[] = array(
-          '#theme' => 'menu_local_task',
-          '#link' => array(
-            'title' => t('ECOLEX'),
-            'href' => thesaurus_url_term($term) . '/ecolex',
-            'localized_options' => array(),
-          ),
-          '#active' => $section == 'ecolex',
+        if($section == 'ecolex') {
+          $menu_items[1]['class'] = array('active');
+        }
+        else {
+          $menu_items[0]['class'] = array('active');
+        }
+        $contextual_menu = array(
+          '#theme' => 'item_list',
+          '#attributes' => array('class' => array('nav', 'nav-pills', 'nav-stacked')),
+          '#items' => $menu_items
         );
         $data['tabs'][1] = array(
-          'count' => count($contextual_menu),
+          'count' => count($menu_items),
           'output' => $contextual_menu,
         );
       }
@@ -229,10 +231,12 @@ function thesaurus_page_alter(&$page) {
   if ($ob = menu_get_object('taxonomy_term', 2)) {
     $hierarchy = thesaurus_term_hierarchy($ob);
     $hierarchy['term'] = $ob;
-    $page['sidebar_first']['hierarchy'] = array(
-      '#type' => 'item',
-      '#markup' => theme('term-hierarchy', $hierarchy),
-    );
+    if (!empty($hierarchy['children']) && !empty($hierarchy['parents'])) {
+      $page['sidebar_first']['hierarchy'] = array(
+        '#type' => 'item',
+        '#markup' => theme('term-hierarchy', $hierarchy),
+      );
+    }
   }
 }
 
