@@ -97,3 +97,15 @@ function informea_theme_theme() {
     ),
   );
 }
+
+function informea_theme_meeting_type($term) {
+  if ($term) {
+    switch ($term->name_original) {
+      case 'cop':
+        return 'COP';
+      default:
+        return ucfirst($term->name);
+    }
+  }
+  return '';
+}

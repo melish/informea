@@ -1392,3 +1392,23 @@ img.flag-small { max-height: 32px; }
 
 /* Terms page */
 div.accordion ol.paragraphs { list-style-type: none; margin-left: 10px; padding: 0; }
+
+/* Events page */
+.media-body>.media-detail {
+  font-size: 80%;
+  color: #666;
+}
+
+.media-body>.media-detail div {
+  display: inline;
+  margin-left: 10px;
+}
+
+.view-events .media-body,
+.view-events .media-left { border: 0; border-bottom: 1px dashed #c6cedb; }
+
+.view-events li { margin-bottom: 20px; margin-top: 15px; }
+.view-events .media-body { padding-bottom: 5px; }
+#block-views-exp-events-page .views-submit-button { display: inline-block; }
+#block-views-exp-events-page .views-reset-button { display: inline-block; }
+#block-views-exp-events-page #edit-event-calendar-date-value-wrapper { float: none; }

@@ -5,3 +5,24 @@
  */
 
 include_once 'meeting.features.inc';
+
+/**
+ * Implements hook_form_ID_alter().
+ */
+function meeting_form_alter(&$form, &$form_state, $form_id) {
+  if ($form['#id'] == 'views-exposed-form-events-page') {
+    $q = db_select('field_data_field_treaty', 'a');
+    $q->fields('a', array('field_treaty_target_id'));
+    $q->join('node', 'b', 'a.entity_id = b.nid AND a.revision_id = b.vid');
+    $q->condition('b.status', 1);
+    $q->condition('bundle', 'event_calendar');
+    $nids =  $q->distinct()->execute()->fetchCol();
+    $filtered = array();
+    foreach($form['field_treaty_target_id']['#options'] as $k => $v) {
+      if (in_array($k, $nids)) {
+        $filtered[$k] = $v;
+      }
+    }
+    $form['field_treaty_target_id']['#options'] = $filtered;
+  }
+}

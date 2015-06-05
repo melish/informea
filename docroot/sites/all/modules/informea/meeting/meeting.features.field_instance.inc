@@ -1339,6 +1339,13 @@ function meeting_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
