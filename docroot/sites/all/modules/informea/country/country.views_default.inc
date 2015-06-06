@@ -630,7 +630,9 @@ function country_views_default_views() {
   $handler->display->display_options['filters']['field_treaty_target_id']['id'] = 'field_treaty_target_id';
   $handler->display->display_options['filters']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
   $handler->display->display_options['filters']['field_treaty_target_id']['field'] = 'field_treaty_target_id';
-  $handler->display->display_options['filters']['field_treaty_target_id']['value']['value'] = '269';
+  $handler->display->display_options['filters']['field_treaty_target_id']['value'] = array(
+    'value' => '269',
+  );
 
   /* Display: WHC sites */
   $handler = $view->new_display('embed', 'WHC sites', 'whc_sites');
@@ -723,7 +725,9 @@ function country_views_default_views() {
   $handler->display->display_options['filters']['field_treaty_target_id']['id'] = 'field_treaty_target_id';
   $handler->display->display_options['filters']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
   $handler->display->display_options['filters']['field_treaty_target_id']['field'] = 'field_treaty_target_id';
-  $handler->display->display_options['filters']['field_treaty_target_id']['value']['value'] = '267';
+  $handler->display->display_options['filters']['field_treaty_target_id']['value'] = array(
+    'value' => '267',
+  );
 
   /* Display: Embed action plans */
   $handler = $view->new_display('embed', 'Embed action plans', 'embed_action_plans');
