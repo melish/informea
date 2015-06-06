@@ -11,6 +11,141 @@ function informea_views_default_views() {
   $export = array();
 
   $view = new view();
+  $view->name = 'news';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'search_api_index_news_search_index';
+  $view->human_name = 'News';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'News';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '100';
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['style_options']['row_class'] = 'media';
+  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
+  $handler->display->display_options['style_options']['class'] = 'media-list';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Indexed Node: Image */
+  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['table'] = 'search_api_index_news_search_index';
+  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['label'] = '';
+  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image']['settings'] = array(
+    'image_style' => 'logo',
+    'image_link' => '',
+  );
+  /* Field: Indexed Node: URL */
+  $handler->display->display_options['fields']['field_url']['id'] = 'field_url';
+  $handler->display->display_options['fields']['field_url']['table'] = 'search_api_index_news_search_index';
+  $handler->display->display_options['fields']['field_url']['field'] = 'field_url';
+  $handler->display->display_options['fields']['field_url']['label'] = '';
+  $handler->display->display_options['fields']['field_url']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_url']['click_sort_column'] = 'url';
+  /* Field: Indexed Node: Node ID */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'search_api_index_news_search_index';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nid']['link_to_entity'] = 0;
+  /* Field: Indexed Node: Tags */
+  $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
+  $handler->display->display_options['fields']['field_tags']['table'] = 'search_api_index_news_search_index';
+  $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
+  $handler->display->display_options['fields']['field_tags']['list']['mode'] = 'list';
+  $handler->display->display_options['fields']['field_tags']['list']['separator'] = '';
+  $handler->display->display_options['fields']['field_tags']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['field_tags']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_tags']['bypass_access'] = 0;
+  /* Filter criterion: Search: Fulltext search */
+  $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_news_search_index';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['group'] = 1;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Search';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  /* Filter criterion: Indexed Node: MEA topic */
+  $handler->display->display_options['filters']['field_mea_topic']['id'] = 'field_mea_topic';
+  $handler->display->display_options['filters']['field_mea_topic']['table'] = 'search_api_index_news_search_index';
+  $handler->display->display_options['filters']['field_mea_topic']['field'] = 'field_mea_topic';
+  $handler->display->display_options['filters']['field_mea_topic']['value'] = array();
+  $handler->display->display_options['filters']['field_mea_topic']['group'] = 1;
+  $handler->display->display_options['filters']['field_mea_topic']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_mea_topic']['expose']['operator_id'] = 'field_mea_topic_op';
+  $handler->display->display_options['filters']['field_mea_topic']['expose']['label'] = 'Topic';
+  $handler->display->display_options['filters']['field_mea_topic']['expose']['operator'] = 'field_mea_topic_op';
+  $handler->display->display_options['filters']['field_mea_topic']['expose']['identifier'] = 'field_mea_topic';
+  $handler->display->display_options['filters']['field_mea_topic']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['filters']['field_mea_topic']['expose']['reduce'] = 0;
+  /* Filter criterion: Indexed Node: Content type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_news_search_index';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'feed_item' => 'feed_item',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['exposed_block'] = TRUE;
+  $handler->display->display_options['path'] = 'news';
+  $translatables['news'] = array(
+    t('Master'),
+    t('News'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('.'),
+    t(','),
+    t('Tags'),
+    t('Search'),
+    t('Topic'),
+    t('Page'),
+  );
+  $export['news'] = $view;
+
+  $view = new view();
   $view->name = 'taxonomy_mappings';
   $view->description = '';
   $view->tag = 'default';

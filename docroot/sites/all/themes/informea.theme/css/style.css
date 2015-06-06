@@ -1412,3 +1412,12 @@ div.accordion ol.paragraphs { list-style-type: none; margin-left: 10px; padding:
 #block-views-exp-events-page .views-submit-button { display: inline-block; }
 #block-views-exp-events-page .views-reset-button { display: inline-block; }
 #block-views-exp-events-page #edit-event-calendar-date-value-wrapper { float: none; }
+
+/* News page */
+.view-news .media-body,
+.view-news .media-left { border: 0; border-bottom: 1px dashed #c6cedb; }
+
+.view-news li { margin-bottom: 20px; margin-top: 15px; }
+.view-news .media-body { padding-bottom: 5px; }
+.view-news .tags ul { list-style-type: none; margin: 0; padding: 0; }
+.view-news .tags ul li { display: inline; margin: 0 0 5px 5px; padding: 2px 5px 2px 5px; background-color: gainsboro; }

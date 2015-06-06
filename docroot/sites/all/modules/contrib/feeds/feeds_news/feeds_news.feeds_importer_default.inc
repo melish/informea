@@ -33,7 +33,7 @@ function feeds_news_feeds_importer_default() {
     'processor' => array(
       'plugin_key' => 'FeedsNodeProcessor',
       'config' => array(
-        'bundle' => 'event_calendar_imported',
+        'bundle' => 'feed_item',
         'update_existing' => '2',
         'expire' => '-1',
         'mappings' => array(
@@ -48,40 +48,40 @@ function feeds_news_feeds_importer_default() {
             'unique' => FALSE,
           ),
           2 => array(
-            'source' => 'timestamp',
-            'target' => 'event_calendar_date:start',
-            'unique' => FALSE,
-          ),
-          3 => array(
             'source' => 'url',
             'target' => 'url',
             'unique' => 1,
           ),
-          4 => array(
-            'source' => 'url',
-            'target' => 'field_url:url',
-            'unique' => FALSE,
-          ),
-          5 => array(
+          3 => array(
             'source' => 'guid',
             'target' => 'guid',
             'unique' => 1,
           ),
-          6 => array(
-            'source' => 'description',
-            'target' => 'body',
-            'unique' => FALSE,
-          ),
-          7 => array(
-            'source' => 'title',
-            'target' => 'title_field',
-            'unique' => FALSE,
-          ),
-          8 => array(
+          4 => array(
             'source' => 'tags',
             'target' => 'field_tags',
             'term_search' => '0',
             'autocreate' => 1,
+          ),
+          5 => array(
+            'source' => 'description',
+            'target' => 'field_feed_item_description',
+            'unique' => FALSE,
+          ),
+          6 => array(
+            'source' => 'url',
+            'target' => 'field_url:url',
+            'unique' => FALSE,
+          ),
+          7 => array(
+            'source' => 'title',
+            'target' => 'field_url:title',
+            'unique' => FALSE,
+          ),
+          8 => array(
+            'source' => 'parent:nid',
+            'target' => 'field_parent_feed:etid',
+            'unique' => FALSE,
           ),
         ),
         'input_format' => 'filtered_html',

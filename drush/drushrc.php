@@ -302,7 +302,13 @@ $options['init-modules'] = array(
 
   'r4032login',
 
+  'search_api_facetapi',
+  'search_api_solr',
+  'search_api_views',
+  'search_api_db',
+  'search_integration',
   'better_exposed_filters',
+
   'country',
   'country_deliverable',
   'country_data',
