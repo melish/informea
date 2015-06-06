@@ -121,7 +121,7 @@
       return this.replace(/"$/, '').replace(/^"/, '');
     }
 
-    return this;
+    return this.toString();
   };
 
   $.fn.atachSelect2 = function () {
@@ -238,9 +238,7 @@
               if (options.placeholder == undefined) {
                 options.placeholder = $('option[value=""]', $element).text();
               }
-
-              $('option[value=""]', $element).html('').removeAttr('selected');
-
+              $('option[value=""]', $element).html('');
             }
 
           }
@@ -310,6 +308,14 @@
 
             $element.val(cur_val);
 
+          }
+
+          // disabled_options
+          if (typeof(options.disabled_options) != 'undefined') {
+            //
+            $.each(options.disabled_options, function (index, value) {
+              $('option[value="' + value + '"]', $element).prop('disabled', true);
+            });
           }
 
           $element.select2(options);
