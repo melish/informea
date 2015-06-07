@@ -326,6 +326,7 @@ $options['init-modules'] = array(
   'i18n_string_helper',
   'ws_consumer',
   'edw_amcharts',
+  'informea_search',
   'devel',
   'diff',
 );
