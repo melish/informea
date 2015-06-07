@@ -270,6 +270,7 @@ $options['init-modules'] = array(
   'migrate',
   'migrate_ui',
   'features',
+  'fe_block',
   'entityreference',
   'link',
   'title',
