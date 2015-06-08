@@ -67,7 +67,6 @@ class MigrateDecisions extends Migration {
   public function __construct($arguments) {
     parent::__construct($arguments);
 
-    $this->dependencies = array('ThesaurusInforMEA');
     $this->description = 'Import InforMEA decisions and documents';
     $this->map = new MigrateSQLMap($this->machineName,
       array(
@@ -104,7 +103,7 @@ class MigrateDecisions extends Migration {
       ->select('ai_decision', 'd')
       ->fields('d');
 
-    $this->dependencies = array('Treaties', 'Meetings', 'DecisionsDocuments');
+    $this->dependencies = array('Treaties', 'Meetings', 'DecisionsDocuments', 'ThesaurusInforMEA');
     $this->source = new DecisionsMigrateSourceSQL($query);
 
     $op = MigrateDestinationNode::options('en', 'full_html');
