@@ -93,7 +93,7 @@ function informea_default_search_api_index() {
         "field_feed_item_description:summary" : { "type" : "text" },
         "field_feed_item_description:value" : { "type" : "text" },
         "field_informea_tags" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
-        "field_mea_topic" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_mea_topic" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_tags" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "language" : { "type" : "string" },
         "nid" : { "type" : "integer" },
@@ -346,9 +346,9 @@ function informea_default_search_api_server() {
             "boost" : "1.0"
           },
           "field_mea_topic" : {
-            "table" : "search_api_db_news_search_index",
+            "table" : "search_api_db_news_search_index_field_mea_topic",
             "column" : "field_mea_topic",
-            "type" : "integer",
+            "type" : "list\\u003Cinteger\\u003E",
             "boost" : "1.0"
           }
         }

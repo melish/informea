@@ -305,7 +305,6 @@ $options['init-modules'] = array(
 
   'search_api_facetapi',
   'search_api_solr',
-  'search_api_views',
   'search_api_db',
   'search_integration',
   'search_api_views',

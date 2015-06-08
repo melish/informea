@@ -79,6 +79,26 @@ function informea_feeds_presave(FeedsSource $source, $entity, $item) {
     $w = entity_metadata_wrapper('node', $source->feed_nid);
     $image = $w->field_image->value();
     $entity->field_image[LANGUAGE_NONE][0] = $image;
+
+    // treaties
+    $treaties = $w->field_treaty->value();
+    if (!empty($treaties)) {
+      $nids = array();
+      foreach($treaties as $ob) {
+        $nids[] = array('target_id' => $ob->nid);
+      }
+      $entity->field_treaty[LANGUAGE_NONE] = $nids;
+    }
+
+    // topics
+    $topics = $w->field_mea_topic->value();
+    if (!empty($topics)) {
+      $nids = array();
+      foreach($topics as $ob) {
+        $nids[] = array('tid' => $ob->tid);
+      }
+      $entity->field_mea_topic[LANGUAGE_NONE] = $nids;
+    }
   }
 
 }
