@@ -311,9 +311,7 @@ class MigrateTreatiesParagraphs extends Migration {
     $opt = MigrateDestinationNode::options('en', 'full_html');
     $this->destination = new MigrateDestinationNode('treaty_paragraph', $opt);
 
-    $this->addFieldMapping('title_field', 'order');
     $this->addFieldMapping('title', 'order');
-    $this->addFieldMapping('title_field:language')->defaultValue('en');
 
     $this->addFieldMapping('body', 'content');
     $this->addFieldMapping('body:format')->defaultValue('full_html');
@@ -329,6 +327,7 @@ class MigrateTreatiesParagraphs extends Migration {
     $this->addFieldMapping('field_informea_tags', 'tags');
     $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_informea_tags:create_term')->defaultValue(FALSE);
+    $this->addFieldMapping('field_informea_tags:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('created', 'rec_created');
     $this->addFieldMapping('changed', 'rec_updated');
