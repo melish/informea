@@ -230,6 +230,7 @@ class MigrateTreatiesArticles extends Migration {
     $this->addFieldMapping('field_informea_tags', 'tags');
     $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_informea_tags:create_term')->defaultValue(FALSE);
+    $this->addFieldMapping('field_informea_tags:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('created', 'rec_created');
     $this->addFieldMapping('changed', 'rec_updated');
