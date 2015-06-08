@@ -71,6 +71,33 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['field_tags']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_tags']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_tags']['bypass_access'] = 0;
+  /* Field: Indexed Node: Date created */
+  $handler->display->display_options['fields']['created']['id'] = 'created';
+  $handler->display->display_options['fields']['created']['table'] = 'search_api_index_news_search_index';
+  $handler->display->display_options['fields']['created']['field'] = 'created';
+  $handler->display->display_options['fields']['created']['label'] = '';
+  $handler->display->display_options['fields']['created']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['created']['date_format'] = 'short';
+  $handler->display->display_options['fields']['created']['second_date_format'] = 'long';
+  $handler->display->display_options['fields']['created']['link_to_entity'] = 0;
+  /* Field: Indexed Node: MEA topic */
+  $handler->display->display_options['fields']['field_mea_topic']['id'] = 'field_mea_topic';
+  $handler->display->display_options['fields']['field_mea_topic']['table'] = 'search_api_index_news_search_index';
+  $handler->display->display_options['fields']['field_mea_topic']['field'] = 'field_mea_topic';
+  $handler->display->display_options['fields']['field_mea_topic']['label'] = '';
+  $handler->display->display_options['fields']['field_mea_topic']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_mea_topic']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['field_mea_topic']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_mea_topic']['bypass_access'] = 0;
+  /* Field: Indexed Node: Treaty */
+  $handler->display->display_options['fields']['field_treaty']['id'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['table'] = 'search_api_index_news_search_index';
+  $handler->display->display_options['fields']['field_treaty']['field'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_treaty']['label'] = '';
+  $handler->display->display_options['fields']['field_treaty']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_treaty']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['field_treaty']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_treaty']['bypass_access'] = 0;
   /* Sort criterion: Indexed Node: Date created */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'search_api_index_news_search_index';
