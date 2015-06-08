@@ -15,3 +15,26 @@ function informea_search_views_pre_render(&$view) {
   #$row0->children = array('xxx');
   #$view->result = array($row0);
 }
+
+
+/**
+ * Implements hook_form_alter().
+ */
+function informea_search_form_alter(&$form, &$form_state, $form_id) {
+
+
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function informea_search_form_search_form_alter(&$form, &$form_state) {
+  $form['#method'] = 'post';
+  $form['#action'] = url('search');
+  $form['#submit'] = array('informea_search_form_search_form_submit');
+}
+
+function informea_search_form_search_form_submit($form, $form_state) {
+  $input = $form_state['values']['keys'];
+  $form_state['redirect'] = 'search/' . $input;
+}
