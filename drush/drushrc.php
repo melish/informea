@@ -310,6 +310,8 @@ $options['init-modules'] = array(
   'search_integration',
   'search_api_views',
   'better_exposed_filters',
+  'search_api_attachments_entityreference',
+  'search_api_attachments',
 
   'country',
   'country_deliverable',
