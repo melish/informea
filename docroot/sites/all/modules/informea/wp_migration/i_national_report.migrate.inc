@@ -55,7 +55,7 @@ class MigrateNationalReports extends Migration {
     $this->addFieldMapping('field_original_id', 'original_id');
     $this->addFieldMapping('field_country', 'id_country');
     $this->addFieldMapping('field_treaty', 'id_treaty');
-    $this->addFieldMapping('field_sorting_date', 'submission');
+    $this->addFieldMapping('field_report_submission_date', 'submission');
     $this->addFieldMapping('field_files', 'document_url');
     $this->addFieldMapping('field_document_url', 'document_url');
     $this->addFieldMapping('field_files:language')->defaultValue('en');
