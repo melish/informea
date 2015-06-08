@@ -49,6 +49,8 @@ class MigrateDecisionsDocuments extends Migration {
 
   public function prepareRow($row) {
     if(!file_exists($this->source_dir . $row->path)) {
+      $this->queueMessage('Cannot find migration file:' . $this->source_dir . $row->path);
+      echo "Cannot find migration file: ({$row->id}):" . $row->path . "\n";
       return FALSE;
     }
     $dest = preg_replace('/\/?uploads\/decisions\//i', '', $row->path);
