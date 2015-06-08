@@ -311,6 +311,8 @@ class MigrateDecisionsParagraphs extends Migration {
     $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_informea_tags:create_term')->defaultValue(FALSE);
 
+    $this->addFieldMapping('field_treaty', 'id_treaty');
+
     $this->addFieldMapping('created', 'rec_created');
     $this->addFieldMapping('changed', 'rec_updated');
     $this->addFieldMapping('language')->defaultValue('en');
@@ -320,6 +322,8 @@ class MigrateDecisionsParagraphs extends Migration {
     $this->addFieldMapping('promote')->defaultValue(0);
     $this->addFieldMapping('sticky')->defaultValue(0);
     $this->addFieldMapping('revision')->defaultValue(FALSE);
+
+
 
     $this->addUnmigratedDestinations(array(
       'body:summary',
@@ -346,6 +350,11 @@ class MigrateDecisionsParagraphs extends Migration {
       $row->rec_updated = NULL;
     }
     $row->id_decision = $this->decisions_mapping[$row->id_decision];
+    if ($row->id_decision) {
+      $w = entity_metadata_wrapper('node', $row->id_decision);
+      $treaty = $w->field_treaty->value()[0];
+      $row->id_treaty = $treaty->nid;
+    }
     $this->prepareTags($row);
     return TRUE;
   }
@@ -387,6 +396,7 @@ class DecisionsParagraphsMigrateSourceSQL extends MigrateSourceSQL {
   public function fields() {
     $fields = parent::fields() + array(
         'tags' => 'InforMEA tags',
+        'id_treaty' => 'Parent treaty',
       );
     return $fields;
   }
