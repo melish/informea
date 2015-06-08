@@ -207,7 +207,8 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_court_decision_id_number'
+  // Exported field_instance:
+  // 'node-court_decisions-field_court_decision_id_number'
   $field_instances['node-court_decisions-field_court_decision_id_number'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -254,7 +255,8 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_court_decision_subdivision'
+  // Exported field_instance:
+  // 'node-court_decisions-field_court_decision_subdivision'
   $field_instances['node-court_decisions-field_court_decision_subdivision'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -528,7 +530,8 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_ecolex_decision_status'
+  // Exported field_instance:
+  // 'node-court_decisions-field_ecolex_decision_status'
   $field_instances['node-court_decisions-field_ecolex_decision_status'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -870,7 +873,8 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_internet_reference_url'
+  // Exported field_instance:
+  // 'node-court_decisions-field_internet_reference_url'
   $field_instances['node-court_decisions-field_internet_reference_url'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -1286,7 +1290,8 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_reference_to_legislation'
+  // Exported field_instance:
+  // 'node-court_decisions-field_reference_to_legislation'
   $field_instances['node-court_decisions-field_reference_to_legislation'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -1458,7 +1463,8 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_territorial_subdivision'
+  // Exported field_instance:
+  // 'node-court_decisions-field_territorial_subdivision'
   $field_instances['node-court_decisions-field_territorial_subdivision'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -5062,7 +5068,8 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-territorial_subdivision-description_field'
+  // Exported field_instance:
+  // 'taxonomy_term-territorial_subdivision-description_field'
   $field_instances['taxonomy_term-territorial_subdivision-description_field'] = array(
     'bundle' => 'territorial_subdivision',
     'default_value' => NULL,

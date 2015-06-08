@@ -1547,7 +1547,8 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-event_calendar_status-description_field'
+  // Exported field_instance:
+  // 'taxonomy_term-event_calendar_status-description_field'
   $field_instances['taxonomy_term-event_calendar_status-description_field'] = array(
     'bundle' => 'event_calendar_status',
     'default_value' => NULL,

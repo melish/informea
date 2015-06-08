@@ -3394,7 +3394,8 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty_paragraph-field_paragraph_indentation'
+  // Exported field_instance:
+  // 'node-treaty_paragraph-field_paragraph_indentation'
   $field_instances['node-treaty_paragraph-field_paragraph_indentation'] = array(
     'bundle' => 'treaty_paragraph',
     'default_value' => NULL,
@@ -3441,7 +3442,8 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty_paragraph-field_parent_treaty_article'
+  // Exported field_instance:
+  // 'node-treaty_paragraph-field_parent_treaty_article'
   $field_instances['node-treaty_paragraph-field_parent_treaty_article'] = array(
     'bundle' => 'treaty_paragraph',
     'default_value' => NULL,
@@ -3659,7 +3661,8 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-field_of_application-description_field'
+  // Exported field_instance:
+  // 'taxonomy_term-field_of_application-description_field'
   $field_instances['taxonomy_term-field_of_application-description_field'] = array(
     'bundle' => 'field_of_application',
     'default_value' => NULL,
@@ -3735,7 +3738,8 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-geographical_region-description_field'
+  // Exported field_instance:
+  // 'taxonomy_term-geographical_region-description_field'
   $field_instances['taxonomy_term-geographical_region-description_field'] = array(
     'bundle' => 'geographical_region',
     'default_value' => NULL,
@@ -3774,7 +3778,8 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-geographical_region-field_un_region'
+  // Exported field_instance:
+  // 'taxonomy_term-geographical_region-field_un_region'
   $field_instances['taxonomy_term-geographical_region-field_un_region'] = array(
     'bundle' => 'geographical_region',
     'default_value' => array(

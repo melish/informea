@@ -38,7 +38,6 @@ function informea_search_default_search_api_index() {
         "changed" : { "type" : "date" },
         "created" : { "type" : "date" },
         "edit_url" : { "type" : "uri" },
-        "field_abstract" : { "type" : "text" },
         "field_action_plan_type" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_address" : { "type" : "text" },
         "field_city" : { "type" : "text" },

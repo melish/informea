@@ -1075,7 +1075,8 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision_paragraph-field_paragraph_indentation'
+  // Exported field_instance:
+  // 'node-decision_paragraph-field_paragraph_indentation'
   $field_instances['node-decision_paragraph-field_paragraph_indentation'] = array(
     'bundle' => 'decision_paragraph',
     'default_value' => NULL,

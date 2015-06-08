@@ -111,5 +111,4 @@ features_exclude[field_base][title_field] = title_field
 features_exclude[field_base][field_informea_tags] = field_informea_tags
 files[] = decision.api.inc
 files[] = decision.api.inc
-mtime = 1432646574
 project path = informea

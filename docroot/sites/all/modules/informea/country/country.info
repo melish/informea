@@ -53,5 +53,4 @@ features[views_view][] = country_related_content
 files[] = country.api.inc
 files[] = country.forms.inc
 files[] = country.undata.inc
-mtime = 1433500904
 project path = sites/all/modules/informea

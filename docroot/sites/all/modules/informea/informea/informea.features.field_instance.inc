@@ -467,7 +467,8 @@ function informea_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-thesaurus_agrovoc-description_field'
+  // Exported field_instance:
+  // 'taxonomy_term-thesaurus_agrovoc-description_field'
   $field_instances['taxonomy_term-thesaurus_agrovoc-description_field'] = array(
     'bundle' => 'thesaurus_agrovoc',
     'default_value' => NULL,
@@ -847,7 +848,8 @@ function informea_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-thesaurus_informea-description_field'
+  // Exported field_instance:
+  // 'taxonomy_term-thesaurus_informea-description_field'
   $field_instances['taxonomy_term-thesaurus_informea-description_field'] = array(
     'bundle' => 'thesaurus_informea',
     'default_value' => NULL,
@@ -887,7 +889,8 @@ function informea_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-thesaurus_informea-field_ecolex_tags'
+  // Exported field_instance:
+  // 'taxonomy_term-thesaurus_informea-field_ecolex_tags'
   $field_instances['taxonomy_term-thesaurus_informea-field_ecolex_tags'] = array(
     'bundle' => 'thesaurus_informea',
     'default_value' => NULL,
@@ -971,7 +974,8 @@ function informea_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-thesaurus_informea-field_sorting_order'
+  // Exported field_instance:
+  // 'taxonomy_term-thesaurus_informea-field_sorting_order'
   $field_instances['taxonomy_term-thesaurus_informea-field_sorting_order'] = array(
     'bundle' => 'thesaurus_informea',
     'default_value' => NULL,
@@ -1006,7 +1010,8 @@ function informea_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-thesaurus_informea-field_term_geg_url'
+  // Exported field_instance:
+  // 'taxonomy_term-thesaurus_informea-field_term_geg_url'
   $field_instances['taxonomy_term-thesaurus_informea-field_term_geg_url'] = array(
     'bundle' => 'thesaurus_informea',
     'default_value' => NULL,
@@ -1058,7 +1063,8 @@ function informea_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-thesaurus_informea-field_term_popularity'
+  // Exported field_instance:
+  // 'taxonomy_term-thesaurus_informea-field_term_popularity'
   $field_instances['taxonomy_term-thesaurus_informea-field_term_popularity'] = array(
     'bundle' => 'thesaurus_informea',
     'default_value' => array(
@@ -1097,7 +1103,8 @@ function informea_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-thesaurus_informea-field_term_reference_url'
+  // Exported field_instance:
+  // 'taxonomy_term-thesaurus_informea-field_term_reference_url'
   $field_instances['taxonomy_term-thesaurus_informea-field_term_reference_url'] = array(
     'bundle' => 'thesaurus_informea',
     'default_value' => NULL,
@@ -1131,7 +1138,8 @@ function informea_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-thesaurus_informea-field_term_substantive'
+  // Exported field_instance:
+  // 'taxonomy_term-thesaurus_informea-field_term_substantive'
   $field_instances['taxonomy_term-thesaurus_informea-field_term_substantive'] = array(
     'bundle' => 'thesaurus_informea',
     'default_value' => array(
@@ -1202,7 +1210,8 @@ function informea_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-thesaurus_informea-field_thesaurus_map_agrovoc'
+  // Exported field_instance:
+  // 'taxonomy_term-thesaurus_informea-field_thesaurus_map_agrovoc'
   $field_instances['taxonomy_term-thesaurus_informea-field_thesaurus_map_agrovoc'] = array(
     'bundle' => 'thesaurus_informea',
     'default_value' => NULL,
@@ -1237,7 +1246,8 @@ function informea_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-thesaurus_informea-field_thesaurus_map_ecolex'
+  // Exported field_instance:
+  // 'taxonomy_term-thesaurus_informea-field_thesaurus_map_ecolex'
   $field_instances['taxonomy_term-thesaurus_informea-field_thesaurus_map_ecolex'] = array(
     'bundle' => 'thesaurus_informea',
     'default_value' => NULL,
@@ -1272,7 +1282,8 @@ function informea_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-thesaurus_informea-field_thesaurus_map_geg'
+  // Exported field_instance:
+  // 'taxonomy_term-thesaurus_informea-field_thesaurus_map_geg'
   $field_instances['taxonomy_term-thesaurus_informea-field_thesaurus_map_geg'] = array(
     'bundle' => 'thesaurus_informea',
     'default_value' => NULL,
@@ -1314,7 +1325,8 @@ function informea_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-thesaurus_informea-field_thesaurus_map_gemet'
+  // Exported field_instance:
+  // 'taxonomy_term-thesaurus_informea-field_thesaurus_map_gemet'
   $field_instances['taxonomy_term-thesaurus_informea-field_thesaurus_map_gemet'] = array(
     'bundle' => 'thesaurus_informea',
     'default_value' => NULL,
