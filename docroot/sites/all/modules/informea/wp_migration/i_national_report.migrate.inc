@@ -242,7 +242,6 @@ class MigrateReportingObligations extends Migration {
       ->fields('a')->where('reportingobligationformat_id=:id', array('id' =>$row->id));
     $ob1 = $query->execute()->fetchObject();
     $row->field_decision_paragraph = $this->decisions_paragraphs[$ob1->id];
-
     return TRUE;
   }
 

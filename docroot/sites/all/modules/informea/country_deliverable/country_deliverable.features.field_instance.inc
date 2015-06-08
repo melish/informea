@@ -1247,11 +1247,11 @@ function country_deliverable_field_default_field_instances() {
         'weight' => 0,
       ),
       'default' => array(
-        'label' => 'inline',
-        'module' => 'list',
+        'label' => 'above',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 4,
+        'type' => 'text_default',
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1262,19 +1262,21 @@ function country_deliverable_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_reporting_frequency',
-    'label' => 'Reporting frequency',
-    'required' => FALSE,
+    'label' => 'Frequency',
+    'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'module' => 'options',
+      'active' => 1,
+      'module' => 'text',
       'settings' => array(
-        'use_select2' => FALSE,
+        'size' => 60,
       ),
-      'type' => 'options_select',
-      'weight' => 9,
+      'type' => 'text_textfield',
+      'weight' => 13,
     ),
   );
 
@@ -1467,12 +1469,12 @@ function country_deliverable_field_default_field_instances() {
   t('Description');
   t('Document URL');
   t('Files');
+  t('Frequency');
   t('InforMEA Tags');
   t('Name');
   t('Official order');
   t('Original ID');
   t('Reporting format document');
-  t('Reporting frequency');
   t('Submission date');
   t('Title');
   t('Treaty');
