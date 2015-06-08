@@ -123,6 +123,9 @@ class MigrateNationalFocalPoints extends Migration {
     if (empty($row->name)) {
       $row->name = '<unknown>';
     }
+    if (!valid_email_address($row->email)) {
+      $row->email = NULL;
+    }
 
     $row->id_treaty = $this->treaty_assignments[$row->id];
 
