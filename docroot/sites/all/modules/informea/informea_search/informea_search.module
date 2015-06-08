@@ -5,3 +5,13 @@
  */
 
 include_once 'informea_search.features.inc';
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function informea_search_views_pre_render(&$view) {
+  #dpm($view);
+  #$row0 = $view->result[0];
+  #$row0->children = array('xxx');
+  #$view->result = array($row0);
+}

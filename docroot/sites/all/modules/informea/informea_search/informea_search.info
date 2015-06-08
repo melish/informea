@@ -17,3 +17,4 @@ features[fe_block_settings][] = facetapi-rm0orTI2PzmJnpZ1x07XLj097DSEjQQJ
 features[features_api][] = api:2
 features[search_api_index][] = informea_fulltext_solr_index
 features[search_api_server][] = search_solr_server
+files[] = informea_search.pages.inc
