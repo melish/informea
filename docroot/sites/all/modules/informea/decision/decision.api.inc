@@ -42,7 +42,7 @@ function decision_get_treaty_decisions_group_by_meeting($id_treaty) {
           $meeting->decisions = array();
           $mw = entity_metadata_wrapper('node', $meeting);
           $type = $mw->field_event_type->value();
-          if (($type && strtolower($type->name_original) == 'cop') || empty($type)) {
+          if (($type && strtolower($type->name_original) == 'cop')) {
             $ret[$mw->getIdentifier()] = $meeting;
           }
         }
