@@ -4,7 +4,7 @@ class MigrateDecisionsDocuments extends Migration {
 
   public function __construct($arguments) {
     parent::__construct($arguments);
-    $this->source_dir = '/Work/informea/resources/';
+    $this->source_dir = variable_get('informea_documents_path_prefix', '/tmp/informea/resources/');
 
     $this->description = 'Import InforMEA decisions documents';
     $this->map = new MigrateSQLMap($this->machineName,
