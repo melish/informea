@@ -47,7 +47,7 @@ function informea_theme_preprocess_page(&$variables) {
     }
   }
   if (isset($variables['node']->type)) {
-    // $variables['theme_hook_suggestions'][] = 'page__' . $variables['node']->type;
+    $variables['theme_hook_suggestions'][] = 'page__node__' . $variables['node']->type;
   }
 
   $search_form['basic']['keys']['#attributes']['placeholder'] = t('Explore InforMEA');
@@ -109,3 +109,24 @@ function informea_theme_meeting_type($term) {
   }
   return '';
 }
+
+function informea_theme_treaty_logo($node, $style = 'logo-large') {
+  $w = entity_metadata_wrapper('node', $node->nid);
+  if ($logo = $w->field_logo->value()) {
+    return theme('image_style', array('style_name' => $style, 'path' => $logo['uri']));
+  }
+  return NULL;
+}
+
+function informea_theme_treaty_logo_link($node) {
+  if ($img = informea_theme_treaty_logo($node)) {
+    $w = entity_metadata_wrapper('node', $node->nid);
+    if ($url = $w->field_treaty_website_url->value()) {
+      return l($img, $url['url'], array('absolute' => TRUE, 'html' => TRUE, 'attributes' => array('target' => '_blank')));
+    }
+    else {
+      return $img;
+    }
+  }
+  return NULL;
+};
