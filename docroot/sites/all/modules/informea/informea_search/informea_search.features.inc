@@ -53,6 +53,7 @@ function informea_search_default_search_api_index() {
       "index_directly" : 0,
       "cron_limit" : "150",
       "fields" : {
+        "attachments_field_files" : { "type" : "text" },
         "author" : { "type" : "integer", "entity_type" : "user" },
         "changed" : { "type" : "date" },
         "created" : { "type" : "date" },
@@ -97,7 +98,7 @@ function informea_search_default_search_api_index() {
         },
         "field_last_update" : { "type" : "date" },
         "field_location" : { "type" : "text" },
-        "field_mea_topic" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_mea_topic" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_meeting" : { "type" : "integer", "entity_type" : "node" },
         "field_meeting_title_en" : { "type" : "text" },
         "field_odata_identifier" : { "type" : "text" },
@@ -137,17 +138,37 @@ function informea_search_default_search_api_index() {
           "weight" : "-10",
           "settings" : { "default" : "1", "bundles" : [] }
         },
-        "search_api_alter_node_access" : { "status" : 0, "weight" : "0", "settings" : [] },
         "search_api_alter_node_status" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_attachments_alter_settings" : {
+          "status" : 1,
+          "weight" : "0",
+          "settings" : {
+            "excluded_extensions" : "aif art avi bmp gif ico mov oga ogv png psd ra ram rgb flv",
+            "number_indexed" : "0",
+            "max_file_size" : "0",
+            "excluded_private" : 1
+          }
+        },
+        "search_api_attachments_entityreference_alter_settings" : {
+          "status" : 0,
+          "weight" : "0",
+          "settings" : {
+            "excluded_extensions" : "aif art avi bmp gif ico mov oga ogv png psd ra ram rgb flv",
+            "number_indexed" : "0",
+            "max_file_size" : "0",
+            "excluded_private" : 1
+          }
+        },
+        "search_api_alter_node_access" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } },
+        "search_api_alter_add_url" : { "status" : 1, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_aggregation" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
         "search_api_alter_language_control" : {
           "status" : 0,
           "weight" : "0",
           "settings" : { "lang_field" : "", "languages" : [] }
-        },
-        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
-        "search_api_alter_add_url" : { "status" : 1, "weight" : "0", "settings" : [] },
-        "search_api_alter_add_aggregation" : { "status" : 0, "weight" : "0", "settings" : [] },
-        "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } }
+        }
       },
       "processors" : {
         "search_api_case_ignore" : {
@@ -161,7 +182,6 @@ function informea_search_default_search_api_index() {
               "field_city" : true,
               "field_location" : true,
               "field_address" : true,
-              "field_abstract" : true,
               "field_odata_identifier" : true,
               "field_official_name" : true,
               "field_official_order" : true,
@@ -178,7 +198,7 @@ function informea_search_default_search_api_index() {
           }
         },
         "search_api_html_filter" : {
-          "status" : 0,
+          "status" : 1,
           "weight" : "10",
           "settings" : {
             "fields" : {
@@ -189,7 +209,6 @@ function informea_search_default_search_api_index() {
               "field_city" : true,
               "field_location" : true,
               "field_address" : true,
-              "field_abstract" : true,
               "field_odata_identifier" : true,
               "field_official_name" : true,
               "field_official_order" : true,
@@ -220,7 +239,6 @@ function informea_search_default_search_api_index() {
               "field_city" : true,
               "field_location" : true,
               "field_address" : true,
-              "field_abstract" : true,
               "field_odata_identifier" : true,
               "field_official_name" : true,
               "field_official_order" : true,
@@ -250,7 +268,6 @@ function informea_search_default_search_api_index() {
               "field_city" : true,
               "field_location" : true,
               "field_address" : true,
-              "field_abstract" : true,
               "field_odata_identifier" : true,
               "field_official_name" : true,
               "field_official_order" : true,
