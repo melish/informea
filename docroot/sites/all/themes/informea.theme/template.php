@@ -95,6 +95,12 @@ function informea_theme_theme() {
       'variables' => array('id' => 0, 'elements' => array(), 'active' => FALSE, 'header-attributes' => array()),
       'path' => drupal_get_path('theme', 'informea_theme'),
     ),
+    'informea_bootstrap_carousel' => array(
+      'render element' => 'element',
+      'template' => 'templates/informea-bootstrap-carousel',
+      'variables' => array('slides' => array(), 'attributes' => array()),
+      'path' => drupal_get_path('theme', 'informea_theme'),
+    ),
   );
 }
 
@@ -130,3 +136,111 @@ function informea_theme_treaty_logo_link($node) {
   }
   return NULL;
 };
+
+function informea_theme_slider() {
+  $slides = array();
+  $slides[0] = array(
+    'image' => 'http://www.informea.org/wp-content/uploads/images/syndication/biological-diversity/guillemot-uria-aalge.jpg',
+    'logo' => theme('image', array('path' => 'http://www.informea.org/wp-content/uploads/images/treaty/logo_cbd.png')),
+    'link' => '<a href="http://www.cbd.int/doc/press/2014/pr-2014-10-17-CPW-en.pdf">Recognizing that wildlife is an important renewable natural resource, with ...</a>',
+    'date' => '27 Oct, 2014',
+  );
+  $slides[1] = array(
+    'image' => 'http://www.informea.org/wp-content/uploads/images/syndication/biological-diversity/guillemot-uria-aalge.jpg',
+    'logo' => theme('image', array('path' => 'http://www.informea.org/wp-content/uploads/images/treaty/logo_cbd.png')),
+    'link' => '<a href="http://www.cbd.int/doc/press/2014/pr-2014-10-17-CPW-en.pdf">Recognizing that wildlife is an important renewable natural resource, with ...</a>',
+    'date' => '27 Oct, 2014',
+  );
+  $slides[2] = array(
+    'image' => 'http://www.informea.org/wp-content/uploads/images/syndication/biological-diversity/guillemot-uria-aalge.jpg',
+    'logo' => theme('image', array('path' => 'http://www.informea.org/wp-content/uploads/images/treaty/logo_cbd.png')),
+    'date' => '27 Oct, 2014',
+    'link' => '<a href="http://www.cbd.int/doc/press/2014/pr-2014-10-17-CPW-en.pdf">Recognizing that wildlife is an important renewable natural resource, with ...</a>',
+  );
+
+  $slides = array();
+
+  $images = array(
+    '/sites/all/themes/informea.theme/img/syndication/' . 'biological-diversity/Biological-Diversity.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'biological-diversity/african-bush-elephants.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'biological-diversity/botanical.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'biological-diversity/coral-reef.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'biological-diversity/ferns.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'biological-diversity/green-crowned.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'biological-diversity/guillemot-uria-aalge.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'biological-diversity/lingonberries-vaccinium-vitus.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'biological-diversity/mu-ko-lanta-marine.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'biological-diversity/palmoil-plantage.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'biological-diversity/parrothfish-scaridae.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'biological-diversity/rottumerplaat-dutch-wadden-sea.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'biological-diversity/slide-coral-reef.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'biological-diversity/thompsons-gazelles.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'chemicals-waste/Chemicals-and-Waste-Management.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'chemicals-waste/icebergs.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'chemicals-waste/nickel-smelters.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'climate-change/Climate-Atmosphere-and-Deserts.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'climate-change/icebergs.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'drylands/drylands.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'financing-trade/green-economy.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'financing-trade/international.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'international-cooperation/international.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'species/african-bush-elephants.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'species/ferns.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'species/parrothfish-scaridae.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'species/rottumerplaat-dutch-wadden-sea.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'species/slide-bird.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'species/slide-jaguar.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'species/species.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'wetlands-national-heritage-sites/mangroves.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'wetlands-national-heritage-sites/pechora-delta.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'wetlands-national-heritage-sites/swamp.jpg',
+    '/sites/all/themes/informea.theme/img/syndication/' . 'wetlands-national-heritage-sites/wetlands.jpg',
+  );
+  // Select one upcoming event from each MEA
+  /*
+   SELECT a.* FROM node a
+      INNER JOIN field_data_event_calendar_date b ON a.nid = b.entity_id
+      INNER JOIN field_data_field_treaty c ON a.nid = c.entity_id
+        WHERE b.event_calendar_date_value >= NOW()
+      GROUP BY c.field_treaty_target_id
+   */
+  $q = db_select('node', 'a')->fields('a', array('nid'))->fields('c', array('field_treaty_target_id'));
+  $q->innerJoin('field_data_event_calendar_date', 'b', 'a.nid = b.entity_id');
+  $q->innerJoin('field_data_field_treaty', 'c', 'a.nid = c.entity_id');
+  $q->where('b.event_calendar_date_value >= NOW()');
+  $q->range(0, 7);
+  $q->groupBy('c.field_treaty_target_id');
+  if ($rows = $q->execute()->fetchAll()) {
+    foreach($rows as $ob) {
+      $w = entity_metadata_wrapper('node', $ob->nid);
+      $tw = entity_metadata_wrapper('node', $ob->field_treaty_target_id);
+      $logo = $tw->field_logo->value();
+      $url = $w->field_url->value();
+      if (empty($url)) {
+        $url = url('node/' . $ob->nid);
+      }
+      else {
+        $url = $url['url'];
+      }
+      $start = $w->event_calendar_date->value();
+      $start = format_date(strtotime($start['value']), 'short');
+      $slide = array(
+        'image' => $images[array_rand($images)],
+        'logo' => theme('image', array('path' => $logo['uri'])),
+        'date' => $start,
+        'link' => l($w->label(), $url, array('absolute' => TRUE, 'attributes' => array('target' => '_blank'))),
+      );
+    $slides[] = $slide;
+    }
+  }
+  return theme(
+    'informea_bootstrap_carousel',
+    array(
+      'slides' => $slides,
+      'attributes' => array(
+        'id' => 'col-carousel',
+        'class' => array('col-md-6'),
+      )
+    )
+  );
+}

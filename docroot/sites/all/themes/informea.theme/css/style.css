@@ -1421,3 +1421,6 @@ div.accordion ol.paragraphs { list-style-type: none; margin-left: 10px; padding:
 .view-news .media-body { padding-bottom: 5px; }
 .view-news .tags ul { list-style-type: none; margin: 0; padding: 0; }
 .view-news .tags ul li { display: inline; margin: 0 0 5px 5px; padding: 2px 5px 2px 5px; background-color: gainsboro; }
+
+/* Front page */
+.carousel .media-left, .carousel .media-body { border: 0; }
