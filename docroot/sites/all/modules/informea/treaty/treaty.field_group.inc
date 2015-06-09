@@ -130,7 +130,7 @@ function treaty_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Additional information',
-    'weight' => '24',
+    'weight' => '25',
     'children' => array(
       0 => 'group_ecolex',
       1 => 'group_external_links',
