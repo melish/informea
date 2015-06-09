@@ -374,7 +374,7 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
 
     $node_url = url(drupal_get_path_alias('node/' . $node->nid), array('absolute' => TRUE));
     $wrapper = entity_metadata_wrapper('node', $node);
-
+    $odata_name = $wrapper->field_odata_identifier->value();
     $contextual_menu = array(
       '#theme' => 'item_list',
       '#attributes' => array('class' => array('nav', 'nav-pills', 'nav-stacked'))
@@ -393,7 +393,7 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
       ),
       'decisions' => array(
         'title' => t('Decisions'),
-        'count' => decision_count_treaty_decisions($node->nid)
+        'count' => t('n/a'),
       ),
       'parties' => array(
         'title' => t('Parties &amp; contact points'),
@@ -401,23 +401,64 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
       ),
       'national-reports' => array(
         'title' => t('National reports'),
-        'count' => country_deliverable_count_treaty_national_reports($node->nid)
+        'count' => t('n/a'),
       ),
       'action-plans' => array(
         'title' => t('National plans'),
-        'count' => country_deliverable_count_treaty_action_plans($node->nid)
+        'count' => t('n/a'),
       )
     );
+
+    // Filter out MEAs without entities and mark the count with n/a
+    $can_have_national_reports = array(
+      'cbd', // CBD
+      'basel', // Basel
+      'cites', // CITES
+      'cms', // CMS
+      'stockholm', // Stockholm,
+      'cartagena', // Cartagena,
+      'aewa', // AEWA
+      'ascobans', // ASCOBANS
+    );
+    $can_have_action_plans = array(
+      'cbd', // CBD
+      'stockholm', // Stockholm,
+      'cartagena', // Cartagena,
+    );
+    $can_have_decisions = array(
+      'minamata', // Minamata,
+    );
+
+    if (in_array($odata_name, $can_have_national_reports)) {
+      $menu_items['national-reports']['count'] = country_deliverable_count_treaty_national_reports($node->nid);
+    }
+    else {
+      $menu_items['national-reports']['disabled'] = TRUE;
+    }
+
+    if (in_array($odata_name, $can_have_action_plans)) {
+      $menu_items['action-plans']['count'] = country_deliverable_count_treaty_action_plans($node->nid);
+    }
+    else {
+      $menu_items['action-plans']['disabled'] = TRUE;
+    }
+
+    if (in_array($odata_name, $can_have_decisions)) {
+      $menu_items['decisions']['count'] = decision_count_treaty_decisions($node->nid);
+    }
+    else {
+      $menu_items['decisions']['disabled'] = TRUE;
+    }
+
     if ($course_url = $wrapper->field_online_course_link->value()) {
       $menu_items['course'] = array(
         'title' => t('<span class="glyphicon glyphicon-book" aria-hidden="true"></span> e-Learning course'),
         'url' => $course_url['display_url'],
       );
     }
-
     foreach ($menu_items as $path => $menu_item) {
       $text = isset($menu_item['count'])
-        ? sprintf('%s <span class="badge pull-right">%d</span>', $menu_item['title'], $menu_item['count'])
+        ? sprintf('%s <span class="badge pull-right">%s</span>', $menu_item['title'], $menu_item['count'])
         : $menu_item['title'];
       $link = l($text, $node_url . '/' . $path, array('html' => TRUE));
       if ($path == 'course') {
@@ -426,6 +467,9 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
       $list_item = array('data' => $link, 'role' => 'presentation');
       if (isset($node->context) && $node->context == $path) {
         $list_item['class'][] = 'active';
+      }
+      if (!empty($menu_item['disabled'])) {
+        $list_item['class'][] = 'disabled';
       }
       $contextual_menu['#items'][] = $list_item;
     }
