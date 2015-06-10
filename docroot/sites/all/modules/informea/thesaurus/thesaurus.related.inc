@@ -117,7 +117,7 @@ class InforMEAThesaurusTermRelatedContent {
                 array(
                   'html' => TRUE,
                   'attributes' => array(
-                    'class' => array('pull-right'),
+                    'class' => array('permalink pull-right'),
                   ),
                 )
               ),
@@ -149,7 +149,7 @@ class InforMEAThesaurusTermRelatedContent {
               array(
                 'html' => TRUE,
                 'attributes' => array(
-                  'class' => array('pull-right'),
+                  'class' => array('permalink pull-right'),
                 ),
               )
             ),
