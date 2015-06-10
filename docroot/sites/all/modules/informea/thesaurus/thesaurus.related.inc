@@ -76,7 +76,7 @@ class InforMEAThesaurusTermRelatedContent {
           }
         break;
         default:
-          drupal_set_message('[thesaurus.related.inc] Related content bundle not handled: ' . $item-> bundle, 'warning');
+          drupal_set_message('[thesaurus.related.inc] Related content bundle not handled: ' . $item->bundle, 'warning');
       }
     }
     return array(

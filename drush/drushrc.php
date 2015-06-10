@@ -304,6 +304,7 @@ $options['init-modules'] = array(
   'r4032login',
 
   'search_api_facetapi',
+  'facetapi_bonus',
   'search_api_solr',
   'search_api_db',
   'search_integration',

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Default simple view template to all the fields as a row.
@@ -25,5 +24,6 @@
  */
 ?>
 <?php
-dpm($row);
+  $content = InforMEASearchResultsGrouping::view($row);
+  print drupal_render($content);
 ?>
