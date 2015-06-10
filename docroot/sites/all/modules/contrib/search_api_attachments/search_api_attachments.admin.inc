@@ -61,6 +61,20 @@ function search_api_attachments_settings_form($form, &$form_state) {
     '#title' => t('Preserve cached extractions across cache clears.'),
     '#description' => t('When checked, clearing the sidewide cache will not clear the cache of extracted files.'),
   );
+
+  $form['search_api_attachments_query'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Query settings'),
+    '#collapsible' => TRUE,
+  );
+  $form['search_api_attachments_query']['search_api_attachments_query_maxAnalyzedChars'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Number of characters to analyze for suitable snippets.'),
+    '#size' => 10,
+    '#maxlength' => 255,
+    '#default_value' => variable_get('search_api_attachments_query_maxAnalyzedChars', 51200),
+    '#description' => t('This parameter makes sense for the original Apache Solr highlighter only. <a href="https://wiki.apache.org/solr/HighlightingParameters#hl.maxAnalyzedChars" target="_blank">Reference</a>'),
+  );
   return system_settings_form($form);
 }
 

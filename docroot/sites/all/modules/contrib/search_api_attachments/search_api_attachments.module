@@ -72,3 +72,12 @@ function search_api_attachments_flush_caches() {
     return array('cache_search_api_attachments');
   }
 }
+
+/**
+ * Implements hook_search_api_solr_query_alter().
+ */
+function search_api_attachments_search_api_solr_query_alter(array &$call_args, SearchApiQueryInterface $query) {
+  if (empty($call_args['params']['hl.maxAnalyzedChars']) && isset($call_args['params']['hl']) && $call_args['params']['hl'] == TRUE) {
+    $call_args['params']['hl.maxAnalyzedChars'] = variable_get('search_api_attachments_query_maxAnalyzedChars', 51200);
+  }
+}
