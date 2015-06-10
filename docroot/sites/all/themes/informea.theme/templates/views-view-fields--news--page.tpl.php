@@ -43,6 +43,9 @@ foreach($fields as $id => $field) {
     case 'field_tags':
       $content['field_tags'] = $field->content;
       break;
+    case 'created':
+      $content['created'] = $field->content;
+      break;
     default:
       $extra[$id] = $field->content;
   }
@@ -57,6 +60,7 @@ foreach($fields as $id => $field) {
   <h4 class="media-heading"><?php print $content['field_url']; ?></h4>
 
   <div class="media-detail">
+    <p><?php print $content['created']; ?></p>
     <span class="tags"><?php print $content['field_tags']; ?></span>
       <span class="extra">
         <?php print implode(", ", $extra); ?>

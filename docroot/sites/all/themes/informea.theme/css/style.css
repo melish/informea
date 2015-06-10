@@ -1395,13 +1395,17 @@ div.accordion ol.paragraphs { list-style-type: none; margin-left: 10px; padding:
 
 /* Events page */
 .media-body>.media-detail {
-  font-size: 80%;
+  font-size: 85%;
   color: #666;
 }
 
 .media-body>.media-detail div {
   display: inline;
   margin-left: 10px;
+}
+
+.media-body>.media-detail div:first-child {
+  margin-left: 0;
 }
 
 .view-events .media-body,
