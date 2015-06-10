@@ -156,7 +156,7 @@ class InforMEASearchResultsGrouping {
           array(
             'html' => TRUE,
             'attributes' => array(
-              'class' => array('pull-right'),
+              'class' => array('permalink pull-right'),
             ),
           )
         ),
@@ -185,7 +185,7 @@ class InforMEASearchResultsGrouping {
               array(
                 'html' => TRUE,
                 'attributes' => array(
-                  'class' => array('pull-right'),
+                  'class' => array('permalink pull-right'),
                 ),
               )
             ),
@@ -236,7 +236,7 @@ class InforMEASearchResultsGrouping {
               array(
                 'html' => TRUE,
                 'attributes' => array(
-                  'class' => array('pull-right'),
+                  'class' => array('permalink pull-right'),
                 ),
               )
             ),
