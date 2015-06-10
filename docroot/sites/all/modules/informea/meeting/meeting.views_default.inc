@@ -283,6 +283,8 @@ function meeting_views_default_views() {
   $handler->display->display_options['fields']['field_location']['table'] = 'field_data_field_location';
   $handler->display->display_options['fields']['field_location']['field'] = 'field_location';
   $handler->display->display_options['fields']['field_location']['label'] = '';
+  $handler->display->display_options['fields']['field_location']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_location']['alter']['text'] = '<i class="glyphicon glyphicon-map-marker"></i> [field_location]';
   $handler->display->display_options['fields']['field_location']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_location']['type'] = 'text_plain';
   /* Field: Content: City */
@@ -293,7 +295,6 @@ function meeting_views_default_views() {
   $handler->display->display_options['fields']['field_city']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_city']['alter']['text'] = '<i class="glyphicon glyphicon-map-marker"></i> [field_city]';
   $handler->display->display_options['fields']['field_city']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_city']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_city']['type'] = 'text_plain';
   /* Field: Content: Country */
   $handler->display->display_options['fields']['field_country']['id'] = 'field_country';
@@ -422,6 +423,7 @@ function meeting_views_default_views() {
     t('Content entity referenced from field_treaty'),
     t('term from field_event_type'),
     t('Date(s)'),
+    t('<i class="glyphicon glyphicon-map-marker"></i> [field_location]'),
     t('<i class="glyphicon glyphicon-map-marker"></i> [field_city]'),
     t('<i class="glyphicon glyphicon-globe"></i> [field_country]'),
     t('<i class="glyphicon glyphicon-tags"></i>&nbsp;&nbsp;[name_field]'),
