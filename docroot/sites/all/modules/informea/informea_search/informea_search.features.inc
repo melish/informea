@@ -79,17 +79,8 @@ function informea_search_default_search_api_index() {
         "field_goal_source" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_goal_type" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_informea_tags" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
-        "field_informea_tags:description" : { "type" : "list\\u003Ctext\\u003E", "boost" : "2.0" },
         "field_informea_tags:name" : { "type" : "list\\u003Ctext\\u003E", "boost" : "2.0" },
         "field_informea_tags:name_field" : { "type" : "list\\u003Ctext\\u003E", "boost" : "2.0" },
-        "field_informea_tags:parent" : {
-          "type" : "list\\u003Clist\\u003Cinteger\\u003E\\u003E",
-          "entity_type" : "taxonomy_term"
-        },
-        "field_informea_tags:parents_all" : {
-          "type" : "list\\u003Clist\\u003Cinteger\\u003E\\u003E",
-          "entity_type" : "taxonomy_term"
-        },
         "field_informea_tags:tid" : { "type" : "list\\u003Cinteger\\u003E" },
         "field_informea_tags:url" : { "type" : "list\\u003Curi\\u003E" },
         "field_informea_tags:vocabulary" : {
