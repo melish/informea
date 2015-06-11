@@ -1423,8 +1423,26 @@ div.accordion ol.paragraphs { list-style-type: none; margin-left: 10px; padding:
 
 .view-news li { margin-bottom: 20px; margin-top: 15px; }
 .view-news .media-body { padding-bottom: 5px; }
-.view-news .tags ul { list-style-type: none; margin: 0; padding: 0; }
-.view-news .tags ul li { display: inline; margin: 0 0 5px 5px; padding: 2px 5px 2px 5px; background-color: gainsboro; }
+
+.view-news .tags ul {
+  list-style-type: none;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.view-news .tags ul li {
+  background-color: #999;
+  border-radius: .25em;
+  color: #fff;
+  display: inline;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  padding: .2em .6em .3em;
+  text-align: center;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
 
 /* Front page */
 .carousel .media-left, .carousel .media-body { border: 0; }
