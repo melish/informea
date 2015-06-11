@@ -1394,7 +1394,7 @@ img.flag-small { max-height: 32px; }
 div.accordion ol.paragraphs { list-style-type: none; margin-left: 10px; padding: 0; }
 
 /* Events page */
-.media-body>.media-detail {
+.view-events .media-detail {
   font-size: 85%;
   color: #666;
 }
