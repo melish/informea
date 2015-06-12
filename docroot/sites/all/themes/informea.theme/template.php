@@ -250,6 +250,10 @@ function informea_theme_slider() {
  */
 function informea_theme_form_views_exposed_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'views_exposed_form') {
+    if (isset($form['submit'])) {
+      $form['submit']['#attributes']['class'][] = 'btn-primary';
+    }
+
     if (isset($form['reset'])) {
       $form['reset']['#attributes']['class'][] = 'btn-link';
     }
