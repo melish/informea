@@ -1416,6 +1416,7 @@ div.accordion ol.paragraphs { list-style-type: none; margin-left: 10px; padding:
   border-radius: 2px;
   border: 1px solid #c6cedb;
   display: block;
+  margin-bottom: 10px;
   padding: 6px;
 }
 
