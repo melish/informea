@@ -1411,6 +1411,14 @@ div.accordion ol.paragraphs { list-style-type: none; margin-left: 10px; padding:
 .view-events .media-body,
 .view-events .media-left { border: 0; border-bottom: 1px dashed #c6cedb; }
 
+.view-events .media-left .field-content,
+.view-news .media-left .field-content {
+  border-radius: 2px;
+  border: 1px solid #c6cedb;
+  display: block;
+  padding: 6px;
+}
+
 .view-events li { margin-bottom: 20px; margin-top: 15px; }
 .view-events .media-body { padding-bottom: 5px; }
 #block-views-exp-events-page .views-submit-button { display: inline-block; }
