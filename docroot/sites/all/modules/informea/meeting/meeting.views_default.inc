@@ -227,7 +227,6 @@ function meeting_views_default_views() {
   $handler->display->display_options['fields']['field_logo']['relationship'] = 'field_treaty_target_id';
   $handler->display->display_options['fields']['field_logo']['label'] = '';
   $handler->display->display_options['fields']['field_logo']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_logo']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_logo']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_logo']['settings'] = array(
     'image_style' => 'logo',
