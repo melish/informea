@@ -1421,9 +1421,6 @@ div.accordion ol.paragraphs { list-style-type: none; margin-left: 10px; padding:
 
 .view-events li { margin-bottom: 20px; margin-top: 15px; }
 .view-events .media-body { padding-bottom: 5px; }
-#block-views-exp-events-page .views-submit-button { display: inline-block; }
-#block-views-exp-events-page .views-reset-button { display: inline-block; }
-#block-views-exp-events-page #edit-event-calendar-date-value-wrapper { float: none; }
 
 /* News page */
 .view-news .media-body,
@@ -1452,20 +1449,34 @@ div.accordion ol.paragraphs { list-style-type: none; margin-left: 10px; padding:
   white-space: nowrap;
 }
 
+#views-exposed-form-events-page .views-exposed-widgets,
 #views-exposed-form-news-page .views-exposed-widgets {
   margin-bottom: 0;
 }
 
+#views-exposed-form-events-page .views-exposed-widget,
 #views-exposed-form-news-page .views-exposed-widget {
   float: none;
   padding-right: 0;
 }
 
+#views-exposed-form-events-page .container-inline-date > .form-item {
+  display: block;
+  margin-right: 0;
+}
+
+#views-exposed-form-events-page .container-inline-date .form-item .form-item,
+#views-exposed-form-events-page #edit-event-calendar-date-value-value {
+  float: none;
+}
+
+#edit-submit-events,
 #edit-submit-news {
   width: 100%;
 }
 
-#edit-reset {
+#views-exposed-form-events-page #edit-reset,
+#views-exposed-form-news-page #edit-reset {
   border: 0;
   margin-top: 0;
   padding: 0;
