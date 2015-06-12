@@ -1452,6 +1452,25 @@ div.accordion ol.paragraphs { list-style-type: none; margin-left: 10px; padding:
   white-space: nowrap;
 }
 
+#views-exposed-form-news-page .views-exposed-widgets {
+  margin-bottom: 0;
+}
+
+#views-exposed-form-news-page .views-exposed-widget {
+  float: none;
+  padding-right: 0;
+}
+
+#edit-submit-news {
+  width: 100%;
+}
+
+#edit-reset {
+  border: 0;
+  margin-top: 0;
+  padding: 0;
+}
+
 /* Front page */
 .carousel .media-left, .carousel .media-body { border: 0; }
 
