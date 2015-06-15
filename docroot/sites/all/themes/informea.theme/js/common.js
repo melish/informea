@@ -8,6 +8,15 @@ jQuery(document).ready(function ($) {
   });
 
   $('.permalink').click(function (event) {
-  	event.stopPropagation();
+    event.stopPropagation();
+  });
+
+  $('[data-toggle="select"]').click(function (event) {
+    var $element = $(this);
+    var target = $element.attr('href');
+
+    event.preventDefault();
+
+    $('option', target).prop('selected', true);
   });
 });
