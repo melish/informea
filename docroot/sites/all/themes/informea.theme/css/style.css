@@ -1511,9 +1511,32 @@ strong.excerpt {
   color: red;
 }
 
+.ui-widget {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+.ui-autocomplete {
+  z-index: 1000;
+}
+
 .ui-autocomplete-category {
-  font-weight: bold;
-  line-height: 1.5;
-  margin: .8em 0 .2em;
+  background: #f3f3f3;
+  color: #999;
+  font-size: small;
+  line-height: 1.4;
+  margin-bottom: 2px;
+  margin-top: 2px;
   padding: .2em .4em;
+}
+
+.ui-menu .ui-menu-item a {
+  line-height: 1.4;
+}
+
+.ui-menu .ui-menu-item a.ui-state-focus {
+  background: #0080d5;
+  border-radius: 0;
+  border: 1px solid #fff;
+  color: #fff;
 }
