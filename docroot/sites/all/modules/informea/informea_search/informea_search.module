@@ -125,3 +125,64 @@ function informea_search_menu() {
 
   return $items;
 }
+
+function informea_search_ajax_get_ajax($term) {
+  $results = array(
+    array (
+      'category' => '',
+      'label' => 'anders',
+      'link' => '#',
+      'value' => 'anders'
+    ),
+    array (
+      'category' => '',
+      'label' => 'andreas',
+      'link' => '#',
+      'value' => 'andreas'
+    ),
+    array (
+      'category' => '',
+      'label' => 'antal',
+      'link' => '#',
+      'value' => 'antal'
+    ),
+    array (
+      'category' => 'Products',
+      'label' => 'annhhx10',
+      'link' => '#',
+      'value' => 'annhhx10'
+    ),
+    array (
+      'category' => 'Products',
+      'label' => 'annkK12',
+      'link' => '#',
+      'value' => 'annkK12'
+    ),
+    array (
+      'category' => 'Products',
+      'label' => 'annttopC13',
+      'link' => '#',
+      'value' => 'annttopC13'
+    ),
+    array (
+      'category' => 'People',
+      'label' => 'andersandersson',
+      'link' => '#',
+      'value' => 'andersandersson'
+    ),
+    array (
+      'category' => 'People',
+      'label' => 'andreasandersson',
+      'link' => '#',
+      'value' => 'andreasandersson'
+    ),
+    array (
+      'category' => 'People',
+      'label' => 'andreasjohnson',
+      'link' => '#',
+      'value' => 'andreasjohnson'
+    )
+  );
+
+  return $results;
+}
