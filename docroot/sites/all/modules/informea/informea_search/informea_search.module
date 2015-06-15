@@ -186,3 +186,11 @@ function informea_search_ajax_get_ajax($term) {
 
   return $results;
 }
+
+function informea_search_ajax_callback($results) {
+  $source = json_encode($results);
+
+  header('Content-Type: application/json');
+
+  print $source;
+}
