@@ -43,6 +43,7 @@ jQuery(document).ready(function ($) {
         }
       });
     },
+    // https://github.com/scottgonzalez/jquery-ui-extensions/blob/master/src/autocomplete/jquery.ui.autocomplete.html.js
     _renderItem: function(ul, item) {
       return $('<li></li>')
         .append($('<a></a>').html(item.label))
