@@ -250,8 +250,17 @@ function informea_theme_slider() {
  */
 function informea_theme_form_views_exposed_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'views_exposed_form') {
+    if (isset($form['search_api_views_fulltext'])) {
+      $form['search_api_views_fulltext']['#attributes']['placeholder'] = t('Type some text here…');
+    }
+
+    if (isset($form['field_mea_topic'])) {
+      $form['field_mea_topic']['#options']['All'] = t('-- All topics --');
+    }
+
     if (isset($form['submit'])) {
       $form['submit']['#attributes']['class'][] = 'btn-primary';
+      $form['submit']['#value'] = t('Filter');
     }
 
     if (isset($form['reset'])) {
