@@ -14,6 +14,9 @@
  *   Nothing.
  */
 function informea_theme_preprocess_page(&$variables) {
+  // Add the autocomplete library.
+  drupal_add_library('system', 'ui.autocomplete');
+
   $search_form = drupal_get_form('search_form');
   menu_secondary_local_tasks();
   if (arg(0) == 'taxonomy') {

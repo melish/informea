@@ -1510,3 +1510,10 @@ body.page-search input.facetapi-checkbox { margin-right: 5px; }
 strong.excerpt {
   color: red;
 }
+
+.ui-autocomplete-category {
+  font-weight: bold;
+  line-height: 1.5;
+  margin: .8em 0 .2em;
+  padding: .2em .4em;
+}
