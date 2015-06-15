@@ -110,3 +110,18 @@ function informea_search_search_api_solr_query_alter(array &$call_args, SearchAp
     $call_args['params']['fq'][$pos] = '{!tag=facet:type}((ss_type:"decision") OR (ss_type:"decision_paragraph"))';
   }
 }
+
+/**
+* Implementation of hook_menu().
+*/
+function informea_search_menu() {
+  $items['ajax/search/%'] = array(
+    'page callback' => 'informea_search_ajax_get_ajax',
+    'page arguments' => array(2),
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access content'),
+    'delivery callback' => 'informea_search_ajax_callback',
+  );
+
+  return $items;
+}
