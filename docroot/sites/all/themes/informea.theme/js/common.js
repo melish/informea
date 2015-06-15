@@ -45,67 +45,17 @@ jQuery(document).ready(function ($) {
     }
   });
 
-  // TODO
-  var data = [
-    {
-      category: '',
-      label: 'anders',
-      link: '#',
-      value: 'anders'
-    },
-    {
-      category: '',
-      label: 'andreas',
-      link: '#',
-      value: 'andreas'
-    },
-    {
-      category: '',
-      label: 'antal',
-      link: '#',
-      value: 'antal'
-    },
-    {
-      category: 'Products',
-      label: 'annhhx10',
-      link: '#',
-      value: 'annhhx10'
-    },
-    {
-      category: 'Products',
-      label: 'annkK12',
-      link: '#',
-      value: 'annkK12'
-    },
-    {
-      category: 'Products',
-      label: 'annttopC13',
-      link: '#',
-      value: 'annttopC13'
-    },
-    {
-      category: 'People',
-      label: 'andersandersson',
-      link: '#',
-      value: 'andersandersson'
-    },
-    {
-      category: 'People',
-      label: 'andreasandersson',
-      link: '#',
-      value: 'andreasandersson'
-    },
-    {
-      category: 'People',
-      label: 'andreasjohnson',
-      link: '#',
-      value: 'andreasjohnson'
-    }
-  ];
-
   $('#edit-keys').catcomplete({
     delay: 0,
-    source: data,
+    source: function (request, response) {
+      var url = Drupal.settings.basePath + 'ajax/search/' + request.term;
+
+      $.get(url, function (data) {
+        console.log(data);
+        response(data);
+      });
+
+    },
     select: function (event, ui) {
       if (ui.item.link) {
         window.location.href = ui.item.link;
