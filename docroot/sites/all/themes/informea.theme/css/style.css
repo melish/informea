@@ -98,19 +98,6 @@ h1 {
   color: #16232e;
 }
 
-.btn-print {
-  text-shadow: none;
-  color: #fff;
-  background-color: #0099D5;
-  background-image: -moz-linear-gradient(top,#0099D5,#267399);
-  background-image: -webkit-gradient(linear,0 0,0 100%,from(#0099D5),to(#267399));
-  background-image: -webkit-linear-gradient(top,#0099D5,#267399);
-  background-image: -o-linear-gradient(top,#0099D5,#267399);
-  background-image: linear-gradient(to bottom,#0099D5,#267399);
-  background-repeat: repeat-x;
-  border-color: #267399;
-}
-
 /* Outline buttons */
 
 .btn-outline {

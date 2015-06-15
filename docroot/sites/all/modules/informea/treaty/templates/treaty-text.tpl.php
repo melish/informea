@@ -13,7 +13,7 @@ $print = sprintf('/treaties/%s/print', $odata_identifier);
 ?>
 <p class="text-right">
   <button class="btn btn-default" data-toggle="group" data-target="#treaty-text">Expand all</button>
-  <a class="btn btn-primary btn-print" href="<?php print url($print); ?>" target="_blank">
+  <a class="btn btn-primary" href="<?php print url($print); ?>" target="_blank">
     <i class="glyphicon glyphicon-print"></i>
     Print treaty text
   </a>
