@@ -262,6 +262,8 @@ function informea_theme_form_views_exposed_form_alter(&$form, &$form_state, $for
     // Events
     if ($form['#id'] == 'views-exposed-form-events-page') {
       $form['#prefix'] = '<h3 class="lead">' . t('Meeting finder') . '</h3>';
+      $form['field_treaty_target_id']['#suffix'] = '<p class="help-block text-right">' . l(t('Select all'), NULL, array('attributes' => array('data-toggle' => 'select'), 'fragment' => 'edit-field-treaty-target-id')) . '</p>';
+      $form['field_event_type_tid']['#suffix'] = '<p class="help-block text-right">' . l(t('Select all'), NULL, array('attributes' => array('data-toggle' => 'select'), 'fragment' => 'edit-field-treaty-target-id')) . '</p>';
     }
 
     // News
