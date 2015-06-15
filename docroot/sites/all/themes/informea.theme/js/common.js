@@ -48,10 +48,9 @@ jQuery(document).ready(function ($) {
   $('#edit-keys').catcomplete({
     delay: 0,
     source: function (request, response) {
-      var url = Drupal.settings.basePath + 'ajax/search/' + request.term;
+      var url = Drupal.settings.basePath + 'ajax/search/' + encodeURIComponent(request.term);
 
       $.get(url, function (data) {
-        console.log(data);
         response(data);
       });
 
