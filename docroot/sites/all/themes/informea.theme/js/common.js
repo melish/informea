@@ -42,6 +42,11 @@ jQuery(document).ready(function ($) {
           li.attr('aria-label', item.category + ' : ' + item.label);
         }
       });
+    },
+    _renderItem: function(ul, item) {
+      return $('<li></li>')
+        .append($('<a></a>').html(item.label))
+        .appendTo(ul);
     }
   });
 
