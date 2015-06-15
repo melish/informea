@@ -110,7 +110,7 @@ function informea_views_default_views() {
   $handler->display->display_options['filters']['search_api_views_fulltext']['group'] = 1;
   $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
-  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Search';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Search in news';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
@@ -128,7 +128,7 @@ function informea_views_default_views() {
   $handler->display->display_options['filters']['field_mea_topic']['group'] = 1;
   $handler->display->display_options['filters']['field_mea_topic']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_mea_topic']['expose']['operator_id'] = 'field_mea_topic_op';
-  $handler->display->display_options['filters']['field_mea_topic']['expose']['label'] = 'Topic';
+  $handler->display->display_options['filters']['field_mea_topic']['expose']['label'] = 'Show';
   $handler->display->display_options['filters']['field_mea_topic']['expose']['operator'] = 'field_mea_topic_op';
   $handler->display->display_options['filters']['field_mea_topic']['expose']['identifier'] = 'field_mea_topic';
   $handler->display->display_options['filters']['field_mea_topic']['expose']['remember_roles'] = array(
@@ -171,8 +171,8 @@ function informea_views_default_views() {
     t('.'),
     t(','),
     t('Tags'),
-    t('Search'),
-    t('Topic'),
+    t('Search in news'),
+    t('Show'),
     t('Page'),
   );
   $export['news'] = $view;

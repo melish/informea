@@ -347,7 +347,7 @@ function meeting_views_default_views() {
   $handler->display->display_options['filters']['field_event_type_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_event_type_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_event_type_tid']['expose']['operator_id'] = 'field_event_type_tid_op';
-  $handler->display->display_options['filters']['field_event_type_tid']['expose']['label'] = 'Type';
+  $handler->display->display_options['filters']['field_event_type_tid']['expose']['label'] = 'Meeting type';
   $handler->display->display_options['filters']['field_event_type_tid']['expose']['operator'] = 'field_event_type_tid_op';
   $handler->display->display_options['filters']['field_event_type_tid']['expose']['identifier'] = 'field_event_type_tid';
   $handler->display->display_options['filters']['field_event_type_tid']['expose']['multiple'] = TRUE;
@@ -427,7 +427,7 @@ function meeting_views_default_views() {
     t('<i class="glyphicon glyphicon-globe"></i> [field_country]'),
     t('<i class="glyphicon glyphicon-tags"></i>&nbsp;&nbsp;[name_field]'),
     t('Convention'),
-    t('Type'),
+    t('Meeting type'),
     t('Type (field_event_type)'),
     t('Year'),
     t('Page'),
