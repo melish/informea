@@ -47,19 +47,69 @@ jQuery(document).ready(function ($) {
 
   // TODO
   var data = [
-    { category: '', label: 'anders', value: 'anders' },
-    { category: '' , label: 'andreas', value: 'andreas' },
-    { category: '' , label: 'antal', value: 'antal'},
-    { category: 'Products' , label: 'annhhx10', value: 'annhhx10' },
-    { category: 'Products' , label: 'annk K12', value: 'annk K12' },
-    { category: 'Products' , label: 'annttop C13', value: 'annttop C13' },
-    { category: 'People' , label: 'anders andersson', value: 'anders andersson' },
-    { category: 'People' , label: 'andreas andersson', value: 'andreas andersson' },
-    { category: 'People', label: 'andreas johnson', value: 'andreas johnson' }
+    {
+      category: '',
+      label: 'anders',
+      link: '#',
+      value: 'anders'
+    },
+    {
+      category: '',
+      label: 'andreas',
+      link: '#',
+      value: 'andreas'
+    },
+    {
+      category: '',
+      label: 'antal',
+      link: '#',
+      value: 'antal'
+    },
+    {
+      category: 'Products',
+      label: 'annhhx10',
+      link: '#',
+      value: 'annhhx10'
+    },
+    {
+      category: 'Products',
+      label: 'annkK12',
+      link: '#',
+      value: 'annkK12'
+    },
+    {
+      category: 'Products',
+      label: 'annttopC13',
+      link: '#',
+      value: 'annttopC13'
+    },
+    {
+      category: 'People',
+      label: 'andersandersson',
+      link: '#',
+      value: 'andersandersson'
+    },
+    {
+      category: 'People',
+      label: 'andreasandersson',
+      link: '#',
+      value: 'andreasandersson'
+    },
+    {
+      category: 'People',
+      label: 'andreasjohnson',
+      link: '#',
+      value: 'andreasjohnson'
+    }
   ];
 
   $('#edit-keys').catcomplete({
     delay: 0,
-    source: data
+    source: data,
+    select: function (event, ui) {
+      if (ui.item.link) {
+        window.location.href = ui.item.link;
+      }
+    }
   });
 });
