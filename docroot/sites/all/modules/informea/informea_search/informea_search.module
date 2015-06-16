@@ -126,8 +126,38 @@ function informea_search_menu() {
   return $items;
 }
 
+function informea_search_ajax_get_ajax_treaties($term, &$data) {
+  $query = new EntityFieldQuery();
+
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'treaty')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->fieldCondition('title_field', 'value', '%' . $term . '%', 'like')
+    ->range(0, 5);
+
+  $result = $query->execute();
+
+  if (isset($result['node'])) {
+    $nids = array_keys($result['node']);
+    $nodes = entity_load('node', $nids);
+
+    foreach ($nodes as $node) {
+      $wrapper = entity_metadata_wrapper('node', $node);
+
+      $img = treaty_url_logo($node);
+
+      $data[] = array(
+        'category' => t('Treaties'),
+        'label' => $img . ' ' . $wrapper->label(),
+        'link' => url('node/' . $wrapper->getIdentifier()),
+        'value' => $wrapper->label()
+      );
+    }
+  }
+}
+
 function informea_search_ajax_get_ajax($term) {
-  $results = array(
+  $data = array(
     array(
       'category' => '',
       'label' => t('Search for: <strong>@term</strong>', array('@term' => $term)),
@@ -136,11 +166,13 @@ function informea_search_ajax_get_ajax($term) {
     )
   );
 
-  return $results;
+  informea_search_ajax_get_ajax_treaties($term, $data);
+
+  return $data;
 }
 
-function informea_search_ajax_callback($results) {
-  $source = json_encode($results);
+function informea_search_ajax_callback($data) {
+  $source = json_encode($data);
 
   header('Content-Type: application/json');
 
