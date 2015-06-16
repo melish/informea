@@ -109,6 +109,16 @@ class MigrateActionPlans extends Migration {
     }
     $row->id_country = wp_migration_get_country_id($this->countries[$row->id_country]);
     $row->id_treaty = $this->treaties[$row->id_treaty];
+
+    // Check for files in ai_document
+    $urls = Database::getConnection('default', 'for_migration')
+      ->select('ai_document')->fields(NULL, array('url'))
+      ->condition('id_country_plan', $row->id)
+      ->execute()->fetchCol();
+    if (!empty($urls)) {
+      $row->document_url = $urls;
+    }
+
     return TRUE;
   }
 }
