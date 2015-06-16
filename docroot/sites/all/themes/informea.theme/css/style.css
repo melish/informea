@@ -1517,6 +1517,7 @@ strong.excerpt {
 }
 
 .ui-autocomplete {
+  max-width: 250px;
   z-index: 1000;
 }
 
@@ -1532,6 +1533,13 @@ strong.excerpt {
 
 .ui-menu .ui-menu-item a {
   line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ui-menu .ui-menu-item a > img {
+  max-width: 32px;
 }
 
 .ui-menu .ui-menu-item a.ui-state-focus {
