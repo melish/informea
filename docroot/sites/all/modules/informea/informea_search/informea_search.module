@@ -187,6 +187,33 @@ function informea_search_ajax_get_ajax_countries($term, &$data) {
   }
 }
 
+function informea_search_ajax_get_ajax_terms($term, &$data) {
+  $query = new EntityFieldQuery();
+
+  $query->entityCondition('entity_type', 'taxonomy_term')
+    ->entityCondition('bundle', 'thesaurus_informea')
+    ->fieldCondition('name_field', 'value', '%' . $term . '%', 'like')
+    ->range(0, 5);
+
+  $result = $query->execute();
+
+  if (isset($result['taxonomy_term'])) {
+    $tids = array_keys($result['taxonomy_term']);
+    $terms = entity_load('taxonomy_term', $tids);
+
+    foreach ($terms as $term) {
+      $wrapper = entity_metadata_wrapper('taxonomy_term', $term);
+
+      $data[] = array(
+        'category' => t('Terms'),
+        'label' => $wrapper->label(),
+        'link' => url('terms/' . $wrapper->getIdentifier()),
+        'value' => $wrapper->label()
+      );
+    }
+  }
+}
+
 function informea_search_ajax_get_ajax($term) {
   $data = array(
     array(
@@ -199,6 +226,7 @@ function informea_search_ajax_get_ajax($term) {
 
   informea_search_ajax_get_ajax_treaties($term, $data);
   informea_search_ajax_get_ajax_countries($term, $data);
+  informea_search_ajax_get_ajax_terms($term, $data);
 
   return $data;
 }
