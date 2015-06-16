@@ -156,6 +156,37 @@ function informea_search_ajax_get_ajax_treaties($term, &$data) {
   }
 }
 
+function informea_search_ajax_get_ajax_countries($term, &$data) {
+  $query = new EntityFieldQuery();
+
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'country')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->fieldCondition('title_field', 'value', '%' . $term . '%', 'like')
+    ->range(0, 5);
+
+  $result = $query->execute();
+
+  if (isset($result['node'])) {
+    $nids = array_keys($result['node']);
+    $nodes = entity_load('node', $nids);
+
+    foreach ($nodes as $node) {
+      $wrapper = entity_metadata_wrapper('node', $node);
+
+      $iso2 = strtolower($wrapper->field_country_iso2->value());
+      $img = theme('image', array('path' => drupal_get_path('theme', 'informea_theme') . '/img/flags/flag-' . $iso2 . '.png'));
+
+      $data[] = array(
+        'category' => t('Countries'),
+        'label' => $img . ' ' . $wrapper->label(),
+        'link' => url('countries/' . $iso2),
+        'value' => $wrapper->label()
+      );
+    }
+  }
+}
+
 function informea_search_ajax_get_ajax($term) {
   $data = array(
     array(
@@ -167,6 +198,7 @@ function informea_search_ajax_get_ajax($term) {
   );
 
   informea_search_ajax_get_ajax_treaties($term, $data);
+  informea_search_ajax_get_ajax_countries($term, $data);
 
   return $data;
 }
