@@ -31,12 +31,22 @@ function country_data_treaty_get_membership($id_treaty) {
 function country_data_treaty_count_membership($id_treaty) {
   return EdwCacheDomain::cache_get_array('country_data', __FUNCTION__, function($id_treaty) {
     $query = new EntityFieldQuery();
-    return $query->entityCondition('entity_type', 'node')
+    $count = 0;
+    $rows = $query->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', 'member_party')
       ->fieldCondition('field_treaty', 'target_id', $id_treaty)
       ->propertyOrderBy('title')
-      ->count()
       ->execute();
+
+    $allowed = array('ratification', 'acceptance', 'accession', 'approval');
+    foreach($rows['node'] as $row) {
+      $w = entity_metadata_wrapper('node', $row->nid);
+      $status = $w->field_party_status->value();
+      if (in_array(strtolower($status->name_original), $allowed)) {
+        $count++;
+      }
+    }
+    return $count;
   }, $id_treaty);
 }
 
