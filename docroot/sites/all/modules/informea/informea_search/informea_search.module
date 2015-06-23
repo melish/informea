@@ -33,81 +33,21 @@ function informea_search_form_search_form_submit($form, $form_state) {
 
 
 function informea_search_facet_items_alter(&$build, &$settings) {
-  return;
-  $t_active = isset($build['all_treaty']['#active']) && $build['all_treaty']['#active'] == 1;
-  if ($settings->facet == 'type') {
-    $build['all_treaty'] = array(
-        '#markup' => 'Treaty',
-        '#path' => 'search/alien',
-        '#html' => FALSE,
-        '#indexed_value' => 'all_treaty',
-        '#count' => '1',
-        '#active' => $t_active,
-        '#item_parents' => array(),
-        '#item_children' => array(),
-        '#query' => array('f' => array())
-    );
-
-
-    $d_active = isset($build['all_decision']['#active']) && $build['all_decision']['#active'] == 1;
-    $build['all_decision'] = array(
-        '#markup' => 'Decisions / Resolutions',
-        '#path' => 'search/alien',
-        '#html' => FALSE,
-        '#indexed_value' => 'decision',
-        '#count' => '1',
-        '#active' => $d_active,
-        '#item_parents' => array(),
-        '#item_children' => array(),
-        '#query' => array('f' => array())
-    );
-
-    if($t_active) {
-      if ($d_active) {
-        $build['all_treaty']['#query']['f'] = array(99 => 'type:all_decision');
-        $build['all_decision']['#query']['f'] = array(98 => 'type:all_treaty');
-      }
-      else {
-        $build['all_treaty']['#query']['f'] = array();
-        $build['all_decision']['#query']['f'] = array(
-          98 => 'type:all_treaty',
-          99 => 'type:all_decision'
-        );
-      }
-    }
-    else {
-      if ($d_active) {
-        $build['all_treaty']['#query']['f'] = array(
-          98 => 'type:all_treaty',
-          99 => 'type:all_decision'
-        );
-        $build['all_decision']['#query']['f'] = array();
-      }
-      else {
-        $build['all_treaty']['#query']['f'] = array(98 => 'type:all_treaty');
-        $build['all_decision']['#query']['f'] = array(99 => 'type:all_decision');
-      }
-    }
-
-    unset($build['treaty_paragraph']);
-    unset($build['decision_paragraph']);
-    unset($build['event_calendar']);
-    unset($build['treaty_article']);
-    unset($build['action_plan']);
-    unset($build['national_report']);
-    unset($build['decision']);
-    unset($build['treaty']);
-  }
+  unset($build['treaty_paragraph']);
+  unset($build['treaty_article']);
+  unset($build['treaty']);
+  unset($build['decision_paragraph']);
+  // unset($build['event_calendar']);
 }
 
 function informea_search_search_api_solr_query_alter(array &$call_args, SearchApiQueryInterface $query) {
-  $pos = array_search('{!tag=facet:type}ss_type:"all_treaty"', $call_args['params']['fq']);
-  if ($pos !== FALSE) {
-    $call_args['params']['fq'][$pos] = '{!tag=facet:type}((ss_type:"treaty_article") OR (ss_type:"treaty_paragraph"))';
-  }
-  $pos = array_search('{!tag=facet:type}ss_type:"all_decision"', $call_args['params']['fq']);
-  if ($pos !== FALSE) {
-    $call_args['params']['fq'][$pos] = '{!tag=facet:type}((ss_type:"decision") OR (ss_type:"decision_paragraph"))';
+  foreach($call_args['params']['fq'] as $k => &$fq) {
+    if ($fq == '{!tag=facet:type}ss_type:"decision"') {
+      $fq = '{!tag=facet:type}ss_type:("decision" OR "decision_paragraph")';
+    }
+    if ($fq == '{!tag=facet:type}ss_type:"treaty"') {
+      $fq = '{!tag=facet:type}ss_type:("treaty" OR "treaty_article" OR "treaty_paragraph")';
+    }
   }
 }
 

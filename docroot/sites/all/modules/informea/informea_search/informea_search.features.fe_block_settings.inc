@@ -25,7 +25,7 @@ function informea_search_default_fe_block_settings() {
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -13,
+        'weight' => -14,
       ),
       'seven' => array(
         'region' => '',
@@ -77,7 +77,7 @@ function informea_search_default_fe_block_settings() {
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -12,
+        'weight' => -13,
       ),
       'seven' => array(
         'region' => '',
@@ -103,7 +103,7 @@ function informea_search_default_fe_block_settings() {
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -14,
+        'weight' => -15,
       ),
       'seven' => array(
         'region' => '',
