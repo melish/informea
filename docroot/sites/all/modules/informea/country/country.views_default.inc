@@ -554,6 +554,7 @@ function country_views_default_views() {
     ),
   );
   $handler->display->display_options['style_options']['uses_fields'] = TRUE;
+  $handler->display->display_options['style_options']['type'] = 'ol';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -569,6 +570,8 @@ function country_views_default_views() {
   $handler->display->display_options['fields']['field_treaty']['field'] = 'field_treaty';
   $handler->display->display_options['fields']['field_treaty']['label'] = '';
   $handler->display->display_options['fields']['field_treaty']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_treaty']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_treaty']['alter']['text'] = 'List of [field_treaty] sites';
   $handler->display->display_options['fields']['field_treaty']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_treaty']['settings'] = array(
     'link' => 0,
@@ -631,7 +634,8 @@ function country_views_default_views() {
   $handler->display->display_options['filters']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
   $handler->display->display_options['filters']['field_treaty_target_id']['field'] = 'field_treaty_target_id';
   $handler->display->display_options['filters']['field_treaty_target_id']['value'] = array(
-    'value' => '269',
+    272 => '272',
+    269 => '269',
   );
 
   /* Display: WHC sites */
@@ -651,6 +655,7 @@ function country_views_default_views() {
     ),
   );
   $handler->display->display_options['style_options']['uses_fields'] = TRUE;
+  $handler->display->display_options['style_options']['type'] = 'ol';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -666,6 +671,8 @@ function country_views_default_views() {
   $handler->display->display_options['fields']['field_treaty']['field'] = 'field_treaty';
   $handler->display->display_options['fields']['field_treaty']['label'] = '';
   $handler->display->display_options['fields']['field_treaty']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_treaty']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_treaty']['alter']['text'] = 'List of [field_treaty] sites';
   $handler->display->display_options['fields']['field_treaty']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_treaty']['settings'] = array(
     'link' => 0,
@@ -726,7 +733,8 @@ function country_views_default_views() {
   $handler->display->display_options['filters']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
   $handler->display->display_options['filters']['field_treaty_target_id']['field'] = 'field_treaty_target_id';
   $handler->display->display_options['filters']['field_treaty_target_id']['value'] = array(
-    'value' => '267',
+    267 => '267',
+    270 => '270',
   );
 
   /* Display: Embed action plans */
@@ -863,6 +871,7 @@ function country_views_default_views() {
     t('<a href="[field_document_url-url]">View</a>'),
     t('Ramsar sites'),
     t('Sites'),
+    t('List of [field_treaty] sites'),
     t('[title]'),
     t('<a href="[field_url]">[title]</a>'),
     t('WHC sites'),
