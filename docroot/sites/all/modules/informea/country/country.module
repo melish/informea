@@ -386,10 +386,10 @@ function country_get_stats() {
       $view_ramsar = country_get_view_country_related_content($country->nid, 'ramsar_sites');
       $view_whc = country_get_view_country_related_content($country->nid, 'whc_sites');
       $data = array(
-        t('!count UNESCO and WHC sites,<br />', array('!count' => $view_ramsar->total_rows + $view_whc->total_rows)),
+        t('!count UNESCO and WHC sites', array('!count' => $view_ramsar->total_rows + $view_whc->total_rows)),
         t('Party to !count treaties', array('!count' => count(country_data_country_get_parties($country->nid)))),
       );
-      $data = implode(', ', $data);
+      $data = implode('<br>', $data);
       cache_set('country_stats_' . $country->nid, $data, 'cache', time() + 60 * 60 * 24);
     }
     $stats[$country->field_country_iso2['und'][0]['value']] = sprintf('<strong>%s</strong><br>%s', $country->title, $data);
