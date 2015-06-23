@@ -127,18 +127,20 @@ function informea_search_menu() {
 }
 
 function informea_search_ajax_get_ajax_treaties($term, &$data) {
-  $query = new EntityFieldQuery();
+  $condition = db_or()
+    ->condition('n.title', '%' . $term . '%', 'like');
 
-  $query->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'treaty')
-    ->propertyCondition('status', NODE_PUBLISHED)
-    ->fieldCondition('title_field', 'value', '%' . $term . '%', 'like')
+  $query = db_select('node', 'n')
+    ->condition('n.type', 'treaty')
+    ->condition('n.status', NODE_PUBLISHED)
+    ->fields('n', array('nid'))
+    ->condition($condition)
     ->range(0, 5);
 
-  $result = $query->execute();
+  $result = $query->execute()->fetchAllKeyed();
 
-  if (isset($result['node'])) {
-    $nids = array_keys($result['node']);
+  if (!empty($result)) {
+    $nids = array_keys($result);
     $nodes = entity_load('node', $nids);
 
     foreach ($nodes as $node) {
