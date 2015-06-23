@@ -347,7 +347,7 @@ function country_country_contextual_menu_alter(&$contextual_menu, $node) {
     }
     $contextual_menu['#items'][] = array(
       'data' => l(
-        'View on UNEPLive' . '<span class="glyphicon glyphicon-new-window pull-right" style="color: #999"></span>',
+        'View on UNEPLive' . '<span class="glyphicon glyphicon-new-window pull-right"></span>',
         sprintf('http://uneplive.org/country/index/%s', $iso2l),
         array(
           'attributes' => array(

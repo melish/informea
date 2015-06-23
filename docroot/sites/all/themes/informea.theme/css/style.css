@@ -291,6 +291,10 @@ h1 {
   padding: 6px 12px;
 }
 
+.nav-pills.nav-stacked > li > a > .glyphicon {
+  color: #999;
+}
+
 .nav-pills.nav-stacked > li > a:hover,
 .nav-pills.nav-stacked > li > a:focus,
 .nav-pills.nav-stacked > li.active > a:hover,
@@ -305,6 +309,13 @@ h1 {
 .nav-pills.nav-stacked > li.active > a:focus > .badge {
   background-color: #fff;
   color: #0099d5;
+}
+
+.nav-pills.nav-stacked > li > a:hover > .glyphicon,
+.nav-pills.nav-stacked > li > a:focus > .glyphicon,
+.nav-pills.nav-stacked > li.active > a:hover > .glyphicon,
+.nav-pills.nav-stacked > li.active > a:focus > .glyphicon {
+  color: #fff;
 }
 
 .nav-pills.nav-stacked > li.active > a {
