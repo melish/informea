@@ -249,7 +249,6 @@ function ws_consumer_un_database_get_country($country_name) {
   // Some hardcodings for their broken country names
   $fixed_country_name = htmlspecialchars_decode($country_name, ENT_QUOTES);
   $mappings = array(
-    'Cabo Verde' => 'Cape Verde',
     'Gambia' => 'The Gambia',
     'Iran (Islamic Republic of)' => 'Iran',
     'Lao People\'s Democratic Republic' => 'Laos',
