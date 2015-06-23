@@ -128,13 +128,19 @@ function informea_search_menu() {
 
 function informea_search_ajax_get_ajax_treaties($term, &$data) {
   $condition = db_or()
-    ->condition('n.title', '%' . $term . '%', 'like');
+    ->condition('n.title', '%' . $term . '%', 'like')
+    ->condition('fa.field_title_abbreviation_value', '%' . $term . '%', 'like')
+    ->condition('fn.field_official_name_value', '%' . $term . '%', 'like');
 
   $query = db_select('node', 'n')
     ->condition('n.type', 'treaty')
     ->condition('n.status', NODE_PUBLISHED)
-    ->fields('n', array('nid'))
-    ->condition($condition)
+    ->fields('n', array('nid'));
+
+  $query->leftJoin('field_data_field_title_abbreviation', 'fa', 'fa.entity_id = n.nid');
+  $query->leftJoin('field_data_field_official_name', 'fn', 'fn.entity_id = n.nid');
+
+  $query->condition($condition)
     ->range(0, 5);
 
   $result = $query->execute()->fetchAllKeyed();
