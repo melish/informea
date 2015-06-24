@@ -281,6 +281,7 @@ $options['init-modules'] = array(
   'event_calendar',
   'advanced_help',
   'edw_extras',
+  'redirect',
 
   'search_api',
   'facetapi',
