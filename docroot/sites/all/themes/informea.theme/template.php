@@ -54,6 +54,11 @@ function informea_theme_preprocess_page(&$variables) {
   }
 
   $search_form['basic']['keys']['#attributes']['placeholder'] = t('Explore InforMEA');
+
+  if (arg(0) == 'search') {
+    $search_form['basic']['keys']['#attributes']['value'] = arg(1);
+  }
+
   $variables['search_box'] = drupal_render($search_form);
 
   if ($variables['is_front']) {
