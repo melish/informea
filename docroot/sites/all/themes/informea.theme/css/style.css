@@ -1329,6 +1329,9 @@ body.node-type-treaty div.paragraph:hover a.permalink,
 body.node-type-treaty div.paragraph:hover a.administrative { display: inline; }
 body.node-type-treaty div.paragraph:hover { background-color: #f0f0f0; }
 
+/* Disclaimer block from the Minamata convention page */
+body.page-node-303 h2.block-title { font-size: 18px; font-weight: bold;}
+
 .smallipop-instance a{ color: white; text-transform: none; text-shadow: none; }
 
 .media-list .media-list > .media {
