@@ -64,5 +64,33 @@ function informea_default_fe_block_settings() {
     'visibility' => 1,
   );
 
+  $export['views-mea_contextual_events-block'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'mea_contextual_events-block',
+    'module' => 'views',
+    'node_types' => array(
+      0 => 'treaty',
+    ),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'informea_theme' => array(
+        'region' => 'sidebar_first',
+        'status' => 1,
+        'theme' => 'informea_theme',
+        'weight' => -18,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
   return $export;
 }
