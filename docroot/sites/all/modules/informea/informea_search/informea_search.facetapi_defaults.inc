@@ -177,10 +177,10 @@ function informea_search_facetapi_default_facet_settings() {
       ),
     ),
     'active_sorts' => array(
-      'natural' => 'natural',
+      'display' => 'display',
       'active' => 0,
       'count' => 0,
-      'display' => 0,
+      'natural' => 0,
       'indexed' => 0,
     ),
     'sort_weight' => array(

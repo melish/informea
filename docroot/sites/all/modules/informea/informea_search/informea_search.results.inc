@@ -5,16 +5,12 @@ class InforMEASearchResultsGrouping {
   public function getResults($rows) {
     $results = array();
     foreach ($rows as $row) {
-      if (empty($row->_entity_properties['type'])) {
-        drupal_set_message('Unknown entity', 'warning');
-        continue;
-      }
-      $nid = $row->entity;
-      $bundle = $row->_entity_properties['type'];
+      $nid = $row->_entity_properties['search_api_id'];
+      //@todo: we could use field_attach_load to avoid loading entire nodes
       $node = node_load($nid);
+      $bundle = $node->type;
       $node->original_result = $row;
       $wrapper = entity_metadata_wrapper('node', $node);
-
       $node->relevance = 0;
       $node->excerpt = NULL;
       if (!empty($row->_entity_properties['search_api_excerpt'])) {
