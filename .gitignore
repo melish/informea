@@ -1,5 +1,19 @@
 # Sensitive information #
 #########################
+
+docroot/CHANGELOG.txt
+docroot/COPYRIGHT.txt
+docroot/INSTALL.mysql.txt
+docroot/INSTALL.pgsql.txt
+docroot/INSTALL.sqlite.txt
+docroot/INSTALL.txt
+docroot/LICENSE.txt
+docroot/MAINTAINERS.txt
+docroot/README.txt
+docroot/UPGRADE.txt
+docroot/web.config
+
+
 # Ignore configuration files that may contain sensitive information.
 docroot/sites/*/settings*.php
 .idea
