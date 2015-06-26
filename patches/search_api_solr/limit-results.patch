@@ -1,0 +1,13 @@
+diff --git a/docroot/sites/all/modules/contrib/search_api_solr/includes/service.inc b/docroot/sites/all/modules/contrib/search_api_solr/includes/service.inc
+index a54ffa4..a724dd5 100644
+--- a/docroot/sites/all/modules/contrib/search_api_solr/includes/service.inc
++++ b/docroot/sites/all/modules/contrib/search_api_solr/includes/service.inc
+@@ -1087,7 +1087,7 @@ class SearchApiSolrService extends SearchApiAbstractService {
+     if (isset($options['offset'])) {
+       $params['start'] = $options['offset'];
+     }
+-    $params['rows'] = isset($options['limit']) ? $options['limit'] : 1000000;
++    $params['rows'] = isset($options['limit']) ? $options['limit'] : 1000;
+     if ($sort) {
+       $params['sort'] = implode(', ', $sort);
+     }
