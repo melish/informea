@@ -98,7 +98,9 @@
             <li class="col-sm-3">
               <ul>
                 <li><?php print l(t('Aarhus Convention'), 'treaties/aarhus'); ?></li>
+                  <ul>
                 <li><?php print l(t('Kiev Protocol'), 'treaties/pollutantrelease'); ?></li>
+                </ul>
                 <li><?php print l(t('Abidjan Convention'), 'treaties/abidjan'); ?></li>
                 <li><?php print l(t('Antigua Convention'), 'treaties/antigua'); ?></li>
                 <li><?php print l(t('Apia Convention'), 'treaties/apia'); ?></li>
