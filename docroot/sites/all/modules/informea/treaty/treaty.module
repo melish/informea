@@ -571,7 +571,7 @@ function treaty_view() {
   uasort($regions, function($a, $b) { return strcasecmp($a->name, $b->name); });
   $ret = theme('treaties', array(
     'regions' => $regions,
-    'treaties' => _treaty_get_treaties()
+    'treaties' => $treaties
   ));
   return $ret;
 }

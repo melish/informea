@@ -51,17 +51,15 @@ function country_data_treaty_count_membership($id_treaty) {
 }
 
 function country_data_get_treaty_focal_points($id_country, $id_treaty) {
-  $query = new EntityFieldQuery();
-  $result = $query->entityCondition('entity_type', 'node')
-                  ->entityCondition('bundle', 'contact_person')
-                  ->fieldCondition('field_treaty', 'target_id', $id_treaty)
-                  ->fieldCondition('field_country', 'target_id', $id_country)
-                  ->propertyOrderBy('title')
-                  ->execute();
-  if (isset($result['node'])) {
-    return entity_load('node', array_keys($result['node']));
-  }
-  return array();
+  $q = db_select('node', 'a')->fields('a', array('nid'));
+  $q->innerJoin('field_data_field_treaty', 'b', 'a.nid = b.entity_id AND a.vid = b.revision_id');
+  $q->innerJoin('field_data_field_country', 'c', 'a.nid = c.entity_id AND a.vid = c.revision_id');
+  $q->condition('a.type', 'contact_person');
+  $q->condition('b.field_treaty_target_id', $id_treaty);
+  $q->condition('c.field_country_target_id', $id_country);
+  $q->orderBy('a.title');
+  $rows = $q->execute()->fetchCol();
+  return node_load_multiple($rows);
 }
 
 
