@@ -473,6 +473,9 @@ function treaty_strongarm() {
       'ajax' => array(
         'custom_settings' => TRUE,
       ),
+      'treaty_listing' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -481,6 +484,9 @@ function treaty_strongarm() {
         ),
         'language' => array(
           'weight' => '3',
+        ),
+        'redirect' => array(
+          'weight' => '27',
         ),
       ),
       'display' => array(),

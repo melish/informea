@@ -2997,7 +2997,7 @@ function treaty_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 23,
+      'weight' => 24,
     ),
   );
 
@@ -3058,7 +3058,7 @@ function treaty_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 24,
+      'weight' => 25,
     ),
   );
 
@@ -3386,6 +3386,76 @@ function treaty_field_default_field_instances() {
       ),
       'type' => 'taxonomy_autocomplete',
       'weight' => 17,
+    ),
+  );
+
+  // Exported field_instance: 'node-treaty-field_un_treaty_database_link'
+  $field_instances['node-treaty-field_un_treaty_database_link'] = array(
+    'bundle' => 'treaty',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_default',
+        'weight' => 51,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_un_treaty_database_link',
+    'label' => 'UN Treaty database link',
+    'required' => 0,
+    'settings' => array(
+      'absolute_url' => 1,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 0,
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => '_blank',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 0,
+      'entity_translation_sync' => FALSE,
+      'rel_remove' => 'default',
+      'title' => 'value',
+      'title_label_use_field_label' => 0,
+      'title_maxlength' => 128,
+      'title_value' => 'UN treaty database',
+      'url' => 0,
+      'user_register_form' => FALSE,
+      'validate_url' => 1,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 23,
     ),
   );
 
@@ -4670,6 +4740,7 @@ function treaty_field_default_field_instances() {
   t('Treaty website URL');
   t('Type of text');
   t('UN Region');
+  t('UN Treaty database link');
   t('URL');
   t('Year');
 
