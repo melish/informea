@@ -1465,6 +1465,10 @@ div.accordion ol.paragraphs { list-style-type: none; margin-left: 10px; padding:
   margin-top: 0;
 }
 
+#block-views-mea-contextual-events-block > h2{
+font-size: 20px;
+}
+
 #views-exposed-form-events-page .views-exposed-widgets,
 #views-exposed-form-news-page .views-exposed-widgets {
   margin-bottom: 0;
