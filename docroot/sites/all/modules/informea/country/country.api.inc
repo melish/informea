@@ -367,4 +367,9 @@ function country_get_court_decision_count($id_country) {
     ->countQuery()->execute()->fetchField();
 }
 
-
+function country_get_site_count($id_country) {
+  return db_select('field_data_field_country')
+    ->condition('bundle', 'geographical_site')
+    ->condition('field_country_target_id', $id_country)
+    ->countQuery()->execute()->fetchField();
+}

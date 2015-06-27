@@ -380,26 +380,44 @@ function country_get_stats() {
   $countries = country_get_countries();
   $stats = array();
   foreach ($countries as $country) {
-    if ($cache = cache_get('country_stats_' . $country->nid)) {
+    $iso = $country->field_country_iso2['und'][0]['value'];
+    if ($cache = cache_get('country_stats_count_' . $country->nid)) {
       $data = $cache->data;
     } else {
-      $view_ramsar = country_get_view_country_related_content($country->nid, 'ramsar_sites');
-      $view_whc = country_get_view_country_related_content($country->nid, 'whc_sites');
       $data = array(
-        t('!count UNESCO and WHC sites', array('!count' => $view_ramsar->total_rows + $view_whc->total_rows)),
-        t('Party to !count treaties', array('!count' => count(country_data_country_get_parties($country->nid)))),
+        'nid' => $country->nid,
+        'geographical_site' => country_get_site_count($country->nid),
+        'member_party' => country_data_get_member_party_count($country->nid),
+        'action_plan' => country_get_action_plan_count($country->nid),
+        'national_report' => country_get_national_report_count($country->nid),
       );
-      $data = implode('<br>', $data);
-      cache_set('country_stats_' . $country->nid, $data, 'cache', time() + 60 * 60 * 24);
+      cache_set('country_stats_count_' . $country->nid, $data, 'cache', CACHE_TEMPORARY);
     }
-    $stats[$country->field_country_iso2['und'][0]['value']] = sprintf('<strong>%s</strong><br>%s', $country->title, $data);
+    $stats[$iso] = $data;
   }
   return $stats;
 }
 
 function country_level1_page() {
   edw_amcharts_add_map('high');
-  drupal_add_js(array('country' => array('stats' => country_get_stats())), array('type' => 'setting'));
+  // Format stats for balloon
+  $stats = country_get_stats();
+  $html_stats = array();
+  foreach ($stats as $iso2 => $stat) {
+    $arr = array();
+    if ($stat['geographical_site']) {
+      $arr[] = t('!count WHC and Ramsar sites', array('!count' => $stat['geographical_site']));
+    }
+    if ($stat['action_plan']) {
+      $arr[] = t('!count action plans', array('!count' => $stat['action_plan']));
+    }
+    if ($stat['national_report']) {
+      $arr[] = t('!count national reports', array('!count' => $stat['national_report']));
+    }
+    $w = entity_metadata_wrapper('node', $stat['nid']);
+    $html_stats[$iso2] = sprintf('<strong>%s</strong><br>%s', $w->label(), implode(', ', $arr));
+  }
+  drupal_add_js(array('country' => array('stats' => $html_stats)), array('type' => 'setting'));
   drupal_add_js(drupal_get_path('module', 'country') . '/js/countries.js');
   drupal_add_js(drupal_get_path('module', 'country') . '/js/country.js');
   $ret = array(
