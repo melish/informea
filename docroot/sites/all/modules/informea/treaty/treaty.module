@@ -23,6 +23,16 @@ function treaty_menu() {
 }
 
 /**
+ * Implements hook_entity_info_alter().
+ */
+function treaty_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['treaty_listing'] = array(
+    'label' => t('Treaty listing'),
+    'custom settings' => TRUE,
+  );
+}
+
+/**
  *  Implements hook_url_inbound_alter().
  */
 function treaty_url_inbound_alter(&$path, $original_path, $path_language) {

@@ -109,6 +109,31 @@ function treaty_taxonomy_default_vocabularies() {
         ),
       ),
     ),
+    'mea_topic' => array(
+      'name' => 'MEA Topic',
+      'machine_name' => 'mea_topic',
+      'description' => 'Biological diversity, Chemicals etc.',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
+      'rdf_mapping' => array(
+        'rdftype' => array(
+          0 => 'skos:ConceptScheme',
+        ),
+        'name' => array(
+          'predicates' => array(
+            0 => 'dc:title',
+          ),
+        ),
+        'description' => array(
+          'predicates' => array(
+            0 => 'rdfs:comment',
+          ),
+        ),
+      ),
+    ),
     'type_of_text' => array(
       'name' => 'Type of document',
       'machine_name' => 'type_of_text',
