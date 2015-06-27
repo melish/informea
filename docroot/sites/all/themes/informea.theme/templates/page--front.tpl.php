@@ -40,6 +40,7 @@
   </div><!-- .container -->
 </div><!-- .hero-unit -->
 <div class="container">
+  <?php if (!user_is_anonymous()) { print $messages; } ?>
   <div class="row" id="row-features">
     <div class="col-md-4" id="col-terms">
       <div class="well well-transparent well-hover text-center">
