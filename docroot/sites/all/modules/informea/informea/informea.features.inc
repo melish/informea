@@ -83,6 +83,7 @@ function informea_default_search_api_index() {
     "server" : "database_server",
     "item_type" : "node",
     "options" : {
+      "datasource" : { "bundles" : [] },
       "index_directly" : 1,
       "cron_limit" : "50",
       "fields" : {
