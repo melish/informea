@@ -1687,8 +1687,8 @@ class SearchApiSolrService extends SearchApiAbstractService {
       $highlight_params['hl.fl'] = 'content';
       $highlight_params['hl.simple.pre'] = '[HIGHLIGHT]';
       $highlight_params['hl.simple.post'] = '[/HIGHLIGHT]';
-      $highlight_params['hl.snippets'] = 3;
-      $highlight_params['hl.fragsize'] = 400;
+      $highlight_params['hl.snippets'] = 1;
+      $highlight_params['hl.fragsize'] = 300;
       $highlight_params['hl.mergeContiguous'] = 'true';
     }
 
@@ -1700,8 +1700,8 @@ class SearchApiSolrService extends SearchApiAbstractService {
         // If we also generate a "normal" excerpt, set the settings for the
         // "content" field (which we use to generate the excerpt) back to the
         // above values.
-        $highlight_params['f.content.hl.snippets'] = 3;
-        $highlight_params['f.content.hl.fragsize'] = 400;
+        $highlight_params['f.content.hl.snippets'] = 1;
+        $highlight_params['f.content.hl.fragsize'] = 300;
         // It regrettably doesn't seem to be possible to set hl.fl to several
         // values, if one contains wild cards (i.e., "t_*,content" wouldn't
         // work).
