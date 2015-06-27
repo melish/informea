@@ -109,7 +109,7 @@
           <?php
           $total = count($treaties);
 
-          print t('Showing !visible of !total treaties', array('!visible' => '<strong class="rows-visible">' . $total . '</strong>', '!total' => '<strong>' . $total . '</strong>'));
+          print t('Showing !visible of !total treaties and protocols', array('!visible' => '<strong class="rows-visible">' . $total . '</strong>', '!total' => '<strong>' . $total . '</strong>'));
           ?>
         </small><!-- .text-muted -->
       </td>
@@ -125,36 +125,33 @@
           <?php endforeach; ?>
         </ul><!-- .dropdown-menu .dropdown-menu-right -->
       </th><!-- .dropdown .text-center -->
-      <th class="text-center"><?php print t('Year'); ?></th>
+      <th class="text-center nowrap"><?php print t('Entry into force'); ?></th>
     </tr>
   </thead>
   <tbody>
     <?php foreach ($treaties as $treaty): ?>
       <tr>
         <td class="text-center">
-          <?php
-          if (property_exists($treaty, 'logo')) {
-            print theme_image(array(
-              'path' => $treaty->logo,
-              'alt' => $treaty->title,
-              'attributes' => array()
-            ));
-          }
-          ?>
+        <?php
+          $field_value = field_view_field('node', $treaty, 'field_logo', 'treaty_listing');
+          print drupal_render($field_value);
+        ?>
         </td><!-- .text-center -->
         <td>
-          <h4>
-            <?php print l($treaty->official_name, 'node/' . $treaty->nid); ?>
-            <br>
-            <small><?php print $treaty->title; ?></small>
-          </h4>
-          <div class="small">
-            <strong><?php print t('Topics:'); ?></strong>
-            <?php if (property_exists($treaty, 'topics')): ?>
-              <?php print $treaty->topics; ?>
-            <?php else: ?>
-              <?php print t('N/A'); ?>
-            <?php endif; ?>
+          <div class="grey-777">
+          <?php
+            $field_value = field_view_field('node', $treaty, 'field_official_name', 'treaty_listing');
+            print drupal_render($field_value);
+            print $treaty->title;
+          ?>
+          </div>
+          <div class="small grey-777">
+            <?php
+              $field_value = field_view_field('node', $treaty, 'field_informea_tags', 'treaty_listing');
+              if (!empty($field_value['#items'])) {
+                print drupal_render($field_value);
+              }
+            ?>
             <?php if (property_exists($treaty, 'protocols')): ?>
               <br>
               <?php print l('Toggle protocols', NULL, array('attributes' => array('class' => 'collapsed', 'data-toggle' => 'collapse'), 'fragment' => 'protocols-' . $treaty->nid, 'external' => TRUE)); ?>
@@ -171,18 +168,16 @@
           <?php endif; ?>
         </td>
         <td class="column-region text-center">
-          <?php if (property_exists($treaty, 'regions')): ?>
-            <?php print $treaty->regions; ?>
-          <?php else: ?>
-            <?php print t('N/A'); ?>
-          <?php endif; ?>
+        <?php
+          $field_value = field_view_field('node', $treaty, 'field_region', 'treaty_listing');
+          print drupal_render($field_value);
+        ?>
         </td><!-- .column-region .text-center -->
         <td class="text-center">
-          <?php if (property_exists($treaty, 'year')): ?>
-            <?php print $treaty->year; ?>
-          <?php else: ?>
-            <?php print t('N/A'); ?>
-          <?php endif; ?>
+        <?php
+          $year = field_view_field('node', $treaty, 'field_entry_into_force', 'treaty_listing');
+          print drupal_render($year);
+        ?>
         </td><!-- .text-center -->
       </tr>
     <?php endforeach; ?>

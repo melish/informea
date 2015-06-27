@@ -516,22 +516,12 @@ function _treaty_get_treaties() {
   $nodes = entity_load('node', array_keys($result['node']));
   foreach ($nodes as $nid => $node) {
     $wrapper = entity_metadata_wrapper('node', $node);
-    $node->official_name = $wrapper->field_official_name->value();
-    $node->logo = file_create_url($wrapper->field_logo->value()['uri']);
     // Protocols
     $parent = $wrapper->field_parent_treaty->value();
     if ($parent) {
       $protocols[$parent->nid][] = $node;
       continue;
     }
-    $rs = $wrapper->field_region->value();
-    $node->regions = array();
-    foreach ($rs as $t) {
-      $t_wrapper = entity_metadata_wrapper('taxonomy_term', $t);
-      $t->name = $t_wrapper->label();
-      $node->regions[] = $t->name;
-    }
-    $node->regions = implode(', ', $node->regions);
     $treaties[$nid] = $node;
   }
   // Protocols
