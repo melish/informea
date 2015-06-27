@@ -1186,6 +1186,11 @@ button.toggle {
 #block-locale-language ul li:before { color: white; content: '|'; padding-right: 5px; padding-left: 2px; }
 #block-locale-language ul li:first-child:before { content: ''; }
 
+#block-locale-language ul li.ru,
+#block-locale-language ul li.es,
+#block-locale-language ul li.ar,
+#block-locale-language ul li.zh-hans { display: none; }
+
 /* Footer */
 /* ------ */
 
