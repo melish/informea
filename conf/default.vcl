@@ -10,7 +10,7 @@ import std;
 # Default backend definition. Set this to point to your content server.
 backend default {
   .host = "127.0.0.1";
-  .port = "8080";
+  .port = "80";
   .max_connections = 250;
   .connect_timeout = 300s;
   .first_byte_timeout = 300s;
@@ -21,7 +21,6 @@ backend default {
 acl purge {
   "localhost";
   "127.0.0.1";
-  "10.0.0.0"/24;
 }
 
 # Define the internal network subnet.
@@ -35,7 +34,7 @@ acl internal {
 sub vcl_recv {
 
   # Cache only (www.)informea.org for now
-  if (req.host != "(www)?(informea).org") {
+  if (req.http.host != "(www)?(informea).org") {
     return(pass);
   }
 
