@@ -260,6 +260,9 @@ function ws_consumer_un_database_get_country($country_name) {
     'Venezuela (Bolivarian Republic of)' => 'Venezuela',
     'Bolivia (Plurinational State of)' => 'Bolivia',
     'Lao People&#039;s Democratic Republic' => 'Laos',
+    'Sao Tome and Principe' => 'São Tomé and Príncipe',
+    'Congo' => 'Congo (Brazzaville)',
+    'Holy See' => 'Vatican City State',
   );
   if (array_key_exists($country_name, $mappings)) {
     $fixed_country_name = $mappings[$country_name];
