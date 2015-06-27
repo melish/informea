@@ -28,7 +28,7 @@
     <nav class="navbar-collapse collapse" role="navigation">
       <ul class="nav navbar-nav">
         <li class="dropdown dropdown-full-width">
-          <?php print l(t('Treaties') . ' <span class="caret"></span>', NULL, array('attributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'), 'external' => TRUE, 'fragment' => FALSE, 'html' => TRUE)); ?>
+          <?php print l(t('Treaties') . ' <span class="caret"></span>', 'treaties', array('attributes' => array('class' => array('dropdown-toggle')), 'absolute' => TRUE, 'html' => TRUE)); ?>
           <ul class="dropdown-menu row" role="menu">
             <li class="col-sm-3">
               <ul>
@@ -125,7 +125,7 @@
         <li><?php print l(t('Events'), 'events'); ?></li>
         <li><?php print l(t('News'), 'news'); ?></li>
         <li class="dropdown">
-          <?php print l(t('About') . ' <span class="caret"></span>', NULL, array('attributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'), 'external' => TRUE, 'fragment' => FALSE, 'html' => TRUE)); ?>
+          <?php print l(t('About') . ' <span class="caret"></span>', 'about', array('attributes' => array('class' => t('dropdown-toggle')), 'external' => TRUE, 'absolute' => TRUE, 'html' => TRUE)); ?>
           <ul class="dropdown-menu dropdown-menu-right" role="menu">
             <li><?php print l(t('About InforMEA'), 'about'); ?></li>
             <li><?php print l(t('API documentation'), 'about/api'); ?></li>
