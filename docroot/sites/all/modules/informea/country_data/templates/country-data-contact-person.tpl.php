@@ -14,8 +14,8 @@
   $mail = $wrapper->field_person_email->value();
   $mail_link = FALSE;
   if ($mail) {
-    $mail_url  = recaptcha_mailhide_url( variable_get( 'recaptcha_public' ), variable_get( 'recaptcha_private' ), $mail );
-    $mail_part = implode( '&hellip;@', _recaptcha_mailhide_email_parts( $wrapper->field_person_email->value() ) );
+    $mail_url  = recaptcha_mailhide_url(variable_get('recaptcha_public'), variable_get('recaptcha_private'), $mail);
+    $mail_part = implode('&hellip;@', _recaptcha_mailhide_email_parts( $wrapper->field_person_email->value()));
     $mail_link = l($mail_part, $mail_url, array(
       'attributes' => array(
         'onclick' => sprintf('window.open(\'%s\', \'\', \'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300\'); return false;', $mail_url)
