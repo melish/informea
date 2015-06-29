@@ -182,7 +182,6 @@ function thesaurus_taxonomy_term_view($term, $view_mode, $langcode) {
         $courdecisions_url = ecolex_remote_url('taxonomy', $term->nid, 'courtdecisions');
         $literature_url = ecolex_remote_url('taxonomy', $term->tid, 'literature');
 
-        dpm($literature_url);
         $elements = array(
           'legislation' => array(
             'header' => t('Legislation'),
