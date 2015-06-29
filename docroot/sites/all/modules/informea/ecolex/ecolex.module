@@ -96,6 +96,43 @@ function ecolex_ajax_content($context, $item, $type, $page = 0, $sid = '') {
 }
 
 
+function ecolex_remote_url($context, $item, $type) {
+  module_load_include('inc', 'ecolex', 'ecolex.parser');
+  $base_url = NULL;
+  $base_url = 'http://www.ecolex.org/ecolex/ledge/view/SearchResults';
+  $base_url .= '?';
+  $base_url .= 'sortField=searchDate';
+  switch ($context) {
+    case 'taxonomy':
+      $t = taxonomy_term_load($item);
+      $search = str_replace(' ', '+', $t->name_original);
+      $search = str_replace('&', '%26', $search);
+      $base_url .= format_string('&keyword="!keyword"', array('!keyword' => $search));
+      break;
+    case 'country':
+      $c = node_load($item);
+      $search = str_replace(' ', '+', $c->title_original);
+      $search = str_replace('&', '%26', $search);
+      $base_url .= format_string('&country=%22!country%22', array('!country' => $search));
+      break;
+  }
+  switch($type) {
+    case 'treaties':
+      $base_url .= '&screen=Treaties&index=treaties';
+      break;
+    case 'legislation':
+      $base_url .= '&screen=Legislation&index=documents';
+      break;
+    case 'literature':
+      $base_url .= '&screen=Literature&index=literature';
+      break;
+    case 'courtdecisions':
+      $base_url .= '&screen=CourtDecisions&index=courtdecisions';
+      break;
+  }
+  return $base_url;
+}
+
 function ecolex_remote_content($context, $item, $type, $page = 0, $sid = '') {
   module_load_include('inc', 'ecolex', 'ecolex.parser');
   $output = NULL;

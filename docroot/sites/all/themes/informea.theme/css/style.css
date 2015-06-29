@@ -1353,6 +1353,14 @@ body.node-type-treaty div.paragraph:hover a.permalink,
 body.node-type-treaty div.paragraph:hover a.administrative { display: inline; }
 body.node-type-treaty div.paragraph:hover { background-color: #f0f0f0; }
 
+iframe.ecolex {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-height: 700px;
+}
+
 /* Disclaimer block from the Minamata convention page */
 body.page-node-303 h2.block-title { font-size: 18px; font-weight: bold;}
 
