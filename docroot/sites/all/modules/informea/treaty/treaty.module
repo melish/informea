@@ -387,12 +387,10 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
 
     $node_url = url(drupal_get_path_alias('node/' . $node->nid), array('absolute' => TRUE));
     $wrapper = entity_metadata_wrapper('node', $node);
-    $odata_name = $wrapper->field_odata_identifier->value();
     $contextual_menu = array(
       '#theme' => 'item_list',
       '#attributes' => array('class' => array('nav', 'nav-pills', 'nav-stacked'))
     );
-
     $d_count = decision_count_treaty_decisions($node->nid);
     $nr_count = country_deliverable_count_treaty_national_reports($node->nid);
     $ap_count = country_deliverable_count_treaty_action_plans($node->nid);
@@ -417,14 +415,13 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
       ),
       'national-reports' => array(
         'title' => t('National reports'),
-        'count' => t('n/a'),
+        'count' => $nr_count,
       ),
       'action-plans' => array(
         'title' => t('National plans'),
-        'count' => t('n/a'),
+        'count' => $ap_count,
       )
     );
-
     if ($d_count == -1) {
       $menu_items['decisions']['count'] = t('n/a');
     }
