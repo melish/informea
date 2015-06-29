@@ -95,6 +95,9 @@ class MigrateActionPlans extends Migration {
   }
 
   function prepareRow($row) {
+    if ($row->id_treaty != 5) {
+      return FALSE;
+    }
     if ($row->end == '0000-00-00 00:00:00') {
       $row->end = NULL;
     }
@@ -107,18 +110,22 @@ class MigrateActionPlans extends Migration {
     if ($row->rec_updated == '0000-00-00 00:00:00') {
       $row->rec_updated = NULL;
     }
-    $row->id_country = wp_migration_get_country_id($this->countries[$row->id_country]);
-    $row->id_treaty = $this->treaties[$row->id_treaty];
 
     // Check for files in ai_document
-    $urls = Database::getConnection('default', 'for_migration')
-      ->select('ai_document')->fields(NULL, array('url'))
-      ->condition('id_country_plan', $row->id)
-      ->execute()->fetchCol();
+    $q = Database::getConnection('default', 'for_migration')
+      ->select('ai_document')->fields(NULL, array('path'))
+      ->condition('id_country_plan', $row->id);
+    $urls = $q->execute()->fetchCol();
+    if ($row->id_treaty == 5) {
+      foreach($urls as &$url) {
+        $url = 'http://demo.informea.org/' . $url;
+      }
+    }
     if (!empty($urls)) {
       $row->document_url = $urls;
     }
-
+    $row->id_country = wp_migration_get_country_id($this->countries[$row->id_country]);
+    $row->id_treaty = $this->treaties[$row->id_treaty];
     return TRUE;
   }
 }
