@@ -42,6 +42,16 @@ function treaty_url_inbound_alter(&$path, $original_path, $path_language) {
   }
 }
 
+function informea_field_extra_fields() {
+  $extra = array();
+  $extra['node']['treaty']['display']['computed_number_of_parties'] = array(
+    'label' => t('Number of parties'),
+    'description' => t('This is a computed field, no stored locally'),
+    'weight' => 50, // default weight
+  );
+  return $extra;
+}
+
 /**
  * Implement hook_theme().
  *
@@ -104,6 +114,22 @@ function treaty_theme() {
  * Implements hook_node_view().
  */
 function treaty_node_view($node, $view_mode, $langcode) {
+
+  $extrafields = field_extra_fields_get_display('node', $node->type, $view_mode);
+  $extrafield_name = 'computed_number_of_parties';
+  if (isset($extrafields[$extrafield_name])
+      && isset($extrafields[$extrafield_name]['visible'])
+      && $extrafields[$extrafield_name]['visible']) {
+    // Your logic here.
+    $label = t('Number of parties');
+    module_load_include('inc', 'country_data', 'country_data.api');
+    $value = country_data_treaty_count_membership($node->nid);
+    $node->content[$extrafield_name] = array(
+      '#markup' => <<<EOT
+        <div class="field field-name-field-computed-number-of-parties field-type-link-field field-label-inline clearfix"><div class="field-label">$label:&nbsp;</div><div class="field-items"><div class="field-item even">$value</div></div></div>
+EOT
+    );
+  }
   if($node->type == 'treaty' && $view_mode == 'full') {
     // Adds the country JavaScript file to the page.
     drupal_add_js(drupal_get_path('module', 'treaty') . '/js/treaty.js');
