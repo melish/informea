@@ -298,6 +298,7 @@ $options['init-modules'] = array(
   'jquery_update',
   'select2',
   'entityqueue',
+  'googleanalytics',
 
   'feeds',
   'feeds_news',
