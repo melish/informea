@@ -360,8 +360,10 @@ function treaty_page_alter(&$page) {
       // Move legislation chart to secondary region
       if (isset($node['#node']->context) && $node['#node']->type == 'treaty') {
         // Hide fields in some view modes.
-        foreach(element_children($node) as $element_id) {
-          hide($node[$element_id]);
+        if ($node['#node']->context != 'summary') {
+          foreach (element_children($node) as $element_id) {
+            hide($node[$element_id]);
+          }
         }
         switch ($node['#node']->context) {
           case 'summary':
