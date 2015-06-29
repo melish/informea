@@ -1409,6 +1409,173 @@ function treaty_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-treaty-field_has_api_action_plans'
+  $field_instances['node-treaty-field_has_api_action_plans'] = array(
+    'bundle' => 'treaty',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Check if there is OData API for national action plans available',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 53,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_has_api_action_plans',
+    'label' => 'Has API Action Plans',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 19,
+    ),
+  );
+
+  // Exported field_instance: 'node-treaty-field_has_api_decisions'
+  $field_instances['node-treaty-field_has_api_decisions'] = array(
+    'bundle' => 'treaty',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Check if there is OData Decisions API available',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 52,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_has_api_decisions',
+    'label' => 'Has API Decisions',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 18,
+    ),
+  );
+
+  // Exported field_instance: 'node-treaty-field_has_api_national_reports'
+  $field_instances['node-treaty-field_has_api_national_reports'] = array(
+    'bundle' => 'treaty',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Check if there is OData API for national reports available',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 54,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_has_api_national_reports',
+    'label' => 'Has API National Reports',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 20,
+    ),
+  );
+
   // Exported field_instance: 'node-treaty-field_informea_tags'
   $field_instances['node-treaty-field_informea_tags'] = array(
     'bundle' => 'treaty',
@@ -3062,6 +3229,62 @@ function treaty_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-treaty-field_treaty_has_parties_from_un'
+  $field_instances['node-treaty-field_treaty_has_parties_from_un'] = array(
+    'bundle' => 'treaty',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Check here if the party membership information is coming from UN treaty database or uncheck if using own MEA service',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 55,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_treaty_has_parties_from_un',
+    'label' => 'Has parties from UN',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 21,
+    ),
+  );
+
   // Exported field_instance: 'node-treaty-field_treaty_parties_url'
   $field_instances['node-treaty-field_treaty_parties_url'] = array(
     'bundle' => 'treaty',
@@ -3264,65 +3487,6 @@ function treaty_field_default_field_instances() {
       'settings' => array(),
       'type' => 'link_field',
       'weight' => 25,
-    ),
-  );
-
-  // Exported field_instance: 'node-treaty-field_treaty_year'
-  $field_instances['node-treaty-field_treaty_year'] = array(
-    'bundle' => 'treaty',
-    'deleted' => 0,
-    'description' => 'Date when treaty enters into force (initial entry into force)',
-    'display' => array(
-      'ajax' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'inline',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 21,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'treaty_listing' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 7,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_treaty_year',
-    'label' => 'Year',
-    'required' => 0,
-    'settings' => array(
-      'default_value' => 'now',
-      'default_value2' => 'same',
-      'default_value_code' => '',
-      'default_value_code2' => '',
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'date',
-      'settings' => array(
-        'increment' => 15,
-        'input_format' => 'j M Y',
-        'input_format_custom' => '',
-        'label_position' => 'above',
-        'text_parts' => array(),
-        'year_range' => '-3:+3',
-      ),
-      'type' => 'date_popup',
-      'weight' => 16,
     ),
   );
 
@@ -4684,6 +4848,10 @@ function treaty_field_default_field_instances() {
   t('Amends Treaty');
   t('Available in');
   t('Body');
+  t('Check here if the party membership information is coming from UN treaty database or uncheck if using own MEA service');
+  t('Check if there is OData API for national action plans available');
+  t('Check if there is OData API for national reports available');
+  t('Check if there is OData Decisions API available');
   t('Cited Treaties');
   t('City');
   t('Country');
@@ -4691,7 +4859,6 @@ function treaty_field_default_field_instances() {
   t('Date of entry');
   t('Date of modification');
   t('Date of text');
-  t('Date when treaty enters into force (initial entry into force)');
   t('Depositary');
   t('Description');
   t('Ecolex Tags');
@@ -4699,6 +4866,10 @@ function treaty_field_default_field_instances() {
   t('Entry into force');
   t('FAOLEX URL');
   t('Field of application');
+  t('Has API Action Plans');
+  t('Has API Decisions');
+  t('Has API National Reports');
+  t('Has parties from UN');
   t('InforMEA tags');
   t('Internet Reference');
   t('Is protocol');
@@ -4742,7 +4913,6 @@ function treaty_field_default_field_instances() {
   t('UN Region');
   t('UN Treaty database link');
   t('URL');
-  t('Year');
 
   return $field_instances;
 }
