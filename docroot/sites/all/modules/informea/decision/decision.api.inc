@@ -1,14 +1,17 @@
 <?php
 
 function decision_count_treaty_decisions($id_treaty) {
-  return EdwCacheDomain::cache_get_array('decision', __FUNCTION__, function($id_treaty) {
-    $query  = new EntityFieldQuery();
-    return $query->entityCondition('entity_type', 'node')
-      ->entityCondition('bundle', 'decision')
-      ->fieldCondition('field_treaty', 'target_id', $id_treaty)
-      ->count()
-      ->execute();
-  }, $id_treaty);
+  if (treaty_can_have_decisions($id_treaty)) {
+    return EdwCacheDomain::cache_get_array('decision', __FUNCTION__, function ($id_treaty) {
+      $query = new EntityFieldQuery();
+      return $query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'decision')
+        ->fieldCondition('field_treaty', 'target_id', $id_treaty)
+        ->count()
+        ->execute();
+    }, $id_treaty);
+  }
+  return t('n/a');
 }
 
 function decision_get_treaty_decisions($id_treaty) {
