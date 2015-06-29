@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sudo varnishd -F -a 0.0.0.0:80 \
+sudo varnishd -F -a 0.0.0.0:81 \
   -f conf/default.vcl \
   -s malloc,256M \
   -T localhost:6060 \

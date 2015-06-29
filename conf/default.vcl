@@ -10,8 +10,17 @@ import std;
 # Default backend definition. Set this to point to your content server.
 backend default {
   .host = "127.0.0.1";
-  .port = "80";
+  .port = "81";
   .max_connections = 250;
+  .connect_timeout = 300s;
+  .first_byte_timeout = 300s;
+  .between_bytes_timeout = 300s;
+}
+
+backend tomcat {
+  .host = "127.0.0.1";
+  .port = "8080";
+  .max_connections = 5;
   .connect_timeout = 300s;
   .first_byte_timeout = 300s;
   .between_bytes_timeout = 300s;
@@ -27,16 +36,25 @@ acl purge {
 # These are used below to allow internal access to certain files while not
 # allowing access from the public internet.
 acl internal {
-  "10.0.0.0"/24;
+  "127.0.0.1"/24;
 }
 
 # Respond to incoming requests.
 sub vcl_recv {
 
-  # Cache only (www.)informea.org for now
-  if (req.http.host != "(www)?(informea).org") {
-    return(pass);
+  if (req.http.host == "odata.informea.org" || req.http.host == "tomcat.informea.org") {
+    set req.backend = tomcat;
+    return (pass);
   }
+  # Do not cache vocbench & redmine requests
+  if (req.http.host == "thesaurus.informea.org" || req.http.host == "support.informea.org") {
+    return (pass);
+  }
+
+  # Cache only (www.)informea.org for now
+  #if (req.http.host != "(www)?(informea).org") {
+  #  return(pass);
+  #}
 
   set req.grace = 120s;
 
@@ -73,6 +91,9 @@ sub vcl_recv {
 
   # Do not cache these paths.
   if (req.url ~ "^/status\.php$" ||
+
+      req.url ~ "^/wp-admin" ||
+
       req.url ~ "^/update\.php$" ||
       req.url ~ "^/ooyala/ping$" ||
       req.url ~ "^/admin" ||
