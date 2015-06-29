@@ -177,31 +177,34 @@ function thesaurus_taxonomy_term_view($term, $view_mode, $langcode) {
           hide($term->content[$element_id]);
           // Load the Ecolex content.
         }
+
+        $legislation_url = ecolex_remote_url('taxonomy', $term->tid, 'legislation');
+        $courdecisions_url = ecolex_remote_url('taxonomy', $term->nid, 'courtdecisions');
+        $literature_url = ecolex_remote_url('taxonomy', $term->tid, 'literature');
+
+        dpm($literature_url);
         $elements = array(
           'legislation' => array(
             'header' => t('Legislation'),
-            'header-attributes' => array('data-source' => sprintf('/ecolex/ajax/taxonomy/%d/legislation/1', $term->tid)),
-            'body' => '<div class="ajax-progress ajax-progress-throbber"><div class="throbber">&nbsp;</div></div>',
+            'body' => sprintf('<iframe class="ecolex" src="%s"></iframe>', $legislation_url) .
+                      l(t('View more results on ECOLEX website'), $legislation_url, array('attributes' => array('class' => array('ecolex-link'), 'target' => '_blank')))
           ),
           'courtdecisions' => array(
             'header' => t('Court decisions'),
-            'header-attributes' => array('data-source' => sprintf('/ecolex/ajax/taxonomy/%d/courtdecisions/1', $term->tid)),
-            'body' => '<div class="ajax-progress ajax-progress-throbber"><div class="throbber">&nbsp;</div></div>',
+            'body' => sprintf('<iframe class="ecolex" src="%s"></iframe>', $courdecisions_url) .
+                      l(t('View more results on ECOLEX website'), $courdecisions_url, array('attributes' => array('class' => array('ecolex-link'), 'target' => '_blank')))
           ),
           'literature' => array(
             'header' => t('Literature'),
-            'header-attributes' => array('data-source' => sprintf('/ecolex/ajax/taxonomy/%d/literature/1', $term->tid)),
-            'body' => '<div class="ajax-progress ajax-progress-throbber"><div class="throbber">&nbsp;</div></div>',
+            'body' => sprintf('<iframe class="ecolex" src="%s"></iframe>', $literature_url) .
+                      l(t('View more results on ECOLEX website'), $literature_url, array('attributes' => array('class' => array('ecolex-link'), 'target' => '_blank')))
           )
         );
         $term->content['ecolex'] = array(
           'heading' => array(
             '#id' => 'disclaimer',
             '#type' => 'item',
-            '#markup' =>
-              theme_image(array('path' => drupal_get_path('theme', 'informea_theme') . '/img/ecolex_header.png', 'attributes' => array()))
-              . '<br />'
-              . t('The content of this this area is exclusively provided by <a href="http://www.ecolex.org">ECOLEX</a> - the gateway to environmental law, which is a collaboration of IUCN, FAO and UNEP.')
+            '#markup' => t('The content of this this area is exclusively provided by <a href="http://www.ecolex.org">ECOLEX</a> - the gateway to environmental law, which is a collaboration of IUCN, FAO and UNEP.')
           ),
           'tabs' => array(
             '#id' => 'ecolex-tabs',

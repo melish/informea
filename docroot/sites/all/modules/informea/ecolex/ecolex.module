@@ -107,7 +107,7 @@ function ecolex_remote_url($context, $item, $type) {
       $t = taxonomy_term_load($item);
       $search = str_replace(' ', '+', $t->name_original);
       $search = str_replace('&', '%26', $search);
-      $base_url .= format_string('&keyword="!keyword"', array('!keyword' => $search));
+      $base_url .= format_string('&keyword=%22!keyword%22', array('!keyword' => $search));
       break;
     case 'country':
       $c = node_load($item);
