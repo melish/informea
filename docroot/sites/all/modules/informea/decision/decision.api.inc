@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Decisions count for treaty.
+ *
+ * @param $id_treaty
+ *
+ * @return integer
+ *   Number of decisions or -1 if n/a
+ */
 function decision_count_treaty_decisions($id_treaty) {
   if (treaty_can_have_decisions($id_treaty)) {
     return EdwCacheDomain::cache_get_array('decision', __FUNCTION__, function ($id_treaty) {
@@ -11,7 +19,7 @@ function decision_count_treaty_decisions($id_treaty) {
         ->execute();
     }, $id_treaty);
   }
-  return t('n/a');
+  return -1;
 }
 
 function decision_get_treaty_decisions($id_treaty) {
