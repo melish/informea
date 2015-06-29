@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Purge all varnish cache for the current domain
+sudo varnishadm "ban req.http.host ~ www.informea.org"
+sudo varnishadm "ban req.http.host ~ informea.org"
