@@ -11,7 +11,7 @@ function informea_drush_command() {
   $items = array();
   $items['informea-sync-production'] = array(
     'description' => "Devify local installation",
-    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_SITE,
   );
   $items['informea-cache-warm'] = array(
     'description' => "Warm the cache",
