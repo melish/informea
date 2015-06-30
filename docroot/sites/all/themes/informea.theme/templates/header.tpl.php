@@ -14,12 +14,15 @@
     <div class="above-navbar">
       <?php if (!empty($page['above_navbar'])) { print drupal_render($page['above_navbar']); } ?>
     </div>
-    <div class="navbar-header">
+    <div class="navbar-header pull-left">
       <?php if ($logo): ?>
         <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
           <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
         </a><!-- .logo .navbar-btn .pull-left -->
       <?php endif; ?>
+    </div><!-- .navbar-header -->
+    <div class="navbar-header pull-right">
+      <?php print $search_box; ?>
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -27,7 +30,7 @@
         <span class="icon-bar"></span>
       </button><!-- .navbar-toggle -->
     </div><!-- .navbar-header -->
-    <nav class="navbar-collapse collapse" role="navigation">
+    <nav class="navbar-collapse collapse navbar-left" role="navigation">
       <ul class="nav navbar-nav">
         <li class="dropdown dropdown-full-width">
           <?php print l(t('Treaties') . ' <span class="caret"></span>', 'treaties', array('attributes' => array('class' => array('dropdown-toggle')), 'absolute' => TRUE, 'html' => TRUE)); ?>
@@ -134,7 +137,6 @@
           </ul><!-- .dropdown-menu .dropdown-menu-right -->
         </li><!-- .dropdown -->
       </ul><!-- .nav .navbar-nav -->
-      <?php print $search_box; ?>
       <?php if (!empty($page['navigation'])): ?>
         <?php print render($page['navigation']); ?>
       <?php endif; ?>
