@@ -47,6 +47,7 @@ function informea_theme_preprocess_page(&$variables) {
           '#id' => 'country-selector',
           '#type' => 'select',
           '#options' => $countries1,
+          '#attributes' => array('class' => array('form-control')),
         );
         array_unshift($variables['page']['sidebar_first'], menu_secondary_local_tasks());
         break;
@@ -61,6 +62,7 @@ function informea_theme_preprocess_page(&$variables) {
           '#id' => 'treaty-selector',
           '#type' => 'select',
           '#options' => $treaties1,
+          '#attributes' => array('class' => array('form-control')),
         );
         array_unshift($variables['page']['sidebar_first'], menu_secondary_local_tasks());
     }
@@ -148,11 +150,23 @@ function informea_theme_treaty_logo($node, $style = 'logo-large') {
   return NULL;
 }
 
+function informea_theme_country_flag($node, $style = 'logo-large') {
+  $w = entity_metadata_wrapper('node', $node->nid);
+  if($code = $w->field_country_iso2->value()) {
+    $code = strtolower($code);
+    global $base_url;
+    $img_path = $base_url . '/' . drupal_get_path('theme', 'informea_theme') . '/img/flags/flag-' . $code . '.png';
+
+    return theme('image', array('path' => $img_path, 'attributes' => array('class' => array('flag', 'flag-large'))));
+  }
+  return NULL;
+}
+
 function informea_theme_treaty_logo_link($node) {
   if ($img = informea_theme_treaty_logo($node)) {
     $w = entity_metadata_wrapper('node', $node->nid);
     if ($url = $w->field_treaty_website_url->value()) {
-      return l($img, $url['url'], array('absolute' => TRUE, 'html' => TRUE, 'attributes' => array('target' => '_blank')));
+      return l($img, $url['url'], array('absolute' => TRUE, 'html' => TRUE, 'attributes' => array('target' => '_blank', 'class' => array('treaty-logo-large'))));
     }
     else {
       return $img;

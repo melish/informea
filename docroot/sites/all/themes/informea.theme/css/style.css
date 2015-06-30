@@ -893,6 +893,18 @@ button.toggle {
   white-space: nowrap;
 }
 
+.flag {
+  margin-right: 12px;
+  padding: 6px;
+  border: 1px solid #c6cedb;
+}
+
+.treaty-logo-large img {
+  margin-right: 12px;
+  padding: 6px;
+  border: 1px solid #c6cedb;
+}
+
 
 /* Brands */
 /* ------ */
