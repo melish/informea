@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ColorPicker</title>
+<!--Color picker css-->
+<link rel="stylesheet" href="css/colpick.css" type="text/css"/>
+<style type="text/css">
+div#informea{-moz-border-radius:50px/50px;background-color:#308fc0;border:solid 2px #308fc0;width:190px;height:160px;border-radius:5px;background:linear-gradient(#3398cb,#26739a);font-family:FontAwesome;font-size:15px}
+div#informea .title{font-size:26px;color:#F2F7F2; padding: 0px 15px 15px 8px;margin: 3px 0px 0px 0px;}
+div#informea .slogan{color:#fffdfd;margin-left:5px;line-height:18px}
+div#informea input.button{border-top:2px solid #fc6;border-bottom:2px solid #fc6;border-left:0;border-right:0;background-color:#fc6;background-image:url(http://www.informea.org/wp-content/uploads/2014/01/search.png);background-repeat:no-repeat;background-position:left;width:34px;height:20px;border-top-right-radius:2px 2px;border-bottom-right-radius:2px 2px;margin-top:2px;margin-left:-2px}
+div#informea .search{padding:0 2px;border:1px solid #fc6;border-right:0;border-top-left-radius:2px 2px;border-bottom-left-radius:2px 2px;width:140px;float:left;height:22px;margin-left:6px;margin-top:2px;font-size:12px;font-weight:normal}
+div#informea .link{text-align:right}
+div#informea .link a{color:#ccc;text-align:right;text-decoration:none;padding-right:4px;font-size:12px}
+div#informea .link a:hover{text-decoration:underline}
+
+.colorpickers {margin-top:30px;}
+fieldset {
+  border:#39F solid 1px;
+  border-radius:3px;
+  display:inline-block;
+  color:#39F;
+  margin-bottom:10px;
+}
+
+.picker {
+  margin:0;
+  padding:0;
+  border:0;
+  width:70px;
+  height:20px;
+  border:solid 1px #ccc;
+  border-right:20px solid green;
+  line-height:20px;
+}
+ul{
+ list-style:none;
+ margin:0;
+ padding:0;
+ }
+
+li{
+display:inline-block;
+vertical-align:top;
+padding:5px;
+border:5px solid #dedede;
+cursor: pointer;
+}
+.linkPicker {border-right:20px solid #ccc;}
+.textPicker {border-right:20px solid #e8e8e8;}
+.borderPicker {border-right:20px solid #308fc0;}
+.backgroundPicker {border-right:20px solid #3398cb;}
+.backgroundPicker2 {border-right:20px solid #26739a;}
+</style>
+<!-- include jquery -->
+<script type="text/javascript" src="js/jquery.js"></script>
+
+<!-- color picker js -->
+<script src="js/colpick.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  // generate code
+  $('#generate').on('click', function() {
+    var originalCSS = $("#origStyle")[0].innerHTML;
+    var appletCode = $("#informea")[0].outerHTML;
+    $('#appletCode').val(originalCSS +'\n\n\n'+ appletCode);
+  });
+
+  //color pickers
+  $('.picker').colpick({
+    layout:'hex',
+    //submit:0,
+    colorScheme:'light',
+    onSubmit:function(hsb,hex,rgb,el) {
+      $(el).css('border-color','#'+hex);
+      $(el).colpickHide();
+      $(el).val(hex);
+      //update the informea applet
+      updateApplet(el.id, hex);
+    },
+    onChange:function(hsb,hex,rgb,el,bySetColor) {
+      $(el).css('border-color','#'+hex);
+      // Fill the text box just if the color was set using the picker, and not the colpickSetColor function.
+      if(!bySetColor) $(el).val(hex);
+      //update the informea applet
+      updateApplet(el.id, hex);
+    }
+  }).keyup(function(){
+    $(this).colpickSetColor(this.value);
+  });
+
+  //function updating applet options
+  function updateApplet(selectorID, value) {
+    switch (selectorID) {
+      case 'textColor':  //update text color
+        $('div#informea .slogan').css('color','#'+value);
+        break;
+
+      case 'linkColor':  //update link color
+        $('div#informea .link a').css('color','#'+value);
+        break;
+
+      case 'borderColor':  //update border color
+        $('div#informea').css('border','2px solid #'+value);
+        break;
+
+      case 'bgColor1':  //update background color
+        //if bgcolor 2 is selected, create a gradient, else just a plain background color
+        if( !$("#bgColor2").val().length == 0 ) {
+          $('div#informea').css("background","transparent");  //remove original background
+          $('div#informea').css('background','linear-gradient(#'+value+', #'+$("#bgColor2").val()+') repeat scroll 0 0 rgba(0, 0, 0, 0)');
+        } else {
+          //alert('bgcolor2 is empty');
+          $('div#informea').css("background","transparent");  //remove original background
+          $('div#informea').css('background-color','#'+value);
+        }
+        break;
+
+      case 'bgColor2':  //update background color
+        //if bgcolor 1 is selected, create a gradient, else just a plain background color
+        if( !$("#bgColor1").val().length == 0 ) {
+          //alert('bgcolor1 has value');
+          $('div#informea').css("background","transparent");  //remove original background
+          $('div#informea').css('background','linear-gradient(#'+$("#bgColor1").val()+', #'+value+') repeat scroll 0 0 rgba(0, 0, 0, 0)');
+          //alert('bgcolor1 has value');
+        } else {
+          //alert('bgcolor2 is empty');
+          $('div#informea').css("background","transparent");  //remove original background
+          $('div#informea').css("background-color","#"+value);
+        }
+        break;
+    }
+  }
+});
+</script>
+</head>
+
+<body>
+<h2>Customize the InforMEA applet</h2>
+<em>Preview </em>
+<div id="informea">
+  <p class="title">InforMEA</p>
+  <form id="searchbar" name="searchbar" method="get" action="http://www.informea.org/search" target="_blank">
+    <input type="hidden" name="external" value="1" />
+    <input type="hidden" name="q_use_treaties" value="1" />
+    <input type="hidden" name="q_use_decisions" value="1" />
+    <input type="text" value="" class="search" name="q_freetext" placeholder="Search informea.org"/>
+    <input type="image" class="button" src="http://www.informea.org/wp-content/uploads/2014/01/search.png" value=""/>
+  </form>
+  <p class="slogan">Search MEA COP Decisions, News, Treaty Texts</p>
+  <p class="link"><a href="http://www.informea.org" target="_blank" title="Visit InforMEA website">www.informea.org</a></p>
+</div>
+<div class="colorpickers">
+  <h4>1. Pick the preferred colors for your custom applet</h4>
+  <fieldset>
+    <legend>Text Color</legend>
+    <input type="text" id="textColor" class="picker textPicker"></input>
+  </fieldset>
+
+  <fieldset>
+    <legend>Border Color</legend>
+    <input type="text" id="borderColor" class="picker borderPicker"></input>
+  </fieldset>
+
+  <fieldset>
+    <legend>Link Color</legend>
+    <input type="text" id="linkColor" class="picker linkPicker"></input>
+  </fieldset>
+
+  <fieldset>
+    <legend>Background Color</legend>
+    <input type="text" id="bgColor1" class="picker backgroundPicker"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="text" id="bgColor2" class="picker backgroundPicker2"></input>
+  </fieldset>
+</div>
+
+<div class="generateCode">
+  <h4>3. Generate the applet code</h4>
+  <button id="generate">Generate Code</button>
+  <h4>4. Copy the code below to your website</h4>
+  <textarea id="appletCode" cols="90" rows="25"></textarea>
+</div>
+
+<div id="origStyle" style="display:none">
+<style type="text/css">
+div#informea{-moz-border-radius:50px/50px;background-color:#308fc0;border:solid 2px #308fc0;width:190px;height:160px;border-radius:5px;background:linear-gradient(#3398cb,#26739a);font-family:FontAwesome,Times,serif;font-size:15px}
+div#informea .title{font-size: 26px; color: #F2F7F2;padding: 0px 15px 15px 8px;margin: 3px 0px 0px 0px;}
+div#informea .slogan{color:#fffdfd;margin-left:5px;line-height:18px}
+div#informea input.button{border-top:2px solid #fc6;border-bottom:2px solid #fc6;border-left:0;border-right:0;background-color:#fc6;background-image:url(http://www.informea.org/wp-content/uploads/2014/01/search.png);background-repeat:no-repeat;background-position:left;width:34px;height:20px;border-top-right-radius:2px 2px;border-bottom-right-radius:2px 2px;margin-top:2px;margin-left:-2px}
+div#informea .search{padding:0 2px;border:1px solid #fc6;border-right:0;border-top-left-radius:2px 2px;border-bottom-left-radius:2px 2px;width:140px;float:left;height:22px;margin-left:6px;margin-top:2px;font-size:12px;font-weight:normal}
+div#informea .link{text-align:right}
+div#informea .link a{color:#ccc;text-align:right;text-decoration:none;padding-right:4px;font-size:12px}
+div#informea .link a:hover{text-decoration:underline}
+</style>
+</div>
+</body>
+</html>
