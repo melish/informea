@@ -53,8 +53,8 @@ function decision_get_treaty_decisions_group_by_meeting($id_treaty) {
           $meeting->decisions = array();
           $mw = entity_metadata_wrapper('node', $meeting);
           $type = $mw->field_event_type->value();
-          // ASCOBANS
-          if (($type && strtolower($type->name_original) == 'cop') || in_array($id_treaty, array(304))) {
+          // ASCOBANS, AEWA
+          if (($type && strtolower($type->name_original) == 'cop') || in_array($id_treaty, array(304, 264))) {
             $ret[$mw->getIdentifier()] = $meeting;
           }
         }
