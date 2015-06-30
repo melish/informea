@@ -25,7 +25,7 @@ function informea_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => 0,
+        'weight' => -15,
       ),
       'seven' => array(
         'region' => '',
