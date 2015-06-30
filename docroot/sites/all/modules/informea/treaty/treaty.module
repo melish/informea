@@ -155,6 +155,10 @@ EOT
         drupal_add_library('informea', 'smallipop');
         drupal_add_css(drupal_get_path('module', 'treaty') . '/styles/treaty.css');
         $articles = treaty_get_treaty_text($node->nid);
+        if (empty($articles)) {
+          $node->content['context'] = informea_no_content_available_block();
+          return;
+        }
         $node->content['context'] = array(
           '#type' => 'item', '#weight' => 10, '#markup' => theme('treaty_text', array('articles' => $articles, 'node' => $node)),
         );
@@ -170,6 +174,10 @@ EOT
       case 'protocols':
         module_load_include('inc', 'treaty', 'treaty.api');
         $data = treaty_get_child_protocols($node->nid);
+        if (empty($data)) {
+          $node->content['context'] = informea_no_content_available_block();
+          return;
+        }
         $node->content['context'] = array(
           '#type' => 'item', '#weight' => 10, '#markup' => theme('treaty_protocols', array('protocols' => $data)),
         );
@@ -178,6 +186,10 @@ EOT
       case 'decisions':
         module_load_include('inc', 'decision', 'decision.api');
         $data = decision_get_treaty_decisions_group_by_meeting($node->nid);
+        if (empty($data)) {
+          $node->content['context'] = informea_no_content_available_block();
+          return;
+        }
         drupal_add_library('informea', 'scrollto');
         if ($odata_identifier != 'cites') {
           $elements = array();
@@ -225,6 +237,10 @@ EOT
         module_load_include('inc', 'country_data', 'country_data.api');
         module_load_include('php', 'informea', 'recaptcha/recaptchalib');
         $members = country_data_treaty_get_membership($node->nid);
+        if (empty($members)) {
+          $node->content['context'] = informea_no_content_available_block();
+          return;
+        }
         if (count($members)) {
           // Add map with parties
           $map_config = array();
@@ -370,14 +386,22 @@ EOT
             );
           }
           $render[] = country_deliverable_render_national_reports($rows);
+          $node->content['context'] = $render;
         }
-        $node->content['context'] = $render;
+        else {
+          $node->content['context'] = informea_no_content_available_block();
+          return;
+        }
         break;
 
       case 'action-plans':
         module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
         module_load_include('inc', 'country_deliverable');
         $rows = country_deliverable_action_plans_group_by_country($node->nid);
+        if (empty($data)) {
+          $node->content['context'] = informea_no_content_available_block();
+          return;
+        }
         $node->content['context'] = country_deliverable_render_action_plans($rows);
         break;
     }

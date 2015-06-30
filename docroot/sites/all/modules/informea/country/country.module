@@ -159,6 +159,17 @@ function country_node_view($node, $view_mode, $langcode) {
         }
         $view_ramsar = country_get_view_country_related_content($node->nid, 'ramsar_sites');
         $view_whc = country_get_view_country_related_content($node->nid, 'whc_sites');
+        $view_ramsar_content = $view_ramsar->render();
+        $view_whc_content = $view_whc->render();
+
+        if (empty($view_ramsar->total_rows)) {
+          $c = informea_no_content_available_block();
+          $view_ramsar_content = drupal_render($c);
+        }
+        if (empty($view_whc->total_rows)) {
+          $c = informea_no_content_available_block();
+          $view_whc_content = drupal_render($c);
+        }
         $tabs = array(
           'map' => array(
             'header' => t('Map of sites'),
@@ -167,12 +178,12 @@ function country_node_view($node, $view_mode, $langcode) {
           ),
           'ramsar' => array(
             'header' => t('Ramsar sites <span class="badge">!count</span>', array('!count' => $view_ramsar->total_rows)),
-            'body' => $view_ramsar->render(),
+            'body' => $view_ramsar_content,
             'active' => !$has_map,
           ),
           'whc' => array(
             'header' => t('WHC sites <span class="badge">!count</span>', array('!count' => $view_whc->total_rows)),
-            'body' => $view_whc->render()
+            'body' => $view_whc_content,
           )
         );
         if (!$has_map) {
@@ -187,6 +198,10 @@ function country_node_view($node, $view_mode, $langcode) {
         module_load_include('inc', 'country_deliverable');
         module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
         $rows = country_deliverable_national_reports_group_by_treaty($node->nid);
+        if (empty($rows)) {
+          $node->content['context'] = informea_no_content_available_block();
+          return;
+        }
         $node->content['context'] = country_deliverable_render_national_reports($rows, 'national_reports');
         break;
 
@@ -194,6 +209,10 @@ function country_node_view($node, $view_mode, $langcode) {
         module_load_include('inc', 'country_deliverable');
         module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
         $rows = country_deliverable_action_plans_group_by_treaty($node->nid);
+        if (empty($rows)) {
+          $node->content['context'] = informea_no_content_available_block();
+          return;
+        }
         $node->content['context'] = country_deliverable_render_action_plans($rows, 'action_plans');
         break;
 
@@ -239,6 +258,11 @@ function country_node_view($node, $view_mode, $langcode) {
             $rows[] = $row;
           }
         }
+        if (empty($rows)) {
+          $node->content['context'] = informea_no_content_available_block();
+          return;
+        }
+
         $table = array(
           'attributes' => array('id' => 'table-parties', 'class' => 'table-no-striping table-hover'),
           'header' => array(

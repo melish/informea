@@ -266,3 +266,10 @@ function informea_fix_title_field() {
   db_change_field('field_data_title_field', 'title_field_value', 'title_field_value', array('type' => 'varchar','length' => $column_size));
   db_change_field('field_revision_title_field', 'title_field_value', 'title_field_value', array('type' => 'varchar','length' => $column_size));
 }
+
+
+function informea_no_content_available_block() {
+  // Render "No data available (shown from code)" block
+  $block = module_invoke('block', 'block_view', 5);
+  return array('#type' => 'item', '#markup' => render($block['content']));
+}
