@@ -16,8 +16,6 @@
 function informea_theme_preprocess_page(&$variables) {
   // Add the autocomplete library.
   drupal_add_library('system', 'ui.autocomplete');
-
-  $search_form = drupal_get_form('search_form');
   menu_secondary_local_tasks();
   if (arg(0) == 'taxonomy') {
     // Unset related terms in taxonomy page
@@ -70,14 +68,6 @@ function informea_theme_preprocess_page(&$variables) {
   if (isset($variables['node']->type)) {
     $variables['theme_hook_suggestions'][] = 'page__node__' . $variables['node']->type;
   }
-
-  $search_form['basic']['keys']['#attributes']['placeholder'] = t('Explore InforMEA');
-
-  if (arg(0) == 'search') {
-    $search_form['basic']['keys']['#attributes']['value'] = arg(1);
-  }
-
-  $variables['search_box'] = drupal_render($search_form);
 
   if ($variables['is_front']) {
     // Loads the enabled countries.

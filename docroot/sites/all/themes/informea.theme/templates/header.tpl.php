@@ -22,7 +22,9 @@
       <?php endif; ?>
     </div><!-- .navbar-header -->
     <div class="navbar-header pull-right">
-      <?php print $search_box; ?>
+      <?php if (!empty($page['navigation'])): ?>
+        <?php print render($page['navigation']); ?>
+      <?php endif; ?>
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -137,9 +139,6 @@
           </ul><!-- .dropdown-menu .dropdown-menu-right -->
         </li><!-- .dropdown -->
       </ul><!-- .nav .navbar-nav -->
-      <?php if (!empty($page['navigation'])): ?>
-        <?php print render($page['navigation']); ?>
-      <?php endif; ?>
     </nav><!-- .navbar-collapse .collapse -->
   </div><!-- .container -->
 </header><!-- #navbar -->

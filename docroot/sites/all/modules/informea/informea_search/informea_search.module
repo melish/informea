@@ -17,87 +17,30 @@ function informea_search_views_pre_render(&$view) {
   }
 }
 
+function informea_search_block_info() {
+  return array(
+    'search_informea' => array(
+      'info' => t('InforMEA search box'),
+      'cache' => DRUPAL_NO_CACHE,
+      'weight' => 10,
+      'status' => 1,
+      'region' => 'navigation',
+      'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+      'pages' => '',
+    )
+  );
+}
+
 /**
- * Implements hook_form_alter().
+ * Implements hook_block_view().
  */
-function informea_search_form_search_form_alter(&$form, &$form_state) {
-  $form['#method'] = 'post';
-  $form['#action'] = url('search');
-  $form['#submit'] = array('informea_search_form_search_form_submit');
-}
-
-function informea_search_form_search_form_submit($form, $form_state) {
-  $input = $form_state['values']['keys'];
-  drupal_goto('search/' . $input);
-}
-
-
-function informea_search_facet_items_alter(&$build, &$settings) {
-  return;
-  $t_active = isset($build['all_treaty']['#active']) && $build['all_treaty']['#active'] == 1;
-  if ($settings->facet == 'type') {
-    $build['all_treaty'] = array(
-        '#markup' => 'Treaty',
-        '#path' => 'search/alien',
-        '#html' => FALSE,
-        '#indexed_value' => 'all_treaty',
-        '#count' => '1',
-        '#active' => $t_active,
-        '#item_parents' => array(),
-        '#item_children' => array(),
-        '#query' => array('f' => array())
-    );
-
-
-    $d_active = isset($build['all_decision']['#active']) && $build['all_decision']['#active'] == 1;
-    $build['all_decision'] = array(
-        '#markup' => 'Decisions / Resolutions',
-        '#path' => 'search/alien',
-        '#html' => FALSE,
-        '#indexed_value' => 'decision',
-        '#count' => '1',
-        '#active' => $d_active,
-        '#item_parents' => array(),
-        '#item_children' => array(),
-        '#query' => array('f' => array())
-    );
-
-    if($t_active) {
-      if ($d_active) {
-        $build['all_treaty']['#query']['f'] = array(99 => 'type:all_decision');
-        $build['all_decision']['#query']['f'] = array(98 => 'type:all_treaty');
-      }
-      else {
-        $build['all_treaty']['#query']['f'] = array();
-        $build['all_decision']['#query']['f'] = array(
-          98 => 'type:all_treaty',
-          99 => 'type:all_decision'
-        );
-      }
-    }
-    else {
-      if ($d_active) {
-        $build['all_treaty']['#query']['f'] = array(
-          98 => 'type:all_treaty',
-          99 => 'type:all_decision'
-        );
-        $build['all_decision']['#query']['f'] = array();
-      }
-      else {
-        $build['all_treaty']['#query']['f'] = array(98 => 'type:all_treaty');
-        $build['all_decision']['#query']['f'] = array(99 => 'type:all_decision');
-      }
-    }
-
-    unset($build['treaty_paragraph']);
-    unset($build['decision_paragraph']);
-    unset($build['event_calendar']);
-    unset($build['treaty_article']);
-    unset($build['action_plan']);
-    unset($build['national_report']);
-    unset($build['decision']);
-    unset($build['treaty']);
+function informea_search_block_view($delta = '') {
+  $block = array();
+  switch($delta) {
+    case 'search_informea':
+      $block['content'] = drupal_get_form('search_form');
   }
+  return $block;
 }
 
 function informea_search_search_api_solr_query_alter(array &$call_args, SearchApiQueryInterface $query) {
@@ -245,4 +188,47 @@ function informea_search_ajax_callback($data) {
   header('Content-Type: application/json');
 
   print $source;
+}
+
+if (!function_exists('search_form')) {
+  function search_form($form, $form_state) {
+    $action = 'search';
+    $form['#action'] = $action;
+    $form['#method'] = 'post';
+    $form['#id'] = 'search-form';
+    $form['#action'] = url('search');
+    // Record the $action for later use in redirecting.
+    $form['#attributes'] = array(
+      'class' => array(
+        'search-form',
+        'clearfix',
+        'navbar-form',
+        'pull-left'
+      )
+    );
+    $form['basic'] = array('#type' => 'container');
+    $form['basic']['keys'] = array(
+      '#type' => 'textfield',
+      '#default_value' => isset($_GET['keys']) ? check_plain($_GET['keys']) : '',
+      '#size' => 25,
+      '#maxlength' => 255,
+      '#attributes' => array(
+        'placeholder' => t('Explore InforMEA'),
+      )
+    );
+    $form['basic']['submit'] = array(
+      '#type' => 'submit',
+      '#value' => '',
+      '#attributes' => array(
+        'class' => array('btn-default')
+      )
+    );
+    $form['#submit'] = array('informea_search_form_submit');
+    return $form;
+  }
+}
+
+function informea_search_form_submit($form, $form_state) {
+  $input = $form_state['values']['keys'];
+  drupal_goto('search/' . $input);
 }
