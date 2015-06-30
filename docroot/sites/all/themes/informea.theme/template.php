@@ -38,14 +38,30 @@ function informea_theme_preprocess_page(&$variables) {
     $node = $variables['node'];
     switch ($node->type) {
       case 'country':
+        $countries = country_get_countries_select_options();
+        $countries1 = $countries;
+        array_unshift($countries1, t('View another country'));
         $variables['content_column_class'] = ' class="col-sm-9"';
-        $variables['countries'] = country_get_countries_select_options();
+        $variables['countries'] = $countries;
+        $variables['select-switch-countries'] = array(
+          '#id' => 'country-selector',
+          '#type' => 'select',
+          '#options' => $countries1,
+        );
         array_unshift($variables['page']['sidebar_first'], menu_secondary_local_tasks());
         break;
 
       case 'treaty':
         $variables['content_column_class'] = ' class="col-sm-9"';
-        $variables['treaties'] = treaty_get_treaties_as_select_options();
+        $treaties = treaty_get_treaties_as_select_options();
+        $variables['treaties'] = $treaties;
+        $treaties1 = $treaties;
+        array_unshift($treaties1, t('View another treaty'));
+        $variables['select-switch-treaties'] = array(
+          '#id' => 'treaty-selector',
+          '#type' => 'select',
+          '#options' => $treaties1,
+        );
         array_unshift($variables['page']['sidebar_first'], menu_secondary_local_tasks());
     }
   }
