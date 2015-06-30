@@ -398,7 +398,7 @@ EOT
         module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
         module_load_include('inc', 'country_deliverable');
         $rows = country_deliverable_action_plans_group_by_country($node->nid);
-        if (empty($data)) {
+        if (empty($rows)) {
           $node->content['context'] = informea_no_content_available_block();
           return;
         }
