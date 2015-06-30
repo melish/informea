@@ -40,23 +40,23 @@ function drush_informea_cache_warm() {
   $rows = db_select('field_data_field_odata_identifier')->fields(NULL, array('field_odata_identifier_value'))->execute()->fetchCol();
   $output[] = $prefix . 'treaties';
   foreach($rows as $row) {
-    $output[] = $prefix . $row;
-    $output[] = $prefix . $row . '/protocols';
-    $output[] = $prefix . $row . '/text';
-    $output[] = $prefix . $row . '/decisions';
-    $output[] = $prefix . $row . '/parties';
-    $output[] = $prefix . $row . '/national-reports';
-    $output[] = $prefix . $row . '/action-plans';
+    $output[] = $prefix . 'treaties/' . $row;
+    $output[] = $prefix . 'treaties/'. $row . '/protocols';
+    $output[] = $prefix . 'treaties/'. $row . '/text';
+    $output[] = $prefix . 'treaties/'. $row . '/decisions';
+    $output[] = $prefix . 'treaties/'. $row . '/parties';
+    $output[] = $prefix . 'treaties/'. $row . '/national-reports';
+    $output[] = $prefix . 'treaties/'. $row . '/action-plans';
   }
 
   // Countries
   $output[] = $prefix . 'countries';
   $rows = db_select('field_data_field_country_iso2')->fields(NULL, array('field_country_iso2_value'))->execute()->fetchCol();
   foreach($rows as $row) {
-    $output[] = $prefix . $row;
-    $output[] = $prefix . $row . '/parties';
-    $output[] = $prefix . $row . '/action-plans';
-    $output[] = $prefix . $row . '/national-reports';
+    $output[] = $prefix . 'countries/' . $row;
+    $output[] = $prefix . 'countries/' . $row . '/parties';
+    $output[] = $prefix . 'countries/' . $row . '/action-plans';
+    $output[] = $prefix . 'countries/' . $row . '/national-reports';
   }
   print implode("\n", $output);
   print "\n";
