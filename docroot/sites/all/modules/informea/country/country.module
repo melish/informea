@@ -417,7 +417,14 @@ function country_level1_page() {
       $arr[] = t('!count national reports', array('!count' => $stat['national_report']));
     }
     $w = entity_metadata_wrapper('node', $stat['nid']);
-    $html_stats[$iso2] = sprintf('<strong>%s</strong><br>%s', $w->label(), implode(', ', $arr));
+    $label = $w->label();
+    if ($iso2 == 'DK') {
+      $label = t('Denmark');
+    }
+    if ($iso2 == 'CN') {
+      $label = t('China');
+    }
+    $html_stats[$iso2] = sprintf('<strong>%s</strong><br>%s', $label, implode(', ', $arr));
   }
   drupal_add_js(array('country' => array('stats' => $html_stats)), array('type' => 'setting'));
   drupal_add_js(drupal_get_path('module', 'country') . '/js/countries.js');

@@ -233,7 +233,14 @@ EOT
             $obs = $w->field_country->value();
             $country = $obs[0];
             $cw = entity_metadata_wrapper('node', $country);
-            $map_config[] = array('id' => $cw->field_country_iso2->value());
+            $iso2 = $cw->field_country_iso2->value();
+            $map_config[] = array('id' => $iso2);
+            if ($iso2 == 'DK') {
+              $map_config[] = array('id' => 'GL', 'balloonText' => t('Denmark'));
+            }
+            if ($iso2 == 'CN') {
+              $map_config[] = array('id' => 'TW', 'balloonText' => t('China'));
+            }
           }
           edw_amcharts_add_map('high');
           drupal_add_js(array('map' => array('memberParties' => $map_config)), array('type' => 'setting'));
