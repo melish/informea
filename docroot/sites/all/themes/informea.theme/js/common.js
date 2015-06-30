@@ -1,4 +1,8 @@
 jQuery(document).ready(function ($) {
+
+  // Disable all clicks
+  $('.disabled').click(function (event) { event.preventDefault() });
+
   $('#dialog-modal-ajax').on('loaded.bs.modal', function () {
     $(window).trigger('resize');
   });
