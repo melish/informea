@@ -65,6 +65,11 @@ function informea_search_menu() {
     'access arguments' => array('access content'),
     'delivery callback' => 'informea_search_ajax_callback',
   );
+  $items['external-search'] = array(
+    'page callback' => 'informea_search_external_search',
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access content'),
+  );
 
   return $items;
 }
@@ -206,10 +211,15 @@ if (!function_exists('search_form')) {
         'pull-left'
       )
     );
+    $q = $_GET['q'];
+    $search_query = '';
+    if (strpos($q, 'search/') === 0) {
+      $search_query = str_replace('search/', '', $q);
+    }
     $form['basic'] = array('#type' => 'container');
     $form['basic']['keys'] = array(
       '#type' => 'textfield',
-      '#default_value' => isset($_GET['keys']) ? check_plain($_GET['keys']) : '',
+      '#default_value' => $search_query,
       '#size' => 25,
       '#maxlength' => 255,
       '#attributes' => array(
@@ -230,5 +240,10 @@ if (!function_exists('search_form')) {
 
 function informea_search_form_submit($form, $form_state) {
   $input = $form_state['values']['keys'];
+  drupal_goto('search/' . $input);
+}
+
+function informea_search_external_search() {
+  $input = isset($_GET['keys']) ? check_plain($_GET['keys']) : '';
   drupal_goto('search/' . $input);
 }
