@@ -104,7 +104,7 @@ function informea_theme_preprocess_page(&$variables) {
 function informea_theme_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'search_form') {
     $form['#attributes']['class'][] = 'navbar-form';
-    $form['#attributes']['class'][] = 'navbar-right';
+    $form['#attributes']['class'][] = 'pull-left';
   }
 }
 
