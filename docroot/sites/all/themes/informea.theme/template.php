@@ -315,3 +315,9 @@ function informea_theme_links__locale_block(&$variables) {
 
   return theme_links($variables);
 }
+
+function informea_theme_preprocess_region(&$variables, $hook) {
+  if ($variables['region'] == 'navigation') {
+    $variables['classes_array'][] = 'pull-left';
+  }
+}

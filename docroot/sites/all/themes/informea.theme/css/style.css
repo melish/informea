@@ -1602,3 +1602,7 @@ strong.excerpt {
   border: 1px solid #fff;
   color: #fff;
 }
+
+.language-switcher-locale-url a {
+  color: #fff;
+}
