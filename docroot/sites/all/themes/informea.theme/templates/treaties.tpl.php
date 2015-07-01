@@ -100,7 +100,7 @@
   </div><!-- .brand-group -->
 </div><!-- .text-center -->
 <div class="regional">
-<h3 class="pull-right"><?php print t('All treaties'); ?></h3>
+<h3 class="text-right"><?php print t('All treaties'); ?></h3>
 <table class="table table-bordered" id="table-treaties">
   <thead>
     <tr>
