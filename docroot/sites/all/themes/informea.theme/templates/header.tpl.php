@@ -39,7 +39,6 @@
           <ul class="dropdown-menu row" role="menu">
             <li class="col-sm-3">
               <ul>
-                <li><?php print l(t('All treaties'), 'treaties'); ?></li>
                 <li class="dropdown-header"><?php print t('Biological Diversity'); ?></li>
                 <li><?php print l(t('AEWA'), 'treaties/aewa'); ?></li>
                 <li><?php print l(t('ASCOBANS'), 'treaties/ascobans'); ?></li>
