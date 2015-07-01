@@ -311,9 +311,20 @@ function informea_theme_informea_search_form_wrapper($variables) {
 }
 
 function informea_theme_links__locale_block(&$variables) {
-  $variables['attributes']['class'][] = 'list-inline';
+  global $user;
 
-  return theme_links($variables);
+  $variables['attributes']['class'][] = 'dropdown-menu';
+  $variables['attributes']['class'][] = 'dropdown-menu-right';
+  $variables['attributes']['aria-labelledby'] = 'dLanguage';
+
+  $menu = '<div class="dropdown">';
+  $menu .= $user->uid == 0 ? l(t('Log in'), 'user/login') : l(t('Log out'), 'user/logout');
+  $menu .= ' | ';
+  $menu .= l(t('Language') . ' <span class="caret"></span>', NULL, array('attributes' => array('id' => 'dLanguage', 'data-toggle' => 'dropdown', 'aria-haspopup' => 'true', 'aria-expanded' => 'false'), 'external' => TRUE, 'fragment' => FALSE, 'html' => TRUE));
+  $menu .= theme_links($variables);
+  $menu .= '</div>';
+
+  return $menu;
 }
 
 function informea_theme_preprocess_region(&$variables, $hook) {
