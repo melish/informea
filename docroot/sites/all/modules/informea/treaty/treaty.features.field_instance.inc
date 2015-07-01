@@ -3782,7 +3782,7 @@ function treaty_field_default_field_instances() {
     'bundle' => 'treaty_article',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This is the order the articles appear in the treary (ie, Article 1, has 1, Article 2 has 2, Annex I has 3 etc ... The system uses this field to sort the articles when displayed',
     'display' => array(
       'ajax' => array(
         'label' => 'above',
@@ -3812,7 +3812,7 @@ function treaty_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_sorting_order',
     'label' => 'Order',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'max' => '',
@@ -4040,12 +4040,13 @@ function treaty_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 0,
-      'module' => 'taxonomy',
+      'module' => 'options',
       'settings' => array(
         'autocomplete_path' => 'taxonomy/autocomplete',
         'size' => 60,
+        'use_select2' => FALSE,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 41,
     ),
   );
@@ -4215,7 +4216,7 @@ function treaty_field_default_field_instances() {
     'bundle' => 'treaty_paragraph',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Order of the paragraph within the treaty article listing. Add 10, 20, 30 for pargraph 1, 2, 3. Later you can add paragraphs between, using for instance "6" to add a paragraph between 1 and 2.',
     'display' => array(
       'ajax' => array(
         'label' => 'above',
@@ -4245,7 +4246,7 @@ function treaty_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_sorting_order',
     'label' => 'Order',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'max' => '',
@@ -4822,6 +4823,7 @@ function treaty_field_default_field_instances() {
   t('Official publication');
   t('Online course');
   t('Order');
+  t('Order of the paragraph within the treaty article listing. Add 10, 20, 30 for pargraph 1, 2, 3. Later you can add paragraphs between, using for instance "6" to add a paragraph between 1 and 2.');
   t('Original ID');
   t('Paragraph Indentation');
   t('Parent Treaty Article');
@@ -4837,6 +4839,7 @@ function treaty_field_default_field_instances() {
   t('Reporting obligation treaty article');
   t('Reporting obligation treaty article paragraphs');
   t('Secondary topic');
+  t('This is the order the articles appear in the treary (ie, Article 1, has 1, Article 2 has 2, Annex I has 3 etc ... The system uses this field to sort the articles when displayed');
   t('Title');
   t('Title abbreviation');
   t('Topics');

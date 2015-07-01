@@ -155,10 +155,6 @@ EOT
         drupal_add_library('informea', 'smallipop');
         drupal_add_css(drupal_get_path('module', 'treaty') . '/styles/treaty.css');
         $articles = treaty_get_treaty_text($node->nid);
-        if (empty($articles)) {
-          $node->content['context'] = informea_no_content_available_block();
-          return;
-        }
         $node->content['context'] = array(
           '#type' => 'item', '#weight' => 10, '#markup' => theme('treaty_text', array('articles' => $articles, 'node' => $node)),
         );
