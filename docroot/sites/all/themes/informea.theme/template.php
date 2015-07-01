@@ -309,3 +309,9 @@ function informea_theme_informea_search_form_wrapper($variables) {
   $output .= '</div>';
   return $output;
 }
+
+function informea_theme_links__locale_block(&$variables) {
+  $variables['attributes']['class'][] = 'list-inline';
+
+  return theme_links($variables);
+}
