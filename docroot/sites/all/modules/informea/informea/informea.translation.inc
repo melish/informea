@@ -120,7 +120,7 @@ function _informea_localizable_strings() {
     'Tagged Terms',
     'Permanent link to this item', // Added by me (link to article/paragraph)
     'Download treaty profile as PDF',
-    'Download member parties as Microsoft Excel file',
+    'Download list of parties as Microsoft Excel file',
     'Close',
 
     // TREATY: Summary page
@@ -130,7 +130,7 @@ function _informea_localizable_strings() {
     'Entry into force',
     'Convention website',
     'Number of focal points',
-    'Number of member parties',
+    'Number of parties',
     'Keyword(s)',
     'Read treaty text',
 
@@ -143,8 +143,8 @@ function _informea_localizable_strings() {
     'Documents',
 
     // TREATY: Parties and focal points
-    'Map of member parties',
-    'List of member parties',
+    'Map of parties',
+    'List of parties',
     'Ratification data taken from the <a target="_blank" href="@url">UN Treaty Collection</a> database.',
     'Party',
     'Signature',

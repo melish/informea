@@ -29,7 +29,7 @@ function country_deliverable_node_info() {
     'national_report' => array(
       'name' => t('National Report'),
       'base' => 'node_content',
-      'description' => t('National reports delivered by the MEA member parties'),
+      'description' => t('National reports delivered by the MEA parties'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
