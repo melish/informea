@@ -9,6 +9,7 @@ package = InforMEA
 
 regions[navigation]     = 'Navigation'
 regions[front_page_announcements] = 'Front page announcements'
+regions[front_page_hero] = 'Front page hero unit'
 regions[header]         = 'Top Bar'
 regions[highlighted]    = 'Highlighted'
 regions[help]           = 'Help'

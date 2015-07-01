@@ -26,15 +26,9 @@
     </div><!-- .broadcast -->
     <?php endif; ?>
     <div class="row">
-      <div class="col-md-6" id="col-about">
-        <?php if (!empty($site_slogan)): ?>
-          <p class="lead"><?php print $site_slogan; ?></p>
-        <?php endif; ?>
-        <p><?php print t('InforMEA harvests COP decisions, news, meetings, membership, national focal points and reports from MEAs. Information is organised by terms from MEA COP agendas.'); ?></p>
-        <p><?php print t('InforMEA is a project of the MEA Information and Knowledge Management (IKM) Initiative with the support from the United Nations Environment Programme (UNEP).'); ?></p>
-        <p><?php print l(t('Learn more about InforMEA') . ' <span class="glyphicon glyphicon-arrow-right"></span>', 'about', array('html' => TRUE)); ?></p>
-      </div><!-- .col-md-6 #col-about -->
-      <?php print informea_theme_slider(); ?>
+      <?php if (!empty($page['front_page_hero'])): ?>
+        <?php print render($page['front_page_hero']); ?>
+      <?php endif; ?>
     </div><!-- .row -->
   </div><!-- .container -->
 </div><!-- .hero-unit -->

@@ -40,6 +40,35 @@ function informea_migration_schema_alter(&$schema) {
   }
 }
 
+/**
+ * Implements hook_block_info().
+ */
+function informea_block_info() {
+  return array(
+    'informea_front_page_slider' => array(
+      'info' => t('Front page slider'),
+      'cache' => DRUPAL_NO_CACHE,
+      'weight' => 10,
+      'status' => 1,
+      'region' => 'front_page_hero',
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+      'pages' => '<front>',
+    )
+  );
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function informea_block_view($delta = '') {
+  $block = array();
+  switch($delta) {
+    case 'informea_front_page_slider':
+      $block['content'] = informea_theme_slider();
+  }
+  return $block;
+}
+
 
 function informea_entity_info_alter(&$entity_info) {
   $entity_info['node']['view modes']['ajax'] = array(

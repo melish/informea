@@ -250,7 +250,6 @@ function informea_theme_slider() {
       'slides' => $slides,
       'attributes' => array(
         'id' => 'col-carousel',
-        'class' => array('col-md-6'),
       )
     )
   );
