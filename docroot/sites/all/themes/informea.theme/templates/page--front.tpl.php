@@ -18,14 +18,13 @@
 <?php include 'header.tpl.php'; ?>
 <div class="hero-unit">
   <div class="container">
+    <?php if(!empty($page['front_page_announcements'])): ?>
     <div class="broadcast">
       <div class="broadcast-body">
-        <p>
-          <em><?php print t('The new InforMEA learning platform is now live!'); ?></em>
-          <?php print l(t('Start learning'), 'http://e-learning.informea.org/', array('attributes' => array('class' => array('btn', 'btn-outline')), 'external' => TRUE)); ?>
-        </p>
+      <?php print render($page['front_page_announcements']); ?>
       </div><!-- .broadcast-body -->
     </div><!-- .broadcast -->
+    <?php endif; ?>
     <div class="row">
       <div class="col-md-6" id="col-about">
         <?php if (!empty($site_slogan)): ?>
