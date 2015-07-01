@@ -1,10 +1,12 @@
 <?php
 
-/**
- * Implements hook_cron().
- */
-function ws_consumer_cron() {
-  ws_consumer_update_treaties_ratification();
+function ws_consumer_cronapi($op, $job = NULL) {
+  return array(
+    'ws_consumer_update_treaties_ratification' => array(
+      'description' => 'Update ratification data every two days',
+      'rule' => '0 23 */2 * *', // Every 2 days at 23:00
+    )
+  );
 }
 
 function ws_consumer_update_treaties_ratification() {
