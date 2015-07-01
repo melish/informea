@@ -78,26 +78,6 @@ function informea_theme_preprocess_page(&$variables) {
   }
 }
 
-/**
- * Performs alterations before a form is rendered.
- *
- * @param $form
- *   Nested array of form elements that comprise the form.
- * @param $form_state
- *   A keyed array containing the current state of the form.
- * @param $form_id
- *   String representing the name of the form itself.
- *
- * @return
- *   Nothing.
- */
-function informea_theme_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == 'search_form') {
-    $form['#attributes']['class'][] = 'navbar-form';
-    $form['#attributes']['class'][] = 'pull-left';
-  }
-}
-
 function informea_theme_theme() {
   return array(
     'informea_bootstrap_collapse' => array(
@@ -116,6 +96,9 @@ function informea_theme_theme() {
       'template' => 'templates/informea-bootstrap-carousel',
       'variables' => array('slides' => array(), 'attributes' => array()),
       'path' => drupal_get_path('theme', 'informea_theme'),
+    ),
+    'informea_search_form_wrapper' => array(
+      'render element' => 'element',
     ),
   );
 }
@@ -303,4 +286,26 @@ function informea_theme_form_views_exposed_form_alter(&$form, &$form_state, $for
       $form['field_mea_topic']['#options']['All'] = t('-- All topics --');
     }
   }
+}
+
+
+/**
+ * Theme function implementation for bootstrap_search_form_wrapper.
+ */
+function informea_theme_informea_search_form_wrapper($variables) {
+  $output = '<div class="input-group">';
+  $output .= $variables['element']['#children'];
+  $output .= '<span class="input-group-btn">';
+  $output .= '<button type="submit" class="btn btn-default">';
+  // We can be sure that the font icons exist in CDN.
+  if (theme_get_setting('bootstrap_cdn')) {
+    $output .= _bootstrap_icon('search');
+  }
+  else {
+    $output .= t('Search');
+  }
+  $output .= '</button>';
+  $output .= '</span>';
+  $output .= '</div>';
+  return $output;
 }

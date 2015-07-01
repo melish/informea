@@ -38,7 +38,7 @@ function informea_search_block_view($delta = '') {
   $block = array();
   switch($delta) {
     case 'search_informea':
-      $block['content'] = drupal_get_form('search_form');
+      $block['content'] = drupal_get_form('informea_search_form');
   }
   return $block;
 }
@@ -189,53 +189,50 @@ function informea_search_ajax_get_ajax($term) {
 
 function informea_search_ajax_callback($data) {
   $source = json_encode($data);
-
   header('Content-Type: application/json');
-
   print $source;
 }
 
-if (!function_exists('search_form')) {
-  function search_form($form, $form_state) {
-    $action = 'search';
-    $form['#action'] = $action;
-    $form['#method'] = 'post';
-    $form['#id'] = 'search-form';
-    $form['#action'] = url('search');
-    // Record the $action for later use in redirecting.
-    $form['#attributes'] = array(
-      'class' => array(
-        'search-form',
-        'clearfix',
-        'navbar-form',
-        'pull-left'
-      )
-    );
-    $q = $_GET['q'];
-    $search_query = '';
-    if (strpos($q, 'search/') === 0) {
-      $search_query = str_replace('search/', '', $q);
-    }
-    $form['basic'] = array('#type' => 'container');
-    $form['basic']['keys'] = array(
-      '#type' => 'textfield',
-      '#default_value' => $search_query,
-      '#size' => 25,
-      '#maxlength' => 255,
-      '#attributes' => array(
-        'placeholder' => t('Explore InforMEA'),
-      )
-    );
-    $form['basic']['submit'] = array(
-      '#type' => 'submit',
-      '#value' => '',
-      '#attributes' => array(
-        'class' => array('btn-default')
-      )
-    );
-    $form['#submit'] = array('informea_search_form_submit');
-    return $form;
+function informea_search_form($form, $form_state) {
+  $action = 'search';
+  $form['#action'] = $action;
+  $form['#method'] = 'post';
+  $form['#id'] = 'search-form';
+  $form['#action'] = url('search');
+  // Record the $action for later use in redirecting.
+  $form['#attributes'] = array(
+    'class' => array(
+      'search-form',
+      'clearfix',
+      'navbar-form',
+      'pull-left'
+    )
+  );
+  $q = $_GET['q'];
+  $search_query = '';
+  if (strpos($q, 'search/') === 0) {
+    $search_query = str_replace('search/', '', $q);
   }
+  $form['basic'] = array('#type' => 'container');
+  $form['basic']['keys'] = array(
+    '#theme_wrappers' => array('informea_search_form_wrapper'),
+    '#type' => 'textfield',
+    '#default_value' => $search_query,
+    '#size' => 25,
+    '#maxlength' => 255,
+    '#attributes' => array(
+      'placeholder' => t('Explore InforMEA'),
+    )
+  );
+  // Hidden submit button (FAPI won't work without it)
+  $form['basic']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => '',
+    '#attributes' => array(
+      'class' => array('btn-default', 'element-invisible')
+    )
+  );
+  return $form;
 }
 
 function informea_search_form_submit($form, $form_state) {
