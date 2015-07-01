@@ -1193,23 +1193,7 @@ button.toggle {
   width: 88px;
 }
 
-/* Header */
-/* ------ */
 
-.above-navbar a {
-  color: white;
-  font-weight: normal;
-}
-
-#block-locale-language ul { float: right; list-style-type: none; margin: 0; padding: 0; }
-#block-locale-language ul li { display: inline; }
-#block-locale-language ul li:before { color: white; content: '|'; padding-right: 5px; padding-left: 2px; }
-#block-locale-language ul li:first-child:before { content: ''; }
-
-#block-locale-language ul li.ru,
-#block-locale-language ul li.es,
-#block-locale-language ul li.ar,
-#block-locale-language ul li.zh-hans { display: none; }
 
 /* Footer */
 /* ------ */

@@ -7,7 +7,6 @@ package = InforMEA
 
 ; Regions
 
-regions[above_navbar]   = 'Above navbar'
 regions[navigation]     = 'Navigation'
 regions[header]         = 'Top Bar'
 regions[highlighted]    = 'Highlighted'

@@ -11,9 +11,6 @@
 </div><!-- .modal .fade #dialog-modal-ajax -->
 <header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
   <div class="container">
-    <div class="above-navbar">
-      <?php if (!empty($page['above_navbar'])) { print drupal_render($page['above_navbar']); } ?>
-    </div>
     <div class="navbar-header pull-left">
       <?php if ($logo): ?>
         <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
