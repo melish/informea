@@ -334,7 +334,7 @@ function country_country_contextual_menu_alter(&$contextual_menu, $node) {
         'title' => t('Map and sites'),
       ),
       'parties' => array(
-        'title' => t('Membership'),
+        'title' => t('Party status'),
         'count' => country_data_get_member_party_count($node->nid)
       ),
       'action-plans' => array(
