@@ -25,14 +25,22 @@ $print = sprintf('/treaties/%s/print', $odata_identifier);
     <?php endforeach; ?>
   </div>
 <?php endif; ?>
-<?php if (user_access('create treaty_article content') && isset($article)): ?>
-  <?php
+<?php
+if (user_access('create treaty_article content')):
+
+  $query = array(
+    'destination' => sprintf('node/%s/text', $node->nid)
+  );
+  if (isset($node->nid)) {
+    $query['edit'] = array(
+      'field_treaty' => array('und' => $node->nid)
+    );
+  }
   print l('<i class="glyphicon glyphicon-plus"></i> ' . t('Add article'), 'node/add/treaty-article', array(
     'attributes' => array('class' => array('btn', 'btn-default')),
     'html' => TRUE,
-    'query' => array('edit' => array(
-      'field_treaty' => array('und' => entity_metadata_wrapper('node', $article)->field_treaty->value()[0]->nid)
-    ))
+    'query' => $query,
   ));
-  ?>
-<?php endif; ?>
+endif;
+?>
+

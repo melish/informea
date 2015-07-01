@@ -24,7 +24,7 @@ function treaty_entityqueue_default_queues() {
     ),
     'min_size' => '0',
     'max_size' => '0',
-    'act_as_queue' => 0,
+    'act_as_queue' => 1,
   );
   $export['regional_treaties_ordering'] = $queue;
 
