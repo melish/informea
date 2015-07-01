@@ -1026,11 +1026,11 @@ button.toggle {
 .brand-hover.brand-basel:hover .image,
 .brand-hover.brand-basel:focus .image {
   background-position: -360px 0;
+  width: 92px;
 }
 
 .brand-hover.brand-basel .image {
   background-position: -360px -60px;
-  width: 92px;
 }
 
 .brand-ozone .image,
@@ -1147,11 +1147,11 @@ button.toggle {
 .brand-hover.brand-fao:hover .image,
 .brand-hover.brand-fao:focus .image {
   background-position: -1120px 0;
+  width: 158px;
 }
 
 .brand-hover.brand-fao .image {
   background-position: -1120px -60px;
-  width: 158px;
 }
 
 .brand-rotterdam .image,
