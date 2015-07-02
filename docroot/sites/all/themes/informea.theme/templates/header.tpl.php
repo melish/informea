@@ -11,14 +11,14 @@
 </div><!-- .modal .fade #dialog-modal-ajax -->
 <header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
   <div class="container">
-    <div class="navbar-header pull-left">
+    <div class="navbar-header header-brand">
       <?php if ($logo): ?>
         <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
           <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
         </a><!-- .logo .navbar-btn .pull-left -->
       <?php endif; ?>
     </div><!-- .navbar-header -->
-    <div class="navbar-header pull-right">
+    <div class="navbar-header header-content">
       <?php if (!empty($page['navigation'])): ?>
         <?php print render($page['navigation']); ?>
       <?php endif; ?>
