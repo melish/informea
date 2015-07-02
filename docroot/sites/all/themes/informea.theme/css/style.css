@@ -376,6 +376,10 @@ h1 {
   .navbar-collapse {
     clear: both;
   }
+
+  .navbar-collapse .caret {
+    display: none;
+  }
 }
 
 @media (min-width: 768px) {
