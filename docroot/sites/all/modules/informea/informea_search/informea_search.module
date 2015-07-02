@@ -201,12 +201,7 @@ function informea_search_form($form, $form_state) {
   $form['#action'] = url('search');
   // Record the $action for later use in redirecting.
   $form['#attributes'] = array(
-    'class' => array(
-      'search-form',
-      'clearfix',
-      'navbar-form',
-      'pull-left'
-    )
+    'class' => array('navbar-form')
   );
   $q = $_GET['q'];
   $search_query = '';

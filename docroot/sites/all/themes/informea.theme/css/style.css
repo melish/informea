@@ -1606,17 +1606,17 @@ strong.excerpt {
 #block-locale-language,
 #block-locale-language > .dropdown > a {
   color: #fff;
-  font-size: 80%;
 }
 
-#block-locale-language {
-  position: absolute;
-  right: 15px;
-  top: 0;
+.region-navigation > .block {
+  float: left;
 }
 
-@media (max-width: 767px) {
-  #block-locale-language {
-    right: 67px;
-  }
+.region-navigation > .block + .block {
+  margin-left: 8px;
+}
+
+.navbar-btn {
+  margin-bottom: 17px;
+  margin-top: 17px;
 }
