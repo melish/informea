@@ -1642,6 +1642,26 @@ strong.excerpt {
   margin-top: 0;
 }
 
+.navbar-default #dLanguage {
+  background-color: transparent;
+  border-color: #fff;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.navbar-default #dLanguage:hover,
+.navbar-default #dLanguage:focus {
+  background-color: #f3f3f3;
+  border-color: #c6cedb;
+  color: #8a95a6;
+}
+
+.navbar-default #dLanguage:active {
+  background-color: #ffcc66;
+  border-color: #ffcc33;
+  color: #16232e;
+}
+
 @media (max-width: 640px) {
   .navbar-static-top .navbar-toggle {
     position: absolute;

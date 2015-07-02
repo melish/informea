@@ -317,7 +317,7 @@ function informea_theme_links__locale_block(&$variables) {
   $variables['attributes']['aria-labelledby'] = 'dLanguage';
 
   $output = '<div class="dropdown">';
-  $output .= '<button type="button" id="dLanguage" class="btn btn-primary navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-globe"></span></button>';
+  $output .= '<button type="button" id="dLanguage" class="btn btn-default navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-globe"></span></button>';
   $output .= theme_links($variables);
   $output .= '</div>';
 
