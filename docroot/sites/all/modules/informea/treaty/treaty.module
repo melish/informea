@@ -23,6 +23,18 @@ function treaty_menu() {
 }
 
 /**
+ * Implements hook_permission().
+ */
+function treaty_permission() {
+  return array(
+    'reorder decisions' => array(
+      'title' => t('Reorder decisions'),
+      'description' => t('Visit the decision ordering screen'),
+    ),
+  );
+}
+
+/**
  * Implements hook_entity_info_alter().
  */
 function treaty_entity_info_alter(&$entity_info) {
@@ -795,4 +807,34 @@ function treaty_can_have_national_reports($id_treaty) {
     $ret = is_array($cache->data) && in_array($id_treaty, $cache->data);
   }
   return $ret;
+}
+
+
+/**
+ * Implements hook_form_alter().
+ *
+ * In the decision reorder screen show a drop-down instead of the text input.
+ */
+function treaty_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-decision-ordering-page-reorder') {
+    $view = $form_state['view'];
+    $id_treaty = $view->args[0];
+    $q = db_select('node', 'a')->fields('a', array('nid', 'title'));
+    $q->innerJoin('field_data_field_treaty', 'b', 'a.nid = b.entity_id AND a.vid = b.revision_id');
+    $q->innerJoin('field_data_field_meeting', 'c', 'b.entity_id = c.field_meeting_target_id');
+    $q->innerJoin('field_data_event_calendar_date', 'd', 'a.nid = d.entity_id');
+    $q->condition('b.bundle', 'event_calendar');
+    $q->groupBy('a.nid');
+    $q->condition('field_treaty_target_id', $id_treaty);
+    $q->orderBy('d.event_calendar_date_value', 'DESC');
+    $meetings = $q->execute()->fetchAll();
+    $options = array('' => '-- ' . t('Please select a meeting') . ' --');
+    foreach ($meetings as $meeting) {
+      $options[$meeting->nid] = $meeting->title;
+    }
+    $form['field_meeting_target_id'] = array(
+      '#type' => 'select',
+      '#options' => $options,
+    );
+  }
 }

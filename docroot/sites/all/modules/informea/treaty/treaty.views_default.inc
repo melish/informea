@@ -11,6 +11,180 @@ function treaty_views_default_views() {
   $export = array();
 
   $view = new view();
+  $view->name = 'decision_ordering';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Decision ordering';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'reorder decisions';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
+  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
+  $handler->display->display_options['style_options']['columns'] = array(
+    'draggableviews' => 'draggableviews',
+    'field_decision_number' => 'field_decision_number',
+    'title' => 'title',
+  );
+  $handler->display->display_options['style_options']['default'] = 'field_decision_number';
+  $handler->display->display_options['style_options']['info'] = array(
+    'draggableviews' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_decision_number' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['override'] = FALSE;
+  $handler->display->display_options['style_options']['caption'] = 'List of decisions for the selected meeting';
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['content'] = '<b>Instructions</b>: Use this screen to reorder the decisions, per meeting:
+<ol>
+<li>Drag the decisions by their handler into the proper place</li>
+<li>When you are satisfied with the display, press <em>Save</em> button at the bottom of the page</li>
+</ol>';
+  $handler->display->display_options['header']['area']['format'] = 'full_html';
+  /* Header: Global: Result summary */
+  $handler->display->display_options['header']['result']['id'] = 'result';
+  $handler->display->display_options['header']['result']['table'] = 'views';
+  $handler->display->display_options['header']['result']['field'] = 'result';
+  $handler->display->display_options['header']['result']['content'] = 'Reordering @total decisions ...';
+  /* Field: Draggableviews: Content */
+  $handler->display->display_options['fields']['draggableviews']['id'] = 'draggableviews';
+  $handler->display->display_options['fields']['draggableviews']['table'] = 'node';
+  $handler->display->display_options['fields']['draggableviews']['field'] = 'draggableviews';
+  $handler->display->display_options['fields']['draggableviews']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['draggableviews']['hide_alter_empty'] = FALSE;
+  $handler->display->display_options['fields']['draggableviews']['draggableviews']['save_button_label'] = 'Save order';
+  $handler->display->display_options['fields']['draggableviews']['draggableviews']['ajax'] = 1;
+  /* Field: Content: Number */
+  $handler->display->display_options['fields']['field_decision_number']['id'] = 'field_decision_number';
+  $handler->display->display_options['fields']['field_decision_number']['table'] = 'field_data_field_decision_number';
+  $handler->display->display_options['fields']['field_decision_number']['field'] = 'field_decision_number';
+  $handler->display->display_options['fields']['field_decision_number']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_decision_number']['alter']['text'] = '<div class="col-md-4">[field_decision_number]</div>';
+  $handler->display->display_options['fields']['field_decision_number']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_decision_number']['type'] = 'text_plain';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Sort criterion: Draggableviews: Weight */
+  $handler->display->display_options['sorts']['weight']['id'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['table'] = 'draggableviews_structure';
+  $handler->display->display_options['sorts']['weight']['field'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['draggableviews_setting_view'] = 'decision_ordering:page_1';
+  $handler->display->display_options['sorts']['weight']['draggableviews_setting_new_items_bottom_list'] = 1;
+  /* Contextual filter: Content: Treaty (field_treaty) */
+  $handler->display->display_options['arguments']['field_treaty_target_id']['id'] = 'field_treaty_target_id';
+  $handler->display->display_options['arguments']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['arguments']['field_treaty_target_id']['field'] = 'field_treaty_target_id';
+  $handler->display->display_options['arguments']['field_treaty_target_id']['default_action'] = 'empty';
+  $handler->display->display_options['arguments']['field_treaty_target_id']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_treaty_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_treaty_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_treaty_target_id']['summary_options']['items_per_page'] = '25';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'decision' => 'decision',
+  );
+  /* Filter criterion: Content: Meeting (field_meeting) */
+  $handler->display->display_options['filters']['field_meeting_target_id']['id'] = 'field_meeting_target_id';
+  $handler->display->display_options['filters']['field_meeting_target_id']['table'] = 'field_data_field_meeting';
+  $handler->display->display_options['filters']['field_meeting_target_id']['field'] = 'field_meeting_target_id';
+  $handler->display->display_options['filters']['field_meeting_target_id']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_meeting_target_id']['expose']['operator_id'] = 'field_meeting_target_id_op';
+  $handler->display->display_options['filters']['field_meeting_target_id']['expose']['label'] = 'Start by selecting a meeting';
+  $handler->display->display_options['filters']['field_meeting_target_id']['expose']['operator'] = 'field_meeting_target_id_op';
+  $handler->display->display_options['filters']['field_meeting_target_id']['expose']['identifier'] = 'field_meeting_target_id';
+  $handler->display->display_options['filters']['field_meeting_target_id']['expose']['required'] = TRUE;
+  $handler->display->display_options['filters']['field_meeting_target_id']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+  );
+
+  /* Display: Decisions ordering */
+  $handler = $view->new_display('page', 'Decisions ordering', 'page_reorder');
+  $handler->display->display_options['display_description'] = 'Order the appearance of decisions in listing';
+  $handler->display->display_options['path'] = 'node/%/decision-reorder';
+  $handler->display->display_options['menu']['type'] = 'tab';
+  $handler->display->display_options['menu']['title'] = 'Order decisions';
+  $handler->display->display_options['menu']['description'] = 'Allows you to set the order of decisions';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
+  $translatables['decision_ordering'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('<b>Instructions</b>: Use this screen to reorder the decisions, per meeting:
+<ol>
+<li>Drag the decisions by their handler into the proper place</li>
+<li>When you are satisfied with the display, press <em>Save</em> button at the bottom of the page</li>
+</ol>'),
+    t('Reordering @total decisions ...'),
+    t('Content'),
+    t('Number'),
+    t('<div class="col-md-4">[field_decision_number]</div>'),
+    t('All'),
+    t('Start by selecting a meeting'),
+    t('Decisions ordering'),
+    t('Order the appearance of decisions in listing'),
+  );
+  $export['decision_ordering'] = $view;
+
+  $view = new view();
   $view->name = 'reporting_obligations_admin';
   $view->description = '';
   $view->tag = 'default';
