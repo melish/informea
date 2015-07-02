@@ -212,15 +212,28 @@ EOT
           );
         }
         else {
+          $decisions = array();
+          $resolutions = array();
+          foreach ($data as $mid => $row) {
+            foreach ($row->decisions as $did => $decision) {
+              $type = !empty($decision->field_decision_type[LANGUAGE_NONE][0]['tid']) ? $decision->field_decision_type[LANGUAGE_NONE][0]['tid'] : '';
+              if ($type == 844 /* resolution */) {
+                $resolutions[$did] = $decision;
+              }
+              else {
+                $decisions[$did] = $decision;
+              }
+            }
+          }
           $tabs = array(
             'decisions' => array(
               'header' => t('Decisions'),
-              'body' => theme('treaty_decisions', array('decisions' => $data['decisions'])),
+              'body' => theme('treaty_decisions', array('decisions' => $decisions)),
               'active' => TRUE,
             ),
             'resolutions' => array(
               'header' => t('Resolutions'),
-              'body' => theme('treaty_decisions', array('decisions' => $data['resolutions'])),
+              'body' => theme('treaty_decisions', array('decisions' => $resolutions)),
             )
           );
           $node->content['context'] = array(
