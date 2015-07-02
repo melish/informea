@@ -1652,6 +1652,7 @@ strong.excerpt {
 
   .region-navigation {
     float: none;
+    margin-right: 15px;
   }
 
   #search-form {
@@ -1667,9 +1668,5 @@ strong.excerpt {
 
   #block-locale-language {
     float: right;
-  }
-
-  #dLanguage {
-    margin-right: 15px;
   }
 }
