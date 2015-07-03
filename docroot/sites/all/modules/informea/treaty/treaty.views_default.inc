@@ -409,72 +409,6 @@ function treaty_views_default_views() {
   $handler->display->display_options['header']['result']['field'] = 'result';
   $handler->display->display_options['header']['result']['content'] = 'Showing @total treaties and protocols';
   $handler->display->display_options['path'] = 'treaty-listing-page';
-
-  /* Display: Global treaties */
-  $handler = $view->new_display('block', 'Global treaties', 'block');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Global treaties and conventions';
-  $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
-  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['defaults']['style_options'] = FALSE;
-  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'node';
-  $handler->display->display_options['row_options']['view_mode'] = 'treaty_listing';
-  $handler->display->display_options['defaults']['row_options'] = FALSE;
-  $handler->display->display_options['defaults']['header'] = FALSE;
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'treaty' => 'treaty',
-  );
-  /* Filter criterion: Content: Region (field_region) */
-  $handler->display->display_options['filters']['field_region_tid']['id'] = 'field_region_tid';
-  $handler->display->display_options['filters']['field_region_tid']['table'] = 'field_data_field_region';
-  $handler->display->display_options['filters']['field_region_tid']['field'] = 'field_region_tid';
-  $handler->display->display_options['filters']['field_region_tid']['operator'] = 'not';
-  $handler->display->display_options['filters']['field_region_tid']['value'] = array(
-    410 => '410',
-    411 => '411',
-    412 => '412',
-    413 => '413',
-    414 => '414',
-    415 => '415',
-    416 => '416',
-  );
-  $handler->display->display_options['filters']['field_region_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_region_tid']['vocabulary'] = 'geographical_region';
-  /* Filter criterion: Content: Region (field_region) */
-  $handler->display->display_options['filters']['field_region_tid_1']['id'] = 'field_region_tid_1';
-  $handler->display->display_options['filters']['field_region_tid_1']['table'] = 'field_data_field_region';
-  $handler->display->display_options['filters']['field_region_tid_1']['field'] = 'field_region_tid';
-  $handler->display->display_options['filters']['field_region_tid_1']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_region_tid_1']['expose']['operator_id'] = 'field_region_tid_1_op';
-  $handler->display->display_options['filters']['field_region_tid_1']['expose']['label'] = 'Filter by region';
-  $handler->display->display_options['filters']['field_region_tid_1']['expose']['operator'] = 'field_region_tid_1_op';
-  $handler->display->display_options['filters']['field_region_tid_1']['expose']['identifier'] = 'field_region_tid_1';
-  $handler->display->display_options['filters']['field_region_tid_1']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-  );
-  $handler->display->display_options['filters']['field_region_tid_1']['type'] = 'select';
-  $handler->display->display_options['filters']['field_region_tid_1']['vocabulary'] = 'geographical_region';
   $translatables['treaty_listing_page'] = array(
     t('Master'),
     t('Treaties'),
@@ -491,8 +425,6 @@ function treaty_views_default_views() {
     t('Filter by region'),
     t('Regional table'),
     t('Showing @total treaties and protocols'),
-    t('Global treaties'),
-    t('Global treaties and conventions'),
   );
   $export['treaty_listing_page'] = $view;
 

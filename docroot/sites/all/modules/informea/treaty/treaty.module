@@ -914,4 +914,13 @@ function treaty_block_view($delta = '') {
 /**
  * A module-defined block content function.
  */
-function treaty_block_contents($delta) {}
+function treaty_block_contents($delta) {
+  switch ($delta) {
+    case 'treaty_global':
+      $result = 'treaty_global';
+
+      break;
+  }
+
+  return $result;
+}
