@@ -845,7 +845,7 @@ function treaty_form_alter(&$form, &$form_state, $form_id) {
     $q->condition('field_treaty_target_id', $id_treaty);
     $q->orderBy('d.event_calendar_date_value', 'DESC');
     $meetings = $q->execute()->fetchAll();
-    $options = array('' => '-- ' . t('Please select a meeting') . ' --');
+    $options = array('' => t('-- Please select a meeting --'));
     foreach ($meetings as $meeting) {
       $options[$meeting->nid] = $meeting->title;
     }
