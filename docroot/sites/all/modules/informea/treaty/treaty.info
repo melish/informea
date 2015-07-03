@@ -26,6 +26,7 @@ features[ctools][] = field_group:field_group:1
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[entityqueue_queue][] = regional_treaties_ordering
+features[entityqueue_queue][] = treaty_global
 features[features_api][] = api:2
 features[field_base][] = field_abstract
 features[field_base][] = field_address
