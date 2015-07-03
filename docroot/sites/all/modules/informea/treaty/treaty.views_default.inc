@@ -23,8 +23,7 @@ function treaty_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['access']['perm'] = 'reorder decisions';
+  $handler->display->display_options['access']['type'] = 'reorder decisions';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -38,7 +37,7 @@ function treaty_views_default_views() {
     'field_decision_number' => 'field_decision_number',
     'title' => 'title',
   );
-  $handler->display->display_options['style_options']['default'] = 'field_decision_number';
+  $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
     'draggableviews' => array(
       'align' => '',
@@ -46,7 +45,7 @@ function treaty_views_default_views() {
       'empty_column' => 0,
     ),
     'field_decision_number' => array(
-      'sortable' => 1,
+      'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',

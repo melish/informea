@@ -105,10 +105,11 @@ function treaty_field_group_info() {
       0 => 'field_odata_identifier',
       1 => 'field_ratification_xml_url',
       2 => 'field_sorting_order',
-      3 => 'field_has_api_decisions',
-      4 => 'field_has_api_action_plans',
+      3 => 'field_has_api_action_plans',
+      4 => 'field_has_api_decisions',
       5 => 'field_has_api_national_reports',
       6 => 'field_treaty_has_parties_from_un',
+      7 => 'field_user_owners',
     ),
     'format_type' => 'htab',
     'format_settings' => array(

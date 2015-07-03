@@ -45,6 +45,23 @@ function treaty_entity_info_alter(&$entity_info) {
 }
 
 /**
+ * Implements hook_views_plugins().
+ */
+function treaty_views_plugins() {
+  return array(
+    'access' => array(
+      'reorder decisions' => array(
+        'title' => t('Permission to reorder decisions'),
+        'help' => t('Granted to reorder treaty decisions (must own node)'),
+        'handler' => 'views_plugin_access_reorder_decisions',
+        'uses options' => FALSE,
+        'path' => drupal_get_path('module', 'treaty') . '/includes/plugins',
+      ),
+    ),
+  );
+}
+
+/**
  *  Implements hook_url_inbound_alter().
  */
 function treaty_url_inbound_alter(&$path, $original_path, $path_language) {
@@ -837,4 +854,25 @@ function treaty_form_alter(&$form, &$form_state, $form_id) {
       '#options' => $options,
     );
   }
+}
+
+function treaty_check_permission_reorder_decisions($account = NULL) {
+  if (arg(0) == 'node') {
+    if ($node = node_load(arg(1))) {
+      if ($node->type == 'treaty') {
+        if (user_access('reorder decisions')) {
+          return TRUE;
+        }
+        global $user;
+        // Check owners in the node
+        $owners = !empty($node->field_user_owners) ? $node->field_user_owners[LANGUAGE_NONE] : array();
+        foreach($owners as $ob) {
+          if ($user->uid == $ob['target_id']) {
+            return TRUE;
+          }
+        }
+      }
+    }
+  }
+  return FALSE;
 }
