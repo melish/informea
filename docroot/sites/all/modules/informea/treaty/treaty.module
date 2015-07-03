@@ -885,7 +885,10 @@ function treaty_check_permission_reorder_decisions($account = NULL) {
 function treaty_block_info() {
   $blocks['treaty_global'] = array(
     'info' => t('Global treaties and conventions'),
-    'status' => TRUE
+    'status' => TRUE,
+    'region' => 'content',
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'treaty-listing-page'
   );
 
   return $blocks;
@@ -911,5 +914,4 @@ function treaty_block_view($delta = '') {
 /**
  * A module-defined block content function.
  */
-function treaty_block_contents($delta) {
-}
+function treaty_block_contents($delta) {}
