@@ -890,3 +890,26 @@ function treaty_block_info() {
 
   return $blocks;
 }
+
+/**
+ * Implements hook_block_view().
+ *
+ * This hook generates the contents of the blocks themselves.
+ */
+function treaty_block_view($delta = '') {
+  switch ($delta) {
+    case 'treaty_global':
+      $block['subject'] = t('Global treaties and conventions');
+      $block['content'] = treaty_block_contents($delta);
+
+      break;
+  }
+
+  return $block;
+}
+
+/**
+ * A module-defined block content function.
+ */
+function treaty_block_contents($delta) {
+}
