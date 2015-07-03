@@ -323,3 +323,19 @@ function informea_theme_links__locale_block(&$variables) {
 
   return $output;
 }
+
+/**
+ * Preprocesses variables for block template.
+ *
+ * @param $variables
+ *   An associative array with generated variables.
+ *
+ * @return
+ *   Nothing.
+ */
+function informea_theme_preprocess_block(&$variables) {
+  if ($variables['block']->module == 'treaty' && $variables['block']->delta == 'treaty_global') {
+    $variables['title_attributes_array']['class'][] = 'lead';
+    $variables['title_attributes_array']['class'][] = 'text-center';
+  }
+}

@@ -130,6 +130,11 @@ function treaty_theme() {
       'variables' => array('protocols'),
       'path' => drupal_get_path('module', 'treaty'),
     ),
+    'treaty_global' => array(
+      'render element' => 'content',
+      'template' => 'templates/treaty-global',
+      'path' => drupal_get_path('module', 'treaty'),
+    ),
     'treaties' => array(
       'render element' => 'element',
       'template' => 'templates/treaties',
@@ -917,7 +922,7 @@ function treaty_block_view($delta = '') {
 function treaty_block_contents($delta) {
   switch ($delta) {
     case 'treaty_global':
-      $result = 'treaty_global';
+      $result = theme('treaty_global');
 
       break;
   }
