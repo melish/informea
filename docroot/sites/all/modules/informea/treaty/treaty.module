@@ -876,3 +876,17 @@ function treaty_check_permission_reorder_decisions($account = NULL) {
   }
   return FALSE;
 }
+
+/**
+* Implements hook_block_info().
+*
+* This hook declares what blocks are provided by the module.
+*/
+function treaty_block_info() {
+  $blocks['treaty_global'] = array(
+    'info' => t('Global treaties and conventions'),
+    'status' => TRUE
+  );
+
+  return $blocks;
+}
