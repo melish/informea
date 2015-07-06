@@ -659,6 +659,30 @@ function treaty_view() {
   return $ret;
 }
 
+function treaty_views_pre_render(&$view) {
+  if ($view->name == 'treaty_listing_page') {
+    $regions = array();
+    $treaties = _treaty_get_treaties();
+
+    foreach ($treaties as $node) {
+      $wrapper = entity_metadata_wrapper('node', $node);
+      $rs = $wrapper->field_region->value();
+
+      foreach ($rs as $t) {
+        $t_wrapper = entity_metadata_wrapper('taxonomy_term', $t);
+        $t->name = $t_wrapper->label();
+        $regions[$t->tid] = $t;
+      }
+    }
+
+    uasort($regions, function($a, $b) {
+      return strcasecmp($a->name, $b->name);
+    });
+
+    $view->regions = $regions;
+  }
+}
+
 
 function treaty_get_odata_identifier($treaty) {
   if(is_object($treaty)) {
