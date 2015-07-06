@@ -131,9 +131,12 @@ function treaty_theme() {
       'path' => drupal_get_path('module', 'treaty'),
     ),
     'treaty_global' => array(
+      'variables' => array(
+        'treaties' => NULL
+      ),
       'render element' => 'content',
-      'template' => 'templates/treaty-global',
       'path' => drupal_get_path('module', 'treaty'),
+      'template' => 'templates/treaty-global'
     ),
     'treaties' => array(
       'render element' => 'element',
@@ -922,7 +925,31 @@ function treaty_block_view($delta = '') {
 function treaty_block_contents($delta) {
   switch ($delta) {
     case 'treaty_global':
-      $result = theme('treaty_global');
+      $query = new EntityFieldQuery();
+
+      $query
+        ->entityCondition('entity_type', 'entityqueue_subqueue')
+        ->entityCondition('bundle', 'treaty_global');
+
+      $result = $query->execute();
+      $variables = array(
+        'treaties' => array()
+      );
+
+      if (!empty($result['entityqueue_subqueue'])) {
+        $subqueues = entity_load('entityqueue_subqueue', array_keys($result['entityqueue_subqueue']));
+        foreach ($subqueues as $subqueue) {
+          $wrapper = entity_metadata_wrapper('entityqueue_subqueue', $subqueue);
+          $key = $wrapper->getIdentifier();
+          $nodes = $wrapper->eq_node->value();
+
+          foreach ($nodes as $node) {
+            $variables['treaties'][$key][$node->nid] = entity_metadata_wrapper('node', $node);
+          }
+        }
+      }
+
+      $result = theme('treaty_global', $variables);
 
       break;
   }
