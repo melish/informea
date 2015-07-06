@@ -437,6 +437,7 @@ function treaty_views_default_views() {
   $handler->display->display_options['fields']['field_region']['id'] = 'field_region';
   $handler->display->display_options['fields']['field_region']['table'] = 'field_data_field_region';
   $handler->display->display_options['fields']['field_region']['field'] = 'field_region';
+  $handler->display->display_options['fields']['field_region']['element_label_class'] = 'dropdown';
   $handler->display->display_options['fields']['field_region']['type'] = 'i18n_taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_region']['delta_offset'] = '0';
   /* Field: Content: Entry into force */
