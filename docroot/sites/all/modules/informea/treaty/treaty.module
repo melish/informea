@@ -659,6 +659,13 @@ function treaty_view() {
   return $ret;
 }
 
+function treaty_preprocess_views_view(&$variables) {
+  if ($variables['view']->name == 'treaty_listing_page') {
+    // Adds the treaties JavaScript file to the page.
+    drupal_add_js(drupal_get_path('module', 'treaty') . '/js/treaties.js');
+  }
+}
+
 function treaty_views_pre_render(&$view) {
   if ($view->name == 'treaty_listing_page') {
     $regions = array();
