@@ -339,3 +339,9 @@ function informea_theme_preprocess_block(&$variables) {
     $variables['title_attributes_array']['class'][] = 'text-center';
   }
 }
+
+function informea_theme_preprocess_views_view_table(&$variables) {
+  if ($variables['view']->name == 'treaty_listing_page') {
+    $variables['classes_array'][] = 'table-bordered';
+  }
+}
