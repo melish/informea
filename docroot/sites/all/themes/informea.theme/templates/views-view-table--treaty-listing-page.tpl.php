@@ -33,9 +33,9 @@
                 <span class="caret"></span>
               </a><!-- #dRegion -->
               <ul class="dropdown-menu dropdown-menu-right" aria-labeledby="dRegion">
-                <li class="active"><?php print l(t('All regions'), NULL, array('attributes' => array('data-filter' => 'table', 'data-selector' => '.column-region', 'data-value' => NULL), 'fragment' => 'table-treaties', 'external' => TRUE)); ?></li>
+                <li class="active"><?php print l(t('All regions'), NULL, array('attributes' => array('data-filter' => 'table', 'data-selector' => '.views-field-field-region', 'data-value' => NULL), 'fragment' => 'table-treaties', 'external' => TRUE)); ?></li>
                 <?php foreach ($view->regions as $region): ?>
-                  <li><?php print l($region->name, NULL, array('attributes' => array('data-filter' => 'table', 'data-selector' => '.column-region', 'data-value' => $region->name), 'fragment' => 'table-treaties', 'external' => TRUE)); ?></li>
+                  <li><?php print l($region->name, NULL, array('attributes' => array('data-filter' => 'table', 'data-selector' => '.views-field-field-region', 'data-value' => $region->name), 'fragment' => 'table-treaties', 'external' => TRUE)); ?></li>
                 <?php endforeach; ?>
               </ul><!-- .dropdown-menu .dropdown-menu-right -->
             <?php else: ?>
