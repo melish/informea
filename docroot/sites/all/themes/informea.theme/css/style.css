@@ -1106,22 +1106,22 @@ button.toggle {
 }
 
 .brand-unep .image,
-.brand-minamata .image,
+.brand-minamataunep .image,
 .brand-vienna .image,
 .brand-montreal .image,
 .brand-hover.brand-unep:hover .image,
-.brand-hover.brand-minamata:hover .image,
+.brand-hover.brand-minamataunep:hover .image,
 .brand-hover.brand-vienna:hover .image,
 .brand-hover.brand-montreal:hover .image,
 .brand-hover.brand-unep:focus .image,
-.brand-hover.brand-minamata:focus .image,
+.brand-hover.brand-minamataunep:focus .image,
 .brand-hover.brand-vienna:focus .image,
 .brand-hover.brand-montreal:focus .image {
   background-position: -880px 0;
 }
 
 .brand-hover.brand-unep .image,
-.brand-hover.brand-minamata .image,
+.brand-hover.brand-minamataunep .image,
 .brand-hover.brand-vienna .image,
 .brand-hover.brand-montreal .image {
   background-position: -880px -60px;
