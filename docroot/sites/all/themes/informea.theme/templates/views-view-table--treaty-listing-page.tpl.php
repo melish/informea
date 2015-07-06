@@ -28,10 +28,10 @@
         <?php foreach ($header as $field => $label): ?>
           <th <?php if ($header_classes[$field]) { print 'class="'. $header_classes[$field] . '" '; } ?>>
             <?php if ($field == 'field_region'): ?>
-              <a id="dRegion" class="text-nowrap" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <a id="dRegion" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <?php print $label; ?>
                 <span class="caret"></span>
-              </a><!-- #dRegion .text-nowrap -->
+              </a><!-- #dRegion -->
               <ul class="dropdown-menu dropdown-menu-right" aria-labeledby="dRegion">
                 <li class="active"><?php print l(t('All regions'), NULL, array('attributes' => array('data-filter' => 'table', 'data-selector' => '.column-region', 'data-value' => NULL), 'fragment' => 'table-treaties', 'external' => TRUE)); ?></li>
                 <?php foreach ($view->regions as $region): ?>

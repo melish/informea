@@ -444,6 +444,7 @@ function treaty_views_default_views() {
   $handler->display->display_options['fields']['field_entry_into_force']['id'] = 'field_entry_into_force';
   $handler->display->display_options['fields']['field_entry_into_force']['table'] = 'field_data_field_entry_into_force';
   $handler->display->display_options['fields']['field_entry_into_force']['field'] = 'field_entry_into_force';
+  $handler->display->display_options['fields']['field_entry_into_force']['element_label_class'] = 'text-nowrap';
   $handler->display->display_options['fields']['field_entry_into_force']['settings'] = array(
     'format_type' => 'short',
     'fromto' => 'both',
