@@ -1694,3 +1694,9 @@ strong.excerpt {
     float: right;
   }
 }
+
+.view-treaty-listing-page .views-field-field-logo,
+.view-treaty-listing-page .views-field-field-region,
+.view-treaty-listing-page .views-field-field-entry-into-force {
+  vertical-align: middle;
+}
