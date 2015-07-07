@@ -19,6 +19,7 @@ jQuery(document).ready(function ($) {
 
     var nid = $(this).data('nid');
 
+    $('.glyphicon', this).toggleClass('glyphicon-plus-sign glyphicon-minus-sign');
     $('[data-parent-treaty=' + nid + ']').toggle();
   });
 });
