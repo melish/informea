@@ -7,22 +7,6 @@
 include_once 'treaty.features.inc';
 
 /**
- * Defines menu items and page callbacks.
- *
- * @return
- *   An associative array of properties for each path.
- */
-function treaty_menu() {
-  $items['treaties'] = array(
-    'title' => t('Treaties'),
-    'page callback' => 'treaty_view',
-    'access arguments' => array('access content'),
-    'type' => MENU_CALLBACK,
-  );
-  return $items;
-}
-
-/**
  * Implements hook_entity_info_alter().
  */
 function treaty_entity_info_alter(&$entity_info) {
@@ -617,36 +601,6 @@ function _treaty_get_treaties() {
   return $treaties;
 }
 
-/**
- * Displays the treaties page when the user visits the path.
- *
- * @return string
- *   String representing the content of the page.
- */
-function treaty_view() {
-//  drupal_set_title('');
-  // Adds the treaties JavaScript file to the page.
-  drupal_add_js(drupal_get_path('module', 'treaty') . '/js/treaties.js');
-  $regions = array();
-  $treaties = _treaty_get_treaties();
-  foreach ($treaties as $node) {
-    $wrapper = entity_metadata_wrapper('node', $node);
-    $rs = $wrapper->field_region->value();
-    foreach ($rs as $t) {
-      $t_wrapper = entity_metadata_wrapper('taxonomy_term', $t);
-      $t->name = $t_wrapper->label();
-      $regions[$t->tid] = $t;
-    }
-  }
-
-  uasort($regions, function($a, $b) { return strcasecmp($a->name, $b->name); });
-  $ret = theme('treaties', array(
-    'regions' => $regions,
-    'treaties' => $treaties
-  ));
-  return $ret;
-}
-
 function treaty_preprocess_views_view(&$variables) {
   if ($variables['view']->name == 'treaty_listing_page') {
     // Adds the treaties JavaScript file to the page.
@@ -921,7 +875,7 @@ function treaty_block_info() {
     'status' => TRUE,
     'region' => 'content',
     'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => 'treaty-listing-page'
+    'pages' => 'treaties'
   );
 
   return $blocks;

@@ -365,15 +365,6 @@ function treaty_views_default_views() {
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
   $handler->display->display_options['header']['result']['content'] = 'Showing <span class="total">@total</span> treaties and protocols';
-  /* Relationship: Entityqueue: Node Queue */
-  $handler->display->display_options['relationships']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
-  $handler->display->display_options['relationships']['entityqueue_relationship']['table'] = 'node';
-  $handler->display->display_options['relationships']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
-  $handler->display->display_options['relationships']['entityqueue_relationship']['label'] = 'Regional treaties NQ';
-  $handler->display->display_options['relationships']['entityqueue_relationship']['limit'] = 0;
-  $handler->display->display_options['relationships']['entityqueue_relationship']['queues'] = array(
-    'regional_treaties_ordering' => 0,
-  );
   /* Field: Content: Logo */
   $handler->display->display_options['fields']['field_logo']['id'] = 'field_logo';
   $handler->display->display_options['fields']['field_logo']['table'] = 'field_data_field_logo';
@@ -437,7 +428,7 @@ function treaty_views_default_views() {
   $handler->display->display_options['fields']['field_region']['id'] = 'field_region';
   $handler->display->display_options['fields']['field_region']['table'] = 'field_data_field_region';
   $handler->display->display_options['fields']['field_region']['field'] = 'field_region';
-  $handler->display->display_options['fields']['field_region']['element_label_class'] = 'dropdown';
+  $handler->display->display_options['fields']['field_region']['element_label_class'] = 'dropdown text-nowrap';
   $handler->display->display_options['fields']['field_region']['type'] = 'i18n_taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_region']['delta_offset'] = '0';
   /* Field: Content: Entry into force */
@@ -453,10 +444,6 @@ function treaty_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Sort criterion: Entityqueue: Node Queue Position */
-  $handler->display->display_options['sorts']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
-  $handler->display->display_options['sorts']['entityqueue_relationship']['table'] = 'node';
-  $handler->display->display_options['sorts']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
   $handler->display->display_options['filter_groups']['operator'] = 'OR';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -473,16 +460,10 @@ function treaty_views_default_views() {
     'treaty' => 'treaty',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Parent treaty (field_parent_treaty) */
-  $handler->display->display_options['filters']['field_parent_treaty_target_id']['id'] = 'field_parent_treaty_target_id';
-  $handler->display->display_options['filters']['field_parent_treaty_target_id']['table'] = 'field_data_field_parent_treaty';
-  $handler->display->display_options['filters']['field_parent_treaty_target_id']['field'] = 'field_parent_treaty_target_id';
-  $handler->display->display_options['filters']['field_parent_treaty_target_id']['operator'] = 'empty';
-  $handler->display->display_options['filters']['field_parent_treaty_target_id']['group'] = 1;
 
   /* Display: Regional table */
   $handler = $view->new_display('page', 'Regional table', 'page');
-  $handler->display->display_options['path'] = 'treaty-listing-page';
+  $handler->display->display_options['path'] = 'treaties';
   $translatables['treaty_listing_page'] = array(
     t('Master'),
     t('Treaties'),
@@ -493,7 +474,6 @@ function treaty_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('Showing <span class="total">@total</span> treaties and protocols'),
-    t('Regional treaties NQ'),
     t('<p class="text-muted">[title]</p>'),
     t('<p class="text-muted small"><strong>Topics:</strong> [field_informea_tags]</p>'),
     t('[field_official_name]
