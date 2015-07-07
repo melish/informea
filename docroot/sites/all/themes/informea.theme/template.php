@@ -344,6 +344,12 @@ function informea_theme_preprocess_views_view_table(&$variables) {
   if ($variables['view']->name == 'treaty_listing_page') {
     $variables['attributes_array']['id'] = 'table-treaties';
     $variables['classes_array'][] = 'table-bordered';
+
+    foreach ($variables['view']->result as $key => $result) {
+      if (isset($result->parent_treaty)) {
+        $variables['row_classes'][$key][] = 'active';
+      }
+    }
   }
 }
 
