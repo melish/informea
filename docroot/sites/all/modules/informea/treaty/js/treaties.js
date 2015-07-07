@@ -13,4 +13,12 @@ jQuery(document).ready(function ($) {
 
     $('.view-treaty-listing-page .total').html(rows);
   });
+
+  $('[data-toggle="protocols"]').click(function (event) {
+    event.preventDefault();
+
+    var nid = $(this).data('nid');
+
+    $('[data-parent-treaty=' + nid + ']').toggle();
+  });
 });
