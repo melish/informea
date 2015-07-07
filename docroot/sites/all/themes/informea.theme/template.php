@@ -346,11 +346,3 @@ function informea_theme_preprocess_views_view_table(&$variables) {
     $variables['classes_array'][] = 'table-bordered';
   }
 }
-
-function informea_theme_views_pre_render(&$view) {
-  if ($view->name == 'treaty_listing_page' && $view->current_display == 'page') {
-    foreach($view->result as &$row) {
-      $row->children = treaty_get_child_protocols($row->nid);
-    }
-  }
-}
