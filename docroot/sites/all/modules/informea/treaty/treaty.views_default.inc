@@ -445,6 +445,7 @@ function treaty_views_default_views() {
   $handler->display->display_options['fields']['field_entry_into_force']['table'] = 'field_data_field_entry_into_force';
   $handler->display->display_options['fields']['field_entry_into_force']['field'] = 'field_entry_into_force';
   $handler->display->display_options['fields']['field_entry_into_force']['element_label_class'] = 'text-nowrap';
+  $handler->display->display_options['fields']['field_entry_into_force']['empty'] = 'N/A';
   $handler->display->display_options['fields']['field_entry_into_force']['settings'] = array(
     'format_type' => 'short',
     'fromto' => 'both',
@@ -500,6 +501,7 @@ function treaty_views_default_views() {
 [field_informea_tags]'),
     t('Region'),
     t('Entry into force'),
+    t('N/A'),
     t('Regional table'),
   );
   $export['treaty_listing_page'] = $view;
