@@ -23,18 +23,6 @@ function treaty_menu() {
 }
 
 /**
- * Implements hook_permission().
- */
-function treaty_permission() {
-  return array(
-    'reorder decisions' => array(
-      'title' => t('Reorder decisions'),
-      'description' => t('Visit the decision ordering screen'),
-    ),
-  );
-}
-
-/**
  * Implements hook_entity_info_alter().
  */
 function treaty_entity_info_alter(&$entity_info) {
@@ -899,10 +887,16 @@ function treaty_check_permission_reorder_decisions($account = NULL) {
   if (arg(0) == 'node') {
     if ($node = node_load(arg(1))) {
       if ($node->type == 'treaty') {
-        if (user_access('reorder decisions')) {
+        // Suposely only "administrators" should have this permission ...
+        if (user_access('administer site configuration')) {
           return TRUE;
         }
         global $user;
+
+        if ($node->uid == $user->uid) {
+          return TRUE;
+        }
+
         // Check owners in the node
         $owners = !empty($node->field_user_owners) ? $node->field_user_owners[LANGUAGE_NONE] : array();
         foreach($owners as $ob) {
