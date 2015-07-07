@@ -358,9 +358,11 @@ function informea_theme_views_pre_render(&$view) {
     foreach($view->result as &$row) {
       $wrapper = entity_metadata_wrapper('node', $row->_field_data['nid']['entity']);
 
-      if ($parent = $wrapper->field_parent_treaty->value()) {
-        $row->parent_treaty = $parent->nid;
+      if ($parent_treaty = $wrapper->field_parent_treaty->value()) {
+        $row->parent_treaty = $parent_treaty->nid;
       }
+
+      $row->total_protocols = treaty_count_child_protocols($row->nid);
     }
   }
 }

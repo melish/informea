@@ -1700,3 +1700,7 @@ strong.excerpt {
 .view-treaty-listing-page .views-field-field-entry-into-force {
   vertical-align: middle;
 }
+
+#table-treaties > tbody > .active {
+  display: none;
+}

@@ -52,6 +52,14 @@
         <?php foreach ($row as $field => $content): ?>
           <td <?php if ($field_classes[$field][$row_count]) { print 'class="'. $field_classes[$field][$row_count] . '" '; } ?><?php print drupal_attributes($field_attributes[$field][$row_count]); ?>>
             <?php print $content; ?>
+            <?php if ($field == 'field_official_name' && $view->result[$row_count]->total_protocols): ?>
+              <p>
+                <button type="button" class="btn btn-primary btn-xs">
+                  <span class="glyphicon glyphicon-plus-sign"></span>
+                  <?php print t('Toggle protocols'); ?>
+                </button><!-- .btn .btn-primary .btn-xs -->
+              </p>
+            <?php endif; ?>
           </td>
         <?php endforeach; ?>
       </tr>
