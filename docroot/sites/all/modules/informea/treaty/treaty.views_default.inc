@@ -364,7 +364,7 @@ function treaty_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
-  $handler->display->display_options['header']['result']['content'] = 'Displaying @total treaties and protocols';
+  $handler->display->display_options['header']['result']['content'] = 'Showing <span class="total">@total</span> treaties and protocols';
   /* Relationship: Entityqueue: Node Queue */
   $handler->display->display_options['relationships']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
   $handler->display->display_options['relationships']['entityqueue_relationship']['table'] = 'node';
@@ -456,6 +456,7 @@ function treaty_views_default_views() {
   $handler->display->display_options['sorts']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
   $handler->display->display_options['sorts']['entityqueue_relationship']['table'] = 'node';
   $handler->display->display_options['sorts']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -471,14 +472,6 @@ function treaty_views_default_views() {
     'treaty' => 'treaty',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Region (field_region) */
-  $handler->display->display_options['filters']['field_region_tid']['id'] = 'field_region_tid';
-  $handler->display->display_options['filters']['field_region_tid']['table'] = 'field_data_field_region';
-  $handler->display->display_options['filters']['field_region_tid']['field'] = 'field_region_tid';
-  $handler->display->display_options['filters']['field_region_tid']['operator'] = 'not empty';
-  $handler->display->display_options['filters']['field_region_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_region_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_region_tid']['vocabulary'] = 'geographical_region';
   /* Filter criterion: Content: Parent treaty (field_parent_treaty) */
   $handler->display->display_options['filters']['field_parent_treaty_target_id']['id'] = 'field_parent_treaty_target_id';
   $handler->display->display_options['filters']['field_parent_treaty_target_id']['table'] = 'field_data_field_parent_treaty';
@@ -488,12 +481,6 @@ function treaty_views_default_views() {
 
   /* Display: Regional table */
   $handler = $view->new_display('page', 'Regional table', 'page');
-  $handler->display->display_options['defaults']['header'] = FALSE;
-  /* Header: Global: Result summary */
-  $handler->display->display_options['header']['result']['id'] = 'result';
-  $handler->display->display_options['header']['result']['table'] = 'views';
-  $handler->display->display_options['header']['result']['field'] = 'result';
-  $handler->display->display_options['header']['result']['content'] = 'Showing @total treaties and protocols';
   $handler->display->display_options['path'] = 'treaty-listing-page';
   $translatables['treaty_listing_page'] = array(
     t('Master'),
@@ -504,7 +491,7 @@ function treaty_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
-    t('Displaying @total treaties and protocols'),
+    t('Showing <span class="total">@total</span> treaties and protocols'),
     t('Regional treaties NQ'),
     t('<p class="text-muted">[title]</p>'),
     t('<p class="text-muted small"><strong>Topics:</strong> [field_informea_tags]</p>'),
@@ -514,7 +501,6 @@ function treaty_views_default_views() {
     t('Region'),
     t('Entry into force'),
     t('Regional table'),
-    t('Showing @total treaties and protocols'),
   );
   $export['treaty_listing_page'] = $view;
 
