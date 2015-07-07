@@ -11,7 +11,6 @@ jQuery(document).ready(function ($) {
       return $(selector, this).text().indexOf(value) > -1;
     }).show().length;
 
-    // $('.rows-visible', target).html(rows);
-    console.log(rows);
+    $('.view-treaty-listing-page .total').html(rows);
   });
 });
