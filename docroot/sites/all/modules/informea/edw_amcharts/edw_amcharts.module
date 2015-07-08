@@ -33,7 +33,7 @@ function edw_amcharts_ajax_access($arg0, $arg1) {
  */
 function edw_amcharts_library() {
   $base_js = array(
-    'http://cdn.amcharts.com/lib/3/amcharts.js' => array(
+    '//cdn.amcharts.com/lib/3/amcharts.js' => array(
       'type' => 'external',
       'group' => JS_LIBRARY,
       'weight' => 10,
@@ -50,7 +50,7 @@ function edw_amcharts_library() {
     'title' => 'amCharts column chart',
     'version' => EDW_AMCHARTS_VERSION,
     'js' => $base_js + array(
-        'http://www.amcharts.com/lib/3/serial.js' => array(
+        '//www.amcharts.com/lib/3/serial.js' => array(
           'type' => 'external',
           'group' => JS_LIBRARY,
           'weight' => 20,
@@ -62,7 +62,7 @@ function edw_amcharts_library() {
     'title' => 'amCharts pie chart',
     'version' => EDW_AMCHARTS_VERSION,
     'js' => $base_js + array(
-        'http://www.amcharts.com/lib/3/pie.js' => array(
+        '//www.amcharts.com/lib/3/pie.js' => array(
           'type' => 'external',
           'group' => JS_LIBRARY,
           'weight' => 20,
@@ -74,17 +74,17 @@ function edw_amcharts_library() {
     'title' => 'amCharts pie chart',
     'version' => EDW_AMCHARTS_VERSION,
     'js' => array(
-      'http://www.amcharts.com/lib/3/ammap.js' => array(
+      '//www.amcharts.com/lib/3/ammap.js' => array(
         'type' => 'external',
         'group' => JS_LIBRARY,
         'weight' => 20,
       ),
-      'http://www.amcharts.com/lib/3/themes/light.js' => array(
+      '//www.amcharts.com/lib/3/themes/light.js' => array(
         'type' => 'external',
         'group' => JS_LIBRARY,
         'weight' => 30,
       ),
-      'http://www.amcharts.com/lib/3/maps/js/worldHigh.js' => array(
+      '//www.amcharts.com/lib/3/maps/js/worldHigh.js' => array(
         'type' => 'external',
         'group' => JS_LIBRARY,
         'weight' => 40,
@@ -118,7 +118,7 @@ function edw_amcharts_add_chart($chart_id, $chart_type, $chart_config, $listener
     );
   drupal_alter('edw_amcharts_chart_data', $chart_config, $chart_id);
   drupal_add_library('edw_amcharts', "edw_amcharts_{$chart_type}_chart");
-  drupal_add_js("http://www.amcharts.com/lib/3/themes/{$chart_config->theme}.js",
+  drupal_add_js("//www.amcharts.com/lib/3/themes/{$chart_config->theme}.js",
     array(
       'type' => 'external', 'group' => JS_LIBRARY, 'weight' => 30,
     )

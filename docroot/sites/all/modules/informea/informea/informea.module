@@ -345,3 +345,28 @@ function informea_no_content_available_block() {
   $block = module_invoke('block', 'block_view', 5);
   return array('#type' => 'item', '#markup' => render($block['content']));
 }
+
+/**
+ * Return http / https depending on the request
+ */
+function informea_get_request_protocol() {
+  if (!empty($_SERVER['REQUEST_SCHEME']) && $_SERVER['REQUEST_SCHEME'] == 'https') {
+    return 'https';
+  }
+  if (!empty($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == 1)) {
+    return 'https';
+  }
+  // CloudFlare
+  if (!empty($_SERVER['X-Forwarded-Proto']) && strtolower($_SERVER['X-Forwarded-Proto']) == 'https') {
+    return 'https';
+  }
+  // M$ stuff
+  if (!empty($_SERVER['Front-End-Https']) && strtolower($_SERVER['Front-End-Https']) == 'on') {
+    return 'https';
+  }
+  // Unreliable when crazy dude serves HTTP over 443 :-/
+  if (!empty($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443) {
+    return 'https';
+  }
+  return 'http';
+}

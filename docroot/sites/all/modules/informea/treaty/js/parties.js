@@ -2,7 +2,7 @@ jQuery(document).ready(function() {
   var map = AmCharts.makeChart('ammap_div', {
     type: 'map',
     theme: 'light',
-    pathToImages: 'http://www.amcharts.com/lib/3/images/',
+    pathToImages: '//www.amcharts.com/lib/3/images/',
     dataProvider: {
       alpha: 1,
       map: 'worldHigh',
