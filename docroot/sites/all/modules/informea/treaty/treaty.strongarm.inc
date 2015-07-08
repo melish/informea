@@ -492,14 +492,7 @@ function treaty_strongarm() {
           'weight' => '27',
         ),
       ),
-      'display' => array(
-        'computed_number_of_parties' => array(
-          'default' => array(
-            'weight' => '9',
-            'visible' => TRUE,
-          ),
-        ),
-      ),
+      'display' => array(),
     ),
   );
   $export['field_bundle_settings_node__treaty'] = $strongarm;
