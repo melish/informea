@@ -153,6 +153,36 @@ function informea_theme_slider() {
 
   $slides = array();
 
+  $query = new EntityFieldQuery();
+
+  $query
+    ->entityCondition('entity_type', 'entityqueue_subqueue')
+    ->entityCondition('bundle', 'front_page_slider');
+
+  $result = $query->execute();
+
+  if (!empty($result['entityqueue_subqueue'])) {
+    $subqueues = entity_load('entityqueue_subqueue', array_keys($result['entityqueue_subqueue']));
+
+    foreach ($subqueues as $subqueue) {
+      $wrapper = entity_metadata_wrapper('entityqueue_subqueue', $subqueue);
+      $key = $wrapper->getIdentifier();
+      $nodes = $wrapper->eq_node->value();
+
+      foreach ($nodes as $node) {
+        $w = entity_metadata_wrapper('node', $node);
+        $url = $w->field_url->value();
+        $url = empty($url) ? url('node/' . $w->getIdentifier()) : $url['url'];
+        $slide = array(
+          'image' => image_style_url('front_page_slider', $w->field_image->value()['uri']),
+          'link' => l($w->label(), $url, array('absolute' => TRUE, 'attributes' => array('target' => '_blank')))
+        );
+
+        $slides[] = $slide;
+      }
+    }
+  }
+
   $length = $max_slides_count - count($slides);
 
   if ($length <= 0) {
