@@ -500,7 +500,17 @@ function treaty_views_default_views() {
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
-  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
+  /* Field: Content: Official name */
+  $handler->display->display_options['fields']['field_official_name']['id'] = 'field_official_name';
+  $handler->display->display_options['fields']['field_official_name']['table'] = 'field_data_field_official_name';
+  $handler->display->display_options['fields']['field_official_name']['field'] = 'field_official_name';
+  $handler->display->display_options['fields']['field_official_name']['type'] = 'text_plain';
+  $handler->display->display_options['fields']['field_official_name']['settings'] = array(
+    'title_style' => '_none',
+    'title_link' => 'content',
+    'title_class' => '',
+  );
   $handler->display->display_options['path'] = 'admin/config/content/reorder-treaties';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Reorder treaties';
@@ -531,6 +541,7 @@ function treaty_views_default_views() {
     t('Reorder treaties'),
     t('Order'),
     t('Title'),
+    t('Official name'),
   );
   $export['treaty_listing_page'] = $view;
 
