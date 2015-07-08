@@ -193,6 +193,30 @@ function informea_search_default_search_api_index() {
  */
 function informea_search_default_search_api_server() {
   $items = array();
+  $items['apache_solr_news_core'] = entity_import('search_api_server', '{
+    "name" : "Apache Solr 4 news core",
+    "machine_name" : "apache_solr_news_core",
+    "description" : "The news core",
+    "class" : "search_api_solr_service",
+    "options" : {
+      "clean_ids" : true,
+      "site_hash" : true,
+      "scheme" : "http",
+      "host" : "localhost",
+      "port" : "8983",
+      "path" : "\\/solr\\/informea-news",
+      "http_user" : "",
+      "http_pass" : "",
+      "excerpt" : 0,
+      "retrieve_data" : 0,
+      "highlight_data" : 0,
+      "skip_schema_check" : 0,
+      "solr_version" : "",
+      "http_method" : "AUTO"
+    },
+    "enabled" : "1",
+    "rdf_mapping" : []
+  }');
   $items['search_solr_server'] = entity_import('search_api_server', '{
     "name" : "Search Solr server",
     "machine_name" : "search_solr_server",
