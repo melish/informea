@@ -89,6 +89,7 @@ function informea_block_configure($delta = '') {
         '#size' => 60,
         '#description' => t('This will limit the maximum number of slides.'),
         '#default_value' => variable_get('informea_max_slides_count', 7),
+        '#element_validate' => array('element_validate_integer_positive')
       );
 
       break;
