@@ -541,14 +541,11 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
       }
       $contextual_menu['#items'][] = $list_item;
     }
-    if ($field_value = field_view_field('node', $node, 'field_un_treaty_database_link', 'full')) {
-      if (!empty($field_value['#items'][0])) {
-        $link = $field_value['#items'][0];
-        $contextual_menu['#items'][] = array(
-          'data' => l($link['title'], $link['url'], $link),
-          'role' => 'presentation',
-        );
-      }
+    if ($untc_url = $wrapper->field_un_treaty_database_link->value()) {
+      $contextual_menu['#items'][] = array(
+        'data' => l(t('UN treaty collection link'), $untc_url['url'], $untc_url),
+        'role' => 'presentation',
+      );
     }
   }
 }
