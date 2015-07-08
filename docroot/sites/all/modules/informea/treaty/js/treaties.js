@@ -12,6 +12,10 @@ jQuery(document).ready(function ($) {
     }).show().length;
 
     $('.view-treaty-listing-page .total').html(rows);
+
+    // Collapse all protocols
+    $('> tbody > tr.active', target).hide();
+    $('.glyphicon-minus-sign', target).toggleClass('glyphicon-plus-sign glyphicon-minus-sign');
   });
 
   $('[data-toggle="protocols"]').click(function (event) {
@@ -20,6 +24,7 @@ jQuery(document).ready(function ($) {
     var nid = $(this).data('nid');
 
     $('.glyphicon', this).toggleClass('glyphicon-plus-sign glyphicon-minus-sign');
+
     $('[data-parent-treaty=' + nid + ']').toggle();
   });
 });
