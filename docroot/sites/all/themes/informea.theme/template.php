@@ -171,8 +171,20 @@ function informea_theme_slider() {
 
       foreach ($nodes as $node) {
         $w = entity_metadata_wrapper('node', $node);
-        $url = $w->field_url->value();
-        $url = empty($url) ? url('node/' . $w->getIdentifier()) : $url['url'];
+
+        switch ($w->getBundle()) {
+          case 'feed_item':
+            $url = $w->field_url->value();
+            $url = empty($url) ? url('node/' . $w->getIdentifier()) : $url['url'];
+
+            break;
+
+          default:
+            $url = url('node/' . $w->getIdentifier());
+
+            break;
+        }
+
         $slide = array(
           'image' => image_style_url('front_page_slider', $w->field_image->value()['uri']),
           'link' => l($w->label(), $url, array('absolute' => TRUE, 'attributes' => array('target' => '_blank')))
