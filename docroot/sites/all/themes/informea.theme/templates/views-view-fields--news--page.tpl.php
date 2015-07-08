@@ -37,6 +37,9 @@ foreach($fields as $id => $field) {
     case 'field_image':
       $content['field_image'] = $field->content;
       break;
+    case 'title':
+      $content['title'] = $field->content;
+      break;
     case 'field_url':
       $content['field_url'] = $field->content;
       break;
@@ -57,7 +60,7 @@ foreach($fields as $id => $field) {
   </a>
 </div>
 <div class="media-body">
-  <h4 class="media-heading"><?php print $content['field_url']; ?></h4>
+  <h4 class="media-heading"><?php print $content['title']; ?></h4>
 
   <div class="media-detail">
     <p><?php print $content['created']; ?></p>
