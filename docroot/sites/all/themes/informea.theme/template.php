@@ -149,27 +149,23 @@ function informea_theme_treaty_logo_link($node) {
 };
 
 function informea_theme_slider() {
-  $slides = array();
-  $slides[0] = array(
-    'image' => 'http://www.informea.org/wp-content/uploads/images/syndication/biological-diversity/guillemot-uria-aalge.jpg',
-    'logo' => theme('image', array('path' => 'http://www.informea.org/wp-content/uploads/images/treaty/logo_cbd.png')),
-    'link' => '<a href="http://www.cbd.int/doc/press/2014/pr-2014-10-17-CPW-en.pdf">Recognizing that wildlife is an important renewable natural resource, with ...</a>',
-    'date' => '27 Oct, 2014',
-  );
-  $slides[1] = array(
-    'image' => 'http://www.informea.org/wp-content/uploads/images/syndication/biological-diversity/guillemot-uria-aalge.jpg',
-    'logo' => theme('image', array('path' => 'http://www.informea.org/wp-content/uploads/images/treaty/logo_cbd.png')),
-    'link' => '<a href="http://www.cbd.int/doc/press/2014/pr-2014-10-17-CPW-en.pdf">Recognizing that wildlife is an important renewable natural resource, with ...</a>',
-    'date' => '27 Oct, 2014',
-  );
-  $slides[2] = array(
-    'image' => 'http://www.informea.org/wp-content/uploads/images/syndication/biological-diversity/guillemot-uria-aalge.jpg',
-    'logo' => theme('image', array('path' => 'http://www.informea.org/wp-content/uploads/images/treaty/logo_cbd.png')),
-    'date' => '27 Oct, 2014',
-    'link' => '<a href="http://www.cbd.int/doc/press/2014/pr-2014-10-17-CPW-en.pdf">Recognizing that wildlife is an important renewable natural resource, with ...</a>',
-  );
+  $max_slides_count = variable_get('informea_max_slides_count', 7);
 
   $slides = array();
+
+  $length = $max_slides_count - count($slides);
+
+  if ($length <= 0) {
+    return theme(
+      'informea_bootstrap_carousel',
+      array(
+        'slides' => $slides,
+        'attributes' => array(
+          'id' => 'col-carousel',
+        )
+      )
+    );
+  }
 
   $images = array(
     '/sites/all/themes/informea.theme/img/syndication/' . 'biological-diversity/Biological-Diversity.jpg',
@@ -219,8 +215,7 @@ function informea_theme_slider() {
   $q->innerJoin('field_data_event_calendar_date', 'b', 'a.nid = b.entity_id');
   $q->innerJoin('field_data_field_treaty', 'c', 'a.nid = c.entity_id');
   $q->where('b.event_calendar_date_value >= NOW()');
-  $max_slides_count = variable_get('informea_max_slides_count', 7);
-  $q->range(0, $max_slides_count);
+  $q->range(0, $length);
   $q->groupBy('c.field_treaty_target_id');
   if ($rows = $q->execute()->fetchAll()) {
     foreach($rows as $ob) {
@@ -245,6 +240,7 @@ function informea_theme_slider() {
     $slides[] = $slide;
     }
   }
+
   return theme(
     'informea_bootstrap_carousel',
     array(
