@@ -11,14 +11,18 @@ $node_wrapper = entity_metadata_wrapper('node', $node);
 $odata_identifier = $node_wrapper->field_odata_identifier->value();
 $print = sprintf('/treaties/%s/print', $odata_identifier);
 ?>
-<p class="text-right">
-  <button class="btn btn-default" data-toggle="group" data-target="#treaty-text">Expand all</button>
-  <a class="btn btn-primary" href="<?php print url($print); ?>" target="_blank">
-    <i class="glyphicon glyphicon-print"></i>
-    Print treaty text
-  </a>
-</p>
 <?php if (isset($articles) && is_array($articles)): ?>
+  <?php if (!empty($articles)): ?>
+    <p class="text-right">
+      <button class="btn btn-default" data-toggle="group" data-target="#treaty-text">
+        <?php print t('Expand all'); ?>
+      </button>
+      <a class="btn btn-primary" href="<?php print url($print); ?>" target="_blank">
+        <i class="glyphicon glyphicon-print"></i>
+        <?php print t('Print treaty text'); ?>
+      </a>
+    </p>
+  <?php endif; ?>
   <div class="panel-group tagged-content" id="treaty-text" role="tablist" aria-multiselectable="true">
     <?php foreach ($articles as $article) : ?>
       <?php print theme('treaty_text_article', array('article' => $article)); ?>
