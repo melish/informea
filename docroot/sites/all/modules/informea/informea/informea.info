@@ -26,7 +26,6 @@ dependencies[] = migrate
 dependencies[] = migrate_ui
 dependencies[] = number
 dependencies[] = options
-dependencies[] = search_api_db
 dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = text
