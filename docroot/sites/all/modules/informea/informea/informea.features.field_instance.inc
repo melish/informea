@@ -10,6 +10,42 @@
 function informea_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'entityqueue_subqueue-front_page_slider-eq_node'
+  $field_instances['entityqueue_subqueue-front_page_slider-eq_node'] = array(
+    'bundle' => 'front_page_slider',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'entityqueue_subqueue',
+    'field_name' => 'eq_node',
+    'label' => 'Queue items',
+    'required' => FALSE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'entityqueue',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'size' => 60,
+      ),
+      'type' => 'entityqueue_dragtable',
+      'weight' => 0,
+    ),
+  );
+
   // Exported field_instance: 'node-article-body'
   $field_instances['node-article-body'] = array(
     'bundle' => 'article',
@@ -367,7 +403,7 @@ function informea_field_default_field_instances() {
         'label' => 'above',
         'module' => 'file',
         'settings' => array(),
-        'type' => 'file_default',
+        'type' => 'file_table',
         'weight' => 2,
       ),
       'teaser' => array(
@@ -385,7 +421,7 @@ function informea_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_files',
-    'label' => 'Files',
+    'label' => 'Attached files',
     'required' => 0,
     'settings' => array(
       'description_field' => 1,
@@ -1548,6 +1584,7 @@ function informea_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Agrovoc terms');
+  t('Attached files');
   t('Body');
   t('Description');
   t('Ecolex Keyword(s)');
@@ -1561,6 +1598,7 @@ function informea_field_default_field_instances() {
   t('Name');
   t('Order');
   t('Popularity');
+  t('Queue items');
   t('Reference URL');
   t('Substantive');
   t('Tag');

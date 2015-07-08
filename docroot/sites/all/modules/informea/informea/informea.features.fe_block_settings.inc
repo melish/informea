@@ -27,7 +27,7 @@ function informea_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -18,
+        'weight' => -17,
       ),
       'seven' => array(
         'region' => '',
@@ -37,6 +37,34 @@ function informea_default_fe_block_settings() {
       ),
     ),
     'title' => '<none>',
+    'visibility' => 1,
+  );
+
+  $export['informea-informea_front_page_slider'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'informea_front_page_slider',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'informea',
+    'node_types' => array(),
+    'pages' => '<front>',
+    'roles' => array(),
+    'themes' => array(
+      'informea_theme' => array(
+        'region' => 'front_page_hero',
+        'status' => 1,
+        'theme' => 'informea_theme',
+        'weight' => 10,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 10,
+      ),
+    ),
+    'title' => '',
     'visibility' => 1,
   );
 

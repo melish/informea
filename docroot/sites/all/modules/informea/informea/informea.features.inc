@@ -5,6 +5,15 @@
  */
 
 /**
+ * Implements hook_entityqueue_api().
+ */
+function informea_entityqueue_api($module = NULL, $api = NULL) {
+  if ($module == "entityqueue" && $api == "entityqueue_default") {
+    return array("version" => "1");
+  }
+}
+
+/**
  * Implements hook_ctools_plugin_api().
  */
 function informea_ctools_plugin_api($module = NULL, $api = NULL) {
@@ -25,6 +34,21 @@ function informea_views_api($module = NULL, $api = NULL) {
  */
 function informea_image_default_styles() {
   $styles = array();
+
+  // Exported image style: front_page_slider.
+  $styles['front_page_slider'] = array(
+    'label' => 'Front page slider (500x300)',
+    'effects' => array(
+      2 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 500,
+          'height' => 300,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
 
   // Exported image style: logo.
   $styles['logo'] = array(
