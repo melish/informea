@@ -33,11 +33,15 @@ if (isset($variables['attributes'])) {
             <img alt="" src="<?php print $slide['image']; ?>">
             <div class="carousel-caption">
               <div class="media">
-                <div class="media-left">
-                  <?php print $slide['logo']; ?>
-                </div><!-- .media-left -->
+                <?php if (isset($slide['logo'])): ?>
+                  <div class="media-left">
+                    <?php print $slide['logo']; ?>
+                  </div><!-- .media-left -->
+                <?php endif; ?>
                 <div class="media-body">
-                  <span><?php print $slide['date']; ?></span>
+                  <?php if (isset($slide['date'])): ?>
+                    <span><?php print $slide['date']; ?></span>
+                  <?php endif; ?>
                   <p><?php print $slide['link']; ?></p>
                 </div><!-- .media-body -->
               </div><!-- .media -->
