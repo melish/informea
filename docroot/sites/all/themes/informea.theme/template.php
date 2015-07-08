@@ -219,7 +219,8 @@ function informea_theme_slider() {
   $q->innerJoin('field_data_event_calendar_date', 'b', 'a.nid = b.entity_id');
   $q->innerJoin('field_data_field_treaty', 'c', 'a.nid = c.entity_id');
   $q->where('b.event_calendar_date_value >= NOW()');
-  $q->range(0, 7);
+  $max_slides_count = variable_get('informea_max_slides_count', 7);
+  $q->range(0, $max_slides_count);
   $q->groupBy('c.field_treaty_target_id');
   if ($rows = $q->execute()->fetchAll()) {
     foreach($rows as $ob) {
