@@ -97,6 +97,21 @@ function informea_block_configure($delta = '') {
   return $form;
 }
 
+/**
+ * Implements hook_block_save().
+ *
+ * This hook declares how the configured options for a block
+ * provided by this module are saved.
+ */
+function informea_block_save($delta = '', $edit = array()) {
+  switch ($delta) {
+    case 'informea_front_page_slider':
+      variable_set('informea_max_slides_count', $edit['informea_max_slides_count']);
+
+      break;
+  }
+}
+
 function informea_entity_info_alter(&$entity_info) {
   $entity_info['node']['view modes']['ajax'] = array(
     'custom settings' => TRUE,
