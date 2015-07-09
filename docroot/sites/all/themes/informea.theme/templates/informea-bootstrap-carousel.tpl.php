@@ -30,7 +30,7 @@ if (isset($variables['attributes'])) {
           }
       ?>
           <div<?php print drupal_attributes($la);?>>
-            <img alt="" src="<?php print $slide['image']; ?>">
+            <?php print $slide['image']; ?>
             <div class="carousel-caption">
               <div class="media">
                 <?php if (isset($slide['logo'])): ?>

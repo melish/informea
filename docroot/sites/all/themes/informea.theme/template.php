@@ -185,8 +185,9 @@ function informea_theme_slider() {
             break;
         }
 
+        $image = theme('image_style', array('path' => $w->field_image->value()['uri'], 'style_name' => 'front_page_slider'));
         $slide = array(
-          'image' => image_style_url('front_page_slider', $w->field_image->value()['uri']),
+          'image' => l($image, $url, array('absolute' => TRUE, 'html' => TRUE)),
           'link' => l($w->label(), $url, array('absolute' => TRUE, 'attributes' => array('target' => '_blank')))
         );
 
@@ -265,21 +266,18 @@ function informea_theme_slider() {
       $tw = entity_metadata_wrapper('node', $ob->field_treaty_target_id);
       $logo = $tw->field_logo->value();
       $url = $w->field_url->value();
-      if (empty($url)) {
-        $url = url('node/' . $ob->nid);
-      }
-      else {
-        $url = $url['url'];
-      }
+      $url = empty($url) ? $url = url('node/' . $ob->nid) : $url = $url['url'];
       $start = $w->event_calendar_date->value();
       $start = format_date(strtotime($start['value']), 'short');
+      $image = theme('image', array('path' => $images[array_rand($images)]));
       $slide = array(
-        'image' => $images[array_rand($images)],
+        'image' => l($image, $url, array('absolute' => TRUE, 'html' => TRUE)),
         'logo' => theme('image', array('path' => $logo['uri'])),
         'date' => $start,
         'link' => l($w->label(), $url, array('absolute' => TRUE, 'attributes' => array('target' => '_blank'))),
       );
-    $slides[] = $slide;
+
+      $slides[] = $slide;
     }
   }
 
