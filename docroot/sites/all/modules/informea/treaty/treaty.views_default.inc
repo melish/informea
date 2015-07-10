@@ -291,6 +291,356 @@ function treaty_views_default_views() {
   $export['reporting_obligations_admin'] = $view;
 
   $view = new view();
+  $view->name = 'treaties_reorder';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Treaty text ordering';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Order treaty text';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_parent_treaty_article',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['columns'] = array(
+    'field_official_order' => 'field_official_order',
+    'title' => 'title',
+    'draggableviews' => 'draggableviews',
+    'field_parent_treaty_article' => 'field_parent_treaty_article',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'field_official_order' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'draggableviews' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_parent_treaty_article' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  /* Field: Draggableviews: Content */
+  $handler->display->display_options['fields']['draggableviews']['id'] = 'draggableviews';
+  $handler->display->display_options['fields']['draggableviews']['table'] = 'node';
+  $handler->display->display_options['fields']['draggableviews']['field'] = 'draggableviews';
+  $handler->display->display_options['fields']['draggableviews']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['draggableviews']['hide_alter_empty'] = FALSE;
+  $handler->display->display_options['fields']['draggableviews']['draggableviews']['ajax'] = 0;
+  /* Field: Content: Official order */
+  $handler->display->display_options['fields']['field_official_order']['id'] = 'field_official_order';
+  $handler->display->display_options['fields']['field_official_order']['table'] = 'field_data_field_official_order';
+  $handler->display->display_options['fields']['field_official_order']['field'] = 'field_official_order';
+  $handler->display->display_options['fields']['field_official_order']['hide_alter_empty'] = FALSE;
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['type'] = 'text_plain';
+  /* Sort criterion: Draggableviews: Weight */
+  $handler->display->display_options['sorts']['weight']['id'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['table'] = 'draggableviews_structure';
+  $handler->display->display_options['sorts']['weight']['field'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['draggableviews_setting_view'] = 'treaty_text_ordering:page';
+  $handler->display->display_options['sorts']['weight']['draggableviews_setting_new_items_bottom_list'] = 1;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'treaty_article' => 'treaty_article',
+  );
+  /* Filter criterion: Content: Treaty (field_treaty) */
+  $handler->display->display_options['filters']['field_treaty_target_id']['id'] = 'field_treaty_target_id';
+  $handler->display->display_options['filters']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['filters']['field_treaty_target_id']['field'] = 'field_treaty_target_id';
+  $handler->display->display_options['filters']['field_treaty_target_id']['value'] = array(
+    'all' => 'all',
+    283 => '283',
+    289 => '289',
+    266 => '266',
+    264 => '264',
+    265 => '265',
+    295 => '295',
+    294 => '294',
+    304 => '304',
+    317 => '317',
+    297 => '297',
+    275 => '275',
+    256 => '256',
+    36415 => '36415',
+    314 => '314',
+    291 => '291',
+    262 => '262',
+    255 => '255',
+    257 => '257',
+    258 => '258',
+    276 => '276',
+    313 => '313',
+    285 => '285',
+    305 => '305',
+    282 => '282',
+    281 => '281',
+    299 => '299',
+    292 => '292',
+    296 => '296',
+    271 => '271',
+    278 => '278',
+    284 => '284',
+    300 => '300',
+    319 => '319',
+    303 => '303',
+    261 => '261',
+    263 => '263',
+    318 => '318',
+    293 => '293',
+    290 => '290',
+    280 => '280',
+    268 => '268',
+    277 => '277',
+    311 => '311',
+    310 => '310',
+    309 => '309',
+    308 => '308',
+    307 => '307',
+    312 => '312',
+    286 => '286',
+    306 => '306',
+    272 => '272',
+    274 => '274',
+    298 => '298',
+    279 => '279',
+    259 => '259',
+    47400 => '47400',
+    267 => '267',
+    288 => '288',
+    315 => '315',
+    273 => '273',
+    316 => '316',
+    301 => '301',
+    269 => '269',
+    302 => '302',
+    260 => '260',
+    287 => '287',
+    270 => '270',
+  );
+  $handler->display->display_options['filters']['field_treaty_target_id']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_treaty_target_id']['expose']['operator_id'] = 'field_treaty_target_id_op';
+  $handler->display->display_options['filters']['field_treaty_target_id']['expose']['label'] = 'Treaty';
+  $handler->display->display_options['filters']['field_treaty_target_id']['expose']['operator'] = 'field_treaty_target_id_op';
+  $handler->display->display_options['filters']['field_treaty_target_id']['expose']['identifier'] = 'field_treaty_target_id';
+  $handler->display->display_options['filters']['field_treaty_target_id']['expose']['required'] = TRUE;
+  $handler->display->display_options['filters']['field_treaty_target_id']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+  );
+
+  /* Display: Reorder treaty articles */
+  $handler = $view->new_display('page', 'Reorder treaty articles', 'page_articles');
+  $handler->display->display_options['path'] = 'admin/config/content/order-treaty-articles';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Reorder treaty text';
+  $handler->display->display_options['menu']['description'] = 'Use this page to reorder articles within a treaty';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'management';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
+
+  /* Display: Reorder treaty paragraphs */
+  $handler = $view->new_display('page', 'Reorder treaty paragraphs', 'page_paragraphs');
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'treaty_paragraph' => 'treaty_paragraph',
+  );
+  /* Filter criterion: Content: Treaty (field_treaty) */
+  $handler->display->display_options['filters']['field_treaty_target_id']['id'] = 'field_treaty_target_id';
+  $handler->display->display_options['filters']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['filters']['field_treaty_target_id']['field'] = 'field_treaty_target_id';
+  $handler->display->display_options['filters']['field_treaty_target_id']['value'] = array(
+    'all' => 'all',
+    283 => '283',
+    289 => '289',
+    266 => '266',
+    264 => '264',
+    265 => '265',
+    295 => '295',
+    294 => '294',
+    304 => '304',
+    317 => '317',
+    297 => '297',
+    275 => '275',
+    256 => '256',
+    36415 => '36415',
+    314 => '314',
+    291 => '291',
+    262 => '262',
+    255 => '255',
+    257 => '257',
+    258 => '258',
+    276 => '276',
+    313 => '313',
+    285 => '285',
+    305 => '305',
+    282 => '282',
+    281 => '281',
+    299 => '299',
+    292 => '292',
+    296 => '296',
+    271 => '271',
+    278 => '278',
+    284 => '284',
+    300 => '300',
+    319 => '319',
+    303 => '303',
+    261 => '261',
+    263 => '263',
+    318 => '318',
+    293 => '293',
+    290 => '290',
+    280 => '280',
+    268 => '268',
+    277 => '277',
+    311 => '311',
+    310 => '310',
+    309 => '309',
+    308 => '308',
+    307 => '307',
+    312 => '312',
+    286 => '286',
+    306 => '306',
+    272 => '272',
+    274 => '274',
+    298 => '298',
+    279 => '279',
+    259 => '259',
+    47400 => '47400',
+    267 => '267',
+    288 => '288',
+    315 => '315',
+    273 => '273',
+    316 => '316',
+    301 => '301',
+    269 => '269',
+    302 => '302',
+    260 => '260',
+    287 => '287',
+    270 => '270',
+  );
+  $handler->display->display_options['filters']['field_treaty_target_id']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_treaty_target_id']['expose']['operator_id'] = 'field_treaty_target_id_op';
+  $handler->display->display_options['filters']['field_treaty_target_id']['expose']['label'] = 'Treaty';
+  $handler->display->display_options['filters']['field_treaty_target_id']['expose']['operator'] = 'field_treaty_target_id_op';
+  $handler->display->display_options['filters']['field_treaty_target_id']['expose']['identifier'] = 'field_treaty_target_id';
+  $handler->display->display_options['filters']['field_treaty_target_id']['expose']['required'] = TRUE;
+  $handler->display->display_options['filters']['field_treaty_target_id']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+  );
+  /* Filter criterion: Content: Parent Treaty Article (field_parent_treaty_article) */
+  $handler->display->display_options['filters']['field_parent_treaty_article_target_id']['id'] = 'field_parent_treaty_article_target_id';
+  $handler->display->display_options['filters']['field_parent_treaty_article_target_id']['table'] = 'field_data_field_parent_treaty_article';
+  $handler->display->display_options['filters']['field_parent_treaty_article_target_id']['field'] = 'field_parent_treaty_article_target_id';
+  $handler->display->display_options['filters']['field_parent_treaty_article_target_id']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_parent_treaty_article_target_id']['expose']['operator_id'] = 'field_parent_treaty_article_target_id_op';
+  $handler->display->display_options['filters']['field_parent_treaty_article_target_id']['expose']['label'] = 'Parent Article';
+  $handler->display->display_options['filters']['field_parent_treaty_article_target_id']['expose']['operator'] = 'field_parent_treaty_article_target_id_op';
+  $handler->display->display_options['filters']['field_parent_treaty_article_target_id']['expose']['identifier'] = 'field_parent_treaty_article_target_id';
+  $handler->display->display_options['filters']['field_parent_treaty_article_target_id']['expose']['required'] = TRUE;
+  $handler->display->display_options['filters']['field_parent_treaty_article_target_id']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+  );
+  $handler->display->display_options['path'] = 'admin/config/content/order-treaty-paragraphs';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Reorder treaty paragraphs';
+  $handler->display->display_options['menu']['description'] = 'Use this screen to reorder the paragraphs within a treaty article';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'management';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
+  $translatables['treaties_reorder'] = array(
+    t('Master'),
+    t('Order treaty text'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Content'),
+    t('Official order'),
+    t('Body'),
+    t('Treaty'),
+    t('Reorder treaty articles'),
+    t('Reorder treaty paragraphs'),
+    t('Parent Article'),
+  );
+  $export['treaties_reorder'] = $view;
+
+  $view = new view();
   $view->name = 'treaty_listing_page';
   $view->description = '';
   $view->tag = 'default';
