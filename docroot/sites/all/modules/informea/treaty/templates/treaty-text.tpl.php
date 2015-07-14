@@ -51,18 +51,19 @@ if (user_access('create treaty_article content')) {
 ?>
 
 <?php
-if (user_access('delete any treaty content')) {
-  if (isset($node->nid)) {
-    $query = array(
-      'field_treaty_target_id' => $node->nid
-    );
-  }
+if (isset($articles) && is_array($articles)) {
+  if (!empty($articles) && user_access('delete any treaty content')) {
+    if (isset($node->nid)) {
+      $query = array(
+        'field_treaty_target_id' => $node->nid
+      );
+    }
 
-  print l('<i class="glyphicon glyphicon-move"></i> ' . t('Reorder articles'), 'admin/config/content/order-treaty-articles', array(
-    'attributes' => array('class' => array('btn', 'btn-default')),
-    'html' => TRUE,
-    'query' => $query,
-  ));
+    print l('<i class="glyphicon glyphicon-move"></i> ' . t('Reorder articles'), 'admin/config/content/order-treaty-articles', array(
+      'attributes' => array('class' => array('btn', 'btn-default')),
+      'html' => TRUE,
+      'query' => $query,
+    ));
+  }
 }
 ?>
-
