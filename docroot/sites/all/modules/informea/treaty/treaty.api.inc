@@ -148,16 +148,16 @@ function treaty_get_treaty_text($id_treaty) {
 
   $result = $query->execute()->fetchAllKeyed();
 
+  $articles = array();
+
   if (!empty($result)) {
     $nids = array_keys($result);
     $articles = node_load_multiple($nids);
 
     // Retrieve paragraphs for each article
     foreach ($articles as &$article) {
-      $paragraphs = treaty_get_article_paragraphs($article->nid);
-
       $article->official_title = treaty_format_article_title($article);
-      $article->paragraphs = $paragraphs;
+      $article->paragraphs = treaty_get_article_paragraphs($article->nid);
     }
   }
 
@@ -165,14 +165,27 @@ function treaty_get_treaty_text($id_treaty) {
 }
 
 function treaty_get_article_paragraphs($id_article) {
-  $query = new EntityFieldQuery();
-  // Retrieve treaty articles
-  $paragraphs = $query->entityCondition('entity_type', 'node')
-                    ->entityCondition('bundle', 'treaty_paragraph')
-                    ->fieldCondition('field_parent_treaty_article', 'target_id', $id_article)
-                    ->fieldOrderBy('field_sorting_order', 'value')
-                    ->execute();
-  return isset($paragraphs['node']) ? node_load_multiple(array_keys($paragraphs['node'])) : array();
+  // Retrieve treaty article paragraphs
+  $query = db_select('node', 'n')
+    ->condition('n.type', 'treaty_paragraph')
+    ->condition('n.status', NODE_PUBLISHED)
+    ->fields('n', array('nid'));
+
+  $query->leftJoin('field_data_field_parent_treaty_article', 'fp', 'fp.entity_id = n.nid');
+  $query->leftJoin('draggableviews_structure', 'd', ' d.entity_id = n.nid AND d.view_name = \'treaties_reorder\' AND d.view_display = \'page_paragraphs\'');
+  $query->condition('fp.field_parent_treaty_article_target_id', $id_article);
+  $query->orderBy('d.weight', 'ASC');
+
+  $result = $query->execute()->fetchAllKeyed();
+
+  $paragraphs = array();
+
+  if (!empty($result)) {
+    $nids = array_keys($result);
+    $paragraphs = node_load_multiple($nids);
+  }
+
+  return $paragraphs;
 }
 
 function treaty_format_article_title($article) {
