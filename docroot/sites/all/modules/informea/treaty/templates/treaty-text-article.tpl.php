@@ -18,7 +18,8 @@
         <?php
         print l('<i class="glyphicon glyphicon-link"></i>', 'treaties/cbd', array(
           'attributes' => array(
-            'data-toggle' => 'tooltip', 'data-placement' => 'top',
+            'data-toggle' => 'tooltip',
+            'data-placement' => 'top',
             'title' => t('Permalink'),
             'class' => array('pull-right permalink'),
             'target' => '_blank'
@@ -27,28 +28,62 @@
           'html' => TRUE,
           'query' => array('article' => $article->nid)
         ));
-        if (user_access('edit any treaty_article content')):
+
+        if (user_access('edit any treaty_article content')) {
+          $query = array(
+            'field_treaty_target_id' => $id_treaty,
+            'field_parent_treaty_article_target_id' => $article->nid
+          );
+
+          print l('<i class="glyphicon glyphicon-move"></i>', 'admin/config/content/order-treaty-paragraphs', array(
+            'attributes' => array(
+              'data-toggle' => 'tooltip',
+              'data-placement' => 'top',
+              'title' => t('Reorder paragraphs'),
+              'class' => array('pull-right administrative')
+            ),
+            'html' => TRUE,
+            'query' => $query
+          ));
+        }
+
+        if (user_access('edit any treaty_article content')) {
           $query = array(
             'destination' => sprintf('/node/%d/text?article=%d#article-%d', $id_treaty, $article->nid, $article->nid)
           );
+
           print l('<i class="glyphicon glyphicon-pencil"></i>', sprintf('node/%d/edit', $article->nid), array(
-            'attributes' => array('data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => t('Edit this article'), 'class' => array('pull-right administrative')),
-            'html' => TRUE, 'query' => $query
+            'attributes' => array(
+              'data-toggle' => 'tooltip',
+              'data-placement' => 'top',
+              'title' => t('Edit this article'),
+              'class' => array('pull-right administrative')
+            ),
+            'html' => TRUE,
+            'query' => $query
           ));
-        endif;
-        if (user_access('create treaty_paragraph content')):
-            $query = array('edit' => array(
+        }
+
+        if (user_access('create treaty_paragraph content')) {
+          $query = array(
+            'edit' => array(
               'field_parent_treaty_article' => array('und' => $article->nid),
-              'field_treaty' => array('und' => $id_treaty),
-              ),
-              'destination' => sprintf('/node/%d/text?article=%d#article-%d', $id_treaty, $article->nid, $article->nid)
-            );
-            print l('<i class="glyphicon glyphicon-plus"></i>', 'node/add/treaty-paragraph', array(
-              'attributes' => array('data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => t('Append paragraph to this article'), 'class' => array('pull-right administrative')),
-              'html' => TRUE,
-              'query' => $query
-            ));
-        endif;
+              'field_treaty' => array('und' => $id_treaty)
+            ),
+            'destination' => sprintf('/node/%d/text?article=%d#article-%d', $id_treaty, $article->nid, $article->nid)
+          );
+
+          print l('<i class="glyphicon glyphicon-plus"></i>', 'node/add/treaty-paragraph', array(
+            'attributes' => array(
+              'data-toggle' => 'tooltip',
+              'data-placement' => 'top',
+              'title' => t('Append paragraph to this article'),
+              'class' => array('pull-right administrative')
+            ),
+            'html' => TRUE,
+            'query' => $query
+          ));
+        }
         ?>
       </h4><!-- .panel-title -->
       <?php print theme('treaty_text_tags', array('tags' => $tags)); ?>
@@ -62,9 +97,10 @@
         <?php else: ?>
           <div class="article tagged-content content">
             <?php
-              $body = $aw->body->value();
-              $body = check_markup($body['safe_value'], 'full_html');
-              print $body;
+            $body = $aw->body->value();
+            $body = check_markup($body['safe_value'], 'full_html');
+
+            print $body;
             ?>
           </div><!-- .article .tagged-content .content -->
         <?php endif; ?>
