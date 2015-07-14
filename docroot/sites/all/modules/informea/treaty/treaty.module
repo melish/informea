@@ -886,7 +886,7 @@ function treaty_block_info() {
 function treaty_block_view($delta = '') {
   switch ($delta) {
     case 'treaty_global':
-      $block['subject'] = t('Global treaties and conventions');
+      $block['subject'] = t('Global treaties');
       $block['content'] = treaty_block_contents($delta);
 
       break;
