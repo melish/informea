@@ -29,22 +29,40 @@ $print = sprintf('/treaties/%s/print', $odata_identifier);
     <?php endforeach; ?>
   </div>
 <?php endif; ?>
-<?php
-if (user_access('create treaty_article content')):
 
+<?php
+if (user_access('create treaty_article content')) {
   $query = array(
     'destination' => sprintf('node/%s/text', $node->nid)
   );
+
   if (isset($node->nid)) {
     $query['edit'] = array(
       'field_treaty' => array('und' => $node->nid)
     );
   }
+
   print l('<i class="glyphicon glyphicon-plus"></i> ' . t('Add article'), 'node/add/treaty-article', array(
     'attributes' => array('class' => array('btn', 'btn-default')),
     'html' => TRUE,
     'query' => $query,
   ));
-endif;
+}
+?>
+
+<?php
+if (user_access('delete any treaty content')) {
+  if (isset($node->nid)) {
+    $query = array(
+      'field_treaty_target_id' => $node->nid
+    );
+  }
+
+  print l('<i class="glyphicon glyphicon-move"></i> ' . t('Reorder articles'), 'admin/config/content/order-treaty-articles', array(
+    'attributes' => array('class' => array('btn', 'btn-default')),
+    'html' => TRUE,
+    'query' => $query,
+  ));
+}
 ?>
 
