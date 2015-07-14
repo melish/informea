@@ -135,22 +135,32 @@ function treaty_get_treaties_as_select_options() {
 }
 
 function treaty_get_treaty_text($id_treaty) {
-  $query = new EntityFieldQuery();
   // Retrieve treaty articles
-  $articles = $query->entityCondition('entity_type', 'node')
-                  ->entityCondition('bundle', 'treaty_article')
-                  ->fieldCondition('field_treaty', 'target_id', $id_treaty)
-                  ->fieldOrderBy('field_sorting_order', 'value')
-                  ->execute();
-  if (isset($articles['node'])) {
-    $articles = node_load_multiple(array_keys($articles['node']));
+  $query = db_select('node', 'n')
+    ->condition('n.type', 'treaty_article')
+    ->condition('n.status', NODE_PUBLISHED)
+    ->fields('n', array('nid'));
+
+  $query->leftJoin('field_data_field_treaty', 'ft', 'ft.entity_id = n.nid');
+  $query->leftJoin('draggableviews_structure', 'd', ' d.entity_id = n.nid AND d.view_name = \'treaties_reorder\' AND d.view_display = \'page_articles\'');
+  $query->condition('ft.field_treaty_target_id', $id_treaty);
+  $query->orderBy('d.weight', 'ASC');
+
+  $result = $query->execute()->fetchAllKeyed();
+
+  if (!empty($result)) {
+    $nids = array_keys($result);
+    $articles = node_load_multiple($nids);
+
     // Retrieve paragraphs for each article
     foreach ($articles as &$article) {
       $paragraphs = treaty_get_article_paragraphs($article->nid);
+
       $article->official_title = treaty_format_article_title($article);
       $article->paragraphs = $paragraphs;
     }
   }
+
   return $articles;
 }
 
