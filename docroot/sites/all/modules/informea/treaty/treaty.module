@@ -932,3 +932,17 @@ function treaty_block_contents($delta) {
 
   return $result;
 }
+
+/**
+ * Implements hook_contextual_links_view_alter().
+ */
+function treaty_contextual_links_view_alter(&$element, $items) {
+  if ($element['#element']['#block']->delta == 'treaty_global') {
+    if (user_access('create treaty_global entityqueue')) {
+      $element['#links']['treaty-global'] = array(
+        'title' => t('Edit global treaties'),
+        'href' => 'admin/structure/entityqueue/list/treaty_global/subqueues'
+      );
+    }
+  }
+}
