@@ -26,8 +26,15 @@ if (isset($result['node'])) {
 
     if (!empty($result)) {
       $entity_id = array_keys($result)[0];
+
+      db_update('draggableviews_structure')
+        ->fields(array(
+          'weight' => $weight,
+        ))
+        ->condition('entity_id', $nid)
+        ->execute();
     } else {
-      $dvid = db_insert('draggableviews_structure')
+      db_insert('draggableviews_structure')
         ->fields(array(
           'view_name' => 'treaties_reorder',
           'view_display' => 'page_articles',
