@@ -466,6 +466,13 @@ function decision_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 1,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1121,12 +1128,20 @@ function decision_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_informea_tags',
     'label' => 'InforMEA Tags',
-    'required' => FALSE,
+    'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 1,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 0,
       'module' => 'taxonomy',
       'settings' => array(
         'autocomplete_path' => 'taxonomy/autocomplete',
@@ -1306,6 +1321,13 @@ function decision_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 1,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1315,6 +1337,7 @@ function decision_field_default_field_instances() {
         'match_operator' => 'CONTAINS',
         'path' => '',
         'size' => 60,
+        'use_select2' => FALSE,
       ),
       'type' => 'entityreference_autocomplete_tags',
       'weight' => 3,
