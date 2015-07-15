@@ -120,7 +120,7 @@ function informea_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_default',
-        'weight' => 12,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -142,8 +142,8 @@ function informea_field_default_field_instances() {
     'settings' => array(
       'description_field' => 1,
       'entity_translation_sync' => 0,
-      'file_directory' => '',
-      'file_extensions' => 'txt',
+      'file_directory' => 'articles',
+      'file_extensions' => 'txt png jpg jpeg doc docx xls odf',
       'max_filesize' => '',
       'user_register_form' => FALSE,
     ),
@@ -178,7 +178,7 @@ function informea_field_default_field_instances() {
           'image_style' => 'large',
         ),
         'type' => 'image',
-        'weight' => -1,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -242,7 +242,7 @@ function informea_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 10,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -297,7 +297,7 @@ function informea_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 11,
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'above',

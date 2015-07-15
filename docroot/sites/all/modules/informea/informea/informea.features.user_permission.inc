@@ -13,7 +13,9 @@ function informea_user_default_permissions() {
   // Exported permission: 'update front_page_slider entityqueue'.
   $permissions['update front_page_slider entityqueue'] = array(
     'name' => 'update front_page_slider entityqueue',
-    'roles' => array(),
+    'roles' => array(
+      'content manager' => 'content manager',
+    ),
     'module' => 'entityqueue',
   );
 
