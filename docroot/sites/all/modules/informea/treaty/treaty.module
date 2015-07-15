@@ -946,3 +946,24 @@ function treaty_contextual_links_view_alter(&$element, $items) {
     }
   }
 }
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function treaty_form_node_form_alter(&$form, &$form_state, $form_id) {
+  switch ($form['#node']->type) {
+    case 'action_plan':
+    case 'decision':
+    case 'decision_paragraph':
+    case 'geographical_site':
+    case 'literature':
+    case 'member_party':
+    case 'national_report':
+    case 'reporting_obligation_cycle':
+    case 'treaty_article':
+    case 'treaty_paragraph':
+      $form['field_treaty']['und']['#multiple'] = FALSE;
+
+      break;
+  }
+}
