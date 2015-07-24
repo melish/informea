@@ -9,7 +9,7 @@
     <div class="brand-group">
       <?php foreach ($group as $treaty): ?>
         <?php $url = $treaty->url->value(); ?>
-        <a href="<?php print $url; ?>" class="brand brand-<?php print basename($url); ?>">
+        <a href="<?php print $url; ?>" class="brand brand-<?php print $treaty->field_odata_identifier->value(); ?>">
           <div class="image"></div>
           <?php print $treaty->label(); ?>
         </a><!-- .brand -->
