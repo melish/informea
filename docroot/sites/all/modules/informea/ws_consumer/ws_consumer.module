@@ -275,6 +275,9 @@ function ws_consumer_un_database_get_country($country_name) {
   // Some hardcodings for their broken country names
   $fixed_country_name = htmlspecialchars_decode($country_name, ENT_QUOTES);
   $mappings = array(
+    'Bolivia' => 'Bolivia (Plurinational State of)',
+    'Iran' => 'Iran (Islamic Republic of)',
+    'United Kingdom' => 'United Kingdom of Great Britain and Northern Ireland',
     'Gambia' => 'The Gambia',
     'Lao People\'s Democratic Republic' => 'Laos',
     'St. Kitts and Nevis' => 'Saint Kitts and Nevis',
