@@ -50,7 +50,6 @@ function ws_consumer_update_treaty_ratification($node_treaty) {
   if (!empty($xml_url['url'])) {
     $xml_url = $xml_url['url'];
     $data = ws_consumer_service_process_xml($xml_url);
-
     if (!empty($data->entry_into_force)) {
       $node_treaty->field_entry_into_force[LANGUAGE_NONE][0] = array(
         'value' => date('Y-m-d 16:00:00', $data->entry_into_force),
@@ -230,13 +229,7 @@ function ws_consumer_service_process_xml($url) {
         } else {
           $status = 'signatory';
         }
-
-        $country_ob = NULL;
         $country_ob = ws_consumer_un_database_get_country($country);
-        if (empty($country_ob)) {
-          drupal_set_message(sprintf('Cannot find country: %s', $country), 'warning');
-        }
-
         $ob = new stdClass();
         $ob->country = $country;
         $ob->country_ob = $country_ob;
@@ -293,5 +286,8 @@ function ws_consumer_un_database_get_country($country_name) {
     $fixed_country_name = $mappings[$country_name];
   }
   $country_ob = country_get_by_name($fixed_country_name);
+  if (empty($country_ob)) {
+    watchdog('ws_consumer', 'Cannot find country: !c', array('!c' => $country_name), WATCHDOG_ERROR);
+  }
   return $country_ob;
 }
