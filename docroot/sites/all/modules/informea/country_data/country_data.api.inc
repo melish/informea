@@ -37,8 +37,7 @@ function country_data_treaty_count_membership($id_treaty) {
       ->fieldCondition('field_treaty', 'target_id', $id_treaty)
       ->propertyOrderBy('title')
       ->execute();
-
-    $allowed = array('ratification', 'acceptance', 'accession', 'approval');
+    $allowed = array('acceptance', 'accession', 'approval', 'continuation', 'ratification', 'succession');
     foreach($rows['node'] as $row) {
       $w = entity_metadata_wrapper('node', $row->nid);
       $status = $w->field_party_status->value();
