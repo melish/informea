@@ -56,6 +56,7 @@ function ws_consumer_update_treaty_ratification($node_treaty) {
       );
       node_save($node_treaty);
     }
+    $statistics = array();
     foreach ($data->ratification as $ratification) {
       if (!empty($ratification->country_ob)) {
         $country_w = entity_metadata_wrapper('node', $ratification->country_ob->nid);
@@ -79,8 +80,6 @@ function ws_consumer_update_treaty_ratification($node_treaty) {
         try {
           if (empty($party->nid)) {
             $party_w->field_country->set(array(intval($ratification->country_ob->nid)));
-          }
-          if (empty($party->nid)) {
             $party_w->field_treaty->set(array(intval($treaty_w->getIdentifier())));
           }
           if (!empty($date1) && $party_w->field_party_date_1->value() != $date1) {
@@ -92,12 +91,13 @@ function ws_consumer_update_treaty_ratification($node_treaty) {
             $party_w->field_party_date_2->set(strtotime($ratification->date2));
           }
           if ($status = taxonomy_get_term_by_name($ratification->status, 'party_status')) {
-            $status = current($status);
+            reset($status); $status = current($status);
             $current = $party_w->field_party_status->value();
             if (!$current || ($current->tid != $status->tid)) {
               $save = TRUE;
               $party_w->field_party_status->set($status->tid);
             }
+            $statistics[$ratification->status]++;
           }
           else {
             watchdog(
@@ -126,6 +126,12 @@ function ws_consumer_update_treaty_ratification($node_treaty) {
             array('!title' => $party_w->label(), '!cause' => $e->getMessage(), '!trace' => $e->getTraceAsString())
           );
         }
+      }
+    }
+    if (function_exists('drush_log')) {
+      ksort($statistics);
+      foreach ($statistics as $v => $c) {
+        drush_log(sprintf('%14s : %d', $v, $c), 'status');
       }
     }
   }

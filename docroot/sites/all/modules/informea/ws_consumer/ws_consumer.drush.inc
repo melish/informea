@@ -16,8 +16,18 @@ function ws_consumer_drush_command() {
       'treaty' => 'Treaty odata_identifier to update for specific treaty. Use "all" for all treaties',
     ),
     'examples' => array(
-      'drush update_ratification cbd' => 'Update ratification for CBD',
-      'drush update_ratification all' => 'Update ratification for all treaties',
+      'drush update-ratification cbd' => 'Update ratification for CBD',
+      'drush update-ratification all' => 'Update ratification for all treaties',
+    ),
+  );
+  $items['delete-ratification'] = array(
+    'description' => 'Delete treaty ratification data for a treaty (to remove stale records)',
+    'arguments' => array(
+      'treaty' => 'Treaty odata_identifier to update for specific treaty. Use "all" for all treaties',
+    ),
+    'required-arguments' => 1,
+    'examples' => array(
+      'drush delete-ratification cbd' => 'Update ratification for CBD',
     ),
   );
   return $items;
@@ -42,6 +52,23 @@ function drush_ws_consumer_update_ratification() {
   }
   else {
     ws_consumer_update_treaties_ratification();
+  }
+}
+
+function drush_ws_consumer_delete_ratification($odata_name) {
+  if ($treaty = treaty_load_by_odata_name($odata_name)) {
+    $query = new EntityFieldQuery();
+    $rows = $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'member_party')
+      ->fieldCondition('field_treaty', 'target_id', $treaty->nid)
+      ->propertyOrderBy('title')
+      ->execute();
+    $nids = array_keys($rows['node']);
+    drush_log('Removing ' . count($nids) . ' parties ...', 'status');
+    entity_delete_multiple('node', array_keys($rows['node']));
+  }
+  else {
+    drush_set_error('Cannot find treaty: '. $odata_name);
   }
 }
 
