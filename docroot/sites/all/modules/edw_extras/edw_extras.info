@@ -2,6 +2,16 @@ name = Eau de Web extras
 description = Extra utilities from EdW underground facility
 core = 7.x
 package = edw
-version = 7.x-1.0
+version = 7.x-1.2
 project = edw_extras
+files[] = edw_extras.api.inc
 files[] = edw_extras.cache.inc
+files[] = edw_extras.security.inc
+project status url = http://fserver.eaudeweb.ro/fserver
+
+; Information added by fserver
+core = "7.x"
+datestamp = "1438340057"
+project = "edw_extras"
+project status url = "http://fserver.eaudeweb.ro/fserver"
+version = "7.x-1.2"
