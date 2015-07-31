@@ -56,6 +56,13 @@ function _drush_build() {
  * Callback for drush devify.
  */
 function _drush_devify() {
+	global $project_config;
+	if (!empty($project_config->solr_server)) {
+		drush_log('Devifying Search API Apache Solr server', 'status');
+		edw_extras_search_api_solr_configure('search_solr_server', (array)$project_config->solr_server);
+		edw_extras_search_api_solr_configure('apache_solr_news_core', (array)$project_config->apache_solr_news_core);
+	}
+
 	// Disable modules.
 	$modules = drush_get_option('disable-modules', array('update'));
 	if (is_string($modules)) {
