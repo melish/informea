@@ -173,6 +173,17 @@ function country_load_by_iso3($iso3) {
   return FALSE;
 }
 
+function country_load_by_iso($iso) {
+  if (!empty($iso)) {
+    if(strlen($iso) == 2) {
+      return country_load_by_iso2($iso);
+    }
+    if (strlen($iso) == 3) {
+      return country_load_by_iso3($iso);
+    }
+  }
+  return NULL;
+}
 
 function country_get_by_name($name) {
   $name = strtolower($name);
