@@ -24,7 +24,6 @@ dependencies[] = link
 dependencies[] = list
 dependencies[] = locale
 dependencies[] = migrate
-dependencies[] = migrate_ui
 dependencies[] = number
 dependencies[] = options
 dependencies[] = strongarm
