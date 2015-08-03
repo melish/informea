@@ -595,7 +595,7 @@ function treaty_field_default_field_bases() {
       ),
       'uri_scheme' => 'public',
     ),
-    'translatable' => 0,
+    'translatable' => 1,
     'type' => 'image',
   );
 
@@ -862,9 +862,6 @@ function treaty_field_default_field_bases() {
       'handler' => 'base',
       'handler_settings' => array(
         'behaviors' => array(
-          'entityqueue' => array(
-            'status' => 0,
-          ),
           'views-select-list' => array(
             'status' => 0,
           ),
