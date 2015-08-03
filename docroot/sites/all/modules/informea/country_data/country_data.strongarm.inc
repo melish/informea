@@ -218,6 +218,12 @@ function country_data_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'ajax' => array(
+        'custom_settings' => TRUE,
+      ),
+      'treaty_listing' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
