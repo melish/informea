@@ -1,0 +1,109 @@
+<?php
+
+/**
+ * Implements hook_migrate_api().
+ *
+ * Set the API level to 2, for migration classes to be recognized by Migrate.
+ */
+function ws_consumer_odata_migrate_api() {
+  $config = new ODataConsumerConfig();
+  $ret = array(
+    'api' => 2,
+    'groups' => array(
+      'odata_' . ODataConsumerConfig::$ODATA_NAME_CBD => array( 'title' => ODataConsumerConfig::$ODATA_NAME_CBD . ' OData importers'),
+    ),
+    'migrations' => array(
+      'odata_' . ODataConsumerConfig::$ODATA_NAME_CBD . '_' . ODataConsumerConfig::$ODATA_ENTITY_CONTACTS
+          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
+    )
+  );
+
+  if ($migration = $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_TEST, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS)) {
+    $name = 'odata_' . ODataConsumerConfig::$ODATA_NAME_TEST . '_' . ODataConsumerConfig::$ODATA_ENTITY_CONTACTS;
+    $ret['migrations'][$name] = $migration;
+  }
+
+  return $ret;
+}
+
+
+/**
+ * Class ODataMigrateList used by all migrations. See MigrateSourceList pattern.
+ *
+ * @see https://www.drupal.org/node/1152152
+ */
+class ODataMigrateList extends MigrateList {
+
+  /** @var ODataConsumer object */
+  protected $consumer = NULL;
+
+  /** @var ODataConsumerConfig */
+  protected $config = NULL;
+
+  public function __construct($config) {
+    $this->config = $config;
+    $klass = $this->config->getODataConsumerClass();
+    $uri = $this->config->getEndpointURL();
+    $this->consumer = new $klass($uri);
+  }
+
+  /** {@inheritdoc} */
+  public function __toString() {
+    return sprintf('Extract %s from MEA OData endpoint', $this->config->odata_entity);
+  }
+
+  /** {@inheritdoc} */
+  public function getIDList() {
+    return $this->consumer->getIdList($this->config->odata_entity);
+  }
+
+  /** {@inheritdoc} */
+  public function computeCount() {
+    return $this->consumer->countTotal($this->config->odata_entity);
+  }
+}
+
+/**
+ * Class ODataMigrateItem is the base class for all OData migrated items
+ *
+ * @see https://www.drupal.org/node/1152152
+ */
+class ODataMigrateItem extends MigrateItem {
+
+  /** @var ODataConsumer object */
+  protected $consumer = NULL;
+
+  /** @var ODataConsumerConfig */
+  protected $config = NULL;
+
+  /** {@inheritdoc} */
+  public function __construct($config) {
+    $this->config = $config;
+    $klass = $this->config->getODataConsumerClass();
+    $uri = $this->config->getEndpointURL();
+    $this->consumer = new $klass($uri);
+  }
+
+  /** {@inheritdoc} */
+  public function getItem($id, $odata_extra_params = '') {
+    // Make sure we actually have an ID.
+    if (empty($id)) {
+      return NULL;
+    }
+    return $this->consumer->getItem($this->config->odata_entity, $id, $odata_extra_params);
+  }
+
+  /**
+   * Load a complex property for the item (OData navigation property).
+   * @param stdClass $ob
+   *   OData object loaded with getItem()
+   * @param string $property_name
+   *   Name of the navigation property
+   *
+   * @return array
+   *   Array with the values of the navigation property
+   */
+  public function getComplexProperty($ob, $property_name) {
+    return $this->consumer->loadNavigationProperty($ob, $property_name);
+  }
+}

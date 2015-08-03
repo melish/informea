@@ -1,0 +1,16 @@
+name = ws_consumer_odata
+description = OData feed consumer for MEA provided data through the InforMEA API. See http://www.informea.org/api for more information
+core = 7.x
+package = InforMEA
+version = 7.x-1.0
+project = ws_consumer_odata
+dependencies[] = migrate
+files[] = ws_consumer_odata.migrate.inc
+files[] = includes/migrations/AbstractODataMigration.inc
+files[] = includes/migrations/ContactsODataMigration.inc
+files[] = includes/odata/ODataConsumer.inc
+files[] = includes/odata/ODataConsumerV1.inc
+files[] = includes/odata/ODataConsumerV3.inc
+files[] = includes/sources/ContactsODataMigrateItem.inc
+files[] = includes/sources/ContactsMigrateSourceList.inc
+files[] = includes/ODataConsumerConfig.inc
