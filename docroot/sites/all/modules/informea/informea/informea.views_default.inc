@@ -262,6 +262,87 @@ function informea_views_default_views() {
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['path'] = 'news';
+
+  /* Display: Feed */
+  $handler = $view->new_display('feed', 'Feed', 'feed');
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['style_plugin'] = 'rss';
+  $handler->display->display_options['row_plugin'] = 'rss_fields';
+  $handler->display->display_options['row_options']['title_field'] = 'title';
+  $handler->display->display_options['row_options']['link_field'] = 'field_url';
+  $handler->display->display_options['row_options']['description_field'] = 'field_feed_item_description';
+  $handler->display->display_options['row_options']['creator_field'] = 'field_parent_feed';
+  $handler->display->display_options['row_options']['date_field'] = 'created';
+  $handler->display->display_options['row_options']['guid_field_options'] = array(
+    'guid_field' => 'nid',
+    'guid_field_is_permalink' => 0,
+  );
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Indexed Node: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'search_api_index_news_search_index';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['text'] = '<a href="[field_url]" target="blank">[title]</a>';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_entity'] = 0;
+  /* Field: Indexed Node: URL */
+  $handler->display->display_options['fields']['field_url']['id'] = 'field_url';
+  $handler->display->display_options['fields']['field_url']['table'] = 'search_api_index_news_search_index';
+  $handler->display->display_options['fields']['field_url']['field'] = 'field_url';
+  $handler->display->display_options['fields']['field_url']['label'] = '';
+  $handler->display->display_options['fields']['field_url']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_url']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_url']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_url']['type'] = 'link_absolute';
+  /* Field: Indexed Node: Description */
+  $handler->display->display_options['fields']['field_feed_item_description']['id'] = 'field_feed_item_description';
+  $handler->display->display_options['fields']['field_feed_item_description']['table'] = 'search_api_index_news_search_index';
+  $handler->display->display_options['fields']['field_feed_item_description']['field'] = 'field_feed_item_description';
+  $handler->display->display_options['fields']['field_feed_item_description']['label'] = '';
+  $handler->display->display_options['fields']['field_feed_item_description']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_feed_item_description']['type'] = 'text_summary_or_trimmed';
+  $handler->display->display_options['fields']['field_feed_item_description']['settings'] = array(
+    'trim_length' => '600',
+  );
+  /* Field: Indexed Node: Parent feed */
+  $handler->display->display_options['fields']['field_parent_feed']['id'] = 'field_parent_feed';
+  $handler->display->display_options['fields']['field_parent_feed']['table'] = 'search_api_index_news_search_index';
+  $handler->display->display_options['fields']['field_parent_feed']['field'] = 'field_parent_feed';
+  $handler->display->display_options['fields']['field_parent_feed']['label'] = '';
+  $handler->display->display_options['fields']['field_parent_feed']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_parent_feed']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['field_parent_feed']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_parent_feed']['bypass_access'] = 0;
+  /* Field: Indexed Node: Date created */
+  $handler->display->display_options['fields']['created']['id'] = 'created';
+  $handler->display->display_options['fields']['created']['table'] = 'search_api_index_news_search_index';
+  $handler->display->display_options['fields']['created']['field'] = 'created';
+  $handler->display->display_options['fields']['created']['label'] = '';
+  $handler->display->display_options['fields']['created']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['created']['date_format'] = 'short';
+  $handler->display->display_options['fields']['created']['second_date_format'] = 'long';
+  $handler->display->display_options['fields']['created']['link_to_entity'] = 0;
+  /* Field: Indexed Node: Node ID */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'search_api_index_news_search_index';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nid']['link_to_entity'] = 0;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Indexed Node: Content type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_news_search_index';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'feed_item' => 'feed_item',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  $handler->display->display_options['path'] = 'news/rss';
   $translatables['news'] = array(
     t('Master'),
     t('News'),
@@ -285,6 +366,7 @@ function informea_views_default_views() {
     t('Search in news'),
     t('Show'),
     t('Page'),
+    t('Feed'),
   );
   $export['news'] = $view;
 
