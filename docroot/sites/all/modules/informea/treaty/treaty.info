@@ -10,7 +10,6 @@ dependencies[] = edw_extras
 dependencies[] = entity_translation
 dependencies[] = entityqueue
 dependencies[] = fe_block
-dependencies[] = features
 dependencies[] = feeds_news
 dependencies[] = field_group
 dependencies[] = i18n_taxonomy
