@@ -68,34 +68,6 @@ function informea_default_fe_block_settings() {
     'visibility' => 1,
   );
 
-  $export['views--exp-events-page'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'delta' => '-exp-events-page',
-    'i18n_block_language' => array(),
-    'i18n_mode' => 0,
-    'module' => 'views',
-    'node_types' => array(),
-    'pages' => 'events',
-    'roles' => array(),
-    'themes' => array(
-      'informea_theme' => array(
-        'region' => 'sidebar_first',
-        'status' => 1,
-        'theme' => 'informea_theme',
-        'weight' => -17,
-      ),
-      'seven' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'seven',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '',
-    'visibility' => 1,
-  );
-
   $export['views--exp-news-page'] = array(
     'cache' => -1,
     'custom' => 0,

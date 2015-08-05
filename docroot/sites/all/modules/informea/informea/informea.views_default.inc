@@ -11,6 +11,92 @@ function informea_views_default_views() {
   $export = array();
 
   $view = new view();
+  $view->name = 'list_of_all_treaties';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'List of all treaties';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'List of all treaties';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'time';
+  $handler->display->display_options['cache']['results_lifespan'] = '3600';
+  $handler->display->display_options['cache']['results_lifespan_custom'] = '0';
+  $handler->display->display_options['cache']['output_lifespan'] = '3600';
+  $handler->display->display_options['cache']['output_lifespan_custom'] = '0';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: OData identifier */
+  $handler->display->display_options['fields']['field_odata_identifier']['id'] = 'field_odata_identifier';
+  $handler->display->display_options['fields']['field_odata_identifier']['table'] = 'field_data_field_odata_identifier';
+  $handler->display->display_options['fields']['field_odata_identifier']['field'] = 'field_odata_identifier';
+  $handler->display->display_options['fields']['field_odata_identifier']['label'] = '';
+  $handler->display->display_options['fields']['field_odata_identifier']['element_label_colon'] = FALSE;
+  /* Field: Content: Node UUID */
+  $handler->display->display_options['fields']['uuid']['id'] = 'uuid';
+  $handler->display->display_options['fields']['uuid']['table'] = 'node';
+  $handler->display->display_options['fields']['uuid']['field'] = 'uuid';
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  /* Field: Content: Official name */
+  $handler->display->display_options['fields']['field_official_name']['id'] = 'field_official_name';
+  $handler->display->display_options['fields']['field_official_name']['table'] = 'field_data_field_official_name';
+  $handler->display->display_options['fields']['field_official_name']['field'] = 'field_official_name';
+  $handler->display->display_options['fields']['field_official_name']['label'] = 'official name';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'treaty' => 'treaty',
+  );
+
+  /* Display: Services */
+  $handler = $view->new_display('services', 'Services', 'treaties');
+  $handler->display->display_options['path'] = 'treaties';
+  $translatables['list_of_all_treaties'] = array(
+    t('Master'),
+    t('List of all treaties'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Node UUID'),
+    t('Nid'),
+    t('official name'),
+    t('Services'),
+  );
+  $export['list_of_all_treaties'] = $view;
+
+  $view = new view();
   $view->name = 'mea_contextual_events';
   $view->description = '';
   $view->tag = 'default';
