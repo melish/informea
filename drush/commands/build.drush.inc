@@ -43,6 +43,14 @@ function build_drush_command() {
  * Executes the build commands.
  */
 function _drush_build() {
+	// Enable modules.
+	$modules = drush_get_option('init-modules', array());
+	foreach($modules as $module) {
+		if (!module_exists($module)) {
+			drush_log('Enabling ' . $module, 'status');
+			module_enable($modules);
+		}
+	}
 	drush_invoke('updatedb');
 	drush_invoke_process('@self', 'features-revert-all', array(), array(
 		'force' => TRUE,
