@@ -1,8 +1,5 @@
 <?php
 
-informea_configure_entity_translation_types();
-
-
 function informea_install() {
   $column_size = 2048;
   if (informea_get_mysql_column_size('node', 'title') < $column_size) {
