@@ -53,15 +53,112 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['uuid']['id'] = 'uuid';
   $handler->display->display_options['fields']['uuid']['table'] = 'node';
   $handler->display->display_options['fields']['uuid']['field'] = 'uuid';
+  $handler->display->display_options['fields']['uuid']['label'] = '';
+  $handler->display->display_options['fields']['uuid']['element_label_colon'] = FALSE;
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
   /* Field: Content: Official name */
   $handler->display->display_options['fields']['field_official_name']['id'] = 'field_official_name';
   $handler->display->display_options['fields']['field_official_name']['table'] = 'field_data_field_official_name';
   $handler->display->display_options['fields']['field_official_name']['field'] = 'field_official_name';
-  $handler->display->display_options['fields']['field_official_name']['label'] = 'official name';
+  $handler->display->display_options['fields']['field_official_name']['label'] = '';
+  $handler->display->display_options['fields']['field_official_name']['element_label_colon'] = FALSE;
+  /* Field: Content: Title abbreviation */
+  $handler->display->display_options['fields']['field_title_abbreviation']['id'] = 'field_title_abbreviation';
+  $handler->display->display_options['fields']['field_title_abbreviation']['table'] = 'field_data_field_title_abbreviation';
+  $handler->display->display_options['fields']['field_title_abbreviation']['field'] = 'field_title_abbreviation';
+  $handler->display->display_options['fields']['field_title_abbreviation']['label'] = '';
+  $handler->display->display_options['fields']['field_title_abbreviation']['element_label_colon'] = FALSE;
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = 'description';
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  /* Field: Content: Entry into force */
+  $handler->display->display_options['fields']['field_entry_into_force']['id'] = 'field_entry_into_force';
+  $handler->display->display_options['fields']['field_entry_into_force']['table'] = 'field_data_field_entry_into_force';
+  $handler->display->display_options['fields']['field_entry_into_force']['field'] = 'field_entry_into_force';
+  $handler->display->display_options['fields']['field_entry_into_force']['label'] = '';
+  $handler->display->display_options['fields']['field_entry_into_force']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_entry_into_force']['type'] = 'services';
+  $handler->display->display_options['fields']['field_entry_into_force']['settings'] = array(
+    'skip_safe' => 0,
+    'skip_empty_values' => 0,
+  );
+  /* Field: Content: InforMEA Tags */
+  $handler->display->display_options['fields']['field_informea_tags']['id'] = 'field_informea_tags';
+  $handler->display->display_options['fields']['field_informea_tags']['table'] = 'field_data_field_informea_tags';
+  $handler->display->display_options['fields']['field_informea_tags']['field'] = 'field_informea_tags';
+  $handler->display->display_options['fields']['field_informea_tags']['label'] = '';
+  $handler->display->display_options['fields']['field_informea_tags']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_informea_tags']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_informea_tags']['settings'] = array(
+    'links_option' => 0,
+    'separator_option' => ', ',
+    'element_option' => '- None -',
+    'element_class' => '',
+    'wrapper_option' => '- None -',
+    'wrapper_class' => '',
+  );
+  $handler->display->display_options['fields']['field_informea_tags']['delta_offset'] = '0';
+  /* Field: Content: Logo */
+  $handler->display->display_options['fields']['field_logo']['id'] = 'field_logo';
+  $handler->display->display_options['fields']['field_logo']['table'] = 'field_data_field_logo';
+  $handler->display->display_options['fields']['field_logo']['field'] = 'field_logo';
+  $handler->display->display_options['fields']['field_logo']['label'] = '';
+  $handler->display->display_options['fields']['field_logo']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_logo']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_logo']['settings'] = array(
+    'image_style' => '',
+    'image_link' => '',
+  );
+  /* Field: Content: Online course */
+  $handler->display->display_options['fields']['field_online_course_link']['id'] = 'field_online_course_link';
+  $handler->display->display_options['fields']['field_online_course_link']['table'] = 'field_data_field_online_course_link';
+  $handler->display->display_options['fields']['field_online_course_link']['field'] = 'field_online_course_link';
+  $handler->display->display_options['fields']['field_online_course_link']['label'] = '';
+  $handler->display->display_options['fields']['field_online_course_link']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_online_course_link']['click_sort_column'] = 'url';
+  /* Field: Content: UN Treaty database link */
+  $handler->display->display_options['fields']['field_un_treaty_database_link']['id'] = 'field_un_treaty_database_link';
+  $handler->display->display_options['fields']['field_un_treaty_database_link']['table'] = 'field_data_field_un_treaty_database_link';
+  $handler->display->display_options['fields']['field_un_treaty_database_link']['field'] = 'field_un_treaty_database_link';
+  $handler->display->display_options['fields']['field_un_treaty_database_link']['label'] = '';
+  $handler->display->display_options['fields']['field_un_treaty_database_link']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_un_treaty_database_link']['click_sort_column'] = 'url';
+  /* Field: Content: Treaty website URL */
+  $handler->display->display_options['fields']['field_treaty_website_url']['id'] = 'field_treaty_website_url';
+  $handler->display->display_options['fields']['field_treaty_website_url']['table'] = 'field_data_field_treaty_website_url';
+  $handler->display->display_options['fields']['field_treaty_website_url']['field'] = 'field_treaty_website_url';
+  $handler->display->display_options['fields']['field_treaty_website_url']['label'] = '';
+  $handler->display->display_options['fields']['field_treaty_website_url']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_treaty_website_url']['click_sort_column'] = 'url';
+  /* Field: Content: Treaty text URL */
+  $handler->display->display_options['fields']['field_treaty_text_url']['id'] = 'field_treaty_text_url';
+  $handler->display->display_options['fields']['field_treaty_text_url']['table'] = 'field_data_field_treaty_text_url';
+  $handler->display->display_options['fields']['field_treaty_text_url']['field'] = 'field_treaty_text_url';
+  $handler->display->display_options['fields']['field_treaty_text_url']['label'] = '';
+  $handler->display->display_options['fields']['field_treaty_text_url']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_treaty_text_url']['click_sort_column'] = 'url';
+  /* Field: Content: Treaty parties URL */
+  $handler->display->display_options['fields']['field_treaty_parties_url']['id'] = 'field_treaty_parties_url';
+  $handler->display->display_options['fields']['field_treaty_parties_url']['table'] = 'field_data_field_treaty_parties_url';
+  $handler->display->display_options['fields']['field_treaty_parties_url']['field'] = 'field_treaty_parties_url';
+  $handler->display->display_options['fields']['field_treaty_parties_url']['label'] = '';
+  $handler->display->display_options['fields']['field_treaty_parties_url']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_treaty_parties_url']['click_sort_column'] = 'url';
+  /* Field: Content: Ratification XML URL */
+  $handler->display->display_options['fields']['field_ratification_xml_url']['id'] = 'field_ratification_xml_url';
+  $handler->display->display_options['fields']['field_ratification_xml_url']['table'] = 'field_data_field_ratification_xml_url';
+  $handler->display->display_options['fields']['field_ratification_xml_url']['field'] = 'field_ratification_xml_url';
+  $handler->display->display_options['fields']['field_ratification_xml_url']['label'] = '';
+  $handler->display->display_options['fields']['field_ratification_xml_url']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_ratification_xml_url']['click_sort_column'] = 'url';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -89,9 +186,7 @@ function informea_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
-    t('Node UUID'),
-    t('Nid'),
-    t('official name'),
+    t('description'),
     t('Services'),
   );
   $export['list_of_all_treaties'] = $view;
