@@ -124,6 +124,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['field_online_course_link']['label'] = '';
   $handler->display->display_options['fields']['field_online_course_link']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_online_course_link']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_online_course_link']['type'] = 'link_absolute';
   /* Field: Content: UN Treaty database link */
   $handler->display->display_options['fields']['field_un_treaty_database_link']['id'] = 'field_un_treaty_database_link';
   $handler->display->display_options['fields']['field_un_treaty_database_link']['table'] = 'field_data_field_un_treaty_database_link';
@@ -131,6 +132,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['field_un_treaty_database_link']['label'] = '';
   $handler->display->display_options['fields']['field_un_treaty_database_link']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_un_treaty_database_link']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_un_treaty_database_link']['type'] = 'link_absolute';
   /* Field: Content: Treaty website URL */
   $handler->display->display_options['fields']['field_treaty_website_url']['id'] = 'field_treaty_website_url';
   $handler->display->display_options['fields']['field_treaty_website_url']['table'] = 'field_data_field_treaty_website_url';
@@ -145,6 +147,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['field_treaty_text_url']['label'] = '';
   $handler->display->display_options['fields']['field_treaty_text_url']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_treaty_text_url']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_treaty_text_url']['type'] = 'link_absolute';
   /* Field: Content: Treaty parties URL */
   $handler->display->display_options['fields']['field_treaty_parties_url']['id'] = 'field_treaty_parties_url';
   $handler->display->display_options['fields']['field_treaty_parties_url']['table'] = 'field_data_field_treaty_parties_url';
@@ -152,6 +155,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['field_treaty_parties_url']['label'] = '';
   $handler->display->display_options['fields']['field_treaty_parties_url']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_treaty_parties_url']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_treaty_parties_url']['type'] = 'link_absolute';
   /* Field: Content: Ratification XML URL */
   $handler->display->display_options['fields']['field_ratification_xml_url']['id'] = 'field_ratification_xml_url';
   $handler->display->display_options['fields']['field_ratification_xml_url']['table'] = 'field_data_field_ratification_xml_url';
@@ -159,6 +163,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['field_ratification_xml_url']['label'] = '';
   $handler->display->display_options['fields']['field_ratification_xml_url']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_ratification_xml_url']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_ratification_xml_url']['type'] = 'link_absolute';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
