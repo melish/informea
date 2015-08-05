@@ -308,6 +308,9 @@ $options['init-modules'] = array(
   'feeds_ui',
 
   'r4032login',
+  'services',
+  'rest_server',
+  'services_views',
 
   'search_api_facetapi',
   'facetapi_bonus',
