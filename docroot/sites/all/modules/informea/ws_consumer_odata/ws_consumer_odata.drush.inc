@@ -16,7 +16,7 @@ function ws_consumer_odata_drush_command() {
   );
 }
 
-function drush_ws_consumer_odata_ws_consumer_delete_nodes($treaty_odata_identifier, $content_type) {
+function drush_ws_consumer_odata_ws_consumer_delete_nodes($content_type, $treaty_odata_identifier) {
   if ($treaty = treaty_load_by_odata_name($treaty_odata_identifier)) {
     $q = new EntityFieldQuery();
     $q->entityCondition('bundle', $content_type);
