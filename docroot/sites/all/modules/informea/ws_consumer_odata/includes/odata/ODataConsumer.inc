@@ -130,7 +130,8 @@ abstract class ODataConsumer {
       return $ret;
     }
     if ($remote = $this->loadRemoteData($url)) {
-      foreach ($remote->results as $row) {
+      $results = gettype($remote) == 'object' ? $remote->results : $remote;
+      foreach ($results as $row) {
         $ret[$row->id] = $row;
       }
     }
@@ -156,8 +157,9 @@ abstract class ODataConsumer {
   public function loadNavigationProperty($ob, $property_name) {
     // OData v1, property expanded using $expand=property_name
     // No need for an additional HTTP request, data already there
-    if (!empty($ob->{$property_name}) && !empty($ob->{$property_name}->results)) {
-      return $ob->{$property_name}->results;
+    $results = gettype($ob->{$property_name}) == 'object' ? $ob->{$property_name}->results : $ob->{$property_name};
+    if (!empty($ob->{$property_name}) && !empty($results)) {
+      return $results;
     }
     // OData v1, without $expand.
     else if (!empty($ob->{$property_name}->__deferred->uri)) {
