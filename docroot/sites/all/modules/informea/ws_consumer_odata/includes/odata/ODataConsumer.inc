@@ -27,6 +27,22 @@ abstract class ODataConsumer {
     if ($response->code == 200) {
       $ret = intval($response->data);
     }
+    else {
+      ws_consumer_odata_log('FAIL: ' . get_class($this) . ': Remote counting entities: ' . $url, MigrationBase::MESSAGE_WARNING);
+      $url = $this->url . '/' . $entity . '?$inlinecount=allpages';
+      ws_consumer_odata_log('RETRY: ' . get_class($this) . ': Remote counting entities: ' . $url);
+      $response = drupal_http_request($url);
+
+      $element_name = 'm:count';
+      $found = preg_match(
+        '#<'.$element_name.'(?:\s+[^>]+)?>(.*?)'.'</'.$element_name.'>#s',
+        $response->data,
+        $matches
+      );
+      if ($found) {
+        $ret = intval($matches[1]);
+      }
+    }
     return $ret;
   }
 
@@ -70,7 +86,7 @@ abstract class ODataConsumer {
     $ret = NULL;
     $url = $this->url . '/' . $entity . "('" . $id . "')?" . $odata_extra_params;
     ws_consumer_odata_log(__METHOD__ . "($entity, $id): Retrieving data from : $url", MigrationBase::MESSAGE_NOTICE);
-    $response = drupal_http_request($url, array('headers' => array('Accept' => 'application/json;odata=verbose')));
+    $response = drupal_http_request($url, array('headers' => array('Accept' => 'application/json')));
     if ($response->code != 200) {
       ws_consumer_odata_log(__METHOD__ . "($entity, $id): HTTP request failure ({$response->code}) for URL: $url", MigrationBase::MESSAGE_ERROR);
       return $ret;
@@ -124,7 +140,7 @@ abstract class ODataConsumer {
    */
   protected function parseJSONRemoteListPage($url) {
     $ret = array();
-    $response = drupal_http_request($url, array('headers' => array('Accept' => 'application/json;odata=verbose')));
+    $response = drupal_http_request($url, array('headers' => array('Accept' => 'application/json')));
     if ($response->code != 200) {
       ws_consumer_odata_log(__METHOD__ . ": HTTP request failure ({$response->code}) for URL: $url", MigrationBase::MESSAGE_ERROR);
       return $ret;
@@ -142,7 +158,7 @@ abstract class ODataConsumer {
   public function loadRemoteData($url) {
     $ret = NULL;
     ws_consumer_odata_log(__METHOD__ . ": Retrieving OData result from: " . $url, MigrationBase::MESSAGE_NOTICE);
-    $response = drupal_http_request($url, array('headers' => array('Accept' => 'application/json;odata=verbose')));
+    $response = drupal_http_request($url, array('headers' => array('Accept' => 'application/json')));
     if ($response->code != 200) {
       ws_consumer_odata_log(__METHOD__ . ": HTTP request failure ({$response->code}) for URL: $url", MigrationBase::MESSAGE_ERROR);
       return $ret;
@@ -157,14 +173,22 @@ abstract class ODataConsumer {
   public function loadNavigationProperty($ob, $property_name) {
     // OData v1, property expanded using $expand=property_name
     // No need for an additional HTTP request, data already there
-    $results = gettype($ob->{$property_name}) == 'object' ? $ob->{$property_name}->results : $ob->{$property_name};
+    $results = array();
+    if (gettype($ob->{$property_name}) == 'object') {
+      if (property_exists($ob->{$property_name}, 'results')) {
+        $results = $ob->{$property_name}->results;
+      }
+    }
+    else {
+      $results = $ob->{$property_name};
+    }
     if (!empty($ob->{$property_name}) && !empty($results)) {
       return $results;
     }
     // OData v1, without $expand.
-    else if (!empty($ob->{$property_name}->__deferred->uri)) {
+    if (!empty($ob->{$property_name}->__deferred->uri)) {
       /** @var stdClass $result */
-      if ($result = $this->loadRemoteData($ob->$property_name->__deferred->uri)) {
+      if ($result = $this->loadRemoteData($ob->{$property_name}->__deferred->uri)) {
         return $result->results;
       }
     }
