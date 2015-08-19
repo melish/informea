@@ -84,6 +84,9 @@ class ContactsODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
+
+    $row->email = str_replace(' ', '', $row->email);
+
     $row->name = $this->getContactName($row);
 
     // Prepare the treaties property
