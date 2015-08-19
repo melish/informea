@@ -37,12 +37,6 @@ class MeetingsODataMigrateItem extends ODataMigrateItem {
     if (!property_exists($ob,'updated')) {
       $ob->updated = '';
     }
-    if (!property_exists($ob,'start')) {
-      $ob->start = '';
-    }
-    if (!property_exists($ob,'end')) {
-      $ob->end = '';
-    }
     return $ob;
   }
 }

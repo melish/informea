@@ -111,6 +111,10 @@ class MeetingsODataMigration extends AbstractODataMigration {
   function prepareRow($row) {
     parent::prepareRow($row);
 
+    if (!property_exists($row,'start')) {
+      return FALSE;
+    }
+
     if (!empty($row->start)) {
       $row->start = $this->fixDateValue($row->start);
     }
@@ -119,6 +123,7 @@ class MeetingsODataMigration extends AbstractODataMigration {
     }
 
     $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
+
   }
 
 }
