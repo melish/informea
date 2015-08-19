@@ -11,14 +11,14 @@ class MeetingsODataMigrateItem extends ODataMigrateItem {
   public function getItem($id) {
     $ob = parent::getItem($id, '$expand=title');
     // Download the Meeting navigable properties
-    $titles_langs = array();
+    $title_langs = array();
     $titles = array();
     $title_orig = NULL;
     $values = $this->getComplexProperty($ob, 'title');
     if (!empty($values) && is_array($values)) {
       foreach ($values as $value) {
         if (!empty($value->value)) {
-          $titles_langs[] = $value->language;
+          $title_langs[] = $value->language;
           $titles[] = $value->value;
           if ($value->language == 'en') {
             $title_orig = $value->value;
@@ -26,7 +26,7 @@ class MeetingsODataMigrateItem extends ODataMigrateItem {
         }
       }
     }
-    $ob->titles_langs = $titles_langs;
+    $ob->title_langs = $title_langs;
     $ob->title = $titles;
     if ($title_orig) {
       $ob->title_orig = $title_orig;
@@ -36,6 +36,12 @@ class MeetingsODataMigrateItem extends ODataMigrateItem {
     }
     if (!property_exists($ob,'updated')) {
       $ob->updated = '';
+    }
+    if (!property_exists($ob,'start')) {
+      $ob->start = '';
+    }
+    if (!property_exists($ob,'end')) {
+      $ob->end = '';
     }
     return $ob;
   }
