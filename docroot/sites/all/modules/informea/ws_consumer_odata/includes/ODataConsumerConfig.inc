@@ -63,8 +63,8 @@ class ODataConsumerConfig {
       ),
       self::$ODATA_NAME_ROTTERDAM => array(
         'Contacts' => 'http://informea.pops.int/Contacts2/rcContacts.svc',
-        'Meetings' => ' http://informea.pops.int/Meetings/rcMeetings.svc',
-        'Decisions' => ' http://informea.pops.int/Documents/rc/Decisions.svc',
+        'Meetings' => 'http://informea.pops.int/Meetings/rcMeetings.svc',
+        'Decisions' => 'http://informea.pops.int/Documents/rc/Decisions.svc',
       ),
       self::$ODATA_NAME_BASEL => array(
         'Contacts' => 'http://informea.pops.int/Contacts2/BcContacts.svc',
