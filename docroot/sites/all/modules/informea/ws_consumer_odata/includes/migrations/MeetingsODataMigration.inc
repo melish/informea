@@ -39,8 +39,9 @@ class MeetingsODataMigration extends AbstractODataMigration {
     );
 
     $this->addFieldMapping('field_original_id', 'id');
-//    $this->addFieldMapping('title', 'title');
+    $this->addFieldMapping('title', 'title_orig');
     $this->addFieldMapping('title_field', 'title');
+    $this->addFieldMapping('title_field:language', 'titles_langs');
     $this->addFieldMapping('field_treaty', 'treaty');
     $this->addFieldMapping('field_url', 'url');
     $this->addFieldMapping('event_calendar_date', 'start');
@@ -98,7 +99,7 @@ class MeetingsODataMigration extends AbstractODataMigration {
       'field_informea_tags:source_type', 'field_informea_tags:create_term',
       'field_tags', 'field_tags:source_type', 'field_tags:create_term',
       'field_tags:ignore_case', 'field_url:title', 'field_url:attributes',
-      'field_url:language', 'title_field:language', 'field_event_images:source_dir',
+      'field_url:language', 'field_event_images:source_dir',
     ));
   }
 
@@ -109,9 +110,6 @@ class MeetingsODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
-
-//    var_dump($row);
-//    die();
 
     if (!empty($row->start)) {
       $row->start = $this->fixDateValue($row->start);

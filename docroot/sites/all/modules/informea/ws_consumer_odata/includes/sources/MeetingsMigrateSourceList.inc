@@ -12,6 +12,8 @@ class MeetingsMigrateSourceList extends MigrateSourceList {
     return array(
       'id' => 'Remote primary key',
       'title' => 'Meeting title',
+      'title_orig' => 'Original title',
+      'title_langs' => 'Title languages list',
       'treaty' => 'The meeting is linked to this treaty',
       'url' => 'Url',
       'start' => 'Start date',
