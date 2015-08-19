@@ -57,9 +57,6 @@ class MeetingsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_latitude', 'latitude');
     $this->addFieldMapping('field_longitude', 'longitude');
 
-    $this->addFieldMapping('field_event_images:source_dir')
-      ->defaultValue('http://www.basel.int');
-
     $this->addFieldMapping('field_event_calendar_status:create_term')->defaultValue(TRUE);
     $this->addFieldMapping('field_event_calendar_status:ignore_case')->defaultValue(TRUE);
     $this->addFieldMapping('field_event_access:create_term')->defaultValue(TRUE);
@@ -101,7 +98,7 @@ class MeetingsODataMigration extends AbstractODataMigration {
       'field_informea_tags:source_type', 'field_informea_tags:create_term',
       'field_tags', 'field_tags:source_type', 'field_tags:create_term',
       'field_tags:ignore_case', 'field_url:title', 'field_url:attributes',
-      'field_url:language', 'title_field:language',
+      'field_url:language', 'title_field:language', 'field_event_images:source_dir',
     ));
   }
 
