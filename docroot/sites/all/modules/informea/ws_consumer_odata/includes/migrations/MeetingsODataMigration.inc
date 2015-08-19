@@ -41,7 +41,7 @@ class MeetingsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_original_id', 'id');
     $this->addFieldMapping('title', 'title_orig');
     $this->addFieldMapping('title_field', 'title');
-    $this->addFieldMapping('title_field:language', 'titles_langs');
+    $this->addFieldMapping('title_field:language', 'title_langs');
     $this->addFieldMapping('field_treaty', 'treaty');
     $this->addFieldMapping('field_url', 'url');
     $this->addFieldMapping('event_calendar_date', 'start');
