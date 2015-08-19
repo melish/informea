@@ -17,6 +17,7 @@ function ws_consumer_odata_migrate_api() {
       'odata_' . ODataConsumerConfig::$ODATA_NAME_CITES => array( 'title' => ODataConsumerConfig::$ODATA_NAME_CITES . ' OData importers'),
     ),
     'migrations' => array(
+      /* Contacts migrations */
       'odata_' . ODataConsumerConfig::$ODATA_NAME_CBD . '_' . ODataConsumerConfig::$ODATA_ENTITY_CONTACTS
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
       'odata_' . ODataConsumerConfig::$ODATA_NAME_STOCKHOLM . '_' . ODataConsumerConfig::$ODATA_ENTITY_CONTACTS
@@ -28,8 +29,13 @@ function ws_consumer_odata_migrate_api() {
       'odata_' . ODataConsumerConfig::$ODATA_NAME_CITES . '_' . ODataConsumerConfig::$ODATA_ENTITY_CONTACTS
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
 
+      /* Meetings migrations */
       'odata_' . ODataConsumerConfig::$ODATA_NAME_BASEL . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BASEL, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_' . ODataConsumerConfig::$ODATA_NAME_STOCKHOLM . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
+          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_' . ODataConsumerConfig::$ODATA_NAME_ROTTERDAM . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
+          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ROTTERDAM, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
     )
   );
 
