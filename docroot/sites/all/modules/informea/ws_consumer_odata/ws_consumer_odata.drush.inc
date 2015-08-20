@@ -42,6 +42,7 @@ function drush_ws_consumer_odata_ws_consumer_delete_nodes($content_type, $treaty
 }
 
 function drush_ws_consumer_odata_ws_consumer_purge_orphans($treaty_odata_identifier, $odata_entity) {
+  $dry_run = drush_get_option('dry-run');
   $config = new ODataConsumerConfig(array('odata_entity' => $odata_entity, 'odata_name' => $treaty_odata_identifier));
   $klass = $config->getODataConsumerClass();
   $uri = $config->getEndpointURL();
@@ -49,11 +50,15 @@ function drush_ws_consumer_odata_ws_consumer_purge_orphans($treaty_odata_identif
   $consumer = new $klass($uri);
 
   // https://www.drupal.org/node/1416672
-  $migration_name = 'odata_' . $treaty_odata_identifier . '_' . $odata_entity;
+  $migration_name = drupal_strtolower('odata_' . $treaty_odata_identifier . '_' . $odata_entity);
   /** @var Migration $migration */
   $migration = Migration::getInstance($migration_name);
   if (!$migration) {
     drush_set_error('No migration found:' . $migration_name);
+    return;
+  }
+  if ($migration->getStatus() != MigrationBase::STATUS_IDLE) {
+    drush_set_error('Migration not idle, waiting to finish. Status is: ' . $migration->getStatus());
     return;
   }
   $rows = db_select('migrate_map_' . $migration->getMachineName(), 'm')
@@ -61,10 +66,9 @@ function drush_ws_consumer_odata_ws_consumer_purge_orphans($treaty_odata_identif
     ->isNotNull('destid1')
     ->execute()
     ->fetchAllKeyed(0, 1);
+
   $count = count($rows);
   ws_consumer_odata_log(__METHOD__ . "(): Checking {$count} records for orphans", MigrationBase::MESSAGE_INFORMATIONAL);
-
-  $dry_run = drush_get_option('dry-run');
 
   $delete_nids = array();
   $delete_src = array();
