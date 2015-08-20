@@ -111,7 +111,7 @@ abstract class ODataConsumer {
    * @return boolean
    *   TRUE if the record exists
    */
-  public function itemExits($entity, $id) {
+  public function itemExists($entity, $id) {
     $url = $this->url . '/' . $entity . "('" . $id . "')";
     $ch = curl_init($url);
     curl_setopt ($ch, CURLOPT_TIMEOUT, 5);

@@ -69,7 +69,7 @@ function drush_ws_consumer_odata_ws_consumer_purge_orphans($treaty_odata_identif
   $delete_nids = array();
   $delete_src = array();
   foreach ($rows as $source_id => $nid) {
-    if (!$consumer->itemExits($odata_entity, $source_id)) {
+    if (!$consumer->itemExists($odata_entity, $source_id)) {
       $delete_src[] = $source_id;
       $delete_nids[] = $nid;
       ws_consumer_odata_log(__METHOD__ . "(): Found orphan record: $source_id ($nid)", MigrationBase::MESSAGE_INFORMATIONAL);
