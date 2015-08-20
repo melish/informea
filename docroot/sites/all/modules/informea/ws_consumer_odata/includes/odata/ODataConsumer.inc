@@ -100,6 +100,34 @@ abstract class ODataConsumer {
     return $ret;
   }
 
+  /**
+   * Check the item exists in the remote source
+   *
+   * @param string $entity
+   *   OData entity
+   * @param $id
+   *   OData entity ID
+   *
+   * @return boolean
+   *   TRUE if the record exists
+   */
+  public function itemExits($entity, $id) {
+    $url = $this->url . '/' . $entity . "('" . $id . "')";
+    $ch = curl_init($url);
+    curl_setopt ($ch, CURLOPT_TIMEOUT, 5);
+    curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_NOBODY, true);
+    curl_exec($ch);
+    $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    if ($code != 200) {
+      ws_consumer_odata_log(__METHOD__ . "($entity, $id): No longer exists at the source (HTTP: {$code}) for URL: $url", MigrationBase::MESSAGE_INFORMATIONAL);
+      return FALSE;
+    }
+    return TRUE;
+  }
+
 
   /**
    * Return a single page of results
@@ -168,7 +196,6 @@ abstract class ODataConsumer {
     }
     return $ret;
   }
-
 
   public function loadNavigationProperty($ob, $property_name) {
     // OData v1, property expanded using $expand=property_name
