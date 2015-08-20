@@ -84,15 +84,17 @@ class ContactsODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
-
     $row->email = str_replace(' ', '', $row->email);
-
     $row->name = $this->getContactName($row);
 
     // Prepare the treaties property
     foreach($row->treaties as &$identifier) {
-      $node = $this->getTreatyByODataIdentifier($identifier);
-      $identifier = $node->nid;
+      if ($node = $this->getTreatyByODataIdentifier($identifier)) {
+        $identifier = $node->nid;
+      }
+      else {
+        ws_consumer_odata_log(__METHOD__ . "(): Invalid OData identifier({$identifier})", MigrationBase::MESSAGE_WARNING);
+      }
     }
     return $this->validateRow($row);
   }
