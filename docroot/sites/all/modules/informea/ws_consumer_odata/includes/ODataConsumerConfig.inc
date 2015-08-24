@@ -75,13 +75,13 @@ class ODataConsumerConfig {
         'default' => 'http://odata.cites.org/services/odata.svc'
       ),
       self::$ODATA_NAME_CMS => array(
-        'default' => 'http://odata.cms.eaudeweb.ro/cms/services/informea.svc'
+        'default' => 'http://odata.cms.eaudeweb.ro/cms/informea.svc'
       ),
       self::$ODATA_NAME_AEWA => array(
-        'default' => 'http://odata.cms.eaudeweb.ro/aewa/services/informea.svc'
+        'default' => 'http://odata.cms.eaudeweb.ro/aewa/informea.svc'
       ),
       self::$ODATA_NAME_ASCOBANS => array(
-        'default' => 'http://odata.cms.eaudeweb.ro/ascobans/services/informea.svc'
+        'default' => 'http://odata.cms.eaudeweb.ro/ascobans/informea.svc'
       ),
       self::$ODATA_NAME_EUROBATS=> array(
         'default' => 'http://odata.cms.eaudeweb.ro/eurobats/services/odata.svc'
