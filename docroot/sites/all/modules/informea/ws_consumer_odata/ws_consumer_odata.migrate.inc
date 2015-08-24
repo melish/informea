@@ -16,6 +16,7 @@ function ws_consumer_odata_migrate_api() {
       'odata_' . ODataConsumerConfig::$ODATA_NAME_BASEL => array( 'title' => ODataConsumerConfig::$ODATA_NAME_BASEL . ' OData importers'),
       'odata_' . ODataConsumerConfig::$ODATA_NAME_CITES => array( 'title' => ODataConsumerConfig::$ODATA_NAME_CITES . ' OData importers'),
       'odata_' . ODataConsumerConfig::$ODATA_NAME_CMS => array( 'title' => ODataConsumerConfig::$ODATA_NAME_CMS . ' OData importers'),
+      'odata_' . ODataConsumerConfig::$ODATA_NAME_ASCOBANS => array( 'title' => ODataConsumerConfig::$ODATA_NAME_ASCOBANS . ' OData importers'),
       'odata_' . ODataConsumerConfig::$ODATA_NAME_AEWA => array( 'title' => ODataConsumerConfig::$ODATA_NAME_AEWA . ' OData importers'),
       'odata_' . ODataConsumerConfig::$ODATA_NAME_TEST => array( 'title' => ODataConsumerConfig::$ODATA_NAME_TEST . ' OData importers'),
     ),
@@ -45,6 +46,8 @@ function ws_consumer_odata_migrate_api() {
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
       'odata_' . ODataConsumerConfig::$ODATA_NAME_CMS . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CMS, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_' . ODataConsumerConfig::$ODATA_NAME_ASCOBANS . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
+          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
       //@todo: test AEWA meetings migration (The error message is: 'start' property cannot be null)
       'odata_' . ODataConsumerConfig::$ODATA_NAME_AEWA . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
