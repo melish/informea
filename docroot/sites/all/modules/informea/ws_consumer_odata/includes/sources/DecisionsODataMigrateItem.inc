@@ -68,12 +68,15 @@ class DecisionsODataMigrateItem extends ODataMigrateItem {
     //Get files
     $files = array();
     $files_language = array();
-    $values = $this->getComplexProperty($ob, 'files');
-    if (!empty($values) && is_array($values)) {
-      foreach ($values as $value) {
-        if (!empty($value->url)) {
-          $files_language[] = $value->language;
-          $files[] = $value->url;
+    //CITES does not have files
+    if ($this->config->odata_name != 'cites') {
+      $values = $this->getComplexProperty($ob, 'files');
+      if (!empty($values) && is_array($values)) {
+        foreach ($values as $value) {
+          if (!empty($value->url)) {
+            $files_language[] = $value->language;
+            $files[] = $value->url;
+          }
         }
       }
     }
