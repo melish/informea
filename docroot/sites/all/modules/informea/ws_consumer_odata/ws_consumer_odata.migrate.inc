@@ -73,6 +73,12 @@ function ws_consumer_odata_migrate_api() {
       'odata_' . ODataConsumerConfig::$ODATA_NAME_TEST . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_TEST, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS),
       /* END TEST MIGRATION */
+
+      /* CountryReports migrations */
+      'odata_' . ODataConsumerConfig::$ODATA_NAME_ASCOBANS . '_' . ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT
+          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
+      'odata_' . ODataConsumerConfig::$ODATA_NAME_CMS . '_' . ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT
+          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CMS, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
     )
   );
 
