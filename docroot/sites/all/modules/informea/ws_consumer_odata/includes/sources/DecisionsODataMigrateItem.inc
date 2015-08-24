@@ -33,7 +33,9 @@ class DecisionsODataMigrateItem extends ODataMigrateItem {
       $ob->title_orig = $title_orig;
     }
     else {
-      $ob->title_orig = $titles[0];
+      if ($titles) {
+        $ob->title_orig = $titles[0];
+      }
     }
 
     //Get body
