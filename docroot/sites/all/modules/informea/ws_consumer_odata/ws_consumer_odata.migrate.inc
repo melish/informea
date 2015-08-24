@@ -17,6 +17,7 @@ function ws_consumer_odata_migrate_api() {
       'odata_' . ODataConsumerConfig::$ODATA_NAME_CITES => array( 'title' => ODataConsumerConfig::$ODATA_NAME_CITES . ' OData importers'),
       'odata_' . ODataConsumerConfig::$ODATA_NAME_CMS => array( 'title' => ODataConsumerConfig::$ODATA_NAME_CMS . ' OData importers'),
       'odata_' . ODataConsumerConfig::$ODATA_NAME_AEWA => array( 'title' => ODataConsumerConfig::$ODATA_NAME_AEWA . ' OData importers'),
+      'odata_' . ODataConsumerConfig::$ODATA_NAME_TEST => array( 'title' => ODataConsumerConfig::$ODATA_NAME_TEST . ' OData importers'),
     ),
     'migrations' => array(
       /* Contacts migrations */
@@ -47,17 +48,22 @@ function ws_consumer_odata_migrate_api() {
       //@todo: test AEWA meetings migration (The error message is: 'start' property cannot be null)
       'odata_' . ODataConsumerConfig::$ODATA_NAME_AEWA . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      /* START TEST MIGRATION */
+      'odata_' . ODataConsumerConfig::$ODATA_NAME_TEST . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
+      => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_TEST, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      /* END TEST MIGRATION */
 
       /* NationalPlans migrations */
       'odata_' . ODataConsumerConfig::$ODATA_NAME_STOCKHOLM . '_' . ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN),
+
+      /* Decisions migrations */
+      /* START TEST MIGRATION */
+      'odata_' . ODataConsumerConfig::$ODATA_NAME_TEST . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS
+          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_TEST, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS),
+      /* END TEST MIGRATION */
     )
   );
-
-//  if ($migration = $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_TEST, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS)) {
-//    $name = 'odata_' . ODataConsumerConfig::$ODATA_NAME_TEST . '_' . ODataConsumerConfig::$ODATA_ENTITY_CONTACTS;
-//    $ret['migrations'][$name] = $migration;
-//  }
 
   return $ret;
 }

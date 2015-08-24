@@ -99,7 +99,7 @@ class ODataConsumerConfig {
         'default' => 'http://whc.unesco.org/informea/services/odata.svc'
       ),
       self::$ODATA_NAME_TEST => array(
-        'default' => 'http://localhost:8180/informea/informea.svc'
+        'default' => 'http://odata.informea.org/informea.svc'
       ),
     );
   }
