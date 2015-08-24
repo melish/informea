@@ -55,7 +55,11 @@ class CountryReportsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('promote')->defaultValue(0);
     $this->addFieldMapping('sticky')->defaultValue(0);
     $this->addFieldMapping('revision')->defaultValue(0);
-    $this->addFieldMapping('language')->defaultValue(LANGUAGE_NONE);
+    $this->addFieldMapping('language')->defaultValue('en');
+
+    $this->addFieldMapping('field_files', 'files');
+    $this->addFieldMapping('field_files:description', 'files');
+    $this->addFieldMapping('field_files:language', 'files_language');
 
     $this->addUnmigratedDestinations(array(
       'created', 'log', 'tnid', 'translate', 'revision_uid', 'is_new',
@@ -64,10 +68,10 @@ class CountryReportsODataMigration extends AbstractODataMigration {
       'field_report_submission_date:timezone', 'field_report_submission_date:rrule',
       'field_report_submission_date:to', 'field_document_url', 'field_document_url:title',
       'field_document_url:attributes', 'field_document_url:language',
-      'field_files', 'field_files:file_class', 'field_files:language', 'field_files:preserve_files',
+      'field_files:file_class', 'field_files:preserve_files',
       'field_files:destination_dir', 'field_files:destination_file', 'field_files:file_replace',
       'field_files:source_dir', 'field_files:urlencode', 'field_files:display',
-      'field_files:description', 'field_informea_tags', 'field_informea_tags:source_type',
+      'field_informea_tags', 'field_informea_tags:source_type',
       'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
     ));
   }

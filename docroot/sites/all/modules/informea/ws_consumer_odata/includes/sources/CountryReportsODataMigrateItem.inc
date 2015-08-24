@@ -34,6 +34,22 @@ class CountryReportsODataMigrateItem extends ODataMigrateItem {
     else {
       $ob->title_orig = $titles[0];
     }
+
+    //Get files
+    $files = array();
+    $files_language = array();
+    $values = $this->getComplexProperty($ob, 'files');
+    if (!empty($values) && is_array($values)) {
+      foreach ($values as $value) {
+        if (!empty($value->url)) {
+          $files_language[] = $value->language;
+          $files[] = $value->url;
+        }
+      }
+    }
+    $ob->files_language = $files_language;
+    $ob->files = $files;
+
     if (!property_exists($ob,'submission')) {
       $ob->submission = '';
     }

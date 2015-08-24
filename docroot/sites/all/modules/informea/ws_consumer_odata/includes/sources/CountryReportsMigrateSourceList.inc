@@ -17,6 +17,8 @@ class CountryReportsMigrateSourceList extends MigrateSourceList {
       'treaty' => 'The meeting is linked to this treaty',
       'country' => 'Country',
       'submission' => 'Submission date',
+      'files' => 'Decision files',
+      'files_language' => 'Files language',
       'updated' => 'Updated',
     );
   }
