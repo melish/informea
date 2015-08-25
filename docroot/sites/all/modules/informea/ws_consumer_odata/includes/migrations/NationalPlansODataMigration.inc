@@ -17,7 +17,7 @@ class NationalPlansODataMigration extends AbstractODataMigration {
     parent::__construct($arguments);
     $this->config = new ODataConsumerConfig($arguments);
     $this->arguments   = $arguments;
-    $this->description = sprintf('Import %s from %s', ODataConsumerConfig::$DRUPAL_TYPE_MEETINGS, $this->config->odata_name);
+    $this->description = sprintf('Import %s from %s', ODataConsumerConfig::$DRUPAL_TYPE_ACTION_PLAN, $this->config->odata_name);
     $this->source      = new NationalPlansMigrateSourceList(
       new ODataMigrateList($this->config),
       new NationalPlansODataMigrateItem($this->config)
