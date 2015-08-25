@@ -42,7 +42,11 @@ class CountryReportsODataMigrateItem extends ODataMigrateItem {
     if (!empty($values) && is_array($values)) {
       foreach ($values as $value) {
         if (!empty($value->url)) {
-          $files_language[] = $value->language;
+          $language = 'en';
+          if (property_exists($value, 'language')) {
+            $language = $value->language;
+          }
+          $files_language[] = $language;
           $files[] = $value->url;
         }
       }
