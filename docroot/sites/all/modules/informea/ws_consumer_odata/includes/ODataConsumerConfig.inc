@@ -72,7 +72,7 @@ class ODataConsumerConfig {
         'Decisions' => 'http://informea.pops.int/Documents/bc/Decisions.svc',
       ),
       self::$ODATA_NAME_CITES => array(
-        'default' => 'http://odata.cites.org/services/odata.svc'
+        'default' => 'http://odata.cites.org/informea.svc'
       ),
       self::$ODATA_NAME_CMS => array(
         'default' => 'http://odata.cms.eaudeweb.ro/cms/informea.svc'
