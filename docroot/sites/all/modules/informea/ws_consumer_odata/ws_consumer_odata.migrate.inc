@@ -84,6 +84,10 @@ function ws_consumer_odata_migrate_api() {
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
       'odata_' . ODataConsumerConfig::$ODATA_NAME_WHC . '_' . ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
+
+      /* Sites migrations */
+      'odata_' . ODataConsumerConfig::$ODATA_NAME_WHC . '_' . ODataConsumerConfig::$ODATA_ENTITY_SITES
+          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_SITES),
     )
   );
 
