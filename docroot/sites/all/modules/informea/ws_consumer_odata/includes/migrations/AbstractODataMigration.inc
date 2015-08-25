@@ -89,4 +89,25 @@ abstract class AbstractODataMigration extends Migration {
     }
     return $node;
   }
+
+  public function setTranslation($entity, $translations = array()) {
+    $migration   = Migration::currentMigration();
+    $languages   = array_keys(language_list());
+    $entity_type = $migration->getDestination()->getEntityType();
+
+    $translation_handler  = entity_translation_get_handler($entity_type, $entity);
+    $entity->translations = $translation_handler->getTranslations();
+    foreach ($languages as $language) {
+      if ($language == 'en') {
+        continue;
+      }
+      if (in_array($language, $translations)) {
+        $translation_handler->setTranslation(array(
+          'translate' => 0, 'status' => 1, 'uid' => 1,
+          'language' => $language,
+          'source' => 'en',
+        ));
+      }
+    }
+  }
 }

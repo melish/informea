@@ -83,13 +83,14 @@ class CountryReportsODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
-
     if (!empty($row->submission)) {
       $row->submission = $this->fixDateValue($row->submission);
     }
-
     $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
+  }
 
+  function prepare($entity, $row) {
+    $this->setTranslation($entity, $row->files_language);
   }
 
 }
