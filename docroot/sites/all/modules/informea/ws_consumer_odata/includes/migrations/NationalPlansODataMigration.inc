@@ -46,6 +46,7 @@ class NationalPlansODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_action_plan_type', 'type');
     $this->addFieldMapping('field_report_submission_date', 'submission');
     $this->addFieldMapping('field_country', 'country');
+    $this->addFieldMapping('field_document_url', 'url');
 
     $this->addFieldMapping('field_action_plan_type:create_term')->defaultValue(TRUE);
     $this->addFieldMapping('field_action_plan_type:ignore_case')->defaultValue(TRUE);
@@ -58,14 +59,14 @@ class NationalPlansODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('promote')->defaultValue(0);
     $this->addFieldMapping('sticky')->defaultValue(0);
     $this->addFieldMapping('revision')->defaultValue(0);
-    $this->addFieldMapping('language')->defaultValue(LANGUAGE_NONE);
+    $this->addFieldMapping('language')->defaultValue('en');
 
     $this->addUnmigratedDestinations(array(
       'created', 'log', 'tnid', 'translate', 'revision_uid', 'is_new',
       'body', 'body:summary', 'body:format', 'path',
       'body:language', 'field_action_plan_type:source_type',
       'field_report_submission_date:timezone', 'field_report_submission_date:rrule',
-      'field_report_submission_date:to', 'field_document_url', 'field_document_url:title',
+      'field_report_submission_date:to','field_document_url:title',
       'field_document_url:attributes', 'field_document_url:language',
       'field_files', 'field_files:file_class', 'field_files:language', 'field_files:preserve_files',
       'field_files:destination_dir', 'field_files:destination_file', 'field_files:file_replace',

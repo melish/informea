@@ -54,6 +54,8 @@ function ws_consumer_odata_migrate_api() {
       /* NationalPlans migrations */
       'odata_' . ODataConsumerConfig::$ODATA_NAME_STOCKHOLM . '_' . ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN),
+      'odata_' . ODataConsumerConfig::$ODATA_NAME_CBD . '_' . ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN
+          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN),
 
       /* Decisions migrations */
       'odata_' . ODataConsumerConfig::$ODATA_NAME_CMS . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS

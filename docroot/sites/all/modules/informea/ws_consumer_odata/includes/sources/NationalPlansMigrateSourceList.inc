@@ -17,6 +17,7 @@ class NationalPlansMigrateSourceList extends MigrateSourceList {
       'treaty' => 'The meeting is linked to this treaty',
       'country' => 'Country',
       'type' => 'Type',
+      'url' => 'Document URL',
       'submission' => 'Submission date',
       'updated' => 'Updated',
     );
