@@ -174,13 +174,15 @@ abstract class ODataConsumer {
     // OData v1, property expanded using $expand=property_name
     // No need for an additional HTTP request, data already there
     $results = array();
-    if (gettype($ob->{$property_name}) == 'object') {
-      if (property_exists($ob->{$property_name}, 'results')) {
-        $results = $ob->{$property_name}->results;
+    if (!empty($ob->{$property_name})) {
+      if (gettype($ob->{$property_name}) == 'object') {
+        if (property_exists($ob->{$property_name}, 'results')) {
+          $results = $ob->{$property_name}->results;
+        }
       }
-    }
-    else {
-      $results = $ob->{$property_name};
+      else {
+        $results = $ob->{$property_name};
+      }
     }
     if (!empty($ob->{$property_name}) && !empty($results)) {
       return $results;
