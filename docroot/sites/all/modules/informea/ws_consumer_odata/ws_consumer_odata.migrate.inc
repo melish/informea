@@ -48,13 +48,8 @@ function ws_consumer_odata_migrate_api() {
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CMS, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
       'odata_' . ODataConsumerConfig::$ODATA_NAME_ASCOBANS . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      //@todo: test AEWA meetings migration (The error message is: 'start' property cannot be null)
       'odata_' . ODataConsumerConfig::$ODATA_NAME_AEWA . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      /* START TEST MIGRATION */
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_TEST . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
-      => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_TEST, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      /* END TEST MIGRATION */
 
       /* NationalPlans migrations */
       'odata_' . ODataConsumerConfig::$ODATA_NAME_STOCKHOLM . '_' . ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN
@@ -69,10 +64,6 @@ function ws_consumer_odata_migrate_api() {
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS),
       'odata_' . ODataConsumerConfig::$ODATA_NAME_CITES . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS),
-      /* START TEST MIGRATION */
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_TEST . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_TEST, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS),
-      /* END TEST MIGRATION */
 
       /* CountryReports migrations */
       'odata_' . ODataConsumerConfig::$ODATA_NAME_ASCOBANS . '_' . ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT
