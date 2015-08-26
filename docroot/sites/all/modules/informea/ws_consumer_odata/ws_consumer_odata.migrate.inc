@@ -72,6 +72,12 @@ function ws_consumer_odata_migrate_api() {
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS),
       'odata_' . ODataConsumerConfig::$ODATA_NAME_WHC . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS),
+      'odata_' . ODataConsumerConfig::$ODATA_NAME_BASEL . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS
+          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BASEL, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS),
+      'odata_' . ODataConsumerConfig::$ODATA_NAME_STOCKHOLM . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS
+          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS),
+      'odata_' . ODataConsumerConfig::$ODATA_NAME_ROTTERDAM . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS
+          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ROTTERDAM, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS),
 
       /* CountryReports migrations */
       'odata_' . ODataConsumerConfig::$ODATA_NAME_ASCOBANS . '_' . ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT

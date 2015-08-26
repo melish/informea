@@ -88,8 +88,14 @@ abstract class ODataConsumer {
     ws_consumer_odata_log(__METHOD__ . "($entity, $id): Retrieving data from : $url", MigrationBase::MESSAGE_NOTICE);
     $response = drupal_http_request($url, array('headers' => array('Accept' => 'application/json')));
     if ($response->code != 200) {
-      ws_consumer_odata_log(__METHOD__ . "($entity, $id): HTTP request failure ({$response->code}) for URL: $url", MigrationBase::MESSAGE_ERROR);
-      return $ret;
+      ws_consumer_odata_log(__METHOD__ . "($entity, $id): FAILED to retrieve data from : $url", MigrationBase::MESSAGE_NOTICE);
+      $url = $this->url . '/' . $entity . "(guid'" . $id . "')?" . $odata_extra_params;
+      ws_consumer_odata_log("RETRY" . __METHOD__ . "($entity, $id): Retrieving data from : $url", MigrationBase::MESSAGE_NOTICE);
+      $response = drupal_http_request($url, array('headers' => array('Accept' => 'application/json')));
+      if ($response->code != 200) {
+        ws_consumer_odata_log(__METHOD__ . "($entity, $id): HTTP request failure ({$response->code}) for URL: $url", MigrationBase::MESSAGE_ERROR);
+        return $ret;
+      }
     }
     if ($json = json_decode($response->data)) {
       $ret = $json->d;
