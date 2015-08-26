@@ -59,17 +59,20 @@ class ODataConsumerConfig {
         'Contacts' => 'http://informea.pops.int/Contacts2/scContacts.svc',
         'Meetings' => 'http://informea.pops.int/Meetings/scMeetings.svc',
         'NationalPlans' => 'http://informea.pops.int/NationalPlans/scNationalPlans.svc',
-        'Decisions' => 'http://informea.pops.int/Documents/sc/Decisions.svc',
+//        'Decisions' => 'http://informea.pops.int/Documents/sc/Decisions.svc',
+        'Decisions' => 'http://informea.pops.int/Decisions/stockholm/ScDecisions.svc',
       ),
       self::$ODATA_NAME_ROTTERDAM => array(
         'Contacts' => 'http://informea.pops.int/Contacts2/rcContacts.svc',
         'Meetings' => 'http://informea.pops.int/Meetings/rcMeetings.svc',
-        'Decisions' => 'http://informea.pops.int/Documents/rc/Decisions.svc',
+//        'Decisions' => 'http://informea.pops.int/Documents/rc/Decisions.svc',
+        'Decisions' => 'http://informea.pops.int/Decisions/rotterdam/rcDecisions.svc',
       ),
       self::$ODATA_NAME_BASEL => array(
         'Contacts' => 'http://informea.pops.int/Contacts2/BcContacts.svc',
         'Meetings' => 'http://informea.pops.int/Meetings/bcMeetings.svc',
-        'Decisions' => 'http://informea.pops.int/Documents/bc/Decisions.svc',
+//        'Decisions' => 'http://informea.pops.int/Documents/bc/Decisions.svc',
+        'Decisions' => 'http://informea.pops.int/Decisions/basel/bcDecisions.svc ',
       ),
       self::$ODATA_NAME_CITES => array(
         'default' => 'http://odata.cites.org/informea.svc'
