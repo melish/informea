@@ -17,6 +17,7 @@ class ODataConsumerConfig {
   public static $ODATA_NAME_OZONE = 'ozone';
   public static $ODATA_NAME_PLANT_TREATY = 'plant_treaty';
   public static $ODATA_NAME_WHC = 'whc';
+  public static $ODATA_NAME_MONTREAL = 'montreal';
   public static $ODATA_NAME_TEST = 'test';
 
   public static $ODATA_ENTITY_CONTACTS = 'Contacts';
@@ -59,29 +60,32 @@ class ODataConsumerConfig {
         'Contacts' => 'http://informea.pops.int/Contacts2/scContacts.svc',
         'Meetings' => 'http://informea.pops.int/Meetings/scMeetings.svc',
         'NationalPlans' => 'http://informea.pops.int/NationalPlans/scNationalPlans.svc',
-        'Decisions' => 'http://informea.pops.int/Documents/sc/Decisions.svc',
+//        'Decisions' => 'http://informea.pops.int/Documents/sc/Decisions.svc',
+        'Decisions' => 'http://informea.pops.int/Decisions/stockholm/ScDecisions.svc',
       ),
       self::$ODATA_NAME_ROTTERDAM => array(
         'Contacts' => 'http://informea.pops.int/Contacts2/rcContacts.svc',
         'Meetings' => 'http://informea.pops.int/Meetings/rcMeetings.svc',
-        'Decisions' => 'http://informea.pops.int/Documents/rc/Decisions.svc',
+//        'Decisions' => 'http://informea.pops.int/Documents/rc/Decisions.svc',
+        'Decisions' => 'http://informea.pops.int/Decisions/rotterdam/rcDecisions.svc',
       ),
       self::$ODATA_NAME_BASEL => array(
         'Contacts' => 'http://informea.pops.int/Contacts2/BcContacts.svc',
         'Meetings' => 'http://informea.pops.int/Meetings/bcMeetings.svc',
-        'Decisions' => 'http://informea.pops.int/Documents/bc/Decisions.svc',
+//        'Decisions' => 'http://informea.pops.int/Documents/bc/Decisions.svc',
+        'Decisions' => 'http://informea.pops.int/Decisions/basel/bcDecisions.svc',
       ),
       self::$ODATA_NAME_CITES => array(
-        'default' => 'http://odata.cites.org/services/odata.svc'
+        'default' => 'http://odata.cites.org/informea.svc'
       ),
       self::$ODATA_NAME_CMS => array(
-        'default' => 'http://odata.cms.eaudeweb.ro/cms/services/odata.svc'
+        'default' => 'http://odata.cms.eaudeweb.ro/cms/informea.svc'
       ),
       self::$ODATA_NAME_AEWA => array(
-        'default' => 'http://odata.cms.eaudeweb.ro/aewa/services/odata.svc'
+        'default' => 'http://odata.cms.eaudeweb.ro/aewa/informea.svc'
       ),
       self::$ODATA_NAME_ASCOBANS => array(
-        'default' => 'http://odata.cms.eaudeweb.ro/ascobans/services/odata.svc'
+        'default' => 'http://odata.cms.eaudeweb.ro/ascobans/informea.svc'
       ),
       self::$ODATA_NAME_EUROBATS=> array(
         'default' => 'http://odata.cms.eaudeweb.ro/eurobats/services/odata.svc'
@@ -98,8 +102,11 @@ class ODataConsumerConfig {
       self::$ODATA_NAME_WHC => array(
         'default' => 'http://whc.unesco.org/informea/services/odata.svc'
       ),
+      self::$ODATA_NAME_MONTREAL => array(
+        'default' => 'http://41.191.194.28:8080/informea/services/odata.svc'
+      ),
       self::$ODATA_NAME_TEST => array(
-        'default' => 'http://localhost:8180/informea/informea.svc'
+        'default' => 'http://odata.informea.org/informea.svc'
       ),
     );
   }

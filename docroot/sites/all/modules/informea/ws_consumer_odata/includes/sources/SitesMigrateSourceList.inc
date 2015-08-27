@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class NationalPlansMigrateSourceList provides fields for NationalPlans migration.
+ * Class SitesMigrateSourceList provides fields for Sites migration.
  */
-class NationalPlansMigrateSourceList extends MigrateSourceList {
+class SitesMigrateSourceList extends MigrateSourceList {
 
   /**
    * The list of available fields to map from the source, keyed by field name.
@@ -16,9 +16,9 @@ class NationalPlansMigrateSourceList extends MigrateSourceList {
       'title_langs' => 'Title languages list',
       'treaty' => 'The meeting is linked to this treaty',
       'country' => 'Country',
-      'type' => 'Type',
       'url' => 'Document URL',
-      'submission' => 'Submission date',
+      'latitude' => 'Latitude',
+      'longitude' => 'Longitude',
       'updated' => 'Updated',
     );
   }

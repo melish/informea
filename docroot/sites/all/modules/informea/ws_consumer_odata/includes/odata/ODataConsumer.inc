@@ -88,8 +88,14 @@ abstract class ODataConsumer {
     ws_consumer_odata_log(__METHOD__ . "($entity, $id): Retrieving data from : $url", MigrationBase::MESSAGE_NOTICE);
     $response = drupal_http_request($url, array('headers' => array('Accept' => 'application/json')));
     if ($response->code != 200) {
-      ws_consumer_odata_log(__METHOD__ . "($entity, $id): HTTP request failure ({$response->code}) for URL: $url", MigrationBase::MESSAGE_ERROR);
-      return $ret;
+      ws_consumer_odata_log(__METHOD__ . "($entity, $id): FAILED to retrieve data from : $url", MigrationBase::MESSAGE_NOTICE);
+      $url = $this->url . '/' . $entity . "(guid'" . $id . "')?" . $odata_extra_params;
+      ws_consumer_odata_log("RETRY" . __METHOD__ . "($entity, $id): Retrieving data from : $url", MigrationBase::MESSAGE_NOTICE);
+      $response = drupal_http_request($url, array('headers' => array('Accept' => 'application/json')));
+      if ($response->code != 200) {
+        ws_consumer_odata_log(__METHOD__ . "($entity, $id): HTTP request failure ({$response->code}) for URL: $url", MigrationBase::MESSAGE_ERROR);
+        return $ret;
+      }
     }
     if ($json = json_decode($response->data)) {
       $ret = $json->d;
@@ -201,13 +207,15 @@ abstract class ODataConsumer {
     // OData v1, property expanded using $expand=property_name
     // No need for an additional HTTP request, data already there
     $results = array();
-    if (gettype($ob->{$property_name}) == 'object') {
-      if (property_exists($ob->{$property_name}, 'results')) {
-        $results = $ob->{$property_name}->results;
+    if (!empty($ob->{$property_name})) {
+      if (gettype($ob->{$property_name}) == 'object') {
+        if (property_exists($ob->{$property_name}, 'results')) {
+          $results = $ob->{$property_name}->results;
+        }
       }
-    }
-    else {
-      $results = $ob->{$property_name};
+      else {
+        $results = $ob->{$property_name};
+      }
     }
     if (!empty($ob->{$property_name}) && !empty($results)) {
       return $results;

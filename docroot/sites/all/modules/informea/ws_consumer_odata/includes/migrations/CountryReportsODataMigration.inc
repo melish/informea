@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class NationalPlansODataMigration migrate OData contacts
+ * Class CountryReportsODataMigration migrate OData contacts
  */
-class NationalPlansODataMigration extends AbstractODataMigration {
+class CountryReportsODataMigration extends AbstractODataMigration {
 
   /**
    * @var ODataConsumerConfig
@@ -17,10 +17,10 @@ class NationalPlansODataMigration extends AbstractODataMigration {
     parent::__construct($arguments);
     $this->config = new ODataConsumerConfig($arguments);
     $this->arguments   = $arguments;
-    $this->description = sprintf('Import %s from %s', ODataConsumerConfig::$DRUPAL_TYPE_ACTION_PLAN, $this->config->odata_name);
-    $this->source      = new NationalPlansMigrateSourceList(
+    $this->description = sprintf('Import %s from %s', ODataConsumerConfig::$DRUPAL_TYPE_NATIONAL_REPORT, $this->config->odata_name);
+    $this->source      = new CountryReportsMigrateSourceList(
       new ODataMigrateList($this->config),
-      new NationalPlansODataMigrateItem($this->config)
+      new CountryReportsODataMigrateItem($this->config)
     );
     $this->map = new MigrateSQLMap($this->machineName,
       array(
@@ -34,7 +34,7 @@ class NationalPlansODataMigration extends AbstractODataMigration {
       MigrateDestinationNode::getKeySchema()
     );
     $this->destination = new MigrateDestinationNode(
-      ODataConsumerConfig::$DRUPAL_TYPE_ACTION_PLAN,
+      ODataConsumerConfig::$DRUPAL_TYPE_NATIONAL_REPORT,
       array('text_format' => 'full_html')
     );
 
@@ -43,13 +43,10 @@ class NationalPlansODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('title_field', 'title');
     $this->addFieldMapping('title_field:language', 'title_langs');
     $this->addFieldMapping('field_treaty', 'treaty');
-    $this->addFieldMapping('field_action_plan_type', 'type');
     $this->addFieldMapping('field_report_submission_date', 'submission');
     $this->addFieldMapping('field_country', 'country');
     $this->addFieldMapping('field_document_url', 'url');
 
-    $this->addFieldMapping('field_action_plan_type:create_term')->defaultValue(TRUE);
-    $this->addFieldMapping('field_action_plan_type:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('changed', 'updated');
 
@@ -61,17 +58,21 @@ class NationalPlansODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('revision')->defaultValue(0);
     $this->addFieldMapping('language')->defaultValue('en');
 
+    $this->addFieldMapping('field_files', 'files');
+    $this->addFieldMapping('field_files:description', 'files');
+    $this->addFieldMapping('field_files:language', 'files_language');
+
     $this->addUnmigratedDestinations(array(
       'created', 'log', 'tnid', 'translate', 'revision_uid', 'is_new',
       'body', 'body:summary', 'body:format', 'path',
-      'body:language', 'field_action_plan_type:source_type',
+      'body:language',
       'field_report_submission_date:timezone', 'field_report_submission_date:rrule',
-      'field_report_submission_date:to','field_document_url:title',
+      'field_report_submission_date:to', 'field_document_url:title',
       'field_document_url:attributes', 'field_document_url:language',
-      'field_files', 'field_files:file_class', 'field_files:language', 'field_files:preserve_files',
+      'field_files:file_class', 'field_files:preserve_files',
       'field_files:destination_dir', 'field_files:destination_file', 'field_files:file_replace',
       'field_files:source_dir', 'field_files:urlencode', 'field_files:display',
-      'field_files:description', 'field_informea_tags', 'field_informea_tags:source_type',
+      'field_informea_tags', 'field_informea_tags:source_type',
       'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
     ));
   }
@@ -83,13 +84,14 @@ class NationalPlansODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
-
     if (!empty($row->submission)) {
       $row->submission = $this->fixDateValue($row->submission);
     }
-
     $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
+  }
 
+  function prepare($entity, $row) {
+    $this->setTranslation($entity, $row->files_language);
   }
 
 }
