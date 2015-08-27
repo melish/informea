@@ -376,8 +376,8 @@ function treaty_strongarm() {
     'default_language' => 'xx-et-default',
     'hide_language_selector' => 1,
     'exclude_language_none' => 1,
-    'lock_language' => 0,
-    'shared_fields_original_only' => 0,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 1,
   );
   $export['entity_translation_settings_taxonomy_term__geographical_region'] = $strongarm;
 
@@ -549,13 +549,16 @@ function treaty_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '30',
+          'weight' => '4',
         ),
         'name' => array(
           'weight' => '-5',
         ),
         'description' => array(
           'weight' => '0',
+        ),
+        'redirect' => array(
+          'weight' => '3',
         ),
       ),
       'display' => array(),
