@@ -19,6 +19,7 @@ function ws_consumer_odata_migrate_api() {
       'odata_' . ODataConsumerConfig::$ODATA_NAME_ASCOBANS => array( 'title' => ODataConsumerConfig::$ODATA_NAME_ASCOBANS . ' OData importers'),
       'odata_' . ODataConsumerConfig::$ODATA_NAME_AEWA => array( 'title' => ODataConsumerConfig::$ODATA_NAME_AEWA . ' OData importers'),
       'odata_' . ODataConsumerConfig::$ODATA_NAME_WHC => array( 'title' => ODataConsumerConfig::$ODATA_NAME_WHC . ' OData importers'),
+      'odata_' . ODataConsumerConfig::$ODATA_NAME_MONTREAL => array( 'title' => ODataConsumerConfig::$ODATA_NAME_MONTREAL . ' OData importers'),
     ),
     'migrations' => array(
       /* Contacts migrations */
@@ -52,6 +53,8 @@ function ws_consumer_odata_migrate_api() {
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
       'odata_' . ODataConsumerConfig::$ODATA_NAME_WHC . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_' . ODataConsumerConfig::$ODATA_NAME_MONTREAL . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
+          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_MONTREAL, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
 
       /* NationalPlans migrations */
       'odata_' . ODataConsumerConfig::$ODATA_NAME_STOCKHOLM . '_' . ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN
@@ -78,6 +81,8 @@ function ws_consumer_odata_migrate_api() {
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS),
       'odata_' . ODataConsumerConfig::$ODATA_NAME_ROTTERDAM . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS
           => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ROTTERDAM, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS),
+      'odata_' . ODataConsumerConfig::$ODATA_NAME_MONTREAL . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS
+          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_MONTREAL, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS),
 
       /* CountryReports migrations */
       'odata_' . ODataConsumerConfig::$ODATA_NAME_ASCOBANS . '_' . ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT
