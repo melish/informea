@@ -3,10 +3,14 @@
 function ws_consumer_odata_drush_command() {
   return array(
     'ws-consumer-delete-nodes' => array(
-      'description' => 'Map taxonomies from Ecolex keywords and GEG into InforMEA',
+      'description' => 'Delete node from specific type that belong to a treaty',
       'arguments' => array(
         'treaty_odata_identifier' => 'Treaty OData identifier',
         'content_type' => 'Drupal content type'
+      ),
+      'aliases' => array('wsc-dn'),
+      'examples' => array(
+        'drush wsc-dn cbd contact_person' => 'Delete all contacts from CBD',
       ),
       'required-arguments' => 2,
     ),
