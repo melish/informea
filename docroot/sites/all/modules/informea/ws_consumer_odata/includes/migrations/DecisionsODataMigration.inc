@@ -58,6 +58,7 @@ class DecisionsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_files', 'files');
     $this->addFieldMapping('field_files:description', 'files');
     $this->addFieldMapping('field_files:language', 'files_language');
+    $this->addFieldMapping('field_files:destination_dir')->defaultValue('public://decisions/' . $this->config->odata_name);
 
     $this->addFieldMapping('field_decision_status:create_term')->defaultValue(TRUE);
     $this->addFieldMapping('field_decision_status:ignore_case')->defaultValue(TRUE);
@@ -89,7 +90,7 @@ class DecisionsODataMigration extends AbstractODataMigration {
       'field_url:attributes', 'field_url:language', 'field_url:title',
       'field_informea_tags', 'field_informea_tags:source_type',
       'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
-      'field_sorting_order', 'field_files:preserve_files', 'field_files:destination_dir',
+      'field_sorting_order', 'field_files:preserve_files',
       'field_files:destination_file', 'field_files:file_replace',
       'field_files:source_dir', 'field_files:urlencode', 'field_files:display',
       'field_files:file_class',
