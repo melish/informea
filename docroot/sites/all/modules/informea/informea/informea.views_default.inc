@@ -1049,6 +1049,24 @@ function informea_views_default_views() {
   );
   $handler->display->display_options['filters']['field_data_source_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_data_source_tid']['vocabulary'] = 'data_source';
+  /* Filter criterion: Content: Treaty (field_treaty) */
+  $handler->display->display_options['filters']['field_treaty_target_id']['id'] = 'field_treaty_target_id';
+  $handler->display->display_options['filters']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
+  $handler->display->display_options['filters']['field_treaty_target_id']['field'] = 'field_treaty_target_id';
+  $handler->display->display_options['filters']['field_treaty_target_id']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_treaty_target_id']['expose']['operator_id'] = 'field_treaty_target_id_op';
+  $handler->display->display_options['filters']['field_treaty_target_id']['expose']['label'] = 'Treaty';
+  $handler->display->display_options['filters']['field_treaty_target_id']['expose']['operator'] = 'field_treaty_target_id_op';
+  $handler->display->display_options['filters']['field_treaty_target_id']['expose']['identifier'] = 'field_treaty_target_id';
+  $handler->display->display_options['filters']['field_treaty_target_id']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+  );
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -1090,6 +1108,7 @@ function informea_views_default_views() {
     t('Author name'),
     t('Enter few letters from author name'),
     t('Content type'),
+    t('Treaty'),
     t('Page'),
   );
   $export['the_content'] = $view;

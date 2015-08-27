@@ -5,12 +5,12 @@ function ws_consumer_odata_drush_command() {
     'ws-consumer-delete-nodes' => array(
       'description' => 'Delete node from specific type that belong to a treaty',
       'arguments' => array(
+        'content_type' => 'Drupal content type',
         'treaty_odata_identifier' => 'Treaty OData identifier',
-        'content_type' => 'Drupal content type'
       ),
       'aliases' => array('wsc-dn'),
       'examples' => array(
-        'drush wsc-dn cbd contact_person' => 'Delete all contacts from CBD',
+        'drush wsc-dn contact_person cbd' => 'Delete all contacts from CBD',
       ),
       'required-arguments' => 2,
     ),
