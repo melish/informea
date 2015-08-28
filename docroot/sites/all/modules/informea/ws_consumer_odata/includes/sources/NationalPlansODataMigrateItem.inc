@@ -10,7 +10,6 @@ class NationalPlansODataMigrateItem extends ODataMigrateItem {
    */
   public function getItem($id) {
     $ob = parent::getItem($id, '$expand=title');
-    // Download the Meeting navigable properties
     $title_langs = array();
     $titles = array();
     $title_orig = NULL;
@@ -40,6 +39,18 @@ class NationalPlansODataMigrateItem extends ODataMigrateItem {
     if (!property_exists($ob,'updated')) {
       $ob->updated = '';
     }
+
+    $new_files = array();
+    $files_language = array();
+    $values = $this->getComplexProperty($ob, 'files');
+    if (!empty($values) && is_array($values)) {
+      foreach ($values as $value) {
+        $new_files[] = $value->url;
+        $files_language[] = property_exists($value, 'language') ? $value->language : 'en';
+      }
+    }
+    $ob->files = $new_files;
+    $ob->files_language = $files_language;
     return $ob;
   }
 }

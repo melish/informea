@@ -19,6 +19,8 @@ class NationalPlansMigrateSourceList extends MigrateSourceList {
       'type' => 'Type',
       'url' => 'Document URL',
       'submission' => 'Submission date',
+      'files' => 'Files',
+      'files_language' => 'Files language',
       'updated' => 'Updated',
     );
   }
