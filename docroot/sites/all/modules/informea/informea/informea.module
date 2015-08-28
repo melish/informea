@@ -355,3 +355,44 @@ function informea_get_request_protocol() {
   }
   return 'http';
 }
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function informea_field_formatter_info() {
+  return array(
+    'external_url' => array(
+      'label' => t('External URL to file'),
+      'field types' => array('file')
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function informea_field_formatter_view($entity_type, $entity, $field, $instance, $lang_code, $items, $display) {
+  $elements = array();
+  switch ($display['type']) {
+    case 'external_url':
+      foreach ($items as $delta => $item) {
+        $elements[$delta] = array(
+          '#markup' => theme('informea_field_formatter_external_url', array('element' => $item)),
+        );
+      }
+      break;
+  }
+  return $elements;
+}
+
+function informea_theme() {
+  return array(
+    'informea_field_formatter_external_url' => array(
+      'template' => 'informea_field_formatter_external_url',
+      'variables' => array(
+        'element' => NULL,
+      ),
+      'path' => drupal_get_path('module', 'informea') . '/templates',
+    ),
+  );
+}
