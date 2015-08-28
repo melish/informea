@@ -223,6 +223,12 @@ function decision_strongarm() {
       'diff_standard' => array(
         'custom_settings' => FALSE,
       ),
+      'ajax' => array(
+        'custom_settings' => TRUE,
+      ),
+      'treaty_listing' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

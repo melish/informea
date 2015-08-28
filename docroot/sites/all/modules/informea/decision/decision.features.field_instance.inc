@@ -377,9 +377,9 @@ function decision_field_default_field_instances() {
       ),
       'default' => array(
         'label' => 'inline',
-        'module' => 'file',
+        'module' => 'informea',
         'settings' => array(),
-        'type' => 'file_default',
+        'type' => 'external_url',
         'weight' => 9,
       ),
       'teaser' => array(
