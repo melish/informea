@@ -51,7 +51,8 @@ function decision_get_treaty_decisions_group_by_meeting($id_treaty) {
   $fields = field_info_instances('node', 'decision');
   foreach ($meetings as $meeting) {
     // Get the decisions for each meeting, ordered by draggable views.
-    $q = db_select('field_data_field_meeting', 'a')->fields('a', array('entity_id'));
+    $q = db_select('field_data_field_meeting', 'a')->fields('a', array('entity_id'))->fields('n', array('title'));
+    $q->join('node', 'n', "a.entity_id = n.nid AND n.type = 'decision'");
     $q->leftJoin('draggableviews_structure', 'b',
         ' a.entity_id = b.entity_id AND b.view_name = \'decision_ordering\'' .
         ' AND b.view_display = \'page_reorder\''
@@ -60,10 +61,10 @@ function decision_get_treaty_decisions_group_by_meeting($id_treaty) {
     $q->condition('a.bundle', 'decision');
     $q->condition('a.field_meeting_target_id', $meeting->nid);
     $q->orderBy('b.weight', 'ASC');
-    $dids = $q->execute()->fetchCol();
+    $dids = $q->execute()->fetchAllKeyed();
     $decisions = array();
-    foreach($dids as $did) {
-      $decisions[$did] = (object)array('nid' => $did, 'vid' => NULL, 'type' => 'decision');
+    foreach($dids as $key => $ob) {
+      $decisions[$key] = (object)array('nid' => $key, 'vid' => NULL, 'type' => 'decision');
     }
     field_attach_load('node', $decisions, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_decision_number']['field_id']));
     field_attach_load('node', $decisions, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_decision_status']['field_id']));
@@ -76,6 +77,9 @@ function decision_get_treaty_decisions_group_by_meeting($id_treaty) {
       $status = !empty($d->field_decision_status[LANGUAGE_NONE][0]['tid']) ? $d->field_decision_status[LANGUAGE_NONE][0]['tid'] : '';
       return in_array($status, $allowed_status);
     });
+    foreach ($decisions as $decision) {
+      $decision->title = $dids[$decision->nid];
+    }
     $meeting->decisions = $decisions;
     $ret[$meeting->nid] = $meeting;
   }
