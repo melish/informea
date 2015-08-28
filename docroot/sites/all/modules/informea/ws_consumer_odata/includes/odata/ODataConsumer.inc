@@ -30,7 +30,6 @@ abstract class ODataConsumer {
     else {
       $url = $this->url . '/' . $entity . '?$inlinecount=allpages';
       $response = drupal_http_request($url);
-
       $element_name = 'm:count';
       $found = preg_match(
         '#<'.$element_name.'(?:\s+[^>]+)?>(.*?)'.'</'.$element_name.'>#s',
@@ -41,7 +40,7 @@ abstract class ODataConsumer {
         $ret = intval($matches[1]);
       }
       else {
-        ws_consumer_odata_log('FAIL: ' . get_class($this) . ': Remote counting entities: ' . $url, MigrationBase::MESSAGE_ERROR);
+        ws_consumer_odata_log('FAIL: ' . get_class($this) . ': Remote counting entities: ' . $url, MigrationBase::MESSAGE_WARNING);
       }
     }
     return $ret;
