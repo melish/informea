@@ -75,6 +75,11 @@ class SitesODataMigration extends AbstractODataMigration {
   function prepareRow($row) {
     parent::prepareRow($row);
 
+    if (!$row->title) {
+      ws_consumer_odata_log('Skipping Site with source id=' . $row->id .' because no title could be found.', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
+    }
+
     if (!empty($row->updated)) {
       $row->updated = $this->fixDateValue($row->updated);
     }

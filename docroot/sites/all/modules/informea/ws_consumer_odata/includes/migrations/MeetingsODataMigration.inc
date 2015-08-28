@@ -111,7 +111,12 @@ class MeetingsODataMigration extends AbstractODataMigration {
   function prepareRow($row) {
     parent::prepareRow($row);
 
+    if (!$row->title) {
+      ws_consumer_odata_log('Skipping Meeting with source id=' . $row->id .' because no title could be found.', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
+    }
     if (!property_exists($row,'start')) {
+      ws_consumer_odata_log('Skipping Meeting with source id=' . $row->id .' because no start date could be found.', MigrationBase::MESSAGE_ERROR);
       return FALSE;
     }
 

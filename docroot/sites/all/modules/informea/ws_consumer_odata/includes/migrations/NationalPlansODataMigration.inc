@@ -89,6 +89,11 @@ class NationalPlansODataMigration extends AbstractODataMigration {
   function prepareRow($row) {
     parent::prepareRow($row);
 
+    if (!$row->title) {
+      ws_consumer_odata_log('Skipping National Plan with source id=' . $row->id .' because no title could be found.', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
+    }
+
     if (!empty($row->submission)) {
       $row->submission = $this->fixDateValue($row->submission);
     }

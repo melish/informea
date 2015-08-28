@@ -105,6 +105,11 @@ class DecisionsODataMigration extends AbstractODataMigration {
   function prepareRow($row) {
     parent::prepareRow($row);
 
+    if (!$row->title) {
+      ws_consumer_odata_log('Skipping Decision with source id=' . $row->id .' because no title could be found.', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
+    }
+
     if (!empty($row->published)) {
       $row->published = $this->fixDateValue($row->published);
     }
