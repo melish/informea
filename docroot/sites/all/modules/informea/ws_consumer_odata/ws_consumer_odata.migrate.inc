@@ -64,7 +64,11 @@ function ws_consumer_odata_migrate_api() {
 
       /* Decisions migrations */
       'odata_' . ODataConsumerConfig::$ODATA_NAME_CMS . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CMS, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS),
+          => $config->createMigrationConfig(
+        ODataConsumerConfig::$ODATA_NAME_CMS,
+        ODataConsumerConfig::$ODATA_ENTITY_DECISIONS,
+        array('odata_' . ODataConsumerConfig::$ODATA_NAME_CMS . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS)
+      ),
       'odata_' . ODataConsumerConfig::$ODATA_NAME_ASCOBANS . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS => $config->createMigrationConfig(
           ODataConsumerConfig::$ODATA_NAME_ASCOBANS,
           ODataConsumerConfig::$ODATA_ENTITY_DECISIONS,
