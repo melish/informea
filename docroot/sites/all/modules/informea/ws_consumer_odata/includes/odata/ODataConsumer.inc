@@ -28,11 +28,8 @@ abstract class ODataConsumer {
       $ret = intval($response->data);
     }
     else {
-      ws_consumer_odata_log('FAIL: ' . get_class($this) . ': Remote counting entities: ' . $url, MigrationBase::MESSAGE_WARNING);
       $url = $this->url . '/' . $entity . '?$inlinecount=allpages';
-      ws_consumer_odata_log('RETRY: ' . get_class($this) . ': Remote counting entities: ' . $url);
       $response = drupal_http_request($url);
-
       $element_name = 'm:count';
       $found = preg_match(
         '#<'.$element_name.'(?:\s+[^>]+)?>(.*?)'.'</'.$element_name.'>#s',
@@ -42,6 +39,10 @@ abstract class ODataConsumer {
       if ($found) {
         $ret = intval($matches[1]);
       }
+      else {
+        ws_consumer_odata_log('FAIL: ' . get_class($this) . ': Remote counting entities: ' . $url, MigrationBase::MESSAGE_WARNING);
+      }
+
     }
     return $ret;
   }
@@ -88,9 +89,7 @@ abstract class ODataConsumer {
     ws_consumer_odata_log(__METHOD__ . "($entity, $id): Retrieving data from : $url", MigrationBase::MESSAGE_NOTICE);
     $response = drupal_http_request($url, array('headers' => array('Accept' => 'application/json')));
     if ($response->code != 200) {
-      ws_consumer_odata_log(__METHOD__ . "($entity, $id): FAILED to retrieve data from : $url", MigrationBase::MESSAGE_NOTICE);
       $url = $this->url . '/' . $entity . "(guid'" . $id . "')?" . $odata_extra_params;
-      ws_consumer_odata_log("RETRY" . __METHOD__ . "($entity, $id): Retrieving data from : $url", MigrationBase::MESSAGE_NOTICE);
       $response = drupal_http_request($url, array('headers' => array('Accept' => 'application/json')));
       if ($response->code != 200) {
         ws_consumer_odata_log(__METHOD__ . "($entity, $id): HTTP request failure ({$response->code}) for URL: $url", MigrationBase::MESSAGE_ERROR);
