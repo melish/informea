@@ -67,7 +67,7 @@ abstract class AbstractODataMigration extends Migration {
     module_load_include('inc', 'country', 'country.api');
     $node = country_load_by_iso($iso);
     if (!$node) {
-      ws_consumer_odata_log(__METHOD__ . "($iso): Cannot find country by ISO code");
+      ws_consumer_odata_log(__METHOD__ . "($iso): Cannot find country by ISO code", MigrationBase::MESSAGE_WARNING);
     }
     return $node;
   }
