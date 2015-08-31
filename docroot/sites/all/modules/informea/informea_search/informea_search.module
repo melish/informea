@@ -11,6 +11,9 @@ include_once 'informea_search.features.inc';
  */
 function informea_search_views_pre_render(&$view) {
   if ($view->name == 'informea_search') {
+    drupal_add_library('informea', 'smallipop');
+    drupal_add_js(drupal_get_path('module', 'informea_search') . '/js/informea_search.js');
+
     module_load_include('inc', 'informea_search', 'informea_search.results');
     $group = new InforMEASearchResultsGrouping();
     $view->result = $group->getResults($view->result);
