@@ -151,7 +151,7 @@ class InforMEASearchResultsGrouping {
         treaty_url_logo($row)
         . $row->title
         . l(
-          '<i class="glyphicon glyphicon-link"></i>',
+          '[View]',
           treaty_url_text($row->nid),
           array(
             'html' => TRUE,
@@ -180,7 +180,7 @@ class InforMEASearchResultsGrouping {
         $paragraphs = self::view_article_paragraphs($row, $treaty);
         $elements = array(
           'header' => $row->title . l(
-              '<i class="glyphicon glyphicon-link"></i>',
+              '[View]',
               treaty_url_article($treaty->nid, $row->nid),
               array(
                 'html' => TRUE,
@@ -231,7 +231,7 @@ class InforMEASearchResultsGrouping {
         $paragraphs = self::view_decision_paragraphs($row, $treaty);
         $elements = array(
           'header' => $row->title . l(
-              '<i class="glyphicon glyphicon-link"></i>',
+              '[View]',
               treaty_url_decision($treaty->nid, $row->nid),
               array(
                 'html' => TRUE,
