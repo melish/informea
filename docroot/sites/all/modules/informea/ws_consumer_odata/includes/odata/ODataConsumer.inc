@@ -223,7 +223,12 @@ abstract class ODataConsumer {
       /** @var stdClass $result */
       if ($result = $this->loadRemoteData($ob->{$property_name}->__deferred->uri)) {
         if ($property_name == 'files') {
-          return $result;
+          if (is_object($result) && property_exists($result, 'results')) {
+            return $result->results;
+          }
+          else {
+            return $result;
+          }
         }
         return $result->results;
       }
