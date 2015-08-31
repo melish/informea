@@ -1,0 +1,12 @@
+diff --git a/docroot/sites/all/modules/contrib/migrate/plugins/destinations/file.inc b/docroot/sites/all/modules/contrib/migrate/plugins/destinations/file.inc
+index d9bd901..228b600 100644
+--- a/docroot/sites/all/modules/contrib/migrate/plugins/destinations/file.inc
++++ b/docroot/sites/all/modules/contrib/migrate/plugins/destinations/file.inc
+@@ -420,6 +420,7 @@ class MigrateFileUri extends MigrateFile {
+       $filename = str_replace('%3A', ':', $filename);
+       $filename = str_replace('%3F', '?', $filename);
+       $filename = str_replace('%26', '&', $filename);
++      $filename = str_replace('%3D', '=', $filename);
+     }
+     return $filename;
+   }
