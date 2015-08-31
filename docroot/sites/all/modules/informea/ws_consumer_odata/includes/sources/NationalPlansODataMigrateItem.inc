@@ -31,7 +31,7 @@ class NationalPlansODataMigrateItem extends ODataMigrateItem {
       $ob->title_orig = $title_orig;
     }
     else {
-      $ob->title_orig = $titles[0];
+      $ob->title_orig = empty($titles) ? '' : $titles[0];
     }
     if (!property_exists($ob,'submission')) {
       $ob->submission = '';

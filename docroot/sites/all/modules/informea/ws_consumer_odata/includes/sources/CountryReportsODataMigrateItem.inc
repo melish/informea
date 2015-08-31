@@ -32,7 +32,7 @@ class CountryReportsODataMigrateItem extends ODataMigrateItem {
       $ob->title_orig = $title_orig;
     }
     else {
-      $ob->title_orig = $titles[0];
+      $ob->title_orig = empty($titles) ? '' : $titles[0];
     }
 
     //Get files

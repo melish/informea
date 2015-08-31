@@ -34,7 +34,7 @@ class DecisionsODataMigrateItem extends ODataMigrateItem {
     }
     else {
       if ($titles) {
-        $ob->title_orig = $titles[0];
+        $ob->title_orig = empty($titles) ? '' : $titles[0];
       }
     }
 
