@@ -332,7 +332,6 @@ $options['init-modules'] = array(
   'meeting',
   'search_integration',
   'treaty',
-  'wp_migration',
   'i18n_string_helper',
   'ws_consumer',
   'ws_consumer_odata',

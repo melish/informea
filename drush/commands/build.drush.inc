@@ -43,6 +43,7 @@ function build_drush_command() {
  * Executes the build commands.
  */
 function _drush_build() {
+	variable_set('maintenance_mode', 1);
 	// Enable modules.
 	$modules = drush_get_option('init-modules', array());
 	foreach($modules as $module) {
@@ -58,6 +59,7 @@ function _drush_build() {
 	));
 	drush_invoke('cc', array('type' => 'all'));
 	drush_log(dt('Built!'), 'success');
+	variable_set('maintenance_mode', 0);
 }
 
 /**
