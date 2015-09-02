@@ -28,6 +28,7 @@ class DecisionsMigrateSourceList extends MigrateSourceList {
       'content_langs' => 'Body field language',
       'summary' => 'Body summary',
       'link' => 'URL',
+      'filename' => 'filename',
       'updated' => 'Updated',
     );
   }
