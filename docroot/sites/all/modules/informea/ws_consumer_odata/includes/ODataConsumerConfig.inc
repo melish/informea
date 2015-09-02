@@ -97,7 +97,7 @@ class ODataConsumerConfig {
         'default' => 'http://odata.informea.org/odata-fao/services/odata.svc'
       ),
       self::$ODATA_NAME_WHC => array(
-        'default' => 'http://whc.unesco.org/informea/services/odata.svc'
+        'default' => 'http://whc.unesco.org/informea/informea.svc'
       ),
       self::$ODATA_NAME_MONTREAL => array(
         'default' => 'http://41.191.194.28:8080/informea/services/odata.svc'
