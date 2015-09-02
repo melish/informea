@@ -20,6 +20,7 @@ class CountryReportsMigrateSourceList extends MigrateSourceList {
       'files' => 'Decision files',
       'files_language' => 'Files language',
       'url' => 'Document url',
+      'filename' => 'filename',
       'updated' => 'Updated',
     );
   }
