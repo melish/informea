@@ -216,4 +216,59 @@ class ODataMigrateItem extends MigrateItem {
   public function getComplexProperty($ob, $property_name) {
     return $this->consumer->loadNavigationProperty($ob, $property_name);
   }
+
+  function prepareTitle($odata_ob) {
+    //Get titles
+    $title_langs = array();
+    $titles = array();
+    $title_orig = NULL;
+    $values = $this->getComplexProperty($odata_ob, 'title');
+    if (!empty($values) && is_array($values)) {
+      foreach ($values as $value) {
+        if (!empty($value->value)) {
+          $title_langs[] = $value->language;
+          $titles[] = strip_tags($value->value);
+          if ($value->language == 'en') {
+            $title_orig = strip_tags($value->value);
+          }
+        }
+      }
+    }
+    $odata_ob->title_langs = $title_langs;
+    $odata_ob->title = $titles;
+    if ($title_orig) {
+      $odata_ob->title_orig = $title_orig;
+    }
+    else {
+      $odata_ob->title_orig = empty($titles) ? '' : $titles[0];
+    }
+  }
+
+  function prepareFiles($odata_ob) {
+    //Get files
+    $files = array();
+    $files_language = array();
+    $values = $this->getComplexProperty($odata_ob, 'files');
+    if (!empty($values) && is_array($values)) {
+      foreach ($values as $value) {
+        if (!empty($value->url)) {
+          $lang = 'en';
+          // Handle UND
+          if (!empty($value->language)) {
+            switch ($value->language) {
+              case 'esp':
+                $lang = 'es';
+                break;
+              case 'fra':
+                $lang = 'fr';
+            }
+          }
+          $files_language[] = $lang;
+          $files[] = $value->url;
+        }
+      }
+    }
+    $odata_ob->files_language = $files_language;
+    $odata_ob->files = $files;
+  }
 }
