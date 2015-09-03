@@ -662,14 +662,16 @@ button.toggle {
   border-radius: 3px;
   border: 1px dashed #7f6633;
   color: #333;
-  font-size: 16px;
   line-height: 1.4;
   padding: 6px;
   text-align: center;
 }
+.broadcast-body p {
+  font-size: 16px;
+}
 
 @media (min-width: 768px) {
-  .broadcast-body {
+  .broadcast-body p {
     font-size: 21px;
   }
 }
