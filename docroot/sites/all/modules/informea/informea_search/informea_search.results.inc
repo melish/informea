@@ -117,6 +117,9 @@ class InforMEASearchResultsGrouping {
   }
 
   public static function view($row) {
+    $aw = entity_metadata_wrapper('node', $row);
+    $tags = $aw->field_informea_tags->value();
+
     $ret = array();
     // Articles
     $content = self::view_articles($row);
@@ -160,8 +163,10 @@ class InforMEASearchResultsGrouping {
             ),
           )
         ),
+      'tags' => theme('treaty_text_tags', array('tags' => $tags)),
       '#children' => $content
     );
+
     if (empty($content)) {
 //      $elements['body'] = t('Treaty is tagged with %term', array('%term' => $term->name));
     }
@@ -177,6 +182,9 @@ class InforMEASearchResultsGrouping {
     $ret = array();
     if (!empty($treaty->articles)) {
       foreach ($treaty->articles as $row) {
+        $aw = entity_metadata_wrapper('node', $row);
+        $tags = $aw->field_informea_tags->value();
+
         $paragraphs = self::view_article_paragraphs($row, $treaty);
         $elements = array(
           'header' => $row->title . l(
@@ -189,6 +197,7 @@ class InforMEASearchResultsGrouping {
                 ),
               )
             ),
+          'tags' => theme('treaty_text_tags', array('tags' => $tags)),
           '#children' => $paragraphs,
         );
         if (!empty($row->excerpt)) {
@@ -228,6 +237,7 @@ class InforMEASearchResultsGrouping {
     if (!empty($treaty->decisions)) {
       foreach ($treaty->decisions as $row) {
         $w = entity_metadata_wrapper('node', $row);
+        $tags = $w->field_informea_tags->value();
         $paragraphs = self::view_decision_paragraphs($row, $treaty);
         $elements = array(
           'header' => $row->title . l(
@@ -240,6 +250,7 @@ class InforMEASearchResultsGrouping {
                 ),
               )
             ),
+          'tags' => theme('treaty_text_tags', array('tags' => $tags)),
           '#children' => $paragraphs,
         );
         $body = '';
@@ -285,8 +296,12 @@ class InforMEASearchResultsGrouping {
     if (!empty($treaty->national_reports)) {
       foreach ($treaty->national_reports as $row) {
         $w = entity_metadata_wrapper('node', $row);
+        $tags = $w->field_informea_tags->value();
         $body = '';
-        $elements = array('header' => $row->title);
+        $elements = array(
+          'header' => $row->title,
+          'tags' => theme('treaty_text_tags', array('tags' => $tags)),
+        );
         if (!empty($row->excerpt)) {
           $body .= $row->excerpt;
         }
