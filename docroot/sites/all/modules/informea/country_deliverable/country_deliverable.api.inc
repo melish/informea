@@ -151,27 +151,43 @@ function country_deliverable_count_treaty_action_plans($id_treaty) {
 }
 
 function country_deliverable_national_reports_group_by_country($id_treaty) {
-  $rows = country_deliverable_get_treaty_national_reports($id_treaty);
-  if (!empty($rows)) {
+  $query = db_select('field_data_field_treaty', 'a')
+    ->fields('a', array('entity_id'))->fields('b', array('field_country_target_id'));
+  $query->innerJoin('field_data_field_country', 'b', 'a.entity_id=b.entity_id');
+  $query->condition('a.bundle', 'national_report');
+  $query->condition('a.field_treaty_target_id', $id_treaty);
+  $query->range(0, 10);
+  $rids = $query->execute()->fetchAll();
+  if (!empty($rids)) {
     $parties = array();
-    foreach ($rows as $row) {
-      $wrapper = entity_metadata_wrapper('node', $row);
-      $country  = $wrapper->field_country->value()[0];
-      $parties[$country->nid] = $country;
+    foreach ($rids as $row) {
+      if(!array_key_exists($row->field_country_target_id, $parties)) {
+        $parties[$row->field_country_target_id] = node_load($row->field_country_target_id);
+      }
     }
-    foreach ($rows as $row) {
-      $wrapper = entity_metadata_wrapper('node', $row);
-      $country = $wrapper->field_country->value()[0];
-      $country = $parties[$country->nid];
-      $country->national_reports[] = $row;
+    foreach ($rids as $row) {
+      $country = $parties[$row->field_country_target_id];
+      $country->national_reports[$row->entity_id] = (object)array('nid' => $row->entity_id, 'vid' => NULL, 'type' => 'national_report');
+    }
+
+    foreach($parties as $country) {
+      $fields = field_info_instances('node', 'national_report');
+      field_attach_load('node', $country->national_reports, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_files']['field_id']));
+      field_attach_load('node', $country->national_reports, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_informea_tags']['field_id']));
+      field_attach_load('node', $country->national_reports, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_document_url']['field_id']));
+      field_attach_load('node', $country->national_reports, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_report_submission_date']['field_id']));
     }
     uasort($parties, function($a, $b) { return strcmp($a->title, $b->title); });
     // Sort the reports by date
     foreach($parties as &$party) {
       uasort($party->national_reports, function($a, $b) {
-        $wa = entity_metadata_wrapper('node', $a);
-        $wb = entity_metadata_wrapper('node', $b);
-        return $wa->field_report_submission_date->value() < $wb->field_report_submission_date->value();
+        if (empty($a->field_report_submission_date[LANGUAGE_NONE][0]['value'])) {
+          return -1;
+        }
+        if (empty($b->field_report_submission_date[LANGUAGE_NONE][0]['value'])) {
+          return 1;
+        }
+        return strtotime($a->field_report_submission_date[LANGUAGE_NONE][0]['value']) < strtotime($b->field_report_submission_date[LANGUAGE_NONE][0]['value']);
       });
     }
     return $parties;

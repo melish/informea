@@ -73,12 +73,19 @@ function country_deliverable_render_national_reports($rows) {
     $rw = entity_metadata_wrapper('node', $row);
     $table_rows = array();
     foreach($row->national_reports as $report) {
-      $nrw = entity_metadata_wrapper('node', $report);
-      $date = $nrw->field_report_submission_date->value();
-      $date = !empty($date) ? format_date($date, 'short') : '';
+      $date_raw = field_get_items('node', $report, 'field_report_submission_date');
+      $date = !empty($date_raw[0]['value']) ? format_date(strtotime($date_raw[0]['value']), 'short') : '';
+      $title = field_get_items('node', $report, 'title_field');
       $files_field = field_view_field('node', $report, 'field_files', 'full');
+      $target = field_get_items('node', $report, 'field_document_url');
+      if (!empty($target[0]['url'])) {
+        $col0 = l($title[0]['value'], $target[0]['url'], array('attributes' => array('target' => '_blank')));
+      }
+      else {
+        $col0 = $title[0]['value'];
+      }
       $table_rows[] = array(
-        $report->title,
+        $col0,
         array('data' => $date, 'class' => 'text-center'),
         array('data' => render($files_field), 'class' => 'text-center')
       );
