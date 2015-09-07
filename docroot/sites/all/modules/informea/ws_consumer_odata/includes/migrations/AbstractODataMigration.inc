@@ -110,4 +110,17 @@ abstract class AbstractODataMigration extends Migration {
       }
     }
   }
+
+  public function extractFilenameFromURL($url) {
+    $ret = NULL;
+    $to_remove = "download.aspx?d=";
+    if (strpos($url, $to_remove)) {
+      $ret = substr($url, strpos($url, $to_remove) + strlen($to_remove));
+    }
+    else {
+      $l = parse_url($url);
+      $ret = basename($l['path']);
+    }
+    return $ret;
+  }
 }

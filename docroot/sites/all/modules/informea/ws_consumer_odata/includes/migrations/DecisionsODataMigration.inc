@@ -123,12 +123,8 @@ class DecisionsODataMigration extends AbstractODataMigration {
 
     $row->filename = array();
     foreach ($row->files as $file) {
-      $to_remove = "download.aspx?d=";
-      if (strpos($file, $to_remove)) {
-        $row->filename[] = substr($file, strpos($file, $to_remove) + strlen($to_remove));
-      }
-      else {
-        $row->filename[] = $file;
+      if ($filename = $this->extractFilenameFromURL($file)) {
+        $row->filename[] = $filename;
       }
     }
   }
