@@ -172,6 +172,7 @@ function country_deliverable_national_reports_group_by_country($id_treaty) {
 
     foreach($parties as $country) {
       $fields = field_info_instances('node', 'national_report');
+      field_attach_load('node', $country->national_reports, FIELD_LOAD_CURRENT, array('field_id' => $fields['title_field']['field_id']));
       field_attach_load('node', $country->national_reports, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_files']['field_id']));
       field_attach_load('node', $country->national_reports, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_informea_tags']['field_id']));
       field_attach_load('node', $country->national_reports, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_document_url']['field_id']));

@@ -79,10 +79,10 @@ function country_deliverable_render_national_reports($rows) {
       $files_field = field_view_field('node', $report, 'field_files', 'full');
       $target = field_get_items('node', $report, 'field_document_url');
       if (!empty($target[0]['url'])) {
-        $col0 = l($title[0]['value'], $target[0]['url'], array('attributes' => array('target' => '_blank')));
+        $col0 = l($title[0]['safe_value'], $target[0]['url'], array('attributes' => array('target' => '_blank')));
       }
       else {
-        $col0 = $title[0]['value'];
+        $col0 = $title[0]['safe_value'];
       }
       $table_rows[] = array(
         $col0,
