@@ -263,6 +263,7 @@ $options['init-modules'] = array(
   'i18n_node',
   'i18n_taxonomy',
   'i18n_block',
+  'i18n_field',
   'draggableviews',
 
   'variable',
