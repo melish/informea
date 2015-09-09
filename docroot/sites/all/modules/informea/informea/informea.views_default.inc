@@ -616,13 +616,13 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['field_keywords']['id'] = 'field_keywords';
   $handler->display->display_options['fields']['field_keywords']['table'] = 'field_data_field_keywords';
   $handler->display->display_options['fields']['field_keywords']['field'] = 'field_keywords';
-  $handler->display->display_options['fields']['field_keywords']['label'] = 'Ecolex keywords';
+  $handler->display->display_options['fields']['field_keywords']['label'] = 'ECOLEX keywords';
   $handler->display->display_options['fields']['field_keywords']['delta_offset'] = '0';
   /* Field: Taxonomy term: Ecolex terms */
   $handler->display->display_options['fields']['field_thesaurus_map_ecolex']['id'] = 'field_thesaurus_map_ecolex';
   $handler->display->display_options['fields']['field_thesaurus_map_ecolex']['table'] = 'field_data_field_thesaurus_map_ecolex';
   $handler->display->display_options['fields']['field_thesaurus_map_ecolex']['field'] = 'field_thesaurus_map_ecolex';
-  $handler->display->display_options['fields']['field_thesaurus_map_ecolex']['label'] = 'Ecolex subjects';
+  $handler->display->display_options['fields']['field_thesaurus_map_ecolex']['label'] = 'ECOLEX subjects';
   $handler->display->display_options['fields']['field_thesaurus_map_ecolex']['delta_offset'] = '0';
   /* Field: Taxonomy term: Term edit link */
   $handler->display->display_options['fields']['edit_term']['id'] = 'edit_term';
@@ -664,8 +664,8 @@ function informea_views_default_views() {
     t('.'),
     t(','),
     t('Name'),
-    t('Ecolex keywords'),
-    t('Ecolex subjects'),
+    t('ECOLEX keywords'),
+    t('ECOLEX subjects'),
     t('Operations'),
     t('Term'),
     t('Page'),

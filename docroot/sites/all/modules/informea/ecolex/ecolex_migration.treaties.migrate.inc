@@ -9,7 +9,7 @@ class EcolexTreatyMigrateWiki extends Migration {
     parent::__construct($arguments);
     $this->dependencies = array('Treaties');
     $this->arguments   = $arguments;
-    $this->description = 'Import Ecolex treaties from XML web service (files)';
+    $this->description = 'Import ECOLEX treaties from XML web service (files)';
     $data_dir          = $arguments['data_dir'];
     $this->source      = new EcolexTreatyMigrateSource($data_dir, array());
     $this->map         = new MigrateSQLMap($this->machineName,
@@ -177,7 +177,7 @@ class EcolexTreatyMigrateSource extends MigrateSource {
    * Return a string representing the source, for display in the UI.
    */
   public function __toString() {
-    return "Extract treaties from Ecolex XML in {$this->data_dir}";
+    return "Extract treaties from ECOLEX XML in {$this->data_dir}";
   }
 
   /**
@@ -185,7 +185,7 @@ class EcolexTreatyMigrateSource extends MigrateSource {
    */
   public function fields() {
     return array(
-      'Recid'               => 'Ecolex unique ID',
+      'Recid'               => 'ECOLEX unique ID',
       'dateOfEntry'         => '@todo: dateOfEntry',
       'dateOfModification'  => '@todo: dateOfModification',
       'titleOfText'         => 'Page title multilingual',
@@ -210,7 +210,7 @@ class EcolexTreatyMigrateSource extends MigrateSource {
       'citesTreaty'         => '@todo: citesTreaty',
       'keyword'             => '@todo: keyword',
       'region'              => '@todo: region',
-      'ecolex_url'          => 'Web page on Ecolex website',
+      'ecolex_url'          => 'Web page on ECOLEX website',
       'mapped_informea_keywords'  => 'Mapped terms computed during import from subject & keyword fields',
     );
   }

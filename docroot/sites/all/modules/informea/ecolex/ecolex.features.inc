@@ -29,7 +29,7 @@ function ecolex_node_info() {
     'legislation' => array(
       'name' => t('Legislation'),
       'base' => 'node_content',
-      'description' => t('Ecolex legislation'),
+      'description' => t('ECOLEX legislation'),
       'has_title' => '1',
       'title_label' => t('Title of text'),
       'help' => '',

@@ -85,7 +85,7 @@ function informea_taxonomy_default_vocabularies() {
       ),
     ),
     'thesaurus_ecolex' => array(
-      'name' => 'Thesaurus - Ecolex',
+      'name' => 'Thesaurus - ECOLEX',
       'machine_name' => 'thesaurus_ecolex',
       'description' => '',
       'hierarchy' => 0,

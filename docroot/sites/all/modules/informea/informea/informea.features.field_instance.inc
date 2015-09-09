@@ -1088,7 +1088,7 @@ function informea_field_default_field_instances() {
     ),
     'entity_type' => 'taxonomy_term',
     'field_name' => 'field_ecolex_tags',
-    'label' => 'Ecolex terms',
+    'label' => 'ECOLEX terms',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1130,7 +1130,7 @@ function informea_field_default_field_instances() {
     ),
     'entity_type' => 'taxonomy_term',
     'field_name' => 'field_keywords',
-    'label' => 'Ecolex Keyword(s)',
+    'label' => 'ECOLEX Keyword(s)',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1445,7 +1445,7 @@ function informea_field_default_field_instances() {
     ),
     'entity_type' => 'taxonomy_term',
     'field_name' => 'field_thesaurus_map_ecolex',
-    'label' => 'Ecolex terms',
+    'label' => 'ECOLEX terms',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1587,8 +1587,8 @@ function informea_field_default_field_instances() {
   t('Attached files');
   t('Body');
   t('Description');
-  t('Ecolex Keyword(s)');
-  t('Ecolex terms');
+  t('ECOLEX Keyword(s)');
+  t('ECOLEX terms');
   t('Enter a comma-separated list of words to describe your content.');
   t('Environmental Goal');
   t('Files');

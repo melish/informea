@@ -183,7 +183,7 @@ function _informea_localizable_strings() {
     'Court Decisions',
     'Literature',
     'Download country profile as PDF',
-    'The content of this this area is exclusively provided by <a href="@url">Ecolex</a> - the gateway to environmental law, which is a collaboration of IUCN, FAO and UNEP.',
+    'The content of this this area is exclusively provided by <a href="@url">ECOLEX</a> - the gateway to environmental law, which is a collaboration of IUCN, FAO and UNEP.',
     'Data provided by the <a href="@url">UN</a>',
 
     // Glossary
@@ -195,7 +195,7 @@ function _informea_localizable_strings() {
     'Download RDF',
     'The InforMEA glossary was developed with the MEA Secretariats represented in the MEA Information and Knowledge Management (IKM) Initiative. Over the coming months, the InforMEA glossary will be upgraded to a Thesaurus on Environmental Law and Conventions in cooperation with partners such as FAO, IUCN, The European Environment Agency.',
     'Definition',
-    'Ecolex',
+    'ECOLEX',
     'Environmental goal',
     'Articles',
     'Hierarchy',

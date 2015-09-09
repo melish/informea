@@ -1114,7 +1114,7 @@ function treaty_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_ecolex_tags',
-    'label' => 'Ecolex Tags',
+    'label' => 'ECOLEX Tags',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1176,7 +1176,7 @@ function treaty_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_ecolex_url',
-    'label' => 'Ecolex URL',
+    'label' => 'ECOLEX URL',
     'required' => 0,
     'settings' => array(
       'absolute_url' => 1,
@@ -4891,8 +4891,8 @@ function treaty_field_default_field_instances() {
   t('Date of text');
   t('Depositary');
   t('Description');
-  t('Ecolex Tags');
-  t('Ecolex URL');
+  t('ECOLEX Tags');
+  t('ECOLEX URL');
   t('Entry into force');
   t('FAOLEX URL');
   t('Field of application');
