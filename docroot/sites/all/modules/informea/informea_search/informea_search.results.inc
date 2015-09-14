@@ -149,6 +149,16 @@ class InforMEASearchResultsGrouping {
       $content = array_merge($content, $national_reports);
     }
 
+    // National reports
+    $action_plans = self::view_action_plans($row);
+    if (!empty($action_plans)) {
+      array_unshift($action_plans, array(
+        '#type' => 'item',
+        '#markup' => '<h3>' . t('Action plans') . '</h3>',
+      ));
+      $content = array_merge($content, $action_plans);
+    }
+
     $elements = array(
       'header' =>
         treaty_url_logo($row)
@@ -295,6 +305,40 @@ class InforMEASearchResultsGrouping {
     $ret = array();
     if (!empty($treaty->national_reports)) {
       foreach ($treaty->national_reports as $row) {
+        $w = entity_metadata_wrapper('node', $row);
+        $tags = $w->field_informea_tags->value();
+        $body = '';
+        $elements = array(
+          'header' => $row->title,
+          'tags' => theme('treaty_text_tags', array('tags' => $tags)),
+        );
+        if (!empty($row->excerpt)) {
+          $body .= $row->excerpt;
+        }
+        else {
+          // report missing excerpt
+          // dpm($row);
+          // dpm($row);
+        }
+        if ($files = $w->field_files->value()) {
+          $fr = field_view_field('node', $row, 'field_files', 'teaser');
+          $body .= drupal_render($fr);
+        }
+        $elements['body'] = $body;
+        $ret[$row->nid] = array(
+          '#theme' => 'informea_bootstrap_collapse',
+          '#elements' => array($row->nid => $elements),
+          '#no-data-parent' => 1,
+        );
+      }
+    }
+    return $ret;
+  }
+
+  public static function view_action_plans($treaty) {
+    $ret = array();
+    if (!empty($treaty->action_plans)) {
+      foreach ($treaty->action_plans as $row) {
         $w = entity_metadata_wrapper('node', $row);
         $tags = $w->field_informea_tags->value();
         $body = '';
