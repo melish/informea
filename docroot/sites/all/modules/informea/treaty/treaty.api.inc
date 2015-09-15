@@ -118,6 +118,7 @@ function treaty_get_treaties_as_select_options() {
   $result = $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'treaty')
     ->fieldCondition('field_odata_identifier', 'value', NULL, 'IS NOT NULL')
+    ->propertyCondition('status', 1)
     ->fieldOrderBy('title_field', 'value')
     ->execute();
   if (!empty($result['node'])) {

@@ -80,9 +80,6 @@ jQuery(document).ready(function ($) {
     if(url.length == 5 || url.length == 6) {
       var treaty = url[4];
       var dest = '/treaties/' + jQuery(this).val();
-      if (url.length == 6) {
-        dest += '/' + url[5];
-      }
       window.location.href = dest;
     }
   });
