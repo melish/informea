@@ -128,14 +128,20 @@
         <li><?php print l(t('Countries'), 'countries'); ?></li>
         <li><?php print l(t('Glossary'), 'terms'); ?></li>
         <li class="dropdown">
-          <?php print l(t('Events') . ' <span class="caret"></span>', 'events', array('attributes' => array('class' => array('dropdown-toggle')), 'external' => TRUE, 'absolute' => TRUE, 'html' => TRUE)); ?>
+          <?php print l(
+            t('Events') . ' <span class="caret"></span>',
+            'events',
+            array('attributes' => array('class' => array('dropdown-toggle')), 'absolute' => TRUE, 'html' => TRUE)); ?>
           <ul class="dropdown-menu dropdown-menu-right" role="menu">
             <li><?php print l(t('Past events'), 'events/past'); ?></li>
           </ul><!-- .dropdown-menu .dropdown-menu-right -->
         </li>
         <li><?php print l(t('News'), 'news'); ?></li>
         <li class="dropdown">
-          <?php print l(t('About') . ' <span class="caret"></span>', 'about', array('attributes' => array('class' => array('dropdown-toggle')), 'external' => TRUE, 'absolute' => TRUE, 'html' => TRUE)); ?>
+          <?php print l(
+            t('About') . ' <span class="caret"></span>',
+            'about',
+            array('attributes' => array('class' => array('dropdown-toggle')), 'absolute' => TRUE, 'html' => TRUE)); ?>
           <ul class="dropdown-menu dropdown-menu-right" role="menu">
             <li><?php print l(t('About InforMEA'), 'about'); ?></li>
             <li><?php print l(t('API documentation'), 'about/api'); ?></li>
