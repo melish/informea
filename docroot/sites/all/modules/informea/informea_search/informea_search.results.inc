@@ -149,7 +149,7 @@ class InforMEASearchResultsGrouping {
       $content = array_merge($content, $national_reports);
     }
 
-    // National reports
+    // Action plans
     $action_plans = self::view_action_plans($row);
     if (!empty($action_plans)) {
       array_unshift($action_plans, array(
@@ -309,7 +309,18 @@ class InforMEASearchResultsGrouping {
         $tags = $w->field_informea_tags->value();
         $body = '';
         $elements = array(
-          'header' => $row->title,
+          'header' =>
+            $row->title
+            . l(
+              '[View]',
+              treaty_url_national_report($treaty->nid, $row->nid),
+              array(
+                'html' => TRUE,
+                'attributes' => array(
+                  'class' => array('permalink pull-right'),
+                ),
+              )
+            ),
           'tags' => theme('treaty_text_tags', array('tags' => $tags)),
         );
         if (!empty($row->excerpt)) {
@@ -343,7 +354,18 @@ class InforMEASearchResultsGrouping {
         $tags = $w->field_informea_tags->value();
         $body = '';
         $elements = array(
-          'header' => $row->title,
+          'header' =>
+            $row->title
+            . l(
+              '[View]',
+              treaty_url_action_plan($treaty->nid, $row->nid),
+              array(
+                'html' => TRUE,
+                'attributes' => array(
+                  'class' => array('permalink pull-right'),
+                ),
+              )
+            ),
           'tags' => theme('treaty_text_tags', array('tags' => $tags)),
         );
         if (!empty($row->excerpt)) {

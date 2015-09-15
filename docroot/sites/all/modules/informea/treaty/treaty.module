@@ -715,6 +715,22 @@ function treaty_url_decision($id_treaty, $id_decision) {
   return $link . drupal_http_build_query($query) . '#' . $fragment;
 }
 
+function treaty_url_national_report($id_treaty, $id_report) {
+  $options = array(
+    'absolute' => TRUE,
+  );
+  $link = url('node/' . $id_treaty, $options) . '/national-reports';
+  return $link;
+}
+
+function treaty_url_action_plan($id_treaty, $id_report) {
+  $options = array(
+    'absolute' => TRUE,
+  );
+  $link = url('node/' . $id_treaty, $options) . '/action-plans';
+  return $link;
+}
+
 
 /**
  * Absolute URL to a treaty decision (in treaty text page).
