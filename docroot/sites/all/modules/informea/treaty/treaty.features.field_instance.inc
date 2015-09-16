@@ -3581,11 +3581,8 @@ function treaty_field_default_field_instances() {
       ),
       'default' => array(
         'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 55,
       ),
       'teaser' => array(
