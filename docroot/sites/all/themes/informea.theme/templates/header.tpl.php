@@ -91,11 +91,15 @@
                     <li><?php print l(t('Specially Protected Areas Protocol'), 'treaties/barc-spa'); ?></li>
                   </ul>
                 </li>
-                <li><?php print l(t('Espoo Convention'), 'treaties/espoo'); ?></li>
+                <li>
+                  <?php print l(t('Espoo Convention'), 'treaties/espoo'); ?>
+                  <ul>
+                    <li><?php print l(t('The Kyiv Protocol'), 'treaties/kyivsea'); ?></li>
+                  </ul>
+                </li>
                 <li><?php print l(t('Jeddah Convention'), 'treaties/jeddah'); ?></li>
                 <li><?php print l(t('Long-Range Transboundary Air Pollution'), 'treaties/lrtp'); ?></li>
                 <li><?php print l(t('Nairobi Convention'), 'treaties/nairobi'); ?></li>
-                <li><?php print l(t('The Kyiv Protocol'), 'treaties/kyivsea'); ?></li>
               </ul>
             </li><!-- .col-sm-3 -->
             <li class="col-sm-3">
