@@ -22,6 +22,11 @@
       ), 'external' => TRUE, 'html' => TRUE
     ));
   }
+  $type_label = '';
+  if ($type = $wrapper->field_person_type->value()) {
+    $type_term = entity_metadata_wrapper('taxonomy_term', reset($type)->tid);
+    $type_label = $type_term->label();
+  }
 ?>
 <h4 class="list-group-item-heading">
   <span class="glyphicon glyphicon-user"></span> <?php print $wrapper->label(); ?>
@@ -55,5 +60,10 @@
 <?php if ($mail_link): ?>
   <dt><?php print t('E-Mail'); ?></dt>
   <dd><?php print $mail_link; ?></dd>
+<?php endif; ?>
+
+<?php if ($type_label): ?>
+  <dt><?php print t('Type'); ?></dt>
+  <dd><?php print $type_label; ?></dd>
 <?php endif; ?>
 </dl>
