@@ -201,8 +201,12 @@ EOT
           $mid = isset($_GET['meeting']) ? $_GET['meeting'] : FALSE;
           foreach ($data as $id => $row) {
             $rw = entity_metadata_wrapper('node', $row);
+            $abbreviation = $rw->field_abbreviation->value();
+            if ($abbreviation) {
+              $abbreviation .= ' - ';
+            }
             $elements[$id] = array(
-              'header' => $rw->label() . treaty_format_meeting_description($row),
+              'header' => $abbreviation . $rw->label() . treaty_format_meeting_description($row),
               'body' => theme('treaty_decisions', array('decisions' => $row->decisions)),
             );
             if($id == $mid) {
