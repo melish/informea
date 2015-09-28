@@ -15,6 +15,10 @@ function country_data_country_get_parties($id_country) {
   return array();
 }
 
+function country_data_get_allowed_membership_status() {
+  return array('acceptance', 'accession', 'approval', 'continuation', 'ratification', 'succession');
+}
+
 function country_data_treaty_get_membership($id_treaty) {
   $query = new EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')
@@ -23,6 +27,14 @@ function country_data_treaty_get_membership($id_treaty) {
                   ->propertyOrderBy('title')
                   ->execute();
   if (isset($result['node'])) {
+    $allowed = country_data_get_allowed_membership_status();
+    foreach ($result['node'] as $key => $row) {
+      $w = entity_metadata_wrapper('node', $row->nid);
+      $status = $w->field_party_status->value();
+      if (!in_array(strtolower($status->name_original), $allowed)) {
+        unset($result['node'][$key]);
+      }
+    }
     return entity_load('node', array_keys($result['node']));
   }
   return array();
@@ -37,7 +49,7 @@ function country_data_treaty_count_membership($id_treaty) {
       ->fieldCondition('field_treaty', 'target_id', $id_treaty)
       ->propertyOrderBy('title')
       ->execute();
-    $allowed = array('acceptance', 'accession', 'approval', 'continuation', 'ratification', 'succession');
+    $allowed = country_data_get_allowed_membership_status();
     foreach($rows['node'] as $row) {
       $w = entity_metadata_wrapper('node', $row->nid);
       $status = $w->field_party_status->value();
