@@ -230,6 +230,7 @@ function country_deliverable_get_reporting_obligation_cycles($id_treaty) {
   $result = $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'reporting_obligation_cycle')
     ->fieldCondition('field_treaty', 'target_id', $id_treaty)
+    ->propertyOrderBy('created', 'DESC')
     ->execute();
   if (isset($result['node'])) {
     return node_load_multiple(array_keys($result['node']));
