@@ -156,7 +156,6 @@ function country_deliverable_national_reports_group_by_country($id_treaty) {
   $query->innerJoin('field_data_field_country', 'b', 'a.entity_id=b.entity_id');
   $query->condition('a.bundle', 'national_report');
   $query->condition('a.field_treaty_target_id', $id_treaty);
-  $query->range(0, 10);
   $rids = $query->execute()->fetchAll();
   if (!empty($rids)) {
     $parties = array();
