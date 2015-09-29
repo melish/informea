@@ -119,12 +119,6 @@ function treaty_theme() {
   );
 }
 
-function set_page_breadcrumb($breadcrumbs = array()) {
-  $new_breadcrumbs = array(l(t('Home'), '<front>'));
-  $new_breadcrumbs = array_merge($new_breadcrumbs,$breadcrumbs);
-  drupal_set_breadcrumb($new_breadcrumbs);
-}
-
 /**
  * Implements hook_node_view().
  */

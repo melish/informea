@@ -405,3 +405,9 @@ function informea_theme_views_pre_render(&$view) {
     }
   }
 }
+
+function set_page_breadcrumb($breadcrumbs = array()) {
+  $new_breadcrumbs = array(l(t('Home'), '<front>'));
+  $new_breadcrumbs = array_merge($new_breadcrumbs,$breadcrumbs);
+  drupal_set_breadcrumb($new_breadcrumbs);
+}
