@@ -161,10 +161,10 @@ EOT
         hide($node->content[$field_name]);
       }
     }
-    $breadcrumbs = array(l($node->title, 'node/' . $node->nid));
+    $breadcrumbs = array(l(t('Treaties'),'treaties'),l($node->title, 'node/' . $node->nid));
     switch ($context) {
       case 'summary':
-        $breadcrumbs = array($node->title);
+        $breadcrumbs = array(l(t('Treaties'),'treaties'),$node->title);
         break;
 
       case 'text':
