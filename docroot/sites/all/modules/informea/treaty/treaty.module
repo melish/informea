@@ -119,6 +119,12 @@ function treaty_theme() {
   );
 }
 
+function set_page_breadcrumb($breadcrumbs = array()) {
+  $new_breadcrumbs = array(l(t('Home'), '<front>'));
+  $new_breadcrumbs = array_merge($new_breadcrumbs,$breadcrumbs);
+  drupal_set_breadcrumb($new_breadcrumbs);
+}
+
 /**
  * Implements hook_node_view().
  */
@@ -155,11 +161,14 @@ EOT
         hide($node->content[$field_name]);
       }
     }
+    $breadcrumbs = array(l($node->title, 'node/' . $node->nid));
     switch ($context) {
       case 'summary':
+        $breadcrumbs = array($node->title);
         break;
 
       case 'text':
+        $breadcrumbs[] = t('Treaty text');
         drupal_add_library('informea', 'scrollto');
         drupal_add_library('informea', 'smallipop');
         drupal_add_css(drupal_get_path('module', 'treaty') . '/styles/treaty.css');
@@ -177,6 +186,7 @@ EOT
         break;
 
       case 'protocols':
+        $breadcrumbs[] = t('Protocols');
         module_load_include('inc', 'treaty', 'treaty.api');
         $data = treaty_get_child_protocols($node->nid);
         if (empty($data)) {
@@ -189,6 +199,7 @@ EOT
         break;
 
       case 'decisions':
+        $breadcrumbs[] = t('Decisions');
         module_load_include('inc', 'decision', 'decision.api');
         $data = decision_get_treaty_decisions_group_by_meeting($node->nid);
         if (empty($data)) {
@@ -256,6 +267,7 @@ EOT
         break;
 
       case 'parties':
+        $breadcrumbs[] = t('Parties & contact points');
         module_load_include('inc', 'country_data', 'country_data.api');
         module_load_include('php', 'informea', 'recaptcha/recaptchalib');
         $members = country_data_treaty_get_membership($node->nid);
@@ -386,6 +398,7 @@ EOT
         }
         break;
       case 'national-reports':
+        $breadcrumbs[] = t('National reports');
         module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
         module_load_include('inc', 'country_deliverable');
         $render = array();
@@ -417,6 +430,7 @@ EOT
         break;
 
       case 'action-plans':
+        $breadcrumbs[] = t('National plans');
         module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
         module_load_include('inc', 'country_deliverable');
         $rows = country_deliverable_action_plans_group_by_country($node->nid);
@@ -427,6 +441,7 @@ EOT
         $node->content['context'] = country_deliverable_render_action_plans($rows);
         break;
     }
+    set_page_breadcrumb($breadcrumbs);
   }
 }
 
