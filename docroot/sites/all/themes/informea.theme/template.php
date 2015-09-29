@@ -38,10 +38,33 @@ function informea_theme_preprocess_page(&$variables) {
     case 'countries':
       $breadcrumbs[] = t('Countries');
       break;
+    case 'terms':
+      $breadcrumbs[] = t('Glossary');
+      break;
+    case 'events':
+      $breadcrumbs[] = t('Events');
+      break;
+    case 'events/past':
+      $breadcrumbs[] = t('Past events');
+      break;
+    case 'news':
+      $breadcrumbs[] = t('News');
+      break;
+    case 'about':
+      $breadcrumbs[] = t('About InforMEA');
+      break;
+    case 'about/api':
+      $breadcrumbs[] = t('API documentation');
+      break;
   }
   if(isset($variables['node'])) {
     $node = $variables['node'];
     switch ($node->type) {
+      case 'event_calendar':
+        $breadcrumbs[] = l(t('Events'), 'events');
+        $breadcrumbs[] = $node->title;
+        break;
+
       case 'country':
         $breadcrumbs[] = l(t('Countries'), 'countries');
         $breadcrumbs[] = $node->title;
@@ -85,7 +108,10 @@ function informea_theme_preprocess_page(&$variables) {
     // Adds the front page JavaScript file to the page.
     drupal_add_js(drupal_get_path('theme', 'informea_theme') . '/js/front.js');
   }
-  set_page_breadcrumb($breadcrumbs);
+
+  if (!empty($breadcrumbs)) {
+    set_page_breadcrumb($breadcrumbs);
+  }
 }
 
 function informea_theme_theme() {
