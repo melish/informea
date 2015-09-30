@@ -32,5 +32,6 @@ settings[bootstrap_anchors_fix] = ''
 settings[bootstrap_breadcrumb_home] = 1
 settings[bootstrap_cdn] = 3.3.0
 settings[bootstrap_navbar_position] = 'static-top'
+settings[bootstrap_breadcrumb_title] = 0
 
 scripts[] = js/common.js
