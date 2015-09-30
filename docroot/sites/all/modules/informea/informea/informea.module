@@ -404,7 +404,7 @@ function informea_taxonomy_term_view($term, $view_mode, $langcode) {
     $path = request_path();
     if (strpos($path,'/ecolex') !== false) {
       $breadcrumbs[] = l($term->name, 'taxonomy/term/' . $term->tid);
-      $breadcrumbs[] = t('Ecolex');
+      $breadcrumbs[] = t('ECOLEX');
     }
     else {
       $breadcrumbs[] = $term->name;
