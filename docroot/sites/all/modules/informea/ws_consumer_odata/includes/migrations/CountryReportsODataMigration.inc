@@ -47,7 +47,7 @@ class CountryReportsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_country', 'country');
     $this->addFieldMapping('field_document_url', 'url');
 
-
+    $this->addFieldMapping('field_last_update', 'updated');
     $this->addFieldMapping('changed', 'updated');
 
     $this->addFieldMapping('comment')->defaultValue(FALSE);
@@ -76,6 +76,8 @@ class CountryReportsODataMigration extends AbstractODataMigration {
       'field_files:source_dir', 'field_files:urlencode', 'field_files:display',
       'field_informea_tags', 'field_informea_tags:source_type',
       'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
+      'field_last_update:timezone', 'field_last_update:rrule',
+      'field_last_update:to',
     ));
   }
 

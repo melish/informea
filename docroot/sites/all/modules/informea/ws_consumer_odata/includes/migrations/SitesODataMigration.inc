@@ -48,6 +48,7 @@ class SitesODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_latitude', 'latitude');
     $this->addFieldMapping('field_longitude', 'longitude');
 
+    $this->addFieldMapping('field_last_update', 'updated');
     $this->addFieldMapping('changed', 'updated');
 
     $this->addFieldMapping('comment')->defaultValue(FALSE);
@@ -64,6 +65,8 @@ class SitesODataMigration extends AbstractODataMigration {
       'body:language', 'field_informea_tags', 'field_informea_tags:source_type',
       'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
       'field_url:language', 'field_url:attributes', 'field_url:title',
+      'field_last_update:timezone', 'field_last_update:rrule',
+      'field_last_update:to',
     ));
   }
 

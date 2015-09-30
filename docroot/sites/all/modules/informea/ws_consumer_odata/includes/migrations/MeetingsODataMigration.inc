@@ -69,6 +69,7 @@ class MeetingsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_event_type:create_term')->defaultValue(TRUE);
     $this->addFieldMapping('field_event_type:ignore_case')->defaultValue(TRUE);
 
+    $this->addFieldMapping('field_last_update', 'updated');
     $this->addFieldMapping('changed', 'updated');
 
     $this->addFieldMapping('comment')->defaultValue(FALSE);
@@ -100,6 +101,8 @@ class MeetingsODataMigration extends AbstractODataMigration {
       'field_tags', 'field_tags:source_type', 'field_tags:create_term',
       'field_tags:ignore_case', 'field_url:title', 'field_url:attributes',
       'field_url:language', 'field_event_images:source_dir',
+      'field_last_update:timezone', 'field_last_update:rrule',
+      'field_last_update:to',
     ));
   }
 
