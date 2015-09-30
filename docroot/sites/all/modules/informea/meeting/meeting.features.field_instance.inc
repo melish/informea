@@ -731,6 +731,71 @@ function meeting_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-event_calendar-field_last_update'
+  $field_instances['node-event_calendar-field_last_update'] = array(
+    'bundle' => 'event_calendar',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 22,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_last_update',
+    'label' => 'Last update',
+    'required' => FALSE,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'j M Y',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_popup',
+      'weight' => 32,
+    ),
+  );
+
   // Exported field_instance: 'node-event_calendar-field_latitude'
   $field_instances['node-event_calendar-field_latitude'] = array(
     'bundle' => 'event_calendar',
@@ -2056,6 +2121,7 @@ function meeting_field_default_field_instances() {
   t('If the imported item is associated with a treaty');
   t('InforMEA Tags');
   t('Kind');
+  t('Last update');
   t('Latitude');
   t('Location');
   t('Longitude');

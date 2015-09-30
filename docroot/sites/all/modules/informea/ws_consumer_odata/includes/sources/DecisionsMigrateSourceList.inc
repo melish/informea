@@ -20,6 +20,7 @@ class DecisionsMigrateSourceList extends MigrateSourceList {
       'meetingId' => 'The decision is linked to this meeting',
       'meetingTitle' => 'Meeting title',
       'meetingUrl' => 'Meeting URL',
+      'displayOrder' => 'Decisions display order',
       'number' => 'Number',
       'published' => 'Publication date',
       'files' => 'Decision files',

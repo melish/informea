@@ -53,14 +53,10 @@ function decision_get_treaty_decisions_group_by_meeting($id_treaty) {
     // Get the decisions for each meeting, ordered by draggable views.
     $q = db_select('field_data_field_meeting', 'a')->fields('a', array('entity_id'))->fields('n', array('title'));
     $q->join('node', 'n', "a.entity_id = n.nid AND n.type = 'decision'");
-    $q->leftJoin('draggableviews_structure', 'b',
-        ' a.entity_id = b.entity_id AND b.view_name = \'decision_ordering\'' .
-        ' AND b.view_display = \'page_reorder\''
-        // AND b.args = '{"field_meeting_target_id":"13284","0":"304"}' not working!
-    );
+    $q->leftJoin('field_data_field_sorting_order', 'b', 'b.entity_id = a.entity_id');
     $q->condition('a.bundle', 'decision');
     $q->condition('a.field_meeting_target_id', $meeting->nid);
-    $q->orderBy('b.weight', 'ASC');
+    $q->orderBy('b.field_sorting_order_value', 'ASC');
     $dids = $q->execute()->fetchAllKeyed();
     $decisions = array();
     foreach($dids as $key => $ob) {

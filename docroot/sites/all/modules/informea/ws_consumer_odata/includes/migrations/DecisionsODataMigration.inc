@@ -69,6 +69,8 @@ class DecisionsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_last_update', 'updated');
     $this->addFieldMapping('changed', 'updated');
 
+    $this->addFieldMapping('field_sorting_order', 'displayOrder');
+
     $this->addFieldMapping('comment')->defaultValue(FALSE);
     $this->addFieldMapping('uid')->defaultValue(0);
     $this->addFieldMapping('status')->defaultValue(1);
@@ -84,14 +86,15 @@ class DecisionsODataMigration extends AbstractODataMigration {
       'field_decision_published:timezone', 'field_decision_published:rrule',
       'field_decision_published:to',
       'field_last_update:timezone', 'field_last_update:rrule',
-      'field_last_update:to', 'field_meeting_url:title',
+      'field_last_update:to',
+      'field_meeting_url:title',
       'field_decision_updated:timezone', 'field_decision_updated:rrule',
       'field_decision_updated:to', 'field_decision_updated',
       'field_meeting_url:attributes', 'field_meeting_url:language',
       'field_url:attributes', 'field_url:language', 'field_url:title',
       'field_informea_tags', 'field_informea_tags:source_type',
       'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
-      'field_sorting_order', 'field_files:preserve_files', 'field_files:file_replace',
+      'field_files:preserve_files', 'field_files:file_replace',
       'field_files:source_dir', 'field_files:urlencode', 'field_files:display',
       'field_files:file_class',
     ));
@@ -104,7 +107,6 @@ class DecisionsODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
-
     if (!$row->title) {
       ws_consumer_odata_log('Skipping Decision with source id=' . $row->id .' because no title could be found.', MigrationBase::MESSAGE_ERROR);
       return FALSE;

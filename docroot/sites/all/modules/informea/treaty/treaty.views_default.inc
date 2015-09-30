@@ -82,8 +82,12 @@ function treaty_views_default_views() {
   $handler->display->display_options['fields']['draggableviews']['field'] = 'draggableviews';
   $handler->display->display_options['fields']['draggableviews']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['draggableviews']['hide_alter_empty'] = FALSE;
+  $handler->display->display_options['fields']['draggableviews']['draggableviews']['handler'] = 'draggableviews_handler_fieldapi';
   $handler->display->display_options['fields']['draggableviews']['draggableviews']['save_button_label'] = 'Save order';
-  $handler->display->display_options['fields']['draggableviews']['draggableviews']['ajax'] = 1;
+  $handler->display->display_options['fields']['draggableviews']['draggableviews']['ajax'] = 0;
+  $handler->display->display_options['fields']['draggableviews']['draggableviews']['draggableviews_handler_fieldapi'] = array(
+    'field' => 'field_data_field_sorting_order:field_sorting_order_value',
+  );
   /* Field: Content: Number */
   $handler->display->display_options['fields']['field_decision_number']['id'] = 'field_decision_number';
   $handler->display->display_options['fields']['field_decision_number']['table'] = 'field_data_field_decision_number';
@@ -101,12 +105,10 @@ function treaty_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Sort criterion: Draggableviews: Weight */
-  $handler->display->display_options['sorts']['weight']['id'] = 'weight';
-  $handler->display->display_options['sorts']['weight']['table'] = 'draggableviews_structure';
-  $handler->display->display_options['sorts']['weight']['field'] = 'weight';
-  $handler->display->display_options['sorts']['weight']['draggableviews_setting_view'] = 'decision_ordering:page_1';
-  $handler->display->display_options['sorts']['weight']['draggableviews_setting_new_items_bottom_list'] = 1;
+  /* Sort criterion: Field: Order (field_sorting_order) */
+  $handler->display->display_options['sorts']['field_sorting_order_value']['id'] = 'field_sorting_order_value';
+  $handler->display->display_options['sorts']['field_sorting_order_value']['table'] = 'field_data_field_sorting_order';
+  $handler->display->display_options['sorts']['field_sorting_order_value']['field'] = 'field_sorting_order_value';
   /* Contextual filter: Content: Treaty (field_treaty) */
   $handler->display->display_options['arguments']['field_treaty_target_id']['id'] = 'field_treaty_target_id';
   $handler->display->display_options['arguments']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
