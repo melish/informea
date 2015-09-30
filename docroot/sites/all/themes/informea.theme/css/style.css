@@ -1080,11 +1080,11 @@ button.toggle {
 .brand-unece .image,
 .brand-hover.brand-unece:hover .image,
 .brand-hover.brand-unece:focus .image {
-  background-position: -700px 0;
+  background-position: -1610px 0;
 }
 
 .brand-hover.brand-unece .image {
-  background-position: -700px -60px;
+  background-position: -1610px -60px;
 }
 
 .brand-cites .image,
@@ -1154,6 +1154,13 @@ button.toggle {
 .brand-hover.brand-fao:focus .image {
   background-position: -1120px 0;
   width: 158px;
+}
+
+.brand-unece .image,
+.brand-hover.brand-unece:hover .image,
+.brand-hover.brand-unece:focus .image {
+  background-position: -1610px 0;
+  width: 150px;
 }
 
 .brand-hover.brand-fao .image {
