@@ -14,6 +14,7 @@
  *   Nothing.
  */
 function informea_theme_preprocess_page(&$variables) {
+  $breadcrumbs = array();
   // Add the autocomplete library.
   drupal_add_library('system', 'ui.autocomplete');
   menu_secondary_local_tasks();
@@ -32,9 +33,38 @@ function informea_theme_preprocess_page(&$variables) {
       }
     }
   }
+  $path = request_path();
+  switch ($path) {
+    case 'countries':
+      $breadcrumbs[] = t('Countries');
+      break;
+    case 'terms':
+      $breadcrumbs[] = t('Glossary');
+      break;
+    case 'events':
+      $breadcrumbs[] = t('Events');
+      break;
+    case 'events/past':
+      $breadcrumbs[] = t('Past events');
+      break;
+    case 'news':
+      $breadcrumbs[] = t('News');
+      break;
+    case 'about':
+      $breadcrumbs[] = t('About InforMEA');
+      break;
+    case 'about/api':
+      $breadcrumbs[] = t('API documentation');
+      break;
+  }
   if(isset($variables['node'])) {
     $node = $variables['node'];
     switch ($node->type) {
+      case 'event_calendar':
+        $breadcrumbs[] = l(t('Events'), 'events');
+        $breadcrumbs[] = $node->title;
+        break;
+
       case 'country':
         $countries = country_get_countries_select_options();
         $countries1 = $countries;
@@ -75,6 +105,10 @@ function informea_theme_preprocess_page(&$variables) {
 
     // Adds the front page JavaScript file to the page.
     drupal_add_js(drupal_get_path('theme', 'informea_theme') . '/js/front.js');
+  }
+
+  if (!empty($breadcrumbs)) {
+    informea_theme_set_page_breadcrumb($breadcrumbs);
   }
 }
 
@@ -404,4 +438,9 @@ function informea_theme_views_pre_render(&$view) {
       $row->total_protocols = treaty_count_child_protocols($row->nid);
     }
   }
+}
+
+function informea_theme_set_page_breadcrumb($breadcrumbs = array()) {
+  array_unshift($breadcrumbs, l(t('Home'), '<front>'));
+  drupal_set_breadcrumb($breadcrumbs);
 }
