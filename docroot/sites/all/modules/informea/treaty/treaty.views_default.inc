@@ -82,8 +82,12 @@ function treaty_views_default_views() {
   $handler->display->display_options['fields']['draggableviews']['field'] = 'draggableviews';
   $handler->display->display_options['fields']['draggableviews']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['draggableviews']['hide_alter_empty'] = FALSE;
+  $handler->display->display_options['fields']['draggableviews']['draggableviews']['handler'] = 'draggableviews_handler_fieldapi';
   $handler->display->display_options['fields']['draggableviews']['draggableviews']['save_button_label'] = 'Save order';
-  $handler->display->display_options['fields']['draggableviews']['draggableviews']['ajax'] = 1;
+  $handler->display->display_options['fields']['draggableviews']['draggableviews']['ajax'] = 0;
+  $handler->display->display_options['fields']['draggableviews']['draggableviews']['draggableviews_handler_fieldapi'] = array(
+    'field' => 'field_data_field_sorting_order:field_sorting_order_value',
+  );
   /* Field: Content: Number */
   $handler->display->display_options['fields']['field_decision_number']['id'] = 'field_decision_number';
   $handler->display->display_options['fields']['field_decision_number']['table'] = 'field_data_field_decision_number';
