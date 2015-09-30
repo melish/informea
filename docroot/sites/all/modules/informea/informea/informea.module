@@ -399,7 +399,6 @@ function informea_theme() {
 
 function informea_taxonomy_term_view($term, $view_mode, $langcode) {
   if ($view_mode == 'full' && $term->vocabulary_machine_name == 'thesaurus_informea') {
-
     $breadcrumbs = array();
     $breadcrumbs[] = l(t('Glossary'), 'terms');
     $path = request_path();
