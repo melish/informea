@@ -50,8 +50,11 @@ abstract class AbstractODataMigration extends Migration {
    *
    */
   protected function fixDateValue($value) {
-    $ret = str_replace(array('/', 'Date', '(', ')'), '', $value);
-    return intval($ret / 1000);
+    if (strpos($value,'Date') == 1) {
+      $ret = str_replace(array('/', 'Date', '(', ')'), '', $value);
+      return intval($ret / 1000);
+    }
+    return $value;
   }
 
   /**
