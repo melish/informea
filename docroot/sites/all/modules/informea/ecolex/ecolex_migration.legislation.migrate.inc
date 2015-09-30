@@ -8,7 +8,7 @@ class EcolexLegislationMigrate extends Migration {
   public function __construct($arguments) {
     parent::__construct($arguments);
     $this->arguments   = $arguments;
-    $this->description = 'Import Ecolex legislation from XML web service (files)';
+    $this->description = 'Import ECOLEX legislation from XML web service (files)';
     $data_dir          = $arguments['data_dir'];
     $this->source      = new EcolexLegislationMigrateSource($data_dir, array(// 'skip_count' => TRUE,
       )
@@ -155,7 +155,7 @@ class EcolexLegislationMigrateSource extends EcolexMigrateSource {
    * Return a string representing the source, for display in the UI.
    */
   public function __toString() {
-    return "Extract treaties from Ecolex XML in {$this->data_dir}";
+    return "Extract treaties from ECOLEX XML in {$this->data_dir}";
   }
 
   /**

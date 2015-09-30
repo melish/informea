@@ -9,7 +9,7 @@ class MigrateEcolexManualCourtDecisions extends DrupalNode7Migration {
     $this->sourceFields['jurisdiction'] = 'Jurisdiction term names';
     $this->sourceFields['type_of_text'] = 'Type of text term names';
     $this->sourceFields['informea_tags'] = 'InforMEA glossary term names';
-    $this->sourceFields['keywords'] = 'Ecolex keywords term names';
+    $this->sourceFields['keywords'] = 'ECOLEX keywords term names';
     $this->sourceFields['territorial_subdivision'] = 'Territorial subdivisions term names';
     $this->sourceFields['country'] = 'Country nid';
     $this->sourceFields['files'] = 'File URLS';

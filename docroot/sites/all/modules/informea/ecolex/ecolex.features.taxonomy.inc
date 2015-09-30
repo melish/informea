@@ -10,9 +10,9 @@
 function ecolex_taxonomy_default_vocabularies() {
   return array(
     'ecolex_decision_status' => array(
-      'name' => 'Ecolex decision status',
+      'name' => 'ECOLEX decision status',
       'machine_name' => 'ecolex_decision_status',
-      'description' => 'Status of an Ecolex Court Decision',
+      'description' => 'Status of an ECOLEX Court Decision',
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,

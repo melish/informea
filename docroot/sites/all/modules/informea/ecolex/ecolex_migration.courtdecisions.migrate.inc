@@ -21,7 +21,7 @@ class EcolexCourtDecisionsMigrate extends Migration {
     // @todo: Preserve the dates intact as in XML file.
     date_default_timezone_set('UTC');
     $this->arguments   = $arguments;
-    $this->description = 'Import Ecolex court decisions from XML web service (files)';
+    $this->description = 'Import ECOLEX court decisions from XML web service (files)';
     $data_dir          = $arguments['data_dir'];
     $this->source      = new EcolexCourtDecisionsMigrateSource($data_dir, array());
     $this->map         = new MigrateSQLMap($this->machineName,
@@ -192,7 +192,7 @@ class EcolexCourtDecisionsMigrateSource extends EcolexMigrateSource {
    * Return a string representing the source, for display in the UI.
    */
   public function __toString() {
-    return "Extract treaties from Ecolex XML in {$this->data_dir}";
+    return "Extract treaties from ECOLEX XML in {$this->data_dir}";
   }
 
   /**
@@ -209,7 +209,7 @@ class EcolexCourtDecisionsMigrateSource extends EcolexMigrateSource {
       'titleOfText'                 => 'Record title',
       'typeOfText'                  => 'Type of court decision document',
       'country'                     => 'Country associated with this record',
-      'subject'                     => 'Ecolex vocabulary tags',
+      'subject'                     => 'ECOLEX vocabulary tags',
       'languageOfDocument'          => 'Language for attached document',
       'courtName'                   => 'Court name for the decision',
       'subdivision'                 => 'Court subdivision (?)',
@@ -217,17 +217,17 @@ class EcolexCourtDecisionsMigrateSource extends EcolexMigrateSource {
       'dateOfText'                  => 'Record date',
       'referenceNumber'             => 'Document reference number',
       'numberOfPages'               => 'Document number of pages',
-      'keyword'                     => 'Ecolex keywords',
+      'keyword'                     => 'ECOLEX keywords',
       'relatedWebSite'              => 'Related website',
       'territorialSubdivision'      => 'Territory',
       'basin'                       => 'Geographical basin',
       'internetReference'           => 'URL',
-      'linkToFullText'              => 'Link to Ecolex document',
+      'linkToFullText'              => 'Link to ECOLEX document',
       'statusOfDecision'            => 'Court decision status',
       'referenceToNationalLegislation' => 'Reference to national legislation record',
       'abstract'                    => 'Document abstract',
       'urlToFaolexDocument'         => 'Link to FAOLEX',
-      'urlToEcolexRecord'           => 'Link to Ecolex',
+      'urlToEcolexRecord'           => 'Link to ECOLEX',
       'mapped_informea_keywords'    => 'Mapped terms computed during import from subject & keyword fields',
     );
   }

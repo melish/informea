@@ -20,7 +20,7 @@ function treaty_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_treaty_field_group';
   $field_group->data = array(
-    'label' => 'Ecolex',
+    'label' => 'ECOLEX',
     'weight' => '19',
     'children' => array(
       0 => 'field_abstract',

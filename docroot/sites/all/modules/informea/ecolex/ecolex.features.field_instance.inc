@@ -687,7 +687,7 @@ function ecolex_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_ecolex_tags',
-    'label' => 'Ecolex subject(s)',
+    'label' => 'ECOLEX subject(s)',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -747,7 +747,7 @@ function ecolex_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_ecolex_url',
-    'label' => 'Ecolex URL',
+    'label' => 'ECOLEX URL',
     'required' => 0,
     'settings' => array(
       'absolute_url' => 1,
@@ -1244,7 +1244,7 @@ function ecolex_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_keywords',
-    'label' => 'Ecolex keyword(s)',
+    'label' => 'ECOLEX keyword(s)',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -2587,7 +2587,7 @@ function ecolex_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_ecolex_tags',
-    'label' => 'Ecolex Tags',
+    'label' => 'ECOLEX Tags',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -2647,7 +2647,7 @@ function ecolex_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_ecolex_url',
-    'label' => 'Ecolex URL',
+    'label' => 'ECOLEX URL',
     'required' => 0,
     'settings' => array(
       'absolute_url' => 1,
@@ -5737,10 +5737,10 @@ function ecolex_field_default_field_instances() {
   t('Date of original text');
   t('Date of text');
   t('Description');
-  t('Ecolex Tags');
-  t('Ecolex URL');
-  t('Ecolex keyword(s)');
-  t('Ecolex subject(s)');
+  t('ECOLEX Tags');
+  t('ECOLEX URL');
+  t('ECOLEX keyword(s)');
+  t('ECOLEX subject(s)');
   t('Entry into force notes');
   t('FAOLEX URL');
   t('Files');

@@ -9,7 +9,7 @@ class EcolexLiteratureMigrate extends Migration {
     parent::__construct($arguments);
     $this->dependencies = array('EcolexTreaties');
     $this->arguments   = $arguments;
-    $this->description = 'Import Ecolex literature from XML web service (files)';
+    $this->description = 'Import ECOLEX literature from XML web service (files)';
     $data_dir          = $arguments['data_dir'];
     $this->source      = new EcolexLiteratureMigrateSource($data_dir, array());
     $this->map         = new MigrateSQLMap($this->machineName,
@@ -214,7 +214,7 @@ class EcolexLiteratureMigrateSource extends EcolexMigrateSource {
    * Return a string representing the source, for display in the UI.
    */
   public function __toString() {
-    return "Extract treaties from Ecolex XML in {$this->data_dir}";
+    return "Extract treaties from ECOLEX XML in {$this->data_dir}";
   }
 
   /**
@@ -222,7 +222,7 @@ class EcolexLiteratureMigrateSource extends EcolexMigrateSource {
    */
   public function fields() {
     return array(
-      'id'                     => 'Ecolex unique ID',
+      'id'                     => 'ECOLEX unique ID',
       'id2'                    => 'Alternative ID',
       'isisMfn'                => 'ISIS Number',
       'dateOfEntry'            => 'Date of entery in the system',
@@ -242,13 +242,13 @@ class EcolexLiteratureMigrateSource extends EcolexMigrateSource {
       'volumeNo'               => 'Volume number',
       'collation'              => 'Info about pages etc.',
       'typeOfText'             => 'Enumerated type of text',
-      'subject'                => 'Ecolex subjects',
+      'subject'                => 'ECOLEX subjects',
       'intOrg'                 => 'Organization international (?)',
       'country'                => 'Related countries',
       'scope'                  => 'Geographical scope',
       'region'                 => 'Related regions',
       'linkToFullText'         => 'Link to document',
-      'keyword'                => 'Ecolex keywords',
+      'keyword'                => 'ECOLEX keywords',
       'referenceToLiterature'  => 'Related literature entities',
       'referenceToTreaties'    => 'Related treaties entities',
       'abstract'               => 'Short description',

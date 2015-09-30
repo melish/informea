@@ -4,7 +4,7 @@
 function informea_drush_command() {
   return array(
     'informea-taxonomy-mappings' => array(
-      'description' => 'Map taxonomies from Ecolex keywords and GEG into InforMEA',
+      'description' => 'Map taxonomies from ECOLEX keywords and GEG into InforMEA',
       'aliases' => array('imea-tm'),
       'options' => array(
         'test' => 'Validate the terms from CSV. Errors are printed in console',
