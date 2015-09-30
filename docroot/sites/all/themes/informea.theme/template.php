@@ -66,8 +66,6 @@ function informea_theme_preprocess_page(&$variables) {
         break;
 
       case 'country':
-        $breadcrumbs[] = l(t('Countries'), 'countries');
-        $breadcrumbs[] = $node->title;
         $countries = country_get_countries_select_options();
         $countries1 = $countries;
         array_unshift($countries1, t('View another country'));
