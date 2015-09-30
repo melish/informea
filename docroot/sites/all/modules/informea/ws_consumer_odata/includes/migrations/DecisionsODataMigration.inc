@@ -9,6 +9,7 @@ class DecisionsODataMigration extends AbstractODataMigration {
    * @var ODataConsumerConfig
    */
   protected $config = NULL;
+  private $dispaly_order = array();
 
   /**
    * {@inheritdoc}
@@ -104,7 +105,6 @@ class DecisionsODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
-
     if (!$row->title) {
       ws_consumer_odata_log('Skipping Decision with source id=' . $row->id .' because no title could be found.', MigrationBase::MESSAGE_ERROR);
       return FALSE;
@@ -127,6 +127,39 @@ class DecisionsODataMigration extends AbstractODataMigration {
         $row->filename[] = $filename;
       }
     }
+  }
+
+  function complete($entity, $row) {
+    if ($row->displayOrder) {
+      $this->dispaly_order[] = array(
+        'id' => $entity->nid,
+        'order' => $row->displayOrder,
+        'meeting' => $row->meetingId,
+        'treaty' => $row->treaty
+      );
+    }
+  }
+
+  function postImport() {
+    parent::postImport();
+    $query = db_insert('draggableviews_structure')->fields(array(
+      'view_name',
+      'view_display',
+      'args',
+      'entity_id',
+      'weight',
+    ));
+    foreach($this->dispaly_order as $item) {
+      $values = array(
+        'decision_ordering',
+        'page_reorder',
+        '{"field_meeting_target_id":"' . $item['meeting'] . '","0":"' . $item['treaty'] . '"}',
+        $item['id'],
+        $item['order'],
+      );
+      $query->values($values);
+    }
+    $query->execute();
   }
 
   public function map_source_meeting($id) {
