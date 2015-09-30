@@ -399,9 +399,17 @@ function informea_theme() {
 
 function informea_taxonomy_term_view($term, $view_mode, $langcode) {
   if ($view_mode == 'full' && $term->vocabulary_machine_name == 'thesaurus_informea') {
+
     $breadcrumbs = array();
     $breadcrumbs[] = l(t('Glossary'), 'terms');
-    $breadcrumbs[] = $term->name;
+    $path = request_path();
+    if (strpos($path,'/ecolex') !== false) {
+      $breadcrumbs[] = l($term->name, 'taxonomy/term/' . $term->tid);
+      $breadcrumbs[] = t('Ecolex');
+    }
+    else {
+      $breadcrumbs[] = $term->name;
+    }
     informea_theme_set_page_breadcrumb($breadcrumbs);
   }
 }
