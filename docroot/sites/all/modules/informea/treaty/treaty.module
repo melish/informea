@@ -619,6 +619,9 @@ function treaty_views_pre_render(&$view) {
       $rs = $wrapper->field_region->value();
 
       foreach ($rs as $t) {
+        if ($t === NULL) {
+          continue;
+        }
         $t_wrapper = entity_metadata_wrapper('taxonomy_term', $t);
         $t->name = $t_wrapper->label();
         $regions[$t->tid] = $t;
