@@ -9,7 +9,6 @@ class DecisionsODataMigration extends AbstractODataMigration {
    * @var ODataConsumerConfig
    */
   protected $config = NULL;
-  private $dispaly_order = array();
 
   /**
    * {@inheritdoc}
@@ -70,6 +69,8 @@ class DecisionsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_last_update', 'updated');
     $this->addFieldMapping('changed', 'updated');
 
+    $this->addFieldMapping('field_sorting_order', 'displayOrder');
+
     $this->addFieldMapping('comment')->defaultValue(FALSE);
     $this->addFieldMapping('uid')->defaultValue(0);
     $this->addFieldMapping('status')->defaultValue(1);
@@ -93,7 +94,7 @@ class DecisionsODataMigration extends AbstractODataMigration {
       'field_url:attributes', 'field_url:language', 'field_url:title',
       'field_informea_tags', 'field_informea_tags:source_type',
       'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
-      'field_sorting_order', 'field_files:preserve_files', 'field_files:file_replace',
+      'field_files:preserve_files', 'field_files:file_replace',
       'field_files:source_dir', 'field_files:urlencode', 'field_files:display',
       'field_files:file_class',
     ));
@@ -128,39 +129,6 @@ class DecisionsODataMigration extends AbstractODataMigration {
         $row->filename[] = $filename;
       }
     }
-  }
-
-  function complete($entity, $row) {
-    if ($row->displayOrder) {
-      $this->dispaly_order[] = array(
-        'id' => $entity->nid,
-        'order' => $row->displayOrder,
-        'meeting' => $row->meetingId,
-        'treaty' => $row->treaty
-      );
-    }
-  }
-
-  function postImport() {
-    parent::postImport();
-    $query = db_insert('draggableviews_structure')->fields(array(
-      'view_name',
-      'view_display',
-      'args',
-      'entity_id',
-      'weight',
-    ));
-    foreach($this->dispaly_order as $item) {
-      $values = array(
-        'decision_ordering',
-        'page_reorder',
-        '{"field_meeting_target_id":"' . $item['meeting'] . '","0":"' . $item['treaty'] . '"}',
-        $item['id'],
-        $item['order'],
-      );
-      $query->values($values);
-    }
-    $query->execute();
   }
 
   public function map_source_meeting($id) {
