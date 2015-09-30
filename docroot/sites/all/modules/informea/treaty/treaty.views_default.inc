@@ -101,12 +101,10 @@ function treaty_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Sort criterion: Draggableviews: Weight */
-  $handler->display->display_options['sorts']['weight']['id'] = 'weight';
-  $handler->display->display_options['sorts']['weight']['table'] = 'draggableviews_structure';
-  $handler->display->display_options['sorts']['weight']['field'] = 'weight';
-  $handler->display->display_options['sorts']['weight']['draggableviews_setting_view'] = 'decision_ordering:page_1';
-  $handler->display->display_options['sorts']['weight']['draggableviews_setting_new_items_bottom_list'] = 1;
+  /* Sort criterion: Field: Order (field_sorting_order) */
+  $handler->display->display_options['sorts']['field_sorting_order_value']['id'] = 'field_sorting_order_value';
+  $handler->display->display_options['sorts']['field_sorting_order_value']['table'] = 'field_data_field_sorting_order';
+  $handler->display->display_options['sorts']['field_sorting_order_value']['field'] = 'field_sorting_order_value';
   /* Contextual filter: Content: Treaty (field_treaty) */
   $handler->display->display_options['arguments']['field_treaty_target_id']['id'] = 'field_treaty_target_id';
   $handler->display->display_options['arguments']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
