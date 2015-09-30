@@ -58,6 +58,7 @@ class ContactsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_person_type:create_term')->defaultValue(TRUE);
     $this->addFieldMapping('field_person_type:ignore_case')->defaultValue(TRUE);
 
+    $this->addFieldMapping('field_last_update', 'updated');
     $this->addFieldMapping('changed', 'updated');
 
     $this->addFieldMapping('comment')->defaultValue(FALSE);
@@ -74,6 +75,8 @@ class ContactsODataMigration extends AbstractODataMigration {
       'field_person_position:language', 'field_person_institution:language',
       'field_person_prefix:language', 'field_person_type:source_type', 'path',
       'body:language',
+      'field_last_update:timezone', 'field_last_update:rrule',
+      'field_last_update:to',
     ));
   }
 
