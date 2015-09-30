@@ -39,7 +39,7 @@
           </a><!-- .brand .brand-hover .brand-unesco -->
         </li>
         <li>
-          <a class="brand brand-hover brand-unece" href="http://www.unece.org/" target="_blank">
+          <a class="brand brand-hover brand-unece" href="http://www.unece.org/env/treaties/welcome.html" target="_blank">
             <div class="image"></div>
             <?php print t('UNECE'); ?>
           </a><!-- .brand .brand-hover .brand-unece -->
