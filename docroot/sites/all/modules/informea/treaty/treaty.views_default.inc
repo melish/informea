@@ -365,10 +365,6 @@ function treaty_views_default_views() {
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
   $handler->display->display_options['header']['result']['content'] = 'Showing <span class="total">@total</span> treaties and protocols';
-  /* Relationship: Content: Entity translation: translations */
-  $handler->display->display_options['relationships']['entity_translations']['id'] = 'entity_translations';
-  $handler->display->display_options['relationships']['entity_translations']['table'] = 'node';
-  $handler->display->display_options['relationships']['entity_translations']['field'] = 'entity_translations';
   /* Field: Content: Logo */
   $handler->display->display_options['fields']['field_logo']['id'] = 'field_logo';
   $handler->display->display_options['fields']['field_logo']['table'] = 'field_data_field_logo';
@@ -468,14 +464,6 @@ function treaty_views_default_views() {
     'treaty' => 'treaty',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Entity translation: Language */
-  $handler->display->display_options['filters']['language']['id'] = 'language';
-  $handler->display->display_options['filters']['language']['table'] = 'entity_translation';
-  $handler->display->display_options['filters']['language']['field'] = 'language';
-  $handler->display->display_options['filters']['language']['relationship'] = 'entity_translations';
-  $handler->display->display_options['filters']['language']['value'] = array(
-    '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
-  );
 
   /* Display: Regional table */
   $handler = $view->new_display('page', 'Regional table', 'page');
@@ -539,7 +527,6 @@ function treaty_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('Showing <span class="total">@total</span> treaties and protocols'),
-    t('Translations'),
     t('<p class="text-muted">[title_field]</p>'),
     t('<p class="text-muted small"><strong>Topics:</strong> [field_informea_tags]</p>'),
     t('[field_official_name]
