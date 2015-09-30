@@ -402,6 +402,6 @@ function informea_taxonomy_term_view($term, $view_mode, $langcode) {
     $breadcrumbs = array();
     $breadcrumbs[] = l(t('Glossary'), 'terms');
     $breadcrumbs[] = $term->name;
-    set_page_breadcrumb($breadcrumbs);
+    informea_theme_set_page_breadcrumb($breadcrumbs);
   }
 }

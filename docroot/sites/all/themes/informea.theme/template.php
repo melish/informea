@@ -110,7 +110,7 @@ function informea_theme_preprocess_page(&$variables) {
   }
 
   if (!empty($breadcrumbs)) {
-    set_page_breadcrumb($breadcrumbs);
+    informea_theme_set_page_breadcrumb($breadcrumbs);
   }
 }
 
@@ -442,8 +442,7 @@ function informea_theme_views_pre_render(&$view) {
   }
 }
 
-function set_page_breadcrumb($breadcrumbs = array()) {
-  $new_breadcrumbs = array(l(t('Home'), '<front>'));
-  $new_breadcrumbs = array_merge($new_breadcrumbs,$breadcrumbs);
-  drupal_set_breadcrumb($new_breadcrumbs);
+function informea_theme_set_page_breadcrumb($breadcrumbs = array()) {
+  array_unshift($breadcrumbs, l(t('Home'), '<front>'));
+  drupal_set_breadcrumb($breadcrumbs);
 }

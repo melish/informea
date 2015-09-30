@@ -435,7 +435,7 @@ EOT
         $node->content['context'] = country_deliverable_render_action_plans($rows);
         break;
     }
-    set_page_breadcrumb($breadcrumbs);
+    informea_theme_set_page_breadcrumb($breadcrumbs);
   }
 }
 
