@@ -110,7 +110,7 @@
           </ul><!-- .dropdown-menu -->
         </li><!-- .dropdown -->
         <li><?php print l(t('Countries'), 'countries'); ?></li>
-        <li><?php print l(t('Glossary'), 'terms'); ?></li>
+        <li><?php print l(t('Glossary'), 'http://leo.informea.org/'); ?></li>
         <li class="dropdown">
           <?php print l(
             t('Events') . ' <span class="caret"></span>',
