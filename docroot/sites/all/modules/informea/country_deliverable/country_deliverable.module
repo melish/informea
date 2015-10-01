@@ -63,7 +63,7 @@ function country_deliverable_render_action_plans($rows) {
     );
   }
   return array(
-    '#type' => 'item', '#weight' => 10, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'accordion', 'elements' => $elements, 'no-panel-body' => TRUE, 'no-data-parent' => TRUE)),
+    '#type' => 'item', '#weight' => 10, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'accordion', 'elements' => $elements, 'no-panel-body' => TRUE, 'no-data-parent' => TRUE, 'show-expand-button' => TRUE,)),
   );
 }
 
@@ -116,7 +116,7 @@ function country_deliverable_render_national_reports($rows) {
     );
   }
   return array(
-    '#type' => 'item', '#weight' => 50, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'accordion', 'elements' => $elements, 'no-panel-body' => TRUE, 'no-data-parent' => TRUE)),
+    '#type' => 'item', '#weight' => 50, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'accordion', 'elements' => $elements, 'no-panel-body' => TRUE, 'no-data-parent' => TRUE, 'show-expand-button' => TRUE,)),
   );
 }
 
@@ -177,7 +177,7 @@ function country_deliverable_render_rod($id_treaty, $rows) {
       );
     }
     $ret[] = array(
-      '#type' => 'item', '#weight' => 30, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'reporting-cycles', 'elements' => $render_rows)),
+      '#type' => 'item', '#weight' => 30, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'reporting-cycles', 'elements' => $render_rows, 'show-expand-button' => TRUE,)),
     );
   }
   return $ret;

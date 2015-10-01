@@ -98,4 +98,19 @@ jQuery(document).ready(function ($) {
       window.location.href = dest;
     }
   });
+
+  $('[data-toggle="informea-bootstrap-collapse"]').click(function () {
+    var $element = $(this);
+    var target = $element.data('target');
+
+    if ($element.data('pressed')) {
+      $element.data('pressed', false);
+      $element.html(Drupal.t('Show all'));
+      $('.panel-collapse', target).collapse('hide');
+    } else {
+      $element.data('pressed', true);
+      $element.html(Drupal.t('Hide all'));
+      $('.panel-collapse', target).collapse('show');
+    }
+  });
 });

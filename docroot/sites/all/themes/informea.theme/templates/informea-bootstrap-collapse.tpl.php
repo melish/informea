@@ -3,10 +3,15 @@ $id = isset($variables['id']) ? $variables['id'] : 'accordion';
 $elements = $variables['elements'];
 $add_data_parent = empty($variables['no-data-parent']);
 $add_data_parent_text = $add_data_parent ? (' data-parent="#' . $id . '"') : '';
+$show_expand_button = isset($variables['show-expand-button']) ? $variables['show-expand-button'] : FALSE;
 ?>
 <?php if (!empty($elements)): ?>
+  <?php if ($show_expand_button): ?>
+  <button type="button" class="btn btn-default pull-right" data-toggle="informea-bootstrap-collapse" data-target="#<?php print $id; ?>"><?php print t('Show all'); ?></button>
+  <?php endif; ?>
   <div class="accordion panel-group" id="<?php print $id; ?>" role="tablist" aria-multiselectable="true">
-  <?php
+    <div class="list">
+    <?php
   foreach($elements as $eid => $element):
     $collapsed = empty($element['in']) ? ' collapsed' : '';
     $in = empty($collapsed) ? ' in' : '';
@@ -42,5 +47,6 @@ $add_data_parent_text = $add_data_parent ? (' data-parent="#' . $id . '"') : '';
     </div>
   </div>
   <?php endforeach; ?>
+    </div>
 </div>
 <?php endif; ?>
