@@ -1715,7 +1715,3 @@ strong.excerpt {
 #table-treaties > tbody > .active {
   display: none;
 }
-.navbar-default .navbar-nav>.dropdown>a .caret {
-  border-top-color: #fff;
-  border-bottom-color: #fff;
-}
