@@ -1009,12 +1009,12 @@ function treaty_node_update($node) {
     if ($node->original->status == NODE_PUBLISHED &&
         $node->status == NODE_NOT_PUBLISHED) {
       //Published -> unpublished
-      $status_to_set = NODE_NOT_PUBLISHED;
+      $new_status = NODE_NOT_PUBLISHED;
     }
     elseif ($node->original->status == NODE_NOT_PUBLISHED &&
           $node->status == NODE_PUBLISHED) {
       //Unpublished -> published
-      $status_to_set = NODE_PUBLISHED;
+      $new_status = NODE_PUBLISHED;
     }
     else {
       //none of the above happened so we don't run the batch opperation
@@ -1022,17 +1022,20 @@ function treaty_node_update($node) {
     }
     $query = db_select('field_data_field_treaty', 'a')
       ->fields('a', array('entity_id'))
-      ->condition('a.field_treaty_target_id', $node->nid);
+      ->condition('a.field_treaty_target_id', $node->nid)
+      ->condition('a.entity_type', 'node');
     $data = $query->execute()->fetchCol();
     $count = count($data);
     $batch = array(
       'operations' => array(
-        array('treaty_update_batch_process', array($node->nid, $count, $status_to_set)),
+        array('treaty_update_batch_process', array($node->nid, $count, $new_status)),
       ),
       'finished' => 'treaty_update_batch_finished',
-      'title' => t('Updating all child nodes.'),
-      'error_message' => t('Updating process has encountered an error.'),
-      'progress_message' => t('Processing...'),
+      'title' =>  $new_status == NODE_PUBLISHED
+        ? t('Publishing !title treaty and all the related content', array('!title' => $node->title))
+        : t('Unpublishing !title treaty and all the content related content', array('!title' => $node->title)),
+      'error_message' => t('The process has encountered an error. Please report this error to the technical people'),
+      'progress_message' => t('Working, please wait ...'),
     );
     batch_set($batch);
   }
