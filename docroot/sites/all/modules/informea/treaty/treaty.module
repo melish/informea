@@ -999,3 +999,23 @@ function treaty_form_node_form_alter(&$form, &$form_state, $form_id) {
       break;
   }
 }
+
+/**
+ * Implements hook_node_update().
+ */
+function treaty_node_update($node) {
+  if ($node->type == 'treaty') {
+    if ($node->original->status == NODE_PUBLISHED &&
+        $node->status == NODE_NOT_PUBLISHED) {
+      $query = db_select('field_data_field_treaty', 'a')
+        ->fields('a', array('entity_id'))
+        ->condition('a.field_treaty_target_id', $node->nid);
+      $data = $query->execute()->fetchCol();
+      $child_nodes = node_load_multiple($data);
+      foreach($child_nodes as $child) {
+        $child->status = NODE_NOT_PUBLISHED;
+        node_save($child);
+      }
+    }
+  }
+}
