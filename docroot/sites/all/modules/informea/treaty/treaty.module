@@ -1037,7 +1037,7 @@ function treaty_node_update($node) {
       'finished' => 'treaty_update_batch_finished',
       'title' => t('Updating all child nodes.'),
       'error_message' => t('Updating process has encountered an error.'),
-      'progress_message' => t('Processed @current out of @total.'),
+      'progress_message' => t('Processing...'),
     );
     batch_set($batch);
   }
