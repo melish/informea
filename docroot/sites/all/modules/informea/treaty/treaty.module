@@ -1005,31 +1005,81 @@ function treaty_form_node_form_alter(&$form, &$form_state, $form_id) {
  */
 function treaty_node_update($node) {
   if ($node->type == 'treaty') {
+    $count = 0;
     if ($node->original->status == NODE_PUBLISHED &&
         $node->status == NODE_NOT_PUBLISHED) {
+      $status_to_set = NODE_NOT_PUBLISHED;
       //Published -> unpublished
       $query = db_select('field_data_field_treaty', 'a')
         ->fields('a', array('entity_id'))
         ->condition('a.field_treaty_target_id', $node->nid);
       $data = $query->execute()->fetchCol();
-      $child_nodes = node_load_multiple($data);
-      foreach($child_nodes as $child) {
-        $child->status = NODE_NOT_PUBLISHED;
-        node_save($child);
-      }
+      $count = count($data);
     }
     elseif ($node->original->status == NODE_NOT_PUBLISHED &&
           $node->status == NODE_PUBLISHED) {
+      $status_to_set = NODE_PUBLISHED;
       //Unpublished -> published
       $query = db_select('field_data_field_treaty', 'a')
         ->fields('a', array('entity_id'))
         ->condition('a.field_treaty_target_id', $node->nid);
       $data = $query->execute()->fetchCol();
-      $child_nodes = node_load_multiple($data);
-      foreach($child_nodes as $child) {
-        $child->status = NODE_PUBLISHED;
-        node_save($child);
-      }
+      $count = count($data);
     }
+    else {
+      //none of the above happened so we don't run the batch opperation
+      return;
+    }
+    $batch = array(
+      'operations' => array(
+        array('treaty_update_batch_process', array($node->nid, $count, $status_to_set)),
+      ),
+      'finished' => 'treaty_update_batch_finished',
+      'title' => t('Updating all child nodes.'),
+      'error_message' => t('Updating process has encountered an error.'),
+      'progress_message' => t('Processed @current out of @total.'),
+    );
+    batch_set($batch);
+  }
+}
+
+function treaty_update_batch_process($nid, $total_number, $status, &$context) {
+  if (!isset($context['sandbox']['progress'])) {
+    $context['sandbox']['progress'] = 0;
+    $context['sandbox']['current_node'] = 0;
+    $context['sandbox']['max'] = $total_number;
+  }
+
+  $limit = 10;
+
+  $query = db_select('field_data_field_treaty', 'a')
+    ->fields('a', array('entity_id'))
+    ->condition('a.field_treaty_target_id', $nid)
+    ->range($context['sandbox']['progress'], $limit);
+  $data = $query->execute()->fetchCol();
+  $child_nodes = node_load_multiple($data);
+
+  foreach($child_nodes as $child) {
+    $child->status = $status;
+    node_save($child);
+    $context['results'][] = $child->title;
+    $context['sandbox']['progress']++;
+    $context['sandbox']['current_node'] = $child->nid;
+  }
+
+  if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
+    $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+  }
+}
+
+function treaty_update_batch_finished($success, $results, $operations) {
+  if ($success) {
+    $message = t('@count items successfully updated.', array('@count' => count($results)));
+    drupal_set_message($message);
+  }
+  else {
+    $error_operation = reset($operations);
+    $message = t('An error occurred while processing %error_operation with arguments: @arguments', array('%error_operation' => $error_operation[0], '@arguments' => print_r($error_operation[1], TRUE)));
+    drupal_set_message($message, 'error');
   }
 }
