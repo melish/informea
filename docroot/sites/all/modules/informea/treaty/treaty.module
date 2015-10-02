@@ -1008,28 +1008,23 @@ function treaty_node_update($node) {
     $count = 0;
     if ($node->original->status == NODE_PUBLISHED &&
         $node->status == NODE_NOT_PUBLISHED) {
-      $status_to_set = NODE_NOT_PUBLISHED;
       //Published -> unpublished
-      $query = db_select('field_data_field_treaty', 'a')
-        ->fields('a', array('entity_id'))
-        ->condition('a.field_treaty_target_id', $node->nid);
-      $data = $query->execute()->fetchCol();
-      $count = count($data);
+      $status_to_set = NODE_NOT_PUBLISHED;
     }
     elseif ($node->original->status == NODE_NOT_PUBLISHED &&
           $node->status == NODE_PUBLISHED) {
-      $status_to_set = NODE_PUBLISHED;
       //Unpublished -> published
-      $query = db_select('field_data_field_treaty', 'a')
-        ->fields('a', array('entity_id'))
-        ->condition('a.field_treaty_target_id', $node->nid);
-      $data = $query->execute()->fetchCol();
-      $count = count($data);
+      $status_to_set = NODE_PUBLISHED;
     }
     else {
       //none of the above happened so we don't run the batch opperation
       return;
     }
+    $query = db_select('field_data_field_treaty', 'a')
+      ->fields('a', array('entity_id'))
+      ->condition('a.field_treaty_target_id', $node->nid);
+    $data = $query->execute()->fetchCol();
+    $count = count($data);
     $batch = array(
       'operations' => array(
         array('treaty_update_batch_process', array($node->nid, $count, $status_to_set)),
