@@ -261,7 +261,7 @@ EOT
         break;
 
       case 'parties':
-        $breadcrumbs[] = t('Parties and contact information');
+        $breadcrumbs[] = t('Parties and contact data');
         module_load_include('inc', 'country_data', 'country_data.api');
         module_load_include('php', 'informea', 'recaptcha/recaptchalib');
         $members = country_data_treaty_get_membership($node->nid);
@@ -500,7 +500,7 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
         'count' => $d_count,
       ),
       'parties' => array(
-        'title' => t('Parties and contact information'),
+        'title' => t('Parties and contact data'),
         'count' => country_data_treaty_count_membership($node->nid)
       ),
       'national-reports' => array(
