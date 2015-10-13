@@ -333,6 +333,7 @@ $options['init-modules'] = array(
   'meeting',
   'search_integration',
   'treaty',
+  'youtube',
   'i18n_string_helper',
   'ws_consumer',
   'ws_consumer_odata',
