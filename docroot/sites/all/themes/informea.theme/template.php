@@ -184,28 +184,20 @@ function informea_theme_treaty_logo_link($node) {
 
 function informea_theme_slider() {
   $max_slides_count = variable_get('informea_max_slides_count', 7);
-
   $slides = array();
-
   $query = new EntityFieldQuery();
-
   $query
     ->entityCondition('entity_type', 'entityqueue_subqueue')
     ->entityCondition('bundle', 'front_page_slider');
-
   $result = $query->execute();
-
   if (!empty($result['entityqueue_subqueue'])) {
     $subqueues = entity_load('entityqueue_subqueue', array_keys($result['entityqueue_subqueue']));
-
     foreach ($subqueues as $subqueue) {
       $wrapper = entity_metadata_wrapper('entityqueue_subqueue', $subqueue);
       $key = $wrapper->getIdentifier();
       $nodes = $wrapper->eq_node->value();
-
       foreach ($nodes as $node) {
         $w = entity_metadata_wrapper('node', $node);
-
         switch ($w->getBundle()) {
           case 'feed_item':
             $url = $w->field_url->value();
@@ -218,8 +210,18 @@ function informea_theme_slider() {
 
             break;
         }
-
-        $image = theme('image_style', array('path' => $w->field_image->value()['uri'], 'style_name' => 'front_page_slider'));
+        $image = NULL;
+        try {
+          $video = field_view_field('node', $node, 'field_video', 'full');
+          $image = drupal_render($video);
+        }
+        catch(Exception $e) {}
+        if (empty($image)) {
+          $image = theme('image_style', array(
+            'path' => $w->field_image->value()['uri'],
+            'style_name' => 'front_page_slider'
+          ));
+        }
         $slide = array(
           'image' => l($image, $url, array('absolute' => TRUE, 'html' => TRUE)),
           'link' => l($w->label(), $url, array('absolute' => TRUE, 'attributes' => array('target' => '_blank')))

@@ -1286,6 +1286,14 @@ button.toggle {
 }
 
 @media (min-width: 1200px) {
+
+  body.front iframe.youtube-field-player {
+    width: 500px;
+    height: 292px;
+    margin: 0;
+    padding: 0;
+  }
+
   #col-about {
     padding-top: 50px;
   }
