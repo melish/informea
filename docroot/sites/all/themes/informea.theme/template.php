@@ -191,6 +191,7 @@ function informea_theme_slider() {
     ->entityCondition('bundle', 'front_page_slider');
   $result = $query->execute();
   if (!empty($result['entityqueue_subqueue'])) {
+    drupal_add_js('https://www.youtube.com/iframe_api');
     $subqueues = entity_load('entityqueue_subqueue', array_keys($result['entityqueue_subqueue']));
     foreach ($subqueues as $subqueue) {
       $wrapper = entity_metadata_wrapper('entityqueue_subqueue', $subqueue);
