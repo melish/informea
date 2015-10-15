@@ -477,8 +477,8 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-action_plan-field_report_submission_date'
-  $field_instances['node-action_plan-field_report_submission_date'] = array(
+  // Exported field_instance: 'node-action_plan-field_sorting_date'
+  $field_instances['node-action_plan-field_sorting_date'] = array(
     'bundle' => 'action_plan',
     'deleted' => 0,
     'description' => '',
@@ -490,7 +490,7 @@ function country_deliverable_field_default_field_instances() {
         'weight' => 0,
       ),
       'default' => array(
-        'label' => 'inline',
+        'label' => 'above',
         'module' => 'date',
         'settings' => array(
           'format_type' => 'long',
@@ -500,7 +500,7 @@ function country_deliverable_field_default_field_instances() {
           'multiple_to' => '',
         ),
         'type' => 'date_default',
-        'weight' => 6,
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -516,8 +516,8 @@ function country_deliverable_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_report_submission_date',
-    'label' => 'Submission date',
+    'field_name' => 'field_sorting_date',
+    'label' => 'Date of text',
     'required' => 0,
     'settings' => array(
       'default_value' => 'now',
@@ -532,14 +532,14 @@ function country_deliverable_field_default_field_instances() {
       'module' => 'date',
       'settings' => array(
         'increment' => 15,
-        'input_format' => 'm/d/Y - H:i:s',
+        'input_format' => 'j M Y',
         'input_format_custom' => '',
         'label_position' => 'above',
         'text_parts' => array(),
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 9,
+      'weight' => 34,
     ),
   );
 
@@ -1068,9 +1068,8 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance:
-  // 'node-national_report-field_report_submission_date'
-  $field_instances['node-national_report-field_report_submission_date'] = array(
+  // Exported field_instance: 'node-national_report-field_sorting_date'
+  $field_instances['node-national_report-field_sorting_date'] = array(
     'bundle' => 'national_report',
     'deleted' => 0,
     'description' => '',
@@ -1082,7 +1081,7 @@ function country_deliverable_field_default_field_instances() {
         'weight' => 0,
       ),
       'default' => array(
-        'label' => 'inline',
+        'label' => 'above',
         'module' => 'date',
         'settings' => array(
           'format_type' => 'long',
@@ -1092,13 +1091,13 @@ function country_deliverable_field_default_field_instances() {
           'multiple_to' => '',
         ),
         'type' => 'date_default',
-        'weight' => 6,
+        'weight' => 11,
       ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 0,
       ),
       'treaty_listing' => array(
         'label' => 'above',
@@ -1108,8 +1107,8 @@ function country_deliverable_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_report_submission_date',
-    'label' => 'Submission date',
+    'field_name' => 'field_sorting_date',
+    'label' => 'Date of text',
     'required' => 0,
     'settings' => array(
       'default_value' => 'now',
@@ -1124,14 +1123,14 @@ function country_deliverable_field_default_field_instances() {
       'module' => 'date',
       'settings' => array(
         'increment' => 15,
-        'input_format' => 'm/d/Y - H:i:s',
+        'input_format' => 'j M Y',
         'input_format_custom' => '',
         'label_position' => 'above',
         'text_parts' => array(),
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 9,
+      'weight' => 34,
     ),
   );
 
@@ -1784,6 +1783,7 @@ function country_deliverable_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Body');
   t('Country');
+  t('Date of text');
   t('Decision');
   t('Decision paragraph');
   t('Description');
@@ -1796,7 +1796,6 @@ function country_deliverable_field_default_field_instances() {
   t('Official order');
   t('Original ID');
   t('Reporting format document');
-  t('Submission date');
   t('Title');
   t('Treaty');
   t('Type');
