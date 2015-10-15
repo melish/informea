@@ -46,7 +46,7 @@ class DecisionsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_decision_status', 'status');
     $this->addFieldMapping('field_decision_type', 'type');
     $this->addFieldMapping('field_decision_number', 'number');
-    $this->addFieldMapping('field_decision_published', 'published');
+    $this->addFieldMapping('field_sorting_date', 'published');
     $this->addFieldMapping('field_meeting', 'meetingId');
     $this->addFieldMapping('field_meeting_title_en', 'meetingTitle');
     $this->addFieldMapping('field_meeting_url', 'meetingUrl');
@@ -83,8 +83,8 @@ class DecisionsODataMigration extends AbstractODataMigration {
       'created', 'log', 'tnid', 'translate', 'revision_uid', 'is_new',
       'body:format', 'path', 'field_decision_type:source_type',
       'field_decision_status:source_type',
-      'field_decision_published:timezone', 'field_decision_published:rrule',
-      'field_decision_published:to',
+      'field_sorting_date:timezone', 'field_sorting_date:rrule',
+      'field_sorting_date:to',
       'field_last_update:timezone', 'field_last_update:rrule',
       'field_last_update:to',
       'field_meeting_url:title',
