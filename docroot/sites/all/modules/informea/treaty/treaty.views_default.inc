@@ -431,19 +431,12 @@ function treaty_views_default_views() {
   $handler->display->display_options['fields']['field_region']['element_label_class'] = 'dropdown text-nowrap';
   $handler->display->display_options['fields']['field_region']['type'] = 'i18n_taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_region']['delta_offset'] = '0';
-  /* Field: Content: Entry into force */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_entry_into_force']['id'] = 'field_entry_into_force';
   $handler->display->display_options['fields']['field_entry_into_force']['table'] = 'field_data_field_entry_into_force';
   $handler->display->display_options['fields']['field_entry_into_force']['field'] = 'field_entry_into_force';
   $handler->display->display_options['fields']['field_entry_into_force']['element_label_class'] = 'text-nowrap';
   $handler->display->display_options['fields']['field_entry_into_force']['empty'] = 'N/A';
-  $handler->display->display_options['fields']['field_entry_into_force']['settings'] = array(
-    'format_type' => 'short',
-    'fromto' => 'both',
-    'multiple_number' => '',
-    'multiple_from' => '',
-    'multiple_to' => '',
-  );
   /* Sort criterion: Draggableviews: Weight */
   $handler->display->display_options['sorts']['weight']['id'] = 'weight';
   $handler->display->display_options['sorts']['weight']['table'] = 'draggableviews_structure';
@@ -535,7 +528,7 @@ function treaty_views_default_views() {
 [title_field]
 [field_informea_tags]'),
     t('Region'),
-    t('Entry into force'),
+    t('Broken handler field_data_field_entry_into_force.field_entry_into_force'),
     t('N/A'),
     t('Regional table'),
     t('Reorder treaties'),

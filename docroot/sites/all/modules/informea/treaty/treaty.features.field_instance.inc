@@ -1211,79 +1211,6 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_entry_into_force'
-  $field_instances['node-treaty-field_entry_into_force'] = array(
-    'bundle' => 'treaty',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'ajax' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'short',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-        ),
-        'type' => 'date_default',
-        'weight' => 3,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'treaty_listing' => array(
-        'label' => 'hidden',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'short',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-        ),
-        'type' => 'date_default',
-        'weight' => 2,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_entry_into_force',
-    'label' => 'Entry into force',
-    'required' => 0,
-    'settings' => array(
-      'default_value' => 'now',
-      'default_value2' => 'same',
-      'default_value_code' => '',
-      'default_value_code2' => '',
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'date',
-      'settings' => array(
-        'increment' => 15,
-        'input_format' => 'j M Y',
-        'input_format_custom' => '',
-        'label_position' => 'above',
-        'text_parts' => array(),
-        'year_range' => '-3:+3',
-      ),
-      'type' => 'date_popup',
-      'weight' => 12,
-    ),
-  );
-
   // Exported field_instance: 'node-treaty-field_faolex_url'
   $field_instances['node-treaty-field_faolex_url'] = array(
     'bundle' => 'treaty',
@@ -4956,7 +4883,6 @@ function treaty_field_default_field_instances() {
   t('Description');
   t('ECOLEX Tags');
   t('ECOLEX URL');
-  t('Entry into force');
   t('FAOLEX URL');
   t('Field of application');
   t('Has API Action Plans');
