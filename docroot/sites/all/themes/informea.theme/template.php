@@ -370,13 +370,7 @@ function informea_theme_informea_search_form_wrapper($variables) {
   $output .= $variables['element']['#children'];
   $output .= '<span class="input-group-btn">';
   $output .= '<button type="submit" class="btn btn-default">';
-  // We can be sure that the font icons exist in CDN.
-  if (theme_get_setting('bootstrap_cdn')) {
-    $output .= _bootstrap_icon('search');
-  }
-  else {
-    $output .= t('Search');
-  }
+  $output .= _bootstrap_icon('search');
   $output .= '</button>';
   $output .= '</span>';
   $output .= '</div>';
