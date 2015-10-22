@@ -23,15 +23,21 @@ regions[page_bottom]    = 'Page bottom'
 
 ; Stylesheets
 
-stylesheets[all][] = css/style.css
+stylesheets[all][] = 'bootstrap/css/bootstrap.min.css'
+stylesheets[all][] = '../bootstrap/css/overrides.css'
+stylesheets[all][] = 'css/style.css'
+
+
+; Scripts
+
+scripts[] = 'bootstrap/js/bootstrap.min.js'
+scripts[] = 'js/common.js'
 
 
 ; Settings
 
 settings[bootstrap_anchors_fix] = ''
 settings[bootstrap_breadcrumb_home] = 1
-settings[bootstrap_cdn] = 3.3.0
+settings[bootstrap_cdn] = ''
 settings[bootstrap_navbar_position] = 'static-top'
 settings[bootstrap_breadcrumb_title] = 0
-
-scripts[] = js/common.js
