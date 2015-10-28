@@ -474,6 +474,17 @@ h1 {
   font-size: 14px;
 }
 
+@media (min-width: 1200px) {
+  .i18n-fr .navbar-default .navbar-nav > li > a {
+    font-size: 13px;
+  }
+
+  .i18n-ru .navbar-default .navbar-nav > li > a {
+    font-size: 12px;
+    text-transform: none;
+  }
+}
+
 @media (max-width: 1199px) {
   .navbar-default .navbar-nav > li > a {
     border-left: 0;
