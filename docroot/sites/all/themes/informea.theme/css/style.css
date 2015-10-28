@@ -1426,6 +1426,7 @@ div.accordion .panel-heading:hover { border: 1px solid #39c; background-color: #
 
 img.flag-xs { max-height: 16px; }
 img.flag-small { max-height: 32px; }
+img.flag-medium { max-height: 48px; }
 
 .panel-group .panel {
   -webkit-box-shadow: none;
@@ -1722,4 +1723,18 @@ strong.excerpt {
 
 #table-treaties > tbody > .active {
   display: none;
+}
+
+.countries-list-item {
+  margin-bottom: 10px;
+}
+
+.countries-list-item .country-flag img {
+  margin-right: 5px;
+}
+
+.countries-list-item .label a {
+  font-size: 20px;
+  font-weight: normal;
+  color: #000000;
 }

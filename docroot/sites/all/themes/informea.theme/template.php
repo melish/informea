@@ -441,3 +441,10 @@ function informea_theme_set_page_breadcrumb($breadcrumbs = array()) {
   array_unshift($breadcrumbs, l(t('Home'), '<front>'));
   drupal_set_breadcrumb($breadcrumbs);
 }
+
+function informea_theme_preprocess_node(&$vars) {
+  if ($view_mode = $vars['view_mode']) {
+    $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->type . '__' . $view_mode;
+    $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->nid . '__' . $view_mode;
+  }
+}
