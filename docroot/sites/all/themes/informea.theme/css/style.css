@@ -206,10 +206,10 @@ h1 {
     border-left: 1px solid #e3e3e3;
     content: '';
     display: block;
-    height: 100px;
+    height: 115px;
     left: 25px;
     position: absolute;
-    top: -85px;
+    top: -100px;
     width: 10px;
     z-index: -1;
   }
