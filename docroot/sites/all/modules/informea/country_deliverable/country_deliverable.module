@@ -85,7 +85,7 @@ function country_deliverable_render_national_reports($rows) {
         $col0 = $title[0]['safe_value'];
       }
       $table_rows[] = array(
-        $col0,
+        array('data' => $col0, 'class' => 'title'),
         array('data' => $date, 'class' => 'text-center'),
         array('data' => render($files_field), 'class' => 'text-center')
       );
@@ -116,7 +116,16 @@ function country_deliverable_render_national_reports($rows) {
     );
   }
   return array(
-    '#type' => 'item', '#weight' => 50, '#markup' => theme('informea_bootstrap_collapse', array('id' => 'accordion', 'elements' => $elements, 'no-panel-body' => TRUE, 'no-data-parent' => TRUE, 'show-expand-button' => TRUE,)),
+    '#type' => 'item',
+    '#weight' => 50,
+    '#markup' => theme('informea_bootstrap_collapse', array(
+      'id' => 'accordion',
+      'elements' => $elements,
+      'no-panel-body' => TRUE,
+      'no-data-parent' => TRUE,
+      'show-expand-button' => TRUE,
+      'show-filter-input' => TRUE
+    ))
   );
 }
 

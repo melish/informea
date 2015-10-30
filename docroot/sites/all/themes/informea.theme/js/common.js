@@ -113,4 +113,16 @@ jQuery(document).ready(function ($) {
       $('.panel-collapse', target).collapse('show');
     }
   });
+
+  $('[data-filter="list"]').keyup(function () {
+    var selector = $(this).data('selector');
+    var target = $(this).data('target');
+    var value = $(this).val();
+
+    $('.panel', target).hide().filter(function () {
+      return $('table > tbody > tr', this).hide().filter(function () {
+        return $(selector, this).text().toLowerCase().indexOf(value.toLowerCase()) > -1;
+      }).show().length > 0;
+    }).show();
+  });
 });

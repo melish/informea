@@ -4,11 +4,21 @@ $elements = $variables['elements'];
 $add_data_parent = empty($variables['no-data-parent']);
 $add_data_parent_text = $add_data_parent ? (' data-parent="#' . $id . '"') : '';
 $show_expand_button = isset($variables['show-expand-button']) ? $variables['show-expand-button'] : FALSE;
+$show_filter_input = isset($variables['show-filter-input']) ? $variables['show-filter-input'] : FALSE;
 ?>
 <?php if (!empty($elements)): ?>
-  <?php if ($show_expand_button): ?>
-  <button type="button" class="btn btn-default pull-right" data-toggle="informea-bootstrap-collapse" data-target="#<?php print $id; ?>"><?php print t('Show all'); ?></button>
-  <?php endif; ?>
+  <form class="form-inline text-right">
+    <?php if ($show_filter_input): ?>
+      <div class="form-group">
+        <input type="text" class="form-control" data-filter="list" data-target="#<?php print $id; ?>" data-selector=".title" placeholder="<?php print t('Filter&hellip;'); ?>">
+      </div><!-- .form-group -->
+    <?php endif; ?>
+    <?php if ($show_expand_button): ?>
+      <div class="form-group">
+        <button type="button" class="btn btn-default" data-toggle="informea-bootstrap-collapse" data-target="#<?php print $id; ?>"><?php print t('Show all'); ?></button>
+      </div><!-- .form-group -->
+    <?php endif; ?>
+  </form><!-- .form-inline .text-right -->
   <div class="accordion panel-group" id="<?php print $id; ?>" role="tablist" aria-multiselectable="true">
     <div class="list">
     <?php
