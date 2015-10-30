@@ -206,10 +206,10 @@ h1 {
     border-left: 1px solid #e3e3e3;
     content: '';
     display: block;
-    height: 100px;
+    height: 115px;
     left: 25px;
     position: absolute;
-    top: -85px;
+    top: -100px;
     width: 10px;
     z-index: -1;
   }
@@ -472,6 +472,17 @@ h1 {
   border-right: 1px solid rgba(26, 58, 111, 0.25);
   color: #fff;
   font-size: 14px;
+}
+
+@media (min-width: 1200px) {
+  .i18n-fr .navbar-default .navbar-nav > li > a {
+    font-size: 13px;
+  }
+
+  .i18n-ru .navbar-default .navbar-nav > li > a {
+    font-size: 12px;
+    text-transform: none;
+  }
 }
 
 @media (max-width: 1199px) {
