@@ -329,6 +329,11 @@ function meeting_views_default_views() {
   $handler->display->display_options['sorts']['event_calendar_date_value']['id'] = 'event_calendar_date_value';
   $handler->display->display_options['sorts']['event_calendar_date_value']['table'] = 'field_data_event_calendar_date';
   $handler->display->display_options['sorts']['event_calendar_date_value']['field'] = 'event_calendar_date_value';
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'AND',
+  );
   /* Filter criterion: Content: Treaty (field_treaty) */
   $handler->display->display_options['filters']['field_treaty_target_id']['id'] = 'field_treaty_target_id';
   $handler->display->display_options['filters']['field_treaty_target_id']['table'] = 'field_data_field_treaty';
@@ -395,7 +400,24 @@ function meeting_views_default_views() {
   $handler->display->display_options['filters']['event_calendar_date_value']['table'] = 'field_data_event_calendar_date';
   $handler->display->display_options['filters']['event_calendar_date_value']['field'] = 'event_calendar_date_value';
   $handler->display->display_options['filters']['event_calendar_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['event_calendar_date_value']['group'] = 1;
   $handler->display->display_options['filters']['event_calendar_date_value']['default_date'] = 'now';
+  /* Filter criterion: Content: Date -  start date (event_calendar_date) */
+  $handler->display->display_options['filters']['event_calendar_date_value_1']['id'] = 'event_calendar_date_value_1';
+  $handler->display->display_options['filters']['event_calendar_date_value_1']['table'] = 'field_data_event_calendar_date';
+  $handler->display->display_options['filters']['event_calendar_date_value_1']['field'] = 'event_calendar_date_value';
+  $handler->display->display_options['filters']['event_calendar_date_value_1']['operator'] = '<=';
+  $handler->display->display_options['filters']['event_calendar_date_value_1']['group'] = 2;
+  $handler->display->display_options['filters']['event_calendar_date_value_1']['form_type'] = 'date_text';
+  $handler->display->display_options['filters']['event_calendar_date_value_1']['default_date'] = 'now';
+  /* Filter criterion: Content: Date - end date (event_calendar_date:value2) */
+  $handler->display->display_options['filters']['event_calendar_date_value2']['id'] = 'event_calendar_date_value2';
+  $handler->display->display_options['filters']['event_calendar_date_value2']['table'] = 'field_data_event_calendar_date';
+  $handler->display->display_options['filters']['event_calendar_date_value2']['field'] = 'event_calendar_date_value2';
+  $handler->display->display_options['filters']['event_calendar_date_value2']['operator'] = '>=';
+  $handler->display->display_options['filters']['event_calendar_date_value2']['group'] = 2;
+  $handler->display->display_options['filters']['event_calendar_date_value2']['form_type'] = 'date_text';
+  $handler->display->display_options['filters']['event_calendar_date_value2']['default_date'] = 'now';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
