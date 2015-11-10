@@ -40,7 +40,7 @@ class EcolexLiteratureMigrate extends Migration {
     $this->addFieldMapping('field_isbn', 'isbn');
     $this->addFieldMapping('field_publisher', 'publisher');
     $this->addFieldMapping('field_publication_place', 'publPlace');
-    $this->addFieldMapping('field_date_of_text', 'dateOfText');
+    $this->addFieldMapping('field_sorting_date', 'dateOfText');
     $this->addFieldMapping('field_literature_serial_title', 'serialTitle');
     $this->addFieldMapping('field_volume_no', 'volumeNo');
     $this->addFieldMapping('field_collation', 'collation');

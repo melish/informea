@@ -27,7 +27,7 @@ function treaty_field_group_info() {
       1 => 'field_alternative_record_id',
       2 => 'field_available_in',
       3 => 'field_cited_treaties',
-      4 => 'field_date_of_text',
+      4 => 'field_sorting_date',
       5 => 'field_depositary',
       6 => 'field_ecolex_tags',
       7 => 'field_ecolex_url',

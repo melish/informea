@@ -40,7 +40,7 @@ class MigrateEcolexManualCourtDecisions extends DrupalNode7Migration {
     ));
 
     $this->addFieldMapping('uid', NULL, FALSE)->defaultValue(2);
-    $this->addFieldMapping('field_sorting_date', 'field_date_of_text');
+    $this->addFieldMapping('field_sorting_date', 'field_sorting_date');
     $this->addFieldMapping('field_sorting_date:timezone')->defaultValue('UTC');
 
     $this->addFieldMapping('field_abstract', 'field_abstract');
@@ -86,7 +86,7 @@ class MigrateEcolexManualCourtDecisions extends DrupalNode7Migration {
     $this->addUnmigratedSources(array(
       'field_files',
       'uid', 'revision', 'log', 'revision_uid',
-      'field_date_of_text:language',
+      'field_sorting_date:language',
       'field_ecolex_tags', 'field_ecolex_tags:language',
       'field_jurisdiction', 'field_jurisdiction:language',
       'field_type_of_text', 'field_type_of_text:language',

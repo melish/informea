@@ -42,7 +42,7 @@ class EcolexLegislationMigrate extends Migration {
     $this->addFieldMapping('title', 'title');
     $this->addFieldMapping('title_field', 'Title_of_Text');
 
-    $this->addFieldMapping('field_date_of_text', 'Date_of_Text');
+    $this->addFieldMapping('field_sorting_date', 'Date_of_Text');
     $this->addFieldMapping('field_date_of_original_text', 'Date_of_original_Text');
     $this->addFieldMapping('field_date_of_consolidation', 'Date_of_Consolidation');
     $this->addFieldMapping('field_entry_into_force_notes', 'Entry_into_Force');

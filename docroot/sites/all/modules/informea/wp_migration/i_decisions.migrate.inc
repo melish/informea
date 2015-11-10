@@ -158,8 +158,8 @@ class MigrateDecisions extends Migration {
 
     $this->addUnmigratedDestinations(array(
       'field_decision_number:language',
-      'field_decision_published:timezone', 'field_decision_published:rrule',
-      'field_meeting_title_en:language', 'field_decision_published:to',
+      'field_sorting_date:timezone', 'field_sorting_date:rrule',
+      'field_meeting_title_en:language', 'field_sorting_date:to',
       'field_decision_status:source_type', 'field_decision_status:ignore_case',
       'field_decision_type:source_type', 'field_decision_type:ignore_case',
       'field_meeting_url:title', 'field_meeting_url:attributes', 'field_meeting_url:language',

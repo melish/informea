@@ -478,12 +478,12 @@ function country_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Field: Content: Submission date */
-  $handler->display->display_options['fields']['field_report_submission_date']['id'] = 'field_report_submission_date';
-  $handler->display->display_options['fields']['field_report_submission_date']['table'] = 'field_data_field_report_submission_date';
-  $handler->display->display_options['fields']['field_report_submission_date']['field'] = 'field_report_submission_date';
-  $handler->display->display_options['fields']['field_report_submission_date']['label'] = '';
-  $handler->display->display_options['fields']['field_report_submission_date']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_report_submission_date']['settings'] = array(
+  $handler->display->display_options['fields']['field_sorting_date']['id'] = 'field_sorting_date';
+  $handler->display->display_options['fields']['field_sorting_date']['table'] = 'field_data_field_sorting_date';
+  $handler->display->display_options['fields']['field_sorting_date']['field'] = 'field_sorting_date';
+  $handler->display->display_options['fields']['field_sorting_date']['label'] = '';
+  $handler->display->display_options['fields']['field_sorting_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_sorting_date']['settings'] = array(
     'format_type' => 'short',
     'fromto' => 'both',
     'multiple_number' => '',
@@ -501,11 +501,11 @@ function country_views_default_views() {
   $handler->display->display_options['fields']['field_document_url']['type'] = 'link_short';
   $handler->display->display_options['fields']['field_document_url']['delta_offset'] = '0';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Content: Submission date (field_report_submission_date) */
-  $handler->display->display_options['sorts']['field_report_submission_date_value']['id'] = 'field_report_submission_date_value';
-  $handler->display->display_options['sorts']['field_report_submission_date_value']['table'] = 'field_data_field_report_submission_date';
-  $handler->display->display_options['sorts']['field_report_submission_date_value']['field'] = 'field_report_submission_date_value';
-  $handler->display->display_options['sorts']['field_report_submission_date_value']['order'] = 'DESC';
+  /* Sort criterion: Content: Submission date (field_sorting_date) */
+  $handler->display->display_options['sorts']['field_sorting_date_value']['id'] = 'field_sorting_date_value';
+  $handler->display->display_options['sorts']['field_sorting_date_value']['table'] = 'field_data_field_sorting_date';
+  $handler->display->display_options['sorts']['field_sorting_date_value']['field'] = 'field_sorting_date_value';
+  $handler->display->display_options['sorts']['field_sorting_date_value']['order'] = 'DESC';
   /* Sort criterion: Content: Title (title_field) */
   $handler->display->display_options['sorts']['title_field_value']['id'] = 'title_field_value';
   $handler->display->display_options['sorts']['title_field_value']['table'] = 'field_data_title_field';
@@ -782,12 +782,12 @@ function country_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Field: Content: Submission date */
-  $handler->display->display_options['fields']['field_report_submission_date']['id'] = 'field_report_submission_date';
-  $handler->display->display_options['fields']['field_report_submission_date']['table'] = 'field_data_field_report_submission_date';
-  $handler->display->display_options['fields']['field_report_submission_date']['field'] = 'field_report_submission_date';
-  $handler->display->display_options['fields']['field_report_submission_date']['label'] = '';
-  $handler->display->display_options['fields']['field_report_submission_date']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_report_submission_date']['settings'] = array(
+  $handler->display->display_options['fields']['field_sorting_date']['id'] = 'field_sorting_date';
+  $handler->display->display_options['fields']['field_sorting_date']['table'] = 'field_data_field_sorting_date';
+  $handler->display->display_options['fields']['field_sorting_date']['field'] = 'field_sorting_date';
+  $handler->display->display_options['fields']['field_sorting_date']['label'] = '';
+  $handler->display->display_options['fields']['field_sorting_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_sorting_date']['settings'] = array(
     'format_type' => 'short',
     'fromto' => 'both',
     'multiple_number' => '',
@@ -805,11 +805,11 @@ function country_views_default_views() {
   $handler->display->display_options['fields']['field_document_url']['type'] = 'link_short';
   $handler->display->display_options['fields']['field_document_url']['delta_offset'] = '0';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Content: Submission date (field_report_submission_date) */
-  $handler->display->display_options['sorts']['field_report_submission_date_value']['id'] = 'field_report_submission_date_value';
-  $handler->display->display_options['sorts']['field_report_submission_date_value']['table'] = 'field_data_field_report_submission_date';
-  $handler->display->display_options['sorts']['field_report_submission_date_value']['field'] = 'field_report_submission_date_value';
-  $handler->display->display_options['sorts']['field_report_submission_date_value']['order'] = 'DESC';
+  /* Sort criterion: Content: Submission date (field_sorting_date) */
+  $handler->display->display_options['sorts']['field_sorting_date_value']['id'] = 'field_sorting_date_value';
+  $handler->display->display_options['sorts']['field_sorting_date_value']['table'] = 'field_data_field_sorting_date';
+  $handler->display->display_options['sorts']['field_sorting_date_value']['field'] = 'field_sorting_date_value';
+  $handler->display->display_options['sorts']['field_sorting_date_value']['order'] = 'DESC';
   /* Sort criterion: Content: Title (title_field) */
   $handler->display->display_options['sorts']['title_field_value']['id'] = 'title_field_value';
   $handler->display->display_options['sorts']['title_field_value']['table'] = 'field_data_title_field';
