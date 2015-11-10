@@ -376,7 +376,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['created']['date_format'] = 'short';
   $handler->display->display_options['fields']['created']['second_date_format'] = 'long';
   $handler->display->display_options['fields']['created']['link_to_entity'] = 0;
-  /* Field: Indexed Node: MEA topic */
+  /* Field: Indexed Node: Tags */
   $handler->display->display_options['fields']['field_mea_topic']['id'] = 'field_mea_topic';
   $handler->display->display_options['fields']['field_mea_topic']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_mea_topic']['field'] = 'field_mea_topic';
@@ -416,7 +416,7 @@ function informea_views_default_views() {
     4 => 0,
     5 => 0,
   );
-  /* Filter criterion: Indexed Node: MEA topic */
+  /* Filter criterion: Indexed Node: Tags */
   $handler->display->display_options['filters']['field_mea_topic']['id'] = 'field_mea_topic';
   $handler->display->display_options['filters']['field_mea_topic']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['filters']['field_mea_topic']['field'] = 'field_mea_topic';
@@ -618,7 +618,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['field_keywords']['field'] = 'field_keywords';
   $handler->display->display_options['fields']['field_keywords']['label'] = 'ECOLEX keywords';
   $handler->display->display_options['fields']['field_keywords']['delta_offset'] = '0';
-  /* Field: Taxonomy term: Ecolex terms */
+  /* Field: Taxonomy term: ECOLEX terms */
   $handler->display->display_options['fields']['field_thesaurus_map_ecolex']['id'] = 'field_thesaurus_map_ecolex';
   $handler->display->display_options['fields']['field_thesaurus_map_ecolex']['table'] = 'field_data_field_thesaurus_map_ecolex';
   $handler->display->display_options['fields']['field_thesaurus_map_ecolex']['field'] = 'field_thesaurus_map_ecolex';
