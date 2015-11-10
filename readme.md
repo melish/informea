@@ -1,8 +1,6 @@
+#Status#
 
-Pending tasks:
-
-* Persist select2 configuration
-
+[![Code Climate](https://codeclimate.com/github/InforMEA/informea/badges/gpa.svg)](https://codeclimate.com/github/InforMEA/informea)
 
 #Installation#
 
