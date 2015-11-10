@@ -1,0 +1,198 @@
+<?php
+/**
+ * @file
+ * Code for the Analytics integration feature.
+ */
+
+include_once 'analytics_integration.features.inc';
+
+/**
+ * Creates a <script> element that starts asynchronously downloading the
+ * analytics.js JavaScript library from https://www.google-analytics.com/analytics.js
+ *
+ * Initializes a global ga function (called the ga() command queue) that allows
+ * you to schedule commands to be run once the analytics.js library is loaded
+ * and ready to go.
+ *
+ * Adds a command to the ga() command queue to create a new tracker object for
+ * the property specified via the $key parameter.
+ *
+ * Adds another command to the ga() command queue to send a pageview to Google
+ * Analytics for the current page.
+ *
+ * @param $key
+ *  Google Analytics key.
+ */
+function analytics_integration_add_google_analytics_library($key) {
+  drupal_add_js('//www.google-analytics.com/analytics.js',
+    array(
+    'scope' => 'header',
+    'type' => 'external',
+    'cache' => FALSE,
+    'weight' => 90,
+    )
+  );
+  $script =
+  <<<EOT
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '$key', 'auto');
+  ga('send', 'pageview');
+EOT;
+  drupal_add_js($script, array(
+    'scope' => 'header',
+    'type' => 'inline',
+    'weight' => 100
+  ));
+  drupal_add_js(drupal_get_path('module', 'analytics_integration') . '/js/analytics_integration.js');
+}
+
+/**
+ * Returns all analytics keys linked with the node.
+ *
+ * @param $node
+ *  The node for which to search keys.
+ * @param string $field_name
+ *  Field name in analytics_key content type (entityreference).
+ * @param null $key_type
+ *  (optional) 'Google Analytics' or 'Piwik' or whatever can be found in
+ *  'analytics_key_type' vocabulary. If $key_type is NULL,it will be ignored.
+ * @return array
+ *  An array with keys.
+ */
+function analytics_integration_get_node_keys($node, $field_name, $key_type = NULL) {
+  $valid_keys = array(
+    'Google Analytics',
+    'Piwik'
+  );
+  if (!field_info_instance('node', $field_name, 'analytics_key')) {
+    drupal_set_message(t('Couldn\'t find field ' . $field_name . ' in Analytics Key content type.'), 'warning');
+    return array();
+  }
+  $q = db_select('field_data_' . $field_name, 'a');
+  $q->fields('a', array('entity_id'));
+  $q->condition('a.bundle', 'analytics_key');
+  $q->condition('a.' . $field_name . '_target_id', $node->nid);
+  $keys_nids = $q->execute()->fetchCol();
+
+  if (empty($keys_nids) || $key_type === NULL) {
+    return $keys_nids;
+  }
+
+  if (!in_array($key_type, $valid_keys)) {
+    drupal_set_message(t('Analytics key type not valid.'), 'warning');
+    return array();
+  }
+
+  switch ($key_type) {
+    case 'Google Analytics':
+      $q = db_select('field_data_field_analytics_key' , 'a');
+      $q->fields('a', array('entity_id', 'field_analytics_key_value'));
+      $q->condition('a.entity_id', $keys_nids, 'IN');
+      $q->innerJoin('field_data_field_analytics_key_type', 'b', 'a.entity_id = b.entity_id');
+      $q->innerJoin('field_data_name_field', 'c', 'b.field_analytics_key_type_tid = c.entity_id');
+      $q->condition('c.name_field_value', $key_type);
+      $keys = $q->execute()->fetchAllKeyed();
+      return $keys;
+      break;
+    case 'Piwik':
+      $q = db_select('field_data_field_url' , 'a');
+      $q->innerJoin('field_data_field_piwik_id', 'b', 'a.entity_id = b.entity_id');
+      $q->innerJoin('field_data_field_analytics_key_type', 'c', 'a.entity_id = c.entity_id');
+      $q->innerJoin('field_data_name_field', 'd', 'c.field_analytics_key_type_tid = d.entity_id');
+      $q->fields('a', array('field_url_url'));
+      $q->fields('b', array('field_piwik_id_value'));
+      $q->condition('a.entity_id', $keys_nids, 'IN');
+      $q->condition('d.name_field_value', $key_type);
+      $keys = $q->execute()->fetchAllKeyed();
+      return $keys;
+      break;
+  }
+}
+
+/**
+ * Returns all analytics keys filtered by title_field.
+ *
+ * @param $name
+ *  The key name.
+ * @return array
+ *  An array with keys.
+ */
+function analytics_integration_get_key_by_name($name) {
+  $q = db_select('field_data_title_field', 'a');
+  $q->fields('a', array('entity_id'));
+  $q->condition('a.bundle', 'analytics_key');
+  $q->condition('a.title_field_value', $name);
+  $keys_nids = $q->execute()->fetchCol();
+
+  if (empty($keys_nids)) {
+    return array();
+  }
+
+  $q = db_select('field_data_field_analytics_key' , 'a');
+  $q->fields('a', array('field_analytics_key_value'));
+  $q->condition('a.entity_id', $keys_nids, 'IN');
+  return $q->execute()->fetchCol();
+}
+
+/**
+ * Sends a hit to $target_url.
+ *
+ * @param $key
+ *  Google Analytics key.
+ * @param $target_url
+ *  The targeted url.
+ * @param $js_identifier
+ *  Javascript identifier.
+ * @param $page_title
+ *  Page title for the targeted url.
+ * @param string $type
+ * @return string
+ */
+function analytics_integration_google_analytics_send_hit($key, $target_url, $js_identifier, $page_title, $type = 'pageview') {
+  $url = parse_url($target_url);
+  $host = $url['host'];
+  $page_title = trim($page_title);
+  $script = <<<EOT
+  if (typeof ga == 'function') {
+    ga('create', '$key', 'auto', {'name': '$js_identifier'});
+    ga('$js_identifier.set', 'referrer', "http://" + document.domain);
+    ga('$js_identifier.set', 'hostname', '$host');
+    ga('$js_identifier.set', 'location', '$target_url');
+    ga('$js_identifier.set', 'title', '$page_title');
+    ga('$js_identifier.send', '$type');
+  }
+  else {
+    console.error('Google Analytics is not initialized');
+  }
+EOT;
+  drupal_add_js($script, array(
+    'scope' => 'header',
+    'type' => 'inline',
+    'weight' => 110
+  ));
+  return $script;
+}
+
+function analytics_integration_piwik_send_hit($piwik_url, $site_id, $page_title) {
+  $script = <<<EOT
+    var _paq = _paq || [];
+    (function(){ var u=(("https:" == document.location.protocol) ? "https://$piwik_url/" : "http://$piwik_url/");
+    _paq.push(['setSiteId', $site_id]);
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setDocumentTitle', '$page_title']);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.defer=true; g.async=true; g.src=u+'piwik.js';
+    s.parentNode.insertBefore(g,s); })();
+EOT;
+  drupal_add_js($script, array(
+    'scope' => 'header',
+    'type' => 'inline',
+    'weight' => 110
+  ));
+  return $script;
+}
