@@ -244,4 +244,5 @@ features[wysiwyg][] = filtered_html
 features[wysiwyg][] = full_html
 files[] = informea.translation.inc
 files[] = informea.api.inc
+files[] = informea.admin.inc
 project path = sites/all/modules/informea

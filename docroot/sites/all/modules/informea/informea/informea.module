@@ -149,6 +149,16 @@ function informea_menu() {
     'type'              => MENU_CALLBACK,
     'access arguments'  => array('access content'),
   );
+
+  $items['admin/config/services/analytics/google-analytics'] = array(
+    'title' => 'Configure Google Analytics',
+    'description' => 'Configure the keys for Google Analytics tracking',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('informea_analytics_form'),
+    'file' => 'informea.admin.inc',
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_LOCAL_TASK
+  );
   return $items;
 }
 
