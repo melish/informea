@@ -1,8 +1,23 @@
-languages:
-  Ruby: false
-  JavaScript: true
-  PHP: true
-  Python: false
+---
+engines:
+  csslint:
+    enabled: true
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+  phpcodesniffer:
+    enabled: true
+  phpmd:
+    enabled: true
+ratings:
+  paths:
+  - "**.css"
+  - "**.js"
+  - "**.jsx"
+  - "**.php"
+  - "**.module"
+  - "**.inc"
 exclude_paths:
 - conf/**/*
 - content/**/*
@@ -32,4 +47,3 @@ exclude_paths:
 - docroot/test.php
 - docroot/update.php
 - docroot/xmlrpc.php
-
