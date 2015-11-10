@@ -69,7 +69,7 @@ function country_deliverable_national_reports_group_by_treaty($id_country) {
       uasort($party->national_reports, function($a, $b) {
         $wa = entity_metadata_wrapper('node', $a);
         $wb = entity_metadata_wrapper('node', $b);
-        return $wa->field_report_submission_date->value() < $wb->field_report_submission_date->value();
+        return $wa->field_sorting_date->value() < $wb->field_sorting_date->value();
       });
     }
     return $parties;
@@ -98,7 +98,7 @@ function country_deliverable_action_plans_group_by_treaty($id_country) {
       uasort($party->action_plans, function($a, $b) {
         $wa = entity_metadata_wrapper('node', $a);
         $wb = entity_metadata_wrapper('node', $b);
-        return $wa->field_report_submission_date->value() < $wb->field_report_submission_date->value();
+        return $wa->field_sorting_date->value() < $wb->field_sorting_date->value();
       });
     }
     return $parties;
@@ -175,19 +175,19 @@ function country_deliverable_national_reports_group_by_country($id_treaty) {
       field_attach_load('node', $country->national_reports, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_files']['field_id']));
       field_attach_load('node', $country->national_reports, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_informea_tags']['field_id']));
       field_attach_load('node', $country->national_reports, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_document_url']['field_id']));
-      field_attach_load('node', $country->national_reports, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_report_submission_date']['field_id']));
+      field_attach_load('node', $country->national_reports, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_sorting_date']['field_id']));
     }
     uasort($parties, function($a, $b) { return strcmp($a->title, $b->title); });
     // Sort the reports by date
     foreach($parties as &$party) {
       uasort($party->national_reports, function($a, $b) {
-        if (empty($a->field_report_submission_date[LANGUAGE_NONE][0]['value'])) {
+        if (empty($a->field_sorting_date[LANGUAGE_NONE][0]['value'])) {
           return -1;
         }
-        if (empty($b->field_report_submission_date[LANGUAGE_NONE][0]['value'])) {
+        if (empty($b->field_sorting_date[LANGUAGE_NONE][0]['value'])) {
           return 1;
         }
-        return strtotime($a->field_report_submission_date[LANGUAGE_NONE][0]['value']) < strtotime($b->field_report_submission_date[LANGUAGE_NONE][0]['value']);
+        return strtotime($a->field_sorting_date[LANGUAGE_NONE][0]['value']) < strtotime($b->field_sorting_date[LANGUAGE_NONE][0]['value']);
       });
     }
     return $parties;
@@ -216,7 +216,7 @@ function country_deliverable_action_plans_group_by_country($id_treaty) {
       uasort($party->action_plans, function($a, $b) {
         $wa = entity_metadata_wrapper('node', $a);
         $wb = entity_metadata_wrapper('node', $b);
-        return $wa->field_report_submission_date->value() < $wb->field_report_submission_date->value();
+        return $wa->field_sorting_date->value() < $wb->field_sorting_date->value();
       });
     }
     return $parties;

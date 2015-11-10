@@ -61,7 +61,7 @@ class EcolexTreatyMigrateWiki extends Migration {
     // $this->addFieldMapping('', 'languageOfDocument');
     $this->addFieldMapping('field_place_of_adoption', 'placeOfAdoption');
     $this->addFieldMapping('field_depositary', 'depository');
-    $this->addFieldMapping('field_date_of_text', 'dateOfText');
+    $this->addFieldMapping('field_sorting_date', 'dateOfText');
     // $this->addFieldMapping('', 'searchDate');
     $this->addFieldMapping('field_entry_into_force', 'entryIntoForceDate');
     $this->addFieldMapping('field_obsolete', 'obsolete');

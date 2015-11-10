@@ -65,8 +65,8 @@ class EcolexCourtDecisionsMigrate extends Migration {
     $this->addFieldMapping('field_court_decision_subdivision', 'subdivision');
     $this->addFieldMapping('field_justices', 'justices');
 
-    $this->addFieldMapping('field_date_of_text', 'dateOfText');
-    $this->addFieldMapping('field_date_of_text:timezone')->defaultValue('UTC');
+    $this->addFieldMapping('field_sorting_date', 'dateOfText');
+    $this->addFieldMapping('field_sorting_date:timezone')->defaultValue('UTC');
 
     $this->addFieldMapping('field_reference_number', 'referenceNumber');
     $this->addFieldMapping('field_number_of_pages', 'numberOfPages');

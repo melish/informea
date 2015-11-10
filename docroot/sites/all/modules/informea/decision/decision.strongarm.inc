@@ -241,6 +241,9 @@ function decision_strongarm() {
         'language' => array(
           'weight' => '5',
         ),
+        'redirect' => array(
+          'weight' => '30',
+        ),
       ),
       'display' => array(),
     ),

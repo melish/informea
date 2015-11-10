@@ -43,7 +43,7 @@ class CountryReportsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('title_field', 'title');
     $this->addFieldMapping('title_field:language', 'title_langs');
     $this->addFieldMapping('field_treaty', 'treaty');
-    $this->addFieldMapping('field_report_submission_date', 'submission');
+    $this->addFieldMapping('field_sorting_date', 'submission');
     $this->addFieldMapping('field_country', 'country');
     $this->addFieldMapping('field_document_url', 'url');
 
@@ -69,8 +69,8 @@ class CountryReportsODataMigration extends AbstractODataMigration {
       'created', 'log', 'tnid', 'translate', 'revision_uid', 'is_new',
       'body', 'body:summary', 'body:format', 'path',
       'body:language',
-      'field_report_submission_date:timezone', 'field_report_submission_date:rrule',
-      'field_report_submission_date:to', 'field_document_url:title',
+      'field_sorting_date:timezone', 'field_sorting_date:rrule',
+      'field_sorting_date:to', 'field_document_url:title',
       'field_document_url:attributes', 'field_document_url:language',
       'field_files:file_class', 'field_files:preserve_files', 'field_files:file_replace',
       'field_files:source_dir', 'field_files:urlencode', 'field_files:display',

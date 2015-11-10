@@ -216,6 +216,9 @@ function ecolex_strongarm() {
         'language' => array(
           'weight' => '1',
         ),
+        'redirect' => array(
+          'weight' => '30',
+        ),
       ),
       'display' => array(),
     ),
@@ -261,6 +264,9 @@ function ecolex_strongarm() {
         'language' => array(
           'weight' => '1',
         ),
+        'redirect' => array(
+          'weight' => '30',
+        ),
       ),
       'display' => array(),
     ),
@@ -305,6 +311,9 @@ function ecolex_strongarm() {
         ),
         'language' => array(
           'weight' => '0',
+        ),
+        'redirect' => array(
+          'weight' => '30',
         ),
       ),
       'display' => array(),
