@@ -128,7 +128,7 @@
             array('attributes' => array('class' => array('dropdown-toggle')), 'absolute' => TRUE, 'html' => TRUE)); ?>
           <ul class="dropdown-menu dropdown-menu-right" role="menu">
             <li><?php print l(t('About InforMEA'), 'about'); ?></li>
-            <li><?php print l(t('API documentation'), 'about/api'); ?></li>
+            <li><?php print l(t('Resources for Developers'), 'about/api'); ?></li>
           </ul><!-- .dropdown-menu .dropdown-menu-right -->
         </li><!-- .dropdown -->
       </ul><!-- .nav .navbar-nav -->
