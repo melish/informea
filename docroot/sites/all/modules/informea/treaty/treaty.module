@@ -516,6 +516,9 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
         'count' => $ap_count,
       )
     );
+    if (treaty_count_child_protocols($node->nid) == 0) {
+      unset($menu_items['protocols']);
+    }
     if ($d_count == -1) {
       $menu_items['decisions']['count'] = t('n/a');
     }
