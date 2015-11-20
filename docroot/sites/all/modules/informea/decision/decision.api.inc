@@ -64,20 +64,30 @@ function decision_get_treaty_decisions_group_by_meeting($id_treaty) {
     }
     field_attach_load('node', $decisions, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_decision_number']['field_id']));
     field_attach_load('node', $decisions, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_decision_status']['field_id']));
-    if ($id_treaty == 257 /* CITES */) {
+    if (in_array($id_treaty, array(257 /* CITES */, 255 /* CBD */, 262 /* Cartagena */, 263 /* Nagoya */))) {
       field_attach_load('node', $decisions, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_decision_type']['field_id']));
     }
     field_attach_load('node', $decisions, FIELD_LOAD_CURRENT, array('field_id' => $fields['title_field']['field_id']));
     // Remove non-active decisions
-    array_filter($decisions, function ($d) use ($allowed_status) {
+    $decisions = array_filter($decisions, function ($d) use ($allowed_status) {
       $status = !empty($d->field_decision_status[LANGUAGE_NONE][0]['tid']) ? $d->field_decision_status[LANGUAGE_NONE][0]['tid'] : '';
       return in_array($status, $allowed_status);
     });
+
+    if (in_array($id_treaty, array(255 /* CBD */, 262 /* Cartagena */, 263 /* Nagoya */))) {
+      // Remove recommendations
+      $recommendation_term = reset(taxonomy_get_term_by_name('recommendation', 'decision_type'));
+      $decisions = array_filter($decisions, function ($d) use ($recommendation_term) {
+        return $d->field_decision_type[LANGUAGE_NONE][0]['tid'] != $recommendation_term->tid;
+      });
+    }
     foreach ($decisions as $decision) {
       $decision->title = $dids[$decision->nid];
     }
-    $meeting->decisions = $decisions;
-    $ret[$meeting->nid] = $meeting;
+    if (!empty($decisions)) {
+      $meeting->decisions = $decisions;
+      $ret[$meeting->nid] = $meeting;
+    }
   }
   return $ret;
 }
