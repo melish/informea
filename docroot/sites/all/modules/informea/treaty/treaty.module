@@ -264,6 +264,7 @@ EOT
         // Use Cartagena and Nagoya nids to color Greenland only for CBD
         $cartagena_nid = 262;
         $nagoya_nid = 263;
+        $nkl_nid = 318;
 
         $breadcrumbs[] = t('Parties and contact data');
         module_load_include('inc', 'country_data', 'country_data.api');
@@ -283,7 +284,7 @@ EOT
             $cw = entity_metadata_wrapper('node', $country);
             $iso2 = $cw->field_country_iso2->value();
             $map_config[] = array('id' => $iso2);
-            if ($iso2 == 'DK' && !in_array($node->nid,array($cartagena_nid, $nagoya_nid))) {
+            if ($iso2 == 'DK' && !in_array($node->nid, array($nkl_nid, $cartagena_nid, $nagoya_nid))) {
               $map_config[] = array('id' => 'GL', 'balloonText' => t('Denmark'));
             }
             if ($iso2 == 'CN') {
