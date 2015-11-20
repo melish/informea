@@ -1583,6 +1583,72 @@ function country_data_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-member_party-field_entry_into_force'
+  $field_instances['node-member_party-field_entry_into_force'] = array(
+    'bundle' => 'member_party',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 5,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_entry_into_force',
+    'label' => 'Entry into force',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'j M Y',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_popup',
+      'weight' => 32,
+    ),
+  );
+
   // Exported field_instance: 'node-member_party-field_party_date_1'
   $field_instances['node-member_party-field_party_date_1'] = array(
     'bundle' => 'member_party',
@@ -1909,6 +1975,7 @@ function country_data_field_default_field_instances() {
   t('Department');
   t('Description');
   t('E-Mail');
+  t('Entry into force');
   t('Fax');
   t('First name');
   t('Focal point country');
