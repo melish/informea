@@ -324,12 +324,15 @@ EOT
             if ($status = $wrapper->field_party_status->value()) {
               $status_label = $status->name;
             }
+            $entry_into_force = $wrapper->field_entry_into_force->value();
+            $entry_into_force = empty($entry_into_force) ? '&nbsp;' : format_date($entry_into_force, 'short');
             $row = array(
               'data' => array(
                 sprintf('%s <span>%s</span>', $flag, $wrapper->field_country->label()),
                 array('data' => $date1, 'class' => 'text-center'),
                 array('data' => $date2, 'class' => 'text-center'),
-                array('data' => $status_label, 'class' => 'text-center')
+                array('data' => $status_label, 'class' => 'text-center'),
+                array('data' => $entry_into_force, 'class' => 'text-center'),
               )
             );
             $nfps = country_data_get_treaty_focal_points($country->nid, $node->nid);
@@ -368,6 +371,7 @@ EOT
               array('data' => t('Signature'), 'class' => array('text-center')),
               array('data' => t('Ratification'), 'class' => array('text-center')),
               array('data' => t('Status'), 'class' => array('text-center')),
+              array('data' => t('Party'), 'class' => array('text-center')),
               array('data' => t('Focal points'), 'class' => array('text-center'))
             ),
             'rows' => $rows
