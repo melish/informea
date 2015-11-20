@@ -301,7 +301,7 @@ EOT
             '#markup' => '<div id="ammap_div" style="width: 100%; height: 500px;"></div>' . render($block['content']),
           );
           $map_tab = array(
-            'header' => t('Map of parties'),
+            'header' => t('Map of Parties'),
             'body' => drupal_render($elements),
             'active' => TRUE
           );
@@ -378,7 +378,7 @@ EOT
             '#markup' => theme('table', $table)
           );
           $parties_tab = array(
-            'header' => t('List of parties'),
+            'header' => t('List of Parties'),
             'body' => drupal_render($elements),
           );
           $node->content['context'] = array(
