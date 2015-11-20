@@ -316,34 +316,47 @@ EOT
               'path' => $themedir . '/img/flags/flag-' . strtolower($c_wrapper->field_country_iso2->value()) . '.png',
               'attributes' => array('class' => 'img-thumbnail flag-small')
             ));
-            $date1 = $wrapper->field_party_date_1->value();
-            $date1 = empty($date1) ? '&nbsp;' : format_date($date1, 'short');
-            $date2 = $wrapper->field_party_date_2->value();
-            $date2 = empty($date2) ? '&nbsp;' : format_date($date2, 'short');
+            $date1_unix = $wrapper->field_party_date_1->value();
+            $date1 = empty($date1_unix) ? '&nbsp;' : format_date($date1_unix, 'short');
+            $date2_unix = $wrapper->field_party_date_2->value();
+            $date2 = empty($date2_unix) ? '&nbsp;' : format_date($date2_unix, 'short');
             $status_label = '';
             if ($status = $wrapper->field_party_status->value()) {
               $status_label = $status->name;
             }
-            $entry_into_force = $wrapper->field_entry_into_force->value();
-            $entry_into_force = empty($entry_into_force) ? '&nbsp;' : format_date($entry_into_force, 'short');
+            $entry_into_force_unix = $wrapper->field_entry_into_force->value();
+            $entry_into_force = empty($entry_into_force_unix) ? '&nbsp;' : format_date($entry_into_force_unix, 'short');
+            $light_blue_class = '';
+
+            if ((empty($entry_into_force_unix) || $entry_into_force_unix > time())
+            && (strtotime('-3 month', time()) < $date2_unix)) {
+              $light_blue_class = 'party-row-light-blue';
+            }
+
             $row = array(
               'data' => array(
-                sprintf('%s <span>%s</span>', $flag, $wrapper->field_country->label()),
-                array('data' => $date1, 'class' => 'text-center'),
-                array('data' => $date2, 'class' => 'text-center'),
-                array('data' => $status_label, 'class' => 'text-center'),
-                array('data' => $entry_into_force, 'class' => 'text-center'),
-              )
+                array(
+                  'data' => sprintf('%s <span>%s</span>', $flag, $wrapper->field_country->label()),
+                  'class' => $light_blue_class,
+                  ),
+                array('data' => $date1, 'class' => 'text-center ' . $light_blue_class),
+                array('data' => $date2, 'class' => 'text-center ' . $light_blue_class),
+                array('data' => $status_label, 'class' => 'text-center ' . $light_blue_class),
+                array('data' => $entry_into_force, 'class' => 'text-center ' . $light_blue_class),
+              ),
             );
             $nfps = country_data_get_treaty_focal_points($country->nid, $node->nid);
             if (count($nfps)) {
               $row['data'][] = array(
                 'data' => sprintf('<a data-toggle="collapse" href="#nfp-%1$s" aria-expanded="false" aria-controls="nfp-%1$s"><i class="glyphicon glyphicon-user"></i></a>', $country->nid),
-                'class' => 'text-center'
+                'class' => 'text-center ' . $light_blue_class,
               );
             }
             else {
-              $row['data'][] = '';
+              $row['data'][] = array(
+                'data' => '&nbsp;',
+                'class' => $light_blue_class,
+              );
             }
             $rows[] = $row;
             if (count($nfps)) {

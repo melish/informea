@@ -1749,3 +1749,7 @@ strong.excerpt {
   font-weight: normal;
   color: #000000;
 }
+
+.party-row-light-blue {
+  background-color: rgba(0, 153, 213, 0.16);
+}
