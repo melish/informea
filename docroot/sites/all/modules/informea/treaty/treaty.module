@@ -265,7 +265,7 @@ EOT
         $cartagena_nid = 262;
         $nagoya_nid = 263;
 
-        $breadcrumbs[] = t('Parties and contact data');
+        $breadcrumbs[] = t('Parties');
         module_load_include('inc', 'country_data', 'country_data.api');
         module_load_include('php', 'informea', 'recaptcha/recaptchalib');
         $members = country_data_treaty_get_membership($node->nid);
@@ -504,7 +504,7 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
         'count' => $d_count,
       ),
       'parties' => array(
-        'title' => t('Parties and contact data'),
+        'title' => t('Parties'),
         'count' => country_data_treaty_count_membership($node->nid)
       ),
       'national-reports' => array(
