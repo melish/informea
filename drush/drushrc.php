@@ -341,6 +341,8 @@ $options['init-modules'] = array(
   'informea_search',
   'devel',
   'diff',
+
+  'webform',
 );
 
 
