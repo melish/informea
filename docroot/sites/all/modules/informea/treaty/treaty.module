@@ -266,11 +266,12 @@ EOT
         $nagoya_nid = 263;
         $nkl_nid = 318;
 
-        $breadcrumbs[] = t('Parties and contact data');
+        $breadcrumbs[] = t('Parties');
         module_load_include('inc', 'country_data', 'country_data.api');
         module_load_include('php', 'informea', 'recaptcha/recaptchalib');
         $members = country_data_treaty_get_membership($node->nid);
-        if (empty($members)) {
+        $other_members = country_data_treaty_get_membership($node->nid, $other=TRUE);
+        if (empty($members) && empty($other_members)) {
           $node->content['context'] = informea_no_content_available_block();
           return;
         }
@@ -302,84 +303,23 @@ EOT
             '#markup' => '<div id="ammap_div" style="width: 100%; height: 500px;"></div>' . render($block['content']),
           );
           $map_tab = array(
-            'header' => t('Map of parties'),
+            'header' => t('Map of Parties'),
             'body' => drupal_render($elements),
             'active' => TRUE
           );
-          // Table with parties
-          $rows = array();
-          foreach ($members as $member) {
-            $wrapper = entity_metadata_wrapper('node', $member);
-            $country = $wrapper->field_country->value()[0];
-            $c_wrapper = entity_metadata_wrapper('node', $country);
-            $themedir = drupal_get_path('theme', 'informea_theme');
-            $flag = theme('image', array(
-              'path' => $themedir . '/img/flags/flag-' . strtolower($c_wrapper->field_country_iso2->value()) . '.png',
-              'attributes' => array('class' => 'img-thumbnail flag-small')
-            ));
-            $date1 = $wrapper->field_party_date_1->value();
-            $date1 = empty($date1) ? '&nbsp;' : format_date($date1, 'short');
-            $date2 = $wrapper->field_party_date_2->value();
-            $date2 = empty($date2) ? '&nbsp;' : format_date($date2, 'short');
-            $status_label = '';
-            if ($status = $wrapper->field_party_status->value()) {
-              $status_label = $status->name;
-            }
-            $row = array(
-              'data' => array(
-                sprintf('%s <span>%s</span>', $flag, $wrapper->field_country->label()),
-                array('data' => $date1, 'class' => 'text-center'),
-                array('data' => $date2, 'class' => 'text-center'),
-                array('data' => $status_label, 'class' => 'text-center')
-              )
-            );
-            $nfps = country_data_get_treaty_focal_points($country->nid, $node->nid);
-            if (count($nfps)) {
-              $row['data'][] = array(
-                'data' => sprintf('<a data-toggle="collapse" href="#nfp-%1$s" aria-expanded="false" aria-controls="nfp-%1$s"><i class="glyphicon glyphicon-user"></i></a>', $country->nid),
-                'class' => 'text-center'
-              );
-            }
-            else {
-              $row['data'][] = '';
-            }
-            $rows[] = $row;
-            if (count($nfps)) {
-              $nfp_data = country_data_render_focal_points($nfps);
-              $row = array(
-                'class' => array('collapse'),
-                'data' => array(
-                  array(
-                    'data' => drupal_render($nfp_data),
-                    'colspan' => 5
-                  )
-                ),
-                'id' => array('nfp-' . $country->nid)
-              );
-              $rows[] = $row;
-            }
-          }
-          $table = array(
-            'attributes' => array(
-              'id' => 'table-parties',
-              'class' => 'table-no-striping'
-            ),
-            'header' => array(
-              t('Country'),
-              array('data' => t('Signature'), 'class' => array('text-center')),
-              array('data' => t('Ratification'), 'class' => array('text-center')),
-              array('data' => t('Status'), 'class' => array('text-center')),
-              array('data' => t('Focal points'), 'class' => array('text-center'))
-            ),
-            'rows' => $rows
-          );
+
+          // Tables with parties
+          $table_1 = theme('table', treaty_create_table_with_members($members, $node));
+          $table_2 = count($other_members)
+            ? '<h1>' . t('Other parties') . '</h1>' . theme('table', treaty_create_table_with_members($other_members, $node))
+            : '&nbsp;';
           $elements = array(
             '#type' => 'item',
             '#weight' => 10,
-            '#markup' => theme('table', $table)
+            '#markup' => $table_1 . $table_2,
           );
           $parties_tab = array(
-            'header' => t('List of parties'),
+            'header' => t('List of Parties'),
             'body' => drupal_render($elements),
           );
           $node->content['context'] = array(
@@ -444,6 +384,93 @@ EOT
   }
 }
 
+function treaty_create_table_with_members($members, $node) {
+  $rows = array();
+  foreach ($members as $member) {
+    $wrapper = entity_metadata_wrapper('node', $member);
+    $country = $wrapper->field_country->value()[0];
+    $c_wrapper = entity_metadata_wrapper('node', $country);
+    $themedir = drupal_get_path('theme', 'informea_theme');
+    $flag = theme('image', array(
+      'path' => $themedir . '/img/flags/flag-' . strtolower($c_wrapper->field_country_iso2->value()) . '.png',
+      'attributes' => array('class' => 'img-thumbnail flag-small')
+    ));
+    $date1_unix = $wrapper->field_party_date_1->value();
+    $date1 = empty($date1_unix) ? '&nbsp;' : format_date($date1_unix, 'short');
+    $date2_unix = $wrapper->field_party_date_2->value();
+    $date2 = empty($date2_unix) ? '&nbsp;' : format_date($date2_unix, 'short');
+    $status_label = '';
+    if ($status = $wrapper->field_party_status->value()) {
+      $status_label = $status->name;
+    }
+    $entry_into_force_unix = $wrapper->field_entry_into_force->value();
+    $entry_into_force = empty($entry_into_force_unix) ? '&nbsp;' : format_date($entry_into_force_unix, 'short');
+    $light_blue_class = '';
+
+    if ((empty($entry_into_force_unix) || $entry_into_force_unix > time())
+      && (strtotime('-3 month', time()) < $date2_unix)) {
+      $light_blue_class = 'party-row-light-blue';
+    }
+
+    $row = array(
+      'data' => array(
+        array(
+          'data' => sprintf('%s <span>%s</span>', $flag, $wrapper->field_country->label()),
+          'class' => $light_blue_class,
+        ),
+        array('data' => $date1, 'class' => 'text-center ' . $light_blue_class),
+        array('data' => $date2, 'class' => 'text-center ' . $light_blue_class),
+        array('data' => $status_label, 'class' => 'text-center ' . $light_blue_class),
+        array('data' => $entry_into_force, 'class' => 'text-center ' . $light_blue_class),
+      ),
+    );
+    $nfps = country_data_get_treaty_focal_points($country->nid, $node->nid);
+    if (count($nfps)) {
+      $row['data'][] = array(
+        'data' => sprintf('<a data-toggle="collapse" href="#nfp-%1$s" aria-expanded="false" aria-controls="nfp-%1$s"><i class="glyphicon glyphicon-user"></i></a>', $country->nid),
+        'class' => 'text-center ' . $light_blue_class,
+      );
+    }
+    else {
+      $row['data'][] = array(
+        'data' => '&nbsp;',
+        'class' => $light_blue_class,
+      );
+    }
+    $rows[] = $row;
+    if (count($nfps)) {
+      $nfp_data = country_data_render_focal_points($nfps);
+      $row = array(
+        'class' => array('collapse'),
+        'data' => array(
+          array(
+            'data' => drupal_render($nfp_data),
+            'colspan' => 5
+          )
+        ),
+        'id' => array('nfp-' . $country->nid)
+      );
+      $rows[] = $row;
+    }
+  }
+  $table = array(
+    'attributes' => array(
+      'id' => 'table-parties',
+      'class' => 'table-no-striping'
+    ),
+    'header' => array(
+      t('Country'),
+      array('data' => t('Signature'), 'class' => array('text-center')),
+      array('data' => t('Ratification'), 'class' => array('text-center')),
+      array('data' => t('Status'), 'class' => array('text-center')),
+      array('data' => t('Party'), 'class' => array('text-center')),
+      array('data' => t('Focal points'), 'class' => array('text-center'))
+    ),
+    'rows' => $rows
+  );
+  return $table;
+}
+
 /**
  * Implements hook_page_alter().
  */
@@ -505,7 +532,7 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
         'count' => $d_count,
       ),
       'parties' => array(
-        'title' => t('Parties and contact data'),
+        'title' => t('Parties'),
         'count' => country_data_treaty_count_membership($node->nid)
       ),
       'national-reports' => array(

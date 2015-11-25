@@ -19,7 +19,7 @@ function country_data_get_allowed_membership_status() {
   return array('acceptance', 'accession', 'approval', 'continuation', 'ratification', 'succession');
 }
 
-function country_data_treaty_get_membership($id_treaty) {
+function country_data_treaty_get_membership($id_treaty, $other = FALSE) {
   $query = new EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')
                   ->entityCondition('bundle', 'member_party')
@@ -31,7 +31,9 @@ function country_data_treaty_get_membership($id_treaty) {
     foreach ($result['node'] as $key => $row) {
       $w = entity_metadata_wrapper('node', $row->nid);
       $status = $w->field_party_status->value();
-      if (!in_array(strtolower($status->name_original), $allowed)) {
+      $is_allowed = in_array(strtolower($status->name_original), $allowed);
+      $unset_it = $other ? $is_allowed : !$is_allowed;
+      if ($unset_it) {
         unset($result['node'][$key]);
       }
     }
