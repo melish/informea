@@ -412,6 +412,9 @@ function informea_taxonomy_term_view($term, $view_mode, $langcode) {
   }
 }
 
+/**
+ * Alter the content of the 'Global disclaimer' block
+ */
 function informea_block_view_block_4_alter(&$data, $block) {
   $content = '<div class="alert alert-warning">';
   if (arg(0) == 'node') {
