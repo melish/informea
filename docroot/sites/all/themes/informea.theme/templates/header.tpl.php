@@ -129,6 +129,7 @@
           <ul class="dropdown-menu dropdown-menu-right" role="menu">
             <li><?php print l(t('About InforMEA'), 'about'); ?></li>
             <li><?php print l(t('Resources for Developers'), 'about/api'); ?></li>
+            <li><?php print l(t('Contact'), 'node/70411'); ?></li>
           </ul><!-- .dropdown-menu .dropdown-menu-right -->
         </li><!-- .dropdown -->
       </ul><!-- .nav .navbar-nav -->
