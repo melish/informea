@@ -311,7 +311,7 @@ EOT
           // Tables with parties
           $table_1 = theme('table', treaty_create_table_with_members($members, $node));
           $table_2 = count($other_members)
-            ? '<h1>' . t('Other parties') . '</h1>' . theme('table', treaty_create_table_with_members($other_members, $node))
+            ? '<h1>' . t('Non-parties') . '</h1>' . theme('table', treaty_create_table_with_members($other_members, $node))
             : '&nbsp;';
           $elements = array(
             '#type' => 'item',
