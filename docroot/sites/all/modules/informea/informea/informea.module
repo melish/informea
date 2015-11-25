@@ -54,13 +54,6 @@ function informea_block_info() {
       'visibility' => BLOCK_VISIBILITY_LISTED,
       'pages' => '<front>',
     ),
-    'global_disclaimer' => array(
-      'info' => t('Global disclaimer'),
-      'weight' => 10,
-      'status' => 1,
-      'region' => 'content',
-      'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    ),
   );
 }
 
@@ -74,11 +67,6 @@ function informea_block_view($delta = '') {
     case 'informea_front_page_slider':
       $block['content'] = informea_theme_slider();
       break;
-
-    case 'global_disclaimer':
-      $block['content'] = informea_global_disclaimer_block_content();
-      break;
-
   }
 
   return $block;
@@ -424,7 +412,7 @@ function informea_taxonomy_term_view($term, $view_mode, $langcode) {
   }
 }
 
-function informea_global_disclaimer_block_content() {
+function informea_block_view_block_4_alter(&$data, $block) {
   $content = '<div class="alert alert-warning">';
   if (arg(0) == 'node') {
     $node = menu_get_object();
@@ -469,10 +457,8 @@ function informea_global_disclaimer_block_content() {
 
     }
   }
-  //Load old disclaimer where we keep the static text
-  $block = module_invoke('block', 'block_view', '4');
-  $content .= str_replace(array('<p>','</p>'), '', $block['content']);
+  $content .= str_replace(array('<p>','</p>'), '', $data['content']);
   $content .= l(t('here'), '/contact');
   $content .= '</div>';
-  return render($content);
+  $data['content'] = $content;
 }
