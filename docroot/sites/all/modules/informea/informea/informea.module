@@ -53,7 +53,7 @@ function informea_block_info() {
       'region' => 'front_page_hero',
       'visibility' => BLOCK_VISIBILITY_LISTED,
       'pages' => '<front>',
-    )
+    ),
   );
 }
 
@@ -66,7 +66,6 @@ function informea_block_view($delta = '') {
   switch ($delta) {
     case 'informea_front_page_slider':
       $block['content'] = informea_theme_slider();
-
       break;
   }
 
@@ -411,4 +410,58 @@ function informea_taxonomy_term_view($term, $view_mode, $langcode) {
     }
     informea_theme_set_page_breadcrumb($breadcrumbs);
   }
+}
+
+/**
+ * Alter the content of the 'Global disclaimer' block
+ */
+function informea_block_view_block_4_alter(&$data, $block) {
+  $content = '<div class="alert alert-warning">';
+  if (arg(0) == 'node') {
+    $node = menu_get_object();
+    if ($node->type == 'treaty') {
+      $available_source = FALSE;
+      $node_w = entity_metadata_wrapper('node', $node);
+
+      $context = treaty_url_context(request_path());
+      //Set treaty website url
+      switch ($context) {
+        case 'text':
+          $url = $node_w->field_treaty_text_url->value();
+          break;
+
+        case 'parties':
+          $url = $node_w->field_treaty_parties_url->value();
+          break;
+      }
+      if (!isset($url) || empty($url)) {
+        $url = $node_w->field_treaty_website_url->value();
+      }
+      $url = !empty($url['url']) ? $url['url'] : NULL;
+
+      if ($url) {
+        $available_source = TRUE;
+        $content .= t('Source of information:');
+        $content .= ' <a href="' . $url . '">' . $node_w->label() . ' ' .t('website') . '</a> ';
+      }
+      if ($context == 'parties') {
+        $url_2 = $node_w->field_un_treaty_database_link->value();
+        if (!empty($url_2['url'])) {
+          $available_source = TRUE;
+          if ($url != NULL) {
+            $content .= t('and');
+          }
+          $content .= ' <a href="' . $url_2['url'] . '">' . t('United Nations Treaty Database') . '</a>';
+        }
+      }
+      if ($available_source) {
+        $content .= '.<br>';
+      }
+
+    }
+  }
+  $content .= str_replace(array('<p>','</p>'), '', $data['content']);
+  $content .= l(t('here'), '/contact');
+  $content .= '</div>';
+  $data['content'] = $content;
 }
