@@ -38,7 +38,12 @@ function ws_consumer_update_treaty_ratification_odata_name($odata_name) {
     $treaty = current($treaties);
     ws_consumer_update_treaty_ratification($treaty);
   } else {
-    drupal_set_message('Given treaty does not exist or does not have field_ratification_xml_url data: ' . $odata_name, 'error');
+    watchdog(
+        'ws_consumer',
+        'Given treaty does not exist or does not have field_ratification_xml_url data: !odata',
+        array('!odata' => $odata_name),
+        WATCHDOG_ERROR
+    );
   }
 }
 
@@ -46,9 +51,15 @@ function ws_consumer_update_treaty_ratification_odata_name($odata_name) {
 function ws_consumer_update_treaty_ratification($node_treaty) {
   $treaty_w = entity_metadata_wrapper('node', $node_treaty);
   $xml_url = $treaty_w->field_ratification_xml_url->value();
-  drupal_set_message('Loading XML treaty data from ' . $xml_url['url']);
   if (!empty($xml_url['url'])) {
     $xml_url = $xml_url['url'];
+    $odata_name = $treaty_w->field_odata_identifier->value();
+    watchdog(
+        'ws_consumer',
+        'Loading XML for treaty "!label (!odata)" from !url',
+        array('!url' => $xml_url, '!label' => $treaty_w->label(), '!odata' => $odata_name),
+        WATCHDOG_INFO
+    );
     $data = ws_consumer_service_process_xml($xml_url);
     if (!empty($data->entry_into_force)) {
       $node_treaty->field_entry_into_force[LANGUAGE_NONE][0] = array(
@@ -84,6 +95,8 @@ function ws_consumer_update_treaty_ratification($node_treaty) {
           $party->comment = 0;
         }
         $party_w = entity_metadata_wrapper('node', $party);
+        $current_status = $party_w->field_party_status->value();
+        $old_status_name = $current_status ? $current_status->name : NULL;
         try {
           if (empty($party->nid)) {
             $party_w->field_country->set(array(intval($ratification->country_ob->nid)));
@@ -107,10 +120,12 @@ function ws_consumer_update_treaty_ratification($node_treaty) {
           }
           if ($status = taxonomy_get_term_by_name($ratification->status, 'party_status')) {
             reset($status); $status = current($status);
-            $current = $party_w->field_party_status->value();
-            if (!$current || ($current->tid != $status->tid)) {
+            if (!$current_status || ($current_status->tid != $status->tid)) {
               $save = TRUE;
-              $party_w->field_party_status->set($status->tid);
+              $party_w->field_party_status = $status->tid;
+            }
+            if (empty($statistics[$ratification->status])) {
+              $statistics[$ratification->status] = 0;
             }
             $statistics[$ratification->status]++;
           }
@@ -125,10 +140,12 @@ function ws_consumer_update_treaty_ratification($node_treaty) {
           if ($save) {
             $new = empty($party->nid);
             node_save($party);
+            $party_w->save();
+            $new_status = $status ? $status->name : NULL;
             watchdog(
               'ws_consumer',
-              '!status member party status !title (nid:!nid)',
-              array('!status' => $new ? 'New' : 'Updated',  '!title' => $party_w->label(), '!nid' => $party->nid),
+              '!status member party status !title (nid:!nid) from !old => !new',
+              array('!status' => $new ? 'New' : 'Updated',  '!title' => $party_w->label(), '!nid' => $party->nid, '!old' => $old_status_name, '!new' => $new_status),
               WATCHDOG_INFO
             );
           }
@@ -189,7 +206,11 @@ function ws_consumer_service_process_xml($url) {
       }
     }
 
-    if ($rows = $xml->xpath('//Row')) {
+    $rows = $xml->xpath('//Participants/Table/TGroup/Tbody/Rows/Row');
+    if (empty($rows)) {
+      $rows = $xml->xpath('//Row');
+    }
+    if (!empty($rows)) {
       foreach($rows as $row) {
         $warnings = '';
         $row = $row->children();
@@ -236,7 +257,7 @@ function ws_consumer_service_process_xml($url) {
             $warnings = 'date2 is not a string. Setting to empty';
           }
         }
-
+        $status = NULL;
         if (!empty($row[3])) {
           $status = strtolower($row[3]);
         } else if(preg_match('/\ a$/', $row[2])) { // a
@@ -262,7 +283,6 @@ function ws_consumer_service_process_xml($url) {
         $ob->status = $status;
         $ob->warnings = $warnings;
         $ob->errors = array();
-
         $ret->ratification[] = $ob;
       }
     }
@@ -307,7 +327,7 @@ function ws_consumer_un_database_get_country($country_name) {
     $fixed_country_name = $mappings[$country_name];
   }
   $country_ob = country_get_by_name($fixed_country_name);
-  if (empty($country_ob)) {
+  if (empty($country_ob) && strtolower($country_name) != 'participant') { // participant is the heading
     watchdog('ws_consumer', 'Cannot find country: !c', array('!c' => $country_name), WATCHDOG_ERROR);
   }
   return $country_ob;
