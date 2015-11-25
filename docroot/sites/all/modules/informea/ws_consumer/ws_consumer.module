@@ -64,7 +64,12 @@ function ws_consumer_update_treaty_ratification($node_treaty) {
         $date1 = strtotime($ratification->date1);
         $date2 = strtotime($ratification->date2);
         $treaty_date = $treaty_w->field_entry_into_force->value();
-        $date3 = ($date2 < $treaty_date) ? $treaty_date : strtotime('+90 days', $date2);
+        if ($treaty_date === NULL) {
+          $date3 = NULL;
+        }
+        else {
+          $date3 = ($date2 < $treaty_date) ? $treaty_date : strtotime('+90 days', $date2);
+        }
         $save = FALSE;
         if (!$party) {
           $save = TRUE;
@@ -92,7 +97,11 @@ function ws_consumer_update_treaty_ratification($node_treaty) {
             $save = TRUE;
             $party_w->field_party_date_2->set(strtotime($ratification->date2));
           }
-          if (!empty($date3) && $party_w->field_entry_into_force->value() != $date3) {
+          if ($date3 == NULL && $party_w->field_entry_into_force->value() != NULL) {
+            $save = TRUE;
+            $party_w->field_entry_into_force = NULL;
+          }
+          elseif (!empty($date3) && $party_w->field_entry_into_force->value() != $date3) {
             $save = TRUE;
             $party_w->field_entry_into_force->set($date3);
           }
