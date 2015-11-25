@@ -419,7 +419,7 @@ function informea_block_view_block_4_alter(&$data, $block) {
   $content = '<div class="alert alert-warning">';
   if (arg(0) == 'node') {
     $node = menu_get_object();
-    if ($node->type == 'treaty') {
+    if (!empty($node) && $node->type == 'treaty') {
       $available_source = FALSE;
       $node_w = entity_metadata_wrapper('node', $node);
 
@@ -451,7 +451,7 @@ function informea_block_view_block_4_alter(&$data, $block) {
           if ($url != NULL) {
             $content .= t('and');
           }
-          $content .= ' <a href="' . $url_2['url'] . '">' . t('United Nations Treaty Database') . '</a>';
+          $content .= ' ' . l(t('United Nations Treaty Database'), $url_2['url'], $url_2);
         }
       }
       if ($available_source) {
@@ -461,7 +461,7 @@ function informea_block_view_block_4_alter(&$data, $block) {
     }
   }
   $content .= str_replace(array('<p>','</p>'), '', $data['content']);
-  $content .= l(t('here'), '/contact');
+  $content .= l(t('here'), 'node/70411');
   $content .= '</div>';
   $data['content'] = $content;
 }
