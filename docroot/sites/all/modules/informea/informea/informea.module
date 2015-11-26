@@ -420,14 +420,30 @@ function informea_block_view_block_4_alter(&$data, $block) {
   if (arg(0) == 'node') {
     $node = menu_get_object();
     if (!empty($node) && $node->type == 'treaty') {
+      $context = treaty_url_context(request_path());
       $available_source = FALSE;
       $node_w = entity_metadata_wrapper('node', $node);
-
-      $context = treaty_url_context(request_path());
       //Set treaty website url
       switch ($context) {
         case 'text':
-          $url = $node_w->field_treaty_text_url->value();
+          $url = NULL;
+          $treaty_text_url = $node_w->field_treaty_text_url->value();
+          if (!empty($treaty_text_url)) {
+            $url = $treaty_text_url;
+          }
+          else if ($treaty_website_url = $node_w->field_treaty_website_url->value()) {
+            $url = $treaty_website_url;
+          }
+          $content = t(
+            'This information has been entered manually for the purpose of tagging individual treaty paragraphs with term concepts. In case of discrepancies the information on the MEA website prevails!mea_url. Please help us improve this site – report issues <a href="!contact_url">here</a>',
+            array(
+              '!mea_url' => !empty($url) ? ' (' . l(t('view here'), $url['url'], $url) . ')' : '',
+              '!contact_url' => url('node/70411')
+
+            )
+          );
+          $data['content'] = '<div class="alert alert-warning">' . $content . '</div>';
+          return;
           break;
 
         case 'parties':
