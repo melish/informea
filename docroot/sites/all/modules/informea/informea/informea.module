@@ -434,7 +434,7 @@ function informea_block_view_block_4_alter(&$data, $block) {
           else if ($treaty_website_url = $node_w->field_treaty_website_url->value()) {
             $url = $treaty_website_url;
           }
-          $content = t(
+          $content .= t(
             'This information has been entered manually for the purpose of tagging individual treaty paragraphs with term concepts. In case of discrepancies the information on the MEA website prevails!mea_url. Please help us improve this site – report issues <a href="!contact_url">here</a>',
             array(
               '!mea_url' => !empty($url) ? ' (' . l(t('view here'), $url['url'], $url) . ')' : '',
@@ -442,7 +442,8 @@ function informea_block_view_block_4_alter(&$data, $block) {
 
             )
           );
-          $data['content'] = '<div class="alert alert-warning">' . $content . '</div>';
+          $content .= '</div>';
+          $data['content'] = $content;
           return;
           break;
 
