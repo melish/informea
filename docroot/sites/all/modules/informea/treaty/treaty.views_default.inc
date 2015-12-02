@@ -431,7 +431,7 @@ function treaty_views_default_views() {
   $handler->display->display_options['fields']['field_region']['element_label_class'] = 'dropdown text-nowrap';
   $handler->display->display_options['fields']['field_region']['type'] = 'i18n_taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_region']['delta_offset'] = '0';
-  /* Field: Broken/missing handler */
+  /* Field: Content: Entry into force */
   $handler->display->display_options['fields']['field_entry_into_force']['id'] = 'field_entry_into_force';
   $handler->display->display_options['fields']['field_entry_into_force']['table'] = 'field_data_field_entry_into_force';
   $handler->display->display_options['fields']['field_entry_into_force']['field'] = 'field_entry_into_force';
@@ -528,7 +528,7 @@ function treaty_views_default_views() {
 [title_field]
 [field_informea_tags]'),
     t('Region'),
-    t('Broken handler field_data_field_entry_into_force.field_entry_into_force'),
+    t('Entry into force'),
     t('N/A'),
     t('Regional table'),
     t('Reorder treaties'),
