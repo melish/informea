@@ -495,7 +495,7 @@ function treaty_strongarm() {
       'display' => array(
         'computed_number_of_parties' => array(
           'default' => array(
-            'weight' => '50',
+            'weight' => '8',
             'visible' => TRUE,
           ),
         ),
