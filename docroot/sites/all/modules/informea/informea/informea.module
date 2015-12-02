@@ -447,6 +447,22 @@ function informea_block_view_block_4_alter(&$data, $block) {
           return;
           break;
 
+        case 'protocols':
+          $url = $node_w->field_treaty_protocols_url->value();
+          break;
+
+        case 'decisions':
+          $url = $node_w->field_treaty_decisions_url->value();
+          break;
+
+        case 'national-reports':
+          $url = $node_w->field_treaty_reports_url->value();
+          break;
+
+        case 'action-plans':
+          $url = $node_w->field_treaty_plans_url->value();
+          break;
+
         case 'parties':
           $url = $node_w->field_treaty_parties_url->value();
           break;
