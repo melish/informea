@@ -3585,76 +3585,6 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_treaty_summary_url'
-  $field_instances['node-treaty-field_treaty_summary_url'] = array(
-    'bundle' => 'treaty',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'ajax' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'link',
-        'settings' => array(),
-        'type' => 'link_default',
-        'weight' => 57,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'treaty_listing' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_treaty_summary_url',
-    'label' => 'Treaty summary URL',
-    'required' => 0,
-    'settings' => array(
-      'absolute_url' => 1,
-      'attributes' => array(
-        'class' => '',
-        'configurable_class' => 0,
-        'configurable_title' => 0,
-        'rel' => '',
-        'target' => 'default',
-        'title' => '',
-      ),
-      'display' => array(
-        'url_cutoff' => 80,
-      ),
-      'enable_tokens' => 1,
-      'entity_translation_sync' => FALSE,
-      'rel_remove' => 'default',
-      'title' => 'none',
-      'title_label_use_field_label' => 0,
-      'title_maxlength' => 128,
-      'title_value' => '',
-      'url' => 0,
-      'user_register_form' => FALSE,
-      'validate_url' => 1,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'link',
-      'settings' => array(),
-      'type' => 'link_field',
-      'weight' => 26,
-    ),
-  );
-
   // Exported field_instance: 'node-treaty-field_treaty_text_url'
   $field_instances['node-treaty-field_treaty_text_url'] = array(
     'bundle' => 'treaty',
@@ -5300,7 +5230,6 @@ function treaty_field_default_field_instances() {
   t('Treaty plans URL');
   t('Treaty protocols URL');
   t('Treaty reports URL');
-  t('Treaty summary URL');
   t('Treaty text URL');
   t('Treaty website URL');
   t('Type of text');
