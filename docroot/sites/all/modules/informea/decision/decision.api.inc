@@ -11,12 +11,12 @@
 function decision_count_treaty_decisions($id_treaty) {
   if (treaty_can_have_decisions($id_treaty)) {
     return EdwCacheDomain::cache_get_array('decision', __FUNCTION__, function ($id_treaty) {
-      $query = new EntityFieldQuery();
-      return $query->entityCondition('entity_type', 'node')
-        ->entityCondition('bundle', 'decision')
-        ->fieldCondition('field_treaty', 'target_id', $id_treaty)
-        ->count()
-        ->execute();
+      $decisions = 0;
+      $meetings = decision_get_treaty_decisions_group_by_meeting($id_treaty);
+      foreach ($meetings as $meeting) {
+        $decisions += count($meeting->decisions);
+      }
+      return $decisions;
     }, $id_treaty);
   }
   return -1;
