@@ -72,22 +72,6 @@ function informea_block_view($delta = '') {
 }
 
 /**
- * Implements hook_block_view_alter().
- */
-function informea_block_view_alter(&$data, $block) {
-  if ($block->delta == 10) { // Country block from the front page
-    $countries = countries_get_countries('name', array('enabled' => COUNTRIES_ENABLED));
-    $html = '<select class="form-control input-sm">';
-    $html .= '<option>' . t('Select a country ...') . '</option>';
-    foreach ($countries as $iso2 => $country) {
-      $html .= sprintf('<option value="%s">%s</option>', $iso2, $country);
-    }
-    $html .= '</select>';
-    $data['content'] = str_replace('<select class="form-control input-sm"></select>', $html, $data['content']);
-  }
-}
-
-/**
  * Implements hook_block_configure().
  *
  * This hook declares configuration options for blocks provided by this module.

@@ -102,6 +102,20 @@ function informea_theme_preprocess_page(&$variables) {
   if ($variables['is_front']) {
     // Adds the front page JavaScript file to the page.
     drupal_add_js(drupal_get_path('theme', 'informea_theme') . '/js/front.js');
+
+    // Country block from the front page
+    // Replace the <select> at this stage to avoid replacement issue coming from i18n_block_translate_block
+    if (!empty($variables['page']['front_page_content']['block_10'])) {
+      $block_data =& $variables['page']['front_page_content']['block_10'];
+      $countries = countries_get_countries('name', array('enabled' => COUNTRIES_ENABLED));
+      $html = '<select id="front-page-country-list-block" class="form-control input-sm">';
+      $html .= '<option>' . t('Select a country ...') . '</option>';
+      foreach ($countries as $iso2 => $country) {
+        $html .= sprintf('<option value="%s">%s</option>', $iso2, $country);
+      }
+      $html .= '</select>';
+      $block_data = str_replace('<select id="front-page-country-list-block" class="form-control input-sm"></select>', $html, $block_data);
+    }
   }
 
   if (!empty($breadcrumbs)) {
