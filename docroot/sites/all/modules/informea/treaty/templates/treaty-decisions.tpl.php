@@ -7,7 +7,7 @@
 <?php
 /** @var array $variables */
 $decisions = $variables['decisions'];
-global $language;
+global $language, $user;
 ?>
 <table class="table table-hover">
   <tbody>
@@ -29,6 +29,8 @@ global $language;
           ));
           if (user_access('edit any decision content')):
               print '&nbsp;&nbsp;' . l('<i class="glyphicon small glyphicon-pencil"></i>', 'node/' . $nid . '/edit', array('attributes' => array('target' => '_blank', 'title' => t('Edit')), 'html' => TRUE));
+          endif;
+          if (in_array('authenticated user', $user->roles)):
               print '&nbsp;' . l('<i class="glyphicon small glyphicon-link"></i>', 'node/' . $nid, array('attributes' => array('target' => '_blank', 'title' => t('Edit')), 'html' => TRUE));
           endif;
           ?>
