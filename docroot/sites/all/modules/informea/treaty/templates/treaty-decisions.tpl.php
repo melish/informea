@@ -27,6 +27,9 @@ global $language;
               'data-remote' => url('ajax/modal/node/' . $nid)
             )
           ));
+          if (user_access('edit any decision content')):
+              print '&nbsp;&nbsp;' . l('<i class="glyphicon small glyphicon-pencil"></i>', 'node/' . $nid . '/edit', array('attributes' => array('title' => t('Edit')), 'html' => TRUE));
+          endif;
           ?>
         </td>
       </tr>
