@@ -28,7 +28,8 @@ global $language;
             )
           ));
           if (user_access('edit any decision content')):
-              print '&nbsp;&nbsp;' . l('<i class="glyphicon small glyphicon-pencil"></i>', 'node/' . $nid . '/edit', array('attributes' => array('title' => t('Edit')), 'html' => TRUE));
+              print '&nbsp;&nbsp;' . l('<i class="glyphicon small glyphicon-pencil"></i>', 'node/' . $nid . '/edit', array('attributes' => array('target' => '_blank', 'title' => t('Edit')), 'html' => TRUE));
+              print '&nbsp;' . l('<i class="glyphicon small glyphicon-link"></i>', 'node/' . $nid, array('attributes' => array('target' => '_blank', 'title' => t('Edit')), 'html' => TRUE));
           endif;
           ?>
         </td>
