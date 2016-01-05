@@ -40,6 +40,17 @@ abstract class AbstractODataMigration extends Migration {
   }
 
   /**
+   * Set translations to entity when content is available in multiple languages.
+   *
+   * @param $entity
+   * @param $row
+   */
+  function prepare($entity, $row) {
+    $translate_in = array_unique(array_merge($row->title_langs, $row->content_langs, $row->files_language));
+    $this->setTranslation($entity, $translate_in);
+  }
+
+  /**
    * Transform OData Atom DateTime, measured in ticks to Drupal timestamp.
    *
    * @param string $value
@@ -99,6 +110,8 @@ abstract class AbstractODataMigration extends Migration {
     $entity_type = $migration->getDestination()->getEntityType();
 
     $translation_handler  = entity_translation_get_handler($entity_type, $entity);
+    $translation_handler->setOriginalLanguage('en');
+    $translation_handler->initTranslations();
     $entity->translations = $translation_handler->getTranslations();
     foreach ($languages as $language) {
       if ($language == 'en') {
