@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * Delete duplicate site records
+ */
+function country_data_update_7001 () {
+    // Delete duplicate site records
+    $q = db_select('field_data_title_field', 'a');
+    $q->fields('a', array('title_field_value'));
+    $q->condition('a.bundle', 'geographical_site');
+    $q->condition('a.language', 'en');
+    $q->groupBy('a.title_field_value');
+    $q->addExpression('COUNT(*)', 'ncount');
+    $q->havingCondition('ncount', '1', '>');
+    $titles = $q->execute()->fetchCol();
+
+    $delete = array();
+    foreach($titles as $title) {
+        $q = db_select('field_data_title_field', 'a');
+        $q->fields('a', array('entity_id'));
+        $q->condition('a.bundle', 'geographical_site');
+        $q->condition('a.language', 'en');
+        $q->condition('a.title_field_value', $title);
+        $q->orderBy('a.entity_id');
+        $nids = $q->execute()->fetchCol();
+        unset($nids[0]);
+        $delete = array_merge($delete, $nids);
+    }
+
+    echo sprintf("Removing %d duplicate sites\n", count($delete));
+    node_delete_multiple($delete);
+}
