@@ -1769,3 +1769,8 @@ strong.excerpt {
 .party-row-light-blue {
   background-color: rgba(0, 153, 213, 0.16);
 }
+
+#block-informea-informea-front-page-slider .carousel-caption .media-left img {
+  max-width: 60px;
+  max-height: 60px;
+}
