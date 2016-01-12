@@ -1774,3 +1774,8 @@ strong.excerpt {
   max-width: 60px;
   max-height: 60px;
 }
+
+.leo-logo-search-image {
+  background-color: #ed9f0d;
+  padding: 2px;
+}

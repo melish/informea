@@ -163,9 +163,11 @@ function informea_search_ajax_get_ajax_terms($term, &$data) {
     foreach ($terms as $term) {
       $wrapper = entity_metadata_wrapper('taxonomy_term', $term);
 
+      $img = theme('image', array('path' => drupal_get_path('theme', 'informea_theme') . '/img/logo-leo.png', 'attributes' => array('class' => 'leo-logo-search-image')));
+
       $data[] = array(
         'category' => t('Terms'),
-        'label' => $wrapper->label(),
+        'label' => $img . ' ' . $wrapper->label(),
         'link' => url('terms/' . $wrapper->getIdentifier()),
         'value' => $wrapper->label()
       );
