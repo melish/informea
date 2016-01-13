@@ -476,3 +476,17 @@ function country_get_stats() {
 //  );
 //  return $ret;
 //}
+
+
+/**
+ * Implements hook_views_query_alter().
+ *
+ * Group by nid to avoid duplicates.
+ */
+function country_views_query_alter(&$view, &$query) {
+  if ($view->name == 'country_related_content' && $view->current_display == 'whc_sites') {
+    // Group by nid because "$query->distinct = TRUE" doesn't work.
+    $query->add_field('node', 'nid', 'node_nid', array('function' => 'groupby'));
+    $query->add_groupby('node.nid');
+  }
+}
