@@ -114,7 +114,7 @@ function informea_theme_preprocess_page(&$variables) {
         $html .= sprintf('<option value="%s">%s</option>', $iso2, $country);
       }
       $html .= '</select>';
-      $block_data = str_replace('<select id="front-page-country-list-block" class="form-control input-sm"></select>', $html, $block_data);
+      $block_data['#markup'] = preg_replace('/<select.*><\/select>/i', $html, $block_data['#markup']);
     }
   }
 
