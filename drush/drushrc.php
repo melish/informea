@@ -342,6 +342,8 @@ $options['init-modules'] = array(
   'diff',
 
   'webform',
+  'easyrdf',
+  'phpexcel',
 );
 
 
