@@ -328,7 +328,6 @@ $options['init-modules'] = array(
   'decision',
   'ecolex',
   'edw_amcharts',
-  'goal',
   'informea',
   'meeting',
   'search_integration',
