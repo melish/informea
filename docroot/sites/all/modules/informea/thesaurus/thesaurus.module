@@ -689,3 +689,8 @@ function thesaurus_load_from_rdf($rdf) {
   }
   return $terms;
 }
+
+function thesaurus_load_informea_from_rdf() {
+  $url = variable_get('informea_vocbench_thesaurus_url', 'http://informea.org/sites/default/files/export/informea.rdf');
+  return thesaurus_load_from_rdf_cached($url);
+}
