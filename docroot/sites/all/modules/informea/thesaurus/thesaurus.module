@@ -694,3 +694,24 @@ function thesaurus_load_informea_from_rdf() {
   $url = variable_get('informea_vocbench_thesaurus_url', 'http://informea.org/sites/default/files/export/informea.rdf');
   return thesaurus_load_from_rdf_cached($url);
 }
+
+/**
+ * Load a single term by its VocBench URI.
+ *
+ * @param string $uri
+ * @param string $machine_name
+ *
+ * @return stdClass
+ *  Taxonomy term loaded
+ */
+function thesaurus_term_load_by_uri($uri, $machine_name) {
+  /** @var SelectQuery $q */
+  $q = db_select('field_data_field_taxonomy_term_uri')->fields(NULL, array('entity_id'));
+  $q->condition('field_taxonomy_term_uri_url', $uri);
+  $q->condition('bundle', $machine_name);
+  $q->condition('entity_type', 'taxonomy_term');
+  if ($tid = $q->execute()->fetchField(0)) {
+    return taxonomy_term_load($tid);
+  }
+  return NULL;
+}
