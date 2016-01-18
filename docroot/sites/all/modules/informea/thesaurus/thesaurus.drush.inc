@@ -102,7 +102,7 @@ VALUES ('node', 'treaty', '0', :entity_id, :entity_id, 'und', IFNULL((SELECT MAX
     }
   }
   if ($uris_not_found_count) {
-    drush_log($uris_not_found_count . " uris not found,", 'warning');
+    drush_log($uris_not_found_count . " uris not found.", 'warning');
   }
   else {
   drush_log("Operation completed 100% succesfully!", 'ok');
