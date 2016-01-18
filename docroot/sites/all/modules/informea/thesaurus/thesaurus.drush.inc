@@ -64,6 +64,7 @@ function drush_thesaurus_informea_thesaurus_migrate_tags() {
   /*
    * STEP 4: Add new tags
    */
+  $uris_not_found_count = 0;
   foreach ($data as $row) {
     $old_term_name = $row['OLD TERM (INFORMEA.ORG/TERMS)'];
     if ($old_term_name) {
@@ -78,6 +79,10 @@ function drush_thesaurus_informea_thesaurus_migrate_tags() {
           $new_tid = thesaurus_term_get_tid_by_uri($row[$i], 'thesaurus_informea');
           if ($new_tid != NULL) {
             $new_tids[] = $new_tid;
+          }
+          else {
+            drush_log("Could not find term by uri: " . $row[$i], 'error');
+            $uris_not_found_count++;
           }
         }
       }
@@ -95,6 +100,12 @@ VALUES ('node', 'treaty', '0', :entity_id, :entity_id, 'und', IFNULL((SELECT MAX
         }
       }
     }
+  }
+  if ($uris_not_found_count) {
+    drush_log($uris_not_found_count . " uris not found,", 'warning');
+  }
+  else {
+  drush_log("Operation completed 100% succesfully!", 'ok');
   }
 }
 
