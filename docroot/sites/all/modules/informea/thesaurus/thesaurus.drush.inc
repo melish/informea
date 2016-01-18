@@ -65,15 +65,35 @@ function drush_thesaurus_informea_thesaurus_migrate_tags() {
    * STEP 4: Add new tags
    */
   foreach ($data as $row) {
-    $old_tid = $row['OLD TERM (INFORMEA.ORG/TERMS)'];
-    $new_tids = array();
-    for ($i = 1 ; $i < 7 ; $i++) {
-      if($row[$i]) {
-        if (($term = thesaurus_term_load_by_uri($row[$i], 'thesaurus_informea')) != NULL) {
-          $new_tids[] = $term;
+    $old_term_name = $row['OLD TERM (INFORMEA.ORG/TERMS)'];
+    if ($old_term_name) {
+      drush_log("Remapping old term: " . $old_term_name, "ok");
+      $q = db_select('thesaurus_term_mappings', 'a')->fields('a', array('entity_id', 'entity_id'));
+      $q->condition('a.name', $old_term_name);
+      $entities_ids = $q->execute()->fetchAllKeyed();
+
+      $new_tids = array();
+      for ($i = 1 ; $i < 7 ; $i++) {
+        if($row[$i]) {
+          $new_tid = thesaurus_term_get_tid_by_uri($row[$i], 'thesaurus_informea');
+          if ($new_tid != NULL) {
+            $new_tids[] = $new_tid;
+          }
         }
       }
-      var_dump($new_tids);die;
+
+      foreach ($entities_ids as $eid) {
+        foreach ($new_tids as $tid) {
+          db_query("
+INSERT INTO field_data_field_informea_tags (entity_type, bundle, deleted, entity_id, revision_id, language, delta, field_informea_tags_tid)
+VALUES ('node', 'treaty', '0', :entity_id, :entity_id, 'und', IFNULL((SELECT MAX(delta)+1 as delta from field_data_field_informea_tags b where b.entity_id = :entity_id), 0), :term_id);
+        ",
+            array(
+              ':entity_id' => $eid,
+              ':term_id' => $tid,
+            ));
+        }
+      }
     }
   }
 }

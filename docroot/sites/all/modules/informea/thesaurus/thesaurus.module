@@ -715,3 +715,22 @@ function thesaurus_term_load_by_uri($uri, $machine_name) {
   }
   return NULL;
 }
+
+/**
+ * Load a single term TID by its VocBench URI.
+ *
+ * @param string $uri
+ * @param string $machine_name
+ *
+ * @return stdClass
+ *  Taxonomy term tid
+ */
+function thesaurus_term_get_tid_by_uri($uri, $machine_name) {
+  /** @var SelectQuery $q */
+  $q = db_select('field_data_field_taxonomy_term_uri', 'a')->fields('a', array('entity_id'));
+  $q->condition('field_taxonomy_term_uri_url', $uri);
+  $q->condition('bundle', $machine_name);
+  $q->condition('entity_type', 'taxonomy_term');
+  $tid = $q->execute()->fetchField(0);
+  return $tid != FALSE ? $tid : NULL;
+}
