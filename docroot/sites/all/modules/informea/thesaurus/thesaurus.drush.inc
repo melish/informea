@@ -57,7 +57,12 @@ function drush_thesaurus_informea_thesaurus_migrate_tags() {
   drush_thesaurus_informea_thesaurus_sync();
 
   /*
-   * STEP 3: Add new tags
+   * STEP 3: Delete actual tags
+   */
+  db_truncate('field_data_field_informea_tags')->execute();
+
+  /*
+   * STEP 4: Add new tags
    */
   foreach ($data as $row) {
     $old_tid = $row['OLD TERM (INFORMEA.ORG/TERMS)'];
