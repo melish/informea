@@ -60,11 +60,14 @@ function drush_thesaurus_informea_thesaurus_migrate_tags($skip_vocbench_sync = F
      */
     drush_thesaurus_informea_thesaurus_sync();
   }
-
   /*
    * STEP 3: Delete actual tags
    */
   drush_log("Deleting old tags", "ok");
+  // Create backup
+  db_query('CREATE TABLE IF NOT EXISTS field_data_field_informea_tags_backup AS SELECT * FROM field_data_field_informea_tags');
+
+  // Delete old data
   db_truncate('field_data_field_informea_tags')->execute();
   db_truncate('field_revision_field_informea_tags')->execute();
 
