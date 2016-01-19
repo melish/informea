@@ -45,7 +45,7 @@ function drush_thesaurus_informea_thesaurus_migrate_tags($skip_vocbench_sync = F
   }
   $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
 
-  if ($skip_vocbench_sync !== FALSE) {
+  if ($skip_vocbench_sync === FALSE) {
     /*
      * STEP 1: Delete all terms.
      */
@@ -60,6 +60,7 @@ function drush_thesaurus_informea_thesaurus_migrate_tags($skip_vocbench_sync = F
      */
     drush_thesaurus_informea_thesaurus_sync();
   }
+
   /*
    * STEP 3: Delete actual tags
    */
