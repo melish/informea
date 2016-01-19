@@ -64,7 +64,9 @@ function drush_thesaurus_informea_thesaurus_migrate_tags($skip_vocbench_sync = F
   /*
    * STEP 3: Delete actual tags
    */
+  drush_log("Deleting old tags", "ok");
   db_truncate('field_data_field_informea_tags')->execute();
+  db_truncate('field_revision_field_informea_tags')->execute();
 
   /*
    * STEP 4: Add new tags
@@ -97,6 +99,16 @@ function drush_thesaurus_informea_thesaurus_migrate_tags($skip_vocbench_sync = F
 
       foreach ($entities_ids as $eid => $node_type) {
         foreach ($new_tids as $tid) {
+          $q = db_select('field_data_field_informea_tags', 'a');
+          $q->fields('a', array('entity_id'));
+          $q->condition('a.entity_id', $eid);
+          $q->condition('a.field_informea_tags_tid', $tid);
+          $res = $q->execute()->fetchAll();
+          if (count($res) > 0) {
+            // Do not add duplicates.
+            continue;
+          }
+
           db_query("
 INSERT INTO field_data_field_informea_tags (entity_type, bundle, deleted, entity_id, revision_id, language, delta, field_informea_tags_tid)
 VALUES ('node', :bundle, '0', :entity_id, :entity_id, 'und', IFNULL((SELECT MAX(delta)+1 as delta from field_data_field_informea_tags b where b.entity_id = :entity_id), 0), :term_id);
