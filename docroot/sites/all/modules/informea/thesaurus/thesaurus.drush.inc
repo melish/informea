@@ -19,9 +19,6 @@ function thesaurus_drush_command() {
   $items['informea-thesaurus-migrate-tags'] = array(
     'drupal dependencies' => array('easyrdf', 'phpexcel'),
     'description' => 'Migrate terms from vocbench and fix field_informea_tags.',
-    'options' => array(
-      'skip_sync' => 'Skip vocbench synchronization',
-    ),
   );
 
   return $items;
@@ -32,7 +29,7 @@ function drush_thesaurus_informea_thesaurus_sync() {
   echo "Synchronisation finished ...\n";
 }
 
-function drush_thesaurus_informea_thesaurus_migrate_tags($skip_vocbench_sync = FALSE) {
+function drush_thesaurus_informea_thesaurus_migrate_tags() {
   module_load_include('inc', 'phpexcel');
 
   $path = drupal_get_path('module', 'thesaurus') . '/data/informea-old-new-mappings.xlsx';
@@ -45,21 +42,19 @@ function drush_thesaurus_informea_thesaurus_migrate_tags($skip_vocbench_sync = F
   }
   $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
 
-  if ($skip_vocbench_sync === FALSE) {
-    /*
-     * STEP 1: Delete all terms.
-     */
-    drush_log("Deleting all old terms", "ok");
-    foreach (taxonomy_get_tree($voc->vid) as $term) {
-      drush_log("Deleting term: " . $term->name, "ok");
-      taxonomy_term_delete($term->tid);
-    }
-
-    /*
-     * STEP 2: Synchronization with vocbench
-     */
-    drush_thesaurus_informea_thesaurus_sync();
+  /*
+   * STEP 1: Delete all terms.
+   */
+  drush_log("Deleting all old terms", "ok");
+  foreach (taxonomy_get_tree($voc->vid) as $term) {
+    drush_log("Deleting term: " . $term->name, "ok");
+    taxonomy_term_delete($term->tid);
   }
+
+  /*
+   * STEP 2: Synchronization with vocbench
+   */
+  drush_thesaurus_informea_thesaurus_sync();
 
   /*
    * STEP 3: Delete actual tags
