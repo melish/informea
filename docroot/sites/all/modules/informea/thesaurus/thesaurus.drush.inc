@@ -19,8 +19,8 @@ function thesaurus_drush_command() {
   $items['informea-thesaurus-migrate-tags'] = array(
     'drupal dependencies' => array('easyrdf', 'phpexcel'),
     'description' => 'Migrate terms from vocbench and fix field_informea_tags.',
-    'arguments' => array(
-      'skip_vocbench_sync' => 'Skip vocbench sync',
+    'options' => array(
+      'skip_sync' => 'Skip vocbench synchronization',
     ),
   );
 
