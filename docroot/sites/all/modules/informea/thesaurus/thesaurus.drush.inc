@@ -19,6 +19,9 @@ function thesaurus_drush_command() {
   $items['informea-thesaurus-migrate-tags'] = array(
     'drupal dependencies' => array('easyrdf', 'phpexcel'),
     'description' => 'Migrate terms from vocbench and fix field_informea_tags.',
+    'arguments' => array(
+      'skip_vocbench_sync' => 'Skip vocbench sync',
+    ),
   );
 
   return $items;
@@ -29,7 +32,7 @@ function drush_thesaurus_informea_thesaurus_sync() {
   echo "Synchronisation finished ...\n";
 }
 
-function drush_thesaurus_informea_thesaurus_migrate_tags() {
+function drush_thesaurus_informea_thesaurus_migrate_tags($skip_vocbench_sync = FALSE) {
   module_load_include('inc', 'phpexcel');
 
   $path = drupal_get_path('module', 'thesaurus') . '/data/informea-old-new-mappings.xlsx';
@@ -42,19 +45,21 @@ function drush_thesaurus_informea_thesaurus_migrate_tags() {
   }
   $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
 
-  /*
-   * STEP 1: Delete all terms.
-   */
-  drush_log("Deleting all old terms", "ok");
-  foreach (taxonomy_get_tree($voc->vid) as $term) {
-    drush_log("Deleting term: " . $term->name, "ok");
-    taxonomy_term_delete($term->tid);
-  }
+  if ($skip_vocbench_sync !== FALSE) {
+    /*
+     * STEP 1: Delete all terms.
+     */
+    drush_log("Deleting all old terms", "ok");
+    foreach (taxonomy_get_tree($voc->vid) as $term) {
+      drush_log("Deleting term: " . $term->name, "ok");
+      taxonomy_term_delete($term->tid);
+    }
 
-  /*
-   * STEP 2: Synchronization with vocbench
-   */
-  drush_thesaurus_informea_thesaurus_sync();
+    /*
+     * STEP 2: Synchronization with vocbench
+     */
+    drush_thesaurus_informea_thesaurus_sync();
+  }
 
   /*
    * STEP 3: Delete actual tags
@@ -69,7 +74,10 @@ function drush_thesaurus_informea_thesaurus_migrate_tags() {
     $old_term_name = $row['OLD TERM (INFORMEA.ORG/TERMS)'];
     if ($old_term_name) {
       drush_log("Remapping old term: " . $old_term_name, "ok");
-      $q = db_select('thesaurus_term_mappings', 'a')->fields('a', array('entity_id', 'entity_id'));
+      $q = db_select('thesaurus_term_mappings', 'a');
+      $q->innerJoin('node', 'b', 'a.entity_id = b.nid');
+      $q->fields('a', array('entity_id'));
+      $q->fields('b', array('type'));
       $q->condition('a.name', $old_term_name);
       $entities_ids = $q->execute()->fetchAllKeyed();
 
@@ -87,13 +95,14 @@ function drush_thesaurus_informea_thesaurus_migrate_tags() {
         }
       }
 
-      foreach ($entities_ids as $eid) {
+      foreach ($entities_ids as $eid => $node_type) {
         foreach ($new_tids as $tid) {
           db_query("
 INSERT INTO field_data_field_informea_tags (entity_type, bundle, deleted, entity_id, revision_id, language, delta, field_informea_tags_tid)
-VALUES ('node', 'treaty', '0', :entity_id, :entity_id, 'und', IFNULL((SELECT MAX(delta)+1 as delta from field_data_field_informea_tags b where b.entity_id = :entity_id), 0), :term_id);
+VALUES ('node', :bundle, '0', :entity_id, :entity_id, 'und', IFNULL((SELECT MAX(delta)+1 as delta from field_data_field_informea_tags b where b.entity_id = :entity_id), 0), :term_id);
         ",
             array(
+              ':bundle' => $node_type,
               ':entity_id' => $eid,
               ':term_id' => $tid,
             ));
