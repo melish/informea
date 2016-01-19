@@ -855,9 +855,9 @@ function country_deliverable_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'inline',
-        'module' => 'file',
+        'module' => 'informea',
         'settings' => array(),
-        'type' => 'file_default',
+        'type' => 'external_url',
         'weight' => 1,
       ),
       'treaty_listing' => array(
