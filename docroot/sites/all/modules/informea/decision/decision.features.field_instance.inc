@@ -10,7 +10,7 @@
 function decision_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-decision-body'
+  // Exported field_instance: 'node-decision-body'.
   $field_instances['node-decision-body'] = array(
     'bundle' => 'decision',
     'default_value' => NULL,
@@ -68,7 +68,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision-field_decision_number'
+  // Exported field_instance: 'node-decision-field_decision_number'.
   $field_instances['node-decision-field_decision_number'] = array(
     'bundle' => 'decision',
     'default_value' => NULL,
@@ -122,7 +122,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision-field_decision_status'
+  // Exported field_instance: 'node-decision-field_decision_status'.
   $field_instances['node-decision-field_decision_status'] = array(
     'bundle' => 'decision',
     'default_value' => NULL,
@@ -176,7 +176,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision-field_decision_type'
+  // Exported field_instance: 'node-decision-field_decision_type'.
   $field_instances['node-decision-field_decision_type'] = array(
     'bundle' => 'decision',
     'default_value' => NULL,
@@ -230,7 +230,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision-field_files'
+  // Exported field_instance: 'node-decision-field_files'.
   $field_instances['node-decision-field_files'] = array(
     'bundle' => 'decision',
     'deleted' => 0,
@@ -287,7 +287,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision-field_informea_tags'
+  // Exported field_instance: 'node-decision-field_informea_tags'.
   $field_instances['node-decision-field_informea_tags'] = array(
     'bundle' => 'decision',
     'default_value' => NULL,
@@ -355,7 +355,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision-field_last_update'
+  // Exported field_instance: 'node-decision-field_last_update'.
   $field_instances['node-decision-field_last_update'] = array(
     'bundle' => 'decision',
     'deleted' => 0,
@@ -421,7 +421,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision-field_meeting'
+  // Exported field_instance: 'node-decision-field_meeting'.
   $field_instances['node-decision-field_meeting'] = array(
     'bundle' => 'decision',
     'default_value' => NULL,
@@ -482,7 +482,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision-field_meeting_title_en'
+  // Exported field_instance: 'node-decision-field_meeting_title_en'.
   $field_instances['node-decision-field_meeting_title_en'] = array(
     'bundle' => 'decision',
     'default_value' => NULL,
@@ -534,7 +534,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision-field_meeting_url'
+  // Exported field_instance: 'node-decision-field_meeting_url'.
   $field_instances['node-decision-field_meeting_url'] = array(
     'bundle' => 'decision',
     'default_value' => NULL,
@@ -602,7 +602,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision-field_original_id'
+  // Exported field_instance: 'node-decision-field_original_id'.
   $field_instances['node-decision-field_original_id'] = array(
     'bundle' => 'decision',
     'default_value' => NULL,
@@ -654,7 +654,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision-field_sorting_date'
+  // Exported field_instance: 'node-decision-field_sorting_date'.
   $field_instances['node-decision-field_sorting_date'] = array(
     'bundle' => 'decision',
     'deleted' => 0,
@@ -720,7 +720,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision-field_sorting_order'
+  // Exported field_instance: 'node-decision-field_sorting_order'.
   $field_instances['node-decision-field_sorting_order'] = array(
     'bundle' => 'decision',
     'default_value' => NULL,
@@ -773,7 +773,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision-field_treaty'
+  // Exported field_instance: 'node-decision-field_treaty'.
   $field_instances['node-decision-field_treaty'] = array(
     'bundle' => 'decision',
     'default_value' => NULL,
@@ -831,7 +831,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision-field_url'
+  // Exported field_instance: 'node-decision-field_url'.
   $field_instances['node-decision-field_url'] = array(
     'bundle' => 'decision',
     'default_value' => NULL,
@@ -900,7 +900,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision-title_field'
+  // Exported field_instance: 'node-decision-title_field'.
   $field_instances['node-decision-title_field'] = array(
     'bundle' => 'decision',
     'default_value' => NULL,
@@ -955,7 +955,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision_paragraph-body'
+  // Exported field_instance: 'node-decision_paragraph-body'.
   $field_instances['node-decision_paragraph-body'] = array(
     'bundle' => 'decision_paragraph',
     'default_value' => NULL,
@@ -1019,7 +1019,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision_paragraph-field_informea_tags'
+  // Exported field_instance: 'node-decision_paragraph-field_informea_tags'.
   $field_instances['node-decision_paragraph-field_informea_tags'] = array(
     'bundle' => 'decision_paragraph',
     'default_value' => NULL,
@@ -1086,7 +1086,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision_paragraph-field_official_order'
+  // Exported field_instance: 'node-decision_paragraph-field_official_order'.
   $field_instances['node-decision_paragraph-field_official_order'] = array(
     'bundle' => 'decision_paragraph',
     'default_value' => NULL,
@@ -1146,7 +1146,7 @@ function decision_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-decision_paragraph-field_paragraph_indentation'
+  // 'node-decision_paragraph-field_paragraph_indentation'.
   $field_instances['node-decision_paragraph-field_paragraph_indentation'] = array(
     'bundle' => 'decision_paragraph',
     'default_value' => NULL,
@@ -1205,7 +1205,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision_paragraph-field_parent_decision'
+  // Exported field_instance: 'node-decision_paragraph-field_parent_decision'.
   $field_instances['node-decision_paragraph-field_parent_decision'] = array(
     'bundle' => 'decision_paragraph',
     'default_value' => NULL,
@@ -1278,7 +1278,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision_paragraph-field_sorting_order'
+  // Exported field_instance: 'node-decision_paragraph-field_sorting_order'.
   $field_instances['node-decision_paragraph-field_sorting_order'] = array(
     'bundle' => 'decision_paragraph',
     'default_value' => NULL,
@@ -1337,7 +1337,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision_paragraph-field_treaty'
+  // Exported field_instance: 'node-decision_paragraph-field_treaty'.
   $field_instances['node-decision_paragraph-field_treaty'] = array(
     'bundle' => 'decision_paragraph',
     'default_value' => NULL,
@@ -1407,7 +1407,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision_paragraph-title_field'
+  // Exported field_instance: 'node-decision_paragraph-title_field'.
   $field_instances['node-decision_paragraph-title_field'] = array(
     'bundle' => 'decision_paragraph',
     'default_value' => NULL,
@@ -1468,7 +1468,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-decision_status-description_field'
+  // Exported field_instance: 'taxonomy_term-decision_status-description_field'.
   $field_instances['taxonomy_term-decision_status-description_field'] = array(
     'bundle' => 'decision_status',
     'default_value' => NULL,
@@ -1507,7 +1507,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-decision_status-name_field'
+  // Exported field_instance: 'taxonomy_term-decision_status-name_field'.
   $field_instances['taxonomy_term-decision_status-name_field'] = array(
     'bundle' => 'decision_status',
     'default_value' => NULL,
@@ -1544,7 +1544,7 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-decision_type-name_field'
+  // Exported field_instance: 'taxonomy_term-decision_type-name_field'.
   $field_instances['taxonomy_term-decision_type-name_field'] = array(
     'bundle' => 'decision_type',
     'default_value' => NULL,

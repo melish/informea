@@ -10,7 +10,7 @@
 function country_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_country_iso2'
+  // Exported field_base: 'field_country_iso2'.
   $field_bases['field_country_iso2'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -32,7 +32,7 @@ function country_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_country_iso3'
+  // Exported field_base: 'field_country_iso3'.
   $field_bases['field_country_iso3'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -54,7 +54,7 @@ function country_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_country_official_name'
+  // Exported field_base: 'field_country_official_name'.
   $field_bases['field_country_official_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -76,7 +76,7 @@ function country_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_eu_member'
+  // Exported field_base: 'field_eu_member'.
   $field_bases['field_eu_member'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -102,7 +102,7 @@ function country_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_zoom'
+  // Exported field_base: 'field_zoom'.
   $field_bases['field_zoom'] = array(
     'active' => 1,
     'cardinality' => 1,

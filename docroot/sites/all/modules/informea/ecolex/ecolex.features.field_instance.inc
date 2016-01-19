@@ -10,7 +10,7 @@
 function ecolex_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-court_decisions-field_abstract'
+  // Exported field_instance: 'node-court_decisions-field_abstract'.
   $field_instances['node-court_decisions-field_abstract'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -63,7 +63,8 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_alternative_record_id'
+  // Exported field_instance:
+  // 'node-court_decisions-field_alternative_record_id'.
   $field_instances['node-court_decisions-field_alternative_record_id'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -116,7 +117,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_city'
+  // Exported field_instance: 'node-court_decisions-field_city'.
   $field_instances['node-court_decisions-field_city'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -169,7 +170,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_country'
+  // Exported field_instance: 'node-court_decisions-field_country'.
   $field_instances['node-court_decisions-field_country'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -232,7 +233,7 @@ function ecolex_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-court_decisions-field_court_decision_id_number'
+  // 'node-court_decisions-field_court_decision_id_number'.
   $field_instances['node-court_decisions-field_court_decision_id_number'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -286,7 +287,7 @@ function ecolex_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-court_decisions-field_court_decision_subdivision'
+  // 'node-court_decisions-field_court_decision_subdivision'.
   $field_instances['node-court_decisions-field_court_decision_subdivision'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -339,7 +340,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_court_name'
+  // Exported field_instance: 'node-court_decisions-field_court_name'.
   $field_instances['node-court_decisions-field_court_name'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -392,7 +393,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_date_of_entry'
+  // Exported field_instance: 'node-court_decisions-field_date_of_entry'.
   $field_instances['node-court_decisions-field_date_of_entry'] = array(
     'bundle' => 'court_decisions',
     'deleted' => 0,
@@ -458,7 +459,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_date_of_modification'
+  // Exported field_instance: 'node-court_decisions-field_date_of_modification'.
   $field_instances['node-court_decisions-field_date_of_modification'] = array(
     'bundle' => 'court_decisions',
     'deleted' => 0,
@@ -525,7 +526,7 @@ function ecolex_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-court_decisions-field_ecolex_decision_status'
+  // 'node-court_decisions-field_ecolex_decision_status'.
   $field_instances['node-court_decisions-field_ecolex_decision_status'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -586,7 +587,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_ecolex_tags'
+  // Exported field_instance: 'node-court_decisions-field_ecolex_tags'.
   $field_instances['node-court_decisions-field_ecolex_tags'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -646,7 +647,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_ecolex_url'
+  // Exported field_instance: 'node-court_decisions-field_ecolex_url'.
   $field_instances['node-court_decisions-field_ecolex_url'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -716,7 +717,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_faolex_url'
+  // Exported field_instance: 'node-court_decisions-field_faolex_url'.
   $field_instances['node-court_decisions-field_faolex_url'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -786,7 +787,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_files'
+  // Exported field_instance: 'node-court_decisions-field_files'.
   $field_instances['node-court_decisions-field_files'] = array(
     'bundle' => 'court_decisions',
     'deleted' => 0,
@@ -841,7 +842,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_informea_tags'
+  // Exported field_instance: 'node-court_decisions-field_informea_tags'.
   $field_instances['node-court_decisions-field_informea_tags'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -905,7 +906,7 @@ function ecolex_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-court_decisions-field_internet_reference_url'
+  // 'node-court_decisions-field_internet_reference_url'.
   $field_instances['node-court_decisions-field_internet_reference_url'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -975,7 +976,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_isis_number'
+  // Exported field_instance: 'node-court_decisions-field_isis_number'.
   $field_instances['node-court_decisions-field_isis_number'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -1028,7 +1029,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_jurisdiction'
+  // Exported field_instance: 'node-court_decisions-field_jurisdiction'.
   $field_instances['node-court_decisions-field_jurisdiction'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -1090,7 +1091,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_justices'
+  // Exported field_instance: 'node-court_decisions-field_justices'.
   $field_instances['node-court_decisions-field_justices'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -1143,7 +1144,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_keywords'
+  // Exported field_instance: 'node-court_decisions-field_keywords'.
   $field_instances['node-court_decisions-field_keywords'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -1205,7 +1206,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_number_of_pages'
+  // Exported field_instance: 'node-court_decisions-field_number_of_pages'.
   $field_instances['node-court_decisions-field_number_of_pages'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -1264,7 +1265,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_original_id'
+  // Exported field_instance: 'node-court_decisions-field_original_id'.
   $field_instances['node-court_decisions-field_original_id'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -1316,7 +1317,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_reference_number'
+  // Exported field_instance: 'node-court_decisions-field_reference_number'.
   $field_instances['node-court_decisions-field_reference_number'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -1370,7 +1371,7 @@ function ecolex_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-court_decisions-field_reference_to_legislation'
+  // 'node-court_decisions-field_reference_to_legislation'.
   $field_instances['node-court_decisions-field_reference_to_legislation'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -1426,7 +1427,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_related_url'
+  // Exported field_instance: 'node-court_decisions-field_related_url'.
   $field_instances['node-court_decisions-field_related_url'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -1496,7 +1497,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_sorting_date'
+  // Exported field_instance: 'node-court_decisions-field_sorting_date'.
   $field_instances['node-court_decisions-field_sorting_date'] = array(
     'bundle' => 'court_decisions',
     'deleted' => 0,
@@ -1562,7 +1563,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_source_language'
+  // Exported field_instance: 'node-court_decisions-field_source_language'.
   $field_instances['node-court_decisions-field_source_language'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -1627,7 +1628,7 @@ function ecolex_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-court_decisions-field_territorial_subdivision'
+  // 'node-court_decisions-field_territorial_subdivision'.
   $field_instances['node-court_decisions-field_territorial_subdivision'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -1687,7 +1688,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_type_of_text'
+  // Exported field_instance: 'node-court_decisions-field_type_of_text'.
   $field_instances['node-court_decisions-field_type_of_text'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -1749,7 +1750,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_url'
+  // Exported field_instance: 'node-court_decisions-field_url'.
   $field_instances['node-court_decisions-field_url'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -1819,7 +1820,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-title_field'
+  // Exported field_instance: 'node-court_decisions-title_field'.
   $field_instances['node-court_decisions-title_field'] = array(
     'bundle' => 'court_decisions',
     'default_value' => NULL,
@@ -1874,7 +1875,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-body'
+  // Exported field_instance: 'node-legislation-body'.
   $field_instances['node-legislation-body'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -1929,7 +1930,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_abstract'
+  // Exported field_instance: 'node-legislation-field_abstract'.
   $field_instances['node-legislation-field_abstract'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -1982,7 +1983,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_alternative_record_id'
+  // Exported field_instance: 'node-legislation-field_alternative_record_id'.
   $field_instances['node-legislation-field_alternative_record_id'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -2034,7 +2035,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_amends'
+  // Exported field_instance: 'node-legislation-field_amends'.
   $field_instances['node-legislation-field_amends'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -2091,7 +2092,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_avaiable_web_site'
+  // Exported field_instance: 'node-legislation-field_avaiable_web_site'.
   $field_instances['node-legislation-field_avaiable_web_site'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -2160,7 +2161,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_country'
+  // Exported field_instance: 'node-legislation-field_country'.
   $field_instances['node-legislation-field_country'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -2222,7 +2223,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_date_of_consolidation'
+  // Exported field_instance: 'node-legislation-field_date_of_consolidation'.
   $field_instances['node-legislation-field_date_of_consolidation'] = array(
     'bundle' => 'legislation',
     'deleted' => 0,
@@ -2288,7 +2289,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_date_of_entry'
+  // Exported field_instance: 'node-legislation-field_date_of_entry'.
   $field_instances['node-legislation-field_date_of_entry'] = array(
     'bundle' => 'legislation',
     'deleted' => 0,
@@ -2354,7 +2355,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_date_of_modification'
+  // Exported field_instance: 'node-legislation-field_date_of_modification'.
   $field_instances['node-legislation-field_date_of_modification'] = array(
     'bundle' => 'legislation',
     'deleted' => 0,
@@ -2420,7 +2421,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_date_of_original_text'
+  // Exported field_instance: 'node-legislation-field_date_of_original_text'.
   $field_instances['node-legislation-field_date_of_original_text'] = array(
     'bundle' => 'legislation',
     'deleted' => 0,
@@ -2486,7 +2487,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_ecolex_tags'
+  // Exported field_instance: 'node-legislation-field_ecolex_tags'.
   $field_instances['node-legislation-field_ecolex_tags'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -2546,7 +2547,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_ecolex_url'
+  // Exported field_instance: 'node-legislation-field_ecolex_url'.
   $field_instances['node-legislation-field_ecolex_url'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -2616,7 +2617,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_entry_into_force_notes'
+  // Exported field_instance: 'node-legislation-field_entry_into_force_notes'.
   $field_instances['node-legislation-field_entry_into_force_notes'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -2669,7 +2670,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_faolex_id'
+  // Exported field_instance: 'node-legislation-field_faolex_id'.
   $field_instances['node-legislation-field_faolex_id'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -2722,7 +2723,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_faolex_url'
+  // Exported field_instance: 'node-legislation-field_faolex_url'.
   $field_instances['node-legislation-field_faolex_url'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -2792,7 +2793,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_implements'
+  // Exported field_instance: 'node-legislation-field_implements'.
   $field_instances['node-legislation-field_implements'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -2848,7 +2849,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_informea_tags'
+  // Exported field_instance: 'node-legislation-field_informea_tags'.
   $field_instances['node-legislation-field_informea_tags'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -2908,7 +2909,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_internet_reference_url'
+  // Exported field_instance: 'node-legislation-field_internet_reference_url'.
   $field_instances['node-legislation-field_internet_reference_url'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -2978,7 +2979,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_isis_number'
+  // Exported field_instance: 'node-legislation-field_isis_number'.
   $field_instances['node-legislation-field_isis_number'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -3031,7 +3032,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_keywords'
+  // Exported field_instance: 'node-legislation-field_keywords'.
   $field_instances['node-legislation-field_keywords'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -3091,7 +3092,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_notes'
+  // Exported field_instance: 'node-legislation-field_notes'.
   $field_instances['node-legislation-field_notes'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -3144,7 +3145,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_original_id'
+  // Exported field_instance: 'node-legislation-field_original_id'.
   $field_instances['node-legislation-field_original_id'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -3196,7 +3197,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_reference_number'
+  // Exported field_instance: 'node-legislation-field_reference_number'.
   $field_instances['node-legislation-field_reference_number'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -3249,7 +3250,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_region'
+  // Exported field_instance: 'node-legislation-field_region'.
   $field_instances['node-legislation-field_region'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -3309,7 +3310,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_repealed'
+  // Exported field_instance: 'node-legislation-field_repealed'.
   $field_instances['node-legislation-field_repealed'] = array(
     'bundle' => 'legislation',
     'default_value' => array(
@@ -3365,7 +3366,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_repeals'
+  // Exported field_instance: 'node-legislation-field_repeals'.
   $field_instances['node-legislation-field_repeals'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -3421,7 +3422,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_serial_imprint'
+  // Exported field_instance: 'node-legislation-field_serial_imprint'.
   $field_instances['node-legislation-field_serial_imprint'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -3474,7 +3475,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_sorting_date'
+  // Exported field_instance: 'node-legislation-field_sorting_date'.
   $field_instances['node-legislation-field_sorting_date'] = array(
     'bundle' => 'legislation',
     'deleted' => 0,
@@ -3540,7 +3541,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_source_language'
+  // Exported field_instance: 'node-legislation-field_source_language'.
   $field_instances['node-legislation-field_source_language'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -3604,7 +3605,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_sub_file_code'
+  // Exported field_instance: 'node-legislation-field_sub_file_code'.
   $field_instances['node-legislation-field_sub_file_code'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -3664,7 +3665,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_territorial_subdivision'
+  // Exported field_instance: 'node-legislation-field_territorial_subdivision'.
   $field_instances['node-legislation-field_territorial_subdivision'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -3724,7 +3725,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_type_of_text'
+  // Exported field_instance: 'node-legislation-field_type_of_text'.
   $field_instances['node-legislation-field_type_of_text'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -3786,7 +3787,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_url'
+  // Exported field_instance: 'node-legislation-field_url'.
   $field_instances['node-legislation-field_url'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -3855,7 +3856,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-title_field'
+  // Exported field_instance: 'node-legislation-title_field'.
   $field_instances['node-legislation-title_field'] = array(
     'bundle' => 'legislation',
     'default_value' => NULL,
@@ -3910,7 +3911,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-body'
+  // Exported field_instance: 'node-literature-body'.
   $field_instances['node-literature-body'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -3968,7 +3969,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_alternative_record_id'
+  // Exported field_instance: 'node-literature-field_alternative_record_id'.
   $field_instances['node-literature-field_alternative_record_id'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -4020,7 +4021,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_author'
+  // Exported field_instance: 'node-literature-field_author'.
   $field_instances['node-literature-field_author'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -4073,7 +4074,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_author_institution'
+  // Exported field_instance: 'node-literature-field_author_institution'.
   $field_instances['node-literature-field_author_institution'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -4126,7 +4127,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_collation'
+  // Exported field_instance: 'node-literature-field_collation'.
   $field_instances['node-literature-field_collation'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -4179,7 +4180,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_country'
+  // Exported field_instance: 'node-literature-field_country'.
   $field_instances['node-literature-field_country'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -4243,7 +4244,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_date_of_entry'
+  // Exported field_instance: 'node-literature-field_date_of_entry'.
   $field_instances['node-literature-field_date_of_entry'] = array(
     'bundle' => 'literature',
     'deleted' => 0,
@@ -4309,7 +4310,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_date_of_modification'
+  // Exported field_instance: 'node-literature-field_date_of_modification'.
   $field_instances['node-literature-field_date_of_modification'] = array(
     'bundle' => 'literature',
     'deleted' => 0,
@@ -4375,7 +4376,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_ecolex_tags'
+  // Exported field_instance: 'node-literature-field_ecolex_tags'.
   $field_instances['node-literature-field_ecolex_tags'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -4435,7 +4436,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_geographical_scope'
+  // Exported field_instance: 'node-literature-field_geographical_scope'.
   $field_instances['node-literature-field_geographical_scope'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -4496,7 +4497,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_informea_tags'
+  // Exported field_instance: 'node-literature-field_informea_tags'.
   $field_instances['node-literature-field_informea_tags'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -4556,7 +4557,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_isbn'
+  // Exported field_instance: 'node-literature-field_isbn'.
   $field_instances['node-literature-field_isbn'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -4609,7 +4610,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_isis_number'
+  // Exported field_instance: 'node-literature-field_isis_number'.
   $field_instances['node-literature-field_isis_number'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -4662,7 +4663,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_keywords'
+  // Exported field_instance: 'node-literature-field_keywords'.
   $field_instances['node-literature-field_keywords'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -4722,7 +4723,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_literature_call_number'
+  // Exported field_instance: 'node-literature-field_literature_call_number'.
   $field_instances['node-literature-field_literature_call_number'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -4775,7 +4776,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_literature_paper_title'
+  // Exported field_instance: 'node-literature-field_literature_paper_title'.
   $field_instances['node-literature-field_literature_paper_title'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -4828,7 +4829,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_literature_serial_title'
+  // Exported field_instance: 'node-literature-field_literature_serial_title'.
   $field_instances['node-literature-field_literature_serial_title'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -4881,7 +4882,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_literature_type'
+  // Exported field_instance: 'node-literature-field_literature_type'.
   $field_instances['node-literature-field_literature_type'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -4942,7 +4943,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_organizations'
+  // Exported field_instance: 'node-literature-field_organizations'.
   $field_instances['node-literature-field_organizations'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -4995,7 +4996,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_original_id'
+  // Exported field_instance: 'node-literature-field_original_id'.
   $field_instances['node-literature-field_original_id'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -5047,7 +5048,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_publication_place'
+  // Exported field_instance: 'node-literature-field_publication_place'.
   $field_instances['node-literature-field_publication_place'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -5100,7 +5101,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_publisher'
+  // Exported field_instance: 'node-literature-field_publisher'.
   $field_instances['node-literature-field_publisher'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -5153,7 +5154,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_region'
+  // Exported field_instance: 'node-literature-field_region'.
   $field_instances['node-literature-field_region'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -5216,7 +5217,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_related_literature'
+  // Exported field_instance: 'node-literature-field_related_literature'.
   $field_instances['node-literature-field_related_literature'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -5280,7 +5281,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_sorting_date'
+  // Exported field_instance: 'node-literature-field_sorting_date'.
   $field_instances['node-literature-field_sorting_date'] = array(
     'bundle' => 'literature',
     'deleted' => 0,
@@ -5346,7 +5347,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_territorial_subdivision'
+  // Exported field_instance: 'node-literature-field_territorial_subdivision'.
   $field_instances['node-literature-field_territorial_subdivision'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -5398,7 +5399,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_treaty'
+  // Exported field_instance: 'node-literature-field_treaty'.
   $field_instances['node-literature-field_treaty'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -5462,7 +5463,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_url'
+  // Exported field_instance: 'node-literature-field_url'.
   $field_instances['node-literature-field_url'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -5531,7 +5532,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_volume_no'
+  // Exported field_instance: 'node-literature-field_volume_no'.
   $field_instances['node-literature-field_volume_no'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -5584,7 +5585,7 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-title_field'
+  // Exported field_instance: 'node-literature-title_field'.
   $field_instances['node-literature-title_field'] = array(
     'bundle' => 'literature',
     'default_value' => NULL,
@@ -5640,7 +5641,7 @@ function ecolex_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'taxonomy_term-territorial_subdivision-description_field'
+  // 'taxonomy_term-territorial_subdivision-description_field'.
   $field_instances['taxonomy_term-territorial_subdivision-description_field'] = array(
     'bundle' => 'territorial_subdivision',
     'default_value' => NULL,
@@ -5679,7 +5680,8 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-territorial_subdivision-name_field'
+  // Exported field_instance:
+  // 'taxonomy_term-territorial_subdivision-name_field'.
   $field_instances['taxonomy_term-territorial_subdivision-name_field'] = array(
     'bundle' => 'territorial_subdivision',
     'default_value' => NULL,

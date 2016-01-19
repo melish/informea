@@ -10,7 +10,7 @@
 function treaty_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-organisation-body'
+  // Exported field_instance: 'node-organisation-body'.
   $field_instances['node-organisation-body'] = array(
     'bundle' => 'organisation',
     'default_value' => NULL,
@@ -67,7 +67,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-organisation-field_address'
+  // Exported field_instance: 'node-organisation-field_address'.
   $field_instances['node-organisation-field_address'] = array(
     'bundle' => 'organisation',
     'default_value' => NULL,
@@ -120,7 +120,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-organisation-field_city'
+  // Exported field_instance: 'node-organisation-field_city'.
   $field_instances['node-organisation-field_city'] = array(
     'bundle' => 'organisation',
     'default_value' => NULL,
@@ -173,7 +173,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-organisation-field_country'
+  // Exported field_instance: 'node-organisation-field_country'.
   $field_instances['node-organisation-field_country'] = array(
     'bundle' => 'organisation',
     'default_value' => NULL,
@@ -228,7 +228,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-organisation-field_informea_tags'
+  // Exported field_instance: 'node-organisation-field_informea_tags'.
   $field_instances['node-organisation-field_informea_tags'] = array(
     'bundle' => 'organisation',
     'default_value' => NULL,
@@ -288,7 +288,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-organisation-field_url'
+  // Exported field_instance: 'node-organisation-field_url'.
   $field_instances['node-organisation-field_url'] = array(
     'bundle' => 'organisation',
     'default_value' => NULL,
@@ -357,7 +357,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-organisation-title_field'
+  // Exported field_instance: 'node-organisation-title_field'.
   $field_instances['node-organisation-title_field'] = array(
     'bundle' => 'organisation',
     'default_value' => NULL,
@@ -412,7 +412,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-body'
+  // Exported field_instance: 'node-treaty-body'.
   $field_instances['node-treaty-body'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -470,7 +470,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_abstract'
+  // Exported field_instance: 'node-treaty-field_abstract'.
   $field_instances['node-treaty-field_abstract'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -522,7 +522,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_alternative_record_id'
+  // Exported field_instance: 'node-treaty-field_alternative_record_id'.
   $field_instances['node-treaty-field_alternative_record_id'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -574,7 +574,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_amends_treaty'
+  // Exported field_instance: 'node-treaty-field_amends_treaty'.
   $field_instances['node-treaty-field_amends_treaty'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -635,7 +635,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_available_in'
+  // Exported field_instance: 'node-treaty-field_available_in'.
   $field_instances['node-treaty-field_available_in'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -687,7 +687,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_cited_treaties'
+  // Exported field_instance: 'node-treaty-field_cited_treaties'.
   $field_instances['node-treaty-field_cited_treaties'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -739,7 +739,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_country'
+  // Exported field_instance: 'node-treaty-field_country'.
   $field_instances['node-treaty-field_country'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -801,7 +801,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_data_source'
+  // Exported field_instance: 'node-treaty-field_data_source'.
   $field_instances['node-treaty-field_data_source'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -850,7 +850,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_date_of_entry'
+  // Exported field_instance: 'node-treaty-field_date_of_entry'.
   $field_instances['node-treaty-field_date_of_entry'] = array(
     'bundle' => 'treaty',
     'deleted' => 0,
@@ -909,7 +909,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_date_of_modification'
+  // Exported field_instance: 'node-treaty-field_date_of_modification'.
   $field_instances['node-treaty-field_date_of_modification'] = array(
     'bundle' => 'treaty',
     'deleted' => 0,
@@ -968,7 +968,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_depositary'
+  // Exported field_instance: 'node-treaty-field_depositary'.
   $field_instances['node-treaty-field_depositary'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -1021,7 +1021,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_ecolex_tags'
+  // Exported field_instance: 'node-treaty-field_ecolex_tags'.
   $field_instances['node-treaty-field_ecolex_tags'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -1083,7 +1083,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_ecolex_url'
+  // Exported field_instance: 'node-treaty-field_ecolex_url'.
   $field_instances['node-treaty-field_ecolex_url'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -1152,7 +1152,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_entry_into_force'
+  // Exported field_instance: 'node-treaty-field_entry_into_force'.
   $field_instances['node-treaty-field_entry_into_force'] = array(
     'bundle' => 'treaty',
     'deleted' => 0,
@@ -1225,7 +1225,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_faolex_url'
+  // Exported field_instance: 'node-treaty-field_faolex_url'.
   $field_instances['node-treaty-field_faolex_url'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -1294,7 +1294,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_field_of_application'
+  // Exported field_instance: 'node-treaty-field_field_of_application'.
   $field_instances['node-treaty-field_field_of_application'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -1357,7 +1357,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_has_api_action_plans'
+  // Exported field_instance: 'node-treaty-field_has_api_action_plans'.
   $field_instances['node-treaty-field_has_api_action_plans'] = array(
     'bundle' => 'treaty',
     'default_value' => array(
@@ -1412,7 +1412,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_has_api_decisions'
+  // Exported field_instance: 'node-treaty-field_has_api_decisions'.
   $field_instances['node-treaty-field_has_api_decisions'] = array(
     'bundle' => 'treaty',
     'default_value' => array(
@@ -1467,7 +1467,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_has_api_national_reports'
+  // Exported field_instance: 'node-treaty-field_has_api_national_reports'.
   $field_instances['node-treaty-field_has_api_national_reports'] = array(
     'bundle' => 'treaty',
     'default_value' => array(
@@ -1522,7 +1522,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_informea_tags'
+  // Exported field_instance: 'node-treaty-field_informea_tags'.
   $field_instances['node-treaty-field_informea_tags'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -1597,7 +1597,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_internet_reference'
+  // Exported field_instance: 'node-treaty-field_internet_reference'.
   $field_instances['node-treaty-field_internet_reference'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -1649,7 +1649,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_is_protocol'
+  // Exported field_instance: 'node-treaty-field_is_protocol'.
   $field_instances['node-treaty-field_is_protocol'] = array(
     'bundle' => 'treaty',
     'default_value' => array(
@@ -1704,7 +1704,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_jurisdiction'
+  // Exported field_instance: 'node-treaty-field_jurisdiction'.
   $field_instances['node-treaty-field_jurisdiction'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -1767,7 +1767,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_keywords'
+  // Exported field_instance: 'node-treaty-field_keywords'.
   $field_instances['node-treaty-field_keywords'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -1827,7 +1827,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_logo'
+  // Exported field_instance: 'node-treaty-field_logo'.
   $field_instances['node-treaty-field_logo'] = array(
     'bundle' => 'treaty',
     'deleted' => 0,
@@ -1890,7 +1890,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_mea_topic'
+  // Exported field_instance: 'node-treaty-field_mea_topic'.
   $field_instances['node-treaty-field_mea_topic'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -1950,7 +1950,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_number_of_pages'
+  // Exported field_instance: 'node-treaty-field_number_of_pages'.
   $field_instances['node-treaty-field_number_of_pages'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -2003,7 +2003,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_obsolete'
+  // Exported field_instance: 'node-treaty-field_obsolete'.
   $field_instances['node-treaty-field_obsolete'] = array(
     'bundle' => 'treaty',
     'default_value' => array(
@@ -2058,7 +2058,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_odata_identifier'
+  // Exported field_instance: 'node-treaty-field_odata_identifier'.
   $field_instances['node-treaty-field_odata_identifier'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -2110,7 +2110,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_official_name'
+  // Exported field_instance: 'node-treaty-field_official_name'.
   $field_instances['node-treaty-field_official_name'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -2167,7 +2167,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_official_publication'
+  // Exported field_instance: 'node-treaty-field_official_publication'.
   $field_instances['node-treaty-field_official_publication'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -2219,7 +2219,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_online_course_link'
+  // Exported field_instance: 'node-treaty-field_online_course_link'.
   $field_instances['node-treaty-field_online_course_link'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -2289,7 +2289,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_original_id'
+  // Exported field_instance: 'node-treaty-field_original_id'.
   $field_instances['node-treaty-field_original_id'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -2341,7 +2341,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_parent_treaty'
+  // Exported field_instance: 'node-treaty-field_parent_treaty'.
   $field_instances['node-treaty-field_parent_treaty'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -2394,7 +2394,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_place_of_adoption'
+  // Exported field_instance: 'node-treaty-field_place_of_adoption'.
   $field_instances['node-treaty-field_place_of_adoption'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -2446,7 +2446,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_primary'
+  // Exported field_instance: 'node-treaty-field_primary'.
   $field_instances['node-treaty-field_primary'] = array(
     'bundle' => 'treaty',
     'default_value' => array(
@@ -2501,7 +2501,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_primary_topic'
+  // Exported field_instance: 'node-treaty-field_primary_topic'.
   $field_instances['node-treaty-field_primary_topic'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -2564,7 +2564,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_ratification_xml_url'
+  // Exported field_instance: 'node-treaty-field_ratification_xml_url'.
   $field_instances['node-treaty-field_ratification_xml_url'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -2632,7 +2632,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_region'
+  // Exported field_instance: 'node-treaty-field_region'.
   $field_instances['node-treaty-field_region'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -2704,7 +2704,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_related_url'
+  // Exported field_instance: 'node-treaty-field_related_url'.
   $field_instances['node-treaty-field_related_url'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -2772,7 +2772,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_related_website'
+  // Exported field_instance: 'node-treaty-field_related_website'.
   $field_instances['node-treaty-field_related_website'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -2824,7 +2824,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_secondary_topic'
+  // Exported field_instance: 'node-treaty-field_secondary_topic'.
   $field_instances['node-treaty-field_secondary_topic'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -2887,7 +2887,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_sorting_date'
+  // Exported field_instance: 'node-treaty-field_sorting_date'.
   $field_instances['node-treaty-field_sorting_date'] = array(
     'bundle' => 'treaty',
     'deleted' => 0,
@@ -2953,7 +2953,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_sorting_order'
+  // Exported field_instance: 'node-treaty-field_sorting_order'.
   $field_instances['node-treaty-field_sorting_order'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -3006,7 +3006,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_title_abbreviation'
+  // Exported field_instance: 'node-treaty-field_title_abbreviation'.
   $field_instances['node-treaty-field_title_abbreviation'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -3059,7 +3059,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_treaty_article'
+  // Exported field_instance: 'node-treaty-field_treaty_article'.
   $field_instances['node-treaty-field_treaty_article'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -3120,7 +3120,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_treaty_article_paragraph'
+  // Exported field_instance: 'node-treaty-field_treaty_article_paragraph'.
   $field_instances['node-treaty-field_treaty_article_paragraph'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -3181,7 +3181,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_treaty_decisions_url'
+  // Exported field_instance: 'node-treaty-field_treaty_decisions_url'.
   $field_instances['node-treaty-field_treaty_decisions_url'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -3250,7 +3250,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_treaty_has_parties_from_un'
+  // Exported field_instance: 'node-treaty-field_treaty_has_parties_from_un'.
   $field_instances['node-treaty-field_treaty_has_parties_from_un'] = array(
     'bundle' => 'treaty',
     'default_value' => array(
@@ -3305,7 +3305,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_treaty_parties_url'
+  // Exported field_instance: 'node-treaty-field_treaty_parties_url'.
   $field_instances['node-treaty-field_treaty_parties_url'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -3374,7 +3374,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_treaty_plans_url'
+  // Exported field_instance: 'node-treaty-field_treaty_plans_url'.
   $field_instances['node-treaty-field_treaty_plans_url'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -3443,7 +3443,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_treaty_protocols_url'
+  // Exported field_instance: 'node-treaty-field_treaty_protocols_url'.
   $field_instances['node-treaty-field_treaty_protocols_url'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -3512,7 +3512,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_treaty_reports_url'
+  // Exported field_instance: 'node-treaty-field_treaty_reports_url'.
   $field_instances['node-treaty-field_treaty_reports_url'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -3581,7 +3581,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_treaty_text_url'
+  // Exported field_instance: 'node-treaty-field_treaty_text_url'.
   $field_instances['node-treaty-field_treaty_text_url'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -3650,7 +3650,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_treaty_website_url'
+  // Exported field_instance: 'node-treaty-field_treaty_website_url'.
   $field_instances['node-treaty-field_treaty_website_url'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -3720,7 +3720,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_type_of_text'
+  // Exported field_instance: 'node-treaty-field_type_of_text'.
   $field_instances['node-treaty-field_type_of_text'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -3783,7 +3783,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_un_treaty_database_link'
+  // Exported field_instance: 'node-treaty-field_un_treaty_database_link'.
   $field_instances['node-treaty-field_un_treaty_database_link'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -3852,7 +3852,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-field_user_owners'
+  // Exported field_instance: 'node-treaty-field_user_owners'.
   $field_instances['node-treaty-field_user_owners'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -3910,7 +3910,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty-title_field'
+  // Exported field_instance: 'node-treaty-title_field'.
   $field_instances['node-treaty-title_field'] = array(
     'bundle' => 'treaty',
     'default_value' => NULL,
@@ -3965,7 +3965,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty_article-body'
+  // Exported field_instance: 'node-treaty_article-body'.
   $field_instances['node-treaty_article-body'] = array(
     'bundle' => 'treaty_article',
     'default_value' => NULL,
@@ -4022,7 +4022,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty_article-field_informea_tags'
+  // Exported field_instance: 'node-treaty_article-field_informea_tags'.
   $field_instances['node-treaty_article-field_informea_tags'] = array(
     'bundle' => 'treaty_article',
     'default_value' => NULL,
@@ -4082,7 +4082,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty_article-field_official_order'
+  // Exported field_instance: 'node-treaty_article-field_official_order'.
   $field_instances['node-treaty_article-field_official_order'] = array(
     'bundle' => 'treaty_article',
     'default_value' => NULL,
@@ -4135,7 +4135,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty_article-field_sorting_order'
+  // Exported field_instance: 'node-treaty_article-field_sorting_order'.
   $field_instances['node-treaty_article-field_sorting_order'] = array(
     'bundle' => 'treaty_article',
     'default_value' => NULL,
@@ -4188,7 +4188,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty_article-field_treaty'
+  // Exported field_instance: 'node-treaty_article-field_treaty'.
   $field_instances['node-treaty_article-field_treaty'] = array(
     'bundle' => 'treaty_article',
     'default_value' => NULL,
@@ -4243,7 +4243,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty_article-title_field'
+  // Exported field_instance: 'node-treaty_article-title_field'.
   $field_instances['node-treaty_article-title_field'] = array(
     'bundle' => 'treaty_article',
     'default_value' => NULL,
@@ -4298,7 +4298,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty_paragraph-body'
+  // Exported field_instance: 'node-treaty_paragraph-body'.
   $field_instances['node-treaty_paragraph-body'] = array(
     'bundle' => 'treaty_paragraph',
     'default_value' => NULL,
@@ -4355,7 +4355,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty_paragraph-field_informea_tags'
+  // Exported field_instance: 'node-treaty_paragraph-field_informea_tags'.
   $field_instances['node-treaty_paragraph-field_informea_tags'] = array(
     'bundle' => 'treaty_paragraph',
     'default_value' => NULL,
@@ -4418,7 +4418,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty_paragraph-field_official_order'
+  // Exported field_instance: 'node-treaty_paragraph-field_official_order'.
   $field_instances['node-treaty_paragraph-field_official_order'] = array(
     'bundle' => 'treaty_paragraph',
     'default_value' => NULL,
@@ -4472,7 +4472,7 @@ function treaty_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-treaty_paragraph-field_paragraph_indentation'
+  // 'node-treaty_paragraph-field_paragraph_indentation'.
   $field_instances['node-treaty_paragraph-field_paragraph_indentation'] = array(
     'bundle' => 'treaty_paragraph',
     'default_value' => NULL,
@@ -4526,7 +4526,7 @@ function treaty_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-treaty_paragraph-field_parent_treaty_article'
+  // 'node-treaty_paragraph-field_parent_treaty_article'.
   $field_instances['node-treaty_paragraph-field_parent_treaty_article'] = array(
     'bundle' => 'treaty_paragraph',
     'default_value' => NULL,
@@ -4587,7 +4587,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty_paragraph-field_sorting_order'
+  // Exported field_instance: 'node-treaty_paragraph-field_sorting_order'.
   $field_instances['node-treaty_paragraph-field_sorting_order'] = array(
     'bundle' => 'treaty_paragraph',
     'default_value' => NULL,
@@ -4640,7 +4640,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-treaty_paragraph-field_treaty'
+  // Exported field_instance: 'node-treaty_paragraph-field_treaty'.
   $field_instances['node-treaty_paragraph-field_treaty'] = array(
     'bundle' => 'treaty_paragraph',
     'default_value' => NULL,
@@ -4695,7 +4695,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-data_source-description_field'
+  // Exported field_instance: 'taxonomy_term-data_source-description_field'.
   $field_instances['taxonomy_term-data_source-description_field'] = array(
     'bundle' => 'data_source',
     'default_value' => NULL,
@@ -4734,7 +4734,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-data_source-name_field'
+  // Exported field_instance: 'taxonomy_term-data_source-name_field'.
   $field_instances['taxonomy_term-data_source-name_field'] = array(
     'bundle' => 'data_source',
     'default_value' => NULL,
@@ -4772,7 +4772,7 @@ function treaty_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'taxonomy_term-field_of_application-description_field'
+  // 'taxonomy_term-field_of_application-description_field'.
   $field_instances['taxonomy_term-field_of_application-description_field'] = array(
     'bundle' => 'field_of_application',
     'default_value' => NULL,
@@ -4811,7 +4811,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-field_of_application-name_field'
+  // Exported field_instance: 'taxonomy_term-field_of_application-name_field'.
   $field_instances['taxonomy_term-field_of_application-name_field'] = array(
     'bundle' => 'field_of_application',
     'default_value' => NULL,
@@ -4849,7 +4849,7 @@ function treaty_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'taxonomy_term-geographical_region-description_field'
+  // 'taxonomy_term-geographical_region-description_field'.
   $field_instances['taxonomy_term-geographical_region-description_field'] = array(
     'bundle' => 'geographical_region',
     'default_value' => NULL,
@@ -4889,7 +4889,7 @@ function treaty_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'taxonomy_term-geographical_region-field_un_region'
+  // 'taxonomy_term-geographical_region-field_un_region'.
   $field_instances['taxonomy_term-geographical_region-field_un_region'] = array(
     'bundle' => 'geographical_region',
     'default_value' => array(
@@ -4927,7 +4927,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-geographical_region-name_field'
+  // Exported field_instance: 'taxonomy_term-geographical_region-name_field'.
   $field_instances['taxonomy_term-geographical_region-name_field'] = array(
     'bundle' => 'geographical_region',
     'default_value' => NULL,
@@ -4964,7 +4964,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-jurisdiction-description_field'
+  // Exported field_instance: 'taxonomy_term-jurisdiction-description_field'.
   $field_instances['taxonomy_term-jurisdiction-description_field'] = array(
     'bundle' => 'jurisdiction',
     'default_value' => NULL,
@@ -5003,7 +5003,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-jurisdiction-field_abbreviation'
+  // Exported field_instance: 'taxonomy_term-jurisdiction-field_abbreviation'.
   $field_instances['taxonomy_term-jurisdiction-field_abbreviation'] = array(
     'bundle' => 'jurisdiction',
     'default_value' => NULL,
@@ -5038,7 +5038,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-jurisdiction-name_field'
+  // Exported field_instance: 'taxonomy_term-jurisdiction-name_field'.
   $field_instances['taxonomy_term-jurisdiction-name_field'] = array(
     'bundle' => 'jurisdiction',
     'default_value' => NULL,
@@ -5075,7 +5075,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-type_of_text-description_field'
+  // Exported field_instance: 'taxonomy_term-type_of_text-description_field'.
   $field_instances['taxonomy_term-type_of_text-description_field'] = array(
     'bundle' => 'type_of_text',
     'default_value' => NULL,
@@ -5114,7 +5114,7 @@ function treaty_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-type_of_text-name_field'
+  // Exported field_instance: 'taxonomy_term-type_of_text-name_field'.
   $field_instances['taxonomy_term-type_of_text-name_field'] = array(
     'bundle' => 'type_of_text',
     'default_value' => NULL,

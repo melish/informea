@@ -10,7 +10,7 @@
 function country_deliverable_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_action_plan_type'
+  // Exported field_base: 'field_action_plan_type'.
   $field_bases['field_action_plan_type'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -38,7 +38,7 @@ function country_deliverable_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_decision'
+  // Exported field_base: 'field_decision'.
   $field_bases['field_decision'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -79,7 +79,7 @@ function country_deliverable_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_decision_paragraph'
+  // Exported field_base: 'field_decision_paragraph'.
   $field_bases['field_decision_paragraph'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -117,7 +117,7 @@ function country_deliverable_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_document_url'
+  // Exported field_base: 'field_document_url'.
   $field_bases['field_document_url'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -147,7 +147,7 @@ function country_deliverable_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_reporting_frequency'
+  // Exported field_base: 'field_reporting_frequency'.
   $field_bases['field_reporting_frequency'] = array(
     'active' => 1,
     'cardinality' => 1,

@@ -10,7 +10,7 @@
 function informea_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'body'
+  // Exported field_base: 'body'.
   $field_bases['body'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -33,7 +33,7 @@ function informea_field_default_field_bases() {
     'type' => 'text_with_summary',
   );
 
-  // Exported field_base: 'comment_body'
+  // Exported field_base: 'comment_body'.
   $field_bases['comment_body'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -56,7 +56,7 @@ function informea_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'description_field'
+  // Exported field_base: 'description_field'.
   $field_bases['description_field'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -77,7 +77,7 @@ function informea_field_default_field_bases() {
     'type' => 'text_with_summary',
   );
 
-  // Exported field_base: 'eq_node'
+  // Exported field_base: 'eq_node'.
   $field_bases['eq_node'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -109,7 +109,7 @@ function informea_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_country'
+  // Exported field_base: 'field_country'.
   $field_bases['field_country'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -147,7 +147,7 @@ function informea_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_country_party_count'
+  // Exported field_base: 'field_country_party_count'.
   $field_bases['field_country_party_count'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -164,7 +164,7 @@ function informea_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_files'
+  // Exported field_base: 'field_files'.
   $field_bases['field_files'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -190,7 +190,7 @@ function informea_field_default_field_bases() {
     'type' => 'file',
   );
 
-  // Exported field_base: 'field_image'
+  // Exported field_base: 'field_image'.
   $field_bases['field_image'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -215,7 +215,7 @@ function informea_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_informea_tags'
+  // Exported field_base: 'field_informea_tags'.
   $field_bases['field_informea_tags'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -243,7 +243,7 @@ function informea_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_is_eu_member'
+  // Exported field_base: 'field_is_eu_member'.
   $field_bases['field_is_eu_member'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -269,7 +269,7 @@ function informea_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_last_update'
+  // Exported field_base: 'field_last_update'.
   $field_bases['field_last_update'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -299,7 +299,7 @@ function informea_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_latitude'
+  // Exported field_base: 'field_latitude'.
   $field_bases['field_latitude'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -319,7 +319,7 @@ function informea_field_default_field_bases() {
     'type' => 'number_decimal',
   );
 
-  // Exported field_base: 'field_longitude'
+  // Exported field_base: 'field_longitude'.
   $field_bases['field_longitude'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -339,7 +339,7 @@ function informea_field_default_field_bases() {
     'type' => 'number_decimal',
   );
 
-  // Exported field_base: 'field_meeting'
+  // Exported field_base: 'field_meeting'.
   $field_bases['field_meeting'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -377,7 +377,7 @@ function informea_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_original_id'
+  // Exported field_base: 'field_original_id'.
   $field_bases['field_original_id'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -399,7 +399,7 @@ function informea_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_region'
+  // Exported field_base: 'field_region'.
   $field_bases['field_region'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -427,7 +427,7 @@ function informea_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_sorting_order'
+  // Exported field_base: 'field_sorting_order'.
   $field_bases['field_sorting_order'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -444,7 +444,7 @@ function informea_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_tags'
+  // Exported field_base: 'field_tags'.
   $field_bases['field_tags'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -472,7 +472,7 @@ function informea_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_taxonomy_term_uri'
+  // Exported field_base: 'field_taxonomy_term_uri'.
   $field_bases['field_taxonomy_term_uri'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -502,7 +502,7 @@ function informea_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_term_geg_url'
+  // Exported field_base: 'field_term_geg_url'.
   $field_bases['field_term_geg_url'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -532,7 +532,7 @@ function informea_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_term_popularity'
+  // Exported field_base: 'field_term_popularity'.
   $field_bases['field_term_popularity'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -549,7 +549,7 @@ function informea_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_term_reference_url'
+  // Exported field_base: 'field_term_reference_url'.
   $field_bases['field_term_reference_url'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -571,7 +571,7 @@ function informea_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_term_substantive'
+  // Exported field_base: 'field_term_substantive'.
   $field_bases['field_term_substantive'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -597,7 +597,7 @@ function informea_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_term_tag'
+  // Exported field_base: 'field_term_tag'.
   $field_bases['field_term_tag'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -619,7 +619,7 @@ function informea_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_thesaurus_map_agrovoc'
+  // Exported field_base: 'field_thesaurus_map_agrovoc'.
   $field_bases['field_thesaurus_map_agrovoc'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -647,7 +647,7 @@ function informea_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_thesaurus_map_ecolex'
+  // Exported field_base: 'field_thesaurus_map_ecolex'.
   $field_bases['field_thesaurus_map_ecolex'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -675,7 +675,7 @@ function informea_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_thesaurus_map_geg'
+  // Exported field_base: 'field_thesaurus_map_geg'.
   $field_bases['field_thesaurus_map_geg'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -703,7 +703,7 @@ function informea_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_thesaurus_map_gemet'
+  // Exported field_base: 'field_thesaurus_map_gemet'.
   $field_bases['field_thesaurus_map_gemet'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -731,7 +731,7 @@ function informea_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_treaty'
+  // Exported field_base: 'field_treaty'.
   $field_bases['field_treaty'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -769,7 +769,7 @@ function informea_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_url'
+  // Exported field_base: 'field_url'.
   $field_bases['field_url'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -799,7 +799,7 @@ function informea_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_video'
+  // Exported field_base: 'field_video'.
   $field_bases['field_video'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -820,7 +820,7 @@ function informea_field_default_field_bases() {
     'type' => 'youtube',
   );
 
-  // Exported field_base: 'name_field'
+  // Exported field_base: 'name_field'.
   $field_bases['name_field'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -842,7 +842,7 @@ function informea_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'title_field'
+  // Exported field_base: 'title_field'.
   $field_bases['title_field'] = array(
     'active' => 1,
     'cardinality' => 1,

@@ -10,7 +10,7 @@
 function country_data_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_contact_fax'
+  // Exported field_base: 'field_contact_fax'.
   $field_bases['field_contact_fax'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -32,7 +32,7 @@ function country_data_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_contact_primary_nfp'
+  // Exported field_base: 'field_contact_primary_nfp'.
   $field_bases['field_contact_primary_nfp'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -58,7 +58,7 @@ function country_data_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_contact_telephone'
+  // Exported field_base: 'field_contact_telephone'.
   $field_bases['field_contact_telephone'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -80,7 +80,7 @@ function country_data_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_entry_into_force'
+  // Exported field_base: 'field_entry_into_force'.
   $field_bases['field_entry_into_force'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -110,7 +110,7 @@ function country_data_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_party_date_1'
+  // Exported field_base: 'field_party_date_1'.
   $field_bases['field_party_date_1'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -140,7 +140,7 @@ function country_data_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_party_date_2'
+  // Exported field_base: 'field_party_date_2'.
   $field_bases['field_party_date_2'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -170,7 +170,7 @@ function country_data_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_party_status'
+  // Exported field_base: 'field_party_status'.
   $field_bases['field_party_status'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -198,7 +198,7 @@ function country_data_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_person_department'
+  // Exported field_base: 'field_person_department'.
   $field_bases['field_person_department'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -220,7 +220,7 @@ function country_data_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_person_email'
+  // Exported field_base: 'field_person_email'.
   $field_bases['field_person_email'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -237,7 +237,7 @@ function country_data_field_default_field_bases() {
     'type' => 'email',
   );
 
-  // Exported field_base: 'field_person_first_name'
+  // Exported field_base: 'field_person_first_name'.
   $field_bases['field_person_first_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -259,7 +259,7 @@ function country_data_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_person_institution'
+  // Exported field_base: 'field_person_institution'.
   $field_bases['field_person_institution'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -281,7 +281,7 @@ function country_data_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_person_last_name'
+  // Exported field_base: 'field_person_last_name'.
   $field_bases['field_person_last_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -303,7 +303,7 @@ function country_data_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_person_position'
+  // Exported field_base: 'field_person_position'.
   $field_bases['field_person_position'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -325,7 +325,7 @@ function country_data_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_person_prefix'
+  // Exported field_base: 'field_person_prefix'.
   $field_bases['field_person_prefix'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -347,7 +347,7 @@ function country_data_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_person_type'
+  // Exported field_base: 'field_person_type'.
   $field_bases['field_person_type'] = array(
     'active' => 1,
     'cardinality' => -1,

@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function treaty_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -56,7 +56,7 @@ function treaty_field_group_info() {
       ),
     ),
   );
-  $export['group_ecolex|node|treaty|form'] = $field_group;
+  $field_groups['group_ecolex|node|treaty|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -92,7 +92,7 @@ function treaty_field_group_info() {
       ),
     ),
   );
-  $export['group_external_links|node|treaty|form'] = $field_group;
+  $field_groups['group_external_links|node|treaty|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -127,7 +127,7 @@ function treaty_field_group_info() {
       ),
     ),
   );
-  $export['group_technical_data|node|treaty|form'] = $field_group;
+  $field_groups['group_technical_data|node|treaty|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -154,7 +154,14 @@ function treaty_field_group_info() {
       ),
     ),
   );
-  $export['group_treaty_field_group|node|treaty|form'] = $field_group;
+  $field_groups['group_treaty_field_group|node|treaty|form'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Additional information');
+  t('ECOLEX');
+  t('External links');
+  t('Technical data');
+
+  return $field_groups;
 }

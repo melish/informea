@@ -10,7 +10,7 @@
 function country_data_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-contact_person-body'
+  // Exported field_instance: 'node-contact_person-body'.
   $field_instances['node-contact_person-body'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -67,7 +67,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact_person-field_address'
+  // Exported field_instance: 'node-contact_person-field_address'.
   $field_instances['node-contact_person-field_address'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -120,7 +120,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact_person-field_contact_fax'
+  // Exported field_instance: 'node-contact_person-field_contact_fax'.
   $field_instances['node-contact_person-field_contact_fax'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -173,7 +173,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact_person-field_contact_primary_nfp'
+  // Exported field_instance: 'node-contact_person-field_contact_primary_nfp'.
   $field_instances['node-contact_person-field_contact_primary_nfp'] = array(
     'bundle' => 'contact_person',
     'default_value' => array(
@@ -229,7 +229,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact_person-field_contact_telephone'
+  // Exported field_instance: 'node-contact_person-field_contact_telephone'.
   $field_instances['node-contact_person-field_contact_telephone'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -282,7 +282,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact_person-field_country'
+  // Exported field_instance: 'node-contact_person-field_country'.
   $field_instances['node-contact_person-field_country'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -337,7 +337,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact_person-field_last_update'
+  // Exported field_instance: 'node-contact_person-field_last_update'.
   $field_instances['node-contact_person-field_last_update'] = array(
     'bundle' => 'contact_person',
     'deleted' => 0,
@@ -403,7 +403,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact_person-field_original_id'
+  // Exported field_instance: 'node-contact_person-field_original_id'.
   $field_instances['node-contact_person-field_original_id'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -455,7 +455,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact_person-field_person_department'
+  // Exported field_instance: 'node-contact_person-field_person_department'.
   $field_instances['node-contact_person-field_person_department'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -508,7 +508,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact_person-field_person_email'
+  // Exported field_instance: 'node-contact_person-field_person_email'.
   $field_instances['node-contact_person-field_person_email'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -560,7 +560,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact_person-field_person_first_name'
+  // Exported field_instance: 'node-contact_person-field_person_first_name'.
   $field_instances['node-contact_person-field_person_first_name'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -613,7 +613,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact_person-field_person_institution'
+  // Exported field_instance: 'node-contact_person-field_person_institution'.
   $field_instances['node-contact_person-field_person_institution'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -666,7 +666,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact_person-field_person_last_name'
+  // Exported field_instance: 'node-contact_person-field_person_last_name'.
   $field_instances['node-contact_person-field_person_last_name'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -719,7 +719,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact_person-field_person_position'
+  // Exported field_instance: 'node-contact_person-field_person_position'.
   $field_instances['node-contact_person-field_person_position'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -772,7 +772,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact_person-field_person_prefix'
+  // Exported field_instance: 'node-contact_person-field_person_prefix'.
   $field_instances['node-contact_person-field_person_prefix'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -825,7 +825,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact_person-field_person_type'
+  // Exported field_instance: 'node-contact_person-field_person_type'.
   $field_instances['node-contact_person-field_person_type'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -886,7 +886,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact_person-field_treaty'
+  // Exported field_instance: 'node-contact_person-field_treaty'.
   $field_instances['node-contact_person-field_treaty'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -941,7 +941,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-geographical_site-body'
+  // Exported field_instance: 'node-geographical_site-body'.
   $field_instances['node-geographical_site-body'] = array(
     'bundle' => 'geographical_site',
     'default_value' => NULL,
@@ -998,7 +998,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-geographical_site-field_country'
+  // Exported field_instance: 'node-geographical_site-field_country'.
   $field_instances['node-geographical_site-field_country'] = array(
     'bundle' => 'geographical_site',
     'default_value' => NULL,
@@ -1053,7 +1053,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-geographical_site-field_informea_tags'
+  // Exported field_instance: 'node-geographical_site-field_informea_tags'.
   $field_instances['node-geographical_site-field_informea_tags'] = array(
     'bundle' => 'geographical_site',
     'default_value' => NULL,
@@ -1113,7 +1113,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-geographical_site-field_last_update'
+  // Exported field_instance: 'node-geographical_site-field_last_update'.
   $field_instances['node-geographical_site-field_last_update'] = array(
     'bundle' => 'geographical_site',
     'deleted' => 0,
@@ -1179,7 +1179,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-geographical_site-field_latitude'
+  // Exported field_instance: 'node-geographical_site-field_latitude'.
   $field_instances['node-geographical_site-field_latitude'] = array(
     'bundle' => 'geographical_site',
     'default_value' => NULL,
@@ -1238,7 +1238,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-geographical_site-field_longitude'
+  // Exported field_instance: 'node-geographical_site-field_longitude'.
   $field_instances['node-geographical_site-field_longitude'] = array(
     'bundle' => 'geographical_site',
     'default_value' => NULL,
@@ -1297,7 +1297,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-geographical_site-field_original_id'
+  // Exported field_instance: 'node-geographical_site-field_original_id'.
   $field_instances['node-geographical_site-field_original_id'] = array(
     'bundle' => 'geographical_site',
     'default_value' => NULL,
@@ -1349,7 +1349,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-geographical_site-field_treaty'
+  // Exported field_instance: 'node-geographical_site-field_treaty'.
   $field_instances['node-geographical_site-field_treaty'] = array(
     'bundle' => 'geographical_site',
     'default_value' => NULL,
@@ -1404,7 +1404,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-geographical_site-field_url'
+  // Exported field_instance: 'node-geographical_site-field_url'.
   $field_instances['node-geographical_site-field_url'] = array(
     'bundle' => 'geographical_site',
     'default_value' => NULL,
@@ -1473,7 +1473,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-geographical_site-title_field'
+  // Exported field_instance: 'node-geographical_site-title_field'.
   $field_instances['node-geographical_site-title_field'] = array(
     'bundle' => 'geographical_site',
     'default_value' => NULL,
@@ -1528,7 +1528,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-member_party-field_country'
+  // Exported field_instance: 'node-member_party-field_country'.
   $field_instances['node-member_party-field_country'] = array(
     'bundle' => 'member_party',
     'default_value' => NULL,
@@ -1583,7 +1583,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-member_party-field_entry_into_force'
+  // Exported field_instance: 'node-member_party-field_entry_into_force'.
   $field_instances['node-member_party-field_entry_into_force'] = array(
     'bundle' => 'member_party',
     'deleted' => 0,
@@ -1649,7 +1649,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-member_party-field_party_date_1'
+  // Exported field_instance: 'node-member_party-field_party_date_1'.
   $field_instances['node-member_party-field_party_date_1'] = array(
     'bundle' => 'member_party',
     'deleted' => 0,
@@ -1715,7 +1715,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-member_party-field_party_date_2'
+  // Exported field_instance: 'node-member_party-field_party_date_2'.
   $field_instances['node-member_party-field_party_date_2'] = array(
     'bundle' => 'member_party',
     'deleted' => 0,
@@ -1781,7 +1781,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-member_party-field_party_status'
+  // Exported field_instance: 'node-member_party-field_party_status'.
   $field_instances['node-member_party-field_party_status'] = array(
     'bundle' => 'member_party',
     'default_value' => NULL,
@@ -1834,7 +1834,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-member_party-field_treaty'
+  // Exported field_instance: 'node-member_party-field_treaty'.
   $field_instances['node-member_party-field_treaty'] = array(
     'bundle' => 'member_party',
     'default_value' => NULL,
@@ -1889,7 +1889,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-party_status-description_field'
+  // Exported field_instance: 'taxonomy_term-party_status-description_field'.
   $field_instances['taxonomy_term-party_status-description_field'] = array(
     'bundle' => 'party_status',
     'default_value' => NULL,
@@ -1928,7 +1928,7 @@ function country_data_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-party_status-name_field'
+  // Exported field_instance: 'taxonomy_term-party_status-name_field'.
   $field_instances['taxonomy_term-party_status-name_field'] = array(
     'bundle' => 'party_status',
     'default_value' => NULL,

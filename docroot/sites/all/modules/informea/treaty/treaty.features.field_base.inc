@@ -10,7 +10,7 @@
 function treaty_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_abstract'
+  // Exported field_base: 'field_abstract'.
   $field_bases['field_abstract'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -31,7 +31,7 @@ function treaty_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_address'
+  // Exported field_base: 'field_address'.
   $field_bases['field_address'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -52,7 +52,7 @@ function treaty_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_alternative_record_id'
+  // Exported field_base: 'field_alternative_record_id'.
   $field_bases['field_alternative_record_id'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -74,7 +74,7 @@ function treaty_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_amends_treaty'
+  // Exported field_base: 'field_amends_treaty'.
   $field_bases['field_amends_treaty'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -112,7 +112,7 @@ function treaty_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_available_in'
+  // Exported field_base: 'field_available_in'.
   $field_bases['field_available_in'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -134,7 +134,7 @@ function treaty_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_cited_treaties'
+  // Exported field_base: 'field_cited_treaties'.
   $field_bases['field_cited_treaties'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -172,7 +172,7 @@ function treaty_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_city'
+  // Exported field_base: 'field_city'.
   $field_bases['field_city'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -194,7 +194,7 @@ function treaty_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_data_source'
+  // Exported field_base: 'field_data_source'.
   $field_bases['field_data_source'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -222,7 +222,7 @@ function treaty_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_depositary'
+  // Exported field_base: 'field_depositary'.
   $field_bases['field_depositary'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -244,7 +244,7 @@ function treaty_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_ecolex_tags'
+  // Exported field_base: 'field_ecolex_tags'.
   $field_bases['field_ecolex_tags'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -272,7 +272,7 @@ function treaty_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_ecolex_url'
+  // Exported field_base: 'field_ecolex_url'.
   $field_bases['field_ecolex_url'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -302,7 +302,7 @@ function treaty_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_faolex_url'
+  // Exported field_base: 'field_faolex_url'.
   $field_bases['field_faolex_url'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -332,7 +332,7 @@ function treaty_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_field_of_application'
+  // Exported field_base: 'field_field_of_application'.
   $field_bases['field_field_of_application'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -360,7 +360,7 @@ function treaty_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_has_api_action_plans'
+  // Exported field_base: 'field_has_api_action_plans'.
   $field_bases['field_has_api_action_plans'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -386,7 +386,7 @@ function treaty_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_has_api_decisions'
+  // Exported field_base: 'field_has_api_decisions'.
   $field_bases['field_has_api_decisions'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -412,7 +412,7 @@ function treaty_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_has_api_national_reports'
+  // Exported field_base: 'field_has_api_national_reports'.
   $field_bases['field_has_api_national_reports'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -438,7 +438,7 @@ function treaty_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_internet_reference'
+  // Exported field_base: 'field_internet_reference'.
   $field_bases['field_internet_reference'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -460,7 +460,7 @@ function treaty_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_is_protocol'
+  // Exported field_base: 'field_is_protocol'.
   $field_bases['field_is_protocol'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -486,7 +486,7 @@ function treaty_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_jurisdiction'
+  // Exported field_base: 'field_jurisdiction'.
   $field_bases['field_jurisdiction'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -514,7 +514,7 @@ function treaty_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_logo'
+  // Exported field_base: 'field_logo'.
   $field_bases['field_logo'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -539,7 +539,7 @@ function treaty_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_mea_topic'
+  // Exported field_base: 'field_mea_topic'.
   $field_bases['field_mea_topic'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -567,7 +567,7 @@ function treaty_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_number_of_pages'
+  // Exported field_base: 'field_number_of_pages'.
   $field_bases['field_number_of_pages'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -584,7 +584,7 @@ function treaty_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_obsolete'
+  // Exported field_base: 'field_obsolete'.
   $field_bases['field_obsolete'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -610,7 +610,7 @@ function treaty_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_odata_identifier'
+  // Exported field_base: 'field_odata_identifier'.
   $field_bases['field_odata_identifier'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -632,7 +632,7 @@ function treaty_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_official_name'
+  // Exported field_base: 'field_official_name'.
   $field_bases['field_official_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -654,7 +654,7 @@ function treaty_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_official_order'
+  // Exported field_base: 'field_official_order'.
   $field_bases['field_official_order'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -676,7 +676,7 @@ function treaty_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_official_publication'
+  // Exported field_base: 'field_official_publication'.
   $field_bases['field_official_publication'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -698,7 +698,7 @@ function treaty_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_online_course_link'
+  // Exported field_base: 'field_online_course_link'.
   $field_bases['field_online_course_link'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -728,7 +728,7 @@ function treaty_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_paragraph_indentation'
+  // Exported field_base: 'field_paragraph_indentation'.
   $field_bases['field_paragraph_indentation'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -745,7 +745,7 @@ function treaty_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_parent_treaty'
+  // Exported field_base: 'field_parent_treaty'.
   $field_bases['field_parent_treaty'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -783,7 +783,7 @@ function treaty_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_parent_treaty_article'
+  // Exported field_base: 'field_parent_treaty_article'.
   $field_bases['field_parent_treaty_article'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -821,7 +821,7 @@ function treaty_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_place_of_adoption'
+  // Exported field_base: 'field_place_of_adoption'.
   $field_bases['field_place_of_adoption'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -843,7 +843,7 @@ function treaty_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_primary'
+  // Exported field_base: 'field_primary'.
   $field_bases['field_primary'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -869,7 +869,7 @@ function treaty_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_primary_topic'
+  // Exported field_base: 'field_primary_topic'.
   $field_bases['field_primary_topic'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -897,7 +897,7 @@ function treaty_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_ratification_xml_url'
+  // Exported field_base: 'field_ratification_xml_url'.
   $field_bases['field_ratification_xml_url'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -927,7 +927,7 @@ function treaty_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_related_url'
+  // Exported field_base: 'field_related_url'.
   $field_bases['field_related_url'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -957,7 +957,7 @@ function treaty_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_related_website'
+  // Exported field_base: 'field_related_website'.
   $field_bases['field_related_website'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -979,7 +979,7 @@ function treaty_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_secondary_topic'
+  // Exported field_base: 'field_secondary_topic'.
   $field_bases['field_secondary_topic'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1007,7 +1007,7 @@ function treaty_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_sorting_date'
+  // Exported field_base: 'field_sorting_date'.
   $field_bases['field_sorting_date'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1037,7 +1037,7 @@ function treaty_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_title_abbreviation'
+  // Exported field_base: 'field_title_abbreviation'.
   $field_bases['field_title_abbreviation'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1059,7 +1059,7 @@ function treaty_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_treaty_article'
+  // Exported field_base: 'field_treaty_article'.
   $field_bases['field_treaty_article'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1097,7 +1097,7 @@ function treaty_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_treaty_article_paragraph'
+  // Exported field_base: 'field_treaty_article_paragraph'.
   $field_bases['field_treaty_article_paragraph'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1135,7 +1135,7 @@ function treaty_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_treaty_decisions_url'
+  // Exported field_base: 'field_treaty_decisions_url'.
   $field_bases['field_treaty_decisions_url'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1165,7 +1165,7 @@ function treaty_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_treaty_has_parties_from_un'
+  // Exported field_base: 'field_treaty_has_parties_from_un'.
   $field_bases['field_treaty_has_parties_from_un'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1191,7 +1191,7 @@ function treaty_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_treaty_parties_url'
+  // Exported field_base: 'field_treaty_parties_url'.
   $field_bases['field_treaty_parties_url'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1221,7 +1221,7 @@ function treaty_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_treaty_plans_url'
+  // Exported field_base: 'field_treaty_plans_url'.
   $field_bases['field_treaty_plans_url'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1251,7 +1251,7 @@ function treaty_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_treaty_protocols_url'
+  // Exported field_base: 'field_treaty_protocols_url'.
   $field_bases['field_treaty_protocols_url'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1281,7 +1281,7 @@ function treaty_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_treaty_reports_url'
+  // Exported field_base: 'field_treaty_reports_url'.
   $field_bases['field_treaty_reports_url'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1311,7 +1311,7 @@ function treaty_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_treaty_text_url'
+  // Exported field_base: 'field_treaty_text_url'.
   $field_bases['field_treaty_text_url'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1341,7 +1341,7 @@ function treaty_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_treaty_website_url'
+  // Exported field_base: 'field_treaty_website_url'.
   $field_bases['field_treaty_website_url'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1371,7 +1371,7 @@ function treaty_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_type_of_text'
+  // Exported field_base: 'field_type_of_text'.
   $field_bases['field_type_of_text'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1399,7 +1399,7 @@ function treaty_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_un_region'
+  // Exported field_base: 'field_un_region'.
   $field_bases['field_un_region'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1425,7 +1425,7 @@ function treaty_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_un_treaty_database_link'
+  // Exported field_base: 'field_un_treaty_database_link'.
   $field_bases['field_un_treaty_database_link'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1455,7 +1455,7 @@ function treaty_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_user_owners'
+  // Exported field_base: 'field_user_owners'.
   $field_bases['field_user_owners'] = array(
     'active' => 1,
     'cardinality' => -1,

@@ -10,7 +10,7 @@
 function meeting_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'event_calendar_date'
+  // Exported field_base: 'event_calendar_date'.
   $field_bases['event_calendar_date'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -44,7 +44,7 @@ function meeting_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'event_calendar_status'
+  // Exported field_base: 'event_calendar_status'.
   $field_bases['event_calendar_status'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -73,7 +73,7 @@ function meeting_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_abbreviation'
+  // Exported field_base: 'field_abbreviation'.
   $field_bases['field_abbreviation'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -95,7 +95,7 @@ function meeting_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_event_access'
+  // Exported field_base: 'field_event_access'.
   $field_bases['field_event_access'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -123,7 +123,7 @@ function meeting_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_event_calendar_status'
+  // Exported field_base: 'field_event_calendar_status'.
   $field_bases['field_event_calendar_status'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -151,7 +151,7 @@ function meeting_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_event_images'
+  // Exported field_base: 'field_event_images'.
   $field_bases['field_event_images'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -176,7 +176,7 @@ function meeting_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_event_kind'
+  // Exported field_base: 'field_event_kind'.
   $field_bases['field_event_kind'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -204,7 +204,7 @@ function meeting_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_event_repetition'
+  // Exported field_base: 'field_event_repetition'.
   $field_bases['field_event_repetition'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -232,7 +232,7 @@ function meeting_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_event_type'
+  // Exported field_base: 'field_event_type'.
   $field_bases['field_event_type'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -260,7 +260,7 @@ function meeting_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_location'
+  // Exported field_base: 'field_location'.
   $field_bases['field_location'] = array(
     'active' => 1,
     'cardinality' => 1,

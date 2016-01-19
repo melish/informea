@@ -10,7 +10,7 @@
 function ecolex_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_amends'
+  // Exported field_base: 'field_amends'.
   $field_bases['field_amends'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -46,7 +46,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_author'
+  // Exported field_base: 'field_author'.
   $field_bases['field_author'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -68,7 +68,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_author_institution'
+  // Exported field_base: 'field_author_institution'.
   $field_bases['field_author_institution'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -90,7 +90,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_avaiable_web_site'
+  // Exported field_base: 'field_avaiable_web_site'.
   $field_bases['field_avaiable_web_site'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -120,7 +120,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_collation'
+  // Exported field_base: 'field_collation'.
   $field_bases['field_collation'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -142,7 +142,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_court_decision_id_number'
+  // Exported field_base: 'field_court_decision_id_number'.
   $field_bases['field_court_decision_id_number'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -164,7 +164,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_court_decision_subdivision'
+  // Exported field_base: 'field_court_decision_subdivision'.
   $field_bases['field_court_decision_subdivision'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -186,7 +186,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_court_name'
+  // Exported field_base: 'field_court_name'.
   $field_bases['field_court_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -208,7 +208,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_date_of_consolidation'
+  // Exported field_base: 'field_date_of_consolidation'.
   $field_bases['field_date_of_consolidation'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -238,7 +238,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_date_of_entry'
+  // Exported field_base: 'field_date_of_entry'.
   $field_bases['field_date_of_entry'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -268,7 +268,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_date_of_modification'
+  // Exported field_base: 'field_date_of_modification'.
   $field_bases['field_date_of_modification'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -298,7 +298,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_date_of_original_text'
+  // Exported field_base: 'field_date_of_original_text'.
   $field_bases['field_date_of_original_text'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -328,7 +328,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_ecolex_decision_status'
+  // Exported field_base: 'field_ecolex_decision_status'.
   $field_bases['field_ecolex_decision_status'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -356,7 +356,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_entry_into_force_notes'
+  // Exported field_base: 'field_entry_into_force_notes'.
   $field_bases['field_entry_into_force_notes'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -377,7 +377,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_faolex_id'
+  // Exported field_base: 'field_faolex_id'.
   $field_bases['field_faolex_id'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -399,7 +399,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_geographical_scope'
+  // Exported field_base: 'field_geographical_scope'.
   $field_bases['field_geographical_scope'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -427,7 +427,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_implements'
+  // Exported field_base: 'field_implements'.
   $field_bases['field_implements'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -463,7 +463,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_internet_reference_url'
+  // Exported field_base: 'field_internet_reference_url'.
   $field_bases['field_internet_reference_url'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -493,7 +493,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_isbn'
+  // Exported field_base: 'field_isbn'.
   $field_bases['field_isbn'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -515,7 +515,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_isis_number'
+  // Exported field_base: 'field_isis_number'.
   $field_bases['field_isis_number'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -537,7 +537,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_justices'
+  // Exported field_base: 'field_justices'.
   $field_bases['field_justices'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -559,7 +559,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_keywords'
+  // Exported field_base: 'field_keywords'.
   $field_bases['field_keywords'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -587,7 +587,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_literature_call_number'
+  // Exported field_base: 'field_literature_call_number'.
   $field_bases['field_literature_call_number'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -609,7 +609,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_literature_paper_title'
+  // Exported field_base: 'field_literature_paper_title'.
   $field_bases['field_literature_paper_title'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -631,7 +631,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_literature_serial_title'
+  // Exported field_base: 'field_literature_serial_title'.
   $field_bases['field_literature_serial_title'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -653,7 +653,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_literature_type'
+  // Exported field_base: 'field_literature_type'.
   $field_bases['field_literature_type'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -681,7 +681,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_notes'
+  // Exported field_base: 'field_notes'.
   $field_bases['field_notes'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -702,7 +702,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_organizations'
+  // Exported field_base: 'field_organizations'.
   $field_bases['field_organizations'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -724,7 +724,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_publication_place'
+  // Exported field_base: 'field_publication_place'.
   $field_bases['field_publication_place'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -746,7 +746,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_publisher'
+  // Exported field_base: 'field_publisher'.
   $field_bases['field_publisher'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -768,7 +768,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_reference_number'
+  // Exported field_base: 'field_reference_number'.
   $field_bases['field_reference_number'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -790,7 +790,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_reference_to_legislation'
+  // Exported field_base: 'field_reference_to_legislation'.
   $field_bases['field_reference_to_legislation'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -828,7 +828,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_related_literature'
+  // Exported field_base: 'field_related_literature'.
   $field_bases['field_related_literature'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -866,7 +866,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_repealed'
+  // Exported field_base: 'field_repealed'.
   $field_bases['field_repealed'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -892,7 +892,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_repeals'
+  // Exported field_base: 'field_repeals'.
   $field_bases['field_repeals'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -928,7 +928,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_serial_imprint'
+  // Exported field_base: 'field_serial_imprint'.
   $field_bases['field_serial_imprint'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -950,7 +950,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_source_language'
+  // Exported field_base: 'field_source_language'.
   $field_bases['field_source_language'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -980,7 +980,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'language_field',
   );
 
-  // Exported field_base: 'field_sub_file_code'
+  // Exported field_base: 'field_sub_file_code'.
   $field_bases['field_sub_file_code'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1008,7 +1008,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_territorial_subdivision'
+  // Exported field_base: 'field_territorial_subdivision'.
   $field_bases['field_territorial_subdivision'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1036,7 +1036,7 @@ function ecolex_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_volume_no'
+  // Exported field_base: 'field_volume_no'.
   $field_bases['field_volume_no'] = array(
     'active' => 1,
     'cardinality' => 1,

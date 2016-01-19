@@ -10,7 +10,7 @@
 function meeting_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-event_calendar-body'
+  // Exported field_instance: 'node-event_calendar-body'.
   $field_instances['node-event_calendar-body'] = array(
     'bundle' => 'event_calendar',
     'default_value' => NULL,
@@ -68,7 +68,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-event_calendar_date'
+  // Exported field_instance: 'node-event_calendar-event_calendar_date'.
   $field_instances['node-event_calendar-event_calendar_date'] = array(
     'bundle' => 'event_calendar',
     'deleted' => 0,
@@ -135,7 +135,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-event_calendar_status'
+  // Exported field_instance: 'node-event_calendar-event_calendar_status'.
   $field_instances['node-event_calendar-event_calendar_status'] = array(
     'bundle' => 'event_calendar',
     'default_value' => array(
@@ -189,7 +189,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-field_abbreviation'
+  // Exported field_instance: 'node-event_calendar-field_abbreviation'.
   $field_instances['node-event_calendar-field_abbreviation'] = array(
     'bundle' => 'event_calendar',
     'default_value' => NULL,
@@ -241,7 +241,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-field_city'
+  // Exported field_instance: 'node-event_calendar-field_city'.
   $field_instances['node-event_calendar-field_city'] = array(
     'bundle' => 'event_calendar',
     'default_value' => NULL,
@@ -294,7 +294,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-field_country'
+  // Exported field_instance: 'node-event_calendar-field_country'.
   $field_instances['node-event_calendar-field_country'] = array(
     'bundle' => 'event_calendar',
     'default_value' => NULL,
@@ -348,7 +348,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-field_event_access'
+  // Exported field_instance: 'node-event_calendar-field_event_access'.
   $field_instances['node-event_calendar-field_event_access'] = array(
     'bundle' => 'event_calendar',
     'default_value' => NULL,
@@ -400,7 +400,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-field_event_calendar_status'
+  // Exported field_instance: 'node-event_calendar-field_event_calendar_status'.
   $field_instances['node-event_calendar-field_event_calendar_status'] = array(
     'bundle' => 'event_calendar',
     'default_value' => NULL,
@@ -452,7 +452,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-field_event_images'
+  // Exported field_instance: 'node-event_calendar-field_event_images'.
   $field_instances['node-event_calendar-field_event_images'] = array(
     'bundle' => 'event_calendar',
     'deleted' => 0,
@@ -515,7 +515,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-field_event_kind'
+  // Exported field_instance: 'node-event_calendar-field_event_kind'.
   $field_instances['node-event_calendar-field_event_kind'] = array(
     'bundle' => 'event_calendar',
     'default_value' => NULL,
@@ -567,7 +567,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-field_event_repetition'
+  // Exported field_instance: 'node-event_calendar-field_event_repetition'.
   $field_instances['node-event_calendar-field_event_repetition'] = array(
     'bundle' => 'event_calendar',
     'default_value' => NULL,
@@ -619,7 +619,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-field_event_type'
+  // Exported field_instance: 'node-event_calendar-field_event_type'.
   $field_instances['node-event_calendar-field_event_type'] = array(
     'bundle' => 'event_calendar',
     'default_value' => NULL,
@@ -671,7 +671,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-field_informea_tags'
+  // Exported field_instance: 'node-event_calendar-field_informea_tags'.
   $field_instances['node-event_calendar-field_informea_tags'] = array(
     'bundle' => 'event_calendar',
     'default_value' => NULL,
@@ -731,7 +731,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-field_last_update'
+  // Exported field_instance: 'node-event_calendar-field_last_update'.
   $field_instances['node-event_calendar-field_last_update'] = array(
     'bundle' => 'event_calendar',
     'deleted' => 0,
@@ -796,7 +796,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-field_latitude'
+  // Exported field_instance: 'node-event_calendar-field_latitude'.
   $field_instances['node-event_calendar-field_latitude'] = array(
     'bundle' => 'event_calendar',
     'default_value' => NULL,
@@ -855,7 +855,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-field_location'
+  // Exported field_instance: 'node-event_calendar-field_location'.
   $field_instances['node-event_calendar-field_location'] = array(
     'bundle' => 'event_calendar',
     'default_value' => NULL,
@@ -908,7 +908,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-field_longitude'
+  // Exported field_instance: 'node-event_calendar-field_longitude'.
   $field_instances['node-event_calendar-field_longitude'] = array(
     'bundle' => 'event_calendar',
     'default_value' => NULL,
@@ -967,7 +967,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-field_original_id'
+  // Exported field_instance: 'node-event_calendar-field_original_id'.
   $field_instances['node-event_calendar-field_original_id'] = array(
     'bundle' => 'event_calendar',
     'default_value' => NULL,
@@ -1019,7 +1019,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-field_tags'
+  // Exported field_instance: 'node-event_calendar-field_tags'.
   $field_instances['node-event_calendar-field_tags'] = array(
     'bundle' => 'event_calendar',
     'default_value' => NULL,
@@ -1072,7 +1072,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-field_treaty'
+  // Exported field_instance: 'node-event_calendar-field_treaty'.
   $field_instances['node-event_calendar-field_treaty'] = array(
     'bundle' => 'event_calendar',
     'default_value' => NULL,
@@ -1126,7 +1126,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-field_url'
+  // Exported field_instance: 'node-event_calendar-field_url'.
   $field_instances['node-event_calendar-field_url'] = array(
     'bundle' => 'event_calendar',
     'default_value' => NULL,
@@ -1195,7 +1195,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar-title_field'
+  // Exported field_instance: 'node-event_calendar-title_field'.
   $field_instances['node-event_calendar-title_field'] = array(
     'bundle' => 'event_calendar',
     'default_value' => NULL,
@@ -1250,7 +1250,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar_imported-body'
+  // Exported field_instance: 'node-event_calendar_imported-body'.
   $field_instances['node-event_calendar_imported-body'] = array(
     'bundle' => 'event_calendar_imported',
     'default_value' => NULL,
@@ -1308,7 +1308,8 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar_imported-event_calendar_date'
+  // Exported field_instance:
+  // 'node-event_calendar_imported-event_calendar_date'.
   $field_instances['node-event_calendar_imported-event_calendar_date'] = array(
     'bundle' => 'event_calendar_imported',
     'deleted' => 0,
@@ -1374,7 +1375,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar_imported-field_event_type'
+  // Exported field_instance: 'node-event_calendar_imported-field_event_type'.
   $field_instances['node-event_calendar_imported-field_event_type'] = array(
     'bundle' => 'event_calendar_imported',
     'default_value' => NULL,
@@ -1426,7 +1427,8 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar_imported-field_informea_tags'
+  // Exported field_instance:
+  // 'node-event_calendar_imported-field_informea_tags'.
   $field_instances['node-event_calendar_imported-field_informea_tags'] = array(
     'bundle' => 'event_calendar_imported',
     'default_value' => NULL,
@@ -1486,7 +1488,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar_imported-field_tags'
+  // Exported field_instance: 'node-event_calendar_imported-field_tags'.
   $field_instances['node-event_calendar_imported-field_tags'] = array(
     'bundle' => 'event_calendar_imported',
     'default_value' => NULL,
@@ -1539,7 +1541,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar_imported-field_treaty'
+  // Exported field_instance: 'node-event_calendar_imported-field_treaty'.
   $field_instances['node-event_calendar_imported-field_treaty'] = array(
     'bundle' => 'event_calendar_imported',
     'default_value' => NULL,
@@ -1600,7 +1602,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar_imported-field_url'
+  // Exported field_instance: 'node-event_calendar_imported-field_url'.
   $field_instances['node-event_calendar_imported-field_url'] = array(
     'bundle' => 'event_calendar_imported',
     'default_value' => NULL,
@@ -1669,7 +1671,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_calendar_imported-title_field'
+  // Exported field_instance: 'node-event_calendar_imported-title_field'.
   $field_instances['node-event_calendar_imported-title_field'] = array(
     'bundle' => 'event_calendar_imported',
     'default_value' => NULL,
@@ -1724,7 +1726,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-event_access-description_field'
+  // Exported field_instance: 'taxonomy_term-event_access-description_field'.
   $field_instances['taxonomy_term-event_access-description_field'] = array(
     'bundle' => 'event_access',
     'default_value' => NULL,
@@ -1763,7 +1765,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-event_access-name_field'
+  // Exported field_instance: 'taxonomy_term-event_access-name_field'.
   $field_instances['taxonomy_term-event_access-name_field'] = array(
     'bundle' => 'event_access',
     'default_value' => NULL,
@@ -1801,7 +1803,7 @@ function meeting_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'taxonomy_term-event_calendar_status-description_field'
+  // 'taxonomy_term-event_calendar_status-description_field'.
   $field_instances['taxonomy_term-event_calendar_status-description_field'] = array(
     'bundle' => 'event_calendar_status',
     'default_value' => NULL,
@@ -1840,7 +1842,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-event_calendar_status-name_field'
+  // Exported field_instance: 'taxonomy_term-event_calendar_status-name_field'.
   $field_instances['taxonomy_term-event_calendar_status-name_field'] = array(
     'bundle' => 'event_calendar_status',
     'default_value' => NULL,
@@ -1877,7 +1879,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-event_kind-description_field'
+  // Exported field_instance: 'taxonomy_term-event_kind-description_field'.
   $field_instances['taxonomy_term-event_kind-description_field'] = array(
     'bundle' => 'event_kind',
     'default_value' => NULL,
@@ -1916,7 +1918,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-event_kind-name_field'
+  // Exported field_instance: 'taxonomy_term-event_kind-name_field'.
   $field_instances['taxonomy_term-event_kind-name_field'] = array(
     'bundle' => 'event_kind',
     'default_value' => NULL,
@@ -1953,7 +1955,8 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-event_repetition-description_field'
+  // Exported field_instance:
+  // 'taxonomy_term-event_repetition-description_field'.
   $field_instances['taxonomy_term-event_repetition-description_field'] = array(
     'bundle' => 'event_repetition',
     'default_value' => NULL,
@@ -1992,7 +1995,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-event_repetition-name_field'
+  // Exported field_instance: 'taxonomy_term-event_repetition-name_field'.
   $field_instances['taxonomy_term-event_repetition-name_field'] = array(
     'bundle' => 'event_repetition',
     'default_value' => NULL,
@@ -2029,7 +2032,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-event_type-description_field'
+  // Exported field_instance: 'taxonomy_term-event_type-description_field'.
   $field_instances['taxonomy_term-event_type-description_field'] = array(
     'bundle' => 'event_type',
     'default_value' => NULL,
@@ -2068,7 +2071,7 @@ function meeting_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-event_type-name_field'
+  // Exported field_instance: 'taxonomy_term-event_type-name_field'.
   $field_instances['taxonomy_term-event_type-name_field'] = array(
     'bundle' => 'event_type',
     'default_value' => NULL,

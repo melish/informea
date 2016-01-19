@@ -10,7 +10,7 @@
 function country_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-country-field_country_iso2'
+  // Exported field_instance: 'node-country-field_country_iso2'.
   $field_instances['node-country-field_country_iso2'] = array(
     'bundle' => 'country',
     'default_value' => NULL,
@@ -62,7 +62,7 @@ function country_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-country-field_country_iso3'
+  // Exported field_instance: 'node-country-field_country_iso3'.
   $field_instances['node-country-field_country_iso3'] = array(
     'bundle' => 'country',
     'default_value' => NULL,
@@ -114,7 +114,7 @@ function country_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-country-field_country_official_name'
+  // Exported field_instance: 'node-country-field_country_official_name'.
   $field_instances['node-country-field_country_official_name'] = array(
     'bundle' => 'country',
     'default_value' => NULL,
@@ -167,7 +167,7 @@ function country_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-country-field_eu_member'
+  // Exported field_instance: 'node-country-field_eu_member'.
   $field_instances['node-country-field_eu_member'] = array(
     'bundle' => 'country',
     'default_value' => array(
@@ -222,7 +222,7 @@ function country_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-country-field_latitude'
+  // Exported field_instance: 'node-country-field_latitude'.
   $field_instances['node-country-field_latitude'] = array(
     'bundle' => 'country',
     'default_value' => NULL,
@@ -275,7 +275,7 @@ function country_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-country-field_longitude'
+  // Exported field_instance: 'node-country-field_longitude'.
   $field_instances['node-country-field_longitude'] = array(
     'bundle' => 'country',
     'default_value' => NULL,
@@ -328,7 +328,7 @@ function country_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-country-field_region'
+  // Exported field_instance: 'node-country-field_region'.
   $field_instances['node-country-field_region'] = array(
     'bundle' => 'country',
     'default_value' => NULL,
@@ -396,7 +396,7 @@ function country_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-country-field_zoom'
+  // Exported field_instance: 'node-country-field_zoom'.
   $field_instances['node-country-field_zoom'] = array(
     'bundle' => 'country',
     'default_value' => NULL,
@@ -449,7 +449,7 @@ function country_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-country-title_field'
+  // Exported field_instance: 'node-country-title_field'.
   $field_instances['node-country-title_field'] = array(
     'bundle' => 'country',
     'default_value' => NULL,

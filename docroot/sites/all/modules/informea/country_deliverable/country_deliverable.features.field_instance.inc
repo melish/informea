@@ -10,7 +10,7 @@
 function country_deliverable_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-action_plan-body'
+  // Exported field_instance: 'node-action_plan-body'.
   $field_instances['node-action_plan-body'] = array(
     'bundle' => 'action_plan',
     'default_value' => NULL,
@@ -67,7 +67,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-action_plan-field_action_plan_type'
+  // Exported field_instance: 'node-action_plan-field_action_plan_type'.
   $field_instances['node-action_plan-field_action_plan_type'] = array(
     'bundle' => 'action_plan',
     'default_value' => NULL,
@@ -120,7 +120,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-action_plan-field_country'
+  // Exported field_instance: 'node-action_plan-field_country'.
   $field_instances['node-action_plan-field_country'] = array(
     'bundle' => 'action_plan',
     'default_value' => NULL,
@@ -175,7 +175,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-action_plan-field_document_url'
+  // Exported field_instance: 'node-action_plan-field_document_url'.
   $field_instances['node-action_plan-field_document_url'] = array(
     'bundle' => 'action_plan',
     'default_value' => NULL,
@@ -244,7 +244,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-action_plan-field_files'
+  // Exported field_instance: 'node-action_plan-field_files'.
   $field_instances['node-action_plan-field_files'] = array(
     'bundle' => 'action_plan',
     'deleted' => 0,
@@ -299,7 +299,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-action_plan-field_informea_tags'
+  // Exported field_instance: 'node-action_plan-field_informea_tags'.
   $field_instances['node-action_plan-field_informea_tags'] = array(
     'bundle' => 'action_plan',
     'default_value' => NULL,
@@ -359,7 +359,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-action_plan-field_last_update'
+  // Exported field_instance: 'node-action_plan-field_last_update'.
   $field_instances['node-action_plan-field_last_update'] = array(
     'bundle' => 'action_plan',
     'deleted' => 0,
@@ -425,7 +425,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-action_plan-field_original_id'
+  // Exported field_instance: 'node-action_plan-field_original_id'.
   $field_instances['node-action_plan-field_original_id'] = array(
     'bundle' => 'action_plan',
     'default_value' => NULL,
@@ -477,7 +477,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-action_plan-field_sorting_date'
+  // Exported field_instance: 'node-action_plan-field_sorting_date'.
   $field_instances['node-action_plan-field_sorting_date'] = array(
     'bundle' => 'action_plan',
     'deleted' => 0,
@@ -543,7 +543,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-action_plan-field_treaty'
+  // Exported field_instance: 'node-action_plan-field_treaty'.
   $field_instances['node-action_plan-field_treaty'] = array(
     'bundle' => 'action_plan',
     'default_value' => NULL,
@@ -598,7 +598,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-action_plan-title_field'
+  // Exported field_instance: 'node-action_plan-title_field'.
   $field_instances['node-action_plan-title_field'] = array(
     'bundle' => 'action_plan',
     'default_value' => NULL,
@@ -653,7 +653,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-national_report-body'
+  // Exported field_instance: 'node-national_report-body'.
   $field_instances['node-national_report-body'] = array(
     'bundle' => 'national_report',
     'default_value' => NULL,
@@ -710,7 +710,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-national_report-field_country'
+  // Exported field_instance: 'node-national_report-field_country'.
   $field_instances['node-national_report-field_country'] = array(
     'bundle' => 'national_report',
     'default_value' => NULL,
@@ -765,7 +765,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-national_report-field_document_url'
+  // Exported field_instance: 'node-national_report-field_document_url'.
   $field_instances['node-national_report-field_document_url'] = array(
     'bundle' => 'national_report',
     'default_value' => NULL,
@@ -834,7 +834,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-national_report-field_files'
+  // Exported field_instance: 'node-national_report-field_files'.
   $field_instances['node-national_report-field_files'] = array(
     'bundle' => 'national_report',
     'deleted' => 0,
@@ -890,7 +890,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-national_report-field_informea_tags'
+  // Exported field_instance: 'node-national_report-field_informea_tags'.
   $field_instances['node-national_report-field_informea_tags'] = array(
     'bundle' => 'national_report',
     'default_value' => NULL,
@@ -950,7 +950,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-national_report-field_last_update'
+  // Exported field_instance: 'node-national_report-field_last_update'.
   $field_instances['node-national_report-field_last_update'] = array(
     'bundle' => 'national_report',
     'deleted' => 0,
@@ -1016,7 +1016,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-national_report-field_original_id'
+  // Exported field_instance: 'node-national_report-field_original_id'.
   $field_instances['node-national_report-field_original_id'] = array(
     'bundle' => 'national_report',
     'default_value' => NULL,
@@ -1068,7 +1068,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-national_report-field_sorting_date'
+  // Exported field_instance: 'node-national_report-field_sorting_date'.
   $field_instances['node-national_report-field_sorting_date'] = array(
     'bundle' => 'national_report',
     'deleted' => 0,
@@ -1134,7 +1134,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-national_report-field_treaty'
+  // Exported field_instance: 'node-national_report-field_treaty'.
   $field_instances['node-national_report-field_treaty'] = array(
     'bundle' => 'national_report',
     'default_value' => NULL,
@@ -1189,7 +1189,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-national_report-title_field'
+  // Exported field_instance: 'node-national_report-title_field'.
   $field_instances['node-national_report-title_field'] = array(
     'bundle' => 'national_report',
     'default_value' => NULL,
@@ -1244,7 +1244,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-reporting_obligation_cycle-body'
+  // Exported field_instance: 'node-reporting_obligation_cycle-body'.
   $field_instances['node-reporting_obligation_cycle-body'] = array(
     'bundle' => 'reporting_obligation_cycle',
     'default_value' => NULL,
@@ -1301,7 +1301,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-reporting_obligation_cycle-field_decision'
+  // Exported field_instance: 'node-reporting_obligation_cycle-field_decision'.
   $field_instances['node-reporting_obligation_cycle-field_decision'] = array(
     'bundle' => 'reporting_obligation_cycle',
     'default_value' => NULL,
@@ -1366,7 +1366,7 @@ function country_deliverable_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-reporting_obligation_cycle-field_decision_paragraph'
+  // 'node-reporting_obligation_cycle-field_decision_paragraph'.
   $field_instances['node-reporting_obligation_cycle-field_decision_paragraph'] = array(
     'bundle' => 'reporting_obligation_cycle',
     'default_value' => NULL,
@@ -1422,7 +1422,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-reporting_obligation_cycle-field_files'
+  // Exported field_instance: 'node-reporting_obligation_cycle-field_files'.
   $field_instances['node-reporting_obligation_cycle-field_files'] = array(
     'bundle' => 'reporting_obligation_cycle',
     'deleted' => 0,
@@ -1478,7 +1478,7 @@ function country_deliverable_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-reporting_obligation_cycle-field_official_order'
+  // 'node-reporting_obligation_cycle-field_official_order'.
   $field_instances['node-reporting_obligation_cycle-field_official_order'] = array(
     'bundle' => 'reporting_obligation_cycle',
     'default_value' => NULL,
@@ -1531,7 +1531,7 @@ function country_deliverable_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-reporting_obligation_cycle-field_reporting_frequency'
+  // 'node-reporting_obligation_cycle-field_reporting_frequency'.
   $field_instances['node-reporting_obligation_cycle-field_reporting_frequency'] = array(
     'bundle' => 'reporting_obligation_cycle',
     'default_value' => NULL,
@@ -1584,7 +1584,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-reporting_obligation_cycle-field_treaty'
+  // Exported field_instance: 'node-reporting_obligation_cycle-field_treaty'.
   $field_instances['node-reporting_obligation_cycle-field_treaty'] = array(
     'bundle' => 'reporting_obligation_cycle',
     'default_value' => NULL,
@@ -1648,7 +1648,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-reporting_obligation_cycle-title_field'
+  // Exported field_instance: 'node-reporting_obligation_cycle-title_field'.
   $field_instances['node-reporting_obligation_cycle-title_field'] = array(
     'bundle' => 'reporting_obligation_cycle',
     'default_value' => NULL,
@@ -1703,7 +1703,8 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-action_plan_type-description_field'
+  // Exported field_instance:
+  // 'taxonomy_term-action_plan_type-description_field'.
   $field_instances['taxonomy_term-action_plan_type-description_field'] = array(
     'bundle' => 'action_plan_type',
     'default_value' => NULL,
@@ -1742,7 +1743,7 @@ function country_deliverable_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-action_plan_type-name_field'
+  // Exported field_instance: 'taxonomy_term-action_plan_type-name_field'.
   $field_instances['taxonomy_term-action_plan_type-name_field'] = array(
     'bundle' => 'action_plan_type',
     'default_value' => NULL,
