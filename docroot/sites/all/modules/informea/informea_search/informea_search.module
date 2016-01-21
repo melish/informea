@@ -168,7 +168,7 @@ function informea_search_ajax_get_ajax_terms($term, &$data) {
       $data[] = array(
         'category' => t('Terms'),
         'label' => $img . ' ' . $wrapper->label(),
-        'link' => url('terms/' . $wrapper->getIdentifier()),
+        'link' => url('taxonomy/term/' . $wrapper->getIdentifier()),
         'value' => $wrapper->label()
       );
     }
