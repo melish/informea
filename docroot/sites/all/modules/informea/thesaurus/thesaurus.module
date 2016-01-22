@@ -118,7 +118,7 @@ function thesaurus_theme() {
     'terms' => array(
       'render element' => 'element',
       'template' => 'templates/terms',
-      'variables' => array('substantives' => array(), 'generic' => array()),
+      'variables' => array('substantives' => array()),
       'path' => drupal_get_path('module', 'thesaurus'),
     ),
   );
@@ -272,15 +272,10 @@ function thesaurus_terms_page_view() {
   // Adds the terms JavaScript file to the page.
   drupal_add_js(drupal_get_path('module', 'treaty') . '/js/terms.js');
   $substantives = array();
-  $generic = array();
-
   $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
-
-  // Substantives
   $q = new EntityFieldQuery();
   $tids = $q->entityCondition('entity_type', 'taxonomy_term')
     ->propertyCondition('vid', $voc->vid)
-    ->fieldCondition('field_term_substantive', 'value', 1)
     ->execute();
   $q = db_select('taxonomy_term_hierarchy', 'a')
     ->fields('a', array('tid'))
@@ -293,25 +288,7 @@ function thesaurus_terms_page_view() {
     $term->children = thesaurus_get_nested_tree($children, NULL, $tid);
     $substantives[$tid] = $term;
   }
-  // Generic
-  $q = new EntityFieldQuery();
-  $tids = $q->entityCondition('entity_type', 'taxonomy_term')
-    ->propertyCondition('vid', $voc->vid)
-    ->fieldCondition('field_term_substantive', 'value', 0)
-    ->execute();
-  $q = db_select('taxonomy_term_hierarchy', 'a')
-    ->fields('a', array('tid'))
-    ->condition('tid', array_keys($tids['taxonomy_term']), 'IN')
-    ->condition('parent', 0);
-  $tids = $q->execute()->fetchCol();
-  foreach($tids as $tid) {
-    $term = taxonomy_term_load($tid);
-    $children = taxonomy_get_tree($voc->vid, $tid);
-    $term->children = thesaurus_get_nested_tree($children, NULL, $tid);
-    $generic[$tid] = $term;
-  }
-
-  return theme('terms', array('substantives' => $substantives, 'generic' => $generic));
+  return theme('terms', array('substantives' => $substantives));
 }
 
 function thesaurus_get_nested_tree($terms = array(), $max_depth = NULL, $parent = 0, $parents_index = array(), $depth = 0) {
