@@ -420,6 +420,9 @@ function thesaurus_informea_sync_vocbench($force_update = FALSE) {
         }
       }
     }
+
+    // We don't have "synonyms" in INFORMEA so we leave this commented for now.
+/*
     // Synonyms
     if (count($term->field_term_synonyms) != count($vb_term->altLabel)) {
       $term->field_term_synonyms = array();
@@ -431,7 +434,10 @@ function thesaurus_informea_sync_vocbench($force_update = FALSE) {
         }
       }
     }
-
+*/
+    // We don't have "Related from other thesauri" in INFORMEA so we leave this
+    // commented for now.
+/*
     // Related from other thesauri
     if (empty($term->field_term_related_uri[LANGUAGE_NONE]) || count($term->field_term_related_uri[LANGUAGE_NONE]) != count($vb_term->relatedMatch)) {
       $term->field_term_related_uri = array();
@@ -439,6 +445,7 @@ function thesaurus_informea_sync_vocbench($force_update = FALSE) {
     foreach($vb_term->relatedMatch as $i => $v) {
       $term->field_term_related_uri[LANGUAGE_NONE][$i]['url'] = $v;
     }
+*/
 
     $sha = sha1(json_encode($term));
     if ($force_update || ($original_sha != $sha)) {
