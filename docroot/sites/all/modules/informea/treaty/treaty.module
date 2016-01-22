@@ -6,6 +6,8 @@
 
 include_once 'treaty.features.inc';
 
+define('INFORMEA_TREATY_TEXT_ALLOWED_TAGS', '<table><tr><td><th><tbody><thead><b><i><em><strong>');
+
 /**
  * Implements hook_entity_info_alter().
  */

@@ -56,7 +56,7 @@ $treaty = $variables['treaty']; $articles = $variables['articles'];
         $pclass = ++$j == $ta ? 'last article-' . $article->nid : 'article-' . $article->nid;
         ?>
         <tr class="article <?php print $pclass; ?>">
-          <td><?php print $j . '#' . $ta . '#' . strip_tags($body); ?></td>
+          <td><?php print $j . '#' . $ta . '#' . strip_tags($body, INFORMEA_TREATY_TEXT_ALLOWED_TAGS); ?></td>
           <td class="tags"><?php print $tags; ?></td>
         </tr>
       <?php
@@ -79,7 +79,7 @@ $treaty = $variables['treaty']; $articles = $variables['articles'];
           ?>
           <tr class="paragraph <?php print $last; ?> <?php print $tp . ':' . $i; ?>">
             <td width="70%">
-              <?php print strip_tags($body[0]['#markup']); ?>
+              <?php print strip_tags($body[0]['#markup'], INFORMEA_TREATY_TEXT_ALLOWED_TAGS); ?>
             </td>
             <td class="tags">
               <?php print $tags; ?>

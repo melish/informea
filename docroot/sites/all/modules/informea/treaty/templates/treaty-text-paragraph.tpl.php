@@ -17,8 +17,10 @@ $highlight = isset($_GET['paragraph']) ? $_GET['paragraph'] == $paragraph->nid :
 ?>
 <div class="paragraph smallipop indent-<?php print $indent; ?><?php print $highlight ? ' highlight' : '' ;?>" id="paragraph-<?php print $paragraph->nid; ?>">
   <p>
-    <?php $body = field_view_field('node', $paragraph, 'body', 'full'); ?>
-    <?php print strip_tags($body[0]['#markup']); // calling render adds unwanted div's @todo ?>
+    <?php
+    $body = field_view_field('node', $paragraph, 'body', 'full');
+    ?>
+    <?php print strip_tags($body[0]['#markup'], INFORMEA_TREATY_TEXT_ALLOWED_TAGS); // calling render adds unwanted div's @todo ?>
     <?php
     if (user_access('edit any treaty_paragraph content')):
       $query = array(
