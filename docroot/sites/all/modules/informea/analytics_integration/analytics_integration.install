@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * Create terms in Analytics Key Type vocabulary.
+ */
+function analytics_integration_update_7001() {
+  $voc = taxonomy_vocabulary_machine_name_load('analytics_key_type');
+  $ga_term = (object) array(
+    'name' => 'Google Analytics',
+    'vid' => $voc->vid,
+    'name_field' => array(
+      LANGUAGE_NONE => array(
+        array(
+          'value' => 'Google Analytics'
+        )
+      )
+    ),
+  );
+  $piwik_term = (object) array(
+    'name' => 'Piwik',
+    'vid' => $voc->vid,
+    'name_field' => array(
+      LANGUAGE_NONE => array(
+        array(
+          'value' => 'Piwik'
+        )
+      )
+    ),
+  );
+  taxonomy_term_save($ga_term);
+  taxonomy_term_save($piwik_term);
+}

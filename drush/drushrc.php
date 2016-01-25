@@ -340,10 +340,10 @@ $options['init-modules'] = array(
   'informea_search',
   'devel',
   'diff',
-
   'webform',
   'easyrdf',
   'phpexcel',
+  'analytics_integration',
 );
 
 

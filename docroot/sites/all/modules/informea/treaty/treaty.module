@@ -149,8 +149,6 @@ EOT
       $context = 'text';
     }
     $odata_identifier = treaty_get_odata_identifier($node);
-    $informea_url = 'http://www.informea.org/treaties/' . $odata_identifier;
-      // $is_ecolex = $wrapper-> ...
     $node->context = $context;
     if ($context != 'summary') {
       foreach(element_children($node->content) as $field_name) {
@@ -158,12 +156,21 @@ EOT
       }
     }
     $breadcrumbs = array(l(t('Treaties'),'treaties'),l($node->title, 'node/' . $node->nid));
+
+    $google_analytics_keys = analytics_integration_get_node_keys($node, 'field_treaty', 'Google Analytics');
+    $piwik_keys = analytics_integration_get_node_keys($node, 'field_treaty', 'Piwik');
+    $node_w = entity_metadata_wrapper('node', $node);
+    $informea_url = 'http://www.informea.org/treaties/' . $node_w->field_odata_identifier->value();
+    $ga_informea_key = variable_get('ga_informea_key');
+
     switch ($context) {
       case 'summary':
+        $informea_url .= '/summary';
         $breadcrumbs = array(l(t('Treaties'),'treaties'),$node->title);
         break;
 
       case 'text':
+        $informea_url .= '/text';
         $breadcrumbs[] = t('Treaty text');
         drupal_add_library('informea', 'scrollto');
         drupal_add_library('informea', 'smallipop');
@@ -182,6 +189,7 @@ EOT
         break;
 
       case 'protocols':
+        $informea_url .= '/protocols';
         $breadcrumbs[] = t('Protocols');
         module_load_include('inc', 'treaty', 'treaty.api');
         $data = treaty_get_child_protocols($node->nid);
@@ -195,6 +203,7 @@ EOT
         break;
 
       case 'decisions':
+        $informea_url .= '/decisions';
         $breadcrumbs[] = t('Decisions');
         module_load_include('inc', 'decision', 'decision.api');
         $data = decision_get_treaty_decisions_group_by_meeting($node->nid);
@@ -260,9 +269,27 @@ EOT
             array('#type' => 'item', '#weight' => 10, '#markup' => theme('informea_bootstrap_tabs', array('elements' => $tabs)))
           );
         }
+
+        /* Insert GA code to execute when user clicks on decision */
+        $url = $informea_url . '/decisions';
+        analytics_integration_google_analytics_send_hit($ga_informea_key, $url, 'informea', $node_w->label());
+        $script =
+          <<<EOT
+          (function ($) {
+          $('#dialog-modal-ajax').on('shown.bs.modal', function() {
+            analytics_integration_google_analytics_send_hit('$ga_informea_key', '$url', 'informea', $('#dialog-modal-ajax h4.modal-title').text());
+          });
+        })(jQuery)
+EOT;
+        drupal_add_js($script, array(
+          'scope' => 'footer',
+          'type' => 'inline',
+          'weight' => 130
+        ));
         break;
 
       case 'parties':
+        $informea_url .= '/parties';
         // Use Cartagena and Nagoya nids to color Greenland only for CBD
         $cartagena_nid = 262;
         $nagoya_nid = 263;
@@ -339,6 +366,7 @@ EOT
         }
         break;
       case 'national-reports':
+        $informea_url .= '/reports';
         $breadcrumbs[] = t('National reports');
         module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
         module_load_include('inc', 'country_deliverable');
@@ -371,6 +399,7 @@ EOT
         break;
 
       case 'action-plans':
+        $informea_url .= '/plans';
         $breadcrumbs[] = t('National plans');
         module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
         module_load_include('inc', 'country_deliverable');
@@ -383,6 +412,13 @@ EOT
         break;
     }
     informea_theme_set_page_breadcrumb($breadcrumbs);
+    analytics_integration_google_analytics_send_hit($ga_informea_key, $informea_url, 'informea', $node_w->label());
+    if (!empty($google_analytics_keys)) {
+      treaty_ga_send_pageview($node, $google_analytics_keys, $context);
+    }
+    if (!empty($piwik_keys)) {
+      treaty_piwik_send_pageview($node, $piwik_keys, $context);
+    }
   }
 }
 
@@ -1116,5 +1152,91 @@ function treaty_update_batch_finished($success, $results, $operations) {
     $error_operation = reset($operations);
     $message = t('An error occurred while processing %error_operation with arguments: @arguments', array('%error_operation' => $error_operation[0], '@arguments' => print_r($error_operation[1], TRUE)));
     drupal_set_message($message, 'error');
+  }
+}
+
+function treaty_ga_send_pageview($treaty, $keys, $context) {
+  $wrapper = entity_metadata_wrapper('node', $treaty);
+  $js_identifier = 'treaty_' . $wrapper->getIdentifier();
+  $url = NULL;
+  switch ($context) {
+    case 'summary':
+    case 'overview':
+    case 'parties':
+    case 'national-reports':
+    case 'action-plans':
+      $url = $wrapper->field_treaty_website_url->value()['url'];
+      break;
+
+    case 'text':
+      $url = $wrapper->field_treaty_text_url->value()['url'];
+      break;
+
+    case 'decisions':
+      $url = $wrapper->field_treaty_website_url->value()['url'];
+      if (!$url) {
+        return;
+      }
+      foreach ($keys as $key) {
+        $script =
+          <<<EOT
+          (function ($) {
+          $('#modal-decision').on('shown.bs.modal', function() {
+            analytics_integration_google_analytics_send_hit('$key', '$url', '$js_identifier', $('#modal-decision h4.modal-title').text());
+          });
+        })(jQuery)
+EOT;
+        drupal_add_js($script, array(
+          'scope' => 'footer',
+          'type' => 'inline',
+          'weight' => 130
+        ));
+      }
+      break;
+  }
+  if (!$url) {
+    return;
+  }
+  foreach ($keys as $key) {
+    analytics_integration_google_analytics_send_hit($key, $url, $js_identifier, $wrapper->label());
+  }
+}
+
+function treaty_piwik_send_pageview($treaty, $keys, $context) {
+  $wrapper = entity_metadata_wrapper('node', $treaty);
+  $page_title = NULL;
+  switch ($context) {
+    case 'overview':
+    case 'parties':
+    case 'national-reports':
+    case 'action-plans':
+    case 'text':
+      $page_title = $wrapper->label();
+      break;
+
+    case 'decisions':
+      $page_title = $wrapper->label();
+      foreach ($keys as $key => $id) {
+        $script =
+          <<<EOT
+          (function ($) {
+          $('#modal-decision').on('shown.bs.modal', function() {
+            analytics_integration_piwik_send_hit('$key', '$id', $('#modal-decision h4.modal-title').text());
+          });
+        })(jQuery)
+EOT;
+        drupal_add_js($script, array(
+          'scope' => 'footer',
+          'type' => 'inline',
+          'weight' => 130
+        ));
+      }
+      break;
+  }
+  if (!$page_title) {
+    return;
+  }
+  foreach ($keys as $key => $id) {
+    analytics_integration_piwik_send_hit($key, $id, $page_title);
   }
 }

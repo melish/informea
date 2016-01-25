@@ -149,6 +149,16 @@ function informea_menu() {
     'type'              => MENU_CALLBACK,
     'access arguments'  => array('access content'),
   );
+
+  $items['admin/config/services/analytics/google-analytics'] = array(
+    'title' => 'Configure Google Analytics',
+    'description' => 'Configure the keys for Google Analytics tracking',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('informea_analytics_form'),
+    'file' => 'informea.admin.inc',
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_LOCAL_TASK
+  );
   return $items;
 }
 
@@ -496,4 +506,18 @@ function informea_block_view_block_4_alter(&$data, $block) {
   $content .= l(t('here'), 'node/70411');
   $content .= '</div>';
   $data['content'] = $content;
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function informea_page_alter(&$page) {
+  if ($ga_informea_key = variable_get('ga_informea_key')) {
+    analytics_integration_add_google_analytics_library($ga_informea_key);
+    $current_path = url($_GET['q'], array('absolute' => TRUE));
+    analytics_integration_google_analytics_send_hit($ga_informea_key, $current_path, 'informea', drupal_get_title());
+  }
+  else {
+    drupal_set_message('Google Analytics is not configured correctly', 'error');
+  }
 }
