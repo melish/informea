@@ -17,6 +17,18 @@ function informea_search_views_pre_render(&$view) {
     module_load_include('inc', 'informea_search', 'informea_search.results');
     $group = new InforMEASearchResultsGrouping();
     $view->result = $group->getResults($view->result);
+
+    $search = reset($view->args);
+    $term = taxonomy_get_term_by_name($search, 'thesaurus_informea');
+    if (!empty($term)) {
+      $term = reset($term);
+      $path = drupal_get_path_alias('taxonomy/term/' . $term->tid);
+      $content = '<div class="alert alert-info">';
+      $content .= t('This term also exits as a LEO term, ');
+      $content .= l(t('click here to see its glossary entry'), 'http://leo.informea.org/' . $path, array('attributes' => array('target'=>'_blank')));
+      $content .= '.</div>';
+      $view->attachment_before = $content;
+    }
   }
 }
 
@@ -168,7 +180,7 @@ function informea_search_ajax_get_ajax_terms($term, &$data) {
       $data[] = array(
         'category' => t('Terms'),
         'label' => $img . ' ' . $wrapper->label(),
-        'link' => url('taxonomy/term/' . $wrapper->getIdentifier()),
+        'link' => 'http://leo.informea.org/' . drupal_get_path_alias('taxonomy/term/' . $term->tid),
         'value' => $wrapper->label()
       );
     }
