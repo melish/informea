@@ -10,7 +10,7 @@
 function analytics_integration_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_analytics_key'
+  // Exported field_base: 'field_analytics_key'.
   $field_bases['field_analytics_key'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -32,7 +32,7 @@ function analytics_integration_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_analytics_key_type'
+  // Exported field_base: 'field_analytics_key_type'.
   $field_bases['field_analytics_key_type'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -60,7 +60,7 @@ function analytics_integration_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_piwik_id'
+  // Exported field_base: 'field_piwik_id'.
   $field_bases['field_piwik_id'] = array(
     'active' => 1,
     'cardinality' => 1,

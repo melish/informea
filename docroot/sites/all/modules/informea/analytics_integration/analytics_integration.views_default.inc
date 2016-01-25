@@ -141,8 +141,9 @@ function analytics_integration_views_default_views() {
   $handler->display->display_options['menu']['context_only_inline'] = 0;
   $handler->display->display_options['tab_options']['type'] = 'normal';
   $handler->display->display_options['tab_options']['title'] = 'Analytics';
+  $handler->display->display_options['tab_options']['description'] = 'View & configure traceability';
   $handler->display->display_options['tab_options']['weight'] = '0';
-  $handler->display->display_options['tab_options']['name'] = 'devel';
+  $handler->display->display_options['tab_options']['name'] = 'management';
   $translatables['analytics_keys'] = array(
     t('Master'),
     t('Analytics keys'),

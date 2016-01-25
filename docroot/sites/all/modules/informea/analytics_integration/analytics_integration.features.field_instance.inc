@@ -10,7 +10,7 @@
 function analytics_integration_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-analytics_key-field_analytics_key'
+  // Exported field_instance: 'node-analytics_key-field_analytics_key'.
   $field_instances['node-analytics_key-field_analytics_key'] = array(
     'bundle' => 'analytics_key',
     'default_value' => NULL,
@@ -41,6 +41,12 @@ function analytics_integration_field_default_field_instances() {
         'type' => 'title_linked',
         'weight' => 1,
       ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_analytics_key',
@@ -62,7 +68,7 @@ function analytics_integration_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-analytics_key-field_analytics_key_type'
+  // Exported field_instance: 'node-analytics_key-field_analytics_key_type'.
   $field_instances['node-analytics_key-field_analytics_key_type'] = array(
     'bundle' => 'analytics_key',
     'default_value' => NULL,
@@ -88,6 +94,12 @@ function analytics_integration_field_default_field_instances() {
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
         'weight' => 2,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
@@ -118,7 +130,7 @@ function analytics_integration_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-analytics_key-field_piwik_id'
+  // Exported field_instance: 'node-analytics_key-field_piwik_id'.
   $field_instances['node-analytics_key-field_piwik_id'] = array(
     'bundle' => 'analytics_key',
     'default_value' => NULL,
@@ -139,6 +151,12 @@ function analytics_integration_field_default_field_instances() {
         'weight' => 6,
       ),
       'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -165,7 +183,7 @@ function analytics_integration_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-analytics_key-field_treaty'
+  // Exported field_instance: 'node-analytics_key-field_treaty'.
   $field_instances['node-analytics_key-field_treaty'] = array(
     'bundle' => 'analytics_key',
     'default_value' => NULL,
@@ -196,6 +214,12 @@ function analytics_integration_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 3,
       ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_treaty',
@@ -218,7 +242,7 @@ function analytics_integration_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-analytics_key-field_url'
+  // Exported field_instance: 'node-analytics_key-field_url'.
   $field_instances['node-analytics_key-field_url'] = array(
     'bundle' => 'analytics_key',
     'default_value' => NULL,
@@ -239,6 +263,12 @@ function analytics_integration_field_default_field_instances() {
         'weight' => 5,
       ),
       'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -282,7 +312,7 @@ function analytics_integration_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-analytics_key-title_field'
+  // Exported field_instance: 'node-analytics_key-title_field'.
   $field_instances['node-analytics_key-title_field'] = array(
     'bundle' => 'analytics_key',
     'default_value' => NULL,
@@ -312,6 +342,12 @@ function analytics_integration_field_default_field_instances() {
         'type' => 'title_linked',
         'weight' => 0,
       ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'title_field',
@@ -336,7 +372,7 @@ function analytics_integration_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-analytics_key_type-name_field'
+  // Exported field_instance: 'taxonomy_term-analytics_key_type-name_field'.
   $field_instances['taxonomy_term-analytics_key_type-name_field'] = array(
     'bundle' => 'analytics_key_type',
     'default_value' => NULL,
