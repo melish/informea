@@ -118,7 +118,7 @@ function thesaurus_theme() {
     'terms' => array(
       'render element' => 'element',
       'template' => 'templates/terms',
-      'variables' => array('substantives' => array(), 'generic' => array()),
+      'variables' => array('substantives' => array()),
       'path' => drupal_get_path('module', 'thesaurus'),
     ),
   );
@@ -272,15 +272,10 @@ function thesaurus_terms_page_view() {
   // Adds the terms JavaScript file to the page.
   drupal_add_js(drupal_get_path('module', 'treaty') . '/js/terms.js');
   $substantives = array();
-  $generic = array();
-
   $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
-
-  // Substantives
   $q = new EntityFieldQuery();
   $tids = $q->entityCondition('entity_type', 'taxonomy_term')
     ->propertyCondition('vid', $voc->vid)
-    ->fieldCondition('field_term_substantive', 'value', 1)
     ->execute();
   $q = db_select('taxonomy_term_hierarchy', 'a')
     ->fields('a', array('tid'))
@@ -293,25 +288,7 @@ function thesaurus_terms_page_view() {
     $term->children = thesaurus_get_nested_tree($children, NULL, $tid);
     $substantives[$tid] = $term;
   }
-  // Generic
-  $q = new EntityFieldQuery();
-  $tids = $q->entityCondition('entity_type', 'taxonomy_term')
-    ->propertyCondition('vid', $voc->vid)
-    ->fieldCondition('field_term_substantive', 'value', 0)
-    ->execute();
-  $q = db_select('taxonomy_term_hierarchy', 'a')
-    ->fields('a', array('tid'))
-    ->condition('tid', array_keys($tids['taxonomy_term']), 'IN')
-    ->condition('parent', 0);
-  $tids = $q->execute()->fetchCol();
-  foreach($tids as $tid) {
-    $term = taxonomy_term_load($tid);
-    $children = taxonomy_get_tree($voc->vid, $tid);
-    $term->children = thesaurus_get_nested_tree($children, NULL, $tid);
-    $generic[$tid] = $term;
-  }
-
-  return theme('terms', array('substantives' => $substantives, 'generic' => $generic));
+  return theme('terms', array('substantives' => $substantives));
 }
 
 function thesaurus_get_nested_tree($terms = array(), $max_depth = NULL, $parent = 0, $parents_index = array(), $depth = 0) {
@@ -365,4 +342,379 @@ function thesaurus_term_hierarchy($term) {
     'parents' => $parents,
     'children' => $children,
   );
+}
+
+/**
+ * Synchronize InforMEA Thesaurus (thesaurus_informea) with VocBench.
+ *
+ * @param bool|FALSE $force_update
+ *   If TRUE, force all terms will to be updated, otherwise only those changed
+ */
+function thesaurus_informea_sync_vocbench($force_update = FALSE) {
+  $no_updated = 0;
+  $no_created = 0;
+  $vocbench = thesaurus_load_informea_from_rdf();
+  $terms = array();
+  $sha_ones = array();
+  foreach ($vocbench as $uri => $vb_term) {
+    if (!in_array($vb_term->status, array('Validated', 'Published'))) {
+      continue;
+    }
+
+    $term = thesaurus_term_load_by_uri($uri, 'thesaurus_informea');
+    $original_sha = NULL;
+    if (empty($term)) {
+      $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
+      $term = (object) array(
+        'name' => $vb_term->name,
+        'language' => 'en',
+        'vid' => $voc->vid,
+        'vocabulary_machine_name' => $voc->machine_name,
+      );
+      $term->field_taxonomy_term_uri[LANGUAGE_NONE][0]['url'] = $uri;
+    }
+    else {
+      $original_sha = sha1(json_encode($term));
+    }
+    $terms[$uri] = $term;
+    $sha_ones[$uri] = $original_sha;
+  }
+
+  foreach ($terms as $uri => $term) {
+    $original_sha = $sha_ones[$uri];
+    $vb_term = $vocbench[$uri];
+
+    // Term name in english
+    $term->name = $vb_term->name;
+
+    // Term name
+    foreach($vb_term->prefLabel as $language => $value) {
+      if (!empty($value)) {
+        $term->name_field[$language][0]['value'] = $value;
+      }
+    }
+
+    // Definition
+    if (!empty($vb_term->definition['en'][0])) {
+      $term->description = $vb_term->definition['en'][0];
+    }
+    if (count($term->description_field) != count($vb_term->definition)) {
+      $skip_description = FALSE;
+      if (count($vb_term->definition) == 0) {
+        if ($term->description_field['en'][0]['value'] == NULL) {
+          /*
+           * If the term has no description, $vb_term->definition is an empty array, but
+           * $term->description_field has an element with NULL value. In this case
+           * we do not want to change de term because it would be updated
+           * though not necessary
+           */
+          $skip_description = TRUE;
+        }
+      }
+      if (!$skip_description) {
+        $term->description_field = array();
+        foreach($vb_term->definition as $language => $values) {
+          if (!empty($values[0])) {
+            $term->description_field[$language][0]['value'] = $values[0];
+          }
+        }
+      }
+    }
+
+    // We don't have "synonyms" in INFORMEA so we leave this commented for now.
+/*
+    // Synonyms
+    if (count($term->field_term_synonyms) != count($vb_term->altLabel)) {
+      $term->field_term_synonyms = array();
+    }
+    foreach($vb_term->altLabel as $language => $values) {
+      if (!empty($values)) {
+        foreach ($values as $key => $syno) {
+          $term->field_term_synonyms[$language][$key]['value'] = $syno;
+        }
+      }
+    }
+*/
+    // We don't have "Related from other thesauri" in INFORMEA so we leave this
+    // commented for now.
+/*
+    // Related from other thesauri
+    if (empty($term->field_term_related_uri[LANGUAGE_NONE]) || count($term->field_term_related_uri[LANGUAGE_NONE]) != count($vb_term->relatedMatch)) {
+      $term->field_term_related_uri = array();
+    }
+    foreach($vb_term->relatedMatch as $i => $v) {
+      $term->field_term_related_uri[LANGUAGE_NONE][$i]['url'] = $v;
+    }
+*/
+
+    $sha = sha1(json_encode($term));
+    if ($force_update || ($original_sha != $sha)) {
+      $new = empty($term->tid);
+      taxonomy_term_save($term);
+      $translations = array();
+      if (!empty($term->name_field)) {
+        $translations = array_merge($translations, array_keys($term->name_field));
+      }
+      if (!empty($term->description_field)) {
+        $translations = array_merge($translations, array_keys($term->description_field));
+      }
+      if (!empty($term->field_term_synonyms)) {
+        $translations = array_merge($translations, array_keys($term->field_term_synonyms));
+      }
+      $languages = array_unique($translations);
+      $translation_handler = entity_translation_get_handler('taxonomy_term', $term);
+      foreach ($languages as $language) {
+        if ($language == 'en' || $language == LANGUAGE_NONE) {
+          continue;
+        }
+        $translation_handler->setTranslation(array(
+          'translate' => 0,
+          'status' => 1,
+          'uid' => 1,
+          'language' => $language,
+          'source' => 'en',
+        ));
+        field_attach_update('taxonomy_term', $term);
+      }
+      watchdog('thesaurus', 'Updated term !tid: <a href="!turl">!name</a>, from VocBench: !vburl',
+        array('!tid' => $term->tid, '!turl' => url('taxonomy/term/' . $term->tid), '!vburl' => $uri, '!name' => $term->name),
+        WATCHDOG_INFO
+      );
+      if (function_exists('drush_log')) {
+        drush_log(($new ? 'Create' : 'Update') . " term {$term->tid}: {$term->name}", "ok");
+      }
+      $new ? $no_created++ : $no_updated++;
+    }
+  }
+
+  // After synchronization link parents & related terms
+  foreach ($vocbench as $uri => $vb_term) {
+    $ob = thesaurus_term_load_by_uri($uri, 'thesaurus_informea');
+    if (!empty($vb_term->broader)) {
+      $broader = thesaurus_term_load_by_uri($vb_term->broader, 'thesaurus_informea');
+      if (empty($broader)) {
+        watchdog('thesaurus', 'Cannot find parent term by URI: !buri',
+          array('!buri' => $vb_term->broader),
+          WATCHDOG_WARNING
+        );
+        continue;
+      }
+      if (empty($ob)) {
+        watchdog('thesaurus', 'Cannot term by URI: !turi',
+          array('!turi' => $uri),
+          WATCHDOG_ERROR
+        );
+        continue;
+      }
+
+      $wrapper = entity_metadata_wrapper('taxonomy_term', $ob->tid);
+      $parents = $wrapper->parent->value();
+      if (empty($parents) || empty($parents[0]->tid) || $parents[0]->tid != $broader->tid) {
+        $ob->parent = $broader->tid;
+        taxonomy_term_save($ob);
+        if (function_exists('drush_log')) {
+          drush_log("Set '{$broader->name}' ({$broader->tid}) parent to '{$ob->name}' ({$ob->tid})", "ok");
+        }
+      }
+    }
+    if (!empty($vb_term->related)) {
+      $ob->field_informea_tags[LANGUAGE_NONE] = array();
+      foreach($vb_term->related as $rt_uri) {
+        if ($related = thesaurus_term_load_by_uri($rt_uri, 'thesaurus_informea')) {
+          $ob->field_informea_tags[LANGUAGE_NONE][] = array('tid' => $related->tid);
+        }
+      }
+      taxonomy_term_save($ob);
+    }
+  }
+  if (function_exists('drush_log')) {
+    if ($no_created) {
+      drush_log("Created {$no_created} terms.", "ok");
+    }
+    if ($no_updated) {
+      drush_log("Updated {$no_updated} terms.", "ok");
+    }
+  }
+}
+
+function thesaurus_load_from_rdf_cached($rdf) {
+  $thesaurus = NULL;
+  $data = array();
+  if ($cache = cache_get(__FUNCTION__, 'cache')) {
+    $data = $cache->data;
+  }
+  if (!empty($data[$rdf])) {
+    return $data[$rdf];
+  }
+  else {
+    $thesaurus = thesaurus_load_from_rdf($rdf);
+    if ($thesaurus) {
+      $data[$rdf] = $thesaurus;
+      cache_set(__FUNCTION__, $data, 'cache', time() + 3600);
+    }
+  }
+  return $thesaurus;
+}
+
+function thesaurus_load_from_rdf($rdf) {
+  if (!easyrdf()) {
+    drupal_set_message(t('EasyRdf library is not available.'), 'error');
+    return FALSE;
+  }
+  EasyRdf_Namespace::set('vb', 'http://art.uniroma2.it/ontologies/vocbench#');
+
+  try {
+    $graph = EasyRdf_Graph::newAndLoad($rdf);
+    $resources = $graph->resources();
+  }
+  catch(Exception $e) {
+    drupal_set_message("Failed to parse RDF file $rdf");
+    return NULL;
+  }
+
+  $terms = array();
+  /**
+   * @var string $key
+   * @var EasyRdf_Resource $resource
+   */
+  foreach ($resources as $key => $resource) {
+    if ($resource->type() == 'skos:Concept') {
+      $term = new stdClass();
+      $term->name = NULL;
+      $term->broader = NULL;
+      $term->uri = $key;
+      $term->prefLabel = array();
+      $term->altLabel = array();
+      $term->status = NULL;
+      $term->definition = array();
+      $term->relatedMatch = array();
+      $term->related = array();
+
+      // skos:broader
+      if ($uri = $resource->get('skos:broader')) {
+        $term->broader = (string) $uri;
+      }
+
+      // skos:prefLabel
+      if ($prefLabels = $resource->allResources('skosxl:prefLabel')) {
+        foreach($prefLabels as $prefLabel) {
+          /** @var EasyRdf_Literal $lit */
+          $lit = $prefLabel->get('skosxl:literalForm');
+          $term->prefLabel[$lit->getLang()] = $lit->getValue();
+        }
+      }
+
+      if (empty($term->prefLabel['en'])) {
+        watchdog('thesaurus', 'Invalid VB term without english preffered label: !uri', array('!uri' => $key), WATCHDOG_WARNING);
+      }
+      else {
+        $term->name = $term->prefLabel['en'];
+      }
+
+      // skos:altLabel
+      if ($altLabels = $resource->allResources('skosxl:altLabel')) {
+        foreach($altLabels as $altLabel) {
+          /** @var EasyRdf_Literal $lit */
+          $lit = $altLabel->get('skosxl:literalForm');
+          $term->altLabel[$lit->getLang()][] = $lit->getValue();
+        }
+      }
+
+      // skos:definition
+      if ($definitions = $resource->allResources('skos:definition')) {
+        foreach($definitions as $definition) {
+          if ($value = $definition->get('rdf:value')) {
+            $term->definition[$value->getLang()][] = $value->getValue();
+          }
+          else {
+            // @todo: Ignore orphaned triple (missing rdf:value)
+          }
+        }
+      }
+
+      // skos:relatedMatch - external thesauri
+      if ($relatedMatches = $resource->allResources('skos:relatedMatch')) {
+        foreach($relatedMatches as $relatedMatch) {
+          $term->relatedMatch[] = $relatedMatch->getUri();
+        }
+      }
+
+      // skos:related - within same thesauri
+      if ($related = $resource->allResources('skos:related')) {
+        foreach($related as $r) {
+          $term->related[] = $r->getUri();
+        }
+      }
+
+      // vb:hasStatus
+      if ($status = $resource->get('vb:hasStatus')) {
+        $term->status = (string) $status;
+      }
+
+
+      if (empty($term->name) && !empty($term->altLabel['en'])) {
+        $term->name = current($term->altLabel['en']);
+      }
+
+      if (!empty($term->name)) {
+        $terms[$key] = $term;
+      }
+      else {
+        watchdog('thesaurus', $key . ': Ignoring concept without name');
+      }
+    }
+  }
+
+  // Remove invalid parents (orphaned)
+  foreach ($terms as $key => &$term) {
+    if (isset($term->parent) && !isset($terms[$term->parent])) {
+      unset($term->parent);
+    }
+  }
+  return $terms;
+}
+
+function thesaurus_load_informea_from_rdf() {
+  $url = variable_get('informea_vocbench_thesaurus_url', 'http://informea.org/sites/default/files/export/informea.rdf');
+  return thesaurus_load_from_rdf_cached($url);
+}
+
+/**
+ * Load a single term by its VocBench URI.
+ *
+ * @param string $uri
+ * @param string $machine_name
+ *
+ * @return stdClass
+ *  Taxonomy term loaded
+ */
+function thesaurus_term_load_by_uri($uri, $machine_name) {
+  /** @var SelectQuery $q */
+  $q = db_select('field_data_field_taxonomy_term_uri')->fields(NULL, array('entity_id'));
+  $q->condition('field_taxonomy_term_uri_url', $uri);
+  $q->condition('bundle', $machine_name);
+  $q->condition('entity_type', 'taxonomy_term');
+  if ($tid = $q->execute()->fetchField(0)) {
+    return taxonomy_term_load($tid);
+  }
+  return NULL;
+}
+
+/**
+ * Load a single term TID by its VocBench URI.
+ *
+ * @param string $uri
+ * @param string $machine_name
+ *
+ * @return stdClass
+ *  Taxonomy term tid
+ */
+function thesaurus_term_get_tid_by_uri($uri, $machine_name) {
+  /** @var SelectQuery $q */
+  $q = db_select('field_data_field_taxonomy_term_uri', 'a')->fields('a', array('entity_id'));
+  $q->condition('field_taxonomy_term_uri_url', $uri);
+  $q->condition('bundle', $machine_name);
+  $q->condition('entity_type', 'taxonomy_term');
+  $tid = $q->execute()->fetchField(0);
+  return $tid != FALSE ? $tid : NULL;
 }
