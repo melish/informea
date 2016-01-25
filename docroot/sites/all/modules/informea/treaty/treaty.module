@@ -165,10 +165,12 @@ EOT
 
     switch ($context) {
       case 'summary':
+        $informea_url .= '/summary';
         $breadcrumbs = array(l(t('Treaties'),'treaties'),$node->title);
         break;
 
       case 'text':
+        $informea_url .= '/text';
         $breadcrumbs[] = t('Treaty text');
         drupal_add_library('informea', 'scrollto');
         drupal_add_library('informea', 'smallipop');
@@ -187,6 +189,7 @@ EOT
         break;
 
       case 'protocols':
+        $informea_url .= '/protocols';
         $breadcrumbs[] = t('Protocols');
         module_load_include('inc', 'treaty', 'treaty.api');
         $data = treaty_get_child_protocols($node->nid);
@@ -200,6 +203,7 @@ EOT
         break;
 
       case 'decisions':
+        $informea_url .= '/decisions';
         $breadcrumbs[] = t('Decisions');
         module_load_include('inc', 'decision', 'decision.api');
         $data = decision_get_treaty_decisions_group_by_meeting($node->nid);
@@ -265,6 +269,23 @@ EOT
             array('#type' => 'item', '#weight' => 10, '#markup' => theme('informea_bootstrap_tabs', array('elements' => $tabs)))
           );
         }
+
+        /* Insert GA code to execute when user clicks on decision */
+        $url = $informea_url . '/decisions';
+        analytics_integration_google_analytics_send_hit($ga_informea_key, $url, 'informea', $node_w->label());
+        $script =
+          <<<EOT
+          (function ($) {
+          $('#dialog-modal-ajax').on('shown.bs.modal', function() {
+            analytics_integration_google_analytics_send_hit('$ga_informea_key', '$url', 'informea', $('#dialog-modal-ajax h4.modal-title').text());
+          });
+        })(jQuery)
+EOT;
+        drupal_add_js($script, array(
+          'scope' => 'footer',
+          'type' => 'inline',
+          'weight' => 130
+        ));
         break;
 
       case 'parties':
