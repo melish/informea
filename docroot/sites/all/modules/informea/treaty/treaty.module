@@ -1118,3 +1118,88 @@ function treaty_update_batch_finished($success, $results, $operations) {
     drupal_set_message($message, 'error');
   }
 }
+
+function treaty_ga_send_pageview($treaty, $keys, $context) {
+  $wrapper = entity_metadata_wrapper('node', $treaty);
+  $js_identifier = 'treaty_' . $wrapper->getIdentifier();
+  $url = NULL;
+  switch ($context) {
+    case 'overview':
+    case 'parties':
+    case 'national-reports':
+    case 'action-plans':
+      $url = $wrapper->field_treaty_website_url->value()['url'];
+      break;
+
+    case 'text':
+      $url = $wrapper->field_treaty_text_url->value()['url'];
+      break;
+
+    case 'decisions':
+      $url = $wrapper->field_treaty_website_url->value()['url'];
+      if (!$url) {
+        return;
+      }
+      foreach ($keys as $key) {
+        $script =
+          <<<EOT
+          (function ($) {
+          $('#modal-decision').on('shown.bs.modal', function() {
+            analytics_integration_google_analytics_send_hit('$key', '$url', '$js_identifier', $('#modal-decision h4.modal-title').text());
+          });
+        })(jQuery)
+EOT;
+        drupal_add_js($script, array(
+          'scope' => 'footer',
+          'type' => 'inline',
+          'weight' => 130
+        ));
+      }
+      break;
+  }
+  if (!$url) {
+    return;
+  }
+  foreach ($keys as $key) {
+    analytics_integration_google_analytics_send_hit($key, $url, $js_identifier, $wrapper->label());
+  }
+}
+
+function treaty_piwik_send_pageview($treaty, $keys, $context) {
+  $wrapper = entity_metadata_wrapper('node', $treaty);
+  $page_title = NULL;
+  switch ($context) {
+    case 'overview':
+    case 'parties':
+    case 'national-reports':
+    case 'action-plans':
+    case 'text':
+      $page_title = $wrapper->label();
+      break;
+
+    case 'decisions':
+      $page_title = $wrapper->label();
+      foreach ($keys as $key => $id) {
+        $script =
+          <<<EOT
+          (function ($) {
+          $('#modal-decision').on('shown.bs.modal', function() {
+            analytics_integration_piwik_send_hit('$key', '$id', $('#modal-decision h4.modal-title').text());
+          });
+        })(jQuery)
+EOT;
+        drupal_add_js($script, array(
+          'scope' => 'footer',
+          'type' => 'inline',
+          'weight' => 130
+        ));
+      }
+      break;
+  }
+  if (!$page_title) {
+    return;
+  }
+  foreach ($keys as $key => $id) {
+    analytics_integration_piwik_send_hit($key, $id, $page_title);
+  }
+}
