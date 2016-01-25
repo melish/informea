@@ -149,8 +149,6 @@ EOT
       $context = 'text';
     }
     $odata_identifier = treaty_get_odata_identifier($node);
-    $informea_url = 'http://www.informea.org/treaties/' . $odata_identifier;
-      // $is_ecolex = $wrapper-> ...
     $node->context = $context;
     if ($context != 'summary') {
       foreach(element_children($node->content) as $field_name) {
@@ -158,6 +156,13 @@ EOT
       }
     }
     $breadcrumbs = array(l(t('Treaties'),'treaties'),l($node->title, 'node/' . $node->nid));
+
+    $google_analytics_keys = analytics_integration_get_node_keys($node, 'field_treaty', 'Google Analytics');
+    $piwik_keys = analytics_integration_get_node_keys($node, 'field_treaty', 'Piwik');
+    $node_w = entity_metadata_wrapper('node', $node);
+    $informea_url = 'http://www.informea.org/treaties/' . $node_w->field_odata_identifier->value();
+    $ga_informea_key = variable_get('ga_informea_key');
+
     switch ($context) {
       case 'summary':
         $breadcrumbs = array(l(t('Treaties'),'treaties'),$node->title);
@@ -383,6 +388,13 @@ EOT
         break;
     }
     informea_theme_set_page_breadcrumb($breadcrumbs);
+    analytics_integration_google_analytics_send_hit($ga_informea_key, $informea_url, 'informea', $node_w->label());
+    if (!empty($google_analytics_keys)) {
+      treaty_ga_send_pageview($node, $google_analytics_keys, $context);
+    }
+    if (!empty($piwik_keys)) {
+      treaty_piwik_send_pageview($node, $piwik_keys, $context);
+    }
   }
 }
 
@@ -1124,6 +1136,7 @@ function treaty_ga_send_pageview($treaty, $keys, $context) {
   $js_identifier = 'treaty_' . $wrapper->getIdentifier();
   $url = NULL;
   switch ($context) {
+    case 'summary':
     case 'overview':
     case 'parties':
     case 'national-reports':
