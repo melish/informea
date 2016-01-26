@@ -1,3 +1,8 @@
 .nav {
   padding-right: 0;
 }
+
+#search-form button {
+  border-radius: 2px 0 0 2px;
+  margin-right: -1px;
+}
