@@ -73,6 +73,7 @@ features[field_instance][] = node-member_party-field_entry_into_force
 features[field_instance][] = node-member_party-field_party_date_1
 features[field_instance][] = node-member_party-field_party_date_2
 features[field_instance][] = node-member_party-field_party_status
+features[field_instance][] = node-member_party-field_region
 features[field_instance][] = node-member_party-field_treaty
 features[field_instance][] = taxonomy_term-party_status-description_field
 features[field_instance][] = taxonomy_term-party_status-name_field
