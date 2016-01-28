@@ -64,6 +64,7 @@ features[field_instance][] = node-geographical_site-field_last_update
 features[field_instance][] = node-geographical_site-field_latitude
 features[field_instance][] = node-geographical_site-field_longitude
 features[field_instance][] = node-geographical_site-field_original_id
+features[field_instance][] = node-geographical_site-field_region
 features[field_instance][] = node-geographical_site-field_treaty
 features[field_instance][] = node-geographical_site-field_url
 features[field_instance][] = node-geographical_site-title_field
