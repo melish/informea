@@ -55,6 +55,7 @@ features[field_instance][] = node-contact_person-field_person_last_name
 features[field_instance][] = node-contact_person-field_person_position
 features[field_instance][] = node-contact_person-field_person_prefix
 features[field_instance][] = node-contact_person-field_person_type
+features[field_instance][] = node-contact_person-field_region
 features[field_instance][] = node-contact_person-field_treaty
 features[field_instance][] = node-geographical_site-body
 features[field_instance][] = node-geographical_site-field_country

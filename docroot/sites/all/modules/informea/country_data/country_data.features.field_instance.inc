@@ -886,6 +886,66 @@ function country_data_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-contact_person-field_region'.
+  $field_instances['node-contact_person-field_region'] = array(
+    'bundle' => 'contact_person',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 17,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_region',
+    'label' => 'Region',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 35,
+    ),
+  );
+
   // Exported field_instance: 'node-contact_person-field_treaty'.
   $field_instances['node-contact_person-field_treaty'] = array(
     'bundle' => 'contact_person',
@@ -1991,6 +2051,7 @@ function country_data_field_default_field_instances() {
   t('Position');
   t('Prefix');
   t('Primary NFP');
+  t('Region');
   t('Status');
   t('Telephone');
   t('Title');
