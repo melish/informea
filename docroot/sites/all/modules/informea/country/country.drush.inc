@@ -106,10 +106,17 @@ function drush_country_informea_region_update_by_country() {
      *  - Country has 2 regions selected
      *  - User deletes one of them
      */
-    if (!empty($nodes)) {
-      db_delete('field_data_field_region')
-        ->condition('entity_id', array_keys($nodes), 'IN')
-        ->execute();
+    try {
+      if (!empty($nodes)) {
+        db_delete('field_data_field_region')
+          ->condition('entity_id', array_keys($nodes), 'IN')
+          ->execute();
+      }
+    }
+    catch (PDOException $e) {
+      drush_log(dt('ERROR(country nid=@node_id): @error_msg', array('@node_id' => $country->nid, '@error_msg' => $e->getMessage())), 'error');
+      drush_log(dt('Stopping the script.'), 'error');
+      return;
     }
 
     $countries[$key]->nodes = $nodes;
