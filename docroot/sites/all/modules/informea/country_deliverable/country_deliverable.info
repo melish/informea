@@ -45,6 +45,7 @@ features[field_instance][] = node-national_report-field_files
 features[field_instance][] = node-national_report-field_informea_tags
 features[field_instance][] = node-national_report-field_last_update
 features[field_instance][] = node-national_report-field_original_id
+features[field_instance][] = node-national_report-field_region
 features[field_instance][] = node-national_report-field_sorting_date
 features[field_instance][] = node-national_report-field_treaty
 features[field_instance][] = node-national_report-title_field
