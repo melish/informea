@@ -116,6 +116,9 @@ function drush_country_informea_region_update_by_country() {
   }
 
   foreach ($countries as $country) {
+    if (empty($country->nodes)) {
+      continue;
+    }
     foreach ($country->nodes as $node_id => $content_type) {
       try {
         db_insert('field_data_field_region')
