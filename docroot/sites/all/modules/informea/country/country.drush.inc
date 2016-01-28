@@ -24,6 +24,12 @@ function country_drush_command() {
     ),
   );
 
+  $items['informea-region-update-by-country'] = array(
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'description' => 'Update data from field_region for all nodes.',
+    'aliases' => array('imea-region-up'),
+  );
+
   return $items;
 }
 
@@ -76,4 +82,63 @@ function drush_country_informea_country_update() {
     }
   }
   drush_log(dt('Country data succesfully updated'), 'ok');
+}
+
+/**
+ * Update data from field_region for all nodes.
+ */
+function drush_country_informea_region_update_by_country() {
+  $q = db_select('node', 'n');
+  $q->innerJoin('field_data_field_region', 'r', 'n.nid = r.entity_id');
+  $q->fields('n', array('nid'));
+  $q->fields('r', array('field_region_tid', 'delta'));
+  $q->condition('n.type', 'country');
+
+  // TESTING ONLY, PLEASE REMOVE
+  $q->condition('n.nid', '111');
+
+  $countries = $q->execute()->fetchAll();
+
+  foreach ($countries as $country) {
+    $country_nid = $country->nid;
+    $region_tid = $country->field_region_tid;
+    $delta = $country->delta;
+
+    $q = db_select('field_data_field_country','c');
+    $q->fields('c', array('entity_id', 'bundle'));
+    $q->condition('c.field_country_target_id', $country_nid);
+    $nodes = $q->execute()->fetchAllKeyed();
+
+    /*
+     * First delete the current records in field_data_field_region table because
+     * of the following scenario:
+     *  - Country has 2 regions selected
+     *  - User deletes one of them
+     */
+    db_delete('field_data_field_region')
+      ->condition('entity_id', array_keys($nodes), 'IN')
+      ->execute();
+    die;
+
+    foreach ($nodes as $node_id => $content_type) {
+      try {
+        db_insert('field_data_field_region')
+          ->fields(array(
+            'entity_type' => 'node',
+            'bundle' => $content_type,
+            'deleted' => 0,
+            'entity_id' => $node_id,
+            'revision_id' => $node_id,
+            'language' => LANGUAGE_NONE,
+            'delta' => $delta,
+            'field_region_tid' => $region_tid,
+          ))
+          ->execute();
+      }
+      catch (PDOException $e) {
+        drush_log(dt('ERROR(nid=@node_id): @error_msg', array('@node_id' => $node_id, '@error_msg' => $e->getMessage())), 'error');
+      }
+    }
+    drush_log(dt('Successfully updated @non nodes.', array('@non' => count($nodes))), 'ok');
+  }
 }
