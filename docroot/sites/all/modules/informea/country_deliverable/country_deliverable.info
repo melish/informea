@@ -34,6 +34,7 @@ features[field_instance][] = node-action_plan-field_files
 features[field_instance][] = node-action_plan-field_informea_tags
 features[field_instance][] = node-action_plan-field_last_update
 features[field_instance][] = node-action_plan-field_original_id
+features[field_instance][] = node-action_plan-field_region
 features[field_instance][] = node-action_plan-field_sorting_date
 features[field_instance][] = node-action_plan-field_treaty
 features[field_instance][] = node-action_plan-title_field
