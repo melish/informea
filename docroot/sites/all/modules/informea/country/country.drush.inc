@@ -93,20 +93,11 @@ function drush_country_informea_region_update_by_country() {
   $q->fields('n', array('nid'));
   $q->fields('r', array('field_region_tid', 'delta'));
   $q->condition('n.type', 'country');
-
-  // TESTING ONLY, PLEASE REMOVE
-  $q->condition('n.nid', '111');
-
   $countries = $q->execute()->fetchAll();
-
-  foreach ($countries as $country) {
-    $country_nid = $country->nid;
-    $region_tid = $country->field_region_tid;
-    $delta = $country->delta;
-
-    $q = db_select('field_data_field_country','c');
+  foreach ($countries as $key => $country) {
+    $q = db_select('field_data_field_country', 'c');
     $q->fields('c', array('entity_id', 'bundle'));
-    $q->condition('c.field_country_target_id', $country_nid);
+    $q->condition('c.field_country_target_id', $country->nid);
     $nodes = $q->execute()->fetchAllKeyed();
 
     /*
@@ -115,12 +106,17 @@ function drush_country_informea_region_update_by_country() {
      *  - Country has 2 regions selected
      *  - User deletes one of them
      */
-    db_delete('field_data_field_region')
-      ->condition('entity_id', array_keys($nodes), 'IN')
-      ->execute();
-    die;
+    if (!empty($nodes)) {
+      db_delete('field_data_field_region')
+        ->condition('entity_id', array_keys($nodes), 'IN')
+        ->execute();
+    }
 
-    foreach ($nodes as $node_id => $content_type) {
+    $countries[$key]->nodes = $nodes;
+  }
+
+  foreach ($countries as $country) {
+    foreach ($country->nodes as $node_id => $content_type) {
       try {
         db_insert('field_data_field_region')
           ->fields(array(
@@ -130,8 +126,8 @@ function drush_country_informea_region_update_by_country() {
             'entity_id' => $node_id,
             'revision_id' => $node_id,
             'language' => LANGUAGE_NONE,
-            'delta' => $delta,
-            'field_region_tid' => $region_tid,
+            'delta' => $country->delta,
+            'field_region_tid' => $country->field_region_tid,
           ))
           ->execute();
       }
@@ -139,6 +135,11 @@ function drush_country_informea_region_update_by_country() {
         drush_log(dt('ERROR(nid=@node_id): @error_msg', array('@node_id' => $node_id, '@error_msg' => $e->getMessage())), 'error');
       }
     }
-    drush_log(dt('Successfully updated @non nodes.', array('@non' => count($nodes))), 'ok');
+    drush_log(dt('Successfully updated @non nodes for country_id = @cid and region_tid = @rtid.', array(
+        '@non' => count($country->nodes),
+        '@cid' => $country->nid,
+        '@rtid' => $country->field_region_tid,
+      )
+    ), 'ok');
   }
 }
