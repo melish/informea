@@ -597,6 +597,7 @@ function _country_update_region_by_country($countries = array()) {
 }
 
 function country_batch_update_region($country_nid = NULL) {
+  $max_nodes_per_iteration = 1000;
   $batch = array(
     'operations' => array(),
     'finished' => 'country_batch_update_region_finish',
@@ -615,8 +616,16 @@ function country_batch_update_region($country_nid = NULL) {
   }
 
   foreach ($countries as $country) {
-    $batch['operations'][] = array('country_batch_update_region_process', array($progress, $country));
-    $progress += count($country->nodes);
+    $false_country = $country;
+    $offset = 0;
+    $nodes = $country->nodes;
+    while ($offset < count($country->nodes)) {
+      $nodes_slice = array_slice($nodes, $offset, $max_nodes_per_iteration);
+      $false_country->nodes = $nodes_slice;
+      $batch['operations'][] = array('country_batch_update_region_process', array($progress, $false_country));
+      $offset += $max_nodes_per_iteration;
+      $progress += $max_nodes_per_iteration;
+    }
   }
 
   batch_set($batch);
