@@ -35,8 +35,10 @@ function decision_get_treaty_decisions($id_treaty) {
 function decision_get_treaty_decisions_group_by_meeting($id_treaty) {
   $ret = array();
   $CBD_nids = array(255 /* CBD */, 262 /* Cartagena */, 263 /* Nagoya */);
-  $cop_term = reset(taxonomy_get_term_by_name('cop', 'event_type'));
-  $recommendation_term = reset(taxonomy_get_term_by_name('recommendation', 'decision_type'));
+  $cop_term = taxonomy_get_term_by_name('cop', 'event_type');
+  $cop_term = reset($cop_term);
+  $recommendation_term = taxonomy_get_term_by_name('recommendation', 'decision_type');
+  $recommendation_term = reset($recommendation_term);
 
   // Get all the meetings with decisions
   $q = db_select('field_data_field_treaty', 'a')->fields('a', array('entity_id'));
