@@ -620,7 +620,7 @@ function country_batch_update_region($country_nid = NULL) {
     $offset = 0;
     $nodes = $country->nodes;
     while ($offset < count($country->nodes)) {
-      $nodes_slice = array_slice($nodes, $offset, $max_nodes_per_iteration);
+      $nodes_slice = array_slice($nodes, $offset, $max_nodes_per_iteration, TRUE);
       $false_country->nodes = $nodes_slice;
       $batch['operations'][] = array('country_batch_update_region_process', array($progress, $false_country));
       $offset += $max_nodes_per_iteration;
