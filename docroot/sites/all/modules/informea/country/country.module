@@ -34,17 +34,17 @@ function country_url_match_node($path) {
 /**
  * Implements hook_menu().
  */
-//function country_menu() {
-//  return array(
-//    'countries' => array(
-//      'title' => t('Countries'),
-//      'description' => t('Map of countries'),
-//      'type' => MENU_NORMAL_ITEM,
-//      'page callback' => 'country_level1_page',
-//      'access arguments' =>  array('access content'),
-//    ),
-//  );
-//}
+function country_menu() {
+  $items = array();
+  $items['admin/config/system/country_batch_update_region'] = array(
+    'title' => 'Update region for all nodes',
+    'page callback' => 'country_batch_update_region',
+    'access arguments' => array('administer content'),
+    'type' => MENU_NORMAL_ITEM,
+    'description' => 'Set the region to all nodes.',
+  );
+  return $items;
+}
 
 /**
  * Implements hook_theme().
@@ -506,5 +506,133 @@ function country_node_update($node) {
     if ($old_reions != $new_regions) {
       drupal_set_message('Region for country ' . $node->title . ' was changed! ' . l('Click here to run the update script to change the region for all nodes.', '/'), 'warning');
     }
+  }
+}
+
+function _country_get_all_nodes_group_by_country($country_nid = NULL) {
+  $q = db_select('node', 'n');
+  $q->innerJoin('field_data_field_region', 'r', 'n.nid = r.entity_id');
+  $q->fields('n', array('nid'));
+  $q->fields('r', array('field_region_tid', 'delta'));
+  $q->condition('n.type', 'country');
+  if ($country_nid !== NULL ) {
+    $q->condition('n.nid', $country_nid);
+  }
+  $countries = $q->execute()->fetchAll();
+  foreach ($countries as $key => $country) {
+    $q = db_select('field_data_field_country', 'c');
+    $q->fields('c', array('entity_id', 'bundle'));
+    $q->condition('c.field_country_target_id', $country->nid);
+    $nodes = $q->execute()->fetchAllKeyed();
+
+    /*
+     * First delete the current records in field_data_field_region table because
+     * of the following scenario:
+     *  - Country has 2 regions selected
+     *  - User deletes one of them
+     */
+    try {
+      if (!empty($nodes)) {
+        db_delete('field_data_field_region')
+          ->condition('entity_id', array_keys($nodes), 'IN')
+          ->execute();
+      }
+    }
+    catch (PDOException $e) {
+      if (function_exists('drush_log')) {
+        drush_log(dt('ERROR(country nid=@node_id): @error_msg', array('@node_id' => $country->nid, '@error_msg' => $e->getMessage())), 'error');
+      }
+      else {
+        drupal_set_message(t('ERROR(country nid=@node_id): @error_msg', array('@node_id' => $country->nid, '@error_msg' => $e->getMessage())), 'error');
+      }
+      return array();
+    }
+
+    $countries[$key]->nodes = $nodes;
+  }
+  return $countries;
+}
+
+function _country_update_region_by_country($countries = array()) {
+  foreach ($countries as $country) {
+    if (empty($country->nodes)) {
+      continue;
+    }
+    foreach ($country->nodes as $node_id => $content_type) {
+      try {
+        db_insert('field_data_field_region')
+          ->fields(array(
+            'entity_type' => 'node',
+            'bundle' => $content_type,
+            'deleted' => 0,
+            'entity_id' => $node_id,
+            'revision_id' => $node_id,
+            'language' => LANGUAGE_NONE,
+            'delta' => $country->delta,
+            'field_region_tid' => $country->field_region_tid,
+          ))
+          ->execute();
+      }
+      catch (PDOException $e) {
+        if (function_exists('drush_log')) {
+          drush_log(dt('ERROR(nid=@node_id): @error_msg', array('@node_id' => $node_id, '@error_msg' => $e->getMessage())), 'error');
+        }
+        else {
+          drupal_set_message(t('ERROR(nid=@node_id): @error_msg', array('@node_id' => $node_id, '@error_msg' => $e->getMessage())), 'error');
+        }
+      }
+    }
+    if (function_exists('drush_log')) {
+      drush_log(dt('Successfully updated @non nodes for country_id = @cid and region_tid = @rtid.', array(
+          '@non' => count($country->nodes),
+          '@cid' => $country->nid,
+          '@rtid' => $country->field_region_tid,
+        )
+      ), 'ok');
+    }
+  }
+}
+
+function country_batch_update_region() {
+  $batch = array(
+    'operations' => array(),
+    'finished' => 'country_batch_update_region_finish',
+    'title' => t('Processing update.'),
+    'init_message' => t('Update is starting.'),
+    'progress_message' => t('Current operation: @current out of @total.'),
+    'error_message' => t('Update has encountered an error.'),
+  );
+
+  $countries = _country_get_all_nodes_group_by_country();
+
+  $progress = 0;
+  $max = 0;
+  foreach ($countries as $country) {
+    $max += count($country->nodes);
+  }
+
+  foreach ($countries as $country) {
+    $batch['operations'][] = array('country_batch_update_region_process', array($progress, $country));
+    $progress += count($country->nodes);
+  }
+
+  batch_set($batch);
+  batch_process('admin/config'); // page to return to after complete
+}
+
+function country_batch_update_region_process($progress, $country, &$context) {
+  _country_update_region_by_country(array($country));
+    // update progress for message
+  $progress = $progress + count($country->nodes);
+  // update message during each run so you know where you are in the process
+  $context['message'] = $progress . ' nodes updated.';
+}
+
+function country_batch_update_region_finish($success, $results, $operations) {
+  if ($success) {
+    drupal_set_message('Update is complete');
+  }
+  else {
+    drupal_set_message('An error occurred.', 'error');
   }
 }
