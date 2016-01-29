@@ -36,10 +36,11 @@ function country_url_match_node($path) {
  */
 function country_menu() {
   $items = array();
-  $items['admin/config/system/country_batch_update_region'] = array(
+  $items['admin/config/system/country_batch_update_region/%country_nid'] = array(
     'title' => 'Update region for all nodes',
     'page callback' => 'country_batch_update_region',
     'access arguments' => array('administer content'),
+    'page arguments' => array('country_nid'),
     'type' => MENU_NORMAL_ITEM,
     'description' => 'Set the region to all nodes.',
   );
@@ -504,7 +505,9 @@ function country_node_update($node) {
       $new_regions[] = $region['tid'];
     }
     if ($old_reions != $new_regions) {
-      drupal_set_message('Region for country ' . $node->title . ' was changed! ' . l('Click here to run the update script to change the region for all nodes.', '/'), 'warning');
+      drupal_set_message('Region for country ' . $node->title . ' was changed! ' .
+        l('Click here to run the update script to change the region for all nodes.', '/admin/config/system/country_batch_update_region/' . $node->nid)
+        , 'warning');
     }
   }
 }
@@ -593,7 +596,7 @@ function _country_update_region_by_country($countries = array()) {
   }
 }
 
-function country_batch_update_region() {
+function country_batch_update_region($country_nid = NULL) {
   $batch = array(
     'operations' => array(),
     'finished' => 'country_batch_update_region_finish',
@@ -603,7 +606,7 @@ function country_batch_update_region() {
     'error_message' => t('Update has encountered an error.'),
   );
 
-  $countries = _country_get_all_nodes_group_by_country();
+  $countries = _country_get_all_nodes_group_by_country($country_nid);
 
   $progress = 0;
   $max = 0;
