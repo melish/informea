@@ -490,3 +490,21 @@ function country_views_query_alter(&$view, &$query) {
     $query->add_groupby('node.nid');
   }
 }
+
+/**
+ * Implements hook_node_update().
+ */
+function country_node_update($node) {
+  if ($node->type == 'country') {
+    $old_regions = $new_regions = array();
+    foreach ($node->original->field_region[LANGUAGE_NONE] as $region) {
+      $old_regions[] = $region['tid'];
+    }
+    foreach ($node->field_region[LANGUAGE_NONE] as $region) {
+      $new_regions[] = $region['tid'];
+    }
+    if ($old_reions != $new_regions) {
+      drupal_set_message('Region for country ' . $node->title . ' was changed! ' . l('Click here to run the update script to change the region for all nodes.', '/'), 'warning');
+    }
+  }
+}
