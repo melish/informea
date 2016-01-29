@@ -39,8 +39,15 @@ function country_menu() {
   $items['admin/config/system/country_batch_update_region/%country_nid'] = array(
     'title' => 'Update region for all nodes',
     'page callback' => 'country_batch_update_region',
-    'access arguments' => array('administer content'),
+    'access arguments' => array('edit any country content'),
     'page arguments' => array('country_nid'),
+    'type' => MENU_NORMAL_ITEM,
+    'description' => 'Set the region to all nodes.',
+  );
+  $items['admin/config/system/country_batch_update_region'] = array(
+    'title' => 'Update region for all nodes',
+    'page callback' => 'country_batch_update_region',
+    'access arguments' => array('edit any country content'),
     'type' => MENU_NORMAL_ITEM,
     'description' => 'Set the region to all nodes.',
   );
@@ -504,28 +511,28 @@ function country_node_update($node) {
     foreach ($node->field_region[LANGUAGE_NONE] as $region) {
       $new_regions[] = $region['tid'];
     }
-    if ($old_reions != $new_regions) {
+    if (!(array_diff($old_regions, $new_regions) == array_diff($new_regions, $old_regions))) {
       drupal_set_message('Region for country ' . $node->title . ' was changed! ' .
-        l('Click here to run the update script to change the region for all nodes.', '/admin/config/system/country_batch_update_region/' . $node->nid)
+        l('Click here to update the regions for the affected nodes.', '/admin/config/system/country_batch_update_region/' . $node->nid)
         , 'warning');
     }
   }
 }
 
 function _country_get_all_nodes_group_by_country($country_nid = NULL) {
-  $q = db_select('node', 'n');
-  $q->innerJoin('field_data_field_region', 'r', 'n.nid = r.entity_id');
-  $q->fields('n', array('nid'));
-  $q->fields('r', array('field_region_tid', 'delta'));
-  $q->condition('n.type', 'country');
-  if ($country_nid !== NULL ) {
-    $q->condition('n.nid', $country_nid);
+  $q = db_select('field_data_field_region', 'a');
+  $q->fields('a', array('entity_id', 'field_region_tid', 'delta'));
+  $q->condition('a.bundle', 'country');
+  if (!empty($country_nid)) {
+    $q->condition('a.entity_id', $country_nid);
   }
   $countries = $q->execute()->fetchAll();
   foreach ($countries as $key => $country) {
     $q = db_select('field_data_field_country', 'c');
     $q->fields('c', array('entity_id', 'bundle'));
-    $q->condition('c.field_country_target_id', $country->nid);
+    // Country for treaties have a different meaning (depositary)
+    $q->condition('c.bundle', array('treaty'), 'NOT IN');
+    $q->condition('c.field_country_target_id', $country->entity_id);
     $nodes = $q->execute()->fetchAllKeyed();
 
     /*
@@ -539,6 +546,7 @@ function _country_get_all_nodes_group_by_country($country_nid = NULL) {
         db_delete('field_data_field_region')
           ->condition('entity_id', array_keys($nodes), 'IN')
           ->execute();
+        search_api_track_item_change('node', array_keys($nodes));
       }
     }
     catch (PDOException $e) {
@@ -624,7 +632,7 @@ function country_batch_update_region($country_nid = NULL) {
       $false_country->nodes = $nodes_slice;
       $batch['operations'][] = array('country_batch_update_region_process', array($progress, $false_country));
       $offset += $max_nodes_per_iteration;
-      $progress += $max_nodes_per_iteration;
+      $progress += count($country->nodes);
     }
   }
 
@@ -634,8 +642,6 @@ function country_batch_update_region($country_nid = NULL) {
 
 function country_batch_update_region_process($progress, $country, &$context) {
   _country_update_region_by_country(array($country));
-    // update progress for message
-  $progress = $progress + count($country->nodes);
   // update message during each run so you know where you are in the process
   $context['message'] = $progress . ' nodes updated.';
 }
