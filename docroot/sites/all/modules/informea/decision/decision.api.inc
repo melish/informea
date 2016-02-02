@@ -58,7 +58,7 @@ function decision_get_treaty_decisions_group_by_meeting($id_treaty) {
   foreach ($meetings as $meeting) {
     if (in_array($id_treaty, $CBD_nids)) {
       // Keep only COP meetings for CBD, Cartagena and Nagoya
-      if ($meeting->field_event_type[LANGUAGE_NONE][0]['tid'] != $cop_term->tid) {
+      if (empty($meeting->field_event_type) || $meeting->field_event_type[LANGUAGE_NONE][0]['tid'] != $cop_term->tid) {
         continue;
       }
     }
@@ -76,9 +76,7 @@ function decision_get_treaty_decisions_group_by_meeting($id_treaty) {
     }
     field_attach_load('node', $decisions, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_decision_number']['field_id']));
     field_attach_load('node', $decisions, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_decision_status']['field_id']));
-    if (in_array($id_treaty, array(257 /* CITES */) + $CBD_nids)) {
-      field_attach_load('node', $decisions, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_decision_type']['field_id']));
-    }
+    field_attach_load('node', $decisions, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_decision_type']['field_id']));
     field_attach_load('node', $decisions, FIELD_LOAD_CURRENT, array('field_id' => $fields['title_field']['field_id']));
     // Remove non-active decisions
     $decisions = array_filter($decisions, function ($d) use ($allowed_status) {
