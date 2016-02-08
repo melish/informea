@@ -554,6 +554,7 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
     $d_count = decision_count_treaty_decisions($node->nid);
     $nr_count = country_deliverable_count_treaty_national_reports($node->nid);
     $ap_count = country_deliverable_count_treaty_action_plans($node->nid);
+    $p_count = country_data_treaty_count_membership($node->nid);
     $menu_items = array(
       'summary' => array(
         'title' => t('Summary')
@@ -571,7 +572,7 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
       ),
       'parties' => array(
         'title' => t('Parties'),
-        'count' => country_data_treaty_count_membership($node->nid)
+        'count' => $p_count,
       ),
       'national-reports' => array(
         'title' => t('National reports'),
@@ -593,6 +594,10 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
     }
     if ($ap_count == -1) {
       $menu_items['action-plans']['count'] = t('n/a');
+    }
+    if ($p_count <= 0) {
+      $menu_items['parties']['count'] = t('n/a');
+      $menu_items['parties']['disabled'] = TRUE;
     }
     if ($d_count <= 0) {
       $menu_items['decisions']['disabled'] = TRUE;
