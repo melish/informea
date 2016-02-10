@@ -557,7 +557,8 @@ function informea_remove_duplicate_news() {
     $query->range(1, 10);
     $r = $query->execute()->fetchCol();
     $nids = array_merge($nids, $r);
+    search_api_track_item_change('node', $nids);
   }
   watchdog('informea', 'Removing !count news having duplicate title', array('!count' => count($result)), WATCHDOG_INFO);
-  node_delete_multiple($result);
+  node_delete_multiple($nids);
 }
