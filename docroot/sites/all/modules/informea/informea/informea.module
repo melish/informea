@@ -539,13 +539,25 @@ function informea_page_alter(&$page) {
  */
 function informea_remove_duplicate_news() {
   // SELECT title FROM node WHERE TYPE = 'feed_item' GROUP BY title HAVING count(*) > 1
-  $query = db_select('node', 'a')->fields('a', array('nid'));
+  $query = db_select('node', 'a')->fields('a', array('title'));
   $query->addExpression('COUNT(a.title)', 'tcount');
   $query->condition('a.`type`', 'feed_item');
   $query->groupBy('a.title');
   $query->havingCondition('tcount', 1, '>');
   $query->orderBy('a.nid');
   $result = $query->execute()->fetchCol();
+  $nids = array();
+  foreach($result as $title) {
+    // SELECT nid FROM node WHERE title = '...' AND type = 'feed_item' ORDER BY nid DESC LIMIT 10 OFFSET 1;
+    // Remove older duplicate nodes with same title
+    $query = db_select('node', 'a')->fields('a', array('nid'));
+    $query->condition('a.title', $title);
+    $query->condition('a.type', 'feed_item');
+    $query->orderBy('a.nid', 'DESC');
+    $query->range(1, 10);
+    $r = $query->execute()->fetchCol();
+    $nids = array_merge($nids, $r);
+  }
   watchdog('informea', 'Removing !count news having duplicate title', array('!count' => count($result)), WATCHDOG_INFO);
   node_delete_multiple($result);
 }
