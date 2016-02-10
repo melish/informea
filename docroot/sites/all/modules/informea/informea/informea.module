@@ -127,6 +127,16 @@ function informea_preprocess_node(&$vars) {
   }
 }
 
+function informea_cronapi($op, $job = NULL) {
+  return array(
+    'informea_remove_duplicate_news' => array(
+      'description' => 'Check and remove duplicate news by title',
+      'rule' => '0 8 * * *', // Every day at 08:00 AM
+    )
+  );
+}
+
+
 /**
  * Implements hook_wysiwyg_editor_settings_alter().
  */
@@ -520,4 +530,22 @@ function informea_page_alter(&$page) {
   else {
     drupal_set_message('Google Analytics is not configured correctly', 'error');
   }
+}
+
+/**
+ * Remove news with duplicate title.
+ *
+ * @throws \Exception
+ */
+function informea_remove_duplicate_news() {
+  // SELECT title FROM node WHERE TYPE = 'feed_item' GROUP BY title HAVING count(*) > 1
+  $query = db_select('node', 'a')->fields('a', array('nid'));
+  $query->addExpression('COUNT(a.title)', 'tcount');
+  $query->condition('a.`type`', 'feed_item');
+  $query->groupBy('a.title');
+  $query->havingCondition('tcount', 1, '>');
+  $query->orderBy('a.nid');
+  $result = $query->execute()->fetchCol();
+  watchdog('informea', 'Removing !count news having duplicate title', array('!count' => count($result)), WATCHDOG_INFO);
+  node_delete_multiple($result);
 }
