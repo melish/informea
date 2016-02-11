@@ -52,11 +52,13 @@ function country_data_treaty_count_membership($id_treaty) {
       ->propertyOrderBy('title')
       ->execute();
     $allowed = country_data_get_allowed_membership_status();
-    foreach($rows['node'] as $row) {
-      $w = entity_metadata_wrapper('node', $row->nid);
-      $status = $w->field_party_status->value();
-      if (in_array(strtolower($status->name_original), $allowed)) {
-        $count++;
+    if (!empty($rows)) {
+      foreach($rows['node'] as $row) {
+        $w = entity_metadata_wrapper('node', $row->nid);
+        $status = $w->field_party_status->value();
+        if (in_array(strtolower($status->name_original), $allowed)) {
+          $count++;
+        }
       }
     }
     return $count;
