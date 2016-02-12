@@ -1786,3 +1786,7 @@ strong.excerpt {
   border: 1px solid black;
   padding: 15px;
 }
+
+.results-for {
+  margin-bottom: 10px;
+}
