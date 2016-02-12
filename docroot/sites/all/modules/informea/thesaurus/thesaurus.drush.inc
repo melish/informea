@@ -21,6 +21,11 @@ function thesaurus_drush_command() {
     'description' => 'Migrate terms from vocbench and fix field_informea_tags.',
   );
 
+  $items['informea-thesaurus-correct-path-alias'] = array(
+    'description' => 'Updates path alias for terms in Thesaurus Informea vocabulary.',
+    'aliases' => array('imea-tcpa')
+  );
+
   return $items;
 }
 
@@ -129,3 +134,26 @@ VALUES ('node', :bundle, '0', :entity_id, :entity_id, 'und', IFNULL((SELECT MAX(
   }
 }
 
+function drush_thesaurus_informea_thesaurus_correct_path_alias() {
+  $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
+  $terms = taxonomy_get_tree($voc->vid);
+  $count = 0;
+  foreach ($terms as $term) {
+    $term = taxonomy_term_load($term->tid);
+    $url = $term->field_taxonomy_term_uri[LANGUAGE_NONE][0]['url'];
+    $path_alias = str_replace('http://www.informea.org/', '', $url);
+    $old_alias = reset(db_select('url_alias')
+      ->fields(NULL, array('alias'))
+      ->condition('source', 'taxonomy/term/' . $term->tid)
+      ->execute()->fetchCol());
+    if (!empty($path_alias) && $old_alias != $path_alias) {
+      db_update('url_alias')
+        ->fields(array('alias' => $path_alias))
+        ->condition('source', 'taxonomy/term/' . $term->tid)
+        ->execute();
+      drush_log('Path alias changed for term: ' . $term->name, 'ok');
+      $count ++;
+    }
+  }
+  drush_log(dt('Succesfully updated path alias for @n terms.', array('@n' => $count)), 'ok');
+}
