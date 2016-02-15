@@ -344,6 +344,7 @@ $options['init-modules'] = array(
   'easyrdf',
   'phpexcel',
   'analytics_integration',
+  'hotjar',
 );
 
 
