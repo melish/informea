@@ -251,6 +251,8 @@ $command_specific['sql-sync'] = array(
   'structure-tables-list' => 'cache*,history,sessions,watchdog,ctools_css_cache,ctools_object_cache',
 );
 
+$options['disable-modules'] = array('varnish', 'update');
+
 $options['init-modules'] = array(
   'ctools',
   'entity',
@@ -345,6 +347,7 @@ $options['init-modules'] = array(
   'phpexcel',
   'analytics_integration',
   'hotjar',
+  'varnish',
 );
 
 
