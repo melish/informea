@@ -810,7 +810,7 @@ abstract class MigrationBase {
             default:
               // CAST(highwater AS INTEGER) would be ideal, but won't
               // work in MySQL. This hack is thought to be portable.
-              $query->where('(highwater+0) < :highwater', array(':highwater' => $highwater));
+              $query->where('(IF(highwater IS NULL OR highwater = \'\', 0, highwater+0)) < :highwater', array(':highwater' => $highwater));
           }
         }
         else {
