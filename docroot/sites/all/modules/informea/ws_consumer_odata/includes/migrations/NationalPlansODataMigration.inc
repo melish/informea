@@ -53,6 +53,7 @@ class NationalPlansODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_files:language', 'files_language');
     $this->addFieldMapping('field_files:destination_dir')->defaultValue('public://reports/action_plans/' . $this->config->odata_name);
     $this->addFieldMapping('field_files:destination_file', 'filename');
+    $this->addFieldMapping('field_files:file_replace')->defaultValue(MigrateFile::FILE_EXISTS_REUSE);
 
     $this->addFieldMapping('field_action_plan_type:create_term')->defaultValue(TRUE);
     $this->addFieldMapping('field_action_plan_type:ignore_case')->defaultValue(TRUE);
@@ -75,7 +76,7 @@ class NationalPlansODataMigration extends AbstractODataMigration {
       'field_sorting_date:timezone', 'field_sorting_date:rrule',
       'field_sorting_date:to','field_document_url:title',
       'field_document_url:attributes', 'field_document_url:language',
-      'field_files:file_class', 'field_files:preserve_files', 'field_files:file_replace',
+      'field_files:file_class', 'field_files:preserve_files',
       'field_files:source_dir', 'field_files:urlencode', 'field_files:display',
       'field_informea_tags', 'field_informea_tags:source_type',
       'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
