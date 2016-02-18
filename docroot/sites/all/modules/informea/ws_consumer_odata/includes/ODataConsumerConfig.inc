@@ -151,12 +151,36 @@ class ODataConsumerConfig {
       );
       return FALSE;
     }
+    $disable_hooks = array(
+      'entity_update' => array(
+        'search_api',
+        'search_api_solr',
+        'event_calendar',
+        'feeds',
+        'pathauto',
+      ),
+      'node_update' => array(
+        'search_api',
+        'search_api_solr',
+        'event_calendar',
+        'feeds',
+        'pathauto',
+      ),
+      'entity_insert' => array(
+        'feeds',
+        'search_api_solr',
+        'event_calendar',
+        'feeds',
+        'search_api'
+      ),
+    );
     return array(
       'class_name' => $klass,
       'odata_entity' => $odata_entity,
       'odata_name' => $odata_name,
       'dependencies' => $dependencies,
       'group_name' => 'odata_' . $odata_name,
+      'disable_hooks' => $disable_hooks,
     );
   }
 
