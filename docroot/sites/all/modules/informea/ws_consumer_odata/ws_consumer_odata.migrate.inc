@@ -10,128 +10,63 @@ function ws_consumer_odata_migrate_api() {
   $ret = array(
     'api' => 2,
     'groups' => array(
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_CBD => array( 'title' => ODataConsumerConfig::$ODATA_NAME_CBD . ' OData importers'),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_STOCKHOLM => array( 'title' => ODataConsumerConfig::$ODATA_NAME_STOCKHOLM . ' OData importers'),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_ROTTERDAM => array( 'title' => ODataConsumerConfig::$ODATA_NAME_ROTTERDAM . ' OData importers'),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_BASEL => array( 'title' => ODataConsumerConfig::$ODATA_NAME_BASEL . ' OData importers'),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_CITES => array( 'title' => ODataConsumerConfig::$ODATA_NAME_CITES . ' OData importers'),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_CMS => array( 'title' => ODataConsumerConfig::$ODATA_NAME_CMS . ' OData importers'),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_ASCOBANS => array( 'title' => ODataConsumerConfig::$ODATA_NAME_ASCOBANS . ' OData importers'),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_AEWA => array( 'title' => ODataConsumerConfig::$ODATA_NAME_AEWA . ' OData importers'),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_WHC => array( 'title' => ODataConsumerConfig::$ODATA_NAME_WHC . ' OData importers'),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_MONTREAL => array( 'title' => ODataConsumerConfig::$ODATA_NAME_MONTREAL . ' OData importers'),
+      'odata_cbd' => array('title' => 'CBD OData importers'),
+      'odata_stockholm' => array('title' => 'Stockholm Convention OData importers'),
+      'odata_rotterdam' => array('title' => 'Rotterdam Convention OData importers'),
+      'odata_basel' => array('title' => 'Basel OData importers'),
+      'odata_cites' => array('title' => 'CITES OData importers'),
+      'odata_cms' => array('title' => 'CMS OData importers'),
+      'odata_ascobans' => array('title' => 'ASCOBANS OData importers'),
+      'odata_aewa' => array('title' => 'AEWA OData importers'),
+      'odata_whc' => array('title' => 'WHC/UNESCO OData importers'),
+      'odata_montreal' => array('title' => 'OZONE OData importers'),
     ),
     'migrations' => array(
       /* Contacts migrations */
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_CBD . '_' . ODataConsumerConfig::$ODATA_ENTITY_CONTACTS
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_STOCKHOLM . '_' . ODataConsumerConfig::$ODATA_ENTITY_CONTACTS
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_ROTTERDAM . '_' . ODataConsumerConfig::$ODATA_ENTITY_CONTACTS
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ROTTERDAM, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_BASEL . '_' . ODataConsumerConfig::$ODATA_ENTITY_CONTACTS
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BASEL, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_CITES . '_' . ODataConsumerConfig::$ODATA_ENTITY_CONTACTS
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
+      'odata_cbd_contacts'        => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
+      'odata_stockholm_contacts'  => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
+      'odata_rotterdam_contacts'  => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ROTTERDAM, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
+      'odata_basel_contacts'      => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BASEL, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
+      'odata_cites_contacts'      => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
 
       /* Meetings migrations */
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_CBD . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_BASEL . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BASEL, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_STOCKHOLM . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_ROTTERDAM . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ROTTERDAM, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_CITES . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_CMS . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CMS, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_ASCOBANS . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_AEWA . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_WHC . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_MONTREAL . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_MONTREAL, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_cbd_meetings'        => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_basel_meetings'      => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BASEL, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_stockholm_meetings'  => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_rotterdam_meetings'  => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ROTTERDAM, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_cites_meetings'      => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_cms_meetings'        => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CMS, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_ascobans_meetings'   => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_aewa_meetings'       => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_whc_meetings'        => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_montreal_meetings'   => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_MONTREAL, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
 
       /* NationalPlans migrations */
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_STOCKHOLM . '_' . ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_CBD . '_' . ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN),
+      'odata_stockholm_nationalplans' => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN),
+      'odata_cbd_nationalplans'       => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN),
 
       /* Decisions migrations */
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_CMS . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS
-          => $config->createMigrationConfig(
-        ODataConsumerConfig::$ODATA_NAME_CMS,
-        ODataConsumerConfig::$ODATA_ENTITY_DECISIONS,
-        array('odata_' . ODataConsumerConfig::$ODATA_NAME_CMS . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS)
-      ),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_ASCOBANS . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS => $config->createMigrationConfig(
-          ODataConsumerConfig::$ODATA_NAME_ASCOBANS,
-          ODataConsumerConfig::$ODATA_ENTITY_DECISIONS,
-          array('odata_' . ODataConsumerConfig::$ODATA_NAME_ASCOBANS . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS)
-      ),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_AEWA . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS => $config->createMigrationConfig(
-        ODataConsumerConfig::$ODATA_NAME_AEWA,
-        ODataConsumerConfig::$ODATA_ENTITY_DECISIONS,
-        array('odata_' . ODataConsumerConfig::$ODATA_NAME_AEWA . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS)
-      ),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_CITES . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS => $config->createMigrationConfig(
-        ODataConsumerConfig::$ODATA_NAME_CITES,
-        ODataConsumerConfig::$ODATA_ENTITY_DECISIONS,
-        array('odata_' . ODataConsumerConfig::$ODATA_NAME_CITES . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS)
-      ),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_CBD . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS => $config->createMigrationConfig(
-        ODataConsumerConfig::$ODATA_NAME_CBD,
-        ODataConsumerConfig::$ODATA_ENTITY_DECISIONS,
-        array('odata_' . ODataConsumerConfig::$ODATA_NAME_CBD . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS)
-      ),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_WHC . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS => $config->createMigrationConfig(
-        ODataConsumerConfig::$ODATA_NAME_WHC,
-        ODataConsumerConfig::$ODATA_ENTITY_DECISIONS,
-        array('odata_' . ODataConsumerConfig::$ODATA_NAME_WHC . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS)
-      ),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_BASEL . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS => $config->createMigrationConfig(
-        ODataConsumerConfig::$ODATA_NAME_BASEL,
-        ODataConsumerConfig::$ODATA_ENTITY_DECISIONS,
-        array('odata_' . ODataConsumerConfig::$ODATA_NAME_BASEL . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS)
-      ),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_STOCKHOLM . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS => $config->createMigrationConfig(
-        ODataConsumerConfig::$ODATA_NAME_STOCKHOLM,
-        ODataConsumerConfig::$ODATA_ENTITY_DECISIONS,
-        array('odata_' . ODataConsumerConfig::$ODATA_NAME_STOCKHOLM . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS)
-      ),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_ROTTERDAM . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS => $config->createMigrationConfig(
-        ODataConsumerConfig::$ODATA_NAME_ROTTERDAM,
-        ODataConsumerConfig::$ODATA_ENTITY_DECISIONS,
-        array('odata_' . ODataConsumerConfig::$ODATA_NAME_ROTTERDAM . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS)
-      ),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_MONTREAL . '_' . ODataConsumerConfig::$ODATA_ENTITY_DECISIONS  => $config->createMigrationConfig(
-        ODataConsumerConfig::$ODATA_NAME_MONTREAL,
-        ODataConsumerConfig::$ODATA_ENTITY_DECISIONS,
-        array('odata_' . ODataConsumerConfig::$ODATA_NAME_MONTREAL . '_' . ODataConsumerConfig::$ODATA_ENTITY_MEETINGS)
-      ),
+      'odata_cms_decisions'       => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CMS, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_cms_meetings')),
+      'odata_ascobans_decisions'  => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_ascobans_meetings')),
+      'odata_aewa_decisions'      => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_aewa_meetings')),
+      'odata_cites_decisions'     => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_cites_meetings')),
+      'odata_cbd_decisions'       => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_cbd_meetings')),
+      'odata_whc_decisions'       => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_whc_meetings')),
+      'odata_basel_decisions'     => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BASEL, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_basel_meetings')),
+      'odata_stockholm_decisions' => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_stockholm_meetings')),
+      'odata_rotterdam_decisions' => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ROTTERDAM, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_rotterdam_meetings')),
+      'odata_montreal_decisions'  => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_MONTREAL, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_montreal_meetings')),
 
       /* CountryReports migrations */
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_ASCOBANS . '_' . ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_CMS . '_' . ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CMS, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_AEWA . '_' . ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_CITES . '_' . ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_CBD . '_' . ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_WHC . '_' . ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
+      'odata_ascobans_countryreports'  => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
+      'odata_cms_countryreports'       => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CMS, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
+      'odata_aewa_countryreports'      => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
+      'odata_cites_countryreports'     => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
+      'odata_cbd_countryreports'       => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
+      'odata_whc_countryreports'       => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
 
       /* Sites migrations */
-      'odata_' . ODataConsumerConfig::$ODATA_NAME_WHC . '_' . ODataConsumerConfig::$ODATA_ENTITY_SITES
-          => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_SITES),
+      'odata_whc_sites' => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_SITES),
     )
   );
 
