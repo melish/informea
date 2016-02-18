@@ -23,17 +23,17 @@ abstract class ODataConsumer {
     $ret = 0;
     $url = $this->url . '/' . $entity . '/$count';
     ws_consumer_odata_log(get_class($this) . ': Remote counting entities: ' . $url);
-    $response = drupal_http_request($url);
-    if ($response->code == 200) {
-      $ret = intval($response->data);
+    $response = ODataMigrationUtil::http_request($url);
+    if (!empty($response)) {
+      $ret = intval($response);
     }
     else {
       $url = $this->url . '/' . $entity . '?$inlinecount=allpages';
-      $response = drupal_http_request($url);
+      $response = ODataMigrationUtil::http_request($url);
       $element_name = 'm:count';
       $found = preg_match(
         '#<'.$element_name.'(?:\s+[^>]+)?>(.*?)'.'</'.$element_name.'>#s',
-        $response->data,
+        $response,
         $matches
       );
       if ($found) {
@@ -48,7 +48,7 @@ abstract class ODataConsumer {
 
 
   /**
-   * Retrieve OData records from the remove service.
+   * Retrieve only record IDs from the OData remote service.
    *
    * Important! Only the primitive properties are loaded, without the
    * navigation properties.
@@ -70,6 +70,29 @@ abstract class ODataConsumer {
   }
 
   /**
+   * Retrieve OData records from the remote service.
+   *
+   * Important! Only the primitive properties are loaded, without the
+   * navigation properties.
+   *
+   * @param string $odata_filter
+   *   Optional OData URL filter (to filter results after a certain date)
+   *
+   * @return array
+   *   Array of stdClass objects
+   */
+  public function getRemoteEntities($entity, $odata_filter = NULL) {
+    $rows = $this->getPaginatedData($entity, $odata_filter);
+    $ids = array();
+    foreach($rows as $row) {
+      $ids[] = $row;
+    }
+    ws_consumer_odata_log(__METHOD__ . "($entity): Remote service returned " . count($rows) . ' results');
+    return $ids;
+  }
+
+
+  /**
    * Retrieve a single entity from the service, given its type and id.
    *
    * @param string string $entity
@@ -86,16 +109,16 @@ abstract class ODataConsumer {
     $ret = NULL;
     $url = $this->url . '/' . $entity . "('" . $id . "')?" . $odata_extra_params;
     ws_consumer_odata_log(__METHOD__ . "($entity, $id): Retrieving data from : $url", MigrationBase::MESSAGE_NOTICE);
-    $response = drupal_http_request($url, array('headers' => array('Accept' => 'application/json')));
-    if ($response->code != 200) {
+    $response = ODataMigrationUtil::http_request($url, array('Accept: application/json'));
+    if (empty($response)) {
       $url = $this->url . '/' . $entity . "(guid'" . $id . "')?" . $odata_extra_params;
-      $response = drupal_http_request($url, array('headers' => array('Accept' => 'application/json')));
-      if ($response->code != 200) {
+      $response = ODataMigrationUtil::http_request($url, array('Accept: application/json'));
+      if (empty($response)) {
         ws_consumer_odata_log(__METHOD__ . "($entity, $id): HTTP request failure ({$response->code}) for URL: $url", MigrationBase::MESSAGE_ERROR);
         return $ret;
       }
     }
-    if ($json = json_decode($response->data)) {
+    if ($json = json_decode($response)) {
       $ret = $json->d;
     }
     else {
@@ -146,7 +169,7 @@ abstract class ODataConsumer {
     $pageSize = variable_get('ws_consumer_odata_page_size', 100);
     $page = 0;
     $base_url = $this->url . '/' . $entity;
-    $url = sprintf($base_url . '?$select=id&$top=%d&$skip=%d', $pageSize, $page);
+    $url = sprintf($base_url . '?$top=%d&$skip=%d', $pageSize, $page);
     if ($odata_filter) {
       $url .= $odata_filter;
     }
@@ -155,7 +178,8 @@ abstract class ODataConsumer {
         $ret = array_merge($ret, $rows);
       }
       $page += $pageSize;
-      $url = sprintf($base_url . '?$select=id&$top=%d&$skip=%d', $pageSize, $page);
+      $url = sprintf($base_url . '?$top=%d&$skip=%d', $pageSize, $page);
+      $url .= $odata_filter;
     }
     return $ret;
   }
@@ -172,30 +196,20 @@ abstract class ODataConsumer {
    */
   protected function parseJSONRemoteListPage($url) {
     $ret = array();
-    $response = drupal_http_request($url, array('headers' => array('Accept' => 'application/json')));
-    if ($response->code != 200) {
-      ws_consumer_odata_log(__METHOD__ . ": HTTP request failure ({$response->code}) for URL: $url", MigrationBase::MESSAGE_ERROR);
-      return $ret;
-    }
     if ($remote = $this->loadRemoteData($url)) {
       $results = gettype($remote) == 'object' ? $remote->results : $remote;
       foreach ($results as $row) {
         $ret[$row->id] = $row;
       }
     }
-    ws_consumer_odata_log(__METHOD__ . ': Loaded ' . count($ret) . ' rows from ' . $url, MigrationBase::MESSAGE_NOTICE);
     return $ret;
   }
 
   public function loadRemoteData($url) {
     $ret = NULL;
     ws_consumer_odata_log(__METHOD__ . ": Retrieving OData result from: " . $url, MigrationBase::MESSAGE_NOTICE);
-    $response = drupal_http_request($url, array('headers' => array('Accept' => 'application/json')));
-    if ($response->code != 200) {
-      ws_consumer_odata_log(__METHOD__ . ": HTTP request failure ({$response->code}) for URL: $url", MigrationBase::MESSAGE_ERROR);
-      return $ret;
-    }
-    if ($json = json_decode($response->data)) {
+    $response = ODataMigrationUtil::http_request($url, array('Accept: application/json'));
+    if (!empty($response) && $json = json_decode($response)) {
       $ret = $json->d;
     }
     return $ret;
@@ -208,7 +222,7 @@ abstract class ODataConsumer {
     if (!empty($ob->{$property_name})) {
       if (gettype($ob->{$property_name}) == 'object') {
         if (property_exists($ob->{$property_name}, 'results')) {
-          $results = $ob->{$property_name}->results;
+          return $ob->{$property_name}->results;
         }
       }
       else {

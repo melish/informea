@@ -274,3 +274,127 @@ class ODataMigrateItem extends MigrateItem {
     $odata_ob->files = $files;
   }
 }
+
+abstract class InforMEAAbstractODataMigrateSource extends MigrateSource {
+
+  protected $items = array();
+  /** @var ODataConsumerConfig */
+  protected $config = NULL;
+  /** @var ODataConsumer */
+  protected $consumer = NULL;
+  /** @var bool Data  */
+  protected $remote_queried = FALSE;
+
+  protected abstract function pullRemoteData();
+
+  protected abstract function populateRow($row);
+
+  public function __construct(array $options, $config) {
+    parent::__construct($options);
+    $this->config = $config;
+    $klass = $this->config->getODataConsumerClass();
+    $uri = $this->config->getEndpointURL();
+    $this->consumer = new $klass($uri);
+  }
+
+  public function __toString() {
+    return __CLASS__ . '-' . $this->config->odata_name . '-' . $this->config->odata_entity;
+  }
+
+  public function performRewind() {
+    $this->pullRemoteData();
+    reset($this->items);
+  }
+
+  public function computeCount() {
+    return $this->consumer->countTotal($this->config->odata_entity);
+  }
+
+  public function getNextRow() {
+    if (empty($this->items) && !$this->remote_queried) {
+      $this->pullRemoteData();
+    }
+    if ($item = current($this->items)) {
+      $this->populateRow($item);
+    }
+    next($this->items);
+    return $item;
+  }
+}
+
+
+class ODataMigrationUtil {
+
+  /**
+   * Prepare English title (node.title).
+   *
+   * @param $values
+   *
+   * @return string title
+   */
+  static function prepareTitle($values) {
+    if(empty($values) || !is_array($values)) {
+      return NULL;
+    }
+    foreach ($values as $value) {
+      if ($value->language == 'en') {
+        return $value->value;
+      }
+    }
+    return NULL;
+  }
+
+  static function getSingleValuedMultilingualField($data) {
+    $languages = array();
+    $values = array();
+    if (!empty($data) && is_array($data)) {
+      foreach ($data as $value) {
+        if (!empty($value->value)) {
+          $languages[] = $value->language;
+          $values[] = $value->value;
+        }
+      }
+    }
+    return array($values, $languages);
+  }
+
+
+  static function extractNavigationPropertyValues($ob, $property_name) {
+    // OData v1, property expanded using $expand=property_name
+    // No need for an additional HTTP request, data already there
+    $results = array();
+    if (!empty($ob->{$property_name})) {
+      if (gettype($ob->{$property_name}) == 'object' && property_exists($ob->{$property_name}, 'results')) {
+        $results = $ob->{$property_name}->results;
+      }
+      else {
+        $results = $ob->{$property_name};
+      }
+    }
+    if (!empty($ob->{$property_name}) && !empty($results)) {
+      return $results;
+    }
+    return NULL;
+  }
+
+
+  static public function http_request($url, $headers = array()) {
+    migrate_instrument_start(__CLASS__ . ' http_request');
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_NOBODY, 0);
+    $ret = curl_exec($ch);
+    $info = curl_getinfo($ch);
+    if ($info['http_code'] != 200) {
+      $code = $info['http_code'];
+      ws_consumer_odata_log(__METHOD__ . ": HTTP request failure ({$code}) for URL: $url", MigrationBase::MESSAGE_ERROR);
+      $ret = NULL;
+    }
+    curl_close($ch);
+    migrate_instrument_stop(__CLASS__ . ' http_request');
+    return $ret;
+  }
+}

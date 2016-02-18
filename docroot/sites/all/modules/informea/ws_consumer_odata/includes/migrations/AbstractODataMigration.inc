@@ -17,7 +17,7 @@ abstract class AbstractODataMigration extends Migration {
     }
     $this->config = new ODataConsumerConfig($arguments);
     /* All OData entities should have  'updated' field to use as highwater */
-    $this->highwaterField = array('name' => 'updated','type' => 'int');
+    $this->highwaterField = array('name' => 'updated', 'alias' => 'w', 'type' => 'int');
   }
 
   /**
@@ -30,6 +30,7 @@ abstract class AbstractODataMigration extends Migration {
    * Returns FALSE if the row is not to be migrated (ie. invalid)
    */
   function prepareRow($row) {
+    migrate_instrument_start(__METHOD__);
     parent::prepareRow($row);
     if (!empty($row->updated)) {
       $row->updated = $this->fixDateValue($row->updated);
@@ -37,6 +38,7 @@ abstract class AbstractODataMigration extends Migration {
     if (!empty($row->country) && $country = $this->getCountryByISO($row->country)) {
       $row->country = $country->nid;
     }
+    migrate_instrument_stop(__METHOD__);
   }
 
   /**
@@ -46,8 +48,9 @@ abstract class AbstractODataMigration extends Migration {
    * @param $row
    */
   function prepare($entity, $row) {
-    $translate_in = array_unique(array_merge($row->title_langs, $row->content_langs, $row->files_language));
-    $this->setTranslation($entity, $translate_in);
+    $languages = $row->languages;
+    unset($languages['en']);
+    $this->setTranslation($entity, $languages);
   }
 
   /**

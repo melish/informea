@@ -6,22 +6,13 @@
 class MeetingsODataMigration extends AbstractODataMigration {
 
   /**
-   * @var ODataConsumerConfig
-   */
-  protected $config = NULL;
-
-  /**
    * {@inheritdoc}
    */
   public function __construct($arguments) {
     parent::__construct($arguments);
-    $this->config = new ODataConsumerConfig($arguments);
     $this->arguments   = $arguments;
     $this->description = sprintf('Import %s from %s', ODataConsumerConfig::$DRUPAL_TYPE_MEETINGS, $this->config->odata_name);
-    $this->source      = new MeetingsMigrateSourceList(
-      new ODataMigrateList($this->config),
-      new MeetingsODataMigrateItem($this->config)
-    );
+    $this->source      = new InforMEAODataMeetingsMigrateSource($arguments, $this->config);
     $this->map = new MigrateSQLMap($this->machineName,
       array(
         'id' => array(
@@ -39,9 +30,11 @@ class MeetingsODataMigration extends AbstractODataMigration {
     );
 
     $this->addFieldMapping('field_original_id', 'id');
-    $this->addFieldMapping('title', 'title_orig');
+    $this->addFieldMapping('title', 'title_en');
     $this->addFieldMapping('title_field', 'title');
-    $this->addFieldMapping('title_field:language', 'title_langs');
+    $this->addFieldMapping('title_field:language', 'title_language');
+    $this->addFieldMapping('body', 'description');
+    $this->addFieldMapping('body:language', 'description_language');
     $this->addFieldMapping('field_treaty', 'treaty');
     $this->addFieldMapping('field_url', 'url');
     $this->addFieldMapping('event_calendar_date', 'start');
@@ -85,8 +78,8 @@ class MeetingsODataMigration extends AbstractODataMigration {
 
     $this->addUnmigratedDestinations(array(
       'created', 'log', 'tnid', 'translate', 'revision_uid', 'is_new',
-      'body', 'body:summary', 'body:format', 'path',
-      'body:language', 'field_event_calendar_status:source_type',
+      'body:summary', 'body:format', 'path',
+      'field_event_calendar_status:source_type',
       'event_calendar_date:timezone', 'event_calendar_date:rrule',
       'field_abbreviation', 'field_event_access:source_type',
       'event_calendar_status', 'event_calendar_status:ignore_case',
@@ -129,9 +122,78 @@ class MeetingsODataMigration extends AbstractODataMigration {
     if (!empty($row->end)) {
       $row->end = $this->fixDateValue($row->end);
     }
-
     $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
+    return TRUE;
+  }
+}
 
+class InforMEAODataMeetingsMigrateSource extends InforMEAAbstractODataMigrateSource {
+
+  /**
+   * The list of available fields to map from the source, keyed by field name.
+   */
+  public function fields() {
+    return array(
+      'id' => 'Remote primary key',
+      'title_en' => 'Meeting title in English',
+      'title' => 'Meeting title (multilingual)',
+      'title_language' => 'List of languages for the `title`',
+      'treaty' => 'The corresponding treaty OData name of this meeting',
+      'url' => 'Meeting URL',
+      'start' => 'Start date',
+      'end' => 'End date',
+      'repetition' => 'Period of repetition',
+      'kind' => 'Kind',
+      'type' => 'Type',
+      'access' => 'Access',
+      'status' => 'Status',
+      'imageUrl' => 'Image URL',
+      'location' => 'Location',
+      'city' => 'City',
+      'country' => 'Country',
+      'latitude' => 'Latitude',
+      'longitude' => 'Longitude',
+      'updated' => 'Record last update date',
+      'languages' => 'List of translated languages (including en)',
+    );
   }
 
+  protected function pullRemoteData() {
+    migrate_instrument_start(get_class($this) . ' pullRemoteData', TRUE);
+    try {
+      $query = '&$expand=title,description&$orderby=updated%20desc';
+      $highwater = $this->activeMigration->getHighwater();
+      if (!empty($highwater)) {
+        $query .= '&$filter=updated%20gt%20datetime%27' . date('Y-m-d\TH:i:s', $highwater) . '%27';
+      }
+      $this->remote_queried = TRUE;
+      $this->items = array();
+      $rows = $this->consumer->getRemoteEntities($this->config->odata_entity, $query);
+      foreach($rows as $row) {
+        if (!property_exists($row,'updated')) {
+          $row->updated = time();
+        }
+        $this->items[$row->id] = $row;
+      }
+    } catch(Exception $e) {
+    }
+    migrate_instrument_stop(get_class($this) . ' pullRemoteData');
+  }
+
+  protected function populateRow($row) {
+    $all_languages = array('en');
+    $titles = $this->consumer->loadNavigationProperty($row, 'title');
+    $row->title_en = ODataMigrationUtil::prepareTitle($titles);
+    list($titles, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($titles);
+    $row->title = $titles;
+    $row->title_languages = $languages;
+    $all_languages = array_merge($all_languages, $languages);
+
+    $descriptions = $this->consumer->loadNavigationProperty($row, 'description');
+    list($descriptions, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($descriptions);
+    $row->description = $descriptions;
+    $row->description_languages = $languages;
+    $all_languages = array_merge($all_languages, $languages);
+    $row->languages = array_unique($all_languages);
+  }
 }
