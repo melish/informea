@@ -39,7 +39,7 @@ function ws_consumer_odata_migrate_api() {
       'odata_ascobans_Meetings'   => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
       'odata_aewa_Meetings'       => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
       'odata_whc_Meetings'        => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      // 'odata_montreal_Meetings'   => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_MONTREAL, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_montreal_Meetings'   => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_MONTREAL, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
 
       /* NationalPlans migrations */
       'odata_stockholm_NationalPlans' => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN),
@@ -55,7 +55,7 @@ function ws_consumer_odata_migrate_api() {
       'odata_basel_Decisions'     => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BASEL, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_basel_Meetings')),
       'odata_stockholm_Decisions' => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_stockholm_Meetings')),
       'odata_rotterdam_Decisions' => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ROTTERDAM, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_rotterdam_Meetings')),
-      // 'odata_montreal_Decisions'  => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_MONTREAL, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_montreal_Meetings')),
+      'odata_montreal_Decisions'  => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_MONTREAL, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_montreal_Meetings')),
 
       /* CountryReports migrations */
       'odata_ascobans_CountryReports'  => $config->createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
