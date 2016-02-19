@@ -18,10 +18,7 @@ class ContactsODataMigration extends AbstractODataMigration {
     $this->config = new ODataConsumerConfig($arguments);
     $this->arguments   = $arguments;
     $this->description = sprintf('Import %s from %s', ODataConsumerConfig::$DRUPAL_TYPE_CONTACTS, $this->config->odata_name);
-    $this->source      = new ContactsMigrateSourceList(
-      new ODataMigrateList($this->config),
-      new ContactsODataMigrateItem($this->config)
-    );
+    $this->source      = new InforMEAODataContactsMigrateSource($arguments, $this->config);
     $this->map = new MigrateSQLMap($this->machineName,
       array(
         'id' => array(
@@ -150,5 +147,76 @@ class ContactsODataMigration extends AbstractODataMigration {
     }
     $name = trim($name);
     return $name;
+  }
+}
+
+
+
+class InforMEAODataContactsMigrateSource extends InforMEAAbstractODataMigrateSource {
+
+  /**
+   * The list of available fields to map from the source, keyed by field name.
+   */
+  public function fields() {
+    return array(
+      'id' => 'Remote primary key',
+      'country' => 'Contact country',
+      'prefix' => 'Name prefix (Mr.)',
+      'name' => 'Computed name of the contact',
+      'firstName' => 'Given name',
+      'lastName' => 'Family name',
+      'position' => 'Work position',
+      'institution' => 'Working institution',
+      'department' => 'Department',
+      'address' => 'Working address',
+      'email' => 'Work e-mail address',
+      'phone' => 'Contact telephone number',
+      'type' => 'Type of contact (i.e. licenced focal point)',
+      'fax' => 'Work fax number',
+      'primary' => 'Is primary focal point',
+      'updated' => 'RSS updated field - when record was updated',
+      'treaties' => 'List of treaties (odata_name) the focal point is working for',
+    );
+  }
+
+  protected function pullRemoteData() {
+    migrate_instrument_start(get_class($this) . ' pullRemoteData', TRUE);
+    try {
+      $query = '&$expand=treaties&$orderby=updated%20desc';
+      $highwater = $this->activeMigration->getHighwater();
+      if (!empty($highwater)) {
+        $query .= '&$filter=updated%20gt%20datetime%27' . date('Y-m-d\TH:i:s', $highwater) . '%27';
+      }
+      $this->remote_queried = TRUE;
+      $this->items = array();
+      $rows = $this->consumer->getRemoteEntities($this->config->odata_entity, $query);
+      foreach($rows as $row) {
+        if (!property_exists($row,'updated')) {
+          $row->updated = time();
+        }
+        $this->items[$row->id] = $row;
+      }
+    } catch(Exception $e) {
+    }
+    migrate_instrument_stop(get_class($this) . ' pullRemoteData');
+  }
+
+  protected function populateRow($row) {
+    $all_languages = array('en');
+    $row->languages = array_unique($all_languages);
+    $treaties = array();
+    $values = $this->consumer->loadNavigationProperty($row, 'treaties');
+    if (!empty($values) && is_array($values)) {
+      foreach ($values as $value) {
+        if (!empty($value->value)) {
+          $treaties[] = $value->value;
+        }
+        // CBD OData v3 seem to return this format
+        else if (!empty($value) && is_string($value)) {
+          $treaties[] = $value;
+        }
+      }
+    }
+    $row->treaties = $treaties;
   }
 }
