@@ -17,11 +17,16 @@ $print = sprintf('/treaties/%s/print', $odata_identifier);
       <button class="btn btn-default" data-toggle="group" data-target="#treaty-text">
         <?php print t('Expand all'); ?>
       </button>
-      <a class="btn btn-primary" href="<?php print url($print); ?>" target="_blank">
+            <a class="btn btn-primary" href="<?php print url($print); ?>" target="_blank">
         <i class="glyphicon glyphicon-print"></i>
         <?php print t('Print treaty text'); ?>
-      </a>
-    </p>
+      </a><br></p>
+      <ul class="text-right list-inline meta">
+     <li class="first"> <?php print t('Last updated:'); ?>
+      <?php print gmdate("M-d-Y", $node->changed) ?> </li>
+      <li class="last"><?php print t('Created:'); ?>
+      <?php print gmdate("M-d-Y", $node->created); ?> </li>
+      </ul>
   <?php endif; ?>
   <div class="panel-group tagged-content" id="treaty-text" role="tablist" aria-multiselectable="true">
     <?php foreach ($articles as $article) : ?>
