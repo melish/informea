@@ -421,20 +421,22 @@ function thesaurus_informea_sync_vocbench($force_update = FALSE) {
       }
     }
 
-    // We don't have "synonyms" in INFORMEA so we leave this commented for now.
-/*
     // Synonyms
-    if (count($term->field_term_synonyms) != count($vb_term->altLabel)) {
-      $term->field_term_synonyms = array();
-    }
+//    if (count($term->field_term_synonyms) != count($vb_term->altLabel)) {
+//      $term->field_term_synonyms = array();
+//    }
     foreach($vb_term->altLabel as $language => $values) {
       if (!empty($values)) {
-        foreach ($values as $key => $syno) {
-          $term->field_term_synonyms[$language][$key]['value'] = $syno;
+        if ($language != 'en') {
+          $term->name_field[$language][0]['value'] = reset($values);
+          array_shift($values);
         }
+//        We don't have "synonyms" in INFORMEA so we leave this commented for now.
+//        foreach ($values as $key => $syno) {
+//          $term->field_term_synonyms[$language][$key]['value'] = $syno;
+//        }
       }
     }
-*/
     // We don't have "Related from other thesauri" in INFORMEA so we leave this
     // commented for now.
 /*
