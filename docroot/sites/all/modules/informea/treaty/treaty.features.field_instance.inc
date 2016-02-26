@@ -4099,7 +4099,7 @@ function treaty_field_default_field_instances() {
         'weight' => 0,
       ),
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_default',
@@ -4123,7 +4123,7 @@ function treaty_field_default_field_instances() {
     'label' => 'Attached files',
     'required' => 0,
     'settings' => array(
-      'description_field' => 0,
+      'description_field' => 1,
       'entity_translation_sync' => 0,
       'file_directory' => 'treaty-texts',
       'file_extensions' => 'txt pdf doc xls docx xlsx odt ods rtf htm html',

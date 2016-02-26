@@ -55,6 +55,7 @@
     </div><!-- .panel-heading .smallipop -->
     <div id="article-<?php echo $article->nid; ?>" class="panel-collapse collapse<?php print $expanded ? ' in' : '' ;?>" role="tabpanel" aria-labelledby="heading-<?php echo $article->nid; ?>">
       <div class="article<?php print $expanded && !isset($_GET['paragraph']) ? ' highlight' : ''; ?>">
+        <?php print drupal_render(field_view_field('node', $article, 'field_files', 'default')); ?>
         <?php if (!empty($article->paragraphs)): ?>
           <?php foreach ($article->paragraphs as $paragraph): ?>
             <?php print theme('treaty_text_paragraph', array('paragraph' => $paragraph, 'article' => $article)); ?>
