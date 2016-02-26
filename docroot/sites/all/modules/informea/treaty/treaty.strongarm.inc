@@ -508,7 +508,7 @@ function treaty_strongarm() {
       'display' => array(
         'computed_number_of_parties' => array(
           'default' => array(
-            'weight' => '8',
+            'weight' => '9',
             'visible' => TRUE,
           ),
         ),
@@ -530,6 +530,12 @@ function treaty_strongarm() {
         ),
         'path' => array(
           'weight' => '30',
+        ),
+        'redirect' => array(
+          'weight' => '30',
+        ),
+        'language' => array(
+          'weight' => '5',
         ),
       ),
       'display' => array(),
