@@ -487,7 +487,7 @@ function informea_field_default_field_instances() {
       'description_field' => 1,
       'entity_translation_sync' => 0,
       'file_directory' => 'documents',
-      'file_extensions' => 'txt pdf doc xls docx jpg jpeg png',
+      'file_extensions' => 'txt pdf doc xls docx jpg jpeg png eps ai',
       'max_filesize' => '',
       'user_register_form' => FALSE,
     ),

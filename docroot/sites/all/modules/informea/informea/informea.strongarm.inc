@@ -760,7 +760,7 @@ function informea_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'site_mail';
-  $strongarm->value = 'cristian.romanescu@eaudeweb.ro';
+  $strongarm->value = 'ikm@unep.org';
   $export['site_mail'] = $strongarm;
 
   $strongarm = new stdClass();
