@@ -154,6 +154,7 @@ features[field_instance][] = node-treaty-field_un_treaty_database_link
 features[field_instance][] = node-treaty-field_user_owners
 features[field_instance][] = node-treaty-title_field
 features[field_instance][] = node-treaty_article-body
+features[field_instance][] = node-treaty_article-field_files
 features[field_instance][] = node-treaty_article-field_informea_tags
 features[field_instance][] = node-treaty_article-field_official_order
 features[field_instance][] = node-treaty_article-field_sorting_order

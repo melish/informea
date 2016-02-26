@@ -4086,6 +4086,61 @@ function treaty_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-treaty_article-field_files'.
+  $field_instances['node-treaty_article-field_files'] = array(
+    'bundle' => 'treaty_article',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_files',
+    'label' => 'Attached files',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'entity_translation_sync' => 0,
+      'file_directory' => 'treaty-texts',
+      'file_extensions' => 'txt pdf doc xls docx xlsx odt ods rtf htm html',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'file',
+      'settings' => array(
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
+      'weight' => 39,
+    ),
+  );
+
   // Exported field_instance: 'node-treaty_article-field_informea_tags'.
   $field_instances['node-treaty_article-field_informea_tags'] = array(
     'bundle' => 'treaty_article',
@@ -5223,6 +5278,7 @@ function treaty_field_default_field_instances() {
   t('Address');
   t('Alternative Record ID');
   t('Amends Treaty');
+  t('Attached files');
   t('Available in');
   t('Body');
   t('Check here if the party membership information is coming from UN treaty database or uncheck if using own MEA service');
