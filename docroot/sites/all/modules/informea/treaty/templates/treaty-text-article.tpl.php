@@ -16,7 +16,7 @@
       <h4 class="panel-title">
         <a href="javascript:void(0);"><?php echo $article->official_title; ?></a>
         <?php
-        print l('<i class="glyphicon glyphicon-link"></i>', 'node/' . $id_treaty, array(
+        print l('<i class="glyphicon glyphicon-link"></i>', 'node/' . $id_treaty .'/text', array(
           'attributes' => array(
             'data-toggle' => 'tooltip', 'data-placement' => 'top',
             'title' => t('Permalink'),
