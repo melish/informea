@@ -64,7 +64,7 @@ function decision_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 2,
+      'weight' => 12,
     ),
   );
 
@@ -73,7 +73,7 @@ function decision_field_default_field_instances() {
     'bundle' => 'decision',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Unique MEA internal decision number',
+    'description' => 'Unique MEA internal decision number (e.g. IX/13)',
     'display' => array(
       'ajax' => array(
         'label' => 'inline',
@@ -115,10 +115,10 @@ function decision_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'size' => 30,
       ),
       'type' => 'text_textfield',
-      'weight' => 7,
+      'weight' => 5,
     ),
   );
 
@@ -172,7 +172,7 @@ function decision_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -226,7 +226,7 @@ function decision_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 4,
+      'weight' => 6,
     ),
   );
 
@@ -234,7 +234,7 @@ function decision_field_default_field_instances() {
   $field_instances['node-decision-field_files'] = array(
     'bundle' => 'decision',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Attach here any files related to this decision in English or the language selected above. Use the "Translate" tab feature to add in other languages, after you save this language!',
     'display' => array(
       'ajax' => array(
         'label' => 'above',
@@ -283,7 +283,7 @@ function decision_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 13,
+      'weight' => 11,
     ),
   );
 
@@ -351,7 +351,7 @@ function decision_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 19,
+      'weight' => 14,
     ),
   );
 
@@ -417,7 +417,7 @@ function decision_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 9,
+      'weight' => 13,
     ),
   );
 
@@ -426,7 +426,7 @@ function decision_field_default_field_instances() {
     'bundle' => 'decision',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Use the autocomplete to search the meeting, if the meeting does not exist, please add a new one first - right click above on \'Add content\', then \'Open link in new tab ...\'',
     'display' => array(
       'ajax' => array(
         'label' => 'inline',
@@ -462,7 +462,7 @@ function decision_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_meeting',
     'label' => 'Meeting',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
@@ -471,14 +471,12 @@ function decision_field_default_field_instances() {
       'active' => 1,
       'module' => 'entityreference',
       'settings' => array(
-        'apply_chosen' => '',
         'match_operator' => 'CONTAINS',
         'path' => '',
-        'size' => 60,
-        'use_select2' => FALSE,
+        'size' => 120,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 10,
+      'weight' => 9,
     ),
   );
 
@@ -530,7 +528,7 @@ function decision_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 11,
+      'weight' => 18,
     ),
   );
 
@@ -598,7 +596,7 @@ function decision_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 12,
+      'weight' => 15,
     ),
   );
 
@@ -650,7 +648,7 @@ function decision_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 14,
+      'weight' => 16,
     ),
   );
 
@@ -658,7 +656,7 @@ function decision_field_default_field_instances() {
   $field_instances['node-decision-field_sorting_date'] = array(
     'bundle' => 'decision',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Date when decision was made, usually this is the date of the COP/MOP meeting.',
     'display' => array(
       'ajax' => array(
         'label' => 'above',
@@ -716,7 +714,7 @@ function decision_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 32,
+      'weight' => 8,
     ),
   );
 
@@ -769,7 +767,7 @@ function decision_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 18,
+      'weight' => 17,
     ),
   );
 
@@ -778,7 +776,7 @@ function decision_field_default_field_instances() {
     'bundle' => 'decision',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Treaty from which the decision came',
+    'description' => 'The MEA/instrument the decision belongs to (e.g. UNFCCC). Use autocomplete to search',
     'display' => array(
       'ajax' => array(
         'label' => 'above',
@@ -820,14 +818,12 @@ function decision_field_default_field_instances() {
       'active' => 1,
       'module' => 'entityreference',
       'settings' => array(
-        'apply_chosen' => '',
         'match_operator' => 'CONTAINS',
         'path' => '',
-        'size' => 60,
-        'use_select2' => FALSE,
+        'size' => 120,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 8,
+      'weight' => 4,
     ),
   );
 
@@ -836,7 +832,7 @@ function decision_field_default_field_instances() {
     'bundle' => 'decision',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'URL to MEA website',
+    'description' => 'URL to decision page (or PDF file) on the MEA website, if available',
     'display' => array(
       'ajax' => array(
         'label' => 'above',
@@ -872,6 +868,7 @@ function decision_field_default_field_instances() {
       'absolute_url' => 1,
       'attributes' => array(
         'class' => '',
+        'configurable_class' => 0,
         'configurable_title' => 0,
         'rel' => '',
         'target' => 'default',
@@ -883,8 +880,8 @@ function decision_field_default_field_instances() {
       'enable_tokens' => 1,
       'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
-      'title' => 'optional',
-      'title_label_use_field_label' => FALSE,
+      'title' => 'none',
+      'title_label_use_field_label' => 0,
       'title_maxlength' => 128,
       'title_value' => '',
       'url' => 0,
@@ -896,7 +893,7 @@ function decision_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 3,
+      'weight' => 10,
     ),
   );
 
@@ -951,7 +948,7 @@ function decision_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 0,
+      'weight' => 3,
     ),
   );
 
@@ -1583,9 +1580,11 @@ function decision_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Attach here any files related to this decision in English or the language selected above. Use the "Translate" tab feature to add in other languages, after you save this language!');
   t('Body');
   t('DO NOT EDIT! Original corresponding unique identifier in the MEA database, use in future synchronizations');
   t('Date of text');
+  t('Date when decision was made, usually this is the date of the COP/MOP meeting.');
   t('Description');
   t('English meeting title');
   t('Files');
@@ -1602,14 +1601,15 @@ function decision_field_default_field_instances() {
   t('Parent decision');
   t('Sorting order');
   t('Status');
+  t('The MEA/instrument the decision belongs to (e.g. UNFCCC). Use autocomplete to search');
   t('Title');
   t('Treaty');
-  t('Treaty from which the decision came');
   t('Type');
   t('Type of decision (decision, resolution, recommendation etc.)');
   t('URL');
-  t('URL to MEA website');
-  t('Unique MEA internal decision number');
+  t('URL to decision page (or PDF file) on the MEA website, if available');
+  t('Unique MEA internal decision number (e.g. IX/13)');
+  t('Use the autocomplete to search the meeting, if the meeting does not exist, please add a new one first - right click above on \'Add content\', then \'Open link in new tab ...\'');
 
   return $field_instances;
 }
