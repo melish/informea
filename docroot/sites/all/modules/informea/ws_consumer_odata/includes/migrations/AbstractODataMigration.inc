@@ -108,6 +108,9 @@ abstract class AbstractODataMigration extends Migration {
   }
 
   public function setTranslation($entity, $translations = array()) {
+    if (empty($translations)) {
+      $translations = array();
+    }
     $migration   = Migration::currentMigration();
     $languages   = array_keys(language_list());
     $entity_type = $migration->getDestination()->getEntityType();
