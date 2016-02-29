@@ -112,3 +112,61 @@ class NationalPlansODataMigration extends AbstractODataMigration {
     }
   }
 }
+
+
+class InforMEAODataNationalPlansMigrateSource extends InforMEAAbstractODataMigrateSource {
+
+  /**
+   * The list of available fields to map from the source, keyed by field name.
+   */
+  public function fields() {
+    return array(
+      'id' => 'Remote primary key',
+      'title' => 'Translated titles',
+      'title_en' => 'Report title in English',
+      'title_languages' => 'Title languages',
+      'treaty' => 'The meeting is linked to this treaty',
+      'country' => 'Country',
+      'type' => 'Type',
+      'url' => 'Document URL',
+      'submission' => 'Submission date',
+      'files' => 'Files',
+      'files_language' => 'Files language',
+      'filename' => 'filename',
+      'updated' => 'Updated',
+    );
+  }
+
+  protected function pullRemoteData() {
+    migrate_instrument_start(get_class($this) . ' pullRemoteData', TRUE);
+    try {
+      $query = '&$expand=title,files&$orderby=updated%20desc';
+      $highwater = $this->activeMigration->getHighwater();
+      if (!empty($highwater)) {
+        $query .= '&$filter=updated%20gt%20datetime%27' . date('Y-m-d\TH:i:s', $highwater) . '%27';
+      }
+      $this->remote_queried = TRUE;
+      $this->items = array();
+      $rows = $this->consumer->getRemoteEntities($this->config->odata_entity, $query);
+      foreach($rows as $row) {
+        if (!property_exists($row,'updated')) {
+          $row->updated = time();
+        }
+        $this->items[$row->id] = $row;
+      }
+    } catch(Exception $e) {
+    }
+    migrate_instrument_stop(get_class($this) . ' pullRemoteData');
+  }
+
+  protected function populateRow($row) {
+    $all_languages = array('en');
+    $titles = $this->consumer->loadNavigationProperty($row, 'title');
+    $row->title_en = ODataMigrationUtil::prepareTitle($titles);
+    list($titles, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($titles);
+    $row->title = $titles;
+    $row->title_languages = $languages;
+    $all_languages = array_merge($all_languages, $languages);
+    $row->languages = array_unique($all_languages);
+  }
+}
