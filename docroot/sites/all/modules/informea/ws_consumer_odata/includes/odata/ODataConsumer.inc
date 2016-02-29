@@ -8,6 +8,8 @@
 abstract class ODataConsumer {
 
   protected $url = NULL;
+  /** @var bool Use /Entity(guid'XXX-XXX-XX') in request URLs */
+  protected $useGUIDInURL = FALSE;
 
   public function __construct($url) {
     $this->url = $url;
@@ -111,7 +113,12 @@ abstract class ODataConsumer {
     ws_consumer_odata_log(__METHOD__ . "($entity, $id): Retrieving data from : $url", MigrationBase::MESSAGE_NOTICE);
     $response = ODataMigrationUtil::http_request($url, array('Accept: application/json'));
     if (empty($response)) {
-      $url = $this->url . '/' . $entity . "(guid'" . $id . "')?" . $odata_extra_params;
+      if ($this->useGUIDInURL) {
+        $url = $this->url . '/' . $entity . "(guid'" . $id . "')?" . $odata_extra_params;
+      }
+      else {
+        $url = $this->url . '/' . $entity . "('" . $id . "')?" . $odata_extra_params;
+      }
       $response = ODataMigrationUtil::http_request($url, array('Accept: application/json'));
       if (empty($response)) {
         ws_consumer_odata_log(__METHOD__ . "($entity, $id): HTTP request failure ({$response->code}) for URL: $url", MigrationBase::MESSAGE_ERROR);
