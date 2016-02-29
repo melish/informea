@@ -91,16 +91,17 @@ class NationalPlansODataMigration extends AbstractODataMigration {
     parent::prepareRow($row);
 
     if (!$row->title_en) {
-      ws_consumer_odata_log('Skipping National Plan with source id=' . $row->id .' because no title could be found.', MigrationBase::MESSAGE_ERROR);
+      ws_consumer_odata_log('Skipping National Plan with source id=' . $row->id .' because no English title could be found.', MigrationBase::MESSAGE_ERROR);
       return FALSE;
     }
-
+    if (!$row->type) {
+      ws_consumer_odata_log('Skipping National Plan with source id=' . $row->id .' missing type.', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
+    }
     if (!empty($row->submission)) {
       $row->submission = $this->fixDateValue($row->submission);
     }
-
     $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
-
     $row->filename = array();
     foreach ($row->files as $file) {
       if (is_object($file)) {
