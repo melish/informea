@@ -117,6 +117,11 @@ class NationalPlansODataMigration extends AbstractODataMigration {
     }
     return TRUE;
   }
+
+  function prepare($entity, $row) {
+    $this->setTranslation($entity, $row->files_language);
+  }
+
 }
 
 

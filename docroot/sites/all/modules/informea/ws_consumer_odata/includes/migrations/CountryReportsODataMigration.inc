@@ -36,9 +36,9 @@ class CountryReportsODataMigration extends AbstractODataMigration {
     );
 
     $this->addFieldMapping('field_original_id', 'id');
-    $this->addFieldMapping('title', 'title_orig');
+    $this->addFieldMapping('title', 'title_en');
     $this->addFieldMapping('title_field', 'title');
-    $this->addFieldMapping('title_field:language', 'title_langs');
+    $this->addFieldMapping('title_field:language', 'title_languages');
     $this->addFieldMapping('field_treaty', 'treaty');
     $this->addFieldMapping('field_sorting_date', 'submission');
     $this->addFieldMapping('field_country', 'country');
@@ -123,7 +123,7 @@ class InforMEAODataCountryReportsMigrateSource extends InforMEAAbstractODataMigr
       'title' => 'Translated titles',
       'title_en' => 'Report title in English',
       'title_languages' => 'Title languages',
-      'treaty' => 'The meeting is linked to this treaty',
+      'treaty' => 'The country report is linked to this treaty',
       'country' => 'Country',
       'type' => 'Type',
       'url' => 'Document URL',
@@ -166,5 +166,40 @@ class InforMEAODataCountryReportsMigrateSource extends InforMEAAbstractODataMigr
     $row->title_languages = $languages;
     $all_languages = array_merge($all_languages, $languages);
     $row->languages = array_unique($all_languages);
+
+    $files = $this->consumer->loadNavigationProperty($row, 'files');
+    $row->files = array();
+    $row->files_language = array();
+    $row->filename = array();
+    foreach($files as $file) {
+      if (empty($file->url)) {
+        ws_consumer_odata_log('Invalid file for Country Report id=' . $row->id, MigrationBase::MESSAGE_WARNING);
+        continue;
+      }
+
+      // Filename validation
+      $filename = NULL;
+      if (!empty($row->filename)) {
+        $filename = $row->filename;
+      }
+      else {
+        $filename = ODataMigrationUtil::filenameFromURL($file->url);
+      }
+      if (empty($filename)) {
+        ws_consumer_odata_log('Invalid filename for Country Report id=' . $row->id . '. File URL: ' . $file->url, MigrationBase::MESSAGE_WARNING);
+        continue;
+      }
+
+      // File language handling
+      $language = NULL;
+      if (empty($language)) {
+        ws_consumer_odata_log('Missing language for file, Country Report id=' . $row->id . '. File URL: ' . $file->url, MigrationBase::MESSAGE_WARNING);
+        continue;
+      }
+
+      $row->files[] = $file->url;
+      $row->filename[] = $filename;
+      $row->files_language = $language;
+    }
   }
 }
