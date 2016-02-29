@@ -194,14 +194,14 @@ class InforMEAODataNationalPlansMigrateSource extends InforMEAAbstractODataMigra
         $filename = ODataMigrationUtil::filenameFromURL($file->url);
       }
       if (empty($filename)) {
-        ws_consumer_odata_log('Invalid file for National Plan id=' . $row->id . '. URL: ' . $file->url, MigrationBase::MESSAGE_WARNING);
+        ws_consumer_odata_log('Invalid filename for National Plan id=' . $row->id . '. File URL: ' . $file->url, MigrationBase::MESSAGE_WARNING);
         continue;
       }
 
       // File language handling
       $language = NULL;
       if (empty($language)) {
-        ws_consumer_odata_log('Invalid file for National Plan id=' . $row->id . '. URL: ' . $file->url, MigrationBase::MESSAGE_WARNING);
+        ws_consumer_odata_log('Missing language for file, National Plan id=' . $row->id . '. File URL: ' . $file->url, MigrationBase::MESSAGE_WARNING);
         continue;
       }
 
