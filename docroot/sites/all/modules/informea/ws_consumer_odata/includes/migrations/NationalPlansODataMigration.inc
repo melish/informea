@@ -18,10 +18,7 @@ class NationalPlansODataMigration extends AbstractODataMigration {
     $this->config = new ODataConsumerConfig($arguments);
     $this->arguments   = $arguments;
     $this->description = sprintf('Import %s from %s', ODataConsumerConfig::$DRUPAL_TYPE_ACTION_PLAN, $this->config->odata_name);
-    $this->source      = new NationalPlansMigrateSourceList(
-      new ODataMigrateList($this->config),
-      new NationalPlansODataMigrateItem($this->config)
-    );
+    $this->source      = new InforMEAODataNationalPlansMigrateSource($arguments, $this->config);
     $this->map = new MigrateSQLMap($this->machineName,
       array(
         'id' => array(
@@ -39,9 +36,9 @@ class NationalPlansODataMigration extends AbstractODataMigration {
     );
 
     $this->addFieldMapping('field_original_id', 'id');
-    $this->addFieldMapping('title', 'title_orig');
+    $this->addFieldMapping('title', 'title_en');
     $this->addFieldMapping('title_field', 'title');
-    $this->addFieldMapping('title_field:language', 'title_langs');
+    $this->addFieldMapping('title_field:language', 'title_languages');
     $this->addFieldMapping('field_treaty', 'treaty');
     $this->addFieldMapping('field_action_plan_type', 'type');
     $this->addFieldMapping('field_sorting_date', 'submission');
@@ -93,7 +90,7 @@ class NationalPlansODataMigration extends AbstractODataMigration {
   function prepareRow($row) {
     parent::prepareRow($row);
 
-    if (!$row->title) {
+    if (!$row->title_en) {
       ws_consumer_odata_log('Skipping National Plan with source id=' . $row->id .' because no title could be found.', MigrationBase::MESSAGE_ERROR);
       return FALSE;
     }
@@ -106,10 +103,18 @@ class NationalPlansODataMigration extends AbstractODataMigration {
 
     $row->filename = array();
     foreach ($row->files as $file) {
-      if ($filename = $this->extractFilenameFromURL($file)) {
-        $row->filename[] = $filename;
+      if (is_object($file)) {
+        if ($filename = $this->extractFilenameFromURL($file->url)) {
+          $row->filename[] = $filename;
+        }
+      }
+      else {
+        if ($filename = $this->extractFilenameFromURL($file)) {
+          $row->filename[] = $filename;
+        }
       }
     }
+    return TRUE;
   }
 }
 
@@ -168,5 +173,15 @@ class InforMEAODataNationalPlansMigrateSource extends InforMEAAbstractODataMigra
     $row->title_languages = $languages;
     $all_languages = array_merge($all_languages, $languages);
     $row->languages = array_unique($all_languages);
+
+    $files = $this->consumer->loadNavigationProperty($row, 'files');
+    $row->files = array();
+    $row->files_language = array();
+    $row->filename = array();
+    foreach($files as $file) {
+      $row->files[] = $file->url;
+      #$row->files_language = $file->language;
+      $row->filename[] = $file->filename;
+    }
   }
 }
