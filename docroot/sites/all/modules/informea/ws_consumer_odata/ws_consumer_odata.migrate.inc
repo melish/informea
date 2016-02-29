@@ -332,4 +332,17 @@ class ODataMigrationUtil {
     migrate_instrument_stop(__CLASS__ . ' http_request');
     return $ret;
   }
+
+  static function filenameFromURL($url) {
+    $ret = NULL;
+    $to_remove = "download.aspx?d=";
+    if (strpos($url, $to_remove)) {
+      $ret = substr($url, strpos($url, $to_remove) + strlen($to_remove));
+    }
+    else {
+      $l = parse_url($url);
+      $ret = basename($l['path']);
+    }
+    return $ret;
+  }
 }
