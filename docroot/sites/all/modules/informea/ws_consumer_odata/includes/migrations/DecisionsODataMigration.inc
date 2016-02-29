@@ -39,9 +39,9 @@ class DecisionsODataMigration extends AbstractODataMigration {
     );
 
     $this->addFieldMapping('field_original_id', 'id');
-    $this->addFieldMapping('title', 'title_orig');
+    $this->addFieldMapping('title', 'title_en');
     $this->addFieldMapping('title_field', 'title');
-    $this->addFieldMapping('title_field:language', 'title_langs');
+    $this->addFieldMapping('title_field:language', 'title_languages');
     $this->addFieldMapping('field_treaty', 'treaty');
     $this->addFieldMapping('field_decision_status', 'status');
     $this->addFieldMapping('field_decision_type', 'type');
@@ -51,7 +51,7 @@ class DecisionsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_meeting_title_en', 'meetingTitle');
     $this->addFieldMapping('field_meeting_url', 'meetingUrl');
     $this->addFieldMapping('body', 'content');
-    $this->addFieldMapping('body:language', 'content_langs');
+    $this->addFieldMapping('body:language', 'content_languages');
     $this->addFieldMapping('body:summary', 'summary');
     $this->addFieldMapping('field_url', 'link');
 
@@ -130,6 +130,7 @@ class DecisionsODataMigration extends AbstractODataMigration {
         $row->filename[] = $filename;
       }
     }
+    return TRUE;
   }
 
   public function map_source_meeting($id) {
@@ -144,4 +145,116 @@ class DecisionsODataMigration extends AbstractODataMigration {
     return $result;
   }
 
+}
+
+
+class InforMEAODataDecisionsMigrateSource extends InforMEAAbstractODataMigrateSource {
+
+  /**
+   * The list of available fields to map from the source, keyed by field name.
+   */
+  public function fields() {
+    return array(
+      'id' => 'Remote primary key',
+      'title' => 'Decision title',
+      'title_en' => 'Decision title in English',
+      'title_languages' => 'Title languages list',
+      'treaty' => 'The decision is linked to this treaty',
+      'status' => 'Status',
+      'type' => 'Type',
+      'meetingId' => 'The decision is linked to this meeting entity (sourcedi1)',
+      'meetingTitle' => 'Meeting title',
+      'meetingUrl' => 'Meeting URL',
+      'displayOrder' => 'Decisions display order',
+      'number' => 'Number',
+      'published' => 'Publication date',
+      'files' => 'Decision files',
+      'files_language' => 'Files language',
+      'content' => 'Body field',
+      'content_languages' => 'Body field languages',
+      'summary' => 'Body summary',
+      'link' => 'URL',
+      'filename' => 'filename',
+      'updated' => 'Updated',
+    );
+  }
+
+  protected function pullRemoteData() {
+    migrate_instrument_start(get_class($this) . ' pullRemoteData', TRUE);
+    try {
+      $query = '&$expand=title,files,content,summary&$orderby=updated%20desc';
+      $highwater = $this->activeMigration->getHighwater();
+      if (!empty($highwater)) {
+        $query .= '&$filter=updated%20gt%20datetime%27' . date('Y-m-d\TH:i:s', $highwater) . '%27';
+      }
+      $this->remote_queried = TRUE;
+      $this->items = array();
+      $rows = $this->consumer->getRemoteEntities($this->config->odata_entity, $query);
+      foreach($rows as $row) {
+        if (!property_exists($row,'updated')) {
+          $row->updated = time();
+        }
+        $this->items[$row->id] = $row;
+      }
+    } catch(Exception $e) {
+    }
+    migrate_instrument_stop(get_class($this) . ' pullRemoteData');
+  }
+
+
+  protected function populateRow($row) {
+    $all_languages = array('en');
+    $titles = $this->consumer->loadNavigationProperty($row, 'title');
+    $row->title_en = ODataMigrationUtil::prepareTitle($titles);
+    list($titles, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($titles);
+    $row->title = $titles;
+    $row->title_languages = $languages;
+    $all_languages = array_merge($all_languages, $languages);
+
+    $content = $this->consumer->loadNavigationProperty($row, 'content');
+    list($contents, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($content);
+    $row->content = $contents;
+    $row->content_languages = $languages;
+    $all_languages = array_merge($all_languages, $languages);
+    $row->languages = array_unique($all_languages);
+
+    $summary = $this->consumer->loadNavigationProperty($row, 'summary');
+    list($summaries, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($summary);
+    $row->summary = $summaries;
+
+    $files = $this->consumer->loadNavigationProperty($row, 'files');
+    $row->files = array();
+    $row->files_language = array();
+    $row->filename = array();
+    foreach($files as $file) {
+      if (empty($file->url)) {
+        ws_consumer_odata_log('Invalid file for Decision id=' . $row->id, MigrationBase::MESSAGE_WARNING);
+        continue;
+      }
+
+      // Filename validation
+      $filename = NULL;
+      if (!empty($row->filename)) {
+        $filename = $row->filename;
+      }
+      else {
+        $filename = ODataMigrationUtil::filenameFromURL($file->url);
+      }
+      if (empty($filename)) {
+        ws_consumer_odata_log('Invalid filename for Decision id=' . $row->id . '. File URL: ' . $file->url, MigrationBase::MESSAGE_WARNING);
+        continue;
+      }
+
+      // File language handling
+      $language = NULL;
+      if (empty($language)) {
+        ws_consumer_odata_log('Missing language for file, Decision id=' . $row->id . '. File URL: ' . $file->url, MigrationBase::MESSAGE_WARNING);
+        continue;
+      }
+
+      $row->files[] = $file->url;
+      $row->filename[] = $filename;
+      $row->files_language = $language;
+    }
+  }
 }
