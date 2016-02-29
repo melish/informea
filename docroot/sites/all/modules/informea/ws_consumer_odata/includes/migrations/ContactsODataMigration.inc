@@ -87,7 +87,11 @@ class ContactsODataMigration extends AbstractODataMigration {
     $row->email = str_replace(' ', '', $row->email);
     $row->name = $this->getContactName($row);
     if (!$row->name) {
-      ws_consumer_odata_log('Skipping Contact Person with source id=' . $row->id .' because no name could be found.', MigrationBase::MESSAGE_ERROR);
+      ws_consumer_odata_log('Skipping Contact Person with source id=' . $row->id .' because no name could be found', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
+    }
+    if (strlen($row->email) > 255) {
+      ws_consumer_odata_log('Skipping Contact Person with source id=' . $row->id .' because the email is invalid', MigrationBase::MESSAGE_ERROR);
       return FALSE;
     }
     // Prepare the treaties property
