@@ -17,8 +17,8 @@ function ws_consumer_odata_drush_command() {
     'ws-consumer-purge-orphans' => array(
       'description' => 'Check remote service for orphaned records (removed) and remove them locally',
       'arguments' => array(
-        'treaty_odata_identifier' => 'Treaty OData identifier',
-        'odate_entity' => 'OData entity to check'
+        'treaty_odata_identifier' => 'Treaty OData identifier (e.g. cbd)',
+        'odata_entity' => 'OData entity to check (e.g. Contacts)'
       ),
       'required-arguments' => 2,
       'options' => array(
