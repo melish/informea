@@ -149,13 +149,14 @@ abstract class ODataConsumer {
     $url = $this->url . '/' . $entity . "('" . $id . "')";
     $ch = curl_init($url);
     curl_setopt ($ch, CURLOPT_TIMEOUT, 5);
-    curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, false);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_NOBODY, true);
+    curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+    curl_setopt($ch,CURLOPT_MAXREDIRS, 3);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($ch, CURLOPT_NOBODY, FALSE);
     curl_exec($ch);
     $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    if ($code != 200) {
+    if ($code != 200 && $code != 301) {
       ws_consumer_odata_log(__METHOD__ . "($entity, $id): No longer exists at the source (HTTP: {$code}) for URL: $url", MigrationBase::MESSAGE_INFORMATIONAL);
       return FALSE;
     }
