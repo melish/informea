@@ -6,7 +6,6 @@
  * Set the API level to 2, for migration classes to be recognized by Migrate.
  */
 function ws_consumer_odata_migrate_api() {
-  $config = new ODataConsumerConfig();
   $ret = array(
     'api' => 2,
     'groups' => array(

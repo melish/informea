@@ -15,8 +15,6 @@ class DecisionsODataMigration extends AbstractODataMigration {
    */
   public function __construct($arguments) {
     parent::__construct($arguments);
-    $this->config = new ODataConsumerConfig($arguments);
-    $this->arguments   = $arguments;
     $this->description = sprintf('Import %s from %s', ODataConsumerConfig::$DRUPAL_TYPE_DECISIONS, $this->config->odata_name);
     $this->source      = new DecisionsMigrateSourceList(
       new ODataMigrateList($this->config),

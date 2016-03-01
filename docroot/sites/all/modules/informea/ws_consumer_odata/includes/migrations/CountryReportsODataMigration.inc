@@ -6,17 +6,10 @@
 class CountryReportsODataMigration extends AbstractODataMigration {
 
   /**
-   * @var ODataConsumerConfig
-   */
-  protected $config = NULL;
-
-  /**
    * {@inheritdoc}
    */
   public function __construct($arguments) {
     parent::__construct($arguments);
-    $this->config = new ODataConsumerConfig($arguments);
-    $this->arguments   = $arguments;
     $this->description = sprintf('Import %s from %s', ODataConsumerConfig::$DRUPAL_TYPE_NATIONAL_REPORT, $this->config->odata_name);
     $this->source      = new InforMEAODataCountryReportsMigrateSource($arguments, $this->config);
     $this->map = new MigrateSQLMap($this->machineName,

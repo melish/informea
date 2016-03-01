@@ -9,9 +9,12 @@ abstract class AbstractODataMigration extends Migration {
    */
   protected $config = NULL;
   protected $odata_name = NULL;
+  protected $arguments = NULL;
+
 
   public function __construct($arguments) {
     parent::__construct($arguments);
+    $this->arguments   = $arguments;
     if (!empty($arguments['dependencies'])) {
       $this->dependencies = $arguments['dependencies'];
     }

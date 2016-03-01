@@ -10,7 +10,6 @@ class MeetingsODataMigration extends AbstractODataMigration {
    */
   public function __construct($arguments) {
     parent::__construct($arguments);
-    $this->arguments   = $arguments;
     $this->description = sprintf('Import %s from %s', ODataConsumerConfig::$DRUPAL_TYPE_MEETINGS, $this->config->odata_name);
     $this->source      = new InforMEAODataMeetingsMigrateSource($arguments, $this->config);
     $this->map = new MigrateSQLMap($this->machineName,

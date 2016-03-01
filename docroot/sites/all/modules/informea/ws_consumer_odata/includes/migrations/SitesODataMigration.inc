@@ -15,8 +15,6 @@ class SitesODataMigration extends AbstractODataMigration {
    */
   public function __construct($arguments) {
     parent::__construct($arguments);
-    $this->config = new ODataConsumerConfig($arguments);
-    $this->arguments   = $arguments;
     $this->description = sprintf('Import %s from %s', ODataConsumerConfig::$DRUPAL_TYPE_SITES, $this->config->odata_name);
     $this->source      = new InforMEAODataSitesMigrateSource($arguments, $this->config);
     $this->map = new MigrateSQLMap($this->machineName,
