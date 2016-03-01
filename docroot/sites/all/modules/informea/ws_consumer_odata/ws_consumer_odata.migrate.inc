@@ -315,6 +315,7 @@ class ODataMigrationUtil {
 
   static public function http_request($url, $headers = array()) {
     migrate_instrument_start(__CLASS__ . ' http_request');
+    ws_consumer_odata_log(__METHOD__ . ": HTTP request: $url", MigrationBase::MESSAGE_INFORMATIONAL);
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
