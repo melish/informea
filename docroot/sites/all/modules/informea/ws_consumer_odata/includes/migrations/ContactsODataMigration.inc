@@ -40,7 +40,7 @@ class ContactsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_person_department', 'department');
     $this->addFieldMapping('field_address', 'address');
     $this->addFieldMapping('field_person_email', 'email');
-    $this->addFieldMapping('field_contact_telephone', 'phone');
+    $this->addFieldMapping('field_contact_telephone', 'phoneNumber');
     $this->addFieldMapping('field_contact_fax', 'fax');
     $this->addFieldMapping('field_contact_primary_nfp', 'primary');
 
@@ -49,6 +49,7 @@ class ContactsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_person_type:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('field_last_update', 'updated');
+    $this->addFieldMapping('field_last_update:timezone')->defaultValue('Europe/Zurich');
     $this->addFieldMapping('changed', 'updated');
 
     $this->addFieldMapping('comment')->defaultValue(FALSE);
@@ -65,8 +66,7 @@ class ContactsODataMigration extends AbstractODataMigration {
       'field_person_position:language', 'field_person_institution:language',
       'field_person_prefix:language', 'field_person_type:source_type', 'path',
       'body:language',
-      'field_last_update:timezone', 'field_last_update:rrule',
-      'field_last_update:to',
+      'field_last_update:rrule', 'field_last_update:to',
     ));
   }
 
@@ -86,6 +86,9 @@ class ContactsODataMigration extends AbstractODataMigration {
     if (strlen($row->email) > 255) {
       ws_consumer_odata_log('Skipping Contact Person with source id=' . $row->id .' because the email is invalid', MigrationBase::MESSAGE_ERROR);
       return FALSE;
+    }
+    if (!empty($row->updated)) {
+      $row->updated = $this->fixDateValue($row->updated);
     }
     // Prepare the treaties property
     foreach($row->treaties as &$identifier) {
@@ -167,7 +170,7 @@ class InforMEAODataContactsMigrateSource extends InforMEAAbstractODataMigrateSou
       'department' => 'Department',
       'address' => 'Working address',
       'email' => 'Work e-mail address',
-      'phone' => 'Contact telephone number',
+      'phoneNumber' => 'Contact telephone number',
       'type' => 'Type of contact (i.e. licenced focal point)',
       'fax' => 'Work fax number',
       'primary' => 'Is primary focal point',
@@ -188,7 +191,7 @@ class InforMEAODataContactsMigrateSource extends InforMEAAbstractODataMigrateSou
       $this->items = array();
       $rows = $this->consumer->getRemoteEntities($this->config->odata_entity, $query);
       foreach($rows as $row) {
-        if (!property_exists($row,'updated')) {
+        if (empty($row->updated)) {
           $row->updated = time();
         }
         $this->items[$row->id] = $row;
