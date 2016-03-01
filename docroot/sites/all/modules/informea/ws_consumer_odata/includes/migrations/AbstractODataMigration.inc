@@ -18,7 +18,8 @@ abstract class AbstractODataMigration extends Migration {
     if (!empty($arguments['dependencies'])) {
       $this->dependencies = $arguments['dependencies'];
     }
-    $this->config = new ODataConsumerConfig($arguments);
+    $config_klass = $arguments['config_class'];
+    $this->config = new $config_klass($arguments);
     /* All OData entities should have  'updated' field to use as highwater */
     $this->highwaterField = array('name' => 'updated', 'alias' => 'w', 'type' => 'int');
   }

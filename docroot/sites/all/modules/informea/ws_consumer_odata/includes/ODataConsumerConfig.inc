@@ -175,6 +175,7 @@ class ODataConsumerConfig {
       ),
     );
     return array(
+      'config_class' => 'ODataConsumerConfig',
       'class_name' => $klass,
       'odata_entity' => $odata_entity,
       'odata_name' => $odata_name,
