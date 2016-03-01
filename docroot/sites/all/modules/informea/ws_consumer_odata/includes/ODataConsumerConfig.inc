@@ -138,7 +138,7 @@ class ODataConsumerConfig {
    * @return array|bool
    *   FALSE if the treaty does not exist, failing the migration registration
    */
-  public function createMigrationConfig($odata_name, $odata_entity, $dependencies = array()) {
+  public static function createMigrationConfig($odata_name, $odata_entity, $dependencies = array()) {
     module_load_include('inc', 'treaty', 'treaty.api');
     $klass = $odata_entity . 'ODataMigration';
     $treaty = treaty_load_by_odata_name($odata_name);
