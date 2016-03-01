@@ -181,13 +181,19 @@ abstract class ODataConsumer {
     if ($odata_filter) {
       $url .= $odata_filter;
     }
+    $previous = NULL;
     while ($rows = $this->parseJSONRemoteListPage($url)) {
+      // Detect infinite loop when the service does not recognise pagination
+      if (json_encode($rows) === json_encode($previous)) {
+        break;
+      };
       if (!empty($rows)) {
         $ret = array_merge($ret, $rows);
       }
       $page += $pageSize;
       $url = sprintf($base_url . '?$top=%d&$skip=%d', $pageSize, $page);
       $url .= $odata_filter;
+      $previous = $rows;
     }
     return $ret;
   }
