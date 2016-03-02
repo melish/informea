@@ -218,4 +218,8 @@ class ODataConsumerConfig {
     );
     return $mappings[$this->odata_entity];
   }
+
+  public function getDecisionMeetingMappingTable() {
+    return 'migrate_map_odata_' . $this->odata_name . '_meetings';
+  }
 }

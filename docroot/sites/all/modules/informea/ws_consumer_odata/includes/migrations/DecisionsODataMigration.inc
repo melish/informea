@@ -128,13 +128,13 @@ class DecisionsODataMigration extends AbstractODataMigration {
   }
 
   public function map_source_meeting($id) {
-    $table_name = 'migrate_map_odata_' . $this->config->odata_name . '_meetings';
+    $table_name = $this->config->getDecisionMeetingMappingTable();
     $query = db_select($table_name, 'm')
       ->fields('m', array('destid1'))
       ->condition('m.sourceid1', $id);
     $result = $query->execute()->fetchField();
     if (!$result) {
-      ws_consumer_odata_log('Meeting with source id=' . $id .' has not been found.', MigrationBase::MESSAGE_WARNING);
+      ws_consumer_odata_log('Meeting with source id=' . $id .' has not been found.', MigrationBase::MESSAGE_ERROR);
     }
     return $result;
   }
