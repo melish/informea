@@ -130,18 +130,18 @@ class DecisionsODataImportTest extends PHPUnit_Framework_TestCase {
 
   function tearDown() {
     $migration = MigrationBase::getInstance('test_decisions_meetings_odata_v3');
-    // $migration->processRollback();
+    $migration->processRollback();
     MigrationBase::deregisterMigration('test_decisions_meetings_odata_v3');
 
     $migration = MigrationBase::getInstance('test_decisions_meetings_odata_v1');
-    // $migration->processRollback();
+    $migration->processRollback();
     MigrationBase::deregisterMigration('test_decisions_meetings_odata_v1');
 
     $migration = MigrationBase::getInstance('test_decisions_odata_v3');
-    // $migration->processRollback();
+    $migration->processRollback();
     MigrationBase::deregisterMigration('test_decisions_odata_v3');
     $migration = MigrationBase::getInstance('test_decisions_odata_v1');
-    // $migration->processRollback();
+    $migration->processRollback();
     MigrationBase::deregisterMigration('test_decisions_odata_v1');
   }
 }
