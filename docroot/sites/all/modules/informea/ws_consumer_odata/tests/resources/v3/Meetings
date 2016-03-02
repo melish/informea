@@ -1,0 +1,83 @@
+{
+  "d": {
+    "results": [
+      {
+        "__metadata": {
+          "type": "Meeting",
+          "id": "http://api.cbd.int/informea.svc/Meetings('52000000cbd0050000001595')",
+          "uri": "http://api.cbd.int/informea.svc/Meetings('52000000cbd0050000001595')"
+        },
+        "protocolVersion": 1,
+        "id": "52000000cbd0050000001595",
+        "treaty": "cbd",
+        "url": "http://www.cbd.int/kb/record/meeting/5525",
+        "title": [
+          {
+            "__metadata": {
+              "type": "LocalizableString"
+            },
+            "language": "en",
+            "value": "Workshop on an Inter-sectoral Dialogue for Enhancing the Mainstreaming of Biodiversity and Ecosystem Services in National and Sectoral Policies"
+          }
+        ],
+        "description": [
+          {
+            "__metadata": {
+              "id": "http://api.cbd.int/informea.svc/Meetings('52000000cbd0050000001595')",
+              "uri": "http://api.cbd.int/informea.svc/Meetings('52000000cbd0050000001595')",
+              "type": "Meeting"
+            },
+            "language": "en",
+            "value": "Meeting description"
+          }
+        ],
+        "start": "\/Date(1399388400000)\/",
+        "end": "\/Date(1399392000000)\/",
+        "repetition": "yearly",
+        "kind": "official",
+        "type": "MOP",
+        "access": "Public",
+        "status": "confirmed",
+        "imageUrl": "http://synergies.pops.int/Portals/2/images/logos/logo_Webinars_s.jpg",
+        "imageCopyright": "Image copyright",
+        "location": "Earth",
+        "city": "Copenhagen",
+        "country": "RO",
+        "latitude": 12,
+        "longitude": 21,
+        "updated": "\/Date(1424944431000)\/"
+      },
+      {
+        "__metadata": {
+          "type": "Meeting",
+          "id": "http://api.cbd.int/informea.svc/Meetings('52000000cbd00500000015a6')",
+          "uri": "http://api.cbd.int/informea.svc/Meetings('52000000cbd00500000015a6')"
+        },
+        "protocolVersion": 1,
+        "id": "52000000cbd00500000015a6",
+        "treaty": "cbd",
+        "url": "http://www.cbd.int/kb/record/meeting/5542",
+        "start": "\/Date(1399388400000)\/",
+        "title": [
+          {
+            "__metadata": {
+              "type": "LocalizableString"
+            },
+            "language": "en",
+            "value": "“Friends of the CBD” International Workshop on Mainstreaming Biodiversity"
+          }
+        ],
+        "description": [
+          {
+            "__metadata": {
+              "id": "http://api.cbd.int/informea.svc/Meetings('52000000cbd00500000015a6')",
+              "uri": "http://api.cbd.int/informea.svc/Meetings('52000000cbd00500000015a6')",
+              "type": "Meeting"
+            }
+          }
+        ],
+        "country": ""
+      }
+    ]
+  }
+}
