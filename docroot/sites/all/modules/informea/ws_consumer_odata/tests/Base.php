@@ -14,4 +14,12 @@ class ODataConsumerTestConfig extends ODataConsumerConfig {
     $this->endpoints[self::$ODATA_NAME_STOCKHOLM]['NationalPlans'] = 'http://informea.local.ro/sites/all/modules/informea/ws_consumer_odata/tests/resources/v1';
     $this->endpoints[self::$ODATA_NAME_STOCKHOLM]['Decisions'] = 'http://informea.local.ro/sites/all/modules/informea/ws_consumer_odata/tests/resources/v1';
   }
+
+  public function getDecisionMeetingMappingTable() {
+    $machine = Migration::currentMigration()->getMachineName();
+    if ($machine == 'test_decisions_odata_v3') {
+      return 'migrate_map_test_decisions_meetings_odata_v3';
+    }
+    return 'migrate_map_test_decisions_meetings_odata_v1';
+  }
 }

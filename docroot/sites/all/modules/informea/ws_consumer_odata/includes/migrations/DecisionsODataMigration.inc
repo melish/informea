@@ -113,11 +113,8 @@ class DecisionsODataMigration extends AbstractODataMigration {
     if (!empty($row->updated)) {
       $row->updated = $this->fixDateValue($row->updated);
     }
-
     $row->meetingId = $this->map_source_meeting($row->meetingId);
-
     $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
-
     $row->filename = array();
     foreach ($row->files as $file) {
       if ($filename = $this->extractFilenameFromURL($file)) {

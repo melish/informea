@@ -59,7 +59,27 @@ class DecisionsODataImportTest extends PHPUnit_Framework_TestCase {
     $nid = db_select('migrate_map_test_decisions_odata_v3', 'a')->fields('a', array('destid1'))->condition('sourceid1', '52000000cbd0070000003465')->execute()->fetchField();
     $this->assertNotNull($nid);
     $w = entity_metadata_wrapper('node', $nid);
+    $node = node_load($nid);
 
+    $treaties = $w->field_treaty->value();
+    $this->assertEquals(1, count($treaties));
+    $this->assertEquals('CBD', $treaties[0]->title);
+
+    $this->assertEquals('52000000cbd0070000003465', $w->field_original_id->value());
+
+    $this->assertEquals('Programme budget for the biennium following the entry into force of the Nagoya Protocol', $w->label());
+    $this->assertEquals('Programme budget for the biennium following the entry into force of the Nagoya Protocol', $node->title_field['en'][0]['value']);
+    //@todo: multilingual title
+    //@todo: body & summary
+
+    $this->assertEquals('active', strtolower($w->field_decision_status->value()->name));
+    $this->assertEquals('decision', strtolower($w->field_decision_type->value()->name));
+    $this->assertEquals('NP-1/13', $w->field_decision_number->value());
+    $this->assertEquals(1423583065, $w->field_sorting_date->value());
+
+    $meeting = $w->field_meeting->value();
+    $mw = entity_metadata_wrapper('node', $meeting);
+    $this->assertEquals('52000000cbd0050000001595', $mw->field_original_id->value());
   }
 
 
