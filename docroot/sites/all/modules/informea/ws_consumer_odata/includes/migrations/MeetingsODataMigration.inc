@@ -81,7 +81,7 @@ class MeetingsODataMigration extends AbstractODataMigration {
       'created', 'log', 'tnid', 'translate', 'revision_uid', 'is_new',
       'body:summary', 'body:format', 'path',
       'field_event_calendar_status:source_type',
-      'event_calendar_date:timezone', 'event_calendar_date:rrule',
+      'event_calendar_date:rrule',
       'field_abbreviation', 'field_event_access:source_type',
       'event_calendar_status', 'event_calendar_status:ignore_case',
       'event_calendar_status:create_term', 'event_calendar_status:source_type',
