@@ -115,8 +115,6 @@ class DecisionsODataImportTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals('http://www.google.com/', $w->field_meeting_url->value()['url']);
     $this->assertEquals(3370, $w->field_sorting_order->value());
 
-    // @todo
-    // $this->assertEquals('Decision description', $w->body->value()['value']);
     $this->assertEquals('http://www.yahoo.com/', $w->field_url->value()['url']);
     $this->assertEquals(1206271611, $w->field_last_update->value());
 
