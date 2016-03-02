@@ -8,7 +8,6 @@ class ODataConsumerTestConfig extends ODataConsumerConfig {
 
     // Override URL endpoints
     $this->endpoints[self::$ODATA_NAME_CBD]['default'] = 'http://informea.local.ro/sites/all/modules/informea/ws_consumer_odata/tests/resources/v3';
-
+    $this->endpoints[self::$ODATA_NAME_ROTTERDAM]['Contacts'] = 'http://informea.local.ro/sites/all/modules/informea/ws_consumer_odata/tests/resources/v1';
   }
-
 }
