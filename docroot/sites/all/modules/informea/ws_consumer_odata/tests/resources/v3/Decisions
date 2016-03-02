@@ -1,0 +1,152 @@
+{
+  "d": {
+    "results": [
+      {
+        "__metadata": {
+          "type": "Decision",
+          "id": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003465')",
+          "uri": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003465')"
+        },
+        "protocolVersion": 1,
+        "id": "52000000cbd0070000003465",
+        "meetingId": "52000000cbd0050000001595",
+        "link": "http://www.cbd.int/decision/cop/default.shtml?id=13413",
+        "title": [
+          {
+            "__metadata": {
+              "type": "LocalizableString"
+            },
+            "language": "en",
+            "value": "Programme budget for the biennium following the entry into force of the Nagoya Protocol"
+          }
+        ],
+        "longTitle": [
+          {
+            "__metadata": {
+              "id": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003465')",
+              "uri": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003465')",
+              "type": "Decision"
+            }
+          }
+        ],
+        "summary": [
+          {
+            "__metadata": {
+              "id": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003465')",
+              "uri": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003465')",
+              "type": "Decision"
+            }
+          }
+        ],
+        "type": "decision",
+        "status": "active",
+        "number": "NP-1/13",
+        "treaty": "cbd",
+        "published": "/Date(1423583065000)/",
+        "updated": "/Date(1428490046000)/",
+        "content": [
+          {
+            "__metadata": {
+              "id": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003465')",
+              "uri": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003465')",
+              "type": "Decision"
+            }
+          }
+        ],
+        "keywords": [
+          {
+            "__metadata": {
+              "id": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003465')",
+              "uri": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003465')",
+              "type": "Decision"
+            }
+          }
+        ],
+        "displayOrder": 401130,
+        "files": [
+          {
+            "__metadata": {
+              "id": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003465')",
+              "uri": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003465')",
+              "type": "Decision"
+            },
+            "id": "52000000cbd0070000003465"
+          }
+        ]
+      },
+      {
+        "__metadata": {
+          "type": "Decision",
+          "id": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003464')",
+          "uri": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003464')"
+        },
+        "protocolVersion": 1,
+        "id": "52000000cbd0070000003464",
+        "meetingId": "52000000cbd0050000001595",
+        "link": "http://www.cbd.int/decision/cop/default.shtml?id=13412",
+        "title": [
+          {
+            "__metadata": {
+              "type": "LocalizableString"
+            },
+            "language": "en",
+            "value": "Improving the efficiency of structures and processes under the convention and the protocols: concurrent meetings of the Conference of the Parties and the Conference of the Parties serving as the meeting of the Parties to the Protocols"
+          }
+        ],
+        "longTitle": [
+          {
+            "__metadata": {
+              "id": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003464')",
+              "uri": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003464')",
+              "type": "Decision"
+            }
+          }
+        ],
+        "summary": [
+          {
+            "__metadata": {
+              "id": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003464')",
+              "uri": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003464')",
+              "type": "Decision"
+            }
+          }
+        ],
+        "type": "decision",
+        "status": "active",
+        "number": "NP-1/12",
+        "treaty": "cbd",
+        "published": "/Date(1423583027000)/",
+        "updated": "/Date(1428490039000)/",
+        "content": [
+          {
+            "__metadata": {
+              "id": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003464')",
+              "uri": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003464')",
+              "type": "Decision"
+            }
+          }
+        ],
+        "keywords": [
+          {
+            "__metadata": {
+              "id": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003464')",
+              "uri": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003464')",
+              "type": "Decision"
+            }
+          }
+        ],
+        "displayOrder": 401120,
+        "files": [
+          {
+            "__metadata": {
+              "id": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003464')",
+              "uri": "http://api.cbd.int/informea.svc/Decisions('52000000cbd0070000003464')",
+              "type": "Decision"
+            },
+            "id": "52000000cbd0070000003464"
+          }
+        ]
+      }
+    ]
+  }
+}

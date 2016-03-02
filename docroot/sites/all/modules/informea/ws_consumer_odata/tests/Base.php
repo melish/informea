@@ -12,5 +12,6 @@ class ODataConsumerTestConfig extends ODataConsumerConfig {
     $this->endpoints[self::$ODATA_NAME_WHC]['default'] = 'http://informea.local.ro/sites/all/modules/informea/ws_consumer_odata/tests/resources/v1';
     $this->endpoints[self::$ODATA_NAME_STOCKHOLM]['Meetings'] = 'http://informea.local.ro/sites/all/modules/informea/ws_consumer_odata/tests/resources/v1';
     $this->endpoints[self::$ODATA_NAME_STOCKHOLM]['NationalPlans'] = 'http://informea.local.ro/sites/all/modules/informea/ws_consumer_odata/tests/resources/v1';
+    $this->endpoints[self::$ODATA_NAME_STOCKHOLM]['Decisions'] = 'http://informea.local.ro/sites/all/modules/informea/ws_consumer_odata/tests/resources/v1';
   }
 }

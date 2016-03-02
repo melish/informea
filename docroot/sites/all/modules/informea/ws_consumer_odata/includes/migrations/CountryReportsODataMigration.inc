@@ -185,14 +185,15 @@ class InforMEAODataCountryReportsMigrateSource extends InforMEAAbstractODataMigr
 
       // File language handling
       $language = NULL;
-      if (empty($language)) {
+      if (empty($file->language)) {
         ws_consumer_odata_log('Missing language for file, Country Report id=' . $row->id . '. File URL: ' . $file->url, MigrationBase::MESSAGE_WARNING);
         continue;
       }
+      $language = $file->language;
 
       $row->files[] = $file->url;
       $row->filename[] = $filename;
-      $row->files_language = $language;
+      $row->files_language[] = $language;
     }
   }
 }

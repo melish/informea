@@ -211,7 +211,7 @@ class InforMEAODataNationalPlansMigrateSource extends InforMEAAbstractODataMigra
 
       $row->files[] = $file->url;
       $row->filename[] = $filename;
-      $row->files_language = $language;
+      $row->files_language[] = $language;
     }
   }
 }
