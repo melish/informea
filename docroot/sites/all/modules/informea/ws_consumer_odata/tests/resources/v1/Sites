@@ -1,0 +1,104 @@
+{
+  "d": {
+    "results": [
+      {
+        "__metadata": {
+          "id": "http://whc.unesco.org:80/informea/informea.svc/Sites('1')",
+          "uri": "http://whc.unesco.org:80/informea/informea.svc/Sites('1')",
+          "type": "informea.Site"
+        },
+        "country": "ec",
+        "id": "1",
+        "latitude": "-0.81667",
+        "longitude": "-91.0",
+        "treaty": "whc",
+        "type": "whc",
+        "updated": "\/Date(1456924040000)\/",
+        "url": "http://whc.unesco.org/en/list/1",
+        "name": {
+          "results": [
+            {
+              "__metadata": {
+                "id": "http://whc.unesco.org:80/informea/informea.svc/name('1-fr')",
+                "uri": "http://whc.unesco.org:80/informea/informea.svc/name('1-fr')",
+                "type": "informea.SiteName"
+              },
+              "Id": "1-fr",
+              "language": "fr",
+              "value": "Îles Galápagos",
+              "SiteDetails": {
+                "__deferred": {
+                  "uri": "http://whc.unesco.org:80/informea/informea.svc/name('1-fr')/SiteDetails"
+                }
+              }
+            },
+            {
+              "__metadata": {
+                "id": "http://whc.unesco.org:80/informea/informea.svc/name('1-en')",
+                "uri": "http://whc.unesco.org:80/informea/informea.svc/name('1-en')",
+                "type": "informea.SiteName"
+              },
+              "Id": "1-en",
+              "language": "en",
+              "value": "Galápagos Islands",
+              "SiteDetails": {
+                "__deferred": {
+                  "uri": "http://whc.unesco.org:80/informea/informea.svc/name('1-en')/SiteDetails"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "__metadata": {
+          "id": "http://whc.unesco.org:80/informea/informea.svc/Sites('2')",
+          "uri": "http://whc.unesco.org:80/informea/informea.svc/Sites('2')",
+          "type": "informea.Site"
+        },
+        "country": "ec",
+        "id": "2",
+        "latitude": "-0.003888889",
+        "longitude": "-78.5",
+        "treaty": "whc",
+        "type": "whc",
+        "updated": "\/Date(1456924040000)\/",
+        "url": "http://whc.unesco.org/en/list/2",
+        "name": {
+          "results": [
+            {
+              "__metadata": {
+                "id": "http://whc.unesco.org:80/informea/informea.svc/name('2-fr')",
+                "uri": "http://whc.unesco.org:80/informea/informea.svc/name('2-fr')",
+                "type": "informea.SiteName"
+              },
+              "Id": "2-fr",
+              "language": "fr",
+              "value": "Ville de Quito",
+              "SiteDetails": {
+                "__deferred": {
+                  "uri": "http://whc.unesco.org:80/informea/informea.svc/name('2-fr')/SiteDetails"
+                }
+              }
+            },
+            {
+              "__metadata": {
+                "id": "http://whc.unesco.org:80/informea/informea.svc/name('2-en')",
+                "uri": "http://whc.unesco.org:80/informea/informea.svc/name('2-en')",
+                "type": "informea.SiteName"
+              },
+              "Id": "2-en",
+              "language": "en",
+              "value": "City of Quito",
+              "SiteDetails": {
+                "__deferred": {
+                  "uri": "http://whc.unesco.org:80/informea/informea.svc/name('2-en')/SiteDetails"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
