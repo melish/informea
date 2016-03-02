@@ -57,7 +57,7 @@ class ContactsODataImportTest extends PHPUnit_Framework_TestCase {
 
   function tearDown() {
     $migration = MigrationBase::getInstance('test_contacts_odata_v3');
-    // $migration->processRollback();
+    $migration->processRollback();
     MigrationBase::deregisterMigration('test_contacts_odata_v3');
   }
 }
