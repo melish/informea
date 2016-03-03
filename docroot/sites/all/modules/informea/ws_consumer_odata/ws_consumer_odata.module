@@ -51,7 +51,7 @@ function ws_consumer_odata_migrate_meetings() {
     if ($migration->getStatus() != MigrationBase::STATUS_IDLE) {
       watchdog(
         'ws_consumer_odata',
-        '[CRON] Migration is currently not idle, skipping (machine:!machine_name, status:!status)',
+        '[CRON][!machine_name] migration is currently not idle, skipping (status:!status)',
         array(
           '!machine_name' => $machine_name,
           '!status' => $migration->getStatus()
@@ -63,11 +63,20 @@ function ws_consumer_odata_migrate_meetings() {
     else {
       watchdog(
         'ws_consumer_odata',
-        '[CRON] Starting migration: !machine_name)',
+        '[CRON][!machine_name] starting migration',
         array('!machine_name' => $machine_name,),
         WATCHDOG_DEBUG
       );
-      $migration->processImport();
+      $status = $migration->processImport();
+      watchdog(
+        'ws_consumer_odata',
+        '[CRON][!machine_name] ended, status: !status',
+        array(
+          '!status' => ws_consumer_odata_migration_result_friendly_name($status),
+          '!machine_name' => $machine_name
+        ),
+        WATCHDOG_DEBUG
+      );
     }
   }
 }
@@ -84,3 +93,30 @@ function ws_consumer_odata_match_migrations_by_name($pattern) {
   }
   return $ret;
 }
+
+
+function ws_consumer_odata_migration_result_friendly_name($result) {
+  switch($result) {
+    case MigrationBase::RESULT_COMPLETED: // All records have been processed
+      return 'completed';
+
+    case MigrationBase::RESULT_INCOMPLETE:  // The process has interrupted itself (e.g., the memory limit is approaching)
+      return 'incomplete';
+
+    case MigrationBase::RESULT_STOPPED:     // The process was stopped externally (e.g., via drush migrate-stop)
+      return 'stopped';
+
+    case MigrationBase::RESULT_FAILED:      // The process had a fatal error
+      return 'failed';
+
+    case MigrationBase::RESULT_SKIPPED:     // Dependencies are unfulfilled - skip the process
+      return 'skipped';
+
+    case MigrationBase::RESULT_DISABLED:    // This migration is disabled, skipping
+      return 'disabled';
+
+    default:
+      return 'unknown';
+  }
+}
+
