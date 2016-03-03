@@ -87,9 +87,6 @@ class ContactsODataMigration extends AbstractODataMigration {
       ws_consumer_odata_log('Skipping Contact Person with source id=' . $row->id .' because the email is invalid', MigrationBase::MESSAGE_ERROR);
       return FALSE;
     }
-    if (!empty($row->updated)) {
-      $row->updated = $this->fixDateValue($row->updated);
-    }
     // Prepare the treaties property
     foreach($row->treaties as &$identifier) {
       if ($node = $this->getTreatyByODataIdentifier($identifier)) {

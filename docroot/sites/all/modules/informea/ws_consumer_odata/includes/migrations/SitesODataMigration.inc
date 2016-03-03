@@ -78,10 +78,6 @@ class SitesODataMigration extends AbstractODataMigration {
       return FALSE;
     }
 
-    if (!empty($row->updated)) {
-      $row->updated = $this->fixDateValue($row->updated);
-    }
-
     $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
     return TRUE;
   }
