@@ -99,11 +99,6 @@ class CountryReportsODataMigration extends AbstractODataMigration {
     }
     return TRUE;
   }
-
-  function prepare($entity, $row) {
-    $this->setTranslation($entity, $row->files_language);
-  }
-
 }
 
 class InforMEAODataCountryReportsMigrateSource extends InforMEAAbstractODataMigrateSource {
@@ -158,7 +153,6 @@ class InforMEAODataCountryReportsMigrateSource extends InforMEAAbstractODataMigr
     $row->title = $titles;
     $row->title_languages = $languages;
     $all_languages = array_merge($all_languages, $languages);
-    $row->languages = array_unique($all_languages);
 
     $files = $this->consumer->loadNavigationProperty($row, 'files');
     $row->files = array();
@@ -190,10 +184,12 @@ class InforMEAODataCountryReportsMigrateSource extends InforMEAAbstractODataMigr
         continue;
       }
       $language = $file->language;
+      $all_languages[] = $language;
 
       $row->files[] = $file->url;
       $row->filename[] = $filename;
       $row->files_language[] = $language;
     }
+    $row->languages = array_unique($all_languages);
   }
 }

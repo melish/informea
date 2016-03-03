@@ -53,6 +53,17 @@ class CountryReportsODataImportTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals(2, count($files));
     $this->assertTrue(in_array($files[0]['filename'], array('fm-nr-01-en.doc', 'fm-nr-01-en.pdf')));
     $this->assertTrue(in_array($files[1]['filename'], array('fm-nr-01-en.doc', 'fm-nr-01-en.pdf')));
+
+
+    $nid = db_select('migrate_map_test_countryreports_odata_v3', 'a')->fields('a', array('destid1'))->condition('sourceid1', '52000000cbd08000000310a0')->execute()->fetchField();
+    $this->assertNotNull($nid);
+    $node = node_load($nid);
+
+    $th = entity_translation_get_handler('node', $node);
+    $translations = $th->getTranslations();
+    $this->assertEquals('en', $translations->original);
+    $this->assertTrue(array_key_exists('en', $translations->data));
+    $this->assertTrue(array_key_exists('fr', $translations->data));
   }
 
 
@@ -86,6 +97,12 @@ class CountryReportsODataImportTest extends PHPUnit_Framework_TestCase {
     $files = $w->field_files->value();
     $this->assertEquals(1, count($files));
     $this->assertEquals('senegal2008_fr_mop4_0.pdf', $files[0]['filename']);
+
+    $th = entity_translation_get_handler('node', $node);
+    $translations = $th->getTranslations();
+    $this->assertEquals('en', $translations->original);
+    $this->assertTrue(array_key_exists('en', $translations->data));
+    $this->assertTrue(array_key_exists('fr', $translations->data));
   }
 
   function tearDown() {
