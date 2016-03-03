@@ -30,7 +30,7 @@ class NationalPlansODataMigration extends AbstractODataMigration {
     );
     $this->destination = new MigrateDestinationNode(
       ODataConsumerConfig::$DRUPAL_TYPE_ACTION_PLAN,
-      array('text_format' => 'full_html')
+      array('language' => 'en', 'text_format' => 'full_html')
     );
 
     $this->addFieldMapping('field_original_id', 'id');
@@ -177,7 +177,6 @@ class InforMEAODataNationalPlansMigrateSource extends InforMEAAbstractODataMigra
     $row->title = $titles;
     $row->title_languages = $languages;
     $all_languages = array_merge($all_languages, $languages);
-    $row->languages = array_unique($all_languages);
 
     $files = $this->consumer->loadNavigationProperty($row, 'files');
     $row->files = array();
@@ -208,10 +207,12 @@ class InforMEAODataNationalPlansMigrateSource extends InforMEAAbstractODataMigra
         continue;
       }
       $language = $file->language;
+      $all_languages[] = $language;
 
       $row->files[] = $file->url;
       $row->filename[] = $filename;
       $row->files_language[] = $language;
     }
+    $row->languages = array_unique($all_languages);
   }
 }

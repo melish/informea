@@ -33,6 +33,7 @@ class MeetingsODataImportTest extends PHPUnit_Framework_TestCase {
 
     $nid = db_select('migrate_map_test_meetings_odata_v3', 'a')->fields('a', array('destid1'))->condition('sourceid1', '52000000cbd0050000001595')->execute()->fetchField();
     $this->assertNotNull($nid);
+    $node = node_load($nid);
     $w = entity_metadata_wrapper('node', $nid);
 
     $treaties = $w->field_treaty->value();
@@ -40,7 +41,8 @@ class MeetingsODataImportTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals('CBD', $treaties[0]->title);
 
     $this->assertEquals('52000000cbd0050000001595', $w->field_original_id->value());
-    $this->assertEquals('Workshop on an Inter-sectoral Dialogue for Enhancing the Mainstreaming of Biodiversity and Ecosystem Services in National and Sectoral Policies', $w->label());
+    $this->assertEquals('Workshop on an Inter-sectoral Dialogue for Enhancing the Mainstreaming of Biodiversity and Ecosystem Services in National and Sectoral Policies', $node->title_field['en'][0]['value']);
+    $this->assertEquals('French Workshop on an Inter-sectoral Dialogue for Enhancing the Mainstreaming of Biodiversity and Ecosystem Services in National and Sectoral Policies', $node->title_field['fr'][0]['value']);
     $this->assertEquals('Meeting description', $w->body->value()['value']);
     $this->assertEquals('http://www.cbd.int/kb/record/meeting/5525', $w->field_url->value()['url']);
     $this->assertEquals(1399388400, strtotime($w->event_calendar_date->value()['value']));
@@ -53,12 +55,18 @@ class MeetingsODataImportTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals('logo_Webinars_s.jpg', $w->field_event_images->value()[0]['filename']);
     $this->assertEquals('Image copyright', $w->field_event_images->value()[0]['alt']);
     $this->assertEquals('Image copyright', $w->field_event_images->value()[0]['title']);
-    $this->assertEquals('Earth', $w->field_location->value());
-    $this->assertEquals('Copenhagen', $w->field_city->value());
+    $this->assertEquals('Earth', $node->field_location[LANGUAGE_NONE][0]['value']);
+    $this->assertEquals('Copenhagen', $node->field_city[LANGUAGE_NONE][0]['value']);
     $this->assertEquals('Romania', $w->field_country->value()[0]->title);
     $this->assertEquals(12, $w->field_latitude->value());
     $this->assertEquals(21, $w->field_longitude->value());
     $this->assertEquals('1424944431', $w->field_last_update->value());
+
+    $th = entity_translation_get_handler('node', $node);
+    $translations = $th->getTranslations();
+    $this->assertEquals('en', $translations->original);
+    $this->assertTrue(array_key_exists('en', $translations->data));
+    $this->assertTrue(array_key_exists('fr', $translations->data));
   }
 
   function testV1() {
@@ -72,13 +80,15 @@ class MeetingsODataImportTest extends PHPUnit_Framework_TestCase {
     $nid = db_select('migrate_map_test_meetings_odata_v1', 'a')->fields('a', array('destid1'))->condition('sourceid1', '0066da14-412c-e411-855b-005056856044')->execute()->fetchField();
     $this->assertNotNull($nid);
     $w = entity_metadata_wrapper('node', $nid);
+    $node = node_load($nid);
 
     $treaties = $w->field_treaty->value();
     $this->assertEquals(1, count($treaties));
     $this->assertEquals('Stockholm Convention', $treaties[0]->title);
 
     $this->assertEquals('0066da14-412c-e411-855b-005056856044', $w->field_original_id->value());
-    $this->assertEquals('NIP Updating in view of the entry into force of the amendment listing HBCD under the Stockholm Convention', $w->label());
+    $this->assertEquals('NIP Updating in view of the entry into force of the amendment listing HBCD under the Stockholm Convention', $node->title_field['en'][0]['value']);
+    $this->assertEquals('French NIP Updating in view of the entry into force of the amendment listing HBCD under the Stockholm Convention', $node->title_field['fr'][0]['value']);
     $this->assertEquals('The objective of this webinar', $w->body->value()['value']);
     $this->assertEquals('http://synergies.pops.int/Default.aspx?tabid=3574&meetId=0066da14-412c-e411-855b-005056856044', $w->field_url->value()['url']);
     $this->assertEquals(1399388400, strtotime($w->event_calendar_date->value()['value']));
@@ -91,13 +101,18 @@ class MeetingsODataImportTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals('logo_Webinars_s.jpg', $w->field_event_images->value()[0]['filename']);
     $this->assertEquals('Image copyright', $w->field_event_images->value()[0]['alt']);
     $this->assertEquals('Image copyright', $w->field_event_images->value()[0]['title']);
-    $this->assertEquals('Earth', $w->field_location->value());
-    $this->assertEquals('Copenhagen', $w->field_city->value());
+    $this->assertEquals('Earth', $node->field_location[LANGUAGE_NONE][0]['value']);
+    $this->assertEquals('Copenhagen', $node->field_city[LANGUAGE_NONE][0]['value']);
     $this->assertEquals('Romania', $w->field_country->value()[0]->title);
     $this->assertEquals(12, $w->field_latitude->value());
     $this->assertEquals(21, $w->field_longitude->value());
     $this->assertEquals('1424944431', $w->field_last_update->value());
 
+    $th = entity_translation_get_handler('node', $node);
+    $translations = $th->getTranslations();
+    $this->assertEquals('en', $translations->original);
+    $this->assertTrue(array_key_exists('en', $translations->data));
+    $this->assertTrue(array_key_exists('fr', $translations->data));
   }
 
   function tearDown() {

@@ -19,6 +19,13 @@
             },
             "language": "en",
             "value": "Austria - NBSAP v.1 (1998)"
+          },
+          {
+            "__metadata": {
+              "type": "LocalizableString"
+            },
+            "language": "fr",
+            "value": "French Austria - NBSAP v.1 (1998)"
           }
         ],
         "url": "http://chm.cbd.int/database/record?documentID=201545",
@@ -38,6 +45,14 @@
             "url": "http://www.cbd.int/doc/world/at/at-nbsap-01-en.pdf",
             "language": "en",
             "filename": "at-nbsap-01-en.pdf"
+          },
+          {
+            "__metadata": {
+              "type": "File"
+            },
+            "url": "https://www.cbd.int/doc/world/it/it-nbsap-01-en.pdf",
+            "language": "es",
+            "filename": "at-nbsap-01-es.pdf"
           }
         ],
         "submission": "/Date(1401302438133)/",

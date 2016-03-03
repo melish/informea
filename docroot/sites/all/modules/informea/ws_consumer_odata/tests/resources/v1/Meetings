@@ -20,6 +20,15 @@
               "id": "0066da14-412c-e411-855b-005056856044-title-en",
               "language": "en",
               "value": "NIP Updating in view of the entry into force of the amendment listing HBCD under the Stockholm Convention"
+            },
+            {
+              "__metadata": {
+                "uri": "http://informea.pops.int/Meetings/scMeetings.svc/title('0066da14-412c-e411-855b-005056856044-title-fr')",
+                "type": "Meetings.MeetingTitle"
+              },
+              "id": "0066da14-412c-e411-855b-005056856044-title-fr",
+              "language": "fr",
+              "value": "French NIP Updating in view of the entry into force of the amendment listing HBCD under the Stockholm Convention"
             }
           ]
         },
@@ -73,6 +82,15 @@
               "id": "00d2ca0e-412c-e411-855b-005056856044-title-en",
               "language": "en",
               "value": "Establishing inventories of POP-PBDEs listed under the Stockholm Convention"
+            },
+            {
+              "__metadata": {
+                "uri": "http://informea.pops.int/Meetings/scMeetings.svc/title('00d2ca0e-412c-e411-855b-005056856044-title-fr')",
+                "type": "Meetings.MeetingTitle"
+              },
+              "id": "00d2ca0e-412c-e411-855b-005056856044-title-fr",
+              "language": "fr",
+              "value": "French Establishing inventories of POP-PBDEs listed under the Stockholm Convention"
             }
           ]
         },

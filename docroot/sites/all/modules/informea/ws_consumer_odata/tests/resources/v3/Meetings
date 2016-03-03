@@ -18,6 +18,13 @@
             },
             "language": "en",
             "value": "Workshop on an Inter-sectoral Dialogue for Enhancing the Mainstreaming of Biodiversity and Ecosystem Services in National and Sectoral Policies"
+          },
+          {
+            "__metadata": {
+              "type": "LocalizableString"
+            },
+            "language": "fr",
+            "value": "French Workshop on an Inter-sectoral Dialogue for Enhancing the Mainstreaming of Biodiversity and Ecosystem Services in National and Sectoral Policies"
           }
         ],
         "description": [
@@ -29,6 +36,15 @@
             },
             "language": "en",
             "value": "Meeting description"
+          },
+          {
+            "__metadata": {
+              "id": "http://api.cbd.int/informea.svc/Meetings('52000000cbd0050000001596')",
+              "uri": "http://api.cbd.int/informea.svc/Meetings('52000000cbd0050000001596')",
+              "type": "Meeting"
+            },
+            "language": "fr",
+            "value": "French Meeting description"
           }
         ],
         "start": "\/Date(1399388400000)\/",

@@ -19,6 +19,15 @@
           "id": "title-6245",
           "language": "en",
           "value": "National Implementation Plan for Reduction and Disposal of Persistent Organic Pollutants"
+        },
+        {
+          "__metadata": {
+            "uri": "http://informea.pops.int/NationalPlans/scNationalPlans.svc/title('title-62433')",
+            "type": "NationalPlans.title"
+          },
+          "id": "title-62433",
+          "language": "fr",
+          "value": "French National Implementation Plan for Reduction and Disposal of Persistent Organic Pollutants"
         }
       ],
       "files": [

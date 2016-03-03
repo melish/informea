@@ -45,6 +45,12 @@ class SitesODataImportTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals(-0.81667, $w->field_latitude->value());
     $this->assertEquals(-91.0, $w->field_longitude->value());
     $this->assertEquals('1456924040', $w->field_last_update->value());
+
+    $th = entity_translation_get_handler('node', $node);
+    $translations = $th->getTranslations();
+    $this->assertEquals('en', $translations->original);
+    $this->assertTrue(array_key_exists('en', $translations->data));
+    $this->assertTrue(array_key_exists('fr', $translations->data));
   }
 
   function tearDown() {

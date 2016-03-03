@@ -34,9 +34,13 @@ class NationalPlansODataImportTest extends PHPUnit_Framework_TestCase {
     $nid = db_select('migrate_map_test_nationalplans_odata_v3', 'a')->fields('a', array('destid1'))->condition('sourceid1', '52000000cbd0800000031349')->execute()->fetchField();
     $this->assertNotNull($nid);
     $w = entity_metadata_wrapper('node', $nid);
+    $node = node_load($nid);
 
     $this->assertEquals('52000000cbd0800000031349', $w->field_original_id->value());
     $this->assertEquals('Austria - NBSAP v.1 (1998)', $w->label());
+    $this->assertEquals('Austria - NBSAP v.1 (1998)', $node->title_field['en'][0]['value']);
+    $this->assertEquals('French Austria - NBSAP v.1 (1998)', $node->title_field['fr'][0]['value']);
+
 
     $this->assertEquals('nbsap', strtolower($w->field_action_plan_type->value()->name));
     $this->assertEquals('1401302438', $w->field_sorting_date->value());
@@ -47,6 +51,13 @@ class NationalPlansODataImportTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals(2, count($files));
     $this->assertTrue(in_array($files[0]['filename'], array('at-nbsap-01-en.doc', 'at-nbsap-01-en.pdf')));
     $this->assertTrue(in_array($files[1]['filename'], array('at-nbsap-01-en.doc', 'at-nbsap-01-en.pdf')));
+
+    $th = entity_translation_get_handler('node', $node);
+    $translations = $th->getTranslations();
+    $this->assertEquals('en', $translations->original);
+    $this->assertTrue(array_key_exists('en', $translations->data));
+    $this->assertTrue(array_key_exists('fr', $translations->data));
+    $this->assertTrue(array_key_exists('es', $translations->data));
   }
 
 
@@ -61,9 +72,13 @@ class NationalPlansODataImportTest extends PHPUnit_Framework_TestCase {
     $nid = db_select('migrate_map_test_nationalplans_odata_v1', 'a')->fields('a', array('destid1'))->condition('sourceid1', 'UNEP-POPS-NIP-Albania-1')->execute()->fetchField();
     $this->assertNotNull($nid);
     $w = entity_metadata_wrapper('node', $nid);
+    $node = node_load($nid);
 
     $this->assertEquals('UNEP-POPS-NIP-Albania-1', $w->field_original_id->value());
     $this->assertEquals('National Implementation Plan for Reduction and Disposal of Persistent Organic Pollutants', $w->label());
+    $this->assertEquals('National Implementation Plan for Reduction and Disposal of Persistent Organic Pollutants', $node->title_field['en'][0]['value']);
+    $this->assertEquals('French National Implementation Plan for Reduction and Disposal of Persistent Organic Pollutants', $node->title_field['fr'][0]['value']);
+
     $this->assertEquals('nip', strtolower($w->field_action_plan_type->value()->name));
     $this->assertEquals('1171238400', $w->field_sorting_date->value());
     $this->assertEquals('Albania', $w->field_country->value()[0]->title);
@@ -77,6 +92,12 @@ class NationalPlansODataImportTest extends PHPUnit_Framework_TestCase {
     $treaties = $w->field_treaty->value();
     $this->assertEquals(1, count($treaties));
     $this->assertEquals('Stockholm Convention', $treaties[0]->title);
+
+    $th = entity_translation_get_handler('node', $node);
+    $translations = $th->getTranslations();
+    $this->assertEquals('en', $translations->original);
+    $this->assertTrue(array_key_exists('en', $translations->data));
+    $this->assertTrue(array_key_exists('fr', $translations->data));
   }
 
   function tearDown() {

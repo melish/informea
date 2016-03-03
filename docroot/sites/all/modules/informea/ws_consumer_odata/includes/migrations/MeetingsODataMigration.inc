@@ -25,7 +25,7 @@ class MeetingsODataMigration extends AbstractODataMigration {
     );
     $this->destination = new MigrateDestinationNode(
       ODataConsumerConfig::$DRUPAL_TYPE_MEETINGS,
-      array('text_format' => 'full_html')
+      array('language' => 'en', 'text_format' => 'full_html')
     );
 
     $this->addFieldMapping('field_original_id', 'id');
@@ -125,6 +125,17 @@ class MeetingsODataMigration extends AbstractODataMigration {
     $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
     return TRUE;
   }
+
+  /**
+   * Set translations to entity when content is available in multiple languages.
+   *
+   * @param $entity
+   * @param $row
+   */
+  function prepare($entity, $row) {
+    parent::prepare($entity, $row);
+    $entity->language = 'en';
+  }
 }
 
 class InforMEAODataMeetingsMigrateSource extends InforMEAAbstractODataMigrateSource {
@@ -187,7 +198,7 @@ class InforMEAODataMeetingsMigrateSource extends InforMEAAbstractODataMigrateSou
     $row->title_en = ODataMigrationUtil::prepareTitle($titles);
     list($titles, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($titles);
     $row->title = $titles;
-    $row->title_languages = $languages;
+    $row->title_language = $languages;
     $all_languages = array_merge($all_languages, $languages);
 
     $descriptions = $this->consumer->loadNavigationProperty($row, 'description');

@@ -25,7 +25,7 @@ class CountryReportsODataMigration extends AbstractODataMigration {
     );
     $this->destination = new MigrateDestinationNode(
       ODataConsumerConfig::$DRUPAL_TYPE_NATIONAL_REPORT,
-      array('text_format' => 'full_html')
+      array('language' => 'en', 'text_format' => 'full_html')
     );
 
     $this->addFieldMapping('field_original_id', 'id');

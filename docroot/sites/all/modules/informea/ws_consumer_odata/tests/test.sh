@@ -6,5 +6,4 @@ if [ -z $1 ]; then
   exit -1;
 fi
 
-cd docroot/
 drush -v scr $1
