@@ -27,6 +27,32 @@ class CountryReportsODataImportTest extends PHPUnit_Framework_TestCase {
     $migration = MigrationBase::getInstance('test_countryreports_odata_v3');
     $result = $migration->processImport();
     $this->assertEquals(MigrationBase::RESULT_COMPLETED, $result);
+
+    $count = db_select('migrate_map_test_countryreports_odata_v3')->fields(NULL, array('destid1'))->isNotNull('destid1')->countQuery()->execute()->fetchField();
+    $this->assertEquals(2, $count);
+
+    $nid = db_select('migrate_map_test_countryreports_odata_v3', 'a')->fields('a', array('destid1'))->condition('sourceid1', '52000000cbd08000000310a7')->execute()->fetchField();
+    $this->assertNotNull($nid);
+    $w = entity_metadata_wrapper('node', $nid);
+    $node = node_load($nid);
+
+    $this->assertEquals('52000000cbd08000000310a7', $w->field_original_id->value());
+    $this->assertEquals('Micronesia (Federated States of) - First National Report', $w->label());
+    $this->assertEquals('Micronesia (Federated States of) - First National Report', $node->title_field['en'][0]['value']);
+
+    $treaties = $w->field_treaty->value();
+    $this->assertEquals(1, count($treaties));
+    $this->assertEquals('CBD', $treaties[0]->title);
+
+    $this->assertEquals('Micronesia (Federated States of)', $w->field_country->value()[0]->title);
+    $this->assertEquals('http://chm.cbd.int/database/record?documentID=200871', $w->field_document_url->value()[0]['url']);
+    $this->assertEquals('1398998810', $w->field_sorting_date->value());
+    // $this->assertEquals('', $w->field_last_update->value());
+
+    $files = $w->field_files->value();
+    $this->assertEquals(2, count($files));
+    $this->assertTrue(in_array($files[0]['filename'], array('fm-nr-01-en.doc', 'fm-nr-01-en.pdf')));
+    $this->assertTrue(in_array($files[1]['filename'], array('fm-nr-01-en.doc', 'fm-nr-01-en.pdf')));
   }
 
 
