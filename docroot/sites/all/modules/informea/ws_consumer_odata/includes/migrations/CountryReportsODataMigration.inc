@@ -34,10 +34,12 @@ class CountryReportsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('title_field:language', 'title_languages');
     $this->addFieldMapping('field_treaty', 'treaty');
     $this->addFieldMapping('field_sorting_date', 'submission');
+    $this->addFieldMapping('field_sorting_date:timezone')->defaultValue('Europe/Zurich');
     $this->addFieldMapping('field_country', 'country');
     $this->addFieldMapping('field_document_url', 'url');
 
     $this->addFieldMapping('field_last_update', 'updated');
+    $this->addFieldMapping('field_last_update:timezone')->defaultValue('Europe/Zurich');
     $this->addFieldMapping('changed', 'updated');
 
     $this->addFieldMapping('comment')->defaultValue(FALSE);
@@ -60,15 +62,14 @@ class CountryReportsODataMigration extends AbstractODataMigration {
       'created', 'log', 'tnid', 'translate', 'revision_uid', 'is_new',
       'body', 'body:summary', 'body:format', 'path',
       'body:language',
-      'field_sorting_date:timezone', 'field_sorting_date:rrule',
-      'field_sorting_date:to', 'field_document_url:title',
+      'field_sorting_date:rrule', 'field_sorting_date:to',
+      'field_document_url:title',
       'field_document_url:attributes', 'field_document_url:language',
       'field_files:file_class', 'field_files:preserve_files',
       'field_files:source_dir', 'field_files:urlencode', 'field_files:display',
       'field_informea_tags', 'field_informea_tags:source_type',
       'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
-      'field_last_update:timezone', 'field_last_update:rrule',
-      'field_last_update:to',
+      'field_last_update:rrule', 'field_last_update:to',
     ));
   }
 
@@ -118,7 +119,6 @@ class InforMEAODataCountryReportsMigrateSource extends InforMEAAbstractODataMigr
       'title_languages' => 'Title languages',
       'treaty' => 'The country report is linked to this treaty',
       'country' => 'Country',
-      'type' => 'Type',
       'url' => 'Document URL',
       'submission' => 'Submission date',
       'files' => 'Files',

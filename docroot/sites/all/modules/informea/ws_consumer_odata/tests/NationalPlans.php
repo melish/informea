@@ -73,6 +73,10 @@ class NationalPlansODataImportTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals(1, count($files));
     $this->assertEquals('UNEP-POPS-NIP-Albania-1.English.pdf', $files[0]['filename']);
     $this->assertEquals('1429694503', $w->field_last_update->value());
+
+    $treaties = $w->field_treaty->value();
+    $this->assertEquals(1, count($treaties));
+    $this->assertEquals('Stockholm Convention', $treaties[0]->title);
   }
 
   function tearDown() {

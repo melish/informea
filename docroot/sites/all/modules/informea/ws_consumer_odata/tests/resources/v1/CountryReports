@@ -1,0 +1,127 @@
+{
+  "d": {
+    "results": [
+      {
+        "__metadata": {
+          "id": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReports('00874795-9e78-4ff7-81ca-5f42126f9186')",
+          "uri": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReports('00874795-9e78-4ff7-81ca-5f42126f9186')",
+          "type": "informea.CountryReport"
+        },
+        "country": "SEN",
+        "id": "00874795-9e78-4ff7-81ca-5f42126f9186",
+        "submission": "\/Date(1221436800000)\/",
+        "treaty": "aewa",
+        "updated": "\/Date(1384878704000)\/",
+        "url": "http://www.unep-aewa.org/node/1778",
+        "files": {
+          "results": [
+            {
+              "__metadata": {
+                "id": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReportFile('en-1778')",
+                "uri": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReportFile('en-1778')",
+                "type": "informea.CountryReportFile"
+              },
+              "filename": "senegal2008_fr_mop4_0.pdf",
+              "id": "en-1778",
+              "language": "en",
+              "mimeType": "application/pdf",
+              "url": "http://www.unep-aewa.org/sites/default/files/document/senegal2008_fr_mop4_0.pdf",
+              "CountryReportDetails": {
+                "__deferred": {
+                  "uri": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReportFile('en-1778')/CountryReportDetails"
+                }
+              }
+            }
+          ]
+        },
+        "title": {
+          "results": [
+            {
+              "__metadata": {
+                "id": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReportTitle('00874795-9e78-4ff7-81ca-5f42126f9186-en')",
+                "uri": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReportTitle('00874795-9e78-4ff7-81ca-5f42126f9186-en')",
+                "type": "informea.CountryReportTitle"
+              },
+              "Id": "00874795-9e78-4ff7-81ca-5f42126f9186-en",
+              "language": "en",
+              "value": "National Report of Senegal",
+              "CountryReportDetails": {
+                "__deferred": {
+                  "uri": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReportTitle('00874795-9e78-4ff7-81ca-5f42126f9186-en')/CountryReportDetails"
+                }
+              }
+            },
+            {
+              "__metadata": {
+                "id": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReportTitle('00874795-9e78-4ff7-81ca-5f42126f9186-fr')",
+                "uri": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReportTitle('00874795-9e78-4ff7-81ca-5f42126f9186-fr')",
+                "type": "informea.CountryReportTitle"
+              },
+              "Id": "00874795-9e78-4ff7-81ca-5f42126f9186-fr",
+              "language": "fr",
+              "value": "National Report of Senegal French",
+              "CountryReportDetails": {
+                "__deferred": {
+                  "uri": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReportTitle('00874795-9e78-4ff7-81ca-5f42126f9186-en')/CountryReportDetails"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "__metadata": {
+          "id": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReports('04204702-2264-4eba-9661-c470fcc09c78')",
+          "uri": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReports('04204702-2264-4eba-9661-c470fcc09c78')",
+          "type": "informea.CountryReport"
+        },
+        "country": "GBR",
+        "id": "04204702-2264-4eba-9661-c470fcc09c78",
+        "submission": "\/Date(1066867200000)\/",
+        "treaty": "aewa",
+        "updated": "\/Date(1384878704000)\/",
+        "url": "http://www.unep-aewa.org/node/1746",
+        "files": {
+          "results": [
+            {
+              "__metadata": {
+                "id": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReportFile('en-1746')",
+                "uri": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReportFile('en-1746')",
+                "type": "informea.CountryReportFile"
+              },
+              "filename": "uk_nat_rep_mop3_0.pdf",
+              "id": "en-1746",
+              "language": "en",
+              "mimeType": "application/pdf",
+              "url": "http://www.unep-aewa.org/sites/default/files/document/uk_nat_rep_mop3_0.pdf",
+              "CountryReportDetails": {
+                "__deferred": {
+                  "uri": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReportFile('en-1746')/CountryReportDetails"
+                }
+              }
+            }
+          ]
+        },
+        "title": {
+          "results": [
+            {
+              "__metadata": {
+                "id": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReportTitle('04204702-2264-4eba-9661-c470fcc09c78-en')",
+                "uri": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReportTitle('04204702-2264-4eba-9661-c470fcc09c78-en')",
+                "type": "informea.CountryReportTitle"
+              },
+              "Id": "04204702-2264-4eba-9661-c470fcc09c78-en",
+              "language": "en",
+              "value": "National Report of the United Kingdom of Great Britain and Nothern Ireland",
+              "CountryReportDetails": {
+                "__deferred": {
+                  "uri": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReportTitle('04204702-2264-4eba-9661-c470fcc09c78-en')/CountryReportDetails"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
