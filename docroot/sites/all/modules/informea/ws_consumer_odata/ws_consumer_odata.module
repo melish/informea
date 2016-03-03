@@ -129,6 +129,15 @@ function ws_consumer_odata_run_sequential_migrations($migrations) {
   }
 }
 
+/**
+ * Implements hook_mail_alter().
+ */
+function ws_consumer_odata_mail_alter(&$message) {
+  if ($message['module'] == 'event_calendar') {
+    $message['send'] = FALSE;
+  }
+}
+
 
 function ws_consumer_odata_match_migrations_by_name($pattern) {
   $ret = array();
