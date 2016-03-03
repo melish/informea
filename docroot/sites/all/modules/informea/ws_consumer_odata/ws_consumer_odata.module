@@ -38,7 +38,23 @@ function ws_consumer_odata_cronapi($ob, $job = NULL) {
     'ws_consumer_odata_migrate_meetings' => array(
       'description' => 'Update OData meetings data every two days',
       'rule' => '0 1 * * *', // Every day at 01:00
-    )
+    ),
+    'ws_consumer_odata_migrate_contacts' => array(
+      'description' => 'Update OData contacts every Monday',
+      'rule' => '0 5 * * 1', // Every Monday at 05:00
+    ),
+    'ws_consumer_odata_migrate_decisions' => array(
+      'description' => 'Update OData decisions every friday at 23:00',
+      'rule' => '0 23 * * 5/2', // Every Friday at 23:00
+    ),
+    'ws_consumer_odata_migrate_nationalplans' => array(
+      'description' => 'Update OData national plans every two weeks',
+      'rule' => '0 5 * * 2/2', // Every other Tuesday at 05:00
+    ),
+    'ws_consumer_odata_migrate_countryreports' => array(
+      'description' => 'Update OData country reports every two weeks',
+      'rule' => '0 5 * * 3/2', // Every other Wednesday at 05:00
+    ),
   );
 }
 
@@ -46,6 +62,38 @@ function ws_consumer_odata_cronapi($ob, $job = NULL) {
 function ws_consumer_odata_migrate_meetings() {
   $migrations = ws_consumer_odata_match_migrations_by_name('/_Meetings$/');
   watchdog('ws_consumer_odata', '[CRON] Migrating meetings', array(), WATCHDOG_DEBUG);
+  ws_consumer_odata_run_sequential_migrations($migrations);
+}
+
+function ws_consumer_odata_migrate_contacts() {
+  $migrations = ws_consumer_odata_match_migrations_by_name('/_Contacts$/');
+  watchdog('ws_consumer_odata', '[CRON] Migrating contacts', array(), WATCHDOG_DEBUG);
+  ws_consumer_odata_run_sequential_migrations($migrations);
+}
+
+function ws_consumer_odata_migrate_nationalplans() {
+  $migrations = ws_consumer_odata_match_migrations_by_name('/_NationalPlans$/');
+  watchdog('ws_consumer_odata', '[CRON] Migrating national plans', array(), WATCHDOG_DEBUG);
+  ws_consumer_odata_run_sequential_migrations($migrations);
+}
+
+function ws_consumer_odata_migrate_countryreports() {
+  $migrations = ws_consumer_odata_match_migrations_by_name('/_CountryReports$/');
+  watchdog('ws_consumer_odata', '[CRON] Migrating country reports', array(), WATCHDOG_DEBUG);
+  ws_consumer_odata_run_sequential_migrations($migrations);
+}
+
+function ws_consumer_odata_migrate_decisions() {
+  $migrations = ws_consumer_odata_match_migrations_by_name('/_Decisions$/');
+  watchdog('ws_consumer_odata', '[CRON] Migrating decisions', array(), WATCHDOG_DEBUG);
+  ws_consumer_odata_run_sequential_migrations($migrations);
+}
+
+/**
+ * @param array $migrations An array of migration machine names.
+ * @throws \Exception
+ */
+function ws_consumer_odata_run_sequential_migrations($migrations) {
   foreach($migrations as $machine_name) {
     $migration = Migration::getInstance($machine_name);
     if ($migration->getStatus() != MigrationBase::STATUS_IDLE) {
