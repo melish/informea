@@ -204,10 +204,9 @@ class InforMEAODataDecisionsMigrateSource extends InforMEAAbstractODataMigrateSo
     $row->content = $contents;
     $row->content_language = $languages;
     $all_languages = array_merge($all_languages, $languages);
-    $row->languages = array_unique($all_languages);
 
     $summary = $this->consumer->loadNavigationProperty($row, 'summary');
-    list($summaries, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($summary);
+    list($summaries, $langs) = ODataMigrationUtil::getSingleValuedMultilingualField($summary);
     $row->summary = $summaries;
 
     $files = $this->consumer->loadNavigationProperty($row, 'files');
@@ -239,10 +238,12 @@ class InforMEAODataDecisionsMigrateSource extends InforMEAAbstractODataMigrateSo
         continue;
       }
       $language = $file->language;
+      $all_languages[] = $language;
 
       $row->files[] = $file->url;
       $row->filename[] = $filename;
       $row->files_language[] = $language;
     }
+    $row->languages = array_unique($all_languages);
   }
 }
