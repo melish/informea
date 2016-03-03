@@ -34,16 +34,17 @@ class ContactsODataImportTest extends PHPUnit_Framework_TestCase {
     $nid = db_select('migrate_map_test_contacts_odata_v3', 'a')->fields('a', array('destid1'))->condition('sourceid1', '52000000cbd02200000018e9')->execute()->fetchField();
     $this->assertNotNull($nid);
     $w = entity_metadata_wrapper('node', $nid);
+    $node = node_load($nid);
 
     $this->assertEquals('52000000cbd02200000018e9', $w->field_original_id->value());
     $countries = $w->field_country->value();
     $this->assertEquals(1, count($countries));
     $this->assertEquals('Barbados', $countries[0]->title);
-    $this->assertEquals('Mr.', $w->field_person_prefix->value());
+    $this->assertEquals('Mr.', $node->field_person_prefix['en'][0]['value']);
     $this->assertEquals('John', $w->field_person_first_name->value());
     $this->assertEquals('Doe', $w->field_person_last_name->value());
-    $this->assertEquals('Permanent Secretary', $w->field_person_position->value());
-    $this->assertEquals('Ministry of Environment and Drainage', $w->field_person_institution->value());
+    $this->assertEquals('Permanent Secretary', $node->field_person_position['en'][0]['value']);
+    $this->assertEquals('Ministry of Environment and Drainage', $node->field_person_institution['en'][0]['value']);
     $this->assertEquals('Unknown', $w->field_person_department->value());
     $this->assertEquals('No address', $w->field_address->value());
     $this->assertEquals('john.doe@barbados.gov.bb', $w->field_person_email->value());
@@ -71,6 +72,7 @@ class ContactsODataImportTest extends PHPUnit_Framework_TestCase {
     $nid = db_select('migrate_map_test_contacts_odata_v1', 'a')->fields('a', array('destid1'))->condition('sourceid1', '0047078c-891c-e211-809d-0050569d5de3')->execute()->fetchField();
     $this->assertNotNull($nid);
     $w = entity_metadata_wrapper('node', $nid);
+    $node = node_load($nid);
 
     $treaties = $w->field_treaty->value();
     $this->assertEquals(1, count($treaties));
@@ -80,11 +82,11 @@ class ContactsODataImportTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals(1, count($countries));
     $this->assertEquals('Hungary', $countries[0]->title);
 
-    $this->assertEquals('Ms.', $w->field_person_prefix->value());
+    $this->assertEquals('Ms.', $node->field_person_prefix['en'][0]['value']);
     $this->assertEquals('Silvia', $w->field_person_first_name->value());
     $this->assertEquals('Daim', $w->field_person_last_name->value());
-    $this->assertEquals('Deputy Director General', $w->field_person_position->value());
-    $this->assertEquals('National Public Health Centre', $w->field_person_institution->value());
+    $this->assertEquals('Deputy Director General', $node->field_person_position['en'][0]['value']);
+    $this->assertEquals('National Public Health Centre', $node->field_person_institution['en'][0]['value']);
     $this->assertEquals('National Chemical Safety Directorate', $w->field_person_department->value());
     $this->assertEquals('Nagyv', $w->field_address->value());
     $this->assertEquals('eva.doe@yahoo.ca', $w->field_person_email->value());
