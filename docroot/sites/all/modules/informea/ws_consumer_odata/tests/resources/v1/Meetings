@@ -42,6 +42,15 @@
               "id": "0066da14-412c-e411-855b-005056856044-desc-en",
               "language": "en",
               "value": "The objective of this webinar"
+            },
+            {
+              "__metadata": {
+                "uri": "http://informea.pops.int/Meetings/scMeetings.svc/description('0066da14-412c-e411-855b-005056856044-desc-es')",
+                "type": "Meetings.MeetingDescription"
+              },
+              "id": "0066da14-412c-e411-855b-005056856044-desc-es",
+              "language": "es",
+              "value": "Spanish The objective of this webinar"
             }
           ]
         },

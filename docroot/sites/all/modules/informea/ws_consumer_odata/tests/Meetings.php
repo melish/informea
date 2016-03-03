@@ -33,17 +33,17 @@ class MeetingsODataImportTest extends PHPUnit_Framework_TestCase {
 
     $nid = db_select('migrate_map_test_meetings_odata_v3', 'a')->fields('a', array('destid1'))->condition('sourceid1', '52000000cbd0050000001595')->execute()->fetchField();
     $this->assertNotNull($nid);
-    $node = node_load($nid);
     $w = entity_metadata_wrapper('node', $nid);
+    $node = node_load($nid);
 
     $treaties = $w->field_treaty->value();
     $this->assertEquals(1, count($treaties));
     $this->assertEquals('CBD', $treaties[0]->title);
-
     $this->assertEquals('52000000cbd0050000001595', $w->field_original_id->value());
     $this->assertEquals('Workshop on an Inter-sectoral Dialogue for Enhancing the Mainstreaming of Biodiversity and Ecosystem Services in National and Sectoral Policies', $node->title_field['en'][0]['value']);
     $this->assertEquals('French Workshop on an Inter-sectoral Dialogue for Enhancing the Mainstreaming of Biodiversity and Ecosystem Services in National and Sectoral Policies', $node->title_field['fr'][0]['value']);
-    $this->assertEquals('Meeting description', $w->body->value()['value']);
+    $this->assertEquals('Meeting description', $node->body['en'][0]['value']);
+    $this->assertEquals('French Meeting description', $node->body['fr'][0]['value']);
     $this->assertEquals('http://www.cbd.int/kb/record/meeting/5525', $w->field_url->value()['url']);
     $this->assertEquals(1399388400, strtotime($w->event_calendar_date->value()['value']));
     $this->assertEquals(1399392000, strtotime($w->event_calendar_date->value()['value2']));
@@ -89,7 +89,8 @@ class MeetingsODataImportTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals('0066da14-412c-e411-855b-005056856044', $w->field_original_id->value());
     $this->assertEquals('NIP Updating in view of the entry into force of the amendment listing HBCD under the Stockholm Convention', $node->title_field['en'][0]['value']);
     $this->assertEquals('French NIP Updating in view of the entry into force of the amendment listing HBCD under the Stockholm Convention', $node->title_field['fr'][0]['value']);
-    $this->assertEquals('The objective of this webinar', $w->body->value()['value']);
+    $this->assertEquals('The objective of this webinar', $node->body['en'][0]['value']);
+    $this->assertEquals('Spanish The objective of this webinar', $node->body['es'][0]['value']);
     $this->assertEquals('http://synergies.pops.int/Default.aspx?tabid=3574&meetId=0066da14-412c-e411-855b-005056856044', $w->field_url->value()['url']);
     $this->assertEquals(1399388400, strtotime($w->event_calendar_date->value()['value']));
     $this->assertEquals(1399392000, strtotime($w->event_calendar_date->value()['value2']));
@@ -113,6 +114,7 @@ class MeetingsODataImportTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals('en', $translations->original);
     $this->assertTrue(array_key_exists('en', $translations->data));
     $this->assertTrue(array_key_exists('fr', $translations->data));
+    $this->assertTrue(array_key_exists('es', $translations->data));
   }
 
   function tearDown() {

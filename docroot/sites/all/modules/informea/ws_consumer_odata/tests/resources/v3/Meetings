@@ -39,8 +39,8 @@
           },
           {
             "__metadata": {
-              "id": "http://api.cbd.int/informea.svc/Meetings('52000000cbd0050000001596')",
-              "uri": "http://api.cbd.int/informea.svc/Meetings('52000000cbd0050000001596')",
+              "id": "http://api.cbd.int/informea.svc/Meetings('52000000cbd005000000159x6')",
+              "uri": "http://api.cbd.int/informea.svc/Meetings('52000000cbd005000000159x6')",
               "type": "Meeting"
             },
             "language": "fr",
