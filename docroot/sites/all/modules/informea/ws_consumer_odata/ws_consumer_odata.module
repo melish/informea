@@ -27,3 +27,60 @@ function ws_consumer_odata_log($message, $severity = MigrationBase::MESSAGE_INFO
     return;
   }
 }
+
+/**
+ * Implements hook_cronapi().
+ *
+ * Provided by the elysia_cron module.
+ */
+function ws_consumer_odata_cronapi($ob, $job = NULL) {
+  return array(
+    'ws_consumer_odata_migrate_meetings' => array(
+      'description' => 'Update OData meetings data every two days',
+      'rule' => '0 1 * * *', // Every day at 01:00
+    )
+  );
+}
+
+
+function ws_consumer_odata_migrate_meetings() {
+  $migrations = ws_consumer_odata_match_migrations_by_name('/_Meetings$/');
+  watchdog('ws_consumer_odata', '[CRON] Migrating meetings', array(), WATCHDOG_DEBUG);
+  foreach($migrations as $machine_name) {
+    $migration = Migration::getInstance($machine_name);
+    if ($migration->getStatus() != MigrationBase::STATUS_IDLE) {
+      watchdog(
+        'ws_consumer_odata',
+        '[CRON] Migration is currently not idle, skipping (machine:!machine_name, status:!status)',
+        array(
+          '!machine_name' => $machine_name,
+          '!status' => $migration->getStatus()
+        ),
+        WATCHDOG_ERROR
+      );
+      return;
+    }
+    else {
+      watchdog(
+        'ws_consumer_odata',
+        '[CRON] Starting migration: !machine_name)',
+        array('!machine_name' => $machine_name,),
+        WATCHDOG_DEBUG
+      );
+      $migration->processImport();
+    }
+  }
+}
+
+
+function ws_consumer_odata_match_migrations_by_name($pattern) {
+  $ret = array();
+  module_load_include('inc', 'ws_consumer_odata', 'ws_consumer_odata.migrate');
+  $migrations = ws_consumer_odata_migrate_api();
+  foreach($migrations['migrations'] as $name => $config) {
+    if (preg_match($pattern, $name)) {
+      $ret[] = $name;
+    }
+  }
+  return $ret;
+}
