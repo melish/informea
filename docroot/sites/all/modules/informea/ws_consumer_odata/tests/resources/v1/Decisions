@@ -123,6 +123,21 @@
                   "uri": "http://informea.pops.int/Documents/sc/Decisions.svc/content(guid'8fc906c1-820c-4a38-ad7c-00879971fee8')/Decisions"
                 }
               }
+            },
+            {
+              "__metadata": {
+                "uri": "http://informea.pops.int/Documents/sc/Decisions.svc/content(guid'8fc906c1-820c-4a38-ad7c-00879971fe28')",
+                "type": "ScDecisionsModel.content"
+              },
+              "id": "8fc906c1-820c-4a38-ad7c-00879971fe28",
+              "documentId": "8fc906c1-820c-4a38-ad7c-00879971fee8",
+              "language": "ar",
+              "value": "Content in arabic",
+              "Decisions": {
+                "__deferred": {
+                  "uri": "http://informea.pops.int/Documents/sc/Decisions.svc/content(guid'8fc906c1-820c-4a38-ad7c-00879971fee8')/Decisions"
+                }
+              }
             }
           ]
         },

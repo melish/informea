@@ -76,6 +76,7 @@ class DecisionsODataImportTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals('decision', strtolower($w->field_decision_type->value()->name));
     $this->assertEquals('NP-1/13', $w->field_decision_number->value());
     $this->assertEquals(1423583065, $w->field_sorting_date->value());
+    $this->assertEquals(401130, $w->field_sorting_order->value());
 
     $meeting = $w->field_meeting->value();
     $mw = entity_metadata_wrapper('node', $meeting);
@@ -140,6 +141,15 @@ class DecisionsODataImportTest extends PHPUnit_Framework_TestCase {
 
     $nid = db_select('migrate_map_test_decisions_odata_v1', 'a')->fields('a', array('destid1'))->condition('sourceid1', 'e5cee8ae-91f5-41b8-8c2e-03c8dbb5d7a4')->execute()->fetchField();
     $this->assertNotNull($nid);
+
+    $th = entity_translation_get_handler('node', $node);
+    $translations = $th->getTranslations();
+    $this->assertEquals('en', $translations->original);
+    $this->assertTrue(array_key_exists('en', $translations->data));
+    $this->assertTrue(array_key_exists('fr', $translations->data));
+    $this->assertTrue(array_key_exists('es', $translations->data));
+    $this->assertTrue(array_key_exists('ar', $translations->data), 'Missing arabic translation');
+
     $node = node_load($nid);
 
     $files = $node->field_files;

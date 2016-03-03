@@ -51,7 +51,7 @@ class DecisionsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_meeting_title_en', 'meetingTitle');
     $this->addFieldMapping('field_meeting_url', 'meetingUrl');
     $this->addFieldMapping('body', 'content');
-    $this->addFieldMapping('body:language', 'content_languages');
+    $this->addFieldMapping('body:language', 'content_language');
     $this->addFieldMapping('body:summary', 'summary');
     $this->addFieldMapping('field_url', 'link');
 
@@ -159,7 +159,7 @@ class InforMEAODataDecisionsMigrateSource extends InforMEAAbstractODataMigrateSo
       'files' => 'Decision files',
       'files_language' => 'Files language',
       'content' => 'Body field',
-      'content_languages' => 'Body field languages',
+      'content_language' => 'Body field languages',
       'summary' => 'Body summary',
       'link' => 'URL',
       'filename' => 'filename',
@@ -202,7 +202,7 @@ class InforMEAODataDecisionsMigrateSource extends InforMEAAbstractODataMigrateSo
     $content = $this->consumer->loadNavigationProperty($row, 'content');
     list($contents, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($content);
     $row->content = $contents;
-    $row->content_languages = $languages;
+    $row->content_language = $languages;
     $all_languages = array_merge($all_languages, $languages);
     $row->languages = array_unique($all_languages);
 
