@@ -43,8 +43,8 @@ class MeetingsODataImportTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals('Workshop on an Inter-sectoral Dialogue for Enhancing the Mainstreaming of Biodiversity and Ecosystem Services in National and Sectoral Policies', $w->label());
     $this->assertEquals('Meeting description', $w->body->value()['value']);
     $this->assertEquals('http://www.cbd.int/kb/record/meeting/5525', $w->field_url->value()['url']);
-    $this->assertEquals('2014-05-06 15:00:00', $w->event_calendar_date->value()['value']);
-    $this->assertEquals('2014-05-06 16:00:00', $w->event_calendar_date->value()['value2']);
+    $this->assertEquals(1399388400, strtotime($w->event_calendar_date->value()['value']));
+    $this->assertEquals(1399392000, strtotime($w->event_calendar_date->value()['value2']));
     $this->assertEquals('yearly', strtolower($w->field_event_repetition->value()->name));
     $this->assertEquals('official', strtolower($w->field_event_kind->value()->name));
     $this->assertEquals('mop', strtolower($w->field_event_type->value()->name));
@@ -81,8 +81,8 @@ class MeetingsODataImportTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals('NIP Updating in view of the entry into force of the amendment listing HBCD under the Stockholm Convention', $w->label());
     $this->assertEquals('The objective of this webinar', $w->body->value()['value']);
     $this->assertEquals('http://synergies.pops.int/Default.aspx?tabid=3574&meetId=0066da14-412c-e411-855b-005056856044', $w->field_url->value()['url']);
-    $this->assertEquals('2014-05-06 15:00:00', $w->event_calendar_date->value()['value']);
-    $this->assertEquals('2014-05-06 16:00:00', $w->event_calendar_date->value()['value2']);
+    $this->assertEquals(1399388400, strtotime($w->event_calendar_date->value()['value']));
+    $this->assertEquals(1399392000, strtotime($w->event_calendar_date->value()['value2']));
     $this->assertEquals('yearly', strtolower($w->field_event_repetition->value()->name));
     $this->assertEquals('official', strtolower($w->field_event_kind->value()->name));
     $this->assertEquals('mop', strtolower($w->field_event_type->value()->name));
