@@ -236,7 +236,7 @@ abstract class InforMEAAbstractODataMigrateSource extends MigrateSource {
   }
 
   public function performRewind() {
-    $this->pullRemoteData();
+    $this->readRemoteItems();
     reset($this->items);
   }
 
@@ -244,10 +244,28 @@ abstract class InforMEAAbstractODataMigrateSource extends MigrateSource {
     return $this->consumer->countTotal($this->config->odata_entity);
   }
 
-  public function getNextRow() {
+  protected function readRemoteItems() {
     if (empty($this->items) && !$this->remote_queried) {
-      $this->pullRemoteData();
+      migrate_instrument_start(get_class($this) . ' pullRemoteData', TRUE);
+      $this->items = array();
+      $this->remote_queried = TRUE;
+      try {
+        $rows = $this->pullRemoteData();
+        foreach ($rows as $row) {
+          if (empty($row->updated)) {
+            $row->updated = time();
+          }
+          $this->items[$row->id] = $row;
+        }
+      } catch (Exception $e) {
+        //@todo: Do we need to do anything here?
+      }
+      migrate_instrument_stop(get_class($this) . ' pullRemoteData');
     }
+  }
+
+  public function getNextRow() {
+    $this->readRemoteItems();
     if ($item = current($this->items)) {
       $this->populateRow($item);
     }

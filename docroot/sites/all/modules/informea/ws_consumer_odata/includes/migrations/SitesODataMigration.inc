@@ -105,25 +105,12 @@ class InforMEAODataSitesMigrateSource extends InforMEAAbstractODataMigrateSource
   }
 
   protected function pullRemoteData() {
-    migrate_instrument_start(get_class($this) . ' pullRemoteData', TRUE);
-    try {
-      $query = '&$expand=name&$orderby=updated%20desc';
-      $highwater = $this->activeMigration->getHighwater();
-      if (!empty($highwater)) {
-        $query .= '&$filter=updated%20gt%20datetime%27' . date('Y-m-d\TH:i:s', $highwater) . '%27';
-      }
-      $this->remote_queried = TRUE;
-      $this->items = array();
-      $rows = $this->consumer->getRemoteEntities($this->config->odata_entity, $query);
-      foreach($rows as $row) {
-        if (!property_exists($row,'updated')) {
-          $row->updated = time();
-        }
-        $this->items[$row->id] = $row;
-      }
-    } catch(Exception $e) {
+    $query = '&$expand=name&$orderby=updated%20desc';
+    $highwater = $this->activeMigration->getHighwater();
+    if (!empty($highwater)) {
+      $query .= '&$filter=updated%20gt%20datetime%27' . date('Y-m-d\TH:i:s', $highwater) . '%27';
     }
-    migrate_instrument_stop(get_class($this) . ' pullRemoteData');
+    return $this->consumer->getRemoteEntities($this->config->odata_entity, $query);
   }
 
   protected function populateRow($row) {
