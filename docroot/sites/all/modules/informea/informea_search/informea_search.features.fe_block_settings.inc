@@ -64,7 +64,7 @@ function informea_search_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => 'Geographical region',
     'visibility' => 0,
   );
 
