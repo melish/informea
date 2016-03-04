@@ -27,7 +27,7 @@ function informea_search_default_fe_block_settings() {
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -14,
+        'weight' => -19,
       ),
       'seven' => array(
         'region' => '',
@@ -37,6 +37,34 @@ function informea_search_default_fe_block_settings() {
       ),
     ),
     'title' => 'Instrument',
+    'visibility' => 0,
+  );
+
+  $export['facetapi-EeqfYRvf4OeayxrDPBXmxh0uLs695r1S'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'EeqfYRvf4OeayxrDPBXmxh0uLs695r1S',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'facetapi',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'informea_theme' => array(
+        'region' => 'sidebar_first',
+        'status' => 1,
+        'theme' => 'informea_theme',
+        'weight' => -18,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
     'visibility' => 0,
   );
 
@@ -55,7 +83,7 @@ function informea_search_default_fe_block_settings() {
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -12,
+        'weight' => -16,
       ),
       'seven' => array(
         'region' => '',
@@ -83,7 +111,7 @@ function informea_search_default_fe_block_settings() {
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -13,
+        'weight' => -17,
       ),
       'seven' => array(
         'region' => '',
@@ -111,7 +139,7 @@ function informea_search_default_fe_block_settings() {
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -15,
+        'weight' => -20,
       ),
       'seven' => array(
         'region' => '',
