@@ -91,20 +91,40 @@
                     <li><?php print l(t('Specially Protected Areas Protocol'), 'treaties/barc-spa'); ?></li>
                   </ul>
                 </li>
+                <li>
+                  <?php print l(t('Espoo Convention'), 'treaties/espoo'); ?>
+                  <ul>
+                    <li><?php print l(t('The Kyiv Protocol'), 'treaties/kyivsea'); ?></li>
+                  </ul>
+                </li>
+                <li><?php print l(t('Jeddah Convention'), 'treaties/jeddah'); ?></li>
+                <li><?php print l(t('Long-Range Transboundary Air Pollution'), 'treaties/lrtp'); ?></li>
+                <li><?php print l(t('Nairobi Convention'), 'treaties/nairobi'); ?></li>
               </ul>
             </li><!-- .col-sm-3 -->
             <li class="col-sm-3">
               <ul>
+              <li>
+                  <?php print l(t('Aarhus Convention'), 'treaties/aarhus'); ?>
+                  <ul>
+                    <li><?php print l(t('Kiev Protocol'), 'treaties/pollutantrelease'); ?></li>
+                  </ul>
+                </li>
                 <li><?php print l(t('Abidjan Convention'), 'treaties/abidjan'); ?></li>
                 <li><?php print l(t('Antigua Convention'), 'treaties/antigua'); ?></li>
                 <li><?php print l(t('Apia Convention'), 'treaties/apia'); ?></li>
                 <li><?php print l(t('Bamako Convention'), 'treaties/bamako'); ?></li>
                 <li><?php print l(t('Cartagena Convention'), 'treaties/cartagena-conv'); ?></li>
-                <li><?php print l(t('Jeddah Convention'), 'treaties/jeddah'); ?></li>
+                <li><?php print l(t('Industrial Accidents Convention'), 'treaties/industrialaccidents'); ?></li>
                 <li><?php print l(t('Kuwait Regional Convention'), 'treaties/kuwait'); ?></li>
                 <li><?php print l(t('Lusaka Agreement'), 'treaties/lusakaagreement'); ?></li>
-                <li><?php print l(t('Nairobi Convention'), 'treaties/nairobi'); ?></li>
-                <li><?php print l(t('Noumea Convention'), 'treaties/noumea'); ?></li>              
+                <li><?php print l(t('Noumea Convention'), 'treaties/noumea'); ?></li>  
+                <li>
+                  <?php print l(t('Water Convention'), 'treaties/waterconvention'); ?>
+                  <ul>
+                    <li><?php print l(t('Protocol on Water and Health'), 'treaties/protocolwaterhealth'); ?></li>
+                </ul>
+                </li>          
            </ul>
             </li><!-- .col-sm-3 -->
           </ul><!-- .dropdown-menu -->
