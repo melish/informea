@@ -184,12 +184,18 @@ class InforMEAODataMeetingsMigrateSource extends InforMEAAbstractODataMigrateSou
     $titles = $this->consumer->loadNavigationProperty($row, 'title');
     $row->title_en = ODataMigrationUtil::prepareTitle($titles);
     list($titles, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($titles);
+    foreach($languages as &$language) {
+      $language = ODataMigrationUtil::fixLanguage($language);
+    }
     $row->title = $titles;
     $row->title_language = $languages;
     $all_languages = array_merge($all_languages, $languages);
 
     $descriptions = $this->consumer->loadNavigationProperty($row, 'description');
     list($descriptions, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($descriptions);
+    foreach($languages as &$language) {
+      $language = ODataMigrationUtil::fixLanguage($language);
+    }
     $row->description = $descriptions;
     $row->description_language = $languages;
     $all_languages = array_merge($all_languages, $languages);

@@ -363,4 +363,15 @@ class ODataMigrationUtil {
     }
     return $ret;
   }
+
+  static function fixLanguage($language) {
+    // Sometimes chinese comes as 'zh' instead of 'zh-hans'
+    if (empty($language)) {
+      return 'en';
+    }
+    if ($language == 'zh') {
+      return 'zh-hans';
+    }
+    return $language;
+  }
 }
