@@ -1,0 +1,10 @@
+<?php
+
+
+/**
+ * Remove old CBD reports
+ */
+function ws_consumer_odata_update_7001() {
+  $ids = db_query("SELECT a.nid FROM node a INNER JOIN field_data_field_treaty b ON a.nid = b.entity_id WHERE a.`type` = 'action_plan' AND b.field_treaty_target_id = 255 AND a.nid NOT IN (SELECT destid1 FROM migrate_map_odata_cbd_nationalplans)")->fetchCol();
+  node_delete_multiple($ids);
+}
