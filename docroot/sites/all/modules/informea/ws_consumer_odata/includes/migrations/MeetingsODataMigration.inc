@@ -106,16 +106,6 @@ class MeetingsODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
-
-    if (!$row->title) {
-      ws_consumer_odata_log('Skipping Meeting with source id=' . $row->id .' because no title could be found.', MigrationBase::MESSAGE_ERROR);
-      return FALSE;
-    }
-    if (empty($row->start)) {
-      ws_consumer_odata_log('Skipping Meeting with source id=' . $row->id .' because no start date could be found.', MigrationBase::MESSAGE_ERROR);
-      return FALSE;
-    }
-
     if (!empty($row->start)) {
       $row->start = $this->fixDateValue($row->start);
     }
@@ -123,7 +113,7 @@ class MeetingsODataMigration extends AbstractODataMigration {
       $row->end = $this->fixDateValue($row->end);
     }
     $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
-    return TRUE;
+    return $this->validateRow($row);
   }
 
   /**
@@ -135,6 +125,18 @@ class MeetingsODataMigration extends AbstractODataMigration {
   function prepare($entity, $row) {
     parent::prepare($entity, $row);
     $entity->language = 'en';
+  }
+
+  public function validateRow($row) {
+    if (!$row->title) {
+      ws_consumer_odata_log('Skipping Meeting with source id=' . $row->id .' because no title could be found.', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
+    }
+    if (empty($row->start)) {
+      ws_consumer_odata_log('Skipping Meeting with source id=' . $row->id .' because no start date could be found.', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
+    }
+    return TRUE;
   }
 }
 

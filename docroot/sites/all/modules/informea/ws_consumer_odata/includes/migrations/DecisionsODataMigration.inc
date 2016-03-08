@@ -102,11 +102,6 @@ class DecisionsODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
-    if (!$row->title) {
-      ws_consumer_odata_log('Skipping Decision with source id=' . $row->id .' because no title could be found.', MigrationBase::MESSAGE_ERROR);
-      return FALSE;
-    }
-
     if (!empty($row->published)) {
       $row->published = $this->fixDateValue($row->published);
     }
@@ -118,7 +113,7 @@ class DecisionsODataMigration extends AbstractODataMigration {
         $row->filename[] = $filename;
       }
     }
-    return TRUE;
+    return $this->validateRow($row);
   }
 
   public function map_source_meeting($id) {
@@ -131,6 +126,14 @@ class DecisionsODataMigration extends AbstractODataMigration {
       ws_consumer_odata_log('Meeting with source id=' . $id .' has not been found.', MigrationBase::MESSAGE_ERROR);
     }
     return $result;
+  }
+
+  public function validateRow($row) {
+    if (!$row->title) {
+      ws_consumer_odata_log('Skipping Decision with source id=' . $row->id .' because no title could be found.', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
+    }
+    return TRUE;
   }
 
 }

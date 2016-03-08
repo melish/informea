@@ -88,15 +88,6 @@ class NationalPlansODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
-
-    if (!$row->title_en) {
-      ws_consumer_odata_log('Skipping National Plan with source id=' . $row->id .' because no English title could be found.', MigrationBase::MESSAGE_ERROR);
-      return FALSE;
-    }
-    if (!$row->type) {
-      ws_consumer_odata_log('Skipping National Plan with source id=' . $row->id .' missing type.', MigrationBase::MESSAGE_ERROR);
-      return FALSE;
-    }
     if (!empty($row->submission)) {
       $row->submission = $this->fixDateValue($row->submission);
     }
@@ -114,13 +105,20 @@ class NationalPlansODataMigration extends AbstractODataMigration {
         }
       }
     }
+    return $this->validateRow($row);
+  }
+
+  public function validateRow($row) {
+    if (!$row->title_en) {
+      ws_consumer_odata_log('Skipping National Plan with source id=' . $row->id .' because no English title could be found.', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
+    }
+    if (!$row->type) {
+      ws_consumer_odata_log('Skipping National Plan with source id=' . $row->id .' missing type.', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
+    }
     return TRUE;
   }
-
-  function prepare($entity, $row) {
-    $this->setTranslation($entity, $row->languages);
-  }
-
 }
 
 

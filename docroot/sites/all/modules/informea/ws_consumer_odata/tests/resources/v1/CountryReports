@@ -62,7 +62,7 @@
               "value": "National Report of Senegal French",
               "CountryReportDetails": {
                 "__deferred": {
-                  "uri": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReportTitle('00874795-9e78-4ff7-81ca-5f42126f9186-en')/CountryReportDetails"
+                  "uri": "http://odata.cms.eaudeweb.ro:80/aewa/informea.svc/CountryReportTitle('00874795-9e78-4ff7-81ca-5f42126f9186-fr')/CountryReportDetails"
                 }
               }
             }

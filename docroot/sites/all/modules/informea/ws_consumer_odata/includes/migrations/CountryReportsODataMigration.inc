@@ -80,22 +80,23 @@ class CountryReportsODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
-
-    if (!$row->title) {
-      ws_consumer_odata_log('Skipping Country Report with source id=' . $row->id .' because no title could be found.', MigrationBase::MESSAGE_ERROR);
-      return FALSE;
-    }
-
     if (!empty($row->submission)) {
       $row->submission = $this->fixDateValue($row->submission);
     }
     $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
-
     $row->filename = array();
     foreach ($row->files as $file) {
       if ($filename = $this->extractFilenameFromURL($file)) {
         $row->filename[] = $filename;
       }
+    }
+    return $this->validateRow($row);
+  }
+
+  public function validateRow($row) {
+    if(empty($row->title_en)) {
+      ws_consumer_odata_log('Skipping Country Report with source id=' . $row->id .' because no title could be found.', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
     }
     return TRUE;
   }
@@ -135,6 +136,7 @@ class InforMEAODataCountryReportsMigrateSource extends InforMEAAbstractODataMigr
   protected function populateRow($row) {
     $all_languages = array('en');
     $titles = $this->consumer->loadNavigationProperty($row, 'title');
+
     $row->title_en = ODataMigrationUtil::prepareTitle($titles);
     list($titles, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($titles);
     $row->title = $titles;

@@ -72,13 +72,15 @@ class SitesODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
+    $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
+    return $this->validateRow($row);
+  }
 
+  public function validateRow($row) {
     if (!$row->name_en) {
       ws_consumer_odata_log('Skipping Site with source id=' . $row->id .' because name in English could be found.', MigrationBase::MESSAGE_ERROR);
       return FALSE;
     }
-
-    $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
     return TRUE;
   }
 }

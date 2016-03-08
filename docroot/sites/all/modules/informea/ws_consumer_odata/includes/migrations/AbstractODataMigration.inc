@@ -11,7 +11,6 @@ abstract class AbstractODataMigration extends Migration {
   protected $odata_name = NULL;
   protected $arguments = NULL;
 
-
   public function __construct($arguments) {
     parent::__construct($arguments);
     $this->arguments   = $arguments;
@@ -23,6 +22,14 @@ abstract class AbstractODataMigration extends Migration {
     /* All OData entities should have  'updated' field to use as highwater */
     $this->highwaterField = array('name' => 'updated', 'alias' => 'w', 'type' => 'int');
   }
+
+  /**
+   * Validate a row (e.g. has title)
+   * @param stdClass $row
+   * @return boolean
+   *   TRUE if row is valid, FALSE
+   */
+  abstract function validateRow($row);
 
   /**
    * Basic preparations common to all migrated entities.
@@ -119,7 +126,7 @@ abstract class AbstractODataMigration extends Migration {
     $languages   = array_keys(language_list());
     $entity_type = $migration->getDestination()->getEntityType();
 
-    $translation_handler  = entity_translation_get_handler($entity_type, $entity);
+    $translation_handler = entity_translation_get_handler($entity_type, $entity);
     $translation_handler->setOriginalLanguage('en');
     $translation_handler->initTranslations();
     $entity->translations = $translation_handler->getTranslations();

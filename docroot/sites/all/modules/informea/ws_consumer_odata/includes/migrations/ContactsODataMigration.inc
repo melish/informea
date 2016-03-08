@@ -79,23 +79,16 @@ class ContactsODataMigration extends AbstractODataMigration {
     parent::prepareRow($row);
     $row->email = str_replace(' ', '', $row->email);
     $row->name = $this->getContactName($row);
-    if (!$row->name) {
-      ws_consumer_odata_log('Skipping Contact Person with source id=' . $row->id .' because no name could be found', MigrationBase::MESSAGE_ERROR);
-      return FALSE;
-    }
-    if (strlen($row->email) > 255) {
-      ws_consumer_odata_log('Skipping Contact Person with source id=' . $row->id .' because the email is invalid', MigrationBase::MESSAGE_ERROR);
-      return FALSE;
-    }
-    // Prepare the treaties property
+    $treaties = array();
     foreach($row->treaties as &$identifier) {
       if ($node = $this->getTreatyByODataIdentifier($identifier)) {
-        $identifier = $node->nid;
+        $treaties[] = $node->nid;
       }
       else {
         ws_consumer_odata_log(__METHOD__ . "(): Invalid OData identifier({$identifier})", MigrationBase::MESSAGE_WARNING);
       }
     }
+    $row->treaties = $treaties;
     return $this->validateRow($row);
   }
 
@@ -109,6 +102,14 @@ class ContactsODataMigration extends AbstractODataMigration {
    *   FALSE if row is invalid
    */
   function validateRow($row) {
+    if (!$row->name) {
+      ws_consumer_odata_log('Skipping Contact Person with source id=' . $row->id .' because no name could be found', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
+    }
+    if (strlen($row->email) > 255) {
+      ws_consumer_odata_log('Skipping Contact Person with source id=' . $row->id .' because the email is invalid', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
+    }
     $valid = (!empty($row->treaties) && !empty($row->name));
     if (!$valid) {
       ws_consumer_odata_log(__METHOD__ . "(): Validation failed for Contact({$row->id})", MigrationBase::MESSAGE_ERROR);
