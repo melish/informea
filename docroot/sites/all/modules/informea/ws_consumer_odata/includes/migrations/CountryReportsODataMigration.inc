@@ -97,7 +97,7 @@ class CountryReportsODataMigration extends AbstractODataMigration {
     if (!$this->validateEnglishTitle($row)) {
       return FALSE;
     }
-    if (empty($this->files)) {
+    if (empty($row->files)) {
       ws_consumer_odata_log('Country Report with id=' . $row->id . ' has no files', MigrationBase::MESSAGE_WARNING);
     }
     if (!$this->validateTreaty($row)) {
