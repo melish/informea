@@ -110,10 +110,10 @@ class InforMEAODataSitesMigrateSource extends InforMEAAbstractODataMigrateSource
 
   protected function pullRemoteData() {
     $query = '&$expand=name&$orderby=updated%20desc';
-    $highwater = $this->activeMigration->getHighwater();
-    if (!empty($highwater)) {
-      $query .= '&$filter=updated%20gt%20datetime%27' . date('Y-m-d\TH:i:s', $highwater) . '%27';
-    }
+//    $highwater = $this->activeMigration->getHighwater();
+//    if (!empty($highwater)) {
+//      $query .= '&$filter=updated%20gt%20datetime%27' . date('Y-m-d\TH:i:s', $highwater) . '%27';
+//    }
     return $this->consumer->getRemoteEntities($this->config->odata_entity, $query);
   }
 
