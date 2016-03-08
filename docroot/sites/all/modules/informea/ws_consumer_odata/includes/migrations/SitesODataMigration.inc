@@ -36,7 +36,7 @@ class SitesODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_original_id', 'id');
     $this->addFieldMapping('title', 'title_en');
     $this->addFieldMapping('title_field', 'names');
-    $this->addFieldMapping('title_field:language', 'names_languages');
+    $this->addFieldMapping('title_field:language', 'names_language');
     $this->addFieldMapping('field_treaty', 'treaty');
     $this->addFieldMapping('field_country', 'country');
     $this->addFieldMapping('field_url', 'url');
@@ -98,7 +98,7 @@ class InforMEAODataSitesMigrateSource extends InforMEAAbstractODataMigrateSource
       'id' => 'Remote primary key',
       'title_en' => 'Site name in English',
       'names' => 'Site name translations',
-      'names_languages' => 'Site name languages',
+      'names_language' => 'Site name languages',
       'treaty' => 'Site treaty',
       'country' => 'Country',
       'url' => 'Site URL on MEA website',
@@ -123,7 +123,7 @@ class InforMEAODataSitesMigrateSource extends InforMEAAbstractODataMigrateSource
     $row->title_en = ODataMigrationUtil::prepareTitle($names);
     list($names, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($names);
     $row->names = $names;
-    $row->names_languages = $languages;
+    $row->names_language = $languages;
     $all_languages = array_merge($all_languages, $languages);
     $row->languages = array_unique($all_languages);
   }

@@ -36,7 +36,7 @@ class DecisionsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_original_id', 'id');
     $this->addFieldMapping('title', 'title_en');
     $this->addFieldMapping('title_field', 'title');
-    $this->addFieldMapping('title_field:language', 'title_languages');
+    $this->addFieldMapping('title_field:language', 'title_language');
     $this->addFieldMapping('field_treaty', 'treaty');
     $this->addFieldMapping('field_decision_status', 'status');
     $this->addFieldMapping('field_decision_status:create_term')->defaultValue(TRUE);
@@ -151,7 +151,7 @@ class InforMEAODataDecisionsMigrateSource extends InforMEAAbstractODataMigrateSo
       'id' => 'Remote primary key',
       'title' => 'Decision title',
       'title_en' => 'Decision title in English',
-      'title_languages' => 'Title languages list',
+      'title_language' => 'Title languages list',
       'treaty' => 'The decision is linked to this treaty',
       'status' => 'Status',
       'type' => 'Type',
@@ -187,7 +187,7 @@ class InforMEAODataDecisionsMigrateSource extends InforMEAAbstractODataMigrateSo
     $row->title_en = ODataMigrationUtil::prepareTitle($titles);
     list($titles, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($titles);
     $row->title = $titles;
-    $row->title_languages = $languages;
+    $row->title_language = $languages;
     $all_languages = array_merge($all_languages, $languages);
 
     $content = $this->consumer->loadNavigationProperty($row, 'content');

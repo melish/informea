@@ -31,7 +31,7 @@ class CountryReportsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_original_id', 'id');
     $this->addFieldMapping('title', 'title_en');
     $this->addFieldMapping('title_field', 'title');
-    $this->addFieldMapping('title_field:language', 'title_languages');
+    $this->addFieldMapping('title_field:language', 'title_language');
     $this->addFieldMapping('field_treaty', 'treaty');
     $this->addFieldMapping('field_sorting_date', 'submission');
     $this->addFieldMapping('field_sorting_date:timezone')->defaultValue('Europe/Zurich');
@@ -114,7 +114,7 @@ class InforMEAODataCountryReportsMigrateSource extends InforMEAAbstractODataMigr
       'id' => 'Remote primary key',
       'title' => 'Translated titles',
       'title_en' => 'Report title in English',
-      'title_languages' => 'Title languages',
+      'title_language' => 'Title languages',
       'treaty' => 'The country report is linked to this treaty',
       'country' => 'Country',
       'url' => 'Document URL',
@@ -142,7 +142,7 @@ class InforMEAODataCountryReportsMigrateSource extends InforMEAAbstractODataMigr
     $row->title_en = ODataMigrationUtil::prepareTitle($titles);
     list($titles, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($titles);
     $row->title = $titles;
-    $row->title_languages = $languages;
+    $row->title_language = $languages;
     $all_languages = array_merge($all_languages, $languages);
 
     $files = $this->consumer->loadNavigationProperty($row, 'files');

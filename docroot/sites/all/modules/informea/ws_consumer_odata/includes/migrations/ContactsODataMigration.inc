@@ -58,7 +58,6 @@ class ContactsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('promote')->defaultValue(0);
     $this->addFieldMapping('sticky')->defaultValue(0);
     $this->addFieldMapping('revision')->defaultValue(0);
-    $this->addFieldMapping('language')->defaultValue(LANGUAGE_NONE);
 
     $this->addUnmigratedDestinations(array(
       'created', 'log', 'tnid', 'translate', 'revision_uid', 'is_new',

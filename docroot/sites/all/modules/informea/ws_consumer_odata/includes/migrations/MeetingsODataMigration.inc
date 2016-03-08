@@ -59,9 +59,7 @@ class MeetingsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_event_images:title', 'imageCopyright');
     $this->addFieldMapping('field_event_images:alt', 'imageCopyright');
     $this->addFieldMapping('field_location', 'location');
-    $this->addFieldMapping('field_location:language')->defaultValue(LANGUAGE_NONE);
     $this->addFieldMapping('field_city', 'city');
-    $this->addFieldMapping('field_city:language')->defaultValue(LANGUAGE_NONE);
     $this->addFieldMapping('field_country', 'country');
     $this->addFieldMapping('field_latitude', 'latitude');
     $this->addFieldMapping('field_longitude', 'longitude');
@@ -75,7 +73,6 @@ class MeetingsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('promote')->defaultValue(0);
     $this->addFieldMapping('sticky')->defaultValue(0);
     $this->addFieldMapping('revision')->defaultValue(0);
-    $this->addFieldMapping('language')->defaultValue(LANGUAGE_NONE);
 
     $this->addUnmigratedDestinations(array(
       'created', 'log', 'tnid', 'translate', 'revision_uid', 'is_new',
@@ -116,17 +113,6 @@ class MeetingsODataMigration extends AbstractODataMigration {
     return $this->validateRow($row);
   }
 
-  /**
-   * Set translations to entity when content is available in multiple languages.
-   *
-   * @param $entity
-   * @param $row
-   */
-  function prepare($entity, $row) {
-    parent::prepare($entity, $row);
-    $entity->language = 'en';
-  }
-
   public function validateRow($row) {
     if (!$this->validateEnglishTitle($row)) {
       return FALSE;
@@ -153,6 +139,8 @@ class InforMEAODataMeetingsMigrateSource extends InforMEAAbstractODataMigrateSou
       'title_en' => 'Meeting title in English',
       'title' => 'Meeting title (multilingual)',
       'title_language' => 'List of languages for the `title`',
+      'description' => 'Meeting description',
+      'description_language' => 'Languages of the description',
       'treaty' => 'The corresponding treaty OData name of this meeting',
       'url' => 'Meeting URL',
       'start' => 'Start date',

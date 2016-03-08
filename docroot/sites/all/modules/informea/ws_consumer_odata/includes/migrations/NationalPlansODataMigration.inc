@@ -36,7 +36,7 @@ class NationalPlansODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_original_id', 'id');
     $this->addFieldMapping('title', 'title_en');
     $this->addFieldMapping('title_field', 'title');
-    $this->addFieldMapping('title_field:language', 'title_languages');
+    $this->addFieldMapping('title_field:language', 'title_language');
     $this->addFieldMapping('field_treaty', 'treaty');
     $this->addFieldMapping('field_action_plan_type', 'type');
     $this->addFieldMapping('field_sorting_date', 'submission');
@@ -64,7 +64,6 @@ class NationalPlansODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('promote')->defaultValue(0);
     $this->addFieldMapping('sticky')->defaultValue(0);
     $this->addFieldMapping('revision')->defaultValue(0);
-    $this->addFieldMapping('language')->defaultValue('en');
 
     $this->addUnmigratedDestinations(array(
       'created', 'log', 'tnid', 'translate', 'revision_uid', 'is_new',
@@ -134,7 +133,7 @@ class InforMEAODataNationalPlansMigrateSource extends InforMEAAbstractODataMigra
       'id' => 'Remote primary key',
       'title' => 'Translated titles',
       'title_en' => 'Report title in English',
-      'title_languages' => 'Title languages',
+      'title_language' => 'Title languages',
       'treaty' => 'The meeting is linked to this treaty',
       'country' => 'Country',
       'type' => 'Type',
@@ -162,7 +161,7 @@ class InforMEAODataNationalPlansMigrateSource extends InforMEAAbstractODataMigra
     $row->title_en = ODataMigrationUtil::prepareTitle($titles);
     list($titles, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($titles);
     $row->title = $titles;
-    $row->title_languages = $languages;
+    $row->title_language = $languages;
     $all_languages = array_merge($all_languages, $languages);
 
     $files = $this->consumer->loadNavigationProperty($row, 'files');
