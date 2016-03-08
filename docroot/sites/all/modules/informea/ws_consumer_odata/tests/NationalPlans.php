@@ -110,7 +110,7 @@ class NationalPlansODataImportTest extends PHPUnit_Framework_TestCase {
     $ob->treaty = 255;
     $ob->type = 'NBSAP';
     $this->assertTrue($migration->validateRow($ob));
-    $messsages = WSConsumerODataLog::findMessages('/born-to-fail has no files/');
+    $messsages = WSConsumerODataLog::findMessages('/National Plan with id=born-to-fail has no files/');
     $this->assertEquals(1, count($messsages));
     $this->assertEquals(MigrationBase::MESSAGE_WARNING, $messsages[0]->severity);
   }

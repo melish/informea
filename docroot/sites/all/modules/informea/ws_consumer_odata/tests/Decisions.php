@@ -167,7 +167,7 @@ class DecisionsODataImportTest extends PHPUnit_Framework_TestCase {
     $ob->title_en = 'Stranger in a strange land';
     $ob->treaty = 255;
     $this->assertTrue($migration->validateRow($ob));
-    $messsages = WSConsumerODataLog::findMessages('/born-to-fail has no files/');
+    $messsages = WSConsumerODataLog::findMessages('/Decision with id=born-to-fail has no files/');
     $this->assertEquals(1, count($messsages));
     $this->assertEquals(MigrationBase::MESSAGE_WARNING, $messsages[0]->severity);
   }
