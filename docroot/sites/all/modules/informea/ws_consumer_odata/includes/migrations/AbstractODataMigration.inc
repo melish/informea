@@ -118,6 +118,14 @@ abstract class AbstractODataMigration extends Migration {
     return $node;
   }
 
+  function validateEnglishTitle($row) {
+    if (!$row->title_en) {
+      ws_consumer_odata_log('Skipping ' . $this->config->odata_entity . ' with source id=' . $row->id .' because no english title is present', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
+    }
+    return TRUE;
+  }
+
   public function setTranslation($entity, $translations = array()) {
     if (empty($translations)) {
       $translations = array();

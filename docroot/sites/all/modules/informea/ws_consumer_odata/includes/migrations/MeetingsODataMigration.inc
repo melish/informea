@@ -128,8 +128,7 @@ class MeetingsODataMigration extends AbstractODataMigration {
   }
 
   public function validateRow($row) {
-    if (!$row->title) {
-      ws_consumer_odata_log('Skipping Meeting with source id=' . $row->id .' because no title could be found.', MigrationBase::MESSAGE_ERROR);
+    if (!$this->validateEnglishTitle($row)) {
       return FALSE;
     }
     if (empty($row->start)) {

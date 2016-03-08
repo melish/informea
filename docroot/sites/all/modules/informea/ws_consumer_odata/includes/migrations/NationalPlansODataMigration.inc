@@ -109,8 +109,7 @@ class NationalPlansODataMigration extends AbstractODataMigration {
   }
 
   public function validateRow($row) {
-    if (!$row->title_en) {
-      ws_consumer_odata_log('Skipping National Plan with source id=' . $row->id .' because no English title could be found.', MigrationBase::MESSAGE_ERROR);
+    if (!$this->validateEnglishTitle($row)) {
       return FALSE;
     }
     if (!$row->type) {

@@ -129,8 +129,7 @@ class DecisionsODataMigration extends AbstractODataMigration {
   }
 
   public function validateRow($row) {
-    if (!$row->title) {
-      ws_consumer_odata_log('Skipping Decision with source id=' . $row->id .' because no title could be found.', MigrationBase::MESSAGE_ERROR);
+    if (!$this->validateEnglishTitle($row)) {
       return FALSE;
     }
     return TRUE;

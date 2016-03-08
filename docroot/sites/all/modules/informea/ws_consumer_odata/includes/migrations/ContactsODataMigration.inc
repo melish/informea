@@ -29,7 +29,7 @@ class ContactsODataMigration extends AbstractODataMigration {
     );
 
     $this->addFieldMapping('field_original_id', 'id');
-    $this->addFieldMapping('title', 'name');
+    $this->addFieldMapping('title', 'title_en');
     $this->addFieldMapping('field_country', 'country');
     $this->addFieldMapping('field_treaty', 'treaties');
     $this->addFieldMapping('field_person_prefix', 'prefix');
@@ -78,7 +78,7 @@ class ContactsODataMigration extends AbstractODataMigration {
   function prepareRow($row) {
     parent::prepareRow($row);
     $row->email = str_replace(' ', '', $row->email);
-    $row->name = $this->getContactName($row);
+    $row->title_en = $this->getContactName($row);
     $treaties = array();
     foreach($row->treaties as &$identifier) {
       if ($node = $this->getTreatyByODataIdentifier($identifier)) {
@@ -102,15 +102,14 @@ class ContactsODataMigration extends AbstractODataMigration {
    *   FALSE if row is invalid
    */
   function validateRow($row) {
-    if (!$row->name) {
-      ws_consumer_odata_log('Skipping Contact Person with source id=' . $row->id .' because no name could be found', MigrationBase::MESSAGE_ERROR);
+    if (!$this->validateEnglishTitle($row)) {
       return FALSE;
     }
     if (strlen($row->email) > 255) {
       ws_consumer_odata_log('Skipping Contact Person with source id=' . $row->id .' because the email is invalid', MigrationBase::MESSAGE_ERROR);
       return FALSE;
     }
-    $valid = (!empty($row->treaties) && !empty($row->name));
+    $valid = (!empty($row->treaties) && !empty($row->title_en));
     if (!$valid) {
       ws_consumer_odata_log(__METHOD__ . "(): Validation failed for Contact({$row->id})", MigrationBase::MESSAGE_ERROR);
     }
@@ -160,7 +159,6 @@ class InforMEAODataContactsMigrateSource extends InforMEAAbstractODataMigrateSou
       'id' => 'Remote primary key',
       'country' => 'Contact country',
       'prefix' => 'Name prefix (Mr.)',
-      'name' => 'Computed name of the contact',
       'firstName' => 'Given name',
       'lastName' => 'Family name',
       'position' => 'Work position',

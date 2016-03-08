@@ -34,7 +34,7 @@ class SitesODataMigration extends AbstractODataMigration {
     );
 
     $this->addFieldMapping('field_original_id', 'id');
-    $this->addFieldMapping('title', 'name_en');
+    $this->addFieldMapping('title', 'title_en');
     $this->addFieldMapping('title_field', 'names');
     $this->addFieldMapping('title_field:language', 'names_languages');
     $this->addFieldMapping('field_treaty', 'treaty');
@@ -77,8 +77,7 @@ class SitesODataMigration extends AbstractODataMigration {
   }
 
   public function validateRow($row) {
-    if (!$row->name_en) {
-      ws_consumer_odata_log('Skipping Site with source id=' . $row->id .' because name in English could be found.', MigrationBase::MESSAGE_ERROR);
+    if (!$this->validateEnglishTitle($row)) {
       return FALSE;
     }
     return TRUE;
@@ -94,7 +93,7 @@ class InforMEAODataSitesMigrateSource extends InforMEAAbstractODataMigrateSource
   public function fields() {
     return array(
       'id' => 'Remote primary key',
-      'name_en' => 'Site name in English',
+      'title_en' => 'Site name in English',
       'names' => 'Site name translations',
       'names_languages' => 'Site name languages',
       'treaty' => 'Site treaty',
@@ -118,7 +117,7 @@ class InforMEAODataSitesMigrateSource extends InforMEAAbstractODataMigrateSource
   protected function populateRow($row) {
     $all_languages = array('en');
     $names = $this->consumer->loadNavigationProperty($row, 'name');
-    $row->name_en = ODataMigrationUtil::prepareTitle($names);
+    $row->title_en = ODataMigrationUtil::prepareTitle($names);
     list($names, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($names);
     $row->names = $names;
     $row->names_languages = $languages;
