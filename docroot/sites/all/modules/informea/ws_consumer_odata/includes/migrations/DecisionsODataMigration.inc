@@ -135,7 +135,7 @@ class DecisionsODataMigration extends AbstractODataMigration {
     if (!$this->validateTreaty($row)) {
       return FALSE;
     }
-    if (empty($this->files)) {
+    if (empty($row->files)) {
       ws_consumer_odata_log('Decision with id=' . $row->id . ' has no files', MigrationBase::MESSAGE_WARNING);
     }
     return TRUE;
