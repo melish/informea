@@ -1,5 +1,22 @@
 <?php
 
+/**
+ * Implements hook_menu().
+ */
+function ws_consumer_odata_menu() {
+  $items = array();
+  $items['admin/config/services/odata-migrations'] = array(
+    'title' => t('Import MEA data'),
+    'description' => 'Configure MEA data importer tasks',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ws_consumer_odata_admin_config_form'),
+    'access arguments' => array('access administration pages'),
+    'file' => 'ws_consumer_odata.admin.inc',
+    'type' => MENU_NORMAL_ITEM
+  );
+  return $items;
+}
+
 class WSConsumerODataLog {
 
   static $messages = array();
@@ -204,4 +221,3 @@ function ws_consumer_odata_migration_result_friendly_name($result) {
       return 'unknown';
   }
 }
-
