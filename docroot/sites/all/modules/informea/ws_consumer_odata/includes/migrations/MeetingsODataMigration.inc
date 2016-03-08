@@ -121,8 +121,23 @@ class MeetingsODataMigration extends AbstractODataMigration {
       return FALSE;
     }
     if (empty($row->start)) {
-      ws_consumer_odata_log('Skipping Meeting with source id=' . $row->id .' because no start date could be found.', MigrationBase::MESSAGE_ERROR);
+      ws_consumer_odata_log('Skipping Meeting with id=' . $row->id .' because no start date could be found.', MigrationBase::MESSAGE_ERROR);
       return FALSE;
+    }
+    if (empty($row->type)) {
+      ws_consumer_odata_log('Meeting with id=' . $row->id .' has no type', MigrationBase::MESSAGE_WARNING);
+    }
+    if (empty($row->url)) {
+      ws_consumer_odata_log('Meeting with id=' . $row->id .' has no URL', MigrationBase::MESSAGE_WARNING);
+    }
+    if (empty($row->country)) {
+      ws_consumer_odata_log('Meeting with id=' . $row->id .' has no country', MigrationBase::MESSAGE_WARNING);
+    }
+    if (empty($row->city)) {
+      ws_consumer_odata_log('Meeting with id=' . $row->id .' has no city', MigrationBase::MESSAGE_WARNING);
+    }
+    if (empty($row->location)) {
+      ws_consumer_odata_log('Meeting with id=' . $row->id .' has no location', MigrationBase::MESSAGE_WARNING);
     }
     return TRUE;
   }

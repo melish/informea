@@ -117,6 +117,29 @@ class MeetingsODataImportTest extends PHPUnit_Framework_TestCase {
     $this->assertTrue(array_key_exists('es', $translations->data));
   }
 
+  function testValidateRow() {
+    /** @var MeetingsODataMigration $migration */
+    $migration = MigrationBase::getInstance('test_meetings_odata_v1');
+    $ob = new stdClass();
+    $ob->id = 'born-to-fail';
+    $this->assertFalse($migration->validateRow($ob));
+    $ob->title_en = 'Stranger in a strange land';
+    $ob->treaty = 255;
+    $ob->start = time();
+    $this->assertTrue($migration->validateRow($ob));
+
+    $messsages = WSConsumerODataLog::findMessages('/born-to-fail has no type/');
+    $this->assertEquals(1, count($messsages));
+    $messsages = WSConsumerODataLog::findMessages('/born-to-fail has no URL/');
+    $this->assertEquals(1, count($messsages));
+    $messsages = WSConsumerODataLog::findMessages('/born-to-fail has no country/');
+    $this->assertEquals(1, count($messsages));
+    $messsages = WSConsumerODataLog::findMessages('/born-to-fail has no city/');
+    $this->assertEquals(1, count($messsages));
+    $messsages = WSConsumerODataLog::findMessages('/born-to-fail has no location/');
+    $this->assertEquals(1, count($messsages));
+  }
+
   function tearDown() {
     $migration = MigrationBase::getInstance('test_meetings_odata_v3');
     $migration->processRollback();
