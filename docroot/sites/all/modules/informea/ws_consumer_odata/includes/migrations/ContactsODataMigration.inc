@@ -185,8 +185,7 @@ class InforMEAODataContactsMigrateSource extends InforMEAAbstractODataMigrateSou
   }
 
   protected function populateRow($row) {
-    $all_languages = array('en');
-    $row->languages = array_unique($all_languages);
+    $row->languages = array('en');
     $treaties = array();
     $values = $this->consumer->loadNavigationProperty($row, 'treaties');
     if (!empty($values) && is_array($values)) {
