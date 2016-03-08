@@ -1,5 +1,49 @@
 <?php
 
+class WSConsumerODataLog {
+
+  static $messages = array();
+
+  public static function log($message, $severity = MigrationBase::MESSAGE_INFORMATIONAL) {
+    $ob = new stdClass();
+    $ob->timestamp = time();
+    $ob->message = $message;
+    $ob->severity = $severity;
+    self::$messages[] = $ob;
+
+    if (function_exists('drush_log')) {
+      $status = 'status';
+      switch($severity) {
+        case MigrationBase::MESSAGE_ERROR:
+          $status = 'error';
+          break;
+        case MigrationBase::MESSAGE_WARNING:
+          $status = 'warning';
+          break;
+        case MigrationBase::MESSAGE_NOTICE:
+          $status = 'notice';
+          break;
+      }
+      drush_log($message, $status);
+      return;
+    }
+  }
+
+  public static function findMessages($pattern) {
+    $ret = array();
+    foreach(self::$messages as $message) {
+      if(preg_match($pattern, $message->message) === 1) {
+        $ret[] = $message;
+      }
+    }
+    return $ret;
+  }
+
+  public static function messages() {
+    return self::$messages;
+  }
+}
+
 /**
  * Log system for the ws_consumer_odata migrations.
  *
@@ -9,23 +53,7 @@
  *    See MigrationBase::MESSAGE_* constants
  */
 function ws_consumer_odata_log($message, $severity = MigrationBase::MESSAGE_INFORMATIONAL) {
-  if (function_exists('drush_log')) {
-    $status = 'status';
-    switch($severity) {
-      case MigrationBase::MESSAGE_ERROR:
-        $status = 'error';
-        break;
-      case MigrationBase::MESSAGE_WARNING:
-        $status = 'warning';
-        break;
-      case MigrationBase::MESSAGE_NOTICE:
-        $status = 'notice';
-        break;
-    }
-    drush_log($message, $status);
-    // Command line, no further processing
-    return;
-  }
+  WSConsumerODataLog::log($message, $severity);
 }
 
 /**

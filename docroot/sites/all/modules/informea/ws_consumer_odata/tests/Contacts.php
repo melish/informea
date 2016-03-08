@@ -107,6 +107,20 @@ class ContactsODataImportTest extends PHPUnit_Framework_TestCase {
     $migration->processRollback();
     MigrationBase::deregisterMigration('test_contacts_odata_v1');
   }
+
+  function testValidateRow() {
+    /** @var ContactsODataMigration $migration */
+    $migration = MigrationBase::getInstance('test_contacts_odata_v1');
+    $ob = new stdClass();
+    $ob->id = 'born-to-fail';
+    $this->assertFalse($migration->validateRow($ob));
+    $ob->title_en = 'John Doe';
+    $ob->email = 'stranger@mailinator.com';
+    $ob->treaties = array(255);
+    $this->assertTrue($migration->validateRow($ob));
+    $ob->email = '1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF@mailinator.com';
+    $this->assertFalse($migration->validateRow($ob));
+  }
 }
 
 $suite = new PHPUnit_Framework_TestSuite('ContactsODataImportTest');
