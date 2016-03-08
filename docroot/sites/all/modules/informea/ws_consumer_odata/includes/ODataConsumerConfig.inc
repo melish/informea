@@ -18,6 +18,7 @@ class ODataConsumerConfig {
   public static $ODATA_NAME_PLANT_TREATY = 'plant_treaty';
   public static $ODATA_NAME_WHC = 'whc';
   public static $ODATA_NAME_MONTREAL = 'montreal';
+  public static $ODATA_NAME_RAMSAR = 'ramsar';
   public static $ODATA_NAME_TEST = 'test';
 
   public static $ODATA_ENTITY_CONTACTS = 'Contacts';
@@ -101,6 +102,9 @@ class ODataConsumerConfig {
       ),
       self::$ODATA_NAME_MONTREAL => array(
         'default' => 'http://41.191.194.28:8080/informea/services/odata.svc'
+      ),
+      self::$ODATA_NAME_RAMSAR => array(
+        'default' => 'http://cray.edw.lan:34382/informea.svc'
       ),
       self::$ODATA_NAME_TEST => array(
         'default' => 'http://odata.informea.org/informea.svc'

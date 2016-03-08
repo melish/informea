@@ -27,6 +27,7 @@ function ws_consumer_odata_migrate_api() {
       'odata_rotterdam_Contacts'  => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ROTTERDAM, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
       'odata_basel_Contacts'      => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BASEL, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
       'odata_cites_Contacts'      => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
+      'odata_ramsar_Contacts'      => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
 
       /* Meetings migrations */
       'odata_cbd_Meetings'        => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
@@ -39,6 +40,7 @@ function ws_consumer_odata_migrate_api() {
       'odata_aewa_Meetings'       => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
       'odata_whc_Meetings'        => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
       'odata_montreal_Meetings'   => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_MONTREAL, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_ramsar_Meetings'     => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
 
       /* NationalPlans migrations */
       'odata_stockholm_NationalPlans' => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN),
@@ -55,6 +57,7 @@ function ws_consumer_odata_migrate_api() {
       'odata_stockholm_Decisions' => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_stockholm_Meetings')),
       'odata_rotterdam_Decisions' => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ROTTERDAM, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_rotterdam_Meetings')),
       'odata_montreal_Decisions'  => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_MONTREAL, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_montreal_Meetings')),
+      'odata_ramsar_Decisions'  => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_ramsar_Meetings')),
 
       /* CountryReports migrations */
       'odata_ascobans_CountryReports'  => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
@@ -63,9 +66,11 @@ function ws_consumer_odata_migrate_api() {
       'odata_cites_CountryReports'     => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
       'odata_cbd_CountryReports'       => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
       'odata_whc_CountryReports'       => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
+      'odata_ramsar_CountryReports'       => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
 
       /* Sites migrations */
       'odata_whc_sites' => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_SITES),
+      'odata_ramsar_Sites' => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_SITES),
     )
   );
 
