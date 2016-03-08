@@ -100,6 +100,21 @@ class NationalPlansODataImportTest extends PHPUnit_Framework_TestCase {
     $this->assertTrue(array_key_exists('fr', $translations->data));
   }
 
+  function testValidateRow() {
+    /** @var NationalPlansODataMigration $migration */
+    $migration = MigrationBase::getInstance('test_nationalplans_odata_v1');
+    $ob = new stdClass();
+    $ob->id = 'born-to-fail';
+    $this->assertFalse($migration->validateRow($ob));
+    $ob->title_en = 'Stranger in a strange land';
+    $ob->treaty = 255;
+    $ob->type = 'NBSAP';
+    $this->assertTrue($migration->validateRow($ob));
+    $messsages = WSConsumerODataLog::findMessages('/born-to-fail has no files/');
+    $this->assertEquals(1, count($messsages));
+    $this->assertEquals(MigrationBase::MESSAGE_WARNING, $messsages[0]->severity);
+  }
+
   function tearDown() {
     $migration = MigrationBase::getInstance('test_nationalplans_odata_v3');
     $migration->processRollback();

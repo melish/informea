@@ -118,6 +118,9 @@ class NationalPlansODataMigration extends AbstractODataMigration {
       ws_consumer_odata_log('Skipping National Plan with source id=' . $row->id .' missing type.', MigrationBase::MESSAGE_ERROR);
       return FALSE;
     }
+    if (empty($this->files)) {
+      ws_consumer_odata_log('National Plan with id=' . $row->id . ' has no files', MigrationBase::MESSAGE_WARNING);
+    }
     return TRUE;
   }
 }
