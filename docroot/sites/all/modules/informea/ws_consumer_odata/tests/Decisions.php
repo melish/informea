@@ -158,6 +158,20 @@ class DecisionsODataImportTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals('UNEP-POPS-POPRC.7-POPRC-7-6.French.pdf', $files['fr'][0]['filename']);
   }
 
+  function testValidateRow() {
+    /** @var DecisionsODataMigration $migration */
+    $migration = MigrationBase::getInstance('test_decisions_odata_v1');
+    $ob = new stdClass();
+    $ob->id = 'born-to-fail';
+    $this->assertFalse($migration->validateRow($ob));
+    $ob->title_en = 'Stranger in a strange land';
+    $ob->treaty = 255;
+    $this->assertTrue($migration->validateRow($ob));
+    $messsages = WSConsumerODataLog::findMessages('/born-to-fail has no files/');
+    $this->assertEquals(1, count($messsages));
+    $this->assertEquals(MigrationBase::MESSAGE_WARNING, $messsages[0]->severity);
+  }
+
   function tearDown() {
     $migration = MigrationBase::getInstance('test_decisions_meetings_odata_v3');
     $migration->processRollback();
