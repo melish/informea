@@ -55,8 +55,8 @@ class MeetingsODataImportTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals('logo_Webinars_s.jpg', $w->field_event_images->value()[0]['filename']);
     $this->assertEquals('Image copyright', $w->field_event_images->value()[0]['alt']);
     $this->assertEquals('Image copyright', $w->field_event_images->value()[0]['title']);
-    $this->assertEquals('Earth', $node->field_location[LANGUAGE_NONE][0]['value']);
-    $this->assertEquals('Copenhagen', $node->field_city[LANGUAGE_NONE][0]['value']);
+    $this->assertEquals('Earth', $w->field_location->value());
+    $this->assertEquals('Copenhagen', $w->field_city->value());
     $this->assertEquals('Romania', $w->field_country->value()[0]->title);
     $this->assertEquals(12, $w->field_latitude->value());
     $this->assertEquals(21, $w->field_longitude->value());
@@ -102,8 +102,8 @@ class MeetingsODataImportTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals('logo_Webinars_s.jpg', $w->field_event_images->value()[0]['filename']);
     $this->assertEquals('Image copyright', $w->field_event_images->value()[0]['alt']);
     $this->assertEquals('Image copyright', $w->field_event_images->value()[0]['title']);
-    $this->assertEquals('Earth', $node->field_location[LANGUAGE_NONE][0]['value']);
-    $this->assertEquals('Copenhagen', $node->field_city[LANGUAGE_NONE][0]['value']);
+    $this->assertEquals('Earth', $w->field_location->value());
+    $this->assertEquals('Copenhagen', $w->field_city->value());
     $this->assertEquals('Romania', $w->field_country->value()[0]->title);
     $this->assertEquals(12, $w->field_latitude->value());
     $this->assertEquals(21, $w->field_longitude->value());
