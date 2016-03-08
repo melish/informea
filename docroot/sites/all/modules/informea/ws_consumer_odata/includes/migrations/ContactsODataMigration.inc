@@ -109,11 +109,11 @@ class ContactsODataMigration extends AbstractODataMigration {
       ws_consumer_odata_log('Skipping Contact Person with source id=' . $row->id .' because the email is invalid', MigrationBase::MESSAGE_ERROR);
       return FALSE;
     }
-    $valid = (!empty($row->treaties) && !empty($row->title_en));
-    if (!$valid) {
-      ws_consumer_odata_log(__METHOD__ . "(): Validation failed for Contact({$row->id})", MigrationBase::MESSAGE_ERROR);
+    if (empty($row->treaties)) {
+      ws_consumer_odata_log('Skipping Contact with source id=' . $row->id .' because is missing treaties', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
     }
-    return $valid;
+    return TRUE;
   }
 
   /**

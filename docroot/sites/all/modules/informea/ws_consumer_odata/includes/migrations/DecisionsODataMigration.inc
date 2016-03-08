@@ -132,6 +132,9 @@ class DecisionsODataMigration extends AbstractODataMigration {
     if (!$this->validateEnglishTitle($row)) {
       return FALSE;
     }
+    if (!$this->validateTreaty($row)) {
+      return FALSE;
+    }
     return TRUE;
   }
 

@@ -131,6 +131,9 @@ class MeetingsODataMigration extends AbstractODataMigration {
     if (!$this->validateEnglishTitle($row)) {
       return FALSE;
     }
+    if (!$this->validateTreaty($row)) {
+      return FALSE;
+    }
     if (empty($row->start)) {
       ws_consumer_odata_log('Skipping Meeting with source id=' . $row->id .' because no start date could be found.', MigrationBase::MESSAGE_ERROR);
       return FALSE;
