@@ -8,3 +8,11 @@ function ws_consumer_odata_update_7001() {
   $ids = db_query("SELECT a.nid FROM node a INNER JOIN field_data_field_treaty b ON a.nid = b.entity_id WHERE a.`type` = 'action_plan' AND b.field_treaty_target_id = 255 AND a.nid NOT IN (SELECT destid1 FROM migrate_map_odata_cbd_nationalplans)")->fetchCol();
   node_delete_multiple($ids);
 }
+
+/**
+ * Remove old CBD contacts
+ */
+function ws_consumer_odata_update_7002() {
+  $ids = db_query("SELECT a.nid FROM node a INNER JOIN field_data_field_treaty b ON a.nid = b.entity_id WHERE a.`type` = 'contact_person' AND b.field_treaty_target_id = 255 AND a.nid NOT IN (SELECT destid1 FROM migrate_map_odata_cbd_contacts)")->fetchCol();
+  node_delete_multiple($ids);
+}
