@@ -157,7 +157,6 @@ abstract class ODataConsumer {
     curl_exec($ch);
     $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     if ($code != 200 && $code != 301) {
-      ws_consumer_odata_log(__METHOD__ . "($entity, $id): No longer exists at the source (HTTP: {$code}) for URL: $url", MigrationBase::MESSAGE_INFORMATIONAL);
       return FALSE;
     }
     return TRUE;
