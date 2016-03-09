@@ -39,8 +39,13 @@ abstract class AbstractODataMigration extends Migration {
    *
    * @return boolean
    * Returns FALSE if the row is not to be migrated (ie. invalid)
+   *
+   * @throws MigrateException
    */
   function prepareRow($row) {
+    if (!$this->config->isEnabled($this->getMachineName())) {
+      throw new MigrateException('This migration is disabled (' . $this->getMachineName() . '). Enable from admin/config/services/odata-migrations/migrations');
+    }
     migrate_instrument_start(__METHOD__);
     parent::prepareRow($row);
     if (!empty($row->updated)) {

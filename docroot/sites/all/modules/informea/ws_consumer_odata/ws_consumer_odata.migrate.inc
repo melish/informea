@@ -19,6 +19,7 @@ function ws_consumer_odata_migrate_api() {
       'odata_aewa' => array('title' => 'AEWA OData importers'),
       'odata_whc' => array('title' => 'WHC/UNESCO OData importers'),
       'odata_montreal' => array('title' => 'OZONE OData importers'),
+      'odata_ramsar' => array('title' => 'Ramsar OData importers'),
     ),
     'migrations' => array(
       /* Contacts migrations */
@@ -69,7 +70,7 @@ function ws_consumer_odata_migrate_api() {
       'odata_ramsar_CountryReports'       => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
 
       /* Sites migrations */
-      'odata_whc_sites' => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_SITES),
+      'odata_whc_Sites' => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_SITES),
       'odata_ramsar_Sites' => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_SITES),
     )
   );

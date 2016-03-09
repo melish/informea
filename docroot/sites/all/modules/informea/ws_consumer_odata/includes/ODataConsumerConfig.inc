@@ -173,10 +173,11 @@ class ODataConsumerConfig {
    */
   public function getEndpointURL() {
     $ret = NULL;
-    if (!empty(self::$configuration['endpoints'][$this->odata_name][$this->odata_entity])) {
-      $ret = self::$configuration['endpoints'][$this->odata_name][$this->odata_entity];
-    } else if (!empty(self::$configuration['endpoints'][$this->odata_name]['default'])) {
-      $ret = self::$configuration['endpoints'][$this->odata_name]['default'];
+    $config = self::getConfiguration();
+    if (!empty($config['endpoints'][$this->odata_name][$this->odata_entity])) {
+      $ret = $config['endpoints'][$this->odata_name][$this->odata_entity];
+    } else if (!empty($config['endpoints'][$this->odata_name]['default'])) {
+      $ret = $config['endpoints'][$this->odata_name]['default'];
     }
     return $ret;
   }
@@ -204,7 +205,7 @@ class ODataConsumerConfig {
   }
 
   static function getConfiguration() {
-    $serialized = variable_get('odata_consumer_config');
+    $serialized = variable_get('informea_odata_consumer_config');
     if (!empty($serialized) && $config = json_decode($serialized, TRUE)) {
       self::$configuration = $config;
     }
@@ -266,12 +267,18 @@ class ODataConsumerConfig {
         self::$ODATA_NAME_RAMSAR => array(
           'default' => 'http://cray.edw.lan:34382/informea.svc'
         ),
-      )
+      ),
+    'disabled' => array()
     );
   }
 
   static function saveConfiguration($config) {
     self::$configuration = $config;
-    variable_set('odata_consumer_config', json_encode($config));
+    variable_set('informea_odata_consumer_config', json_encode($config));
+  }
+
+  static function isEnabled($migration_name) {
+    $config = self::getConfiguration();
+    return empty($config['disabled'][$migration_name]);
   }
 }

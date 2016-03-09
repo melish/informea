@@ -60,3 +60,60 @@ function ws_consumer_odata_admin_config_form_submit($form, $form_state) {
   ODataConsumerConfig::saveConfiguration($current);
   drupal_set_message('Configuration was successfully saved');
 }
+
+
+function ws_consumer_odata_admin_config_migrations_form() {
+  $form = array('#tree' => FALSE);
+  $form['title'] = array(
+    '#type' => 'item',
+    '#markup' => '<h1>Data import configuration</h1>' .
+      '<p>Uncheck the items you wish to disable, then save configuration.</p>'
+  );
+
+  module_load_include('inc', 'ws_consumer_odata', 'ws_consumer_odata.migrate');
+  $migrations = ws_consumer_odata_migrate_api();
+  $groups = $migrations['groups'];
+  ksort($groups);
+
+  foreach($groups as $name => $data) {
+    $form[$name] = array(
+      '#type' => 'fieldset',
+      '#title' => $data['title'],
+      '#collapsible' => TRUE,
+      '#collapsed' => FALSE,
+    );
+  }
+
+  foreach($migrations['migrations'] as $name => $config) {
+    $group = $config['group_name'];
+    $form[$group][$name] = array(
+      '#type' => 'checkbox',
+      '#title' => $config['odata_entity'] . ' (' . $name . ')',
+      '#default_value' => ODataConsumerConfig::isEnabled($name),
+    );
+  }
+
+  $form['actions']['save'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save configuration'),
+  );
+  return $form;
+}
+
+function ws_consumer_odata_admin_config_migrations_form_validate($form, &$form_state) {
+
+}
+
+function ws_consumer_odata_admin_config_migrations_form_submit($form, &$form_state) {
+  $disabled = array();
+  module_load_include('inc', 'ws_consumer_odata', 'ws_consumer_odata.migrate');
+  $migrations = ws_consumer_odata_migrate_api();
+  foreach($migrations['migrations'] as $name => $config) {
+    if (empty($form_state['values'][$name])) {
+      $disabled[$name] = 1;
+    }
+  }
+  $config = ODataConsumerConfig::getConfiguration();
+  $config['disabled'] = $disabled;
+  ODataConsumerConfig::saveConfiguration($config);
+}

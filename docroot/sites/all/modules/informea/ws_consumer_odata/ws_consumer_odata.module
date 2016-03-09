@@ -12,7 +12,23 @@ function ws_consumer_odata_menu() {
     'page arguments' => array('ws_consumer_odata_admin_config_form'),
     'access arguments' => array('access administration pages'),
     'file' => 'ws_consumer_odata.admin.inc',
-    'type' => MENU_NORMAL_ITEM
+  );
+  $items['admin/config/services/odata-migrations/urls'] = array(
+    'title' => t('Service URLs'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ws_consumer_odata_admin_config_form'),
+    'access arguments' => array('access administration pages'),
+    'file' => 'ws_consumer_odata.admin.inc',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'weight' => -10
+  );
+  $items['admin/config/services/odata-migrations/migrations'] = array(
+    'title' => t('Data import tasks'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ws_consumer_odata_admin_config_migrations_form'),
+    'access arguments' => array('access administration pages'),
+    'file' => 'ws_consumer_odata.admin.inc',
+    'type' => MENU_LOCAL_TASK,
   );
   return $items;
 }
