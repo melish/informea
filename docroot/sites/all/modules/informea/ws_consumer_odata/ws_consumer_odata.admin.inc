@@ -58,7 +58,7 @@ function ws_consumer_odata_admin_config_form_submit($form, $form_state) {
     }
   }
   ODataConsumerConfig::saveConfiguration($current);
-  drupal_set_message('Configuration was successfully saved');
+  drupal_set_message('Configuration successfully saved');
 }
 
 
@@ -116,4 +116,5 @@ function ws_consumer_odata_admin_config_migrations_form_submit($form, &$form_sta
   $config = ODataConsumerConfig::getConfiguration();
   $config['disabled'] = $disabled;
   ODataConsumerConfig::saveConfiguration($config);
+  drupal_set_message('Configuration successfully saved');
 }
