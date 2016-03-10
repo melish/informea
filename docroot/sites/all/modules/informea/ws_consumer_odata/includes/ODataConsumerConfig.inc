@@ -38,6 +38,9 @@ class ODataConsumerConfig {
   public static $ODATA_ENTITY_DECISIONS = 'Decisions';
   public static $DRUPAL_TYPE_DECISIONS = 'decision';
 
+  public static $ODATA_ENTITY_DOCUMENTS = 'Documents';
+  public static $DRUPAL_TYPE_DOCUMENTS = 'mea_document';
+
   public $odata_entity = NULL;
   public $odata_name = NULL;
   protected static $configuration = array();
@@ -85,6 +88,7 @@ class ODataConsumerConfig {
       ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN,
       ODataConsumerConfig::$ODATA_ENTITY_SITES,
       ODataConsumerConfig::$ODATA_ENTITY_DECISIONS,
+      ODataConsumerConfig::$ODATA_ENTITY_DOCUMENTS,
     );
   }
 
