@@ -291,7 +291,7 @@ class ODataConsumerConfig {
         return '&$expand=title,files&$orderby=updated%20desc';
 
       case self::$ODATA_ENTITY_DECISIONS:
-        if (in_array($this->odata_name, array(self::$ODATA_NAME_STOCKHOLM, self::$ODATA_NAME_ROTTERDAM))) {
+        if (in_array($this->odata_name, array(self::$ODATA_NAME_STOCKHOLM, self::$ODATA_NAME_ROTTERDAM, self::$ODATA_NAME_BASEL))) {
           return '&$expand=title,files,summary&$orderby=updated%20desc';
         }
         return '&$expand=title,files,content,summary&$orderby=updated%20desc';
