@@ -8,11 +8,15 @@
 abstract class ODataConsumer {
 
   protected $url = NULL;
+
+  /** @var ODataConsumerConfig */
+  protected $config = NULL;
   /** @var bool Use /Entity(guid'XXX-XXX-XX') in request URLs */
   protected $useGUIDInURL = FALSE;
 
-  public function __construct($url) {
+  public function __construct($url, $config) {
     $this->url = $url;
+    $this->config = $config;
   }
 
   /**
@@ -48,43 +52,17 @@ abstract class ODataConsumer {
     return $ret;
   }
 
-
-  /**
-   * Retrieve only record IDs from the OData remote service.
-   *
-   * Important! Only the primitive properties are loaded, without the
-   * navigation properties.
-   *
-   * @param string $odata_filter
-   *   Optional OData URL filter (to filter results after a certain date)
-   *
-   * @return array
-   *   Array of stdClass objects
-   */
-  public function getIdList($entity, $odata_filter = NULL) {
-    $rows = $this->getPaginatedData($entity, $odata_filter);
-    $ids = array();
-    foreach($rows as $row) {
-      $ids[] = $row->id;
-    }
-    ws_consumer_odata_log(__METHOD__ . "($entity): Remote service returned " . count($rows) . ' results');
-    return $ids;
-  }
-
   /**
    * Retrieve OData records from the remote service.
    *
    * Important! Only the primitive properties are loaded, without the
    * navigation properties.
    *
-   * @param string $odata_filter
-   *   Optional OData URL filter (to filter results after a certain date)
-   *
    * @return array
    *   Array of stdClass objects
    */
-  public function getRemoteEntities($entity, $odata_filter = NULL) {
-    $rows = $this->getPaginatedData($entity, $odata_filter);
+  public function getRemoteEntities($entity) {
+    $rows = $this->getPaginatedData($entity);
     $ids = array();
     foreach($rows as $row) {
       $ids[] = $row;
@@ -165,18 +143,17 @@ abstract class ODataConsumer {
 
   /**
    * Return a single page of results
-   * @param string $odata_filter
-   *   Optional OData URL filter (to filter results after a certain date)
    *
    * @return array
    *   Array of stdClass objects
    */
-  protected function getPaginatedData($entity, $odata_filter = NULL) {
+  protected function getPaginatedData($entity) {
     $ret = array();
     $pageSize = variable_get('ws_consumer_odata_page_size', 100);
     $page = 0;
     $base_url = $this->url . '/' . $entity;
     $url = sprintf($base_url . '?$top=%d&$skip=%d', $pageSize, $page);
+    $odata_filter = $this->config->getListingQueryString($entity);
     if ($odata_filter) {
       $url .= $odata_filter;
     }

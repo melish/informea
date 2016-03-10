@@ -234,7 +234,7 @@ abstract class InforMEAAbstractODataMigrateSource extends MigrateSource {
     $this->config = $config;
     $klass = $this->config->getODataConsumerClass();
     $uri = $this->config->getEndpointURL();
-    $this->consumer = new $klass($uri);
+    $this->consumer = new $klass($uri, $config);
   }
 
   public function __toString() {

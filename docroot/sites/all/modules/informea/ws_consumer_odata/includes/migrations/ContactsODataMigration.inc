@@ -175,12 +175,11 @@ class InforMEAODataContactsMigrateSource extends InforMEAAbstractODataMigrateSou
   }
 
   protected function pullRemoteData() {
-    $query = '&$expand=treaties&$orderby=updated%20desc';
 //    $highwater = $this->activeMigration->getHighwater();
 //    if (!empty($highwater)) {
 //      $query .= '&$filter=updated%20gt%20datetime%27' . date('Y-m-d\TH:i:s', $highwater) . '%27';
 //    }
-    return $this->consumer->getRemoteEntities($this->config->odata_entity, $query);
+    return $this->consumer->getRemoteEntities($this->config->odata_entity);
   }
 
   protected function populateRow($row) {

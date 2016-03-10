@@ -281,4 +281,30 @@ class ODataConsumerConfig {
     $config = self::getConfiguration();
     return empty($config['disabled'][$migration_name]);
   }
+
+  function getListingQueryString() {
+    switch($this->odata_entity) {
+      case self::$ODATA_ENTITY_CONTACTS:
+        return '&$expand=treaties&$orderby=updated%20desc';
+
+      case self::$ODATA_ENTITY_NATIONAL_REPORT:
+        return '&$expand=title,files&$orderby=updated%20desc';
+
+      case self::$ODATA_ENTITY_DECISIONS:
+        if (in_array($this->odata_name, array(self::$ODATA_NAME_STOCKHOLM, self::$ODATA_NAME_ROTTERDAM))) {
+          return '&$expand=title,files,summary&$orderby=updated%20desc';
+        }
+        return '&$expand=title,files,content,summary&$orderby=updated%20desc';
+
+      case self::$ODATA_ENTITY_MEETINGS:
+        return '&$expand=title,description&$orderby=updated%20desc';
+
+      case self::$ODATA_ENTITY_ACTION_PLAN:
+        return '&$expand=title,files&$orderby=updated%20desc';
+
+      case self::$ODATA_ENTITY_SITES:
+        return '&$expand=name&$orderby=updated%20desc';
+    }
+    return '';
+  }
 }
