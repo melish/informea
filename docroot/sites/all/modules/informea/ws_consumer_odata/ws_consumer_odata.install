@@ -14,5 +14,14 @@ function ws_consumer_odata_update_7001() {
  */
 function ws_consumer_odata_update_7003() {
   $ids = db_query("SELECT a.nid FROM node a INNER JOIN field_data_field_treaty b ON a.nid = b.entity_id WHERE a.`type` = 'contact_person' AND b.field_treaty_target_id IN (255, 262, 263) AND a.nid NOT IN (SELECT destid1 FROM migrate_map_odata_cbd_contacts)")->fetchCol();
+
+/**
+ * Remove old CBD events
+ */
+function ws_consumer_odata_update_7004() {
+  $ids = db_query("SELECT a.nid FROM node a INNER JOIN field_data_field_treaty b ON a.nid = b.entity_id WHERE a.`type` = 'event_calendar' AND b.field_treaty_target_id IN (255, 262, 263) AND a.nid NOT IN (SELECT destid1 FROM migrate_map_odata_cbd_meetings WHERE destid1 IS NOT NULL)")->fetchCol();
+  node_delete_multiple($ids);
+
+  $ids = db_query("SELECT a.nid FROM node a INNER JOIN field_data_field_treaty b ON a.nid = b.entity_id WHERE a.`type` = 'decision' AND b.field_treaty_target_id IN (255, 262, 263) AND a.nid NOT IN (SELECT destid1 FROM migrate_map_odata_cbd_decisions WHERE destid1 IS NOT NULL)")->fetchCol();
   node_delete_multiple($ids);
 }
