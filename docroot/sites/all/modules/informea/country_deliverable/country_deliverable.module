@@ -33,6 +33,7 @@ function country_deliverable_render_action_plans($rows) {
       $date = $nrw->field_sorting_date->value();
       $date = !empty($date) ? format_date($date, 'short') : '';
       $files_field = field_view_field('node', $report, 'field_files', 'full');
+      $files_field['#label_display'] = 'hidden';
       $table_rows[] = array(
         $report->title,
         array('data' => $date, 'class' => 'text-center'),
@@ -57,7 +58,7 @@ function country_deliverable_render_action_plans($rows) {
         'header' => array(
           t('Title'),
           array('data' => t('Submission date'), 'class' => array('col-sm-2 text-center text-nowrap')),
-          array('data' => t('Files'), 'class' => array('col-sm-2 text-center'))
+          array('data' => t('Files'), 'class' => array('col-sm-4 text-center'))
         )
       )),
     );
@@ -77,6 +78,7 @@ function country_deliverable_render_national_reports($rows) {
       $date = !empty($date_raw[0]['value']) ? format_date(strtotime($date_raw[0]['value']), 'short') : '';
       $title = field_get_items('node', $report, 'title_field');
       $files_field = field_view_field('node', $report, 'field_files', 'full');
+      $files_field['#label_display'] = 'hidden';
       $target = field_get_items('node', $report, 'field_document_url');
       if (!empty($target[0]['url'])) {
         $col0 = l($title[0]['safe_value'], $target[0]['url'], array('attributes' => array('target' => '_blank')));
@@ -87,7 +89,7 @@ function country_deliverable_render_national_reports($rows) {
       $table_rows[] = array(
         array('data' => $col0, 'class' => 'title'),
         array('data' => $date, 'class' => 'text-center'),
-        array('data' => render($files_field), 'class' => 'text-center')
+        array('data' => render($files_field))
       );
     }
     $img = NULL;
@@ -110,7 +112,7 @@ function country_deliverable_render_national_reports($rows) {
         'header' => array(
           t('Title'),
           array('data' => t('Submission date'), 'class' => array('col-sm-2 text-center text-nowrap')),
-          array('data' => t('Files'), 'class' => array('col-sm-2 text-center'))
+          array('data' => t('Files'), 'class' => array('col-sm-4 text-center'))
         )
       )),
     );
