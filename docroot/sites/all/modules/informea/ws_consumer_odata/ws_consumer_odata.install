@@ -5,7 +5,7 @@
  * Remove old CBD reports
  */
 function ws_consumer_odata_update_7001() {
-  $ids = db_query("SELECT a.nid FROM node a INNER JOIN field_data_field_treaty b ON a.nid = b.entity_id WHERE a.`type` = 'action_plan' AND b.field_treaty_target_id = 255 AND a.nid NOT IN (SELECT destid1 FROM migrate_map_odata_cbd_nationalplans)")->fetchCol();
+  $ids = db_query("SELECT a.nid FROM node a INNER JOIN field_data_field_treaty b ON a.nid = b.entity_id WHERE a.`type` = 'action_plan' AND b.field_treaty_target_id = 255 AND a.nid NOT IN (SELECT destid1 FROM migrate_map_odata_cbd_nationalplans WHERE destid1 IS NOT NULL)")->fetchCol();
   node_delete_multiple($ids);
 }
 
@@ -13,6 +13,6 @@ function ws_consumer_odata_update_7001() {
  * Remove old CBD contacts
  */
 function ws_consumer_odata_update_7003() {
-  $ids = db_query("SELECT a.nid FROM node a INNER JOIN field_data_field_treaty b ON a.nid = b.entity_id WHERE a.`type` = 'contact_person' AND b.field_treaty_target_id IN (255, 262, 263) AND a.nid NOT IN (SELECT destid1 FROM migrate_map_odata_cbd_contacts)")->fetchCol();
+  $ids = db_query("SELECT a.nid FROM node a INNER JOIN field_data_field_treaty b ON a.nid = b.entity_id WHERE a.`type` = 'contact_person' AND b.field_treaty_target_id IN (255, 262, 263) AND a.nid NOT IN (SELECT destid1 FROM migrate_map_odata_cbd_contacts WHERE destid1 IS NOT NULL)")->fetchCol();
   node_delete_multiple($ids);
 }
