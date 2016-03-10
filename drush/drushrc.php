@@ -324,6 +324,9 @@ $options['init-modules'] = array(
   'search_api_attachments_entityreference',
   'search_api_attachments',
 
+  'xmlsitemap',
+  'metatag',
+
   'country',
   'country_deliverable',
   'country_data',
