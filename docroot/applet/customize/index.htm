@@ -1,0 +1,102 @@
+<html>
+<head>
+<title> Customize InforMEA applet</title>
+<script type="text/javascript">
+// pick applet background color
+function pick()
+{
+var elem= document.getElementById("bgcolor").value 
+var cookie=document.cookie='#'+ elem;
+var colour=document.getElementById("change")
+colour.style.backgroundColor=cookie;
+}
+// pick applet border color
+function pick_border()
+{
+var elem= document.getElementById("border_color").value 
+var cookie=document.cookie='#'+ elem;
+var colour=document.getElementById("change")
+colour.style.borderColor=cookie;
+}
+// change applet font color
+function changeWhite()
+        {
+            document.getElementById('informea2').style.color = 'white';
+        } 
+function changeBlack()
+        {
+            document.getElementById('informea2').style.color = 'black';
+        }
+function changeBlue()
+        {
+            document.getElementById('informea2').style.color = 'blue';
+        }
+ // show applet code        
+//function showCode()
+//{
+//document.getElementById("result").innerHTML = "Hello " + document.getElementById('informea');
+//}
+// select code 
+function selectCode() {
+    document.getElementById("result").select();
+}
+function showCode() {
+var LINKgocode = ''; // holds entire link and image code
+LINKgocode="<" + "!-- This is the applets style sheet -->\n";
+LINKgocode = "<" + "div align=\'center\'>\n" + LINKgocode + "\n";
+document.getElementById("result").innerHTML = LINKgocode;
+}
+
+
+</script>
+</script>
+
+
+<style type="text/css">
+div#informea .title{font-size:26px;color:#f2f7f2;background-image:url(images/UNlogo-transparent.png);background-repeat:no-repeat;background-position:right;margin-top: 6px}
+div#informea .slogan{color:#fffdfd;margin-left:5px;line-height:18px; font-size: 14px;}
+div#informea input.button{border-top:2px solid #fc6;border-bottom:2px solid #fc6;border-left:0;border-right:0;background-color:#fc6;background-image:url(http://www.informea.org/wp-content/uploads/2014/01/search.png);background-repeat:no-repeat;background-position:left;width:34px;height:20px;border-top-right-radius:2px 2px;border-bottom-right-radius:2px 2px;margin-top:2px;margin-left:-2px}
+div#informea .search{padding:0 2px;border:1px solid #fc6;border-right:0;border-top-left-radius:2px 2px;border-bottom-left-radius:2px 2px;width:140px;float:left;height:22px;margin-left:6px;margin-top:2px;font-size:12px;font-weight:normal}
+div#informea .link{text-align:right}
+div#informea .link a{color:#ccc;text-align:right;text-decoration:none;padding-right:4px;font-size:12px}
+div#informea .link a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<h2>Welcome to the Customize the InforMEA applet Page</h2>
+<em> Applet Preview </em>
+<div id="informea">
+<div style="height:180px; width:180px; border:solid 1px; color:#000" id="change" >
+   <p class="title"><span id="informea2">InforMEA</span></p>
+      <form id="searchbar" name="searchbar" method="get" action="http://www.informea.org/search" target="_blank">
+        <input type="hidden" name="external" value="1" />
+        <input type="hidden" name="q_use_treaties" value="1" />
+        <input type="hidden" name="q_use_decisions" value="1" />
+        <input type="text" value="" class="search" name="q_freetext" placeholder="Search informea.org"/>
+        <input type="image" class="button" src="http://www.informea.org/wp-content/uploads/2014/01/search.png" value=""/>
+      </form>
+      <p class="slogan"> <span id="informea2">Search MEA COP Decisions, News, Treaty Texts</span></p>
+      <p class="link"><span id="informea2"><a href="http://www.informea.org" target="_blank" title="Visit InforMEA website">www.informea.org</a> </span></p>
+    <div>
+</div>
+<div style="width:500px">
+<p>&nbsp;</p>
+<h4>1. Kindly pick the preferred background colour</h4>
+<script type="text/javascript" src="jscolor/jscolor.js"></script>
+Click here: <input class="color" value="" onBlur="pick()" id="bgcolor">
+<h4> 2. Kindly select the border colour</h4>
+<script type="text/javascript" src="jscolor/jscolor.js"></script>
+Click here: <input class="color" value="" onBlur="pick_border()" id="border_color">
+
+
+<h4> 3. Change font color</h4>
+<input type="button" value ="Blue" style="width:60px;" onClick="changeBlue()"> 
+<input type="button" value ="Black" style="width:60px;" onClick="changeBlack()"> <input type="button" value ="Original" style="width:60px;" onClick="changeWhite()" > 
+<form>
+<input type="button" name="" onclick="showCode();" value="Generate the informea applet code"> </input>
+<input type="button" name="code" onClick="selectCode()" value="Select Code"/>  </input><br /> and use Ctrl-C to copy the code to your clipboard
+ <textarea ="showcode" id="result" rows="10" cols="60"></textarea>
+</form>
+</div>
+</body>
+</html>
