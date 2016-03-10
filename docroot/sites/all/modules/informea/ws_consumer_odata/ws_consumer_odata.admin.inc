@@ -118,3 +118,33 @@ function ws_consumer_odata_admin_config_migrations_form_submit($form, &$form_sta
   ODataConsumerConfig::saveConfiguration($config);
   drupal_set_message('Configuration successfully saved');
 }
+
+function ws_consumer_odata_node_migrate_report($node) {
+  $ret = array();
+  $w = entity_metadata_wrapper('node', $node);
+  $odata_name = $w->field_odata_identifier->value();
+  module_load_include('inc', 'ws_consumer_odata', 'ws_consumer_odata.migrate');
+  if (!module_load_include('inc', 'migrate_ui', 'migrate_ui.pages')) {
+    drupal_set_message('Cannot find migrate_ui module!', 'error');
+    return $ret;
+  }
+
+  $migrations = ws_consumer_odata_migrate_api();
+  $links = array();
+  foreach($migrations['migrations'] as $name => $config) {
+    if(preg_match('/' . $odata_name . '/', $name) == 1) {
+      $links[] = l($name, 'node/' . $node->nid . '/migrate', array('query' => array('id' => $name)));
+    }
+  }
+  $machine_name = $_GET['id'];
+  if (array_key_exists($machine_name, $migrations['migrations'])) {
+    $migration = Migration::getInstance($machine_name);
+    $ret['lastimport'] = array('#weight' => -10, '#type' => 'markup', '#markup' => 'Last import on: ' . check_plain($migration->getLastImported()));
+    $messages = migrate_ui_messages(NULL, $machine_name);
+    $messages['weight'] = 0;
+    $ret['title'] = array('#weight' => -5, '#type' => 'markup', '#markup' => '<h2>' . $machine_name . '</h2>');
+    $ret['messages'] = $messages;
+  }
+  $ret['links'] = array('#weight' => -20, '#theme' => 'item_list', '#items' => $links, '#title' => t('Select migration'));
+  return $ret;
+}

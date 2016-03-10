@@ -30,6 +30,17 @@ function ws_consumer_odata_menu() {
     'file' => 'ws_consumer_odata.admin.inc',
     'type' => MENU_LOCAL_TASK,
   );
+  $items['node/%node/migrate'] = array(
+    'title' => t('Migrations'),
+    'page callback' => 'ws_consumer_odata_node_migrate_report',
+    'page arguments' => array(1),
+    'access callback' => 'ws_consumer_odata_node_migrate_report_node_access',
+    'access arguments' => array(1),
+    'weight' => 0,
+    'type' => MENU_LOCAL_TASK,
+    'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
+    'file' => 'ws_consumer_odata.admin.inc',
+  );
   return $items;
 }
 
@@ -236,4 +247,22 @@ function ws_consumer_odata_migration_result_friendly_name($result) {
     default:
       return 'unknown';
   }
+}
+
+/**
+ * Check if the user can access the migration logs on node
+ *
+ * @param $node
+ * @return string
+ *   Node access
+ */
+function ws_consumer_odata_node_migrate_report_node_access($node) {
+  if ($node->type == 'treaty' && user_access(MIGRATE_ACCESS_ADVANCED)) {
+    $w = entity_metadata_wrapper('node', $node);
+    $odata_name = $w->field_odata_identifier->value();
+    if (in_array($odata_name, ODataConsumerConfig::getODataNames())) {
+      return NODE_ACCESS_ALLOW;
+    }
+  }
+  return NODE_ACCESS_IGNORE;
 }
