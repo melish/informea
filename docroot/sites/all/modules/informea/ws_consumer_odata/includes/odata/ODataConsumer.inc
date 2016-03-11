@@ -168,11 +168,9 @@ abstract class ODataConsumer {
           if (array_key_exists($row->id, $ret)) {
             ws_consumer_odata_log(__METHOD__ . ": Found duplicate row, id:" . $row->id . " feed: " . $url, MigrationBase::MESSAGE_WARNING);
           }
-          else {
-            $ret[$row->id] = $ret;
-          }
         }
       }
+      $ret = array_merge($ret, $rows);
       $page += $pageSize;
       $url = sprintf($base_url . '?$top=%d&$skip=%d', $pageSize, $page);
       $url .= $odata_filter;
