@@ -41,7 +41,6 @@ class ODataConsumerConfig {
   protected static $SETTINGS_VARIABLE = 'informea_odata_consumer_config';
   public $odata_entity = NULL;
   public $odata_name = NULL;
-  protected static $configuration = array();
 
   /**
    * Build new configuration object.
@@ -56,7 +55,6 @@ class ODataConsumerConfig {
     if (isset($arguments['odata_name'])) {
       $this->odata_name = $arguments['odata_name'];
     }
-    self::$configuration = self::getConfiguration();
   }
 
   static function getODataNames() {
@@ -114,7 +112,7 @@ class ODataConsumerConfig {
    */
   public function getEndpointURL() {
     $ret = NULL;
-    $config = self::getConfiguration();
+    $config = static::getConfiguration();
     if (!empty($config['endpoints'][$this->odata_name][$this->odata_entity])) {
       $ret = $config['endpoints'][$this->odata_name][$this->odata_entity];
     } else if (!empty($config['endpoints'][$this->odata_name]['default'])) {
@@ -146,14 +144,12 @@ class ODataConsumerConfig {
   }
 
   static function getConfiguration() {
-    $serialized = self::$SETTINGS_VARIABLE;
-    if (!empty($serialized) && $config = json_decode($serialized, TRUE)) {
-      self::$configuration = $config;
+    $serialized = variable_get(self::$SETTINGS_VARIABLE, NULL);
+    $config = static::getConfigurationDefault();
+    if (!empty($serialized) && $deserialized = json_decode($serialized, TRUE)) {
+      $config = $deserialized;
     }
-    if (empty(self::$configuration)) {
-      self::$configuration = self::getConfigurationDefault();
-    }
-    return self::$configuration;
+    return $config;
   }
 
   static function getConfigurationDefault() {
@@ -215,12 +211,11 @@ class ODataConsumerConfig {
   }
 
   static function saveConfiguration($config) {
-    self::$configuration = $config;
     variable_set(self::$SETTINGS_VARIABLE, json_encode($config));
   }
 
   static function isEnabled($migration_name) {
-    $config = self::getConfiguration();
+    $config = static::getConfiguration();
     return empty($config['disabled'][$migration_name]);
   }
 
@@ -238,24 +233,24 @@ class ODataConsumerConfig {
           self::$ODATA_NAME_ROTTERDAM,
           self::$ODATA_NAME_BASEL
         ))) {
-          return '&$expand=title,files,summary&$orderby=updated%20desc';
+          return '&$expand=title,files,summary&$orderby=updated%20desc,id';
         }
-        return '&$expand=title,files,content,summary&$orderby=updated%20desc';
+        return '&$expand=title,files,content,summary&$orderby=updated%20desc,id';
 
       case self::$ODATA_ENTITY_MEETINGS:
-        return '&$expand=title,description&$orderby=updated%20desc';
+        return '&$expand=title,description&$orderby=updated%20desc,id';
 
       case self::$ODATA_ENTITY_ACTION_PLAN:
-        return '&$expand=title,files&$orderby=updated%20desc';
+        return '&$expand=title,files&$orderby=updated%20desc,id';
 
       case self::$ODATA_ENTITY_SITES:
-        return '&$expand=name&$orderby=updated%20desc';
+        return '&$expand=name&$orderby=updated%20desc,id';
     }
     return '';
   }
 
   static function getODataPageSize() {
-    $config = self::getConfiguration();
+    $config = static::getConfiguration();
     $size = 100;
     if (!empty($config['odata_page_size'])) {
       $size = $config['odata_page_size'];
