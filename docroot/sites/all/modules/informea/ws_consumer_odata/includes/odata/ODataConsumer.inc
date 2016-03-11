@@ -164,7 +164,14 @@ abstract class ODataConsumer {
         break;
       };
       if (!empty($rows)) {
-        $ret = array_merge($ret, $rows);
+        foreach ($rows as $row) {
+          if (array_key_exists($row->id, $ret)) {
+            ws_consumer_odata_log(__METHOD__ . ": Found duplicate row, id:" . $row->id . " feed: " . $url, MigrationBase::MESSAGE_WARNING);
+          }
+          else {
+            $ret[$row->id] = $ret;
+          }
+        }
       }
       $page += $pageSize;
       $url = sprintf($base_url . '?$top=%d&$skip=%d', $pageSize, $page);

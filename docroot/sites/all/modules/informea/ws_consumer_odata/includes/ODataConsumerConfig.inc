@@ -222,10 +222,10 @@ class ODataConsumerConfig {
   function getListingQueryString() {
     switch ($this->odata_entity) {
       case self::$ODATA_ENTITY_CONTACTS:
-        return '&$expand=treaties&$orderby=updated%20desc';
+        return '&$expand=treaties&$orderby=updated%20desc,id';
 
       case self::$ODATA_ENTITY_NATIONAL_REPORT:
-        return '&$expand=title,files&$orderby=updated%20desc';
+        return '&$expand=title,files&$orderby=updated%20desc,id';
 
       case self::$ODATA_ENTITY_DECISIONS:
         if (in_array($this->odata_name, array(
