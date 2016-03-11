@@ -168,7 +168,7 @@ abstract class ODataConsumer {
       $url .= $odata_filter;
       $previous = $rows;
     }
-    $msg = sprintf(__METHOD__ . '(%s): Remote service had %d, returned %d results', $this->config->odata_entity, $total, count($rows));
+    $msg = sprintf(__METHOD__ . '(%s): Remote service had %d, returned %d results', $this->config->odata_entity, $total, count($ret));
     ws_consumer_odata_log($msg);
     return $ret;
   }
