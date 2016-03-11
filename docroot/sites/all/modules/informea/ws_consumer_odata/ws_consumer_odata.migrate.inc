@@ -23,55 +23,55 @@ function ws_consumer_odata_migrate_api() {
     ),
     'migrations' => array(
       /* Contacts migrations */
-      'odata_cbd_Contacts'        => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
-      'odata_stockholm_Contacts'  => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
-      'odata_rotterdam_Contacts'  => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ROTTERDAM, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
-      'odata_basel_Contacts'      => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BASEL, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
-      'odata_cites_Contacts'      => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
-      'odata_ramsar_Contacts'      => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
+      'odata_cbd_Contacts'        => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
+      'odata_stockholm_Contacts'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
+      'odata_rotterdam_Contacts'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ROTTERDAM, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
+      'odata_basel_Contacts'      => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BASEL, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
+      'odata_cites_Contacts'      => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
+      'odata_ramsar_Contacts'      => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
 
       /* Meetings migrations */
-      'odata_cbd_Meetings'        => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      'odata_basel_Meetings'      => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BASEL, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      'odata_stockholm_Meetings'  => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      'odata_rotterdam_Meetings'  => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ROTTERDAM, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      'odata_cites_Meetings'      => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      'odata_cms_Meetings'        => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CMS, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      'odata_ascobans_Meetings'   => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      'odata_aewa_Meetings'       => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      'odata_whc_Meetings'        => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      'odata_montreal_Meetings'   => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_MONTREAL, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
-      'odata_ramsar_Meetings'     => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_cbd_Meetings'        => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_basel_Meetings'      => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BASEL, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_stockholm_Meetings'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_rotterdam_Meetings'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ROTTERDAM, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_cites_Meetings'      => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_cms_Meetings'        => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CMS, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_ascobans_Meetings'   => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_aewa_Meetings'       => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_whc_Meetings'        => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_montreal_Meetings'   => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_MONTREAL, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_ramsar_Meetings'     => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
 
       /* NationalPlans migrations */
-      'odata_stockholm_NationalPlans' => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN),
-      'odata_cbd_NationalPlans'       => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN),
+      'odata_stockholm_NationalPlans' => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN),
+      'odata_cbd_NationalPlans'       => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN),
 
       /* Decisions migrations */
-      'odata_cms_Decisions'       => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CMS, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_cms_Meetings')),
-      'odata_ascobans_Decisions'  => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_ascobans_Meetings')),
-      'odata_aewa_Decisions'      => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_aewa_Meetings')),
-      'odata_cites_Decisions'     => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_cites_Meetings')),
-      'odata_cbd_Decisions'       => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_cbd_Meetings')),
-      'odata_whc_Decisions'       => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_whc_Meetings')),
-      'odata_basel_Decisions'     => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BASEL, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_basel_Meetings')),
-      'odata_stockholm_Decisions' => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_stockholm_Meetings')),
-      'odata_rotterdam_Decisions' => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ROTTERDAM, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_rotterdam_Meetings')),
-      'odata_montreal_Decisions'  => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_MONTREAL, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_montreal_Meetings')),
-      'odata_ramsar_Decisions'  => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_ramsar_Meetings')),
+      'odata_cms_Decisions'       => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CMS, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_cms_Meetings')),
+      'odata_ascobans_Decisions'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_ascobans_Meetings')),
+      'odata_aewa_Decisions'      => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_aewa_Meetings')),
+      'odata_cites_Decisions'     => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_cites_Meetings')),
+      'odata_cbd_Decisions'       => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_cbd_Meetings')),
+      'odata_whc_Decisions'       => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_whc_Meetings')),
+      'odata_basel_Decisions'     => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BASEL, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_basel_Meetings')),
+      'odata_stockholm_Decisions' => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_stockholm_Meetings')),
+      'odata_rotterdam_Decisions' => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ROTTERDAM, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_rotterdam_Meetings')),
+      'odata_montreal_Decisions'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_MONTREAL, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_montreal_Meetings')),
+      'odata_ramsar_Decisions'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_ramsar_Meetings')),
 
       /* CountryReports migrations */
-      'odata_ascobans_CountryReports'  => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
-      'odata_cms_CountryReports'       => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CMS, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
-      'odata_aewa_CountryReports'      => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
-      'odata_cites_CountryReports'     => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
-      'odata_cbd_CountryReports'       => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
-      'odata_whc_CountryReports'       => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
-      'odata_ramsar_CountryReports'       => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
+      'odata_ascobans_CountryReports'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
+      'odata_cms_CountryReports'       => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CMS, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
+      'odata_aewa_CountryReports'      => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
+      'odata_cites_CountryReports'     => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
+      'odata_cbd_CountryReports'       => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
+      'odata_whc_CountryReports'       => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
+      'odata_ramsar_CountryReports'       => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
 
       /* Sites migrations */
-      'odata_whc_Sites' => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_SITES),
-      'odata_ramsar_Sites' => ODataConsumerConfig::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_SITES),
+      'odata_whc_Sites' => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_WHC, ODataConsumerConfig::$ODATA_ENTITY_SITES),
+      'odata_ramsar_Sites' => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_SITES),
     )
   );
 
@@ -379,5 +379,65 @@ class ODataMigrationUtil {
       return 'zh-hans';
     }
     return $language;
+  }
+
+  /**
+   * Utility function to create a migration configuration.
+   *
+   * @param string $odata_name
+   *   Treaty OData identifier - for which treaty we retrieve data?
+   * @param string $odata_entity
+   *   Name of the OData entity to import (ie. Contacts)
+   * @param array $dependencies
+   *   Array of dependent migrations (migration names)
+   *
+   * @return array|bool
+   *   FALSE if the treaty does not exist, failing the migration registration
+   */
+  public static function createMigrationConfig($odata_name, $odata_entity, $dependencies = array()) {
+    module_load_include('inc', 'treaty', 'treaty.api');
+    $klass = $odata_entity . 'ODataMigration';
+    $treaty = treaty_load_by_odata_name($odata_name);
+    if (!$treaty || $treaty->status != NODE_PUBLISHED) {
+      ws_consumer_odata_log(
+        sprintf('Failed to register migration odata_%s_%s, cannot find treaty with odata_name:%s',
+          $odata_name, $odata_entity, $odata_name
+        ),
+        MigrationBase::MESSAGE_ERROR
+      );
+      return FALSE;
+    }
+    $disable_hooks = array(
+      'entity_update' => array(
+        'search_api',
+        'search_api_solr',
+        'event_calendar',
+        'feeds',
+        'pathauto',
+      ),
+      'node_update' => array(
+        'search_api',
+        'search_api_solr',
+        'event_calendar',
+        'feeds',
+        'pathauto',
+      ),
+      'entity_insert' => array(
+        'feeds',
+        'search_api_solr',
+        'event_calendar',
+        'feeds',
+        'search_api'
+      ),
+    );
+    return array(
+      'config_class' => 'ODataConsumerConfig',
+      'class_name' => $klass,
+      'odata_entity' => $odata_entity,
+      'odata_name' => $odata_name,
+      'dependencies' => $dependencies,
+      'group_name' => 'odata_' . $odata_name,
+      'disable_hooks' => $disable_hooks,
+    );
   }
 }

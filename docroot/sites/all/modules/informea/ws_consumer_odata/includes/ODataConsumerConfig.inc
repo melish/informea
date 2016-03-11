@@ -107,66 +107,6 @@ class ODataConsumerConfig {
   }
 
   /**
-   * Utility function to create a migration configuration.
-   *
-   * @param string $odata_name
-   *   Treaty OData identifier - for which treaty we retrieve data?
-   * @param string $odata_entity
-   *   Name of the OData entity to import (ie. Contacts)
-   * @param array $dependencies
-   *   Array of dependent migrations (migration names)
-   *
-   * @return array|bool
-   *   FALSE if the treaty does not exist, failing the migration registration
-   */
-  public static function createMigrationConfig($odata_name, $odata_entity, $dependencies = array()) {
-    module_load_include('inc', 'treaty', 'treaty.api');
-    $klass = $odata_entity . 'ODataMigration';
-    $treaty = treaty_load_by_odata_name($odata_name);
-    if (!$treaty || $treaty->status != NODE_PUBLISHED) {
-      ws_consumer_odata_log(
-        sprintf('Failed to register migration odata_%s_%s, cannot find treaty with odata_name:%s',
-          $odata_name, $odata_entity, $odata_name
-        ),
-        MigrationBase::MESSAGE_ERROR
-      );
-      return FALSE;
-    }
-    $disable_hooks = array(
-      'entity_update' => array(
-        'search_api',
-        'search_api_solr',
-        'event_calendar',
-        'feeds',
-        'pathauto',
-      ),
-      'node_update' => array(
-        'search_api',
-        'search_api_solr',
-        'event_calendar',
-        'feeds',
-        'pathauto',
-      ),
-      'entity_insert' => array(
-        'feeds',
-        'search_api_solr',
-        'event_calendar',
-        'feeds',
-        'search_api'
-      ),
-    );
-    return array(
-      'config_class' => 'ODataConsumerConfig',
-      'class_name' => $klass,
-      'odata_entity' => $odata_entity,
-      'odata_name' => $odata_name,
-      'dependencies' => $dependencies,
-      'group_name' => 'odata_' . $odata_name,
-      'disable_hooks' => $disable_hooks,
-    );
-  }
-
-  /**
    * Retrieve OData endpoint URL for the configured source.
    *
    * @return string
