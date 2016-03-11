@@ -2,11 +2,21 @@
 
 function ws_consumer_odata_admin_config_form() {
   $form = array('#tree' => TRUE);
+  /** @var ODataConsumerConfig $config */
   $config = ODataConsumerConfig::getConfiguration();
   $form['title'] = array(
     '#type' => 'item',
     '#markup' => '<h1>Configure data providers</h1>' .
       '<p>Use this form to configure URL endpoints to the OData services</p>'
+  );
+
+  $form['odata_page_size'] = array(
+    '#type' => 'textfield',
+    '#size' => 20,
+    '#title' => t('Results per page'),
+    '#default_value' => !empty($config['odata_page_size']) ? $config['odata_page_size'] : 100,
+    '#description' => t('How many results to pull from service during a page request'),
+    '#weight' => -10,
   );
   $meas = ODataConsumerConfig::getODataNames();
   $entities = ODataConsumerConfig::getEntityNames();
@@ -57,6 +67,7 @@ function ws_consumer_odata_admin_config_form_submit($form, $form_state) {
       $current['endpoints'][$mea][$entity] = $values['endpoints'][$mea][$entity];
     }
   }
+  $current['odata_page_size'] = $values['odata_page_size'];
   ODataConsumerConfig::saveConfiguration($current);
   drupal_set_message('Configuration successfully saved');
 }

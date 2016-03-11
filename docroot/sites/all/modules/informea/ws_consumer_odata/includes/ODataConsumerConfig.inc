@@ -217,6 +217,7 @@ class ODataConsumerConfig {
 
   static function getConfigurationDefault() {
     return array(
+      'odata_page_size' => 100,
       'endpoints' => array(
         self::$ODATA_NAME_STOCKHOLM => array(
           'Contacts' => 'http://informea.pops.int/Contacts2/scContacts.svc',
@@ -283,7 +284,7 @@ class ODataConsumerConfig {
   }
 
   function getListingQueryString() {
-    switch($this->odata_entity) {
+    switch ($this->odata_entity) {
       case self::$ODATA_ENTITY_CONTACTS:
         return '&$expand=treaties&$orderby=updated%20desc';
 
@@ -291,7 +292,11 @@ class ODataConsumerConfig {
         return '&$expand=title,files&$orderby=updated%20desc';
 
       case self::$ODATA_ENTITY_DECISIONS:
-        if (in_array($this->odata_name, array(self::$ODATA_NAME_STOCKHOLM, self::$ODATA_NAME_ROTTERDAM, self::$ODATA_NAME_BASEL))) {
+        if (in_array($this->odata_name, array(
+          self::$ODATA_NAME_STOCKHOLM,
+          self::$ODATA_NAME_ROTTERDAM,
+          self::$ODATA_NAME_BASEL
+        ))) {
           return '&$expand=title,files,summary&$orderby=updated%20desc';
         }
         return '&$expand=title,files,content,summary&$orderby=updated%20desc';
@@ -306,5 +311,14 @@ class ODataConsumerConfig {
         return '&$expand=name&$orderby=updated%20desc';
     }
     return '';
+  }
+
+  static function getODataPageSize() {
+    $config = self::getConfiguration();
+    $size = 100;
+    if (!empty($config['odata_page_size'])) {
+      $size = $config['odata_page_size'];
+    }
+    return $size;
   }
 }

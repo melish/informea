@@ -126,7 +126,7 @@ abstract class ODataConsumer {
   public function itemExists($entity, $id) {
     $url = $this->url . '/' . $entity . "('" . $id . "')";
     $ch = curl_init($url);
-    curl_setopt ($ch, CURLOPT_TIMEOUT, 5);
+    curl_setopt ($ch, CURLOPT_TIMEOUT, 30);
     curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, TRUE);
     curl_setopt($ch,CURLOPT_MAXREDIRS, 3);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
@@ -149,7 +149,7 @@ abstract class ODataConsumer {
    */
   protected function getPaginatedData($entity) {
     $ret = array();
-    $pageSize = variable_get('ws_consumer_odata_page_size', 100);
+    $pageSize = ODataConsumerConfig::getODataPageSize();
     $page = 0;
     $base_url = $this->url . '/' . $entity;
     $url = sprintf($base_url . '?$top=%d&$skip=%d', $pageSize, $page);
