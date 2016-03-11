@@ -38,6 +38,7 @@ class ODataConsumerConfig {
   public static $ODATA_ENTITY_DECISIONS = 'Decisions';
   public static $DRUPAL_TYPE_DECISIONS = 'decision';
 
+  protected static $SETTINGS_VARIABLE = 'informea_odata_consumer_config';
   public $odata_entity = NULL;
   public $odata_name = NULL;
   protected static $configuration = array();
@@ -205,7 +206,7 @@ class ODataConsumerConfig {
   }
 
   static function getConfiguration() {
-    $serialized = variable_get('informea_odata_consumer_config');
+    $serialized = self::$SETTINGS_VARIABLE;
     if (!empty($serialized) && $config = json_decode($serialized, TRUE)) {
       self::$configuration = $config;
     }
@@ -275,7 +276,7 @@ class ODataConsumerConfig {
 
   static function saveConfiguration($config) {
     self::$configuration = $config;
-    variable_set('informea_odata_consumer_config', json_encode($config));
+    variable_set(self::$SETTINGS_VARIABLE, json_encode($config));
   }
 
   static function isEnabled($migration_name) {
