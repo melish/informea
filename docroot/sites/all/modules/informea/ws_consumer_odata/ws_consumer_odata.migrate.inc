@@ -142,6 +142,14 @@ abstract class InforMEAAbstractODataMigrateSource extends MigrateSource {
     next($this->items);
     return $item;
   }
+
+  public function getLimit() {
+    $limit = NULL;
+    if (!empty($this->activeMigration->getOption('limit')) && $this->activeMigration->getOption('limit')['unit'] == 'items') {
+      $limit = $this->activeMigration->getOption('limit')['value'];
+    }
+    return $limit;
+  }
 }
 
 

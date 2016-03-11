@@ -154,7 +154,12 @@ class InforMEAODataNationalPlansMigrateSource extends InforMEAAbstractODataMigra
 //    if (!empty($highwater)) {
 //      $query .= '&$filter=updated%20gt%20datetime%27' . date('Y-m-d\TH:i:s', $highwater) . '%27';
 //    }
-    return $this->consumer->getRemoteEntities($this->config->odata_entity);
+    $rows = $this->consumer->getPaginatedData(
+      $this->config->odata_entity,
+      $this->getLimit(),
+      $this->activeMigration
+    );
+    return $rows;
   }
 
   protected function populateRow($row) {

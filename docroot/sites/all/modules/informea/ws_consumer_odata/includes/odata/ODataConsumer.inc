@@ -53,26 +53,6 @@ abstract class ODataConsumer {
   }
 
   /**
-   * Retrieve OData records from the remote service.
-   *
-   * Important! Only the primitive properties are loaded, without the
-   * navigation properties.
-   *
-   * @return array
-   *   Array of stdClass objects
-   */
-  public function getRemoteEntities($entity) {
-    $rows = $this->getPaginatedData($entity);
-    $ids = array();
-    foreach($rows as $row) {
-      $ids[] = $row;
-    }
-    ws_consumer_odata_log(__METHOD__ . "($entity): Remote service returned " . count($rows) . ' results');
-    return $ids;
-  }
-
-
-  /**
    * Retrieve a single entity from the service, given its type and id.
    *
    * @param string string $entity
@@ -147,38 +127,51 @@ abstract class ODataConsumer {
    * @return array
    *   Array of stdClass objects
    */
-  protected function getPaginatedData($entity) {
+  public function getPaginatedData($entity, $limit, $migration) {
     $ret = array();
     $pageSize = ODataConsumerConfig::getODataPageSize();
     $page = 0;
     $base_url = $this->url . '/' . $entity;
     $url = sprintf($base_url . '?$top=%d&$skip=%d', $pageSize, $page);
-    $odata_filter = $this->config->getListingQueryString($entity);
+    $odata_filter = $this->config->getListingQueryString();
     if ($odata_filter) {
       $url .= $odata_filter;
     }
     $previous = NULL;
+    $total = 0;
     while ($rows = $this->parseJSONRemoteListPage($url)) {
       // Detect infinite loop when the service does not recognise pagination
       if (json_encode($rows) === json_encode($previous)) {
         break;
       };
       if (!empty($rows)) {
-        foreach ($rows as $row) {
-          if (array_key_exists($row->id, $ret)) {
-            ws_consumer_odata_log(__METHOD__ . ": Found duplicate row, id:" . $row->id . " feed: " . $url, MigrationBase::MESSAGE_WARNING);
+        foreach ($rows as $id => $row) {
+          $total++;
+          if ($x = $migration->getMap()->lookupDestinationID(array($id))) {
+            // ws_consumer_odata_log(__METHOD__ . ": Skipping existing record:" . $row->id . " feed: " . $url, MigrationBase::MESSAGE_WARNING);
+            continue;
+          }
+          if (array_key_exists($id, $ret)) {
+            ws_consumer_odata_log(__METHOD__ . ": Ignoring duplicate row, id:" . $row->id . " feed: " . $url, MigrationBase::MESSAGE_WARNING);
+            continue;
+          }
+          else {
+            $ret[$id] = $row;
+            if ($limit && count($ret) >= $limit) {
+              break;
+            }
           }
         }
       }
-      $ret = array_merge($ret, $rows);
       $page += $pageSize;
       $url = sprintf($base_url . '?$top=%d&$skip=%d', $pageSize, $page);
       $url .= $odata_filter;
       $previous = $rows;
     }
+    $msg = sprintf(__METHOD__ . '(%s): Remote service had %d, returned %d results', $this->config->odata_entity, $total, count($rows));
+    ws_consumer_odata_log($msg);
     return $ret;
   }
-
 
   /**
    * Parse the JSON OData feed.
