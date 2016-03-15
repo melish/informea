@@ -142,6 +142,7 @@ abstract class ODataConsumer {
     }
     $previous = NULL;
     $total = 0;
+    $update = $migration->getOption('update');
     while ($rows = $this->parseJSONRemoteListPage($url)) {
       // Detect infinite loop when the service does not recognise pagination
       if (json_encode($rows) === json_encode($previous)) {
@@ -150,7 +151,7 @@ abstract class ODataConsumer {
       if (!empty($rows)) {
         foreach ($rows as $id => $row) {
           $total++;
-          if ($x = $migration->getMap()->lookupDestinationID(array($id))) {
+          if (!$update && $x = $migration->getMap()->lookupDestinationID(array($id))) {
             // ws_consumer_odata_log(__METHOD__ . ": Skipping existing record:" . $row->id . " feed: " . $url, MigrationBase::MESSAGE_WARNING);
             continue;
           }
