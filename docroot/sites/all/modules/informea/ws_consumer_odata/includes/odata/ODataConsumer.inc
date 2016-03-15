@@ -7,15 +7,12 @@
  */
 abstract class ODataConsumer {
 
-  protected $url = NULL;
-
   /** @var ODataConsumerConfig */
   protected $config = NULL;
   /** @var bool Use /Entity(guid'XXX-XXX-XX') in request URLs */
   protected $useGUIDInURL = FALSE;
 
-  public function __construct($url, $config) {
-    $this->url = $url;
+  public function __construct($config) {
     $this->config = $config;
   }
 
@@ -27,14 +24,15 @@ abstract class ODataConsumer {
    */
   public function countTotal($entity) {
     $ret = 0;
-    $url = $this->url . '/' . $entity . '/$count';
+    $base_url = $this->config->getEndpointURL();
+    $url = $base_url . '/' . $entity . '/$count';
     ws_consumer_odata_log(get_class($this) . ': Remote counting entities: ' . $url);
     $response = ODataMigrationUtil::http_request($url);
     if (!empty($response)) {
       $ret = intval($response);
     }
     else {
-      $url = $this->url . '/' . $entity . '?$inlinecount=allpages';
+      $url = $base_url . '/' . $entity . '?$inlinecount=allpages';
       $response = ODataMigrationUtil::http_request($url);
       $element_name = 'm:count';
       $found = preg_match(
@@ -67,15 +65,16 @@ abstract class ODataConsumer {
    */
   public function getItem($entity, $id, $odata_extra_params = '') {
     $ret = NULL;
-    $url = $this->url . '/' . $entity . "('" . $id . "')?" . $odata_extra_params;
+    $base_url = $this->config->getEndpointURL();
+    $url = $base_url . '/' . $entity . "('" . $id . "')?" . $odata_extra_params;
     ws_consumer_odata_log(__METHOD__ . "($entity, $id): Retrieving data from : $url", MigrationBase::MESSAGE_NOTICE);
     $response = ODataMigrationUtil::http_request($url, array('Accept: application/json'));
     if (empty($response)) {
       if ($this->useGUIDInURL) {
-        $url = $this->url . '/' . $entity . "(guid'" . $id . "')?" . $odata_extra_params;
+        $url = $base_url . '/' . $entity . "(guid'" . $id . "')?" . $odata_extra_params;
       }
       else {
-        $url = $this->url . '/' . $entity . "('" . $id . "')?" . $odata_extra_params;
+        $url = $base_url . '/' . $entity . "('" . $id . "')?" . $odata_extra_params;
       }
       $response = ODataMigrationUtil::http_request($url, array('Accept: application/json'));
       if (empty($response)) {
@@ -104,7 +103,8 @@ abstract class ODataConsumer {
    *   TRUE if the record exists
    */
   public function itemExists($entity, $id) {
-    $url = $this->url . '/' . $entity . "('" . $id . "')";
+    $base_url = $this->config->getEndpointURL();
+    $url = $base_url . '/' . $entity . "('" . $id . "')";
     $ch = curl_init($url);
     curl_setopt ($ch, CURLOPT_TIMEOUT, 30);
     curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, TRUE);
@@ -124,6 +124,8 @@ abstract class ODataConsumer {
   /**
    * Return a single page of results
    *
+   * @param Migration $migration
+   *
    * @return array
    *   Array of stdClass objects
    */
@@ -131,7 +133,8 @@ abstract class ODataConsumer {
     $ret = array();
     $pageSize = ODataConsumerConfig::getODataPageSize();
     $page = 0;
-    $base_url = $this->url . '/' . $entity;
+    $base_url = $this->config->getEndpointURL();
+    $base_url = $base_url . '/' . $entity;
     $url = sprintf($base_url . '?$top=%d&$skip=%d', $pageSize, $page);
     $odata_filter = $this->config->getListingQueryString();
     if ($odata_filter) {

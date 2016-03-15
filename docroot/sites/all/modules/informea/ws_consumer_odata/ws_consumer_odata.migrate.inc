@@ -97,8 +97,7 @@ abstract class InforMEAAbstractODataMigrateSource extends MigrateSource {
     parent::__construct($options);
     $this->config = $config;
     $klass = $this->config->getODataConsumerClass();
-    $uri = $this->config->getEndpointURL();
-    $this->consumer = new $klass($uri, $config);
+    $this->consumer = new $klass($config);
   }
 
   public function __toString() {
