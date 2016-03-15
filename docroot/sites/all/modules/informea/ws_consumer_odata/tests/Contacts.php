@@ -58,6 +58,45 @@ class ContactsODataImportTest extends PHPUnit_Framework_TestCase {
     $treaties = $w->field_treaty->value();
     $this->assertEquals(3, count($treaties));
     $this->assertTrue(in_array($treaties[0]->title, array('CBD', 'The Cartagena Protocol on Biosafety', 'Nagoya Protocol')));
+    $roles = $w->field_contact_roles->value();
+    $this->assertEquals(3, count($roles));
+    foreach($roles as $role) {
+      /** @var stdClass $rw */
+      $rw = entity_metadata_wrapper('field_collection_item', $role);
+      $rt = $rw->field_contact_treaty->value();
+      $this->assertTrue(in_array($rt->nid, array(262, 263)));
+
+      $rr = $rw->field_contact_role->value();
+      $this->assertTrue(in_array($rr->name, array('Cartagena Protocol Primary NFP', 'BCH NFP', 'Nagoya Protocol Primary NFP')));
+    }
+
+    // Alter the URL to change to the new OData feed
+    // Test update of the Contact 'roles' property
+    ODataConsumerTestConfig::$overrides['endpoints'][ODataConsumerConfig::$ODATA_NAME_CBD] = array('default' => 'http://informea.local.ro/sites/all/modules/informea/ws_consumer_odata/tests/resources/v3-updates');
+    $migration->getSource()->resetData();
+    $migration->resetStatus();
+
+    $migration->prepareUpdate();
+    $result = $migration->processImport(array('update' => TRUE));
+    $this->assertEquals(MigrationBase::RESULT_COMPLETED, $result);
+    drupal_static_reset();
+
+    /** @var stdClass $node */
+    $node = node_load($nid);
+    $w = entity_metadata_wrapper('node', $node);
+    $roles = $w->field_contact_roles->value();
+    foreach($roles as $role) {
+      /** @var stdClass $rw */
+      $rw = entity_metadata_wrapper('field_collection_item', $role);
+      $rt = $rw->field_contact_treaty->value();
+      $this->assertTrue(in_array($rt->nid, array(262, 263, 255)));
+      $rr = $rw->field_contact_role->value();
+      $this->assertTrue(
+        in_array($rr->name,
+          array('Cartagena Protocol Primary NFP', 'Nagoya Protocol Primary NFP', 'CBD Primary NFP'))
+      );
+    }
+    $this->assertEquals(3, count($roles));
   }
 
 

@@ -144,6 +144,25 @@ class ContactsODataMigration extends AbstractODataMigration {
     $name = trim($name);
     return $name;
   }
+
+  function complete($entity, stdClass $row) {
+    foreach ($row->roles as $odata_name => $roles) {
+      $treaty = treaty_load_by_odata_name($odata_name);
+      foreach ($roles as $delta => $role) {
+        // vocabulary contact_role vid is 34
+        $tid = ODataMigrationUtil::getOrCreateTaxonomyTermByName($role, 34);
+        $values = array(
+          'field_name' => 'field_contact_roles',
+          'field_contact_treaty' => array(LANGUAGE_NONE => array($delta => array('target_id' => $treaty->nid))),
+          'field_contact_role' => array(LANGUAGE_NONE => array($delta => array('tid' => $tid)))
+        );
+        /** @var FieldCollectionItemEntity $ob */
+        $ob = entity_create('field_collection_item', $values);
+        $ob->setHostEntity('node', $entity);
+        $ob->save();
+      }
+    }
+  }
 }
 
 
@@ -203,5 +222,6 @@ class InforMEAODataContactsMigrateSource extends InforMEAAbstractODataMigrateSou
       }
     }
     $row->treaties = $treaties;
+    $row->roles = $this->consumer->loadContactRolesProperty($row);
   }
 }

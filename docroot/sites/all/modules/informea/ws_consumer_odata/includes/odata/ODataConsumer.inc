@@ -241,4 +241,12 @@ abstract class ODataConsumer {
     }
     return NULL;
   }
+
+  /**
+   * @abstract
+   *
+   * @return array
+   *   Array keyed by treaty, with roles as strings.
+   */
+  public function loadContactRolesProperty($ob) { return array(); }
 }
