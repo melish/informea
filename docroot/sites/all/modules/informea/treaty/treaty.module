@@ -944,6 +944,15 @@ function treaty_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
+/**
+ * Implementes hook_form_FORM_ID_alter.
+ *
+ * Alter the contact form to make the treaty in field_contact_roles single valued.
+ */
+function treaty_form_contact_person_node_form_alter(&$form, &$form_state) {
+  drupal_add_css(drupal_get_path('module', 'treaty') . '/styles/edit-form}.css');
+}
+
 function treaty_check_permission_reorder_decisions($account = NULL) {
   if (arg(0) == 'node') {
     if ($node = node_load(arg(1))) {
