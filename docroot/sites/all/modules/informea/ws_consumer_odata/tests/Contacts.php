@@ -145,6 +145,8 @@ class ContactsODataImportTest extends PHPUnit_Framework_TestCase {
     $migration = MigrationBase::getInstance('test_contacts_odata_v1');
     $migration->processRollback();
     MigrationBase::deregisterMigration('test_contacts_odata_v1');
+    // Restore the endpoint
+    ODataConsumerTestConfig::$overrides['endpoints'][ODataConsumerConfig::$ODATA_NAME_CBD] = array('default' => 'http://informea.local.ro/sites/all/modules/informea/ws_consumer_odata/tests/resources/v3');
   }
 
   function testValidateRow() {
