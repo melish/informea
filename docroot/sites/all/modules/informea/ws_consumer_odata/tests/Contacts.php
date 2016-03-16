@@ -31,6 +31,16 @@ class ContactsODataImportTest extends PHPUnit_Framework_TestCase {
     $count = db_select('migrate_map_test_contacts_odata_v3')->fields(NULL, array('destid1'))->isNotNull('destid1')->countQuery()->execute()->fetchField();
     $this->assertEquals(2, $count);
 
+    // Test merge of 'roles' treaties into 'treaties' property
+    $nid = db_select('migrate_map_test_contacts_odata_v3', 'a')->fields('a', array('destid1'))->condition('sourceid1', '52000000cbd0220000001912')->execute()->fetchField();
+    $this->assertNotNull($nid);
+    $w = entity_metadata_wrapper('node', $nid);
+    $treaties = $w->field_treaty->value();
+    $this->assertEquals(2, count($treaties));
+    $this->assertTrue(in_array($treaties[0]->title, array('The Cartagena Protocol on Biosafety', 'Nagoya Protocol')));
+    $this->assertTrue(in_array($treaties[1]->title, array('The Cartagena Protocol on Biosafety', 'Nagoya Protocol')));
+
+
     $nid = db_select('migrate_map_test_contacts_odata_v3', 'a')->fields('a', array('destid1'))->condition('sourceid1', '52000000cbd02200000018e9')->execute()->fetchField();
     $this->assertNotNull($nid);
     $w = entity_metadata_wrapper('node', $nid);

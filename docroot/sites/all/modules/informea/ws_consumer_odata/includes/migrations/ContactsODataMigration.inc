@@ -98,6 +98,13 @@ class ContactsODataMigration extends AbstractODataMigration {
     $row->email = str_replace(' ', '', $row->email);
     $row->title_en = $this->getContactName($row);
     $treaties = array();
+
+    foreach ($row->roles as $odata_name => $roles) {
+      if ($tob = $this->getTreatyByODataIdentifier($odata_name)) {
+        $treaties[] = $tob->nid;
+      }
+    }
+
     foreach($row->treaties as &$identifier) {
       if ($node = $this->getTreatyByODataIdentifier($identifier)) {
         $treaties[] = $node->nid;
@@ -106,7 +113,7 @@ class ContactsODataMigration extends AbstractODataMigration {
         ws_consumer_odata_log(__METHOD__ . "(): Invalid OData identifier({$identifier})", MigrationBase::MESSAGE_WARNING);
       }
     }
-    $row->treaties = $treaties;
+    $row->treaties = array_unique($treaties);
     return $this->validateRow($row);
   }
 
@@ -127,7 +134,15 @@ class ContactsODataMigration extends AbstractODataMigration {
       ws_consumer_odata_log('Skipping Contact Person with source id=' . $row->id .' because the email is invalid', MigrationBase::MESSAGE_ERROR);
       return FALSE;
     }
-    if (empty($row->treaties)) {
+
+    foreach ($row->roles as $odata_name => $roles) {
+      if (!$this->getTreatyByODataIdentifier($odata_name)) {
+        ws_consumer_odata_log('Skipping Contact with source id=' . $row->id . ' and unknown treaty:' . $odata_name, MigrationBase::MESSAGE_ERROR);
+        return FALSE;
+      }
+    }
+
+    if (empty($row->treaties) && empty($row->roles)) {
       ws_consumer_odata_log('Skipping Contact with source id=' . $row->id .' because is missing treaties', MigrationBase::MESSAGE_ERROR);
       return FALSE;
     }

@@ -61,8 +61,6 @@
         "protocolVersion": 1,
         "id": "52000000cbd0220000001912",
         "treaties": [
-          "cbd",
-          "cartagena",
           "nagoya"
         ],
         "roles": [
