@@ -21,8 +21,7 @@
             },
             "treaty": "cartagena",
             "roles": [
-              "Cartagena Protocol Primary NFP",
-              "BCH NFP"
+              "Cartagena Protocol Primary NFP"
             ],
             "order": "1"
           },
@@ -33,6 +32,16 @@
             "treaty": "nagoya",
             "roles": [
               "Nagoya Protocol Primary NFP"
+            ],
+            "order": "1"
+          },
+          {
+            "__metadata": {
+              "type": "PersonRoles"
+            },
+            "treaty": "cbd",
+            "roles": [
+              "CBD Primary NFP"
             ],
             "order": "1"
           }
@@ -61,6 +70,8 @@
         "protocolVersion": 1,
         "id": "52000000cbd0220000001912",
         "treaties": [
+          "cbd",
+          "cartagena",
           "nagoya"
         ],
         "roles": [

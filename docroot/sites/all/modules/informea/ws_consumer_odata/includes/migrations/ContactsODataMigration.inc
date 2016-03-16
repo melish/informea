@@ -76,9 +76,35 @@ class ContactsODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
+
+    /* Fill with remote-data */
+    $consumer = $this->source->getConsumer();
+    $row->languages = array('en');
+    $treaties = array();
+    $values = $consumer->loadNavigationProperty($row, 'treaties');
+    if (!empty($values) && is_array($values)) {
+      foreach ($values as $value) {
+        if (!empty($value->value)) {
+          $treaties[] = $value->value;
+        }
+        // CBD OData v3 seem to return this format
+        else if (!empty($value) && is_string($value)) {
+          $treaties[] = $value;
+        }
+      }
+    }
+    $row->treaties = $treaties;
+    $row->roles = $consumer->loadContactRolesProperty($row);
     $row->email = str_replace(' ', '', $row->email);
     $row->title_en = $this->getContactName($row);
     $treaties = array();
+
+    foreach ($row->roles as $odata_name => $roles) {
+      if ($tob = $this->getTreatyByODataIdentifier($odata_name)) {
+        $treaties[] = $tob->nid;
+      }
+    }
+
     foreach($row->treaties as &$identifier) {
       if ($node = $this->getTreatyByODataIdentifier($identifier)) {
         $treaties[] = $node->nid;
@@ -87,7 +113,7 @@ class ContactsODataMigration extends AbstractODataMigration {
         ws_consumer_odata_log(__METHOD__ . "(): Invalid OData identifier({$identifier})", MigrationBase::MESSAGE_WARNING);
       }
     }
-    $row->treaties = $treaties;
+    $row->treaties = array_unique($treaties);
     return $this->validateRow($row);
   }
 
@@ -108,7 +134,15 @@ class ContactsODataMigration extends AbstractODataMigration {
       ws_consumer_odata_log('Skipping Contact Person with source id=' . $row->id .' because the email is invalid', MigrationBase::MESSAGE_ERROR);
       return FALSE;
     }
-    if (empty($row->treaties)) {
+
+    foreach ($row->roles as $odata_name => $roles) {
+      if (!$this->getTreatyByODataIdentifier($odata_name)) {
+        ws_consumer_odata_log('Skipping Contact with source id=' . $row->id . ' and unknown treaty:' . $odata_name, MigrationBase::MESSAGE_ERROR);
+        return FALSE;
+      }
+    }
+
+    if (empty($row->treaties) && empty($row->roles)) {
       ws_consumer_odata_log('Skipping Contact with source id=' . $row->id .' because is missing treaties', MigrationBase::MESSAGE_ERROR);
       return FALSE;
     }
@@ -143,6 +177,25 @@ class ContactsODataMigration extends AbstractODataMigration {
     }
     $name = trim($name);
     return $name;
+  }
+
+  function complete($entity, stdClass $row) {
+    foreach ($row->roles as $odata_name => $roles) {
+      $treaty = treaty_load_by_odata_name($odata_name);
+      foreach ($roles as $delta => $role) {
+        // vocabulary contact_role vid is 34
+        $tid = ODataMigrationUtil::getOrCreateTaxonomyTermByName($role, 34);
+        $values = array(
+          'field_name' => 'field_contact_roles',
+          'field_contact_treaty' => array(LANGUAGE_NONE => array($delta => array('target_id' => $treaty->nid))),
+          'field_contact_role' => array(LANGUAGE_NONE => array($delta => array('tid' => $tid)))
+        );
+        /** @var FieldCollectionItemEntity $ob */
+        $ob = entity_create('field_collection_item', $values);
+        $ob->setHostEntity('node', $entity);
+        $ob->save();
+      }
+    }
   }
 }
 
@@ -185,23 +238,5 @@ class InforMEAODataContactsMigrateSource extends InforMEAAbstractODataMigrateSou
       $this->activeMigration
     );
     return $rows;
-  }
-
-  protected function populateRow($row) {
-    $row->languages = array('en');
-    $treaties = array();
-    $values = $this->consumer->loadNavigationProperty($row, 'treaties');
-    if (!empty($values) && is_array($values)) {
-      foreach ($values as $value) {
-        if (!empty($value->value)) {
-          $treaties[] = $value->value;
-        }
-        // CBD OData v3 seem to return this format
-        else if (!empty($value) && is_string($value)) {
-          $treaties[] = $value;
-        }
-      }
-    }
-    $row->treaties = $treaties;
   }
 }

@@ -103,6 +103,31 @@ class MeetingsODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
+
+    /* Fill with remote-data */
+    $consumer = $this->source->getConsumer();
+    $all_languages = array('en');
+    $titles = $consumer->loadNavigationProperty($row, 'title');
+    $row->title_en = ODataMigrationUtil::prepareTitle($titles);
+    list($titles, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($titles);
+    foreach($languages as &$language) {
+      $language = ODataMigrationUtil::fixLanguage($language);
+    }
+    $row->title = $titles;
+    $row->title_language = $languages;
+    $all_languages = array_merge($all_languages, $languages);
+
+    $descriptions = $consumer->loadNavigationProperty($row, 'description');
+    list($descriptions, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($descriptions);
+    foreach($languages as &$language) {
+      $language = ODataMigrationUtil::fixLanguage($language);
+    }
+    $row->description = $descriptions;
+    $row->description_language = $languages;
+    $all_languages = array_merge($all_languages, $languages);
+    $row->languages = array_unique($all_languages);
+
+    /* Do some data transformation */
     if (!empty($row->start)) {
       $row->start = $this->fixDateValue($row->start);
     }
@@ -188,28 +213,5 @@ class InforMEAODataMeetingsMigrateSource extends InforMEAAbstractODataMigrateSou
       $this->activeMigration
     );
     return $rows;
-  }
-
-  protected function populateRow($row) {
-    $all_languages = array('en');
-    $titles = $this->consumer->loadNavigationProperty($row, 'title');
-    $row->title_en = ODataMigrationUtil::prepareTitle($titles);
-    list($titles, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($titles);
-    foreach($languages as &$language) {
-      $language = ODataMigrationUtil::fixLanguage($language);
-    }
-    $row->title = $titles;
-    $row->title_language = $languages;
-    $all_languages = array_merge($all_languages, $languages);
-
-    $descriptions = $this->consumer->loadNavigationProperty($row, 'description');
-    list($descriptions, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($descriptions);
-    foreach($languages as &$language) {
-      $language = ODataMigrationUtil::fixLanguage($language);
-    }
-    $row->description = $descriptions;
-    $row->description_language = $languages;
-    $all_languages = array_merge($all_languages, $languages);
-    $row->languages = array_unique($all_languages);
   }
 }

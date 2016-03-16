@@ -91,14 +91,11 @@ abstract class InforMEAAbstractODataMigrateSource extends MigrateSource {
 
   protected abstract function pullRemoteData();
 
-  protected abstract function populateRow($row);
-
   public function __construct(array $options, $config) {
     parent::__construct($options);
     $this->config = $config;
     $klass = $this->config->getODataConsumerClass();
-    $uri = $this->config->getEndpointURL();
-    $this->consumer = new $klass($uri, $config);
+    $this->consumer = new $klass($config);
   }
 
   public function __toString() {
@@ -136,9 +133,7 @@ abstract class InforMEAAbstractODataMigrateSource extends MigrateSource {
 
   public function getNextRow() {
     $this->readRemoteItems();
-    if ($item = current($this->items)) {
-      $this->populateRow($item);
-    }
+    $item = current($this->items);
     next($this->items);
     return $item;
   }
@@ -149,6 +144,15 @@ abstract class InforMEAAbstractODataMigrateSource extends MigrateSource {
       $limit = $this->activeMigration->getOption('limit')['value'];
     }
     return $limit;
+  }
+
+  public function resetData() {
+    $this->remote_queried = FALSE;
+    $this->items = array();
+  }
+
+  public function getConsumer() {
+    return $this->consumer;
   }
 }
 
@@ -311,5 +315,26 @@ class ODataMigrationUtil {
       'group_name' => 'odata_' . $odata_name,
       'disable_hooks' => $disable_hooks,
     );
+  }
+
+  static function getOrCreateTaxonomyTermByName($name, $vid) {
+    /** @var SelectQuery $query */
+    $query = db_select('taxonomy_term_data', 'a')->fields('a', array('tid'))->condition('vid', $vid)->condition('name', $name);
+    if ($tid = $query->execute()->fetchField()) {
+      return $tid;
+    }
+    else {
+      // Create the term
+      $term = new stdClass();
+      $term->language = 'en';
+      $term->vid = $vid;
+      $term->name = $name;
+      $term->name_field['en'][0]['value'] = $name;
+      taxonomy_term_save($term);
+      if (!empty($term->tid)) {
+        return $term->tid;
+      }
+      return NULL;
+    }
   }
 }

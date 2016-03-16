@@ -3,6 +3,8 @@
 
 class ODataConsumerTestConfig extends ODataConsumerConfig {
 
+  public static $overrides = array();
+
   public function __construct(array $arguments) {
     parent::__construct($arguments);
   }
@@ -17,7 +19,8 @@ class ODataConsumerTestConfig extends ODataConsumerConfig {
     $config['endpoints'][self::$ODATA_NAME_STOCKHOLM]['NationalPlans'] = 'http://informea.local.ro/sites/all/modules/informea/ws_consumer_odata/tests/resources/v1';
     $config['endpoints'][self::$ODATA_NAME_STOCKHOLM]['Decisions'] = 'http://informea.local.ro/sites/all/modules/informea/ws_consumer_odata/tests/resources/v1';
     $config['endpoints'][self::$ODATA_NAME_AEWA]['default'] = 'http://informea.local.ro/sites/all/modules/informea/ws_consumer_odata/tests/resources/v1';
-    return $config;
+    $full = array_replace_recursive($config, self::$overrides);
+    return $full;
   }
 
   public function getDecisionMeetingMappingTable() {
