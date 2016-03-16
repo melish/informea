@@ -11,7 +11,7 @@ function country_data_theme() {
 		'country_data_contact_person' => array(
 			'render element' => 'element',
 			'template' => 'templates/country-data-contact-person',
-			'variables' => array('contact_person'),
+			'variables' => array('contact_person' => NULL, 'treaty' => NULL),
 			'path' => drupal_get_path('module', 'country_data'),
 		),
 	);

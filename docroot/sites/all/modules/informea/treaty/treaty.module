@@ -477,7 +477,7 @@ function treaty_create_table_with_members($members, $node) {
     }
     $rows[] = $row;
     if (count($nfps)) {
-      $nfp_data = country_data_render_focal_points($nfps);
+      $nfp_data = country_data_render_focal_points($nfps, $node);
       $row = array(
         'class' => array('collapse'),
         'data' => array(
