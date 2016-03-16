@@ -72,6 +72,19 @@ class SitesODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
+
+    /* Fill with remote-data */
+    $consumer = $this->source->getConsumer();
+    $all_languages = array('en');
+    $names = $consumer->loadNavigationProperty($row, 'name');
+    $row->title_en = ODataMigrationUtil::prepareTitle($names);
+    list($names, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($names);
+    $row->names = $names;
+    $row->names_language = $languages;
+    $all_languages = array_merge($all_languages, $languages);
+    $row->languages = array_unique($all_languages);
+
+    /* Do some data transformation */
     $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
     return $this->validateRow($row);
   }
@@ -119,16 +132,5 @@ class InforMEAODataSitesMigrateSource extends InforMEAAbstractODataMigrateSource
       $this->activeMigration
     );
     return $rows;
-  }
-
-  protected function populateRow($row) {
-    $all_languages = array('en');
-    $names = $this->consumer->loadNavigationProperty($row, 'name');
-    $row->title_en = ODataMigrationUtil::prepareTitle($names);
-    list($names, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($names);
-    $row->names = $names;
-    $row->names_language = $languages;
-    $all_languages = array_merge($all_languages, $languages);
-    $row->languages = array_unique($all_languages);
   }
 }

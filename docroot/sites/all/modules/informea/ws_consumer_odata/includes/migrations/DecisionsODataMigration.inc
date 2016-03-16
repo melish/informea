@@ -102,6 +102,65 @@ class DecisionsODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
+
+    /* Fill with remote-data */
+    $consumer = $this->source->getConsumer();
+    $all_languages = array('en');
+    $titles = $consumer->loadNavigationProperty($row, 'title');
+    $row->title_en = ODataMigrationUtil::prepareTitle($titles);
+    list($titles, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($titles);
+    $row->title = $titles;
+    $row->title_language = $languages;
+    $all_languages = array_merge($all_languages, $languages);
+
+    $content = $consumer->loadNavigationProperty($row, 'content');
+    list($contents, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($content);
+    $row->content = $contents;
+    $row->content_language = $languages;
+    $all_languages = array_merge($all_languages, $languages);
+
+    $summary = $consumer->loadNavigationProperty($row, 'summary');
+    list($summaries, $langs) = ODataMigrationUtil::getSingleValuedMultilingualField($summary);
+    $row->summary = $summaries;
+
+    $files = $consumer->loadNavigationProperty($row, 'files');
+    $row->files = array();
+    $row->files_language = array();
+    $row->filename = array();
+    foreach($files as $file) {
+      if (empty($file->url)) {
+        ws_consumer_odata_log('Invalid file for Decision id=' . $row->id, MigrationBase::MESSAGE_WARNING);
+        continue;
+      }
+
+      // Filename validation
+      $filename = NULL;
+      if (!empty($row->filename)) {
+        $filename = $row->filename;
+      }
+      else {
+        $filename = ODataMigrationUtil::filenameFromURL($file->url);
+      }
+      if (empty($filename)) {
+        ws_consumer_odata_log('Invalid filename for Decision id=' . $row->id . '. File URL: ' . $file->url, MigrationBase::MESSAGE_WARNING);
+        continue;
+      }
+
+      // File language handling
+      if (empty($file->language)) {
+        ws_consumer_odata_log('Missing language for file, Decision id=' . $row->id . '. File URL: ' . $file->url, MigrationBase::MESSAGE_WARNING);
+        continue;
+      }
+      $language = $file->language;
+      $all_languages[] = $language;
+
+      $row->files[] = $file->url;
+      $row->filename[] = $filename;
+      $row->files_language[] = $language;
+    }
+    $row->languages = array_unique($all_languages);
+
+    /* Do some data transformation */
     if (!empty($row->published)) {
       $row->published = $this->fixDateValue($row->published);
     }
@@ -186,62 +245,5 @@ class InforMEAODataDecisionsMigrateSource extends InforMEAAbstractODataMigrateSo
       $this->activeMigration
     );
     return $rows;
-  }
-
-  protected function populateRow($row) {
-    $all_languages = array('en');
-    $titles = $this->consumer->loadNavigationProperty($row, 'title');
-    $row->title_en = ODataMigrationUtil::prepareTitle($titles);
-    list($titles, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($titles);
-    $row->title = $titles;
-    $row->title_language = $languages;
-    $all_languages = array_merge($all_languages, $languages);
-
-    $content = $this->consumer->loadNavigationProperty($row, 'content');
-    list($contents, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($content);
-    $row->content = $contents;
-    $row->content_language = $languages;
-    $all_languages = array_merge($all_languages, $languages);
-
-    $summary = $this->consumer->loadNavigationProperty($row, 'summary');
-    list($summaries, $langs) = ODataMigrationUtil::getSingleValuedMultilingualField($summary);
-    $row->summary = $summaries;
-
-    $files = $this->consumer->loadNavigationProperty($row, 'files');
-    $row->files = array();
-    $row->files_language = array();
-    $row->filename = array();
-    foreach($files as $file) {
-      if (empty($file->url)) {
-        ws_consumer_odata_log('Invalid file for Decision id=' . $row->id, MigrationBase::MESSAGE_WARNING);
-        continue;
-      }
-
-      // Filename validation
-      $filename = NULL;
-      if (!empty($row->filename)) {
-        $filename = $row->filename;
-      }
-      else {
-        $filename = ODataMigrationUtil::filenameFromURL($file->url);
-      }
-      if (empty($filename)) {
-        ws_consumer_odata_log('Invalid filename for Decision id=' . $row->id . '. File URL: ' . $file->url, MigrationBase::MESSAGE_WARNING);
-        continue;
-      }
-
-      // File language handling
-      if (empty($file->language)) {
-        ws_consumer_odata_log('Missing language for file, Decision id=' . $row->id . '. File URL: ' . $file->url, MigrationBase::MESSAGE_WARNING);
-        continue;
-      }
-      $language = $file->language;
-      $all_languages[] = $language;
-
-      $row->files[] = $file->url;
-      $row->filename[] = $filename;
-      $row->files_language[] = $language;
-    }
-    $row->languages = array_unique($all_languages);
   }
 }

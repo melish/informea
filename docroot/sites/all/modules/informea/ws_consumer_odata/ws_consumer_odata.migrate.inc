@@ -91,8 +91,6 @@ abstract class InforMEAAbstractODataMigrateSource extends MigrateSource {
 
   protected abstract function pullRemoteData();
 
-  protected abstract function populateRow($row);
-
   public function __construct(array $options, $config) {
     parent::__construct($options);
     $this->config = $config;
@@ -135,9 +133,7 @@ abstract class InforMEAAbstractODataMigrateSource extends MigrateSource {
 
   public function getNextRow() {
     $this->readRemoteItems();
-    if ($item = current($this->items)) {
-      $this->populateRow($item);
-    }
+    $item = current($this->items);
     next($this->items);
     return $item;
   }
@@ -153,6 +149,10 @@ abstract class InforMEAAbstractODataMigrateSource extends MigrateSource {
   public function resetData() {
     $this->remote_queried = FALSE;
     $this->items = array();
+  }
+
+  public function getConsumer() {
+    return $this->consumer;
   }
 }
 

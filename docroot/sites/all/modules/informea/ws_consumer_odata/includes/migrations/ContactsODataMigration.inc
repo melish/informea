@@ -76,6 +76,25 @@ class ContactsODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
+
+    /* Fill with remote-data */
+    $consumer = $this->source->getConsumer();
+    $row->languages = array('en');
+    $treaties = array();
+    $values = $consumer->loadNavigationProperty($row, 'treaties');
+    if (!empty($values) && is_array($values)) {
+      foreach ($values as $value) {
+        if (!empty($value->value)) {
+          $treaties[] = $value->value;
+        }
+        // CBD OData v3 seem to return this format
+        else if (!empty($value) && is_string($value)) {
+          $treaties[] = $value;
+        }
+      }
+    }
+    $row->treaties = $treaties;
+    $row->roles = $consumer->loadContactRolesProperty($row);
     $row->email = str_replace(' ', '', $row->email);
     $row->title_en = $this->getContactName($row);
     $treaties = array();
@@ -204,24 +223,5 @@ class InforMEAODataContactsMigrateSource extends InforMEAAbstractODataMigrateSou
       $this->activeMigration
     );
     return $rows;
-  }
-
-  protected function populateRow($row) {
-    $row->languages = array('en');
-    $treaties = array();
-    $values = $this->consumer->loadNavigationProperty($row, 'treaties');
-    if (!empty($values) && is_array($values)) {
-      foreach ($values as $value) {
-        if (!empty($value->value)) {
-          $treaties[] = $value->value;
-        }
-        // CBD OData v3 seem to return this format
-        else if (!empty($value) && is_string($value)) {
-          $treaties[] = $value;
-        }
-      }
-    }
-    $row->treaties = $treaties;
-    $row->roles = $this->consumer->loadContactRolesProperty($row);
   }
 }
