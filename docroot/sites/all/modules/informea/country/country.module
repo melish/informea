@@ -116,18 +116,21 @@ function country_node_view($node, $view_mode, $langcode) {
         $elements = array(
           'legislation' => array(
             'header' => t('Legislation'),
-            'body' => sprintf('<iframe class="ecolex" src="%s"></iframe>', $legislation_url) .
-                l(t('View more results on ECOLEX website'), $legislation_url, array('attributes' => array('class' => array('ecolex-link'), 'target' => '_blank')))
+            'body' => 'Coming soon ...',
+//            'body' => sprintf('<iframe class="ecolex" src="%s"></iframe>', $legislation_url) .
+//                l(t('View more results on ECOLEX website'), $legislation_url, array('attributes' => array('class' => array('ecolex-link'), 'target' => '_blank')))
           ),
           'courtdecisions' => array(
             'header' => t('Court decisions'),
-            'body' => sprintf('<iframe class="ecolex" src="%s"></iframe>', $courdecisions_url) .
-                l(t('View more results on ECOLEX website'), $courdecisions_url, array('attributes' => array('class' => array('ecolex-link'), 'target' => '_blank')))
+            'body' => 'Coming soon ...',
+//            'body' => sprintf('<iframe class="ecolex" src="%s"></iframe>', $courdecisions_url) .
+//                l(t('View more results on ECOLEX website'), $courdecisions_url, array('attributes' => array('class' => array('ecolex-link'), 'target' => '_blank')))
           ),
           'literature' => array(
             'header' => t('Literature'),
-            'body' => sprintf('<iframe class="ecolex" src="%s"></iframe>', $literature_url) .
-                l(t('View more results on ECOLEX website'), $literature_url, array('attributes' => array('class' => array('ecolex-link'), 'target' => '_blank')))
+            'body' => 'Coming soon ...',
+//            'body' => sprintf('<iframe class="ecolex" src="%s"></iframe>', $literature_url) .
+//                l(t('View more results on ECOLEX website'), $literature_url, array('attributes' => array('class' => array('ecolex-link'), 'target' => '_blank')))
           )
         );
         drupal_add_js(drupal_get_path('module', 'thesaurus') . '/js/concept.js');
