@@ -120,12 +120,12 @@ function country_data_sort_contacts_by_role(&$contacts) {
   foreach($contacts as $contact) {
     $w = entity_metadata_wrapper('node', $contact);
     $roles = $w->field_contact_roles->value();
-    $position_min = -9999;
+    $position_min = 9999;
     // Find the role with the lowest term weight (order inside the taxonomy)
     foreach ($roles as $role) {
       $iw = entity_metadata_wrapper('field_collection_item', $role);
       $role_term = $iw->field_contact_role->value();
-      if ($role_term->weight > $position_min) {
+      if ($role_term->weight < $position_min) {
         $position_min = $role_term->weight;
       }
     }
