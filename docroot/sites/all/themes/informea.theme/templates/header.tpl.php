@@ -138,9 +138,9 @@
             array('attributes' => array('class' => array('dropdown-toggle')), 'absolute' => TRUE, 'html' => TRUE)); ?>
           <ul class="dropdown-menu dropdown-menu-right" role="menu">
             <li><?php print l(t('Past events'), 'events/past'); ?></li>
+            <li><?php print l(t('News'), 'news'); ?></li>
           </ul><!-- .dropdown-menu .dropdown-menu-right -->
         </li>
-        <li><?php print l(t('News'), 'news'); ?></li>
         <li class="dropdown">
           <?php print l(
             t('About') . ' <span class="caret"></span>',
@@ -153,7 +153,8 @@
             <li><?php print l(t('Contact'), 'node/70411'); ?></li>
           </ul><!-- .dropdown-menu .dropdown-menu-right -->
         </li><!-- .dropdown -->
+        <li><?php print l(t('Learning'), 'http://leo.informea.org/'); ?></li>
       </ul><!-- .nav .navbar-nav -->
-    </nav><!-- .navbar-collapse .collapse -->
+      </nav><!-- .navbar-collapse .collapse -->
   </div><!-- .container -->
 </header><!-- #navbar -->
