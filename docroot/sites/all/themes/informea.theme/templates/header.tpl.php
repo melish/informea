@@ -153,7 +153,7 @@
             <li><?php print l(t('Contact'), 'node/70411'); ?></li>
           </ul><!-- .dropdown-menu .dropdown-menu-right -->
         </li><!-- .dropdown -->
-        <li><?php print l(t('Learning'), 'http://leo.informea.org/'); ?></li>
+        <li><?php print l(t('Learning'), 'http://e-learning.informea.org/'); ?></li>
       </ul><!-- .nav .navbar-nav -->
       </nav><!-- .navbar-collapse .collapse -->
   </div><!-- .container -->
