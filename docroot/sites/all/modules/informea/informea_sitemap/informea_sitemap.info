@@ -1,0 +1,9 @@
+name = InforMEA Sitemap
+description = InforMEA Sitemap hooks for xmlsitemap module
+core = 7.x
+package = InforMEA
+version = 7.x-0.6
+project = informea_sitemap
+dependencies[] = xmlsitemap
+dependencies[] = xmlsitemap_i18n
+dependencies[] = xmlsitemap_node
