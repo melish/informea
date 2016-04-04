@@ -324,6 +324,13 @@ function country_data_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_extended_member_party';
+  $strongarm->value = 1;
+  $export['i18n_node_extended_member_party'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'i18n_node_options_contact_person';
   $strongarm->value = array();
   $export['i18n_node_options_contact_person'] = $strongarm;
@@ -334,6 +341,13 @@ function country_data_strongarm() {
   $strongarm->name = 'i18n_node_options_geographical_site';
   $strongarm->value = array();
   $export['i18n_node_options_geographical_site'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_options_member_party';
+  $strongarm->value = array();
+  $export['i18n_node_options_member_party'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -482,6 +496,26 @@ function country_data_strongarm() {
     'priority' => '0.5',
   );
   $export['xmlsitemap_settings_node_contact_person'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xmlsitemap_settings_node_geographical_site';
+  $strongarm->value = array(
+    'status' => '1',
+    'priority' => '0.5',
+  );
+  $export['xmlsitemap_settings_node_geographical_site'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xmlsitemap_settings_node_member_party';
+  $strongarm->value = array(
+    'status' => '1',
+    'priority' => '0.5',
+  );
+  $export['xmlsitemap_settings_node_member_party'] = $strongarm;
 
   return $export;
 }
