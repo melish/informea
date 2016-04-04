@@ -53,3 +53,20 @@ function informea_get_mysql_column_size($table, $column) {
   );
   return $result->fetchField(0);
 }
+
+/**
+ * Enable seo modules.
+ */
+function informea_update_7004() {
+  $modules = array(
+    'metatag',
+    'xmlsitemap',
+    'xmlsitemap_node',
+    'xmlsitemap_i18n',
+    'xmlsitemap_menu',
+    'xmlsitemap_taxonomy',
+    'hreflang',
+    'informea_sitemap',
+  );
+  module_enable($modules);
+}
