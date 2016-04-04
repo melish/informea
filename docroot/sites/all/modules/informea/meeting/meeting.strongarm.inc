@@ -312,6 +312,20 @@ function meeting_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_extended_event_calendar_imported';
+  $strongarm->value = 1;
+  $export['i18n_node_extended_event_calendar_imported'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_options_event_calendar_imported';
+  $strongarm->value = array();
+  $export['i18n_node_options_event_calendar_imported'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'language_content_type_event_calendar';
   $strongarm->value = '4';
   $export['language_content_type_event_calendar'] = $strongarm;
