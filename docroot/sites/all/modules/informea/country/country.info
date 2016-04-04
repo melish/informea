@@ -51,6 +51,7 @@ features[variable][] = node_options_country
 features[variable][] = node_preview_country
 features[variable][] = node_submitted_country
 features[variable][] = xmlsitemap_settings_node_country
+features[variable][] = xmlsitemap_settings_node_national_report
 features[views_view][] = countries
 features[views_view][] = country_related_content
 files[] = country.api.inc
