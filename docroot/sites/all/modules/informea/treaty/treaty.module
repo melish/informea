@@ -945,12 +945,70 @@ function treaty_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
- * Implementes hook_form_FORM_ID_alter.
+ * Implementes hook_form_FORM_ID_alter().
  *
  * Alter the contact form to make the treaty in field_contact_roles single valued.
  */
 function treaty_form_contact_person_node_form_alter(&$form, &$form_state) {
   drupal_add_css(drupal_get_path('module', 'treaty') . '/styles/edit-form}.css');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function treaty_form_treaty_article_node_form_alter(&$form) {
+  if (!empty($_GET['edit']['field_treaty'][LANGUAGE_NONE]) && is_numeric($_GET['edit']['field_treaty'][LANGUAGE_NONE])) {
+    $tid = intval($_GET['edit']['field_treaty'][LANGUAGE_NONE]);
+    // Also compute the weight for this next paragraph (field_sorting_order)
+    // SELECT max(b.field_sorting_order_value) FROM field_data_field_treaty a
+    // INNER JOIN field_data_field_sorting_order b ON a.entity_id = b.entity_id
+    // WHERE
+    // a.bundle = 'treaty_article'
+    // AND a.field_treaty_target_id = 80599
+    // ORDER BY b.field_sorting_order_value
+    $next = db_query("SELECT MAX(b.field_sorting_order_value) FROM {field_data_field_treaty} a
+      INNER JOIN {field_data_field_sorting_order} b ON a.entity_id = b.entity_id
+      WHERE a.bundle = 'treaty_article'
+      AND a.field_treaty_target_id = :tid
+      ORDER BY b.field_sorting_order_value", array(':tid' => $tid))->fetchField();
+    // Increment
+    $next = empty($next) ? 5 : $next + 5;
+    $form['field_sorting_order'][LANGUAGE_NONE][0]['value']['#default_value'] = $next;
+
+    $form['field_treaty'][LANGUAGE_NONE]['#default_value'] = $tid;
+  }
+  return;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function treaty_form_treaty_paragraph_node_form_alter(&$form) {
+  if (!empty($_GET['edit']['field_treaty'][LANGUAGE_NONE]) && is_numeric($_GET['edit']['field_treaty'][LANGUAGE_NONE])) {
+    $form['field_treaty'][LANGUAGE_NONE]['#default_value'] = intval($_GET['edit']['field_treaty'][LANGUAGE_NONE]);
+  }
+  if (!empty($_GET['edit']['field_parent_treaty_article'][LANGUAGE_NONE]) && is_numeric($_GET['edit']['field_parent_treaty_article'][LANGUAGE_NONE])) {
+    $pid = intval($_GET['edit']['field_parent_treaty_article'][LANGUAGE_NONE]);
+    $w = entity_metadata_wrapper('node', $pid);
+
+    // Also compute the weight for this next paragraph (field_sorting_order)
+    // SELECT max(b.field_sorting_order_value) FROM field_data_field_parent_treaty_article a
+    // INNER JOIN field_data_field_sorting_order b ON a.entity_id = b.entity_id
+    // WHERE a.bundle = 'treaty_paragraph'
+    // AND a.field_parent_treaty_article_target_id = 11787
+    // ORDER BY b.field_sorting_order_value
+    $next = db_query("SELECT MAX(b.field_sorting_order_value) FROM {field_data_field_parent_treaty_article} a
+      INNER JOIN {field_data_field_sorting_order} b ON a.entity_id = b.entity_id
+      WHERE a.bundle = 'treaty_paragraph'
+      AND a.field_parent_treaty_article_target_id = :aid
+      ORDER BY b.field_sorting_order_value", array(':aid' => $pid))->fetchField();
+    // Increment
+    $next = empty($next) ? 5 : $next + 5;
+    $form['field_sorting_order'][LANGUAGE_NONE][0]['value']['#default_value'] = $next;
+
+    $form['field_parent_treaty_article'][LANGUAGE_NONE][0]['target_id']['#default_value'] = $w->label() . ' (' . $pid . ')';
+  }
+  return;
 }
 
 function treaty_check_permission_reorder_decisions($account = NULL) {

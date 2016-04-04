@@ -18,7 +18,6 @@ dependencies[] = image
 dependencies[] = link
 dependencies[] = list
 dependencies[] = number
-dependencies[] = prepopulate
 dependencies[] = strongarm
 dependencies[] = taxonomy_formatter
 dependencies[] = title
