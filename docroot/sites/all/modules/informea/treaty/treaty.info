@@ -274,6 +274,7 @@ features[variable][] = node_submitted_organisation
 features[variable][] = node_submitted_treaty
 features[variable][] = node_submitted_treaty_article
 features[variable][] = node_submitted_treaty_paragraph
+features[variable][] = xmlsitemap_settings_node_treaty
 features[views_view][] = decision_ordering
 features[views_view][] = reporting_obligations_admin
 features[views_view][] = treaty_listing_page
