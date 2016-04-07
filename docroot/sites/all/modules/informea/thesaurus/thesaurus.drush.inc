@@ -147,11 +147,25 @@ function drush_thesaurus_informea_thesaurus_correct_path_alias() {
       ->condition('source', 'taxonomy/term/' . $term->tid)
       ->execute()->fetchCol());
     if (!empty($path_alias) && $old_alias != $path_alias) {
+      // We need to redirect the old alias to the new one
+      $redirect = new stdClass();
+      redirect_object_prepare(
+        $redirect,
+        array(
+          'source' => $old_alias,
+          'source_options' => array(),
+          'redirect' => $path_alias,
+          'redirect_options' => array(),
+          'language' => LANGUAGE_NONE,
+        )
+      );
+      redirect_save($redirect);
+
       db_update('url_alias')
         ->fields(array('alias' => $path_alias))
         ->condition('source', 'taxonomy/term/' . $term->tid)
         ->execute();
-      drush_log('Path alias changed for term: ' . $term->name, 'ok');
+      drush_log("Path alias changed for term: \"{$term->name}\". OLD: {$old_alias} | NEW: {$path_alias}", 'ok');
       $count ++;
     }
   }
