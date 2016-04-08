@@ -40,7 +40,6 @@ function analytics_integration_add_google_analytics_library($key) {
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', '$key', 'auto');
-  ga('send', 'pageview');
 EOT;
   drupal_add_js($script, array(
     'scope' => 'header',
