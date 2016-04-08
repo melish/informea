@@ -616,8 +616,8 @@ function informea_user_mea_can_edit_node($node, $user) {
 
 function informea_mea_content_types() {
   return array(
-    'treaty_article', 'treaty_paragraph', 'event_calendar',
-    'national_report', 'action_plan', 'contact_person', 'decision',
-    'decision_paragraph', 'geographical_site', 'member_party'
+    'action_plan', 'contact_person', 'decision', 'decision_paragraph',
+    'event_calendar', 'geographical_site', 'member_party', 'national_report',
+    'treaty_article', 'treaty_paragraph',
   );
 }
