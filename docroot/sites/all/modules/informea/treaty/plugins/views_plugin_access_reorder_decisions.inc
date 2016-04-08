@@ -11,10 +11,11 @@ class views_plugin_access_reorder_decisions extends views_plugin_access {
   }
 
   function access($account) {
-    treaty_check_permission_reorder_decisions($account, $this->view);
+    treaty_check_permission_reorder_decisions($account);
   }
 
   function get_access_callback() {
-    return array('treaty_check_permission_reorder_decisions', array());
+    global $user;
+    return array('treaty_check_permission_reorder_decisions', array($user));
   }
 }

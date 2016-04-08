@@ -36,6 +36,23 @@ function treaty_views_plugins() {
 }
 
 /**
+ * Implements hook_menu().
+ */
+function treaty_menu() {
+  $items = array();
+  $items['informea/autocomplete/single/field_parent_treaty_article/node/treaty_paragraph'] = array(
+    'title' => 'Entity Reference Autocomplete',
+    'page callback' => 'informea_entityreference_treaty_article_autocomplete_callback',
+    'page arguments' => array(2, 3, 4, 5),
+    'access callback' => 'entityreference_autocomplete_access_callback',
+    'access arguments' => array(2, 3, 4, 5),
+    'file' => 'treaty.admin.inc',
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
  *  Implements hook_url_inbound_alter().
  */
 function treaty_url_inbound_alter(&$path, $original_path, $path_language) {
@@ -1011,31 +1028,49 @@ function treaty_form_treaty_paragraph_node_form_alter(&$form) {
   return;
 }
 
+/**
+ * Check if the current user can reorder decisions for a treaty
+ *
+ * @param stdClass $account
+ * @return bool
+ */
 function treaty_check_permission_reorder_decisions($account = NULL) {
-  if (arg(0) == 'node') {
-    if ($node = node_load(arg(1))) {
-      if ($node->type == 'treaty') {
-        // Suposely only "administrators" should have this permission ...
-        if (user_access('administer site configuration')) {
-          return TRUE;
-        }
-        global $user;
-
-        if ($node->uid == $user->uid) {
-          return TRUE;
-        }
-
-        // Check owners in the node
-        $owners = !empty($node->field_user_owners) ? $node->field_user_owners[LANGUAGE_NONE] : array();
-        foreach($owners as $ob) {
-          if ($user->uid == $ob['target_id']) {
+  if (arg(0) == 'node' && $node = node_load(arg(1))) {
+    if ($node->type == 'treaty') {
+      // Suposely only "administrators" should have this permission ...
+      if (user_access('administer site configuration')) {
+        return TRUE;
+      }
+      // $account seem to be alway empty ...
+      global $user;
+      $w = entity_metadata_wrapper('user', $user);
+      try {
+        foreach ($w->field_user_treaties->value() as $treaty) {
+          if ($treaty->nid == $node->nid) {
             return TRUE;
           }
         }
+      } catch(Exception $e) {
+        watchdog_exception('treaty', $e);
       }
     }
   }
   return FALSE;
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function treaty_node_access($node, $op, $account) {
+  if ($op == 'update' || $op == 'delete') {
+    if (in_array($node->type, informea_mea_content_types())) {
+      // Allow editing of nodes that the MEA user has assigned in treaty
+      if (informea_user_mea_can_edit_node($node, $account)) {
+        return NODE_ACCESS_ALLOW;
+      }
+    }
+  }
+  return NODE_ACCESS_IGNORE;
 }
 
 /**
@@ -1142,6 +1177,47 @@ function treaty_form_node_form_alter(&$form, &$form_state, $form_id) {
       $form['field_treaty']['und']['#multiple'] = FALSE;
 
       break;
+  }
+
+  // Use custom autocomplete
+  if ($form['#node']->type == 'treaty_paragraph') {
+    /** @see informea_entityreference_treaty_article_autocomplete_callback */
+    $autocomplete_path = 'informea/autocomplete/single/field_parent_treaty_article/node/treaty_paragraph/';
+    $autocomplete_path .= !empty($form['#node']->nid) ? $form['#node']->nid : 'NULL';
+    $form['field_parent_treaty_article'][LANGUAGE_NONE][0]['target_id']['#autocomplete_path'] = $autocomplete_path;
+    $form['#validate'][] = 'informea_treaty_paragraph_node_form_validate';
+  }
+
+  if (in_array($form['#node']->type, array('treaty_article', 'treaty_paragraph'))) {
+    global $user;
+    $allowed_treaties = informea_user_get_assigned_treaties($user);
+    $options = &$form['field_treaty']['und']['#options'];
+    if ($user->uid != 1 || !empty($allowed_treaties)) {
+      foreach($options as $nid => $label) {
+        if ($nid != '_none' && !in_array($nid, $allowed_treaties)) {
+          unset($options[$nid]);
+        }
+      }
+    }
+  }
+}
+
+function informea_treaty_paragraph_node_form_validate($form, $form_state) {
+  // We validate that the selected article belongs to the selected treaty.
+  if (!empty($form_state['values']['field_parent_treaty_article'][LANGUAGE_NONE][0]['target_id'])) {
+    $id_treaty = $form_state['values']['field_treaty'][LANGUAGE_NONE][0]['target_id'];
+    if (!empty($form_state['values']['field_treaty'][LANGUAGE_NONE][0]['target_id'])) {
+      $id_article = $form_state['values']['field_parent_treaty_article'][LANGUAGE_NONE][0]['target_id'];
+      $id_treaty_article = NULL;
+      try {
+        $w = entity_metadata_wrapper('node', $id_article);
+        $id_treaty_article = $w->field_treaty->value()[0]->nid;
+      } catch(Exception $e) {
+      }
+      if ($id_treaty_article != $id_treaty) {
+        form_set_error('field_parent_treaty_article', t('The selected article does not belong to the treaty above'));
+      }
+    }
   }
 }
 
