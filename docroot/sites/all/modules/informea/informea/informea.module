@@ -11,6 +11,8 @@ define('INFORMEA_VOC_GEG', 'thesaurus_geg');
 define('INFORMEA_VOC_IEG', 'thesaurus_ieg');
 define('INFORMEA_VOC_GEMET', 'thesaurus_gemet');
 
+define('ROLE_MEA', 'MEA');
+
 /**
  * Implements hook_schema_alter()
  */
@@ -601,7 +603,7 @@ function informea_user_get_assigned_treaties($user) {
  *   user's assigned treaties in field_user_treaties.
  */
 function informea_user_mea_can_edit_node($node, $user) {
-  if (in_array('MEA', $user->roles)) {
+  if (in_array(ROLE_MEA, $user->roles)) {
     $allowed = informea_user_get_assigned_treaties($user);
     $nid = NULL;
     try {
@@ -626,14 +628,38 @@ function informea_mea_content_types() {
  * Implements hook_form_BASE_FORM_ID_alter().
  */
 function informea_form_node_form_alter(&$form, &$form_state, $form_id) {
-  if (!empty($form['#node']->nid) && in_array($form['#node']->type, informea_mea_content_types())) {
-    try {
-      $w = entity_metadata_wrapper('node', $form['#node']->nid);
-      if ($w->field_original_id->value()) {
-        drupal_set_message(t('This content is imported from MEA via synchronization process. <strong>Modifications made here might be lost after the next synchronization</strong>'), 'warning');
+  $bundle = $form['#node']->type;
+  if (in_array($bundle, informea_mea_content_types())) {
+    global $user;
+    // Warn the user when content comes from OData
+    if (!empty($form['#node']->nid)) {
+      try {
+        $w = entity_metadata_wrapper('node', $form['#node']->nid);
+        if ($w->field_original_id->value()) {
+          drupal_set_message(t('This content is imported from MEA via synchronization process. <strong>Modifications made here might be lost after the next synchronization</strong>'), 'warning');
+        }
+      } catch (Exception $e) {
       }
-    } catch (Exception $e) {
+    }
 
+    // If the user is MEA role, filter out the list of treaties in field_treaty.
+    if ($user->uid != 1 && !empty($form['field_treaty']['und']['#options']) && in_array(ROLE_MEA, $user->roles)) {
+      $allowed_treaties = informea_user_get_assigned_treaties($user);
+      $options = &$form['field_treaty']['und']['#options'];
+      if ($user->uid != 1 || !empty($allowed_treaties)) {
+        foreach ($options as $nid => $label) {
+          if ($nid != '_none' && !in_array($nid, $allowed_treaties)) {
+            unset($options[$nid]);
+          }
+        }
+      }
+    }
+
+    if ($bundle != 'contact_person' && !empty($form['field_treaty']['und'])) {
+      $form['field_treaty']['und']['#multiple'] = FALSE;
+    }
+    if (!empty($form['field_country']['und'])) {
+      $form['field_country']['und']['#multiple'] = FALSE;
     }
   }
 }

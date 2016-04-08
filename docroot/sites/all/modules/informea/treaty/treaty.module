@@ -1163,22 +1163,6 @@ function treaty_contextual_links_view_alter(&$element, $items) {
  * Implements hook_form_BASE_FORM_ID_alter().
  */
 function treaty_form_node_form_alter(&$form, &$form_state, $form_id) {
-  switch ($form['#node']->type) {
-    case 'action_plan':
-    case 'decision':
-    case 'decision_paragraph':
-    case 'geographical_site':
-    case 'literature':
-    case 'member_party':
-    case 'national_report':
-    case 'reporting_obligation_cycle':
-    case 'treaty_article':
-    case 'treaty_paragraph':
-      $form['field_treaty']['und']['#multiple'] = FALSE;
-
-      break;
-  }
-
   // Use custom autocomplete
   if ($form['#node']->type == 'treaty_paragraph') {
     /** @see informea_entityreference_treaty_article_autocomplete_callback */
@@ -1186,19 +1170,6 @@ function treaty_form_node_form_alter(&$form, &$form_state, $form_id) {
     $autocomplete_path .= !empty($form['#node']->nid) ? $form['#node']->nid : 'NULL';
     $form['field_parent_treaty_article'][LANGUAGE_NONE][0]['target_id']['#autocomplete_path'] = $autocomplete_path;
     $form['#validate'][] = 'informea_treaty_paragraph_node_form_validate';
-  }
-
-  if (in_array($form['#node']->type, array('treaty_article', 'treaty_paragraph'))) {
-    global $user;
-    $allowed_treaties = informea_user_get_assigned_treaties($user);
-    $options = &$form['field_treaty']['und']['#options'];
-    if ($user->uid != 1 || !empty($allowed_treaties)) {
-      foreach($options as $nid => $label) {
-        if ($nid != '_none' && !in_array($nid, $allowed_treaties)) {
-          unset($options[$nid]);
-        }
-      }
-    }
   }
 }
 
