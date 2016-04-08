@@ -1,37 +1,5 @@
 <?php
 
-function treaty_url_match_node($path) {
-  if (arg(0, $path) == 'treaties') {
-    if ($node = treaty_load_by_odata_name(arg(1, $path))) {
-      return $node;
-    }
-  } else if(strlen(arg(0, $path)) == 2) { // Assume language prefix @todo enhance
-    if (arg(1, $path) == 'treaties') {
-      if ($node = treaty_load_by_odata_name(arg(2, $path))) {
-        return $node;
-      }
-    }
-  }
-  return FALSE;
-}
-
-function treaty_url_context($path) {
-  if (preg_match('/^node/', $path)) {
-    $path = preg_replace('/node\/?[0-9]*\/?/', '', $path);
-    $parts = explode('/', $path);
-  }
-  else {
-    $path = preg_replace('/([A-Za-z]{2})?\/?treaties\/[A-Za-z\-\_]*\/?/', '', $path);
-    $parts = explode('/', $path);
-  }
-  foreach ($parts as $part) {
-    if (in_array($part, array('print', 'text', 'protocols', 'decisions', 'parties', 'national-reports', 'action-plans'))) {
-      return $part;
-    }
-  }
-  return 'summary';
-}
-
 function treaty_load_by_odata_name($odata_name) {
   $query = new EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')
