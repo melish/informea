@@ -637,3 +637,16 @@ function informea_form_node_form_alter(&$form, &$form_state, $form_id) {
     }
   }
 }
+
+/**
+ * Implements hook_custom_theme().
+ */
+function informea_custom_theme() {
+  // match node/1
+  if (arg(0) == 'node' && is_numeric(arg(1)) && $node = node_load(arg(1))) {
+      if ($node->type == 'book') {
+        return variable_get('admin_theme');
+      }
+  }
+  return NULL;
+}
