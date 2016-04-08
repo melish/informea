@@ -24,6 +24,15 @@ function treaty_menu() {
       'access arguments' => array('view', 1),
     );
   }
+  $items['informea/autocomplete/single/field_parent_treaty_article/node/treaty_paragraph'] = array(
+    'title' => 'Entity Reference Autocomplete',
+    'page callback' => 'informea_entityreference_treaty_article_autocomplete_callback',
+    'page arguments' => array(2, 3, 4, 5),
+    'access callback' => 'entityreference_autocomplete_access_callback',
+    'access arguments' => array(2, 3, 4, 5),
+    'file' => 'treaty.admin.inc',
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
@@ -53,23 +62,6 @@ function treaty_views_plugins() {
       ),
     ),
   );
-}
-
-/**
- * Implements hook_menu().
- */
-function treaty_menu() {
-  $items = array();
-  $items['informea/autocomplete/single/field_parent_treaty_article/node/treaty_paragraph'] = array(
-    'title' => 'Entity Reference Autocomplete',
-    'page callback' => 'informea_entityreference_treaty_article_autocomplete_callback',
-    'page arguments' => array(2, 3, 4, 5),
-    'access callback' => 'entityreference_autocomplete_access_callback',
-    'access arguments' => array(2, 3, 4, 5),
-    'file' => 'treaty.admin.inc',
-    'type' => MENU_CALLBACK,
-  );
-  return $items;
 }
 
 /**
