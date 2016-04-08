@@ -621,3 +621,19 @@ function informea_mea_content_types() {
     'treaty_article', 'treaty_paragraph',
   );
 }
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function informea_form_node_form_alter(&$form, &$form_state, $form_id) {
+  if (!empty($form['#node']->nid) && in_array($form['#node']->type, informea_mea_content_types())) {
+    try {
+      $w = entity_metadata_wrapper('node', $form['#node']->nid);
+      if ($w->field_original_id->value()) {
+        drupal_set_message(t('This content is imported from MEA via synchronization process. <strong>Modifications made here might be lost after the next synchronization</strong>'), 'warning');
+      }
+    } catch (Exception $e) {
+
+    }
+  }
+}
