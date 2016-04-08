@@ -564,3 +564,89 @@ function informea_remove_duplicate_news() {
   watchdog('informea', 'Removing !count news having duplicate title', array('!count' => count($result)), WATCHDOG_INFO);
   node_delete_multiple($nids);
 }
+
+/**
+ * Do not allow users to edit their own treaty assignment
+ * @param $form
+ */
+function informea_form_user_profile_form_alter(&$form) {
+  global $user;
+  $form['field_user_treaties']['#access'] = $user->uid == 1 || in_array('administer users', $user->roles);
+}
+
+function informea_user_get_assigned_treaties($user) {
+  $ret = array();
+  try {
+    if (!empty($user)) {
+      $w = entity_metadata_wrapper('user', $user);
+      foreach($w->field_user_treaties->value() as $treaty) {
+        $ret[] = $treaty->nid;
+      }
+    }
+  } catch(Exception $e) {
+    watchdog_exception('informea', $e);
+  }
+  return $ret;
+}
+
+/**
+ * Check node can be edited by MEA role.
+ *
+ * @param stdClass $user
+ *   User to check
+ * @param stdClass $node
+ *   Node to check
+ * @return bool
+ *   Returns TRUE if user is NOT MEA, or is MEA and node's treaty matches the
+ *   user's assigned treaties in field_user_treaties.
+ */
+function informea_user_mea_can_edit_node($node, $user) {
+  if (in_array('MEA', $user->roles)) {
+    $allowed = informea_user_get_assigned_treaties($user);
+    $nid = NULL;
+    try {
+      $w = entity_metadata_wrapper('node', $node->nid);
+      $nid = $w->field_treaty->value()[0]->nid;
+    } catch(Exception $e) {
+    }
+    return in_array($nid, $allowed);
+  }
+  return TRUE;
+}
+
+function informea_mea_content_types() {
+  return array(
+    'action_plan', 'contact_person', 'decision', 'decision_paragraph',
+    'event_calendar', 'geographical_site', 'member_party', 'national_report',
+    'treaty_article', 'treaty_paragraph',
+  );
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function informea_form_node_form_alter(&$form, &$form_state, $form_id) {
+  if (!empty($form['#node']->nid) && in_array($form['#node']->type, informea_mea_content_types())) {
+    try {
+      $w = entity_metadata_wrapper('node', $form['#node']->nid);
+      if ($w->field_original_id->value()) {
+        drupal_set_message(t('This content is imported from MEA via synchronization process. <strong>Modifications made here might be lost after the next synchronization</strong>'), 'warning');
+      }
+    } catch (Exception $e) {
+
+    }
+  }
+}
+
+/**
+ * Implements hook_custom_theme().
+ */
+function informea_custom_theme() {
+  // match node/1
+  if (arg(0) == 'node' && is_numeric(arg(1)) && $node = node_load(arg(1))) {
+      if ($node->type == 'book') {
+        return variable_get('admin_theme');
+      }
+  }
+  return NULL;
+}

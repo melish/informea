@@ -40,7 +40,6 @@ function analytics_integration_add_google_analytics_library($key) {
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', '$key', 'auto');
-  ga('send', 'pageview');
 EOT;
   drupal_add_js($script, array(
     'scope' => 'header',
@@ -153,6 +152,10 @@ function analytics_integration_get_key_by_name($name) {
  * @return string
  */
 function analytics_integration_google_analytics_send_hit($key, $target_url, $js_identifier, $page_title, $type = 'pageview') {
+  global $user;
+  if ($user->uid > 0) {
+    return '';
+  }
   $url = parse_url($target_url);
   $host = $url['host'];
   $page_title = trim($page_title);
@@ -178,6 +181,10 @@ EOT;
 }
 
 function analytics_integration_piwik_send_hit($piwik_url, $site_id, $page_title) {
+  global $user;
+  if ($user->uid > 0) {
+    return '';
+  }
   $script = <<<EOT
     var _paq = _paq || [];
     (function(){ var u=(("https:" == document.location.protocol) ? "https://$piwik_url/" : "http://$piwik_url/");

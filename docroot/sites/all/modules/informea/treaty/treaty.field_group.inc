@@ -114,7 +114,6 @@ function treaty_field_group_info() {
       4 => 'field_has_api_decisions',
       5 => 'field_has_api_national_reports',
       6 => 'field_treaty_has_parties_from_un',
-      7 => 'field_user_owners',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
