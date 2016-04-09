@@ -692,7 +692,7 @@ function decision_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_sorting_date',
-    'label' => 'Date of text',
+    'label' => 'Document date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'now',
@@ -809,7 +809,7 @@ function decision_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_treaty',
     'label' => 'Treaty',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
@@ -1583,9 +1583,9 @@ function decision_field_default_field_instances() {
   t('Attach here any files related to this decision in English or the language selected above. Use the "Translate" tab feature to add in other languages, after you save this language!');
   t('Body');
   t('DO NOT EDIT! Original corresponding unique identifier in the MEA database, use in future synchronizations');
-  t('Date of text');
   t('Date when decision was made, usually this is the date of the COP/MOP meeting.');
   t('Description');
+  t('Document date');
   t('English meeting title');
   t('Files');
   t('InforMEA Tags');

@@ -275,13 +275,22 @@ function meeting_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '1',
         ),
         'language' => array(
-          'weight' => '3',
+          'weight' => '0',
         ),
         'feeds' => array(
           'weight' => '0',
+        ),
+        'metatags' => array(
+          'weight' => '4',
+        ),
+        'redirect' => array(
+          'weight' => '3',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '2',
         ),
       ),
       'display' => array(),
