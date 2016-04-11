@@ -38,6 +38,16 @@ function treaty_menu() {
 
 
 /**
+ * Implements hook_ctools_plugin_directory().
+ */
+function treaty_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools') {
+    return 'plugins/ctools/' . $plugin_type;
+  }
+}
+
+
+/**
  * Implements hook_entity_info_alter().
  */
 function treaty_entity_info_alter(&$entity_info) {
