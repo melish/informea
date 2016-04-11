@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * Enable path breadcrumbs modules.
+ */
+function treaty_update_7001() {
+  $modules = array(
+    'path_breadcrumbs',
+    'path_breadcrumbs_ui',
+    'path_breadcrumbs_i18n',
+  );
+  module_enable($modules);
+}
