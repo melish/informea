@@ -13,6 +13,10 @@ class LeoDefaultNodeMigration extends DrupalNode7Migration {
     foreach ($this->taxonomyFields() as $field => $vocabulary) {
       $this->addFieldMapping("{$field}:source_type")
         ->defaultValue('tid');
+      $this->addFieldMapping("{$field}:create_term")
+        ->defaultValue(FALSE);
+      $this->addFieldMapping("{$field}:ignore_case")
+        ->defaultValue(FALSE);
     }
   }
 
