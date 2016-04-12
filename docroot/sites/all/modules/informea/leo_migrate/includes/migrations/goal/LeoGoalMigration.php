@@ -39,16 +39,19 @@ class LeoGoalMigration extends LeoDefaultNodeMigration {
 
   function prepareRow($row) {
     parent::prepareRow($row);
-    if (!empty($row->field_url)) {
-      /**
-       * @Todo: can we find a more pretty fix for this bug?
-       * Illegal offset type
-       * File modules/contrib/link/link.migrate.inc, line 112
-       */
-      $row->{'field_url'} = reset($row->{'field_url'});
-      $row->{'field_url:title'} = reset($row->{'field_url:title'});
-      $row->{'field_url:attributes'} = reset($row->{'field_url:attributes'});
+    /**
+     * @Todo: can we find a more pretty fix for this bug?
+     * Migrate link field handler doesn't support multilingual multivalued fields.
+     *
+     * Error:
+     * Illegal offset type
+     * File modules/contrib/link/link.migrate.inc, line 112
+     */
+    if (!empty($row->{'field_url:language'})) {
       $row->{'field_url:language'} = reset($row->{'field_url:language'});
+    }
+    if (!empty($row->{'field_document_url:language'})) {
+      $row->{'field_document_url:language'} = reset($row->{'field_document_url:language'});
     }
   }
 }
