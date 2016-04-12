@@ -6,6 +6,8 @@ version = "7.x-0.1"
 
 dependencies[] = migrate
 dependencies[] = migrate_d2d
+dependencies[] = goal
 
 files[] = leo_migrate.migrate.inc
 files[] = includes/migrations/LeoDefaultTaxonomyMigration.php
+files[] = includes/migrations/LeoDefaultNodeMigration.php

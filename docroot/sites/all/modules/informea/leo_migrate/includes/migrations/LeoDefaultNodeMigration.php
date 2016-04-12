@@ -8,7 +8,6 @@ class LeoDefaultNodeMigration extends DrupalNode7Migration {
     parent::__construct($arguments);
 
     $this->addFieldMapping('title', 'title', FALSE);
-    $this->addFieldMapping('body:language', 'body:language', FALSE);
   }
 
   public function map_source_term($source_tid, $taxonomy) {
