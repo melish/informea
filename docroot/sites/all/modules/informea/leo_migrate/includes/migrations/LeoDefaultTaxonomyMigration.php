@@ -6,12 +6,12 @@ class LeoDefaultTaxonomyMigration extends DrupalTerm7Migration {
     parent::__construct($arguments);
 
     $this->addSimpleMappings(array(
+      'name_field',
+      'name_field:language',
       'description_field',
       'description_field:summary',
       'description_field:format',
       'description_field:language',
-      'name_field',
-      'name_field:language',
     ));
 
   }

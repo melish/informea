@@ -10,7 +10,7 @@ function leo_migrate_migrate_api() {
   $api = array(
     'api' => 2,
     'groups' => array(
-      'imea_migrate' => array(
+      'leo_migrate' => array(
         'title' => t('Migrations from LEO website'),
       ),
       'migrations' => array(),
@@ -35,12 +35,26 @@ function leo_migrate_migrate_api() {
       'description' => t('Migration of \'Goal sources\' terms from LEO.'),
       'source_vocabulary' => 'goal_sources',
       'destination_vocabulary' => 'goal_sources',
-      'class_name' => 'LeoDefaultTaxonomyMigration',
+      'class_name' => 'LeoGoalSourcesMigration',
     ),
   );
 
   foreach ($vocabulary_arguments as $migration_name => $arguments) {
     $arguments += $common_arguments;
+    $api['migrations'][$migration_name] = $arguments;
+  }
+
+  $node_arguments = array(
+    'goal' => array(
+      'class_name' => 'LeoGoalMigration',
+      'description' => t('Migration of goals nodes from LEO.'),
+      'source_type' => 'goal',
+      'destination_type' => 'goal',
+    ),
+  );
+
+  foreach ($node_arguments as $migration_name => $arguments) {
+    $arguments = array_merge_recursive($arguments, $common_arguments);
     $api['migrations'][$migration_name] = $arguments;
   }
 
