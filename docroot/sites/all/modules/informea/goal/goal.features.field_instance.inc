@@ -10,7 +10,7 @@
 function goal_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-goal-body'
+  // Exported field_instance: 'node-goal-body'.
   $field_instances['node-goal-body'] = array(
     'bundle' => 'goal',
     'default_value' => NULL,
@@ -39,6 +39,12 @@ function goal_field_default_field_instances() {
         'type' => 'text_summary_or_trimmed',
         'weight' => 0,
       ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'body',
@@ -62,7 +68,7 @@ function goal_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-goal-field_document_url'
+  // Exported field_instance: 'node-goal-field_document_url'.
   $field_instances['node-goal-field_document_url'] = array(
     'bundle' => 'goal',
     'default_value' => NULL,
@@ -83,6 +89,12 @@ function goal_field_default_field_instances() {
         'weight' => 10,
       ),
       'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -126,7 +138,7 @@ function goal_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-goal-field_geg_tags'
+  // Exported field_instance: 'node-goal-field_geg_tags'.
   $field_instances['node-goal-field_geg_tags'] = array(
     'bundle' => 'goal',
     'default_value' => NULL,
@@ -167,6 +179,12 @@ function goal_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_geg_tags',
@@ -196,7 +214,7 @@ function goal_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-goal-field_geg_theme'
+  // Exported field_instance: 'node-goal-field_geg_theme'.
   $field_instances['node-goal-field_geg_theme'] = array(
     'bundle' => 'goal',
     'default_value' => NULL,
@@ -217,6 +235,12 @@ function goal_field_default_field_instances() {
         'weight' => 11,
       ),
       'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -250,7 +274,7 @@ function goal_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-goal-field_geographical_scope'
+  // Exported field_instance: 'node-goal-field_geographical_scope'.
   $field_instances['node-goal-field_geographical_scope'] = array(
     'bundle' => 'goal',
     'default_value' => NULL,
@@ -271,6 +295,12 @@ function goal_field_default_field_instances() {
         'weight' => 9,
       ),
       'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -304,7 +334,7 @@ function goal_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-goal-field_goal_source'
+  // Exported field_instance: 'node-goal-field_goal_source'.
   $field_instances['node-goal-field_goal_source'] = array(
     'bundle' => 'goal',
     'default_value' => NULL,
@@ -325,6 +355,12 @@ function goal_field_default_field_instances() {
         'weight' => 2,
       ),
       'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -359,7 +395,7 @@ function goal_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-goal-field_goal_tools'
+  // Exported field_instance: 'node-goal-field_goal_tools'.
   $field_instances['node-goal-field_goal_tools'] = array(
     'bundle' => 'goal',
     'default_value' => NULL,
@@ -380,6 +416,12 @@ function goal_field_default_field_instances() {
         'weight' => 5,
       ),
       'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -406,7 +448,7 @@ function goal_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-goal-field_goal_type'
+  // Exported field_instance: 'node-goal-field_goal_type'.
   $field_instances['node-goal-field_goal_type'] = array(
     'bundle' => 'goal',
     'default_value' => NULL,
@@ -427,6 +469,12 @@ function goal_field_default_field_instances() {
         'weight' => 1,
       ),
       'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -461,7 +509,7 @@ function goal_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-goal-field_informea_tags'
+  // Exported field_instance: 'node-goal-field_informea_tags'.
   $field_instances['node-goal-field_informea_tags'] = array(
     'bundle' => 'goal',
     'default_value' => NULL,
@@ -502,6 +550,12 @@ function goal_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_informea_tags',
@@ -530,7 +584,7 @@ function goal_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-goal-field_official_order'
+  // Exported field_instance: 'node-goal-field_official_order'.
   $field_instances['node-goal-field_official_order'] = array(
     'bundle' => 'goal',
     'default_value' => NULL,
@@ -551,6 +605,12 @@ function goal_field_default_field_instances() {
         'weight' => 12,
       ),
       'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -577,7 +637,7 @@ function goal_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-goal-field_parent_goal'
+  // Exported field_instance: 'node-goal-field_parent_goal'.
   $field_instances['node-goal-field_parent_goal'] = array(
     'bundle' => 'goal',
     'default_value' => NULL,
@@ -605,6 +665,12 @@ function goal_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_parent_goal',
@@ -627,7 +693,7 @@ function goal_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-goal-field_url'
+  // Exported field_instance: 'node-goal-field_url'.
   $field_instances['node-goal-field_url'] = array(
     'bundle' => 'goal',
     'default_value' => NULL,
@@ -648,6 +714,12 @@ function goal_field_default_field_instances() {
         'weight' => 4,
       ),
       'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -691,7 +763,7 @@ function goal_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-goal-title_field'
+  // Exported field_instance: 'node-goal-title_field'.
   $field_instances['node-goal-title_field'] = array(
     'bundle' => 'goal',
     'default_value' => NULL,
@@ -711,6 +783,12 @@ function goal_field_default_field_instances() {
         'weight' => 8,
       ),
       'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -740,7 +818,46 @@ function goal_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-goal_sources-field_abbreviation'
+  // Exported field_instance: 'taxonomy_term-goal_sources-description_field'.
+  $field_instances['taxonomy_term-goal_sources-description_field'] = array(
+    'bundle' => 'goal_sources',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'description_field',
+    'label' => 'Description',
+    'required' => FALSE,
+    'settings' => array(
+      'display_summary' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => -5,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-goal_sources-field_abbreviation'.
   $field_instances['taxonomy_term-goal_sources-field_abbreviation'] = array(
     'bundle' => 'goal_sources',
     'default_value' => NULL,
@@ -775,7 +892,7 @@ function goal_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-goal_sources-field_binding'
+  // Exported field_instance: 'taxonomy_term-goal_sources-field_binding'.
   $field_instances['taxonomy_term-goal_sources-field_binding'] = array(
     'bundle' => 'goal_sources',
     'default_value' => array(
@@ -813,7 +930,7 @@ function goal_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-goal_sources-field_url'
+  // Exported field_instance: 'taxonomy_term-goal_sources-field_url'.
   $field_instances['taxonomy_term-goal_sources-field_url'] = array(
     'bundle' => 'goal_sources',
     'default_value' => NULL,
@@ -865,7 +982,44 @@ function goal_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-type_of_goal-description_field'
+  // Exported field_instance: 'taxonomy_term-goal_sources-name_field'.
+  $field_instances['taxonomy_term-goal_sources-name_field'] = array(
+    'bundle' => 'goal_sources',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'name_field',
+    'label' => 'Name',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -5,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-type_of_goal-description_field'.
   $field_instances['taxonomy_term-type_of_goal-description_field'] = array(
     'bundle' => 'type_of_goal',
     'default_value' => NULL,
@@ -904,7 +1058,7 @@ function goal_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-type_of_goal-name_field'
+  // Exported field_instance: 'taxonomy_term-type_of_goal-name_field'.
   $field_instances['taxonomy_term-type_of_goal-name_field'] = array(
     'bundle' => 'type_of_goal',
     'default_value' => NULL,

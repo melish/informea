@@ -184,7 +184,7 @@ function goal_views_default_views() {
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
-  /* Field: Field: GEG Tags */
+  /* Field: Content: GEG Tags */
   $handler->display->display_options['fields']['field_geg_tags']['id'] = 'field_geg_tags';
   $handler->display->display_options['fields']['field_geg_tags']['table'] = 'field_data_field_geg_tags';
   $handler->display->display_options['fields']['field_geg_tags']['field'] = 'field_geg_tags';

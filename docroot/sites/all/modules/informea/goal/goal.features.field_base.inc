@@ -10,7 +10,7 @@
 function goal_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_binding'
+  // Exported field_base: 'field_binding'.
   $field_bases['field_binding'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -36,7 +36,7 @@ function goal_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_geg_tags'
+  // Exported field_base: 'field_geg_tags'.
   $field_bases['field_geg_tags'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -64,7 +64,7 @@ function goal_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_geg_theme'
+  // Exported field_base: 'field_geg_theme'.
   $field_bases['field_geg_theme'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -92,7 +92,7 @@ function goal_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_goal_source'
+  // Exported field_base: 'field_goal_source'.
   $field_bases['field_goal_source'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -120,7 +120,7 @@ function goal_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_goal_tools'
+  // Exported field_base: 'field_goal_tools'.
   $field_bases['field_goal_tools'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -141,7 +141,7 @@ function goal_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_goal_type'
+  // Exported field_base: 'field_goal_type'.
   $field_bases['field_goal_type'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -169,7 +169,7 @@ function goal_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_parent_goal'
+  // Exported field_base: 'field_parent_goal'.
   $field_bases['field_parent_goal'] = array(
     'active' => 1,
     'cardinality' => -1,
