@@ -1,6 +1,6 @@
 <?php
 
-class LeoTypeOfGoalMigration extends DrupalTerm7Migration {
+class LeoDefaultTaxonomyMigration extends DrupalTerm7Migration {
   public function __construct(array $arguments) {
 
     parent::__construct($arguments);
