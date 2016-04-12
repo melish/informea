@@ -14,15 +14,10 @@ class LeoGoalMigration extends LeoDefaultNodeMigration {
       'field_url', 'field_url:title', 'field_url:attributes', 'field_url:language',
     ));
 
-    $this->addFieldMapping('field_parent_goal', 'ref_id')
-      ->sourceMigration(array('goal'));
-
+    $this->addFieldMapping('field_parent_goal', 'field_parent_goal')->sourceMigration(array('goal'));
 
     $this->addUnmigratedSources(array(
       'uid', 'revision', 'log', 'revision_uid',
-    ));
-
-    $this->addUnmigratedDestinations(array(
     ));
   }
 
