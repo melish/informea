@@ -37,6 +37,12 @@ function leo_migrate_migrate_api() {
       'destination_vocabulary' => 'goal_sources',
       'class_name' => 'LeoGoalSourcesMigration',
     ),
+    'geg_theme' => array(
+      'description' => t('Migration of \'GEG theme\' terms from LEO'),
+      'source_vocabulary' => 'geg_theme',
+      'destination_vocabulary' => 'geg_theme',
+      'class_name' => 'LeoDefaultTaxonomyMigration',
+    ),
   );
 
   foreach ($vocabulary_arguments as $migration_name => $arguments) {
@@ -50,7 +56,7 @@ function leo_migrate_migrate_api() {
       'description' => t('Migration of goals nodes from LEO.'),
       'source_type' => 'goal',
       'destination_type' => 'goal',
-      'dependencies' => array('type_of_goal', 'goal_sources'),
+      'dependencies' => array('type_of_goal', 'goal_sources', 'geg_theme'),
     ),
   );
 
