@@ -50,6 +50,7 @@ function leo_migrate_migrate_api() {
       'description' => t('Migration of goals nodes from LEO.'),
       'source_type' => 'goal',
       'destination_type' => 'goal',
+      'dependencies' => array('type_of_goal', 'goal_sources'),
     ),
   );
 
