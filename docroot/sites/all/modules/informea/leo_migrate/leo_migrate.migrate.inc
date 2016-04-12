@@ -43,6 +43,12 @@ function leo_migrate_migrate_api() {
       'destination_vocabulary' => 'geg_theme',
       'class_name' => 'LeoDefaultTaxonomyMigration',
     ),
+    'declaration_paragraph_type' => array(
+      'description' => t('Migration of \'Declaration paragraph type\' terms from LEO'),
+      'source_vocabulary' => 'declaration_paragraph_type',
+      'destination_vocabulary' => 'declaration_paragraph_type',
+      'class_name' => 'LeoDefaultTaxonomyMigration',
+    ),
   );
 
   foreach ($vocabulary_arguments as $migration_name => $arguments) {
@@ -70,6 +76,13 @@ function leo_migrate_migrate_api() {
       'source_type' => 'declaration_section',
       'destination_type' => 'declaration_section',
       'dependencies' => array('declaration'),
+    ),
+    'declaration_paragraph' => array(
+      'class_name' => 'LeoDeclarationParagraphMigration',
+      'description' => t('Migration of declaration paragraph nodes from LEO.'),
+      'source_type' => 'declaration_paragraph',
+      'destination_type' => 'declaration_paragraph',
+      'dependencies' => array('declaration', 'declaration_section', 'declaration_paragraph_type'),
     ),
   );
 
