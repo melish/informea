@@ -5,7 +5,7 @@ class LeoGoalMigration extends LeoDefaultNodeMigration {
   public function __construct(array $arguments) {
     parent::__construct($arguments);
 
-    $this->addSimpleMappings(array_keys($this->taxonomy_fields));
+    $this->addSimpleMappings(array_keys($this->taxonomyFields()));
 
     $this->addSimpleMappings(array(
       'field_official_order', 'field_official_order:language',

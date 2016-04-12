@@ -22,7 +22,7 @@ class LeoDefaultNodeMigration extends DrupalNode7Migration {
    */
   protected function taxonomyFields() {
     return array();
-  };
+  }
 
   public function map_source_term($source_tid, $taxonomy) {
     $mappings = array();
