@@ -8,3 +8,4 @@ dependencies[] = migrate
 dependencies[] = migrate_d2d
 
 files[] = leo_migrate.migrate.inc
+files[] = includes/migrations/goal/LeoTypeOfGoalMigration.module
