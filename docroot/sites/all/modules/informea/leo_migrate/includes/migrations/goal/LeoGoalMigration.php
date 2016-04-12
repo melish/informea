@@ -10,6 +10,8 @@ class LeoGoalMigration extends LeoDefaultNodeMigration {
     $this->addSimpleMappings(array(
       'field_official_order', 'field_official_order:language', 'field_document_url',
       'field_document_url:title', 'field_document_url:attributes', 'field_document_url:language',
+      'field_goal_tools', 'field_goal_tools:format', 'title_field', 'title_field:language',
+      'field_url', 'field_url:title', 'field_url:attributes', 'field_url:language',
 
     ));
 
@@ -27,6 +29,8 @@ class LeoGoalMigration extends LeoDefaultNodeMigration {
       'field_goal_source' => 'goal_sources',
       'field_informea_tags' => 'thesaurus_informea',
       'field_geg_tags' => 'thesaurus_geg',
+      'field_geg_theme' => 'geg_theme',
+      'field_geographical_scope' => 'geographical_scope',
     ];
   }
 
