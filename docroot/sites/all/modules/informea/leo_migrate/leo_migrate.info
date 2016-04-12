@@ -1,0 +1,10 @@
+name = "Migration from LEO"
+description = "Migrate content from LEO site to InforMEA"
+package = "InforMEA"
+core = 7.x
+version = "7.x-0.1"
+
+dependencies[] = migrate
+dependencies[] = migrate_d2d
+
+files[] = leo_migrate.migrate.inc
