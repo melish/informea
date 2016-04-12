@@ -58,6 +58,12 @@ function leo_migrate_migrate_api() {
       'destination_type' => 'goal',
       'dependencies' => array('type_of_goal', 'goal_sources', 'geg_theme'),
     ),
+    'declaration' => array(
+      'class_name' => 'LeoDeclarationMigration',
+      'description' => t('Migration of declaration nodes from LEO.'),
+      'source_type' => 'declaration',
+      'destination_type' => 'declaration',
+    ),
   );
 
   foreach ($node_arguments as $migration_name => $arguments) {
