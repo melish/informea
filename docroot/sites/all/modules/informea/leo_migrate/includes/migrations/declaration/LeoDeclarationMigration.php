@@ -16,8 +16,4 @@ class LeoDeclarationMigration extends LeoDefaultNodeMigration {
       'uid', 'revision', 'log', 'revision_uid',
     ));
   }
-
-  function prepareRow($row) {
-    parent::prepareRow($row);
-  }
 }

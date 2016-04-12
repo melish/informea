@@ -15,3 +15,4 @@ files[] = includes/migrations/LeoDefaultNodeMigration.php
 files[] = includes/migrations/goal/LeoGoalSourcesMigration.php
 files[] = includes/migrations/goal/LeoGoalMigration.php
 files[] = includes/migrations/declaration/LeoDeclarationMigration.php
+files[] = includes/migrations/declaration/LeoDeclarationSectionMigration.php
