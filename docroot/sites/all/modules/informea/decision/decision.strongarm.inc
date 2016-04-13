@@ -236,13 +236,13 @@ function decision_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '1',
+          'weight' => '0',
         ),
         'language' => array(
-          'weight' => '5',
+          'weight' => '1',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '2',
         ),
       ),
       'display' => array(),
@@ -301,9 +301,23 @@ function decision_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_extended_decision';
+  $strongarm->value = 1;
+  $export['i18n_node_extended_decision'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'i18n_node_extended_decision_paragraph';
   $strongarm->value = 1;
   $export['i18n_node_extended_decision_paragraph'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_options_decision';
+  $strongarm->value = array();
+  $export['i18n_node_options_decision'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -403,6 +417,16 @@ function decision_strongarm() {
   $strongarm->name = 'node_submitted_decision_paragraph';
   $strongarm->value = 0;
   $export['node_submitted_decision_paragraph'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xmlsitemap_settings_node_decision';
+  $strongarm->value = array(
+    'status' => '1',
+    'priority' => '0.5',
+  );
+  $export['xmlsitemap_settings_node_decision'] = $strongarm;
 
   return $export;
 }

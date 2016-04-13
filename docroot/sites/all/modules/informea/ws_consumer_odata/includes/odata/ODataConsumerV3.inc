@@ -26,4 +26,47 @@ class ODataConsumerV3 extends ODataConsumer {
     }
     return NULL;
   }
+
+
+  /**
+    array(2) {
+      [0]=>
+      object(stdClass)#4998 (4) {
+        ["__metadata"]=> object(stdClass)#5000 (1) {
+          ["type"]=>
+          string(11) "PersonRoles"
+        }
+        ["treaty"]=> string(3) "cbd"
+        ["roles"]=> array(1) {
+          [0]=> string(7) "CHM NFP"
+        }
+        ["order"]=> string(1) "4"
+      }
+      [1]=>
+      object(stdClass)#5001 (4) {
+        ["__metadata"]=> object(stdClass)#4999 (1) {
+          ["type"]=> string(11) "PersonRoles"
+        }
+        ["treaty"]=>
+        string(9) "cartagena"
+        ["roles"]=>
+        array(1) {
+          [0]=>
+          string(7) "BCH NFP"
+        }
+        ["order"]=>
+        string(1) "2"
+      }
+    }
+  */
+  public function loadContactRolesProperty($ob) {
+    $roles = array();
+    $values = $this->loadNavigationProperty($ob, 'roles');
+    foreach($values as $t) {
+      foreach($t->roles as $role) {
+        $roles[$t->treaty][] = $role;
+      }
+    }
+    return $roles;
+  }
 }

@@ -1,0 +1,81 @@
+{
+  "d": [
+    {
+      "__metadata": {
+        "uri": "http://informea.pops.int/Contacts2/rcContacts.svc/Contacts('0047078c-891c-e211-809d-0050569d5de3')",
+        "type": "Contacts.Contact"
+      },
+      "protocolVersion": 1,
+      "id": "0047078c-891c-e211-809d-0050569d5de3",
+      "treaties": [
+        {
+          "__metadata": {
+            "uri": "http://informea.pops.int/Contacts2/rcContacts.svc/keywords('rotterdam')",
+            "type": "Contacts.Treaty"
+          },
+          "value": "rotterdam",
+          "contacts": {
+            "__deferred": {
+              "uri": "http://informea.pops.int/Contacts2/rcContacts.svc/keywords('rotterdam')/contacts"
+            }
+          }
+        }
+      ],
+      "country": "HU",
+      "prefix": "Ms.",
+      "firstName": "Silvia",
+      "lastName": "Daim",
+      "position": "Deputy Director General",
+      "institution": "National Public Health Centre",
+      "department": "National Chemical Safety Directorate",
+      "address": "Nagyv",
+      "email": "eva.doe@yahoo.ca",
+      "phoneNumber": "12345",
+      "fax": "+54321",
+      "primary": 0,
+      "updated": "\/Date(1452156546000)\/",
+      "type": "Designated National Authority for chemicals",
+      "brsRegionUn": "cee",
+      "brsRegionPic": "europe"
+    },
+    {
+      "__metadata": {
+        "uri": "http://informea.pops.int/Contacts2/rcContacts.svc/Contacts('00d82292-2029-e211-809d-0050569d5de3')",
+        "type": "Contacts.Contact"
+      },
+      "protocolVersion": 1,
+      "id": "00d82292-2029-e211-809d-0050569d5de3",
+      "treaties": [
+        {
+          "__metadata": {
+            "uri": "http://informea.pops.int/Contacts2/rcContacts.svc/keywords('rotterdam')",
+            "type": "Contacts.Treaty"
+          },
+          "value": "rotterdam",
+          "contacts": {
+            "__deferred": {
+              "uri": "http://informea.pops.int/Contacts2/rcContacts.svc/keywords('rotterdam')/contacts"
+            }
+          }
+        }
+      ],
+      "country": "MW",
+      "prefix": "Mr.",
+      "firstName": "Yira",
+      "lastName": "Nanyama",
+      "position": "Director of Environmental Affairs",
+      "institution": "Environmental Affairs Department",
+      "department": null,
+      "address": "Private Bag",
+      "email": "yn@yahoo.co.uk",
+      "phoneNumber": "+111",
+      "fax": "+273 379",
+      "primary": 1,
+      "updated": "\/Date(1452173996000)\/",
+      "type": "Designated National Authority for chemicals and pesticides, Official Contact Point",
+      "brsContactRoleName": "RC DNA CP, RC OCP",
+      "brsRegionUn": "africa",
+      "brsRegionPic": "africa"
+    }
+  ]
+}

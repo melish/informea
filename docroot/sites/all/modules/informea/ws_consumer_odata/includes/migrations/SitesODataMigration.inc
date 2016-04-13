@@ -15,13 +15,8 @@ class SitesODataMigration extends AbstractODataMigration {
    */
   public function __construct($arguments) {
     parent::__construct($arguments);
-    $this->config = new ODataConsumerConfig($arguments);
-    $this->arguments   = $arguments;
     $this->description = sprintf('Import %s from %s', ODataConsumerConfig::$DRUPAL_TYPE_SITES, $this->config->odata_name);
-    $this->source      = new SitesMigrateSourceList(
-      new ODataMigrateList($this->config),
-      new SitesODataMigrateItem($this->config)
-    );
+    $this->source      = new InforMEAODataSitesMigrateSource($arguments, $this->config);
     $this->map = new MigrateSQLMap($this->machineName,
       array(
         'id' => array(
@@ -35,13 +30,13 @@ class SitesODataMigration extends AbstractODataMigration {
     );
     $this->destination = new MigrateDestinationNode(
       ODataConsumerConfig::$DRUPAL_TYPE_SITES,
-      array('text_format' => 'full_html')
+      array('language' => 'en', 'text_format' => 'full_html')
     );
 
     $this->addFieldMapping('field_original_id', 'id');
-    $this->addFieldMapping('title', 'title_orig');
-    $this->addFieldMapping('title_field', 'title');
-    $this->addFieldMapping('title_field:language', 'title_langs');
+    $this->addFieldMapping('title', 'title_en');
+    $this->addFieldMapping('title_field', 'names');
+    $this->addFieldMapping('title_field:language', 'names_language');
     $this->addFieldMapping('field_treaty', 'treaty');
     $this->addFieldMapping('field_country', 'country');
     $this->addFieldMapping('field_url', 'url');
@@ -49,6 +44,7 @@ class SitesODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_longitude', 'longitude');
 
     $this->addFieldMapping('field_last_update', 'updated');
+    $this->addFieldMapping('field_last_update:timezone')->defaultValue('Europe/Zurich');
     $this->addFieldMapping('changed', 'updated');
 
     $this->addFieldMapping('comment')->defaultValue(FALSE);
@@ -65,8 +61,7 @@ class SitesODataMigration extends AbstractODataMigration {
       'body:language', 'field_informea_tags', 'field_informea_tags:source_type',
       'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
       'field_url:language', 'field_url:attributes', 'field_url:title',
-      'field_last_update:timezone', 'field_last_update:rrule',
-      'field_last_update:to',
+      'field_last_update:rrule', 'field_last_update:to',
     ));
   }
 
@@ -78,17 +73,64 @@ class SitesODataMigration extends AbstractODataMigration {
   function prepareRow($row) {
     parent::prepareRow($row);
 
-    if (!$row->title) {
-      ws_consumer_odata_log('Skipping Site with source id=' . $row->id .' because no title could be found.', MigrationBase::MESSAGE_ERROR);
-      return FALSE;
-    }
+    /* Fill with remote-data */
+    $consumer = $this->source->getConsumer();
+    $all_languages = array('en');
+    $names = $consumer->loadNavigationProperty($row, 'name');
+    $row->title_en = ODataMigrationUtil::prepareTitle($names);
+    list($names, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($names);
+    $row->names = $names;
+    $row->names_language = $languages;
+    $all_languages = array_merge($all_languages, $languages);
+    $row->languages = array_unique($all_languages);
 
-    if (!empty($row->updated)) {
-      $row->updated = $this->fixDateValue($row->updated);
-    }
-
+    /* Do some data transformation */
     $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
-
+    return $this->validateRow($row);
   }
 
+  public function validateRow($row) {
+    if (!$this->validateEnglishTitle($row)) {
+      return FALSE;
+    }
+    if (!$this->validateTreaty($row)) {
+      return FALSE;
+    }
+    return TRUE;
+  }
+}
+
+
+class InforMEAODataSitesMigrateSource extends InforMEAAbstractODataMigrateSource {
+
+  /**
+   * The list of available fields to map from the source, keyed by field name.
+   */
+  public function fields() {
+    return array(
+      'id' => 'Remote primary key',
+      'title_en' => 'Site name in English',
+      'names' => 'Site name translations',
+      'names_language' => 'Site name languages',
+      'treaty' => 'Site treaty',
+      'country' => 'Country',
+      'url' => 'Site URL on MEA website',
+      'latitude' => 'Geographical latitude',
+      'longitude' => 'Geographical longitude',
+      'updated' => 'Date of last update',
+    );
+  }
+
+  protected function pullRemoteData() {
+//    $highwater = $this->activeMigration->getHighwater();
+//    if (!empty($highwater)) {
+//      $query .= '&$filter=updated%20gt%20datetime%27' . date('Y-m-d\TH:i:s', $highwater) . '%27';
+//    }
+    $rows = $this->consumer->getPaginatedData(
+      $this->config->odata_entity,
+      $this->getLimit(),
+      $this->activeMigration
+    );
+    return $rows;
+  }
 }

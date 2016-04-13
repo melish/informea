@@ -17,8 +17,8 @@ function ws_consumer_odata_drush_command() {
     'ws-consumer-purge-orphans' => array(
       'description' => 'Check remote service for orphaned records (removed) and remove them locally',
       'arguments' => array(
-        'treaty_odata_identifier' => 'Treaty OData identifier',
-        'odate_entity' => 'OData entity to check'
+        'treaty_odata_identifier' => 'Treaty OData identifier (e.g. cbd)',
+        'odata_entity' => 'OData entity to check (e.g. Contacts)'
       ),
       'required-arguments' => 2,
       'options' => array(
@@ -76,19 +76,22 @@ function drush_ws_consumer_odata_ws_consumer_purge_orphans($treaty_odata_identif
 
   $delete_nids = array();
   $delete_src = array();
+  $i = 0;
+  $deleted = 0;
   foreach ($rows as $source_id => $nid) {
     if (!$consumer->itemExists($odata_entity, $source_id)) {
       $delete_src[] = $source_id;
       $delete_nids[] = $nid;
-      ws_consumer_odata_log(__METHOD__ . "(): Found orphan record: $source_id ($nid)", MigrationBase::MESSAGE_INFORMATIONAL);
+      if (!$dry_run) {
+        ws_consumer_odata_log(__METHOD__ . "(): Deleting orphan record: $source_id ($nid)", MigrationBase::MESSAGE_INFORMATIONAL);
+        node_delete($nid);
+        $deleted++;
+        $migration->getMap()->delete(array($source_id));
+      }
+    }
+    if (++$i % 50 === 0) {
+      ws_consumer_odata_log(__METHOD__ . "(): Checked {$i}/{$count}", MigrationBase::MESSAGE_INFORMATIONAL);
     }
   }
-  $count = count($delete_src);
-  if (!$dry_run) {
-    node_delete_multiple($delete_nids);
-    foreach($delete_src as $id) {
-      $migration->getMap()->delete(array($id));
-    }
-  }
-  ws_consumer_odata_log(__METHOD__ . "(): Removed {$count} orphan records", MigrationBase::MESSAGE_INFORMATIONAL);
+  ws_consumer_odata_log(__METHOD__ . "(): Removed {$deleted} orphan records", MigrationBase::MESSAGE_INFORMATIONAL);
 }

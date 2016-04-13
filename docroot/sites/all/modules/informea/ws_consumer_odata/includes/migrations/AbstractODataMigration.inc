@@ -9,16 +9,27 @@ abstract class AbstractODataMigration extends Migration {
    */
   protected $config = NULL;
   protected $odata_name = NULL;
+  protected $arguments = NULL;
 
   public function __construct($arguments) {
     parent::__construct($arguments);
+    $this->arguments   = $arguments;
     if (!empty($arguments['dependencies'])) {
       $this->dependencies = $arguments['dependencies'];
     }
-    $this->config = new ODataConsumerConfig($arguments);
+    $config_klass = $arguments['config_class'];
+    $this->config = new $config_klass($arguments);
     /* All OData entities should have  'updated' field to use as highwater */
-    $this->highwaterField = array('name' => 'updated','type' => 'int');
+    // $this->highwaterField = array('name' => 'updated', 'alias' => 'w', 'type' => 'int');
   }
+
+  /**
+   * Validate a row (e.g. has title)
+   * @param stdClass $row
+   * @return boolean
+   *   TRUE if row is valid, FALSE
+   */
+  abstract function validateRow($row);
 
   /**
    * Basic preparations common to all migrated entities.
@@ -28,8 +39,14 @@ abstract class AbstractODataMigration extends Migration {
    *
    * @return boolean
    * Returns FALSE if the row is not to be migrated (ie. invalid)
+   *
+   * @throws MigrateException
    */
   function prepareRow($row) {
+    if (!$this->config->isEnabled($this->getMachineName())) {
+      throw new MigrateException('This migration is disabled (' . $this->getMachineName() . '). Enable from admin/config/services/odata-migrations/migrations');
+    }
+    migrate_instrument_start(__METHOD__);
     parent::prepareRow($row);
     if (!empty($row->updated)) {
       $row->updated = $this->fixDateValue($row->updated);
@@ -37,6 +54,7 @@ abstract class AbstractODataMigration extends Migration {
     if (!empty($row->country) && $country = $this->getCountryByISO($row->country)) {
       $row->country = $country->nid;
     }
+    migrate_instrument_stop(__METHOD__);
   }
 
   /**
@@ -46,8 +64,9 @@ abstract class AbstractODataMigration extends Migration {
    * @param $row
    */
   function prepare($entity, $row) {
-    $translate_in = array_unique(array_merge($row->title_langs, $row->content_langs, $row->files_language));
-    $this->setTranslation($entity, $translate_in);
+    $languages = $row->languages;
+    unset($languages['en']);
+    $this->setTranslation($entity, $languages);
   }
 
   /**
@@ -104,12 +123,31 @@ abstract class AbstractODataMigration extends Migration {
     return $node;
   }
 
+  function validateEnglishTitle($row) {
+    if (empty($row->title_en)) {
+      ws_consumer_odata_log('Skipping ' . $this->config->odata_entity . ' with source id=' . $row->id .' because no english title is present', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
+    }
+    return TRUE;
+  }
+
+  function validateTreaty($row) {
+    if (empty($row->treaty)) {
+      ws_consumer_odata_log('Skipping ' . $this->config->odata_entity . ' with source id=' . $row->id .' because is missing treaty', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
+    }
+    return TRUE;
+  }
+
   public function setTranslation($entity, $translations = array()) {
+    if (empty($translations)) {
+      $translations = array();
+    }
     $migration   = Migration::currentMigration();
     $languages   = array_keys(language_list());
     $entity_type = $migration->getDestination()->getEntityType();
 
-    $translation_handler  = entity_translation_get_handler($entity_type, $entity);
+    $translation_handler = entity_translation_get_handler($entity_type, $entity);
     $translation_handler->setOriginalLanguage('en');
     $translation_handler->initTranslations();
     $entity->translations = $translation_handler->getTranslations();

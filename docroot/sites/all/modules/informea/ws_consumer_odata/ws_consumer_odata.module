@@ -1,6 +1,94 @@
 <?php
 
 /**
+ * Implements hook_menu().
+ */
+function ws_consumer_odata_menu() {
+  $items = array();
+  $items['admin/config/services/odata-migrations'] = array(
+    'title' => t('Import MEA data'),
+    'description' => 'Configure MEA data importer tasks',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ws_consumer_odata_admin_config_form'),
+    'access arguments' => array('access administration pages'),
+    'file' => 'ws_consumer_odata.admin.inc',
+  );
+  $items['admin/config/services/odata-migrations/urls'] = array(
+    'title' => t('Service URLs'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ws_consumer_odata_admin_config_form'),
+    'access arguments' => array('access administration pages'),
+    'file' => 'ws_consumer_odata.admin.inc',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'weight' => -10
+  );
+  $items['admin/config/services/odata-migrations/migrations'] = array(
+    'title' => t('Data import tasks'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ws_consumer_odata_admin_config_migrations_form'),
+    'access arguments' => array('access administration pages'),
+    'file' => 'ws_consumer_odata.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+  );
+  $items['node/%node/migrate'] = array(
+    'title' => t('Migrations'),
+    'page callback' => 'ws_consumer_odata_node_migrate_report',
+    'page arguments' => array(1),
+    'access callback' => 'ws_consumer_odata_node_migrate_report_node_access',
+    'access arguments' => array(1),
+    'weight' => 0,
+    'type' => MENU_LOCAL_TASK,
+    'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
+    'file' => 'ws_consumer_odata.admin.inc',
+  );
+  return $items;
+}
+
+class WSConsumerODataLog {
+
+  static $messages = array();
+
+  public static function log($message, $severity = MigrationBase::MESSAGE_INFORMATIONAL) {
+    $ob = new stdClass();
+    $ob->timestamp = time();
+    $ob->message = $message;
+    $ob->severity = $severity;
+    self::$messages[] = $ob;
+
+    if (function_exists('drush_log')) {
+      $status = 'status';
+      switch($severity) {
+        case MigrationBase::MESSAGE_ERROR:
+          $status = 'error';
+          break;
+        case MigrationBase::MESSAGE_WARNING:
+          $status = 'warning';
+          break;
+        case MigrationBase::MESSAGE_NOTICE:
+          $status = 'notice';
+          break;
+      }
+      drush_log($message, $status);
+      return;
+    }
+  }
+
+  public static function findMessages($pattern) {
+    $ret = array();
+    foreach(self::$messages as $message) {
+      if(preg_match($pattern, $message->message) === 1) {
+        $ret[] = $message;
+      }
+    }
+    return $ret;
+  }
+
+  public static function messages() {
+    return self::$messages;
+  }
+}
+
+/**
  * Log system for the ws_consumer_odata migrations.
  *
  * @param string $message
@@ -9,21 +97,172 @@
  *    See MigrationBase::MESSAGE_* constants
  */
 function ws_consumer_odata_log($message, $severity = MigrationBase::MESSAGE_INFORMATIONAL) {
-  if (function_exists('drush_log')) {
-    $status = 'status';
-    switch($severity) {
-      case MigrationBase::MESSAGE_ERROR:
-        $status = 'error';
-        break;
-      case MigrationBase::MESSAGE_WARNING:
-        $status = 'warning';
-        break;
-      case MigrationBase::MESSAGE_NOTICE:
-        $status = 'notice';
-        break;
+  WSConsumerODataLog::log($message, $severity);
+}
+
+/**
+ * Implements hook_cronapi().
+ *
+ * Provided by the elysia_cron module.
+ */
+function ws_consumer_odata_cronapi($ob, $job = NULL) {
+  return array(
+    'ws_consumer_odata_migrate_meetings' => array(
+      'description' => 'Update OData meetings data every two days',
+      'rule' => '0 1 * * *', // Every day at 01:00
+    ),
+    'ws_consumer_odata_migrate_contacts' => array(
+      'description' => 'Update OData contacts every Monday',
+      'rule' => '0 5 * * 1', // Every Monday at 05:00
+    ),
+    'ws_consumer_odata_migrate_decisions' => array(
+      'description' => 'Update OData decisions every friday at 23:00',
+      'rule' => '0 23 * * 5/2', // Every Friday at 23:00
+    ),
+    'ws_consumer_odata_migrate_nationalplans' => array(
+      'description' => 'Update OData national plans every two weeks',
+      'rule' => '0 5 * * 2/2', // Every other Tuesday at 05:00
+    ),
+    'ws_consumer_odata_migrate_countryreports' => array(
+      'description' => 'Update OData country reports every two weeks',
+      'rule' => '0 5 * * 3/2', // Every other Wednesday at 05:00
+    ),
+  );
+}
+
+
+function ws_consumer_odata_migrate_meetings() {
+  $migrations = ws_consumer_odata_match_migrations_by_name('/_Meetings$/');
+  watchdog('ws_consumer_odata', '[CRON] Migrating meetings', array(), WATCHDOG_DEBUG);
+  ws_consumer_odata_run_sequential_migrations($migrations);
+}
+
+function ws_consumer_odata_migrate_contacts() {
+  $migrations = ws_consumer_odata_match_migrations_by_name('/_Contacts$/');
+  watchdog('ws_consumer_odata', '[CRON] Migrating contacts', array(), WATCHDOG_DEBUG);
+  ws_consumer_odata_run_sequential_migrations($migrations);
+}
+
+function ws_consumer_odata_migrate_nationalplans() {
+  $migrations = ws_consumer_odata_match_migrations_by_name('/_NationalPlans$/');
+  watchdog('ws_consumer_odata', '[CRON] Migrating national plans', array(), WATCHDOG_DEBUG);
+  ws_consumer_odata_run_sequential_migrations($migrations);
+}
+
+function ws_consumer_odata_migrate_countryreports() {
+  $migrations = ws_consumer_odata_match_migrations_by_name('/_CountryReports$/');
+  watchdog('ws_consumer_odata', '[CRON] Migrating country reports', array(), WATCHDOG_DEBUG);
+  ws_consumer_odata_run_sequential_migrations($migrations);
+}
+
+function ws_consumer_odata_migrate_decisions() {
+  $migrations = ws_consumer_odata_match_migrations_by_name('/_Decisions$/');
+  watchdog('ws_consumer_odata', '[CRON] Migrating decisions', array(), WATCHDOG_DEBUG);
+  ws_consumer_odata_run_sequential_migrations($migrations);
+}
+
+/**
+ * @param array $migrations An array of migration machine names.
+ * @throws \Exception
+ */
+function ws_consumer_odata_run_sequential_migrations($migrations) {
+  foreach($migrations as $machine_name) {
+    $migration = Migration::getInstance($machine_name);
+    if ($migration->getStatus() != MigrationBase::STATUS_IDLE) {
+      watchdog(
+        'ws_consumer_odata',
+        '[CRON][!machine_name] migration is currently not idle, skipping (status:!status)',
+        array(
+          '!machine_name' => $machine_name,
+          '!status' => $migration->getStatus()
+        ),
+        WATCHDOG_ERROR
+      );
+      return;
     }
-    drush_log($message, $status);
-    // Command line, no further processing
-    return;
+    else {
+      watchdog(
+        'ws_consumer_odata',
+        '[CRON][!machine_name] starting migration',
+        array('!machine_name' => $machine_name,),
+        WATCHDOG_DEBUG
+      );
+      $status = $migration->processImport();
+      watchdog(
+        'ws_consumer_odata',
+        '[CRON][!machine_name] ended, status: !status',
+        array(
+          '!status' => ws_consumer_odata_migration_result_friendly_name($status),
+          '!machine_name' => $machine_name
+        ),
+        WATCHDOG_DEBUG
+      );
+    }
   }
+}
+
+/**
+ * Implements hook_mail_alter().
+ */
+function ws_consumer_odata_mail_alter(&$message) {
+  if ($message['module'] == 'event_calendar') {
+    $message['send'] = FALSE;
+  }
+}
+
+
+function ws_consumer_odata_match_migrations_by_name($pattern) {
+  $ret = array();
+  module_load_include('inc', 'ws_consumer_odata', 'ws_consumer_odata.migrate');
+  $migrations = ws_consumer_odata_migrate_api();
+  foreach($migrations['migrations'] as $name => $config) {
+    if (preg_match($pattern, $name)) {
+      $ret[] = $name;
+    }
+  }
+  return $ret;
+}
+
+
+function ws_consumer_odata_migration_result_friendly_name($result) {
+  switch($result) {
+    case MigrationBase::RESULT_COMPLETED: // All records have been processed
+      return 'completed';
+
+    case MigrationBase::RESULT_INCOMPLETE:  // The process has interrupted itself (e.g., the memory limit is approaching)
+      return 'incomplete';
+
+    case MigrationBase::RESULT_STOPPED:     // The process was stopped externally (e.g., via drush migrate-stop)
+      return 'stopped';
+
+    case MigrationBase::RESULT_FAILED:      // The process had a fatal error
+      return 'failed';
+
+    case MigrationBase::RESULT_SKIPPED:     // Dependencies are unfulfilled - skip the process
+      return 'skipped';
+
+    case MigrationBase::RESULT_DISABLED:    // This migration is disabled, skipping
+      return 'disabled';
+
+    default:
+      return 'unknown';
+  }
+}
+
+/**
+ * Check if the user can access the migration logs on node
+ *
+ * @param $node
+ * @return string
+ *   Node access
+ */
+function ws_consumer_odata_node_migrate_report_node_access($node) {
+  if ($node->type == 'treaty' && user_access(MIGRATE_ACCESS_ADVANCED)) {
+    $w = entity_metadata_wrapper('node', $node);
+    $odata_name = $w->field_odata_identifier->value();
+    if (in_array($odata_name, ODataConsumerConfig::getODataNames())) {
+      return NODE_ACCESS_ALLOW;
+    }
+  }
+  return NODE_ACCESS_IGNORE;
 }

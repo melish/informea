@@ -347,13 +347,19 @@ function country_deliverable_strongarm() {
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '0',
         ),
         'language' => array(
           'weight' => '1',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '3',
+        ),
+        'metatags' => array(
+          'weight' => '4',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '2',
         ),
       ),
       'display' => array(),
@@ -401,13 +407,19 @@ function country_deliverable_strongarm() {
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '3',
         ),
         'language' => array(
-          'weight' => '1',
+          'weight' => '4',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '2',
+        ),
+        'metatags' => array(
+          'weight' => '0',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '1',
         ),
       ),
       'display' => array(),
@@ -449,10 +461,19 @@ function country_deliverable_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '0',
+          'weight' => '2',
         ),
         'language' => array(
           'weight' => '0',
+        ),
+        'metatags' => array(
+          'weight' => '3',
+        ),
+        'redirect' => array(
+          'weight' => '0',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '1',
         ),
       ),
       'display' => array(),
@@ -463,9 +484,23 @@ function country_deliverable_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_extended_action_plan';
+  $strongarm->value = 1;
+  $export['i18n_node_extended_action_plan'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'i18n_node_extended_reporting_obligation_cycle';
   $strongarm->value = 1;
   $export['i18n_node_extended_reporting_obligation_cycle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_options_action_plan';
+  $strongarm->value = array();
+  $export['i18n_node_options_action_plan'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -611,6 +646,16 @@ function country_deliverable_strongarm() {
   $strongarm->name = 'node_submitted_reporting_obligation_cycle';
   $strongarm->value = 0;
   $export['node_submitted_reporting_obligation_cycle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xmlsitemap_settings_node_action_plan';
+  $strongarm->value = array(
+    'status' => '1',
+    'priority' => '0.5',
+  );
+  $export['xmlsitemap_settings_node_action_plan'] = $strongarm;
 
   return $export;
 }

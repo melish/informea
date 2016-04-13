@@ -403,6 +403,34 @@ function informea_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_extended_article';
+  $strongarm->value = 1;
+  $export['i18n_node_extended_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_extended_page';
+  $strongarm->value = 1;
+  $export['i18n_node_extended_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_options_article';
+  $strongarm->value = array();
+  $export['i18n_node_options_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_options_page';
+  $strongarm->value = array();
+  $export['i18n_node_options_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'i18n_string_allowed_formats';
   $strongarm->value = array(
     'filtered_html' => 'filtered_html',
@@ -760,7 +788,7 @@ function informea_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'site_mail';
-  $strongarm->value = 'cristian.romanescu@eaudeweb.ro';
+  $strongarm->value = 'ikm@unep.org';
   $export['site_mail'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -846,6 +874,26 @@ function informea_strongarm() {
   $strongarm->name = 'views_ui_show_sql_query_where';
   $strongarm->value = 'below';
   $export['views_ui_show_sql_query_where'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xmlsitemap_settings_node_article';
+  $strongarm->value = array(
+    'status' => '1',
+    'priority' => '0.5',
+  );
+  $export['xmlsitemap_settings_node_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xmlsitemap_settings_node_page';
+  $strongarm->value = array(
+    'status' => '1',
+    'priority' => '0.5',
+  );
+  $export['xmlsitemap_settings_node_page'] = $strongarm;
 
   return $export;
 }

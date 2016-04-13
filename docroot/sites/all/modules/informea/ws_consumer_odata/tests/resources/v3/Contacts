@@ -1,0 +1,100 @@
+{
+  "d": {
+    "results": [
+      {
+        "__metadata": {
+          "type": "Contact",
+          "id": "http://api.cbd.int/informea.svc/Contacts('52000000cbd02200000018e9')",
+          "uri": "http://api.cbd.int/informea.svc/Contacts('52000000cbd02200000018e9')"
+        },
+        "protocolVersion": 1,
+        "id": "52000000cbd02200000018e9",
+        "treaties": [
+          "cbd",
+          "cartagena",
+          "nagoya"
+        ],
+        "roles": [
+          {
+            "__metadata": {
+              "type": "PersonRoles"
+            },
+            "treaty": "cartagena",
+            "roles": [
+              "Cartagena Protocol Primary NFP",
+              "BCH NFP"
+            ],
+            "order": "1"
+          },
+          {
+            "__metadata": {
+              "type": "PersonRoles"
+            },
+            "treaty": "nagoya",
+            "roles": [
+              "Nagoya Protocol Primary NFP"
+            ],
+            "order": "1"
+          }
+        ],
+        "phoneNumber": "12345",
+        "fax": "54321",
+        "address": "No address",
+        "firstName": "John",
+        "lastName": "Doe",
+        "country": "BB",
+        "prefix": "Mr.",
+        "department": "Unknown",
+        "position": "Permanent Secretary",
+        "institution": "Ministry of Environment and Drainage",
+        "email": "john.doe@barbados.gov.bb",
+        "type": "Licensed focal point",
+        "primary": 1,
+        "updated": "/Date(1431103154000)/"
+      },
+      {
+        "__metadata": {
+          "type": "Contact",
+          "id": "http://api.cbd.int/informea.svc/Contacts('52000000cbd0220000001912')",
+          "uri": "http://api.cbd.int/informea.svc/Contacts('52000000cbd0220000001912')"
+        },
+        "protocolVersion": 1,
+        "id": "52000000cbd0220000001912",
+        "treaties": [
+          "nagoya"
+        ],
+        "roles": [
+          {
+            "__metadata": {
+              "type": "PersonRoles"
+            },
+            "treaty": "cartagena",
+            "roles": [
+              "Cartagena Protocol Primary NFP",
+              "BCH NFP"
+            ],
+            "order": "1"
+          },
+          {
+            "__metadata": {
+              "type": "PersonRoles"
+            },
+            "treaty": "nagoya",
+            "roles": [
+              "Nagoya Protocol Primary NFP"
+            ],
+            "order": "1"
+          }
+        ],
+        "country": "BO",
+        "position": "Viceministro de Relaciones Exteriores  (Punto Focal Político)",
+        "institution": "Ministerio de Relaciones Exteriores",
+        "email": "help@gmail.com",
+        "phoneNumber": "123456",
+        "fax": null,
+        "primary": 0,
+        "updated": "/Date(1427285608000)/"
+      }
+    ]
+  }
+}

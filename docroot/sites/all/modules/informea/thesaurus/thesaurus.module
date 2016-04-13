@@ -720,3 +720,24 @@ function thesaurus_term_get_tid_by_uri($uri, $machine_name) {
   $tid = $q->execute()->fetchField(0);
   return $tid != FALSE ? $tid : NULL;
 }
+
+/**
+ * Implements hook_taxonomy_term_insert().
+ */
+function thesaurus_taxonomy_term_insert($term) {
+  if ($term->vocabulary_machine_name == 'thesaurus_informea') {
+    // Set the term path alias
+    $term->path['pathauto'] = FALSE;
+    $path = $term->path;
+    $path['source'] = 'taxonomy/term/' . $term->tid;
+    $path['language'] = 'en';
+    if (!empty($term->field_taxonomy_term_uri[LANGUAGE_NONE])) {
+      $path_alias = str_replace('http://www.informea.org/', '', $term->field_taxonomy_term_uri[LANGUAGE_NONE][0]['url']);
+    }
+    else {
+      $path_alias = 'terms/' . str_replace(' ', '-', trim($term->name));
+    }
+    $path['alias'] = $path_alias;
+    path_save($path);
+  }
+}

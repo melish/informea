@@ -1,0 +1,8 @@
+.field-name-field-contact-treaty { float: left; }
+.field-name-field-contact-role {  float: left;  margin-left: 50px; }
+#field-contact-roles-values .form-submit {
+    float: left;
+    margin-left: 25px;
+    top: 15px;
+    position: relative;
+}

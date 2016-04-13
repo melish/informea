@@ -548,7 +548,7 @@ function treaty_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 22,
+        'weight' => 23,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -600,7 +600,7 @@ function treaty_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 19,
+        'weight' => 20,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -765,7 +765,7 @@ function treaty_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 24,
+        'weight' => 25,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1161,7 +1161,7 @@ function treaty_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 23,
+        'weight' => 24,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1372,7 +1372,7 @@ function treaty_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 20,
+        'weight' => 21,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1439,7 +1439,7 @@ function treaty_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 15,
+        'weight' => 16,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1549,7 +1549,7 @@ function treaty_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 17,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1968,7 +1968,7 @@ function treaty_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 15,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2028,7 +2028,7 @@ function treaty_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 21,
+        'weight' => 22,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2298,7 +2298,7 @@ function treaty_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 7,
+        'weight' => 8,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2417,9 +2417,12 @@ function treaty_field_default_field_instances() {
       ),
       'default' => array(
         'label' => 'inline',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 25,
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 6,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2711,7 +2714,7 @@ function treaty_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_plain',
-        'weight' => 6,
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2971,7 +2974,7 @@ function treaty_field_default_field_instances() {
           'multiple_to' => '',
         ),
         'type' => 'date_default',
-        'weight' => 9,
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3259,7 +3262,7 @@ function treaty_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3332,7 +3335,7 @@ function treaty_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 17,
+        'weight' => 18,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3452,7 +3455,7 @@ function treaty_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 14,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3521,7 +3524,7 @@ function treaty_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 11,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3590,7 +3593,7 @@ function treaty_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 13,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3861,7 +3864,7 @@ function treaty_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 18,
+        'weight' => 19,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3910,64 +3913,6 @@ function treaty_field_default_field_instances() {
       'settings' => array(),
       'type' => 'link_field',
       'weight' => 23,
-    ),
-  );
-
-  // Exported field_instance: 'node-treaty-field_user_owners'.
-  $field_instances['node-treaty-field_user_owners'] = array(
-    'bundle' => 'treaty',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Users who own this node (MEA accounts - representatives)',
-    'display' => array(
-      'ajax' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 59,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'treaty_listing' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_user_owners',
-    'label' => 'Owners',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'select2_integration' => array(
-        'styling' => array(
-          'dropdownAutoWidth' => 0,
-          'placeholder' => '',
-        ),
-        'use_select2' => 0,
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'use_select2' => FALSE,
-      ),
-      'type' => 'options_select',
-      'weight' => 22,
     ),
   );
 
@@ -4064,22 +4009,78 @@ function treaty_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'body',
-    'label' => 'Body',
-    'required' => FALSE,
+    'label' => 'Article text',
+    'required' => 0,
     'settings' => array(
-      'display_summary' => TRUE,
+      'display_summary' => 1,
       'entity_translation_sync' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'text',
       'settings' => array(
         'rows' => 20,
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 31,
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'node-treaty_article-field_files'.
+  $field_instances['node-treaty_article-field_files'] = array(
+    'bundle' => 'treaty_article',
+    'deleted' => 0,
+    'description' => 'You can attach one or more files here that contain the text of the article. This is especially useful for attaching annexes to the treaty text, as PDF files.',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_files',
+    'label' => 'Attached files',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 1,
+      'entity_translation_sync' => 0,
+      'file_directory' => 'treaty-texts',
+      'file_extensions' => 'txt pdf doc xls docx xlsx odt ods rtf htm html',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'file',
+      'settings' => array(
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
+      'weight' => 9,
     ),
   );
 
@@ -4139,7 +4140,7 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 37,
+      'weight' => 8,
     ),
   );
 
@@ -4148,7 +4149,7 @@ function treaty_field_default_field_instances() {
     'bundle' => 'treaty_article',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Official order is the ordering assigned to the article when reading text. Examples: "Article I", "Article IX", "VI" etc. Add this identifier here instead of adding it at the beginning of the articles\'s text.',
     'display' => array(
       'ajax' => array(
         'label' => 'above',
@@ -4192,7 +4193,7 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 35,
+      'weight' => 7,
     ),
   );
 
@@ -4201,7 +4202,7 @@ function treaty_field_default_field_instances() {
     'bundle' => 'treaty_article',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'This is the order the articles appear in the treary (ie, Article 1, has 1, Article 2 has 2, Annex I has 3 etc ... The system uses this field to sort the articles when displayed',
+    'description' => 'Order of the articles as they apear when text is listed. For example use 10, 20, 30 for first, second and third articles. Later you can add articles between, using for instance "15" to add a paragraph between first and second',
     'display' => array(
       'ajax' => array(
         'label' => 'above',
@@ -4245,7 +4246,7 @@ function treaty_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 34,
+      'weight' => 6,
     ),
   );
 
@@ -4294,13 +4295,16 @@ function treaty_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'entityreference',
       'settings' => array(
         'apply_chosen' => '',
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
         'use_select2' => FALSE,
       ),
-      'type' => 'options_select',
-      'weight' => 32,
+      'type' => 'entityreference_autocomplete_tags',
+      'weight' => 4,
     ),
   );
 
@@ -4355,7 +4359,7 @@ function treaty_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -5,
+      'weight' => 3,
     ),
   );
 
@@ -4397,22 +4401,23 @@ function treaty_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'body',
-    'label' => 'Body',
-    'required' => FALSE,
+    'label' => 'Paragraph text',
+    'required' => 0,
     'settings' => array(
-      'display_summary' => TRUE,
+      'display_summary' => 1,
       'entity_translation_sync' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'text',
       'settings' => array(
         'rows' => 20,
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 31,
+      'weight' => 6,
     ),
   );
 
@@ -4475,7 +4480,7 @@ function treaty_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 41,
+      'weight' => 10,
     ),
   );
 
@@ -4484,7 +4489,7 @@ function treaty_field_default_field_instances() {
     'bundle' => 'treaty_paragraph',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Official order is the ordering assigned to the paragraph when reading the treaty text. Examples: i, ii, a), 1st, IV. Add this identifier here instead of adding it at the beginning of the paragraph\'s text.',
     'display' => array(
       'ajax' => array(
         'label' => 'above',
@@ -4525,10 +4530,10 @@ function treaty_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'size' => 5,
       ),
       'type' => 'text_textfield',
-      'weight' => 37,
+      'weight' => 9,
     ),
   );
 
@@ -4538,7 +4543,7 @@ function treaty_field_default_field_instances() {
     'bundle' => 'treaty_paragraph',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Add here a number to use to indent paragraph to the right. Enter a number between 1 and 5. The bigger the number, the greater the indentation. Leave empty for no indent.',
     'display' => array(
       'ajax' => array(
         'label' => 'above',
@@ -4567,7 +4572,7 @@ function treaty_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_paragraph_indentation',
-    'label' => 'Paragraph Indentation',
+    'label' => 'Indentation',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -4582,7 +4587,7 @@ function treaty_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 33,
+      'weight' => 7,
     ),
   );
 
@@ -4592,7 +4597,7 @@ function treaty_field_default_field_instances() {
     'bundle' => 'treaty_paragraph',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Select an article that belongs to the treaty selected above',
     'display' => array(
       'ajax' => array(
         'label' => 'above',
@@ -4622,7 +4627,7 @@ function treaty_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_parent_treaty_article',
     'label' => 'Parent Treaty Article',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'select2_integration' => array(
@@ -4641,10 +4646,9 @@ function treaty_field_default_field_instances() {
         'match_operator' => 'CONTAINS',
         'path' => '',
         'size' => 60,
-        'use_select2' => FALSE,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 32,
+      'weight' => 5,
     ),
   );
 
@@ -4653,7 +4657,7 @@ function treaty_field_default_field_instances() {
     'bundle' => 'treaty_paragraph',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Order of the paragraph within the treaty article listing. Add 10, 20, 30 for pargraph 1, 2, 3. Later you can add paragraphs between, using for instance "6" to add a paragraph between 1 and 2.',
+    'description' => 'Order of the paragraph within the treaty article listing. For example use 10, 20, 30 for first, second and third paragraphs. Later you can add paragraphs between, using for instance "15" to add a paragraph between first and second',
     'display' => array(
       'ajax' => array(
         'label' => 'above',
@@ -4697,7 +4701,7 @@ function treaty_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 35,
+      'weight' => 8,
     ),
   );
 
@@ -4706,7 +4710,7 @@ function treaty_field_default_field_instances() {
     'bundle' => 'treaty_paragraph',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Select the treaty from the list to which this paragraph belongs to',
     'display' => array(
       'ajax' => array(
         'label' => 'above',
@@ -4739,20 +4743,29 @@ function treaty_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_treaty',
     'label' => 'Treaty',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'entityreference',
       'settings' => array(
-        'apply_chosen' => '',
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
         'use_select2' => FALSE,
       ),
-      'type' => 'options_select',
-      'weight' => 39,
+      'type' => 'entityreference_autocomplete_tags',
+      'weight' => 4,
     ),
   );
 
@@ -5217,9 +5230,12 @@ function treaty_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Abbreviation');
   t('Abstract');
+  t('Add here a number to use to indent paragraph to the right. Enter a number between 1 and 5. The bigger the number, the greater the indentation. Leave empty for no indent.');
   t('Address');
   t('Alternative Record ID');
   t('Amends Treaty');
+  t('Article text');
+  t('Attached files');
   t('Available in');
   t('Body');
   t('Check here if the party membership information is coming from UN treaty database or uncheck if using own MEA service');
@@ -5244,6 +5260,7 @@ function treaty_field_default_field_instances() {
   t('Has API Decisions');
   t('Has API National Reports');
   t('Has parties from UN');
+  t('Indentation');
   t('InforMEA tags');
   t('Internet Reference');
   t('Is protocol');
@@ -5257,13 +5274,15 @@ function treaty_field_default_field_instances() {
   t('Obsolete');
   t('Official name');
   t('Official order');
+  t('Official order is the ordering assigned to the article when reading text. Examples: "Article I", "Article IX", "VI" etc. Add this identifier here instead of adding it at the beginning of the articles\'s text.');
+  t('Official order is the ordering assigned to the paragraph when reading the treaty text. Examples: i, ii, a), 1st, IV. Add this identifier here instead of adding it at the beginning of the paragraph\'s text.');
   t('Official publication');
   t('Online course');
   t('Order');
-  t('Order of the paragraph within the treaty article listing. Add 10, 20, 30 for pargraph 1, 2, 3. Later you can add paragraphs between, using for instance "6" to add a paragraph between 1 and 2.');
+  t('Order of the articles as they apear when text is listed. For example use 10, 20, 30 for first, second and third articles. Later you can add articles between, using for instance "15" to add a paragraph between first and second');
+  t('Order of the paragraph within the treaty article listing. For example use 10, 20, 30 for first, second and third paragraphs. Later you can add paragraphs between, using for instance "15" to add a paragraph between first and second');
   t('Original ID');
-  t('Owners');
-  t('Paragraph Indentation');
+  t('Paragraph text');
   t('Parent Treaty Article');
   t('Parent treaty');
   t('Place of adoption');
@@ -5277,7 +5296,8 @@ function treaty_field_default_field_instances() {
   t('Reporting obligation treaty article');
   t('Reporting obligation treaty article paragraphs');
   t('Secondary topic');
-  t('This is the order the articles appear in the treary (ie, Article 1, has 1, Article 2 has 2, Annex I has 3 etc ... The system uses this field to sort the articles when displayed');
+  t('Select an article that belongs to the treaty selected above');
+  t('Select the treaty from the list to which this paragraph belongs to');
   t('Title');
   t('Title abbreviation');
   t('Topics');
@@ -5293,7 +5313,7 @@ function treaty_field_default_field_instances() {
   t('UN Region');
   t('UN Treaty database link');
   t('URL');
-  t('Users who own this node (MEA accounts - representatives)');
+  t('You can attach one or more files here that contain the text of the article. This is especially useful for attaching annexes to the treaty text, as PDF files.');
 
   return $field_instances;
 }

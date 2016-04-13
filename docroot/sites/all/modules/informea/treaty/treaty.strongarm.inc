@@ -508,7 +508,7 @@ function treaty_strongarm() {
       'display' => array(
         'computed_number_of_parties' => array(
           'default' => array(
-            'weight' => '8',
+            'weight' => '9',
             'visible' => TRUE,
           ),
         ),
@@ -522,14 +522,42 @@ function treaty_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__treaty_article';
   $strongarm->value = array(
-    'view_modes' => array(),
+    'view_modes' => array(
+      'teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'ajax' => array(
+        'custom_settings' => TRUE,
+      ),
+      'treaty_listing' => array(
+        'custom_settings' => TRUE,
+      ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'rss' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
     'extra_fields' => array(
       'form' => array(
         'title' => array(
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '1',
+        ),
+        'redirect' => array(
+          'weight' => '2',
+        ),
+        'language' => array(
+          'weight' => '0',
         ),
       ),
       'display' => array(),
@@ -546,13 +574,16 @@ function treaty_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '-5',
+          'weight' => '0',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '3',
         ),
         'language' => array(
-          'weight' => '5',
+          'weight' => '1',
+        ),
+        'redirect' => array(
+          'weight' => '2',
         ),
       ),
       'display' => array(),
@@ -814,6 +845,16 @@ function treaty_strongarm() {
   $strongarm->name = 'node_submitted_treaty_paragraph';
   $strongarm->value = 0;
   $export['node_submitted_treaty_paragraph'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xmlsitemap_settings_node_treaty';
+  $strongarm->value = array(
+    'status' => '1',
+    'priority' => '0.5',
+  );
+  $export['xmlsitemap_settings_node_treaty'] = $strongarm;
 
   return $export;
 }

@@ -5,3 +5,19 @@
  */
 
 include_once 'decision.features.inc';
+
+/**
+ * Implements hook_node_update().
+ */
+function decision_form_decision_node_form_alter(&$form, &$form_state) {
+  global $user;
+
+  if ($user->uid !== 1 || !in_array('administrator', $user->roles)) {
+    hide($form['field_original_id']);
+    hide($form['field_sorting_order']);
+  }
+
+  hide($form['field_last_update']);
+  hide($form['field_meeting_url']);
+  hide($form['field_meeting_title_en']);
+}

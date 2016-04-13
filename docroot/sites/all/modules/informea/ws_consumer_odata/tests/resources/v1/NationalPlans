@@ -1,0 +1,92 @@
+{
+  "d": [
+    {
+      "__metadata": {
+        "uri": "http://informea.pops.int/NationalPlans/scNationalPlans.svc/NationalPlans('UNEP-POPS-NIP-Albania-1')",
+        "type": "NationalPlans.NationalPlan"
+      },
+      "protocolVersion": 1,
+      "id": "UNEP-POPS-NIP-Albania-1",
+      "treaty": "stockholm",
+      "country": "AL",
+      "type": "nip",
+      "title": [
+        {
+          "__metadata": {
+            "uri": "http://informea.pops.int/NationalPlans/scNationalPlans.svc/title('title-6245')",
+            "type": "NationalPlans.title"
+          },
+          "id": "title-6245",
+          "language": "en",
+          "value": "National Implementation Plan for Reduction and Disposal of Persistent Organic Pollutants"
+        },
+        {
+          "__metadata": {
+            "uri": "http://informea.pops.int/NationalPlans/scNationalPlans.svc/title('title-62433')",
+            "type": "NationalPlans.title"
+          },
+          "id": "title-62433",
+          "language": "fr",
+          "value": "French National Implementation Plan for Reduction and Disposal of Persistent Organic Pollutants"
+        }
+      ],
+      "files": [
+        {
+          "__metadata": {
+            "uri": "http://informea.pops.int/NationalPlans/scNationalPlans.svc/files('file-6245')",
+            "type": "NationalPlans.file"
+          },
+          "id": "file-6245",
+          "url": "http://chm.pops.int/Portals/0/download.aspx?d=UNEP-POPS-NIP-Albania-1.English.pdf",
+          "filename": "UNEP-POPS-NIP-Albania-1.English.pdf",
+          "language": "en",
+          "mimeType": "pdf",
+          "size": "1322373"
+        }
+      ],
+      "url" : "https://www.google.com",
+      "submission": "\/Date(1171238400000)\/",
+      "updated": "\/Date(1429694503740)\/",
+      "brs_unnumber": "UNEP/POPS/NIP/Albania/1"
+    },
+    {
+      "__metadata": {
+        "uri": "http://informea.pops.int/NationalPlans/scNationalPlans.svc/NationalPlans('UNEP-POPS-NIP-Algeria-1')",
+        "type": "NationalPlans.NationalPlan"
+      },
+      "protocolVersion": 1,
+      "id": "UNEP-POPS-NIP-Algeria-1",
+      "treaty": "stockholm",
+      "country": "DZ",
+      "type": "nip",
+      "title": [
+        {
+          "__metadata": {
+            "uri": "http://informea.pops.int/NationalPlans/scNationalPlans.svc/title('title-6417')",
+            "type": "NationalPlans.title"
+          },
+          "id": "title-6417",
+          "language": "en",
+          "value": "Plan National de Mise en oeuvre (PNM)"
+        }
+      ],
+      "files": [
+        {
+          "__metadata": {
+            "uri": "http://informea.pops.int/NationalPlans/scNationalPlans.svc/files('file-6417')",
+            "type": "NationalPlans.file"
+          },
+          "id": "file-6417",
+          "url": "http://chm.pops.int/Portals/0/download.aspx?d=UNEP-POPS-NIP-Algeria-1.French.pdf",
+          "filename": "UNEP-POPS-NIP-Algeria-1.French.pdf",
+          "language": "fr",
+          "mimeType": "pdf",
+          "size": "1186802"
+        }
+      ],
+      "submission": "\/Date(1191628800000)\/",
+      "updated": "\/Date(1429710188700)\/",
+      "brs_unnumber": "UNEP/POPS/NIP/Algeria/1"
+    }
+  ]
+}

@@ -15,7 +15,7 @@ function informea_filter_default_formats() {
     'format' => 'filtered_html',
     'name' => 'Filtered HTML',
     'cache' => 1,
-    'status' => 1,
+    'status' => 0,
     'weight' => -9,
     'filters' => array(
       'filter_url' => array(

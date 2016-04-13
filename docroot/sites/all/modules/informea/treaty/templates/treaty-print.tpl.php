@@ -44,7 +44,7 @@ $treaty = $variables['treaty']; $articles = $variables['articles'];
       <?php
       if (empty($article->paragraphs)):
         $tags = array();
-        if ($atags = $pw->field_informea_tags->value()) {
+        if ($atags = $aw->field_informea_tags->value()) {
           foreach($atags as $tag) {
             $tags[] = $tag->name;
           }
@@ -53,10 +53,10 @@ $treaty = $variables['treaty']; $articles = $variables['articles'];
         $tags = $tags ? $tags : '&nbsp;';
         $body = field_view_field('node', $article, 'body', 'full');
         $body = drupal_render($body);
-        $pclass = ++$j == $ta ? 'last article-' . $article->nid : 'article-' . $article->nid;
+        $pclass = (++$j == $ta) ? 'last article-' . $article->nid : 'article-' . $article->nid;
         ?>
         <tr class="article <?php print $pclass; ?>">
-          <td><?php print $j . '#' . $ta . '#' . strip_tags($body, INFORMEA_TREATY_TEXT_ALLOWED_TAGS); ?></td>
+          <td><?php print strip_tags($body, INFORMEA_TREATY_TEXT_ALLOWED_TAGS); ?></td>
           <td class="tags"><?php print $tags; ?></td>
         </tr>
       <?php

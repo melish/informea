@@ -1,0 +1,139 @@
+{
+  "d": {
+    "results": [
+      {
+        "__metadata": {
+          "uri": "http://informea.pops.int/Meetings/scMeetings.svc/Meetings('0066da14-412c-e411-855b-005056856044')",
+          "type": "Meetings.Meeting"
+        },
+        "protocolVersion": 1,
+        "id": "0066da14-412c-e411-855b-005056856044",
+        "treaty": "stockholm",
+        "url": "http://synergies.pops.int/Default.aspx?tabid=3574&meetId=0066da14-412c-e411-855b-005056856044",
+        "title": {
+          "results": [
+            {
+              "__metadata": {
+                "uri": "http://informea.pops.int/Meetings/scMeetings.svc/title('0066da14-412c-e411-855b-005056856044-title-en')",
+                "type": "Meetings.MeetingTitle"
+              },
+              "id": "0066da14-412c-e411-855b-005056856044-title-en",
+              "language": "en",
+              "value": "NIP Updating in view of the entry into force of the amendment listing HBCD under the Stockholm Convention"
+            },
+            {
+              "__metadata": {
+                "uri": "http://informea.pops.int/Meetings/scMeetings.svc/title('0066da14-412c-e411-855b-005056856044-title-fr')",
+                "type": "Meetings.MeetingTitle"
+              },
+              "id": "0066da14-412c-e411-855b-005056856044-title-fr",
+              "language": "fr",
+              "value": "French NIP Updating in view of the entry into force of the amendment listing HBCD under the Stockholm Convention"
+            }
+          ]
+        },
+        "description": {
+          "results": [
+            {
+              "__metadata": {
+                "uri": "http://informea.pops.int/Meetings/scMeetings.svc/description('0066da14-412c-e411-855b-005056856044-desc-en')",
+                "type": "Meetings.MeetingDescription"
+              },
+              "id": "0066da14-412c-e411-855b-005056856044-desc-en",
+              "language": "en",
+              "value": "The objective of this webinar"
+            },
+            {
+              "__metadata": {
+                "uri": "http://informea.pops.int/Meetings/scMeetings.svc/description('0066da14-412c-e411-855b-005056856044-desc-es')",
+                "type": "Meetings.MeetingDescription"
+              },
+              "id": "0066da14-412c-e411-855b-005056856044-desc-es",
+              "language": "es",
+              "value": "Spanish The objective of this webinar"
+            }
+          ]
+        },
+        "start": "\/Date(1399388400000)\/",
+        "end": "\/Date(1399392000000)\/",
+        "repetition": "yearly",
+        "kind": "official",
+        "type": "MOP",
+        "access": "Public",
+        "status": "confirmed",
+        "imageUrl": "http://synergies.pops.int/Portals/2/images/logos/logo_Webinars_s.jpg",
+        "imageCopyright": "Image copyright",
+        "location": "Earth",
+        "city": "Copenhagen",
+        "country": "RO",
+        "latitude": 12,
+        "longitude": 21,
+        "updated": "\/Date(1424944431000)\/",
+        "brs_Title": "NIP Updating in view of the entry into force of the amendment listing HBCD under the Stockholm Convention",
+        "brs_Description": "The objective of this webinar is to increase Parties\" knowledge on existing guidance to update NIPs, increase their understanding of HBCD and other POP-PBDEs listed, and their capacity to make inventories of POP-PBDEs, as part of the NIP update."
+      },
+      {
+        "__metadata": {
+          "uri": "http://informea.pops.int/Meetings/scMeetings.svc/Meetings('00d2ca0e-412c-e411-855b-005056856044')",
+          "type": "Meetings.Meeting"
+        },
+        "protocolVersion": 1,
+        "id": "00d2ca0e-412c-e411-855b-005056856044",
+        "treaty": "stockholm",
+        "url": "http://synergies.pops.int/Default.aspx?tabid=3574&meetId=00d2ca0e-412c-e411-855b-005056856044",
+        "title": {
+          "results": [
+            {
+              "__metadata": {
+                "uri": "http://informea.pops.int/Meetings/scMeetings.svc/title('00d2ca0e-412c-e411-855b-005056856044-title-en')",
+                "type": "Meetings.MeetingTitle"
+              },
+              "id": "00d2ca0e-412c-e411-855b-005056856044-title-en",
+              "language": "en",
+              "value": "Establishing inventories of POP-PBDEs listed under the Stockholm Convention"
+            },
+            {
+              "__metadata": {
+                "uri": "http://informea.pops.int/Meetings/scMeetings.svc/title('00d2ca0e-412c-e411-855b-005056856044-title-fr')",
+                "type": "Meetings.MeetingTitle"
+              },
+              "id": "00d2ca0e-412c-e411-855b-005056856044-title-fr",
+              "language": "fr",
+              "value": "French Establishing inventories of POP-PBDEs listed under the Stockholm Convention"
+            }
+          ]
+        },
+        "description": {
+          "results": [
+            {
+              "__metadata": {
+                "uri": "http://informea.pops.int/Meetings/scMeetings.svc/description('00d2ca0e-412c-e411-855b-005056856044-desc-en')",
+                "type": "Meetings.MeetingDescription"
+              },
+              "id": "00d2ca0e-412c-e411-855b-005056856044-desc-en",
+              "language": "en",
+              "value": "This webinar provides guidance on how to establishing inventories of POP-PBDEs listed under the Stockholm Convention."
+            }
+          ]
+        },
+        "start": "\/Date(1339488000000)\/",
+        "end": "\/Date(1339491600000)\/",
+        "repetition": null,
+        "kind": "official",
+        "type": null,
+        "access": null,
+        "status": "confirmed",
+        "imageUrl": "http://synergies.pops.int/Portals/2/images/logos/logo_Webinars_s.jpg",
+        "imageCopyright": null,
+        "location": null,
+        "city": null,
+        "country": null,
+        "latitude": 0,
+        "longitude": 0,
+        "updated": "\/Date(1408961871000)\/",
+        "brs_Title": "Establishing inventories of POP-PBDEs listed under the Stockholm Convention",
+        "brs_Description": "This webinar provides guidance on how to establishing inventories of POP-PBDEs listed under the Stockholm Convention."
+      }
+    ]
+  }
+}

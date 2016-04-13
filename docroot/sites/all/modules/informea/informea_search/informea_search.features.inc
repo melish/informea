@@ -51,15 +51,23 @@ function informea_search_default_search_api_index() {
         ]
       },
       "index_directly" : 0,
-      "cron_limit" : "50",
+      "cron_limit" : "10",
       "fields" : {
         "attachments_field_files" : { "type" : "text" },
+        "body:summary" : { "type" : "text" },
+        "body:value" : { "type" : "text" },
+        "field_action_plan_type" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_country" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "node" },
+        "field_country_official_name" : { "type" : "text" },
         "field_decision_number" : { "type" : "text" },
         "field_informea_tags" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_informea_tags:name" : { "type" : "list\\u003Ctext\\u003E" },
         "field_informea_tags:name_field" : { "type" : "list\\u003Ctext\\u003E", "boost" : "2.0" },
+        "field_meeting" : { "type" : "integer", "entity_type" : "node" },
         "field_official_name" : { "type" : "text", "boost" : "2.0" },
-        "field_tags" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_official_publication" : { "type" : "text" },
+        "field_region" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_sorting_date" : { "type" : "date" },
         "field_treaty" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "node" },
         "language" : { "type" : "string" },
         "nid" : { "type" : "integer" },
@@ -67,8 +75,7 @@ function informea_search_default_search_api_index() {
         "status" : { "type" : "integer" },
         "title" : { "type" : "text", "boost" : "21.0" },
         "title_field" : { "type" : "text", "boost" : "21.0" },
-        "type" : { "type" : "string" },
-        "url" : { "type" : "uri" }
+        "type" : { "type" : "string" }
       },
       "data_alter_callbacks" : {
         "search_api_alter_bundle_filter" : {
@@ -99,7 +106,7 @@ function informea_search_default_search_api_index() {
         },
         "search_api_alter_node_access" : { "status" : 0, "weight" : "0", "settings" : [] },
         "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } },
-        "search_api_alter_add_url" : { "status" : 1, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_url" : { "status" : 0, "weight" : "0", "settings" : [] },
         "search_api_alter_add_aggregation" : { "status" : 0, "weight" : "0", "settings" : [] },
         "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
         "search_api_alter_language_control" : {
@@ -115,8 +122,8 @@ function informea_search_default_search_api_index() {
           "settings" : { "fields" : {
               "title" : true,
               "title_field" : true,
-              "field_official_name" : true,
               "field_decision_number" : true,
+              "field_official_name" : true,
               "field_informea_tags:name_field" : true
             }
           }
@@ -128,8 +135,10 @@ function informea_search_default_search_api_index() {
             "fields" : {
               "title" : true,
               "title_field" : true,
-              "field_official_name" : true,
               "field_decision_number" : true,
+              "field_official_name" : true,
+              "body:value" : true,
+              "body:summary" : true,
               "field_informea_tags:name_field" : true
             },
             "title" : 0,
@@ -144,8 +153,8 @@ function informea_search_default_search_api_index() {
             "fields" : {
               "title" : true,
               "title_field" : true,
-              "field_official_name" : true,
               "field_decision_number" : true,
+              "field_official_name" : true,
               "field_informea_tags:name_field" : true
             },
             "spaces" : "[^[:alnum:]]",
@@ -159,8 +168,8 @@ function informea_search_default_search_api_index() {
             "fields" : {
               "title" : true,
               "title_field" : true,
-              "field_official_name" : true,
               "field_decision_number" : true,
+              "field_official_name" : true,
               "field_informea_tags:name_field" : true
             },
             "file" : "",
@@ -226,7 +235,7 @@ function informea_search_default_search_api_server() {
       "clean_ids" : true,
       "site_hash" : true,
       "scheme" : "http",
-      "host" : "localhost",
+      "host" : "127.0.0.1",
       "port" : "8983",
       "path" : "\\/solr\\/informea",
       "http_user" : "",

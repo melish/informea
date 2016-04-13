@@ -1,0 +1,121 @@
+{
+  "d": {
+    "results": [
+      {
+        "__metadata": {
+          "type": "NationalPlan",
+          "id": "http://api.cbd.int/informea.svc/NationalPlans('52000000cbd0800000031349')",
+          "uri": "http://api.cbd.int/informea.svc/NationalPlans('52000000cbd0800000031349')"
+        },
+        "protocolVersion": 1,
+        "id": "52000000cbd0800000031349",
+        "treaty": "cbd",
+        "country": "at",
+        "type": "nbsap",
+        "title": [
+          {
+            "__metadata": {
+              "type": "LocalizableString"
+            },
+            "language": "en",
+            "value": "Austria - NBSAP v.1 (1998)"
+          },
+          {
+            "__metadata": {
+              "type": "LocalizableString"
+            },
+            "language": "fr",
+            "value": "French Austria - NBSAP v.1 (1998)"
+          }
+        ],
+        "url": "http://chm.cbd.int/database/record?documentID=201545",
+        "files": [
+          {
+            "__metadata": {
+              "type": "File"
+            },
+            "url": "http://www.cbd.int/doc/world/at/at-nbsap-01-en.doc",
+            "language": "en",
+            "filename": "at-nbsap-01-en.doc"
+          },
+          {
+            "__metadata": {
+              "type": "File"
+            },
+            "url": "http://www.cbd.int/doc/world/at/at-nbsap-01-en.pdf",
+            "language": "en",
+            "filename": "at-nbsap-01-en.pdf"
+          },
+          {
+            "__metadata": {
+              "type": "File"
+            },
+            "url": "https://www.cbd.int/doc/world/it/it-nbsap-01-en.pdf",
+            "language": "es",
+            "filename": "at-nbsap-01-es.pdf"
+          }
+        ],
+        "submission": "/Date(1401302438133)/",
+        "updated": "/Date(1410495820697)/"
+      },
+      {
+        "__metadata": {
+          "type": "NationalPlan",
+          "id": "http://api.cbd.int/informea.svc/NationalPlans('52000000cbd080000003134b')",
+          "uri": "http://api.cbd.int/informea.svc/NationalPlans('52000000cbd080000003134b')"
+        },
+        "protocolVersion": 1,
+        "id": "52000000cbd080000003134b",
+        "treaty": "cbd",
+        "country": "al",
+        "type": "nbsap",
+        "title": [
+          {
+            "__metadata": {
+              "type": "LocalizableString"
+            },
+            "language": "en",
+            "value": "Albania - NBSAP v.1 (1999)"
+          }
+        ],
+        "url": "http://chm.cbd.int/database/record?documentID=201547",
+        "files": [
+          {
+            "__metadata": {
+              "type": "File"
+            },
+            "url": "http://www.cbd.int/doc/world/al/al-nbsap-01-p1-en.pdf",
+            "language": "en",
+            "filename": "al-nbsap-01-p1-en.pdf"
+          },
+          {
+            "__metadata": {
+              "type": "File"
+            },
+            "url": "http://www.cbd.int/doc/world/al/al-nbsap-01-p2-en.pdf",
+            "language": "en",
+            "filename": "al-nbsap-01-p2-en.pdf"
+          },
+          {
+            "__metadata": {
+              "type": "File"
+            },
+            "url": "http://www.cbd.int/doc/world/al/al-nbsap-01-p3-en.pdf",
+            "language": "en",
+            "filename": "al-nbsap-01-p3-en.pdf"
+          },
+          {
+            "__metadata": {
+              "type": "File"
+            },
+            "url": "http://www.cbd.int/doc/world/al/al-nbsap-01-p4-en.pdf",
+            "language": "en",
+            "filename": "al-nbsap-01-p4-en.pdf"
+          }
+        ],
+        "submission": "/Date(1401302438353)/",
+        "updated": "/Date(1410495816697)/"
+      }
+    ]
+  }
+}

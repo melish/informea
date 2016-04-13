@@ -1,5 +1,9 @@
 #Patches
 
+* xmlsitemap
+ * Support for translated nodes - store and export url of node translations.
+ * /patches/xmlsitemap/xmlsitemap-support-multilingual-nodes.patch
+
 * migrate
   * [PDOException when using highwater field](https://www.drupal.org/node/2635792)
   * migrate/migrate-2635792-2-sql-error-saving-highwater.patch

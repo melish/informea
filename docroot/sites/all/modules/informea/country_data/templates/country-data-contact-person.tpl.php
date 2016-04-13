@@ -32,6 +32,10 @@
   <span class="glyphicon glyphicon-user"></span> <?php print $wrapper->label(); ?>
 </h4>
 <dl class="dl-horizontal">
+<?php if (!empty($contact_person->roles)): ?>
+  <dt><?php print format_plural(count($contact_person->roles), 'Role', 'Roles'); ?></dt>
+  <dd><?php print implode(', ', $contact_person->roles); ?></dd>
+<?php endif; ?>
 <?php if ($position): ?>
   <dt><?php print t('Position'); ?></dt>
   <dd><?php print $position; ?></dd>

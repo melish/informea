@@ -6,22 +6,12 @@
 class ContactsODataMigration extends AbstractODataMigration {
 
   /**
-   * @var ODataConsumerConfig
-   */
-  protected $config = NULL;
-
-  /**
    * {@inheritdoc}
    */
   public function __construct($arguments) {
     parent::__construct($arguments);
-    $this->config = new ODataConsumerConfig($arguments);
-    $this->arguments   = $arguments;
     $this->description = sprintf('Import %s from %s', ODataConsumerConfig::$DRUPAL_TYPE_CONTACTS, $this->config->odata_name);
-    $this->source      = new ContactsMigrateSourceList(
-      new ODataMigrateList($this->config),
-      new ContactsODataMigrateItem($this->config)
-    );
+    $this->source      = new InforMEAODataContactsMigrateSource($arguments, $this->config);
     $this->map = new MigrateSQLMap($this->machineName,
       array(
         'id' => array(
@@ -35,11 +25,11 @@ class ContactsODataMigration extends AbstractODataMigration {
     );
     $this->destination = new MigrateDestinationNode(
       ODataConsumerConfig::$DRUPAL_TYPE_CONTACTS,
-      array('text_format' => 'full_html')
+      array('language' => 'en', 'text_format' => 'full_html')
     );
 
     $this->addFieldMapping('field_original_id', 'id');
-    $this->addFieldMapping('title', 'name');
+    $this->addFieldMapping('title', 'title_en');
     $this->addFieldMapping('field_country', 'country');
     $this->addFieldMapping('field_treaty', 'treaties');
     $this->addFieldMapping('field_person_prefix', 'prefix');
@@ -50,7 +40,7 @@ class ContactsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_person_department', 'department');
     $this->addFieldMapping('field_address', 'address');
     $this->addFieldMapping('field_person_email', 'email');
-    $this->addFieldMapping('field_contact_telephone', 'phone');
+    $this->addFieldMapping('field_contact_telephone', 'phoneNumber');
     $this->addFieldMapping('field_contact_fax', 'fax');
     $this->addFieldMapping('field_contact_primary_nfp', 'primary');
 
@@ -59,6 +49,7 @@ class ContactsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_person_type:ignore_case')->defaultValue(TRUE);
 
     $this->addFieldMapping('field_last_update', 'updated');
+    $this->addFieldMapping('field_last_update:timezone')->defaultValue('Europe/Zurich');
     $this->addFieldMapping('changed', 'updated');
 
     $this->addFieldMapping('comment')->defaultValue(FALSE);
@@ -67,7 +58,6 @@ class ContactsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('promote')->defaultValue(0);
     $this->addFieldMapping('sticky')->defaultValue(0);
     $this->addFieldMapping('revision')->defaultValue(0);
-    $this->addFieldMapping('language')->defaultValue(LANGUAGE_NONE);
 
     $this->addUnmigratedDestinations(array(
       'created', 'log', 'tnid', 'translate', 'revision_uid', 'is_new',
@@ -75,8 +65,7 @@ class ContactsODataMigration extends AbstractODataMigration {
       'field_person_position:language', 'field_person_institution:language',
       'field_person_prefix:language', 'field_person_type:source_type', 'path',
       'body:language',
-      'field_last_update:timezone', 'field_last_update:rrule',
-      'field_last_update:to',
+      'field_last_update:rrule', 'field_last_update:to',
     ));
   }
 
@@ -87,21 +76,44 @@ class ContactsODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
-    $row->email = str_replace(' ', '', $row->email);
-    $row->name = $this->getContactName($row);
-    if (!$row->name) {
-      ws_consumer_odata_log('Skipping Contact Person with source id=' . $row->id .' because no name could be found.', MigrationBase::MESSAGE_ERROR);
-      return FALSE;
+
+    /* Fill with remote-data */
+    $consumer = $this->source->getConsumer();
+    $row->languages = array('en');
+    $treaties = array();
+    $values = $consumer->loadNavigationProperty($row, 'treaties');
+    if (!empty($values) && is_array($values)) {
+      foreach ($values as $value) {
+        if (!empty($value->value)) {
+          $treaties[] = $value->value;
+        }
+        // CBD OData v3 seem to return this format
+        else if (!empty($value) && is_string($value)) {
+          $treaties[] = $value;
+        }
+      }
     }
-    // Prepare the treaties property
+    $row->treaties = $treaties;
+    $row->roles = $consumer->loadContactRolesProperty($row);
+    $row->email = str_replace(' ', '', $row->email);
+    $row->title_en = $this->getContactName($row);
+    $treaties = array();
+
+    foreach ($row->roles as $odata_name => $roles) {
+      if ($tob = $this->getTreatyByODataIdentifier($odata_name)) {
+        $treaties[] = $tob->nid;
+      }
+    }
+
     foreach($row->treaties as &$identifier) {
       if ($node = $this->getTreatyByODataIdentifier($identifier)) {
-        $identifier = $node->nid;
+        $treaties[] = $node->nid;
       }
       else {
         ws_consumer_odata_log(__METHOD__ . "(): Invalid OData identifier({$identifier})", MigrationBase::MESSAGE_WARNING);
       }
     }
+    $row->treaties = array_unique($treaties);
     return $this->validateRow($row);
   }
 
@@ -115,11 +127,26 @@ class ContactsODataMigration extends AbstractODataMigration {
    *   FALSE if row is invalid
    */
   function validateRow($row) {
-    $valid = (!empty($row->treaties) && !empty($row->name));
-    if (!$valid) {
-      ws_consumer_odata_log(__METHOD__ . "(): Validation failed for Contact({$row->id})", MigrationBase::MESSAGE_ERROR);
+    if (!$this->validateEnglishTitle($row)) {
+      return FALSE;
     }
-    return $valid;
+    if (strlen($row->email) > 255) {
+      ws_consumer_odata_log('Skipping Contact Person with source id=' . $row->id .' because the email is invalid', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
+    }
+
+    foreach ($row->roles as $odata_name => $roles) {
+      if (!$this->getTreatyByODataIdentifier($odata_name)) {
+        ws_consumer_odata_log('Skipping Contact with source id=' . $row->id . ' and unknown treaty:' . $odata_name, MigrationBase::MESSAGE_ERROR);
+        return FALSE;
+      }
+    }
+
+    if (empty($row->treaties) && empty($row->roles)) {
+      ws_consumer_odata_log('Skipping Contact with source id=' . $row->id .' because is missing treaties', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
+    }
+    return TRUE;
   }
 
   /**
@@ -150,5 +177,66 @@ class ContactsODataMigration extends AbstractODataMigration {
     }
     $name = trim($name);
     return $name;
+  }
+
+  function complete($entity, stdClass $row) {
+    foreach ($row->roles as $odata_name => $roles) {
+      $treaty = treaty_load_by_odata_name($odata_name);
+      foreach ($roles as $delta => $role) {
+        // vocabulary contact_role vid is 34
+        $tid = ODataMigrationUtil::getOrCreateTaxonomyTermByName($role, 34);
+        $values = array(
+          'field_name' => 'field_contact_roles',
+          'field_contact_treaty' => array(LANGUAGE_NONE => array($delta => array('target_id' => $treaty->nid))),
+          'field_contact_role' => array(LANGUAGE_NONE => array($delta => array('tid' => $tid)))
+        );
+        /** @var FieldCollectionItemEntity $ob */
+        $ob = entity_create('field_collection_item', $values);
+        $ob->setHostEntity('node', $entity);
+        $ob->save();
+      }
+    }
+  }
+}
+
+
+
+class InforMEAODataContactsMigrateSource extends InforMEAAbstractODataMigrateSource {
+
+  /**
+   * The list of available fields to map from the source, keyed by field name.
+   */
+  public function fields() {
+    return array(
+      'id' => 'Remote primary key',
+      'country' => 'Contact country',
+      'prefix' => 'Name prefix (Mr.)',
+      'firstName' => 'Given name',
+      'lastName' => 'Family name',
+      'position' => 'Work position',
+      'institution' => 'Working institution',
+      'department' => 'Department',
+      'address' => 'Working address',
+      'email' => 'Work e-mail address',
+      'phoneNumber' => 'Contact telephone number',
+      'type' => 'Type of contact (i.e. licenced focal point)',
+      'fax' => 'Work fax number',
+      'primary' => 'Is primary focal point',
+      'updated' => 'RSS updated field - when record was updated',
+      'treaties' => 'List of treaties (odata_name) the focal point is working for',
+    );
+  }
+
+  protected function pullRemoteData() {
+//    $highwater = $this->activeMigration->getHighwater();
+//    if (!empty($highwater)) {
+//      $query .= '&$filter=updated%20gt%20datetime%27' . date('Y-m-d\TH:i:s', $highwater) . '%27';
+//    }
+    $rows = $this->consumer->getPaginatedData(
+      $this->config->odata_entity,
+      $this->getLimit(),
+      $this->activeMigration
+    );
+    return $rows;
   }
 }

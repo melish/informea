@@ -18,7 +18,7 @@ class ODataConsumerConfig {
   public static $ODATA_NAME_PLANT_TREATY = 'plant_treaty';
   public static $ODATA_NAME_WHC = 'whc';
   public static $ODATA_NAME_MONTREAL = 'montreal';
-  public static $ODATA_NAME_TEST = 'test';
+  public static $ODATA_NAME_RAMSAR = 'ramsar';
 
   public static $ODATA_ENTITY_CONTACTS = 'Contacts';
   public static $DRUPAL_TYPE_CONTACTS = 'contact_person';
@@ -38,9 +38,9 @@ class ODataConsumerConfig {
   public static $ODATA_ENTITY_DECISIONS = 'Decisions';
   public static $DRUPAL_TYPE_DECISIONS = 'decision';
 
+  protected static $SETTINGS_VARIABLE = 'informea_odata_consumer_config';
   public $odata_entity = NULL;
   public $odata_name = NULL;
-  public $endpoints = array();
 
   /**
    * Build new configuration object.
@@ -55,56 +55,35 @@ class ODataConsumerConfig {
     if (isset($arguments['odata_name'])) {
       $this->odata_name = $arguments['odata_name'];
     }
-    $this->endpoints = array(
-      self::$ODATA_NAME_STOCKHOLM => array(
-        'Contacts' => 'http://informea.pops.int/Contacts2/scContacts.svc',
-        'Meetings' => 'http://informea.pops.int/Meetings/scMeetings.svc',
-        'NationalPlans' => 'http://informea.pops.int/NationalPlans/scNationalPlans.svc',
-        'Decisions' => 'http://informea.pops.int/Documents/sc/Decisions.svc',
-      ),
-      self::$ODATA_NAME_ROTTERDAM => array(
-        'Contacts' => 'http://informea.pops.int/Contacts2/rcContacts.svc',
-        'Meetings' => 'http://informea.pops.int/Meetings/rcMeetings.svc',
-        'Decisions' => 'http://informea.pops.int/Documents/rc/Decisions.svc',
-      ),
-      self::$ODATA_NAME_BASEL => array(
-        'Contacts' => 'http://informea.pops.int/Contacts2/BcContacts.svc',
-        'Meetings' => 'http://informea.pops.int/Meetings/bcMeetings.svc',
-        'Decisions' => 'http://informea.pops.int/Documents/bc/Decisions.svc',
-      ),
-      self::$ODATA_NAME_CITES => array(
-        'default' => 'http://odata.cites.org/informea.svc'
-      ),
-      self::$ODATA_NAME_CMS => array(
-        'default' => 'http://odata.cms.eaudeweb.ro/cms/informea.svc'
-      ),
-      self::$ODATA_NAME_AEWA => array(
-        'default' => 'http://odata.cms.eaudeweb.ro/aewa/informea.svc'
-      ),
-      self::$ODATA_NAME_ASCOBANS => array(
-        'default' => 'http://odata.cms.eaudeweb.ro/ascobans/informea.svc'
-      ),
-      self::$ODATA_NAME_EUROBATS=> array(
-        'default' => 'http://odata.cms.eaudeweb.ro/eurobats/services/odata.svc'
-      ),
-      self::$ODATA_NAME_CBD => array(
-        'default' => 'https://api.cbd.int/informea.svc'
-      ),
-      self::$ODATA_NAME_OZONE => array(
-        'default' => 'http://ozone.unep.org:8080/informea/services/odata.svc'
-      ),
-      self::$ODATA_NAME_PLANT_TREATY => array(
-        'default' => 'http://odata.informea.org/odata-fao/services/odata.svc'
-      ),
-      self::$ODATA_NAME_WHC => array(
-        'default' => 'http://whc.unesco.org/informea/informea.svc'
-      ),
-      self::$ODATA_NAME_MONTREAL => array(
-        'default' => 'http://41.191.194.28:8080/informea/services/odata.svc'
-      ),
-      self::$ODATA_NAME_TEST => array(
-        'default' => 'http://odata.informea.org/informea.svc'
-      ),
+  }
+
+  static function getODataNames() {
+    return array(
+      ODataConsumerConfig::$ODATA_NAME_STOCKHOLM,
+      ODataConsumerConfig::$ODATA_NAME_BASEL,
+      ODataConsumerConfig::$ODATA_NAME_ROTTERDAM,
+      ODataConsumerConfig::$ODATA_NAME_CITES,
+      ODataConsumerConfig::$ODATA_NAME_CMS,
+      ODataConsumerConfig::$ODATA_NAME_AEWA,
+      ODataConsumerConfig::$ODATA_NAME_ASCOBANS,
+      ODataConsumerConfig::$ODATA_NAME_EUROBATS,
+      ODataConsumerConfig::$ODATA_NAME_CBD,
+      ODataConsumerConfig::$ODATA_NAME_OZONE,
+      ODataConsumerConfig::$ODATA_NAME_PLANT_TREATY,
+      ODataConsumerConfig::$ODATA_NAME_WHC,
+      ODataConsumerConfig::$ODATA_NAME_MONTREAL,
+      ODataConsumerConfig::$ODATA_NAME_RAMSAR,
+    );
+  }
+
+  static function getEntityNames() {
+    return array(
+      ODataConsumerConfig::$ODATA_ENTITY_CONTACTS,
+      ODataConsumerConfig::$ODATA_ENTITY_MEETINGS,
+      ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT,
+      ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN,
+      ODataConsumerConfig::$ODATA_ENTITY_SITES,
+      ODataConsumerConfig::$ODATA_ENTITY_DECISIONS,
     );
   }
 
@@ -126,41 +105,6 @@ class ODataConsumerConfig {
   }
 
   /**
-   * Utility function to create a migration configuration.
-   *
-   * @param string $odata_name
-   *   Treaty OData identifier - for which treaty we retrieve data?
-   * @param string $odata_entity
-   *   Name of the OData entity to import (ie. Contacts)
-   * @param array $dependencies
-   *   Array of dependent migrations (migration names)
-   *
-   * @return array|bool
-   *   FALSE if the treaty does not exist, failing the migration registration
-   */
-  public function createMigrationConfig($odata_name, $odata_entity, $dependencies = array()) {
-    module_load_include('inc', 'treaty', 'treaty.api');
-    $klass = $odata_entity . 'ODataMigration';
-    $treaty = treaty_load_by_odata_name($odata_name);
-    if (!$treaty || $treaty->status != NODE_PUBLISHED) {
-      ws_consumer_odata_log(
-        sprintf('Failed to register migration odata_%s_%s, cannot find treaty with odata_name:%s',
-          $odata_name, $odata_entity, $odata_name
-        ),
-        MigrationBase::MESSAGE_ERROR
-      );
-      return FALSE;
-    }
-    return array(
-      'class_name' => $klass,
-      'odata_entity' => $odata_entity,
-      'odata_name' => $odata_name,
-      'dependencies' => $dependencies,
-      'group_name' => 'odata_' . $odata_name,
-    );
-  }
-
-  /**
    * Retrieve OData endpoint URL for the configured source.
    *
    * @return string
@@ -168,10 +112,11 @@ class ODataConsumerConfig {
    */
   public function getEndpointURL() {
     $ret = NULL;
-    if (!empty($this->endpoints[$this->odata_name][$this->odata_entity])) {
-      $ret = $this->endpoints[$this->odata_name][$this->odata_entity];
-    } else if (!empty($this->endpoints[$this->odata_name]['default'])) {
-      $ret = $this->endpoints[$this->odata_name]['default'];
+    $config = static::getConfiguration();
+    if (!empty($config['endpoints'][$this->odata_name][$this->odata_entity])) {
+      $ret = $config['endpoints'][$this->odata_name][$this->odata_entity];
+    } else if (!empty($config['endpoints'][$this->odata_name]['default'])) {
+      $ret = $config['endpoints'][$this->odata_name]['default'];
     }
     return $ret;
   }
@@ -192,5 +137,130 @@ class ODataConsumerConfig {
       self::$ODATA_ENTITY_DECISIONS => self::$DRUPAL_TYPE_DECISIONS,
     );
     return $mappings[$this->odata_entity];
+  }
+
+  public function getDecisionMeetingMappingTable() {
+    return 'migrate_map_odata_' . $this->odata_name . '_meetings';
+  }
+
+  static function getConfiguration() {
+    $serialized = variable_get(self::$SETTINGS_VARIABLE, NULL);
+    $config = static::getConfigurationDefault();
+    if (!empty($serialized) && $deserialized = json_decode($serialized, TRUE)) {
+      $config = $deserialized;
+    }
+    return $config;
+  }
+
+  static function getConfigurationDefault() {
+    return array(
+      'odata_page_size' => 100,
+      'endpoints' => array(
+        self::$ODATA_NAME_STOCKHOLM => array(
+          'Contacts' => 'http://informea.pops.int/Contacts2/scContacts.svc',
+          'Meetings' => 'http://informea.pops.int/Meetings/scMeetings.svc',
+          'NationalPlans' => 'http://informea.pops.int/NationalPlans/scNationalPlans.svc',
+          'Decisions' => 'http://informea.pops.int/Documents/sc/Decisions.svc',
+        ),
+        self::$ODATA_NAME_ROTTERDAM => array(
+          'Contacts' => 'http://informea.pops.int/Contacts2/rcContacts.svc',
+          'Meetings' => 'http://informea.pops.int/Meetings/rcMeetings.svc',
+          'Decisions' => 'http://informea.pops.int/Documents/rc/Decisions.svc',
+        ),
+        self::$ODATA_NAME_BASEL => array(
+          'Contacts' => 'http://informea.pops.int/Contacts2/BcContacts.svc',
+          'Meetings' => 'http://informea.pops.int/Meetings/bcMeetings.svc',
+          'Decisions' => 'http://informea.pops.int/Documents/bc/Decisions.svc',
+        ),
+        self::$ODATA_NAME_CITES => array(
+          'default' => 'http://odata.cites.org/informea.svc'
+        ),
+        self::$ODATA_NAME_CMS => array(
+          'default' => 'http://odata.cms.eaudeweb.ro/cms/informea.svc'
+        ),
+        self::$ODATA_NAME_AEWA => array(
+          'default' => 'http://odata.cms.eaudeweb.ro/aewa/informea.svc'
+        ),
+        self::$ODATA_NAME_ASCOBANS => array(
+          'default' => 'http://odata.cms.eaudeweb.ro/ascobans/informea.svc'
+        ),
+        self::$ODATA_NAME_EUROBATS=> array(
+          'default' => 'http://odata.cms.eaudeweb.ro/eurobats/services/odata.svc'
+        ),
+        self::$ODATA_NAME_CBD => array(
+          'default' => 'https://api.cbd.int/informea.svc'
+        ),
+        self::$ODATA_NAME_OZONE => array(
+          'default' => 'http://ozone.unep.org:8080/informea/services/odata.svc'
+        ),
+        self::$ODATA_NAME_PLANT_TREATY => array(
+          'default' => 'http://odata.informea.org/odata-fao/services/odata.svc'
+        ),
+        self::$ODATA_NAME_WHC => array(
+          'default' => 'http://whc.unesco.org/informea/informea.svc'
+        ),
+        self::$ODATA_NAME_MONTREAL => array(
+          'default' => 'http://41.191.194.28:8080/informea/services/odata.svc'
+        ),
+        self::$ODATA_NAME_RAMSAR => array(
+          'default' => 'http://cray.edw.lan:34382/informea.svc'
+        ),
+      ),
+    'disabled' => array()
+    );
+  }
+
+  static function saveConfiguration($config) {
+    variable_set(self::$SETTINGS_VARIABLE, json_encode($config));
+  }
+
+  static function isEnabled($migration_name) {
+    $config = static::getConfiguration();
+    return empty($config['disabled'][$migration_name]);
+  }
+
+  function getListingQueryString() {
+    switch ($this->odata_entity) {
+
+      case self::$ODATA_ENTITY_CONTACTS:
+        if (in_array($this->odata_name, array(
+          self::$ODATA_NAME_CBD
+        ))) {
+          return '&$expand=treaties,roles&$orderby=updated%20desc,id';
+        }
+        return '&$expand=treaties&$orderby=updated%20desc,id';
+
+      case self::$ODATA_ENTITY_NATIONAL_REPORT:
+        return '&$expand=title,files&$orderby=updated%20desc,id';
+
+      case self::$ODATA_ENTITY_DECISIONS:
+        if (in_array($this->odata_name, array(
+          self::$ODATA_NAME_STOCKHOLM,
+          self::$ODATA_NAME_ROTTERDAM,
+          self::$ODATA_NAME_BASEL
+        ))) {
+          return '&$expand=title,files,summary&$orderby=updated%20desc,id';
+        }
+        return '&$expand=title,files,content,summary&$orderby=updated%20desc,id';
+
+      case self::$ODATA_ENTITY_MEETINGS:
+        return '&$expand=title,description&$orderby=updated%20desc,id';
+
+      case self::$ODATA_ENTITY_ACTION_PLAN:
+        return '&$expand=title,files&$orderby=updated%20desc,id';
+
+      case self::$ODATA_ENTITY_SITES:
+        return '&$expand=name&$orderby=updated%20desc,id';
+    }
+    return '';
+  }
+
+  static function getODataPageSize() {
+    $config = static::getConfiguration();
+    $size = 100;
+    if (!empty($config['odata_page_size'])) {
+      $size = $config['odata_page_size'];
+    }
+    return $size;
   }
 }

@@ -49,7 +49,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['field_odata_identifier']['field'] = 'field_odata_identifier';
   $handler->display->display_options['fields']['field_odata_identifier']['label'] = '';
   $handler->display->display_options['fields']['field_odata_identifier']['element_label_colon'] = FALSE;
-  /* Field: Content: Node UUID */
+  /* Field: Content: Content UUID */
   $handler->display->display_options['fields']['uuid']['id'] = 'uuid';
   $handler->display->display_options['fields']['uuid']['table'] = 'node';
   $handler->display->display_options['fields']['uuid']['field'] = 'uuid';
@@ -321,7 +321,7 @@ function informea_views_default_views() {
   $handler->display->display_options['style_options']['default_row_class'] = FALSE;
   $handler->display->display_options['style_options']['class'] = 'media-list';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Field: Indexed Node: Image */
+  /* Field: Indexed Content: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
@@ -332,7 +332,7 @@ function informea_views_default_views() {
     'image_style' => 'logo',
     'image_link' => '',
   );
-  /* Field: Indexed Node: URL */
+  /* Field: Indexed Content: URL */
   $handler->display->display_options['fields']['field_url']['id'] = 'field_url';
   $handler->display->display_options['fields']['field_url']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_url']['field'] = 'field_url';
@@ -341,7 +341,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['field_url']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_url']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_url']['type'] = 'link_absolute';
-  /* Field: Indexed Node: Title */
+  /* Field: Indexed Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['title']['field'] = 'title';
@@ -350,7 +350,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['text'] = '<a href="[field_url]" target="blank">[title]</a>';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_entity'] = 0;
-  /* Field: Indexed Node: Node ID */
+  /* Field: Indexed Content: Node ID */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
@@ -358,7 +358,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nid']['link_to_entity'] = 0;
-  /* Field: Indexed Node: Tags */
+  /* Field: Indexed Content: Tags */
   $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
   $handler->display->display_options['fields']['field_tags']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
@@ -367,7 +367,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['field_tags']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_tags']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_tags']['bypass_access'] = 0;
-  /* Field: Indexed Node: Date created */
+  /* Field: Indexed Content: Date created */
   $handler->display->display_options['fields']['created']['id'] = 'created';
   $handler->display->display_options['fields']['created']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['created']['field'] = 'created';
@@ -376,7 +376,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['created']['date_format'] = 'short';
   $handler->display->display_options['fields']['created']['second_date_format'] = 'long';
   $handler->display->display_options['fields']['created']['link_to_entity'] = 0;
-  /* Field: Indexed Node: MEA topic */
+  /* Field: Indexed Content: MEA topic */
   $handler->display->display_options['fields']['field_mea_topic']['id'] = 'field_mea_topic';
   $handler->display->display_options['fields']['field_mea_topic']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_mea_topic']['field'] = 'field_mea_topic';
@@ -385,7 +385,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['field_mea_topic']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_mea_topic']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_mea_topic']['bypass_access'] = 0;
-  /* Field: Indexed Node: Treaty */
+  /* Field: Indexed Content: Treaty */
   $handler->display->display_options['fields']['field_treaty']['id'] = 'field_treaty';
   $handler->display->display_options['fields']['field_treaty']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_treaty']['field'] = 'field_treaty';
@@ -394,7 +394,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['field_treaty']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_treaty']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_treaty']['bypass_access'] = 0;
-  /* Sort criterion: Indexed Node: Date created */
+  /* Sort criterion: Indexed Content: Date created */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
@@ -416,7 +416,7 @@ function informea_views_default_views() {
     4 => 0,
     5 => 0,
   );
-  /* Filter criterion: Indexed Node: MEA topic */
+  /* Filter criterion: Indexed Content: MEA topic */
   $handler->display->display_options['filters']['field_mea_topic']['id'] = 'field_mea_topic';
   $handler->display->display_options['filters']['field_mea_topic']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['filters']['field_mea_topic']['field'] = 'field_mea_topic';
@@ -435,7 +435,7 @@ function informea_views_default_views() {
     5 => 0,
   );
   $handler->display->display_options['filters']['field_mea_topic']['expose']['reduce'] = 0;
-  /* Filter criterion: Indexed Node: Content type */
+  /* Filter criterion: Indexed Content: Content type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -464,14 +464,14 @@ function informea_views_default_views() {
     'guid_field_is_permalink' => 0,
   );
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Indexed Node: Title */
+  /* Field: Indexed Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_entity'] = 0;
-  /* Field: Indexed Node: URL */
+  /* Field: Indexed Content: URL */
   $handler->display->display_options['fields']['field_url']['id'] = 'field_url';
   $handler->display->display_options['fields']['field_url']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_url']['field'] = 'field_url';
@@ -479,7 +479,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['field_url']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_url']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_url']['type'] = 'link_absolute';
-  /* Field: Indexed Node: Description */
+  /* Field: Indexed Content: Description */
   $handler->display->display_options['fields']['field_feed_item_description']['id'] = 'field_feed_item_description';
   $handler->display->display_options['fields']['field_feed_item_description']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_feed_item_description']['field'] = 'field_feed_item_description';
@@ -489,7 +489,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['field_feed_item_description']['settings'] = array(
     'trim_length' => '600',
   );
-  /* Field: Indexed Node: Parent feed */
+  /* Field: Indexed Content: Parent feed */
   $handler->display->display_options['fields']['field_parent_feed']['id'] = 'field_parent_feed';
   $handler->display->display_options['fields']['field_parent_feed']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_parent_feed']['field'] = 'field_parent_feed';
@@ -498,7 +498,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['field_parent_feed']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_parent_feed']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_parent_feed']['bypass_access'] = 0;
-  /* Field: Indexed Node: Date created */
+  /* Field: Indexed Content: Date created */
   $handler->display->display_options['fields']['created']['id'] = 'created';
   $handler->display->display_options['fields']['created']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['created']['field'] = 'created';
@@ -507,7 +507,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['created']['date_format'] = 'short';
   $handler->display->display_options['fields']['created']['second_date_format'] = 'long';
   $handler->display->display_options['fields']['created']['link_to_entity'] = 0;
-  /* Field: Indexed Node: Node ID */
+  /* Field: Indexed Content: Node ID */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
@@ -517,7 +517,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['nid']['link_to_entity'] = 0;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Indexed Node: Content type */
+  /* Filter criterion: Indexed Content: Content type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['filters']['type']['field'] = 'type';

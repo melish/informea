@@ -16,7 +16,7 @@
       <h4 class="panel-title">
         <a href="javascript:void(0);"><?php echo $article->official_title; ?></a>
         <?php
-        print l('<i class="glyphicon glyphicon-link"></i>', 'node/' . $id_treaty, array(
+        print l('<i class="glyphicon glyphicon-link"></i>', 'node/' . $id_treaty .'/text', array(
           'attributes' => array(
             'data-toggle' => 'tooltip', 'data-placement' => 'top',
             'title' => t('Permalink'),
@@ -55,6 +55,10 @@
     </div><!-- .panel-heading .smallipop -->
     <div id="article-<?php echo $article->nid; ?>" class="panel-collapse collapse<?php print $expanded ? ' in' : '' ;?>" role="tabpanel" aria-labelledby="heading-<?php echo $article->nid; ?>">
       <div class="article<?php print $expanded && !isset($_GET['paragraph']) ? ' highlight' : ''; ?>">
+        <?php
+          $field_view = field_view_field('node', $article, 'field_files', 'default');
+          print drupal_render($field_view);
+        ?>
         <?php if (!empty($article->paragraphs)): ?>
           <?php foreach ($article->paragraphs as $paragraph): ?>
             <?php print theme('treaty_text_paragraph', array('paragraph' => $paragraph, 'article' => $article)); ?>

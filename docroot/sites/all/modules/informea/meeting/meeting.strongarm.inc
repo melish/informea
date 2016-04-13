@@ -275,13 +275,22 @@ function meeting_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '1',
         ),
         'language' => array(
-          'weight' => '3',
+          'weight' => '0',
         ),
         'feeds' => array(
           'weight' => '0',
+        ),
+        'metatags' => array(
+          'weight' => '4',
+        ),
+        'redirect' => array(
+          'weight' => '3',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '2',
         ),
       ),
       'display' => array(),
@@ -308,6 +317,20 @@ function meeting_strongarm() {
     ),
   );
   $export['field_bundle_settings_node__event_calendar_imported'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_extended_event_calendar_imported';
+  $strongarm->value = 1;
+  $export['i18n_node_extended_event_calendar_imported'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_options_event_calendar_imported';
+  $strongarm->value = array();
+  $export['i18n_node_options_event_calendar_imported'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

@@ -63,7 +63,7 @@ function country_deliverable_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 3,
+      'weight' => 11,
     ),
   );
 
@@ -116,7 +116,7 @@ function country_deliverable_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 10,
+      'weight' => 9,
     ),
   );
 
@@ -158,20 +158,26 @@ function country_deliverable_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_country',
     'label' => 'Country',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 1,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 4,
+      'weight' => 7,
     ),
   );
 
@@ -180,7 +186,7 @@ function country_deliverable_field_default_field_instances() {
     'bundle' => 'action_plan',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter here one or more links to the online version of the documents. Link only to current language, you can later add links to other languages by translating this document',
     'display' => array(
       'ajax' => array(
         'label' => 'above',
@@ -216,6 +222,7 @@ function country_deliverable_field_default_field_instances() {
       'absolute_url' => 1,
       'attributes' => array(
         'class' => '',
+        'configurable_class' => 0,
         'configurable_title' => 0,
         'rel' => '',
         'target' => '_blank',
@@ -227,8 +234,8 @@ function country_deliverable_field_default_field_instances() {
       'enable_tokens' => 1,
       'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
-      'title' => 'optional',
-      'title_label_use_field_label' => FALSE,
+      'title' => 'none',
+      'title_label_use_field_label' => 0,
       'title_maxlength' => 128,
       'title_value' => '',
       'url' => 0,
@@ -240,7 +247,7 @@ function country_deliverable_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
@@ -248,7 +255,7 @@ function country_deliverable_field_default_field_instances() {
   $field_instances['node-action_plan-field_files'] = array(
     'bundle' => 'action_plan',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Attach one or more files in the language selected above. Files in other language can later be added by translating this content',
     'display' => array(
       'ajax' => array(
         'label' => 'above',
@@ -281,10 +288,10 @@ function country_deliverable_field_default_field_instances() {
     'label' => 'Files',
     'required' => 0,
     'settings' => array(
-      'description_field' => 0,
-      'entity_translation_sync' => 0,
+      'description_field' => 1,
+      'entity_translation_sync' => 1,
       'file_directory' => 'reports/action_plans',
-      'file_extensions' => 'txt pdf doc docx xls xlsx',
+      'file_extensions' => 'txt pdf doc docx xls xlsx rtf htm html',
       'max_filesize' => '',
       'user_register_form' => FALSE,
     ),
@@ -295,7 +302,7 @@ function country_deliverable_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 7,
+      'weight' => 10,
     ),
   );
 
@@ -355,7 +362,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 11,
+      'weight' => 12,
     ),
   );
 
@@ -421,7 +428,7 @@ function country_deliverable_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 32,
+      'weight' => 15,
     ),
   );
 
@@ -473,7 +480,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 8,
+      'weight' => 16,
     ),
   );
 
@@ -517,24 +524,24 @@ function country_deliverable_field_default_field_instances() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'select2_integration' => array(
+        'allow_add_onfly' => 0,
+        'show_voc_terms_page_link' => 0,
         'styling' => array(
           'dropdownAutoWidth' => 0,
           'placeholder' => '',
         ),
-        'use_select2' => 0,
+        'use_select2' => 1,
       ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
+      'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 36,
+      'weight' => 8,
     ),
   );
 
@@ -578,7 +585,7 @@ function country_deliverable_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_sorting_date',
-    'label' => 'Date of text',
+    'label' => 'Document date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'now',
@@ -597,10 +604,10 @@ function country_deliverable_field_default_field_instances() {
         'input_format_custom' => '',
         'label_position' => 'above',
         'text_parts' => array(),
-        'year_range' => '-3:+3',
+        'year_range' => '1985:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 34,
+      'weight' => 14,
     ),
   );
 
@@ -642,19 +649,28 @@ function country_deliverable_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_treaty',
     'label' => 'Treaty',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'entityreference',
       'settings' => array(
-        'apply_chosen' => '',
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
         'use_select2' => FALSE,
       ),
-      'type' => 'options_select',
+      'type' => 'entityreference_autocomplete_tags',
       'weight' => 6,
     ),
   );
@@ -710,7 +726,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 0,
+      'weight' => 5,
     ),
   );
 
@@ -767,7 +783,7 @@ function country_deliverable_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 3,
+      'weight' => 10,
     ),
   );
 
@@ -812,17 +828,23 @@ function country_deliverable_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 1,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 5,
+      'weight' => 7,
     ),
   );
 
@@ -867,6 +889,7 @@ function country_deliverable_field_default_field_instances() {
       'absolute_url' => 1,
       'attributes' => array(
         'class' => '',
+        'configurable_class' => 0,
         'configurable_title' => 0,
         'rel' => '',
         'target' => '_blank',
@@ -878,8 +901,8 @@ function country_deliverable_field_default_field_instances() {
       'enable_tokens' => 1,
       'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
-      'title' => 'optional',
-      'title_label_use_field_label' => FALSE,
+      'title' => 'none',
+      'title_label_use_field_label' => 0,
       'title_maxlength' => 128,
       'title_value' => '',
       'url' => 0,
@@ -891,7 +914,7 @@ function country_deliverable_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 11,
+      'weight' => 12,
     ),
   );
 
@@ -947,7 +970,7 @@ function country_deliverable_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 7,
+      'weight' => 9,
     ),
   );
 
@@ -1007,7 +1030,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -1073,7 +1096,7 @@ function country_deliverable_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 32,
+      'weight' => 14,
     ),
   );
 
@@ -1125,7 +1148,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 8,
+      'weight' => 15,
     ),
   );
 
@@ -1169,24 +1192,24 @@ function country_deliverable_field_default_field_instances() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'select2_integration' => array(
+        'allow_add_onfly' => 0,
+        'show_voc_terms_page_link' => 0,
         'styling' => array(
           'dropdownAutoWidth' => 0,
           'placeholder' => '',
         ),
-        'use_select2' => 0,
+        'use_select2' => 1,
       ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
+      'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 36,
+      'weight' => 8,
     ),
   );
 
@@ -1230,7 +1253,7 @@ function country_deliverable_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_sorting_date',
-    'label' => 'Date of text',
+    'label' => 'Document date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'now',
@@ -1252,7 +1275,7 @@ function country_deliverable_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 34,
+      'weight' => 13,
     ),
   );
 
@@ -1301,12 +1324,15 @@ function country_deliverable_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'entityreference',
       'settings' => array(
         'apply_chosen' => '',
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
         'use_select2' => FALSE,
       ),
-      'type' => 'options_select',
+      'type' => 'entityreference_autocomplete_tags',
       'weight' => 6,
     ),
   );
@@ -1362,7 +1388,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 0,
+      'weight' => 5,
     ),
   );
 
@@ -1419,7 +1445,7 @@ function country_deliverable_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 3,
+      'weight' => 11,
     ),
   );
 
@@ -1483,7 +1509,7 @@ function country_deliverable_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -1540,7 +1566,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -1595,7 +1621,7 @@ function country_deliverable_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 12,
+      'weight' => 10,
     ),
   );
 
@@ -1648,7 +1674,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 2,
+      'weight' => 5,
     ),
   );
 
@@ -1702,7 +1728,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 13,
+      'weight' => 6,
     ),
   );
 
@@ -1766,7 +1792,7 @@ function country_deliverable_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 4,
+      'weight' => 7,
     ),
   );
 
@@ -1821,7 +1847,7 @@ function country_deliverable_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 1,
+      'weight' => 4,
     ),
   );
 
@@ -1904,13 +1930,15 @@ function country_deliverable_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Attach one or more files in the language selected above. Files in other language can later be added by translating this content');
   t('Body');
   t('Country');
-  t('Date of text');
   t('Decision');
   t('Decision paragraph');
   t('Description');
   t('Document URL');
+  t('Document date');
+  t('Enter here one or more links to the online version of the documents. Link only to current language, you can later add links to other languages by translating this document');
   t('Files');
   t('Frequency');
   t('InforMEA Tags');
