@@ -257,6 +257,15 @@ function country_data_strongarm() {
           'weight' => '2',
         ),
         'language' => array(
+          'weight' => '3',
+        ),
+        'metatags' => array(
+          'weight' => '4',
+        ),
+        'redirect' => array(
+          'weight' => '0',
+        ),
+        'xmlsitemap' => array(
           'weight' => '1',
         ),
       ),
@@ -293,13 +302,19 @@ function country_data_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '0',
+          'weight' => '4',
         ),
         'path' => array(
-          'weight' => '1',
+          'weight' => '3',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '1',
+        ),
+        'metatags' => array(
+          'weight' => '0',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '2',
         ),
       ),
       'display' => array(),

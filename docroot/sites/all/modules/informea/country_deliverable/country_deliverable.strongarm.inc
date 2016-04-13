@@ -347,13 +347,19 @@ function country_deliverable_strongarm() {
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '0',
         ),
         'language' => array(
           'weight' => '1',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '3',
+        ),
+        'metatags' => array(
+          'weight' => '4',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '2',
         ),
       ),
       'display' => array(),
@@ -401,13 +407,19 @@ function country_deliverable_strongarm() {
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '3',
         ),
         'language' => array(
-          'weight' => '1',
+          'weight' => '4',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '2',
+        ),
+        'metatags' => array(
+          'weight' => '0',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '1',
         ),
       ),
       'display' => array(),
@@ -449,10 +461,19 @@ function country_deliverable_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '0',
+          'weight' => '2',
         ),
         'language' => array(
           'weight' => '0',
+        ),
+        'metatags' => array(
+          'weight' => '3',
+        ),
+        'redirect' => array(
+          'weight' => '0',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '1',
         ),
       ),
       'display' => array(),

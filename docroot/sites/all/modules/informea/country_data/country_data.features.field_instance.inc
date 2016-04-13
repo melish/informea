@@ -426,7 +426,7 @@ function country_data_field_default_field_instances() {
     'bundle' => 'contact_person',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Representing country',
     'display' => array(
       'ajax' => array(
         'label' => 'above',
@@ -458,17 +458,23 @@ function country_data_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_country',
-    'label' => 'Focal point country',
-    'required' => 0,
+    'label' => 'Country',
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 1,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
@@ -1065,20 +1071,20 @@ function country_data_field_default_field_instances() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'select2_integration' => array(
+        'allow_add_onfly' => 0,
+        'show_voc_terms_page_link' => 0,
         'styling' => array(
           'dropdownAutoWidth' => 0,
           'placeholder' => '',
         ),
-        'use_select2' => 0,
+        'use_select2' => 1,
       ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
+      'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
@@ -1124,19 +1130,20 @@ function country_data_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_treaty',
     'label' => 'Treaty',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'entityreference',
       'settings' => array(
-        'apply_chosen' => '',
-        'use_select2' => FALSE,
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
       ),
-      'type' => 'options_select',
+      'type' => 'entityreference_autocomplete_tags',
       'weight' => 3,
     ),
   );
@@ -1194,7 +1201,7 @@ function country_data_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 3,
+      'weight' => 6,
     ),
   );
 
@@ -1236,20 +1243,26 @@ function country_data_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_country',
     'label' => 'Country',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 4,
+      'weight' => 7,
     ),
   );
 
@@ -1309,7 +1322,7 @@ function country_data_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 11,
+      'weight' => 13,
     ),
   );
 
@@ -1375,7 +1388,7 @@ function country_data_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 32,
+      'weight' => 14,
     ),
   );
 
@@ -1434,7 +1447,7 @@ function country_data_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 8,
+      'weight' => 11,
     ),
   );
 
@@ -1493,7 +1506,7 @@ function country_data_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 9,
+      'weight' => 12,
     ),
   );
 
@@ -1545,7 +1558,7 @@ function country_data_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 10,
+      'weight' => 15,
     ),
   );
 
@@ -1606,7 +1619,7 @@ function country_data_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 34,
+      'weight' => 8,
     ),
   );
 
@@ -1648,20 +1661,29 @@ function country_data_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_treaty',
     'label' => 'Treaty',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'entityreference',
       'settings' => array(
-        'apply_chosen' => '',
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
         'use_select2' => FALSE,
       ),
-      'type' => 'options_select',
-      'weight' => 6,
+      'type' => 'entityreference_autocomplete_tags',
+      'weight' => 9,
     ),
   );
 
@@ -1706,6 +1728,7 @@ function country_data_field_default_field_instances() {
       'absolute_url' => 1,
       'attributes' => array(
         'class' => '',
+        'configurable_class' => 0,
         'configurable_title' => 0,
         'rel' => '',
         'target' => 'default',
@@ -1717,8 +1740,8 @@ function country_data_field_default_field_instances() {
       'enable_tokens' => 1,
       'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
-      'title' => 'optional',
-      'title_label_use_field_label' => FALSE,
+      'title' => 'none',
+      'title_label_use_field_label' => 0,
       'title_maxlength' => 128,
       'title_value' => '',
       'url' => 0,
@@ -1730,7 +1753,7 @@ function country_data_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 7,
+      'weight' => 10,
     ),
   );
 
@@ -1785,7 +1808,7 @@ function country_data_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 0,
+      'weight' => 5,
     ),
   );
 
@@ -1827,20 +1850,26 @@ function country_data_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_country',
     'label' => 'Country',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 3,
+      'weight' => 6,
     ),
   );
 
@@ -1906,7 +1935,7 @@ function country_data_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 32,
+      'weight' => 10,
     ),
   );
 
@@ -1972,7 +2001,7 @@ function country_data_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 5,
+      'weight' => 7,
     ),
   );
 
@@ -2038,7 +2067,7 @@ function country_data_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 6,
+      'weight' => 8,
     ),
   );
 
@@ -2091,7 +2120,7 @@ function country_data_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 7,
+      'weight' => 9,
     ),
   );
 
@@ -2152,7 +2181,7 @@ function country_data_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 34,
+      'weight' => 11,
     ),
   );
 
@@ -2194,20 +2223,21 @@ function country_data_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_treaty',
     'label' => 'Treaty',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'entityreference',
       'settings' => array(
-        'apply_chosen' => '',
-        'use_select2' => FALSE,
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
       ),
-      'type' => 'options_select',
-      'weight' => 2,
+      'type' => 'entityreference_autocomplete_tags',
+      'weight' => 5,
     ),
   );
 
@@ -2300,7 +2330,6 @@ function country_data_field_default_field_instances() {
   t('Entry into force');
   t('Fax');
   t('First name');
-  t('Focal point country');
   t('InforMEA Tags');
   t('Institution');
   t('Last name');
@@ -2314,6 +2343,7 @@ function country_data_field_default_field_instances() {
   t('Prefix');
   t('Primary NFP');
   t('Region');
+  t('Representing country');
   t('Role');
   t('Roles');
   t('Status');

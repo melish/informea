@@ -11,6 +11,8 @@ define('INFORMEA_VOC_GEG', 'thesaurus_geg');
 define('INFORMEA_VOC_IEG', 'thesaurus_ieg');
 define('INFORMEA_VOC_GEMET', 'thesaurus_gemet');
 
+define('ROLE_MEA', 'MEA');
+
 /**
  * Implements hook_schema_alter()
  */
@@ -168,6 +170,24 @@ function informea_menu() {
     'file' => 'informea.admin.inc',
     'access arguments' => array('administer site configuration'),
     'type' => MENU_LOCAL_TASK
+  );
+  $items['informea/autocomplete/single/field_treaty/node/%'] = array(
+    'title' => 'Entity Reference Autocomplete',
+    'page callback' => 'informea_entityreference_autocomplete_field_treaty_callback',
+    'page arguments' => array(2, 3, 4, 5),
+    'access callback' => 'entityreference_autocomplete_access_callback',
+    'access arguments' => array(2, 3, 4, 5),
+    'file' => 'informea.admin.inc',
+    'type' => MENU_CALLBACK,
+  );
+  $items['informea/autocomplete/single/field_meeting/node/%'] = array(
+    'title' => 'Entity Reference Autocomplete',
+    'page callback' => 'informea_entityreference_autocomplete_field_meeting_callback',
+    'page arguments' => array(2, 3, 4, 5),
+    'access callback' => 'entityreference_autocomplete_access_callback',
+    'access arguments' => array(2, 3, 4, 5),
+    'file' => 'informea.admin.inc',
+    'type' => MENU_CALLBACK,
   );
   return $items;
 }
@@ -601,7 +621,7 @@ function informea_user_get_assigned_treaties($user) {
  *   user's assigned treaties in field_user_treaties.
  */
 function informea_user_mea_can_edit_node($node, $user) {
-  if (in_array('MEA', $user->roles)) {
+  if (in_array(ROLE_MEA, $user->roles)) {
     $allowed = informea_user_get_assigned_treaties($user);
     $nid = NULL;
     try {
@@ -626,17 +646,92 @@ function informea_mea_content_types() {
  * Implements hook_form_BASE_FORM_ID_alter().
  */
 function informea_form_node_form_alter(&$form, &$form_state, $form_id) {
-  if (!empty($form['#node']->nid) && in_array($form['#node']->type, informea_mea_content_types())) {
-    try {
-      $w = entity_metadata_wrapper('node', $form['#node']->nid);
-      if ($w->field_original_id->value()) {
-        drupal_set_message(t('This content is imported from MEA via synchronization process. <strong>Modifications made here might be lost after the next synchronization</strong>'), 'warning');
-      }
-    } catch (Exception $e) {
+  $bundle = $form['#node']->type;
 
+  if (in_array($bundle, informea_mea_content_types())) {
+    global $user;
+    $user_is_mea = $user->uid != 1 && count($user->roles) == 2 && in_array(ROLE_MEA, $user->roles);
+
+    // Warn the user when content comes from OData
+    if (!empty($form['#node']->nid)) {
+      try {
+        $w = entity_metadata_wrapper('node', $form['#node']->nid);
+        if ($w->field_original_id->value()) {
+          drupal_set_message(t('This content is imported from MEA via synchronization process. <strong>Modifications made here might be lost after the next synchronization</strong>'), 'warning');
+        }
+      } catch (Exception $e) {
+      }
+    }
+
+    // Hide some internal fields
+    if (!empty($form['field_original_id'][LANGUAGE_NONE])) {
+      $form['field_original_id'][LANGUAGE_NONE]['#access'] = FALSE;
+    }
+
+    // If the user is MEA role
+    if ($user_is_mea) {
+      // Do not let the user assign random treaties to content
+      $form['#validate'][] = 'informea_node_form_validate_field_treaty';
+
+      // Filter out the list of treaties in field_treaty.
+      if (!empty($form['field_treaty']['und']['#options'])) {
+        $allowed_treaties = informea_user_get_assigned_treaties($user);
+        $options = &$form['field_treaty']['und']['#options'];
+        if ($user->uid != 1 || !empty($allowed_treaties)) {
+          foreach ($options as $nid => $label) {
+            if ($nid != '_none' && !in_array($nid, $allowed_treaties)) {
+              unset($options[$nid]);
+            }
+          }
+        }
+      }
+
+      // Use custom autocomplete for field_treaty to filter autocomplete list of treaties
+      if (!empty($form['field_treaty'][LANGUAGE_NONE]['#autocomplete_path'])) {
+        /** @see informea_entityreference_autocomplete_field_treaty_callback */
+        $autocomplete_path = "informea/autocomplete/single/field_treaty/node/$bundle/";
+        $autocomplete_path .= !empty($form['#node']->nid) ? $form['#node']->nid : 'NULL';
+        $form['field_treaty'][LANGUAGE_NONE]['#autocomplete_path'] = $autocomplete_path;
+      }
+    }
+
+    // Use custom autocomplete for field_meeting to filter autocomplete list of treaties
+    if (!empty($form['field_meeting'][LANGUAGE_NONE]['#autocomplete_path'])) {
+      /** @see informea_entityreference_autocomplete_field_meeting_callback */
+      $autocomplete_path = "informea/autocomplete/single/field_meeting/node/$bundle/";
+      $autocomplete_path .= !empty($form['#node']->nid) ? $form['#node']->nid : 'NULL';
+      $form['field_meeting'][LANGUAGE_NONE]['#autocomplete_path'] = $autocomplete_path;
+    }
+
+    // Fix cardinality for form fields.
+    if ($bundle != 'contact_person' && !empty($form['field_treaty']['und'])) {
+      $form['field_treaty']['und']['#multiple'] = FALSE;
+    }
+    if (!empty($form['field_country']['und'])) {
+      $form['field_country']['und']['#multiple'] = FALSE;
+    }
+
+    // Hide the input format switcher from CSS it's annoying
+    $form['#attached']['css'][] = array(
+      'data' => 'fieldset.filter-wrapper.form-wrapper { display: none; }',
+      'type' => 'inline',
+    );
+  }
+}
+
+function informea_node_form_validate_field_treaty($form, $form_state) {
+  global $user;
+  if (informea_user_is_mea($user)) {
+    $allowed = informea_user_get_assigned_treaties($user);
+    if (!empty($form_state['values']['field_treaty'][LANGUAGE_NONE][0]['target_id'])) {
+      $id_treaty = $form_state['values']['field_treaty'][LANGUAGE_NONE][0]['target_id'];
+      if (!in_array($id_treaty, $allowed)) {
+        form_set_error('field_treaty', t('You do not have sufficient permissions to assign that treaty'));
+      }
     }
   }
 }
+
 
 /**
  * Implements hook_custom_theme().
@@ -649,4 +744,14 @@ function informea_custom_theme() {
       }
   }
   return NULL;
+}
+
+
+function informea_user_is_mea($user) {
+  if (empty($user) || $user->uid == 1) {
+    return FALSE;
+  }
+  return count($user->roles) == 2
+      && in_array(ROLE_MEA, $user->roles)
+      && in_array('authenticated user', $user->roles);
 }

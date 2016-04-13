@@ -1027,6 +1027,7 @@ function treaty_form_treaty_article_node_form_alter(&$form) {
  * Implements hook_form_FORM_ID_alter().
  */
 function treaty_form_treaty_paragraph_node_form_alter(&$form) {
+  global $user;
   if (!empty($_GET['edit']['field_treaty'][LANGUAGE_NONE]) && is_numeric($_GET['edit']['field_treaty'][LANGUAGE_NONE])) {
     $form['field_treaty'][LANGUAGE_NONE]['#default_value'] = intval($_GET['edit']['field_treaty'][LANGUAGE_NONE]);
   }
@@ -1051,8 +1052,37 @@ function treaty_form_treaty_paragraph_node_form_alter(&$form) {
 
     $form['field_parent_treaty_article'][LANGUAGE_NONE][0]['target_id']['#default_value'] = $w->label() . ' (' . $pid . ')';
   }
+
+  $user_is_mea = informea_user_is_mea($user);
+  if ($user_is_mea) {
+    /** @see informea_entityreference_treaty_article_autocomplete_callback */
+    $autocomplete_path = 'informea/autocomplete/single/field_parent_treaty_article/node/treaty_paragraph/';
+    $autocomplete_path .= !empty($form['#node']->nid) ? $form['#node']->nid : 'NULL';
+    $form['field_parent_treaty_article'][LANGUAGE_NONE][0]['target_id']['#autocomplete_path'] = $autocomplete_path;
+    $form['#validate'][] = 'treaty_form_trearty_paragraph_node_form_validate';
+  }
   return;
 }
+
+function treaty_form_trearty_paragraph_node_form_validate($form, $form_state) {
+  // We validate that the selected article belongs to the selected treaty.
+  if (!empty($form_state['values']['field_parent_treaty_article'][LANGUAGE_NONE][0]['target_id'])) {
+    $id_treaty = $form_state['values']['field_treaty'][LANGUAGE_NONE][0]['target_id'];
+    if (!empty($form_state['values']['field_treaty'][LANGUAGE_NONE][0]['target_id'])) {
+      $id_article = $form_state['values']['field_parent_treaty_article'][LANGUAGE_NONE][0]['target_id'];
+      $id_treaty_article = NULL;
+      try {
+        $w = entity_metadata_wrapper('node', $id_article);
+        $id_treaty_article = $w->field_treaty->value()[0]->nid;
+      } catch(Exception $e) {
+      }
+      if ($id_treaty_article != $id_treaty) {
+        form_set_error('field_parent_treaty_article', t('The selected article does not belong to the treaty above'));
+      }
+    }
+  }
+}
+
 
 /**
  * Check if the current user can reorder decisions for a treaty
@@ -1185,67 +1215,6 @@ function treaty_contextual_links_view_alter(&$element, $items) {
   }
 }
 
-/**
- * Implements hook_form_BASE_FORM_ID_alter().
- */
-function treaty_form_node_form_alter(&$form, &$form_state, $form_id) {
-  switch ($form['#node']->type) {
-    case 'action_plan':
-    case 'decision':
-    case 'decision_paragraph':
-    case 'geographical_site':
-    case 'literature':
-    case 'member_party':
-    case 'national_report':
-    case 'reporting_obligation_cycle':
-    case 'treaty_article':
-    case 'treaty_paragraph':
-      $form['field_treaty']['und']['#multiple'] = FALSE;
-
-      break;
-  }
-
-  // Use custom autocomplete
-  if ($form['#node']->type == 'treaty_paragraph') {
-    /** @see informea_entityreference_treaty_article_autocomplete_callback */
-    $autocomplete_path = 'informea/autocomplete/single/field_parent_treaty_article/node/treaty_paragraph/';
-    $autocomplete_path .= !empty($form['#node']->nid) ? $form['#node']->nid : 'NULL';
-    $form['field_parent_treaty_article'][LANGUAGE_NONE][0]['target_id']['#autocomplete_path'] = $autocomplete_path;
-    $form['#validate'][] = 'informea_treaty_paragraph_node_form_validate';
-  }
-
-  if (in_array($form['#node']->type, array('treaty_article', 'treaty_paragraph'))) {
-    global $user;
-    $allowed_treaties = informea_user_get_assigned_treaties($user);
-    $options = &$form['field_treaty']['und']['#options'];
-    if ($user->uid != 1 || !empty($allowed_treaties)) {
-      foreach($options as $nid => $label) {
-        if ($nid != '_none' && !in_array($nid, $allowed_treaties)) {
-          unset($options[$nid]);
-        }
-      }
-    }
-  }
-}
-
-function informea_treaty_paragraph_node_form_validate($form, $form_state) {
-  // We validate that the selected article belongs to the selected treaty.
-  if (!empty($form_state['values']['field_parent_treaty_article'][LANGUAGE_NONE][0]['target_id'])) {
-    $id_treaty = $form_state['values']['field_treaty'][LANGUAGE_NONE][0]['target_id'];
-    if (!empty($form_state['values']['field_treaty'][LANGUAGE_NONE][0]['target_id'])) {
-      $id_article = $form_state['values']['field_parent_treaty_article'][LANGUAGE_NONE][0]['target_id'];
-      $id_treaty_article = NULL;
-      try {
-        $w = entity_metadata_wrapper('node', $id_article);
-        $id_treaty_article = $w->field_treaty->value()[0]->nid;
-      } catch(Exception $e) {
-      }
-      if ($id_treaty_article != $id_treaty) {
-        form_set_error('field_parent_treaty_article', t('The selected article does not belong to the treaty above'));
-      }
-    }
-  }
-}
 
 /**
  * Implements hook_node_update().
