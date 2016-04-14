@@ -122,8 +122,7 @@ function _drush_devify() {
 
 	// Sanitize database.
 	// @see sql_drush_sql_sync_sanitize() to add your sanitize queries.
-	drush_sql_sanitize();
-
+	drush_invoke_process('@self', 'sql-sanitize', array(), array('sanitize-password' => 'no'));
 	drush_log(dt('Devified!'), 'success');
 }
 
