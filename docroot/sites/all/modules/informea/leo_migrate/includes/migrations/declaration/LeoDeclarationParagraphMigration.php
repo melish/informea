@@ -14,6 +14,9 @@ class LeoDeclarationParagraphMigration extends LeoDefaultNodeMigration {
     $this->addFieldMapping('field_parent_declaration', 'field_parent_declaration')->sourceMigration(array('declaration'));
     $this->addFieldMapping('field_declaration_parent_section', 'field_declaration_parent_section')->sourceMigration(array('declaration_section'));
 
+    $this->removeFieldMapping('body:language');
+    $this->addFieldMapping('body:language')->defaultValue('en');
+
     $this->addUnmigratedSources(array(
       'uid', 'revision', 'log', 'revision_uid',
     ));
