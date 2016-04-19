@@ -229,9 +229,11 @@ function informea_theme_slider() {
         }
         catch(Exception $e) {}
         if (empty($image)) {
+          $alt = !empty($w->field_image->value()['alt']) ? $w->field_image->value()['alt'] : $w->label();
           $image = theme('image_style', array(
             'path' => $w->field_image->value()['uri'],
-            'style_name' => 'front_page_slider'
+            'style_name' => 'front_page_slider',
+            'alt' => $alt,
           ));
         }
         $slide = array(
