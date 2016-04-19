@@ -319,7 +319,7 @@ function informea_theme_slider() {
       $url = empty($url) ? $url = url('node/' . $ob->nid) : $url = $url['url'];
       $start = $w->event_calendar_date->value();
       $start = format_date(strtotime($start['value']), 'short');
-      $image = theme('image', array('path' => $images[array_rand($images)]));
+      $image = theme('image', array('path' => $images[array_rand($images)], 'alt' => $w->label()));
       $slide = array(
         'image' => l($image, $url, array('absolute' => TRUE, 'html' => TRUE)),
         'logo' => theme('image', array('path' => $logo['uri'], 'alt' => $tw->label())),
