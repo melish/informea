@@ -213,12 +213,12 @@ function informea_theme_slider() {
         switch ($w->getBundle()) {
           case 'feed_item':
             $url = $w->field_url->value();
-            $url = empty($url) ? url('node/' . $w->getIdentifier()) : $url['url'];
+            $url = empty($url) ? 'node/' . $w->getIdentifier() : $url['url'];
 
             break;
 
           default:
-            $url = url('node/' . $w->getIdentifier());
+            $url = 'node/' . $w->getIdentifier();
 
             break;
         }
