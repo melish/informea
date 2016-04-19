@@ -322,7 +322,7 @@ function informea_theme_slider() {
       $image = theme('image', array('path' => $images[array_rand($images)]));
       $slide = array(
         'image' => l($image, $url, array('absolute' => TRUE, 'html' => TRUE)),
-        'logo' => theme('image', array('path' => $logo['uri'])),
+        'logo' => theme('image', array('path' => $logo['uri'], 'alt' => $tw->label())),
         'date' => $start,
         'link' => l($w->label(), $url, array('absolute' => TRUE, 'attributes' => array('target' => '_blank'))),
       );
