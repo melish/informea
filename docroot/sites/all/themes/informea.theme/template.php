@@ -59,6 +59,7 @@ function informea_theme_preprocess_page(&$variables) {
   }
   if(isset($variables['node'])) {
     $node = $variables['node'];
+    $wrapper = entity_metadata_wrapper('node', $node);
     switch ($node->type) {
       case 'event_calendar':
         $breadcrumbs[] = l(t('Events'), 'events');
@@ -93,6 +94,15 @@ function informea_theme_preprocess_page(&$variables) {
           '#attributes' => array('class' => array('form-control')),
         );
         array_unshift($variables['page']['sidebar_first'], menu_secondary_local_tasks());
+        break;
+
+      case 'decision':
+        if ($treaty = $wrapper->field_treaty->value()) {
+          $treaty = $treaty[0];
+          $variables['title_prefix'] = informea_theme_treaty_logo($treaty);
+        }
+        drupal_add_css(drupal_get_path('theme', 'informea_theme') . '/css/decision.css');
+        break;
     }
   }
   if (isset($variables['node']->type)) {
@@ -163,7 +173,7 @@ function informea_theme_meeting_type($term) {
 function informea_theme_treaty_logo($node, $style = 'logo-large') {
   $w = entity_metadata_wrapper('node', $node->nid);
   if ($logo = $w->field_logo->value()) {
-    return theme('image_style', array('style_name' => $style, 'path' => $logo['uri']));
+    return theme('image_style', array('style_name' => $style, 'path' => $logo['uri'], 'attributes' => array('class' => 'treaty-logo')));
   }
   return NULL;
 }

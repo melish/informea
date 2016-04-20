@@ -1,0 +1,29 @@
+
+body.node-type-decision div.page-header img.treaty-logo {
+    float: left;
+    margin-bottom: 41px;
+    margin-right: 15px;
+}
+
+
+body.node-type-decision div.field {
+    margin: 10px 0;
+}
+body.node-type-decision div.field-label {
+    min-width: 300px;
+    text-align: right;
+}
+
+body.node-type-decision div.field-name-field-sorting-date {
+    float: right;
+}
+body.node-type-decision div.field-name-field-decision-type {
+    float: left;
+    margin-right: 15px;
+}
+body.node-type-decision div.field-name-field-decision-status {
+    margin-bottom: 25px;
+}
+body.node-type-decision div.field-name-field-treaty {
+    text-align: right;
+}

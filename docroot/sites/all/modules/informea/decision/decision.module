@@ -21,3 +21,19 @@ function decision_form_decision_node_form_alter(&$form, &$form_state) {
   hide($form['field_meeting_url']);
   hide($form['field_meeting_title_en']);
 }
+
+
+/**
+ * Implements hook_node_view().
+ */
+function decision_node_view($node, $view_mode, $langcode) {
+  if ($node->type == 'decision') {
+    // Show the official treaty title
+    if (!empty($node->content['field_treaty']['#items'][0]['entity'])) {
+      $treaty = $node->content['field_treaty']['#items'][0]['entity'];
+      $wrapper = entity_metadata_wrapper('node', $treaty);
+      $node->content['field_treaty'][0]['#markup'] = l($wrapper->field_official_name->value(), 'node/' . $treaty->nid);
+    }
+    // dpm($node);
+  }
+}
