@@ -2284,6 +2284,56 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-legislation-field_data_source'.
+  $field_instances['node-legislation-field_data_source'] = array(
+    'bundle' => 'legislation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 35,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_data_source',
+    'label' => 'Data source',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 42,
+    ),
+  );
+
   // Exported field_instance: 'node-legislation-field_date_of_consolidation'.
   $field_instances['node-legislation-field_date_of_consolidation'] = array(
     'bundle' => 'legislation',
@@ -2851,6 +2901,61 @@ function ecolex_field_default_field_instances() {
       'settings' => array(),
       'type' => 'link_field',
       'weight' => 27,
+    ),
+  );
+
+  // Exported field_instance: 'node-legislation-field_files'.
+  $field_instances['node-legislation-field_files'] = array(
+    'bundle' => 'legislation',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 36,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_files',
+    'label' => 'Attached files',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'entity_translation_sync' => 0,
+      'file_directory' => 'legislation',
+      'file_extensions' => 'txt doc docx rtf pdf htm html xls xlsx odt ods',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'file',
+      'settings' => array(
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
+      'weight' => 44,
     ),
   );
 
@@ -5785,6 +5890,7 @@ function ecolex_field_default_field_instances() {
   t('Abstract');
   t('Alternative Record ID');
   t('Amends');
+  t('Attached files');
   t('Author');
   t('Author Institution');
   t('Avaiable web site');
@@ -5794,6 +5900,7 @@ function ecolex_field_default_field_instances() {
   t('Court decision ID number');
   t('Court jurisdiction');
   t('Court name');
+  t('Data source');
   t('Date of consolidation/reprint');
   t('Date of entry');
   t('Date of modification');
