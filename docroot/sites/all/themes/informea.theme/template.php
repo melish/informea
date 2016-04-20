@@ -229,9 +229,11 @@ function informea_theme_slider() {
         }
         catch(Exception $e) {}
         if (empty($image)) {
+          $alt = !empty($w->field_image->value()['alt']) ? $w->field_image->value()['alt'] : $w->label();
           $image = theme('image_style', array(
             'path' => $w->field_image->value()['uri'],
-            'style_name' => 'front_page_slider'
+            'style_name' => 'front_page_slider',
+            'alt' => $alt,
           ));
         }
         $slide = array(
@@ -317,10 +319,10 @@ function informea_theme_slider() {
       $url = empty($url) ? $url = url('node/' . $ob->nid) : $url = $url['url'];
       $start = $w->event_calendar_date->value();
       $start = format_date(strtotime($start['value']), 'short');
-      $image = theme('image', array('path' => $images[array_rand($images)]));
+      $image = theme('image', array('path' => $images[array_rand($images)], 'alt' => $w->label()));
       $slide = array(
         'image' => l($image, $url, array('absolute' => TRUE, 'html' => TRUE)),
-        'logo' => theme('image', array('path' => $logo['uri'])),
+        'logo' => theme('image', array('path' => $logo['uri'], 'alt' => $tw->label())),
         'date' => $start,
         'link' => l($w->label(), $url, array('absolute' => TRUE, 'attributes' => array('target' => '_blank'))),
       );
