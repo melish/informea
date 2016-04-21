@@ -4,12 +4,24 @@ class EcolexLegislationMigration extends Migration {
 
   public function __construct($arguments) {
     parent::__construct($arguments);
+    $this->map = new MigrateSQLMap($this->machineName,
+      array(
+        'legId' => array(
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => TRUE,
+          'description' => 'Entity original ID from the Ecolex',
+        ),
+      ),
+      MigrateDestinationNode::getKeySchema()
+    );
     $this->source = new EcolexLegislationMigrateSource($arguments['source_url_pattern']);
     $this->destination = new MigrateDestinationNode('legislation');
 
 
     // $this->addFieldMapping('field_data_source:source_type')->defaultValue('term');
 
+    $this->addFieldMapping('title', 'legTitle');
     $this->addFieldMapping('comment')->defaultValue(FALSE);
     $this->addFieldMapping('uid')->defaultValue(0);
     $this->addFieldMapping('status')->defaultValue(1);
@@ -24,11 +36,11 @@ class EcolexLegislationMigration extends Migration {
 
   public function prepareRow($row) {
     parent::prepareRow($row);
-    return $this->validateRow($row);
+//    return $this->validateRow($row);
   }
 
   public function validateRow($row) {
-    return !empty($row->title_english);
+//    return !empty($row->title_english);
   }
 }
 
@@ -37,9 +49,16 @@ class EcolexLegislationMigrateSource extends MigrateSource {
 
   private $url_pattern = NULL;
 
+  public $totalCount = 0;
+  public $currentCount = 0;
+  public $currentPage = 0;
+  public $pagination = 100;
+  protected $data = array();
+
   public function __construct($source_url_pattern) {
     parent::__construct(array());
     $this->url_pattern = 'http://ecolex-frontend.edw.ro:8983/solr/ecolex/select?q=type%3Alegislation&wt=json';
+    $this->computeCount();
   }
 
   public function __toString() {
@@ -92,13 +111,12 @@ class EcolexLegislationMigrateSource extends MigrateSource {
    * Return the number of available source records.
    */
   public function computeCount() {
-    $ret = 0;
     if ($str = elis_consumer_http_request($this->url_pattern . '&rows=0', array('Accept' => 'application/json'))) {
       if ($json = json_decode($str)) {
-        $ret = $json->response->numFound;
+        $this->totalCount = $json->response->numFound;
       }
     }
-    return $ret;
+    return $this->totalCount;
   }
 
   /**
@@ -108,7 +126,9 @@ class EcolexLegislationMigrateSource extends MigrateSource {
    * file handles, running queries, and so on should be performed here.
    */
   public function performRewind() {
-    reset($this->data);
+    $this->data = array();
+    $this->currentPage = 0;
+    $this->currentCount = 0;
   }
 
   /**
@@ -118,13 +138,25 @@ class EcolexLegislationMigrateSource extends MigrateSource {
    *   FALSE data as stdClass, FALSE when there is no more data available.
    */
   public function getNextRow() {
-    if (empty($this->data)) {
-      $this->readData();
+    $next_call_count = $this->currentPage * $this->pagination;
+    if ($this->currentCount == $this->totalCount) {
+      return NULL;
     }
+    if ($this->currentCount == $next_call_count && $next_call_count < $this->totalCount) {
+      $start = $this->currentPage * $this->pagination;
+      if ($str = elis_consumer_http_request($this->url_pattern . '&rows=' . $this->pagination . '&start=' . $start, array('Accept' => 'application/json'))) {
+        if ($json = json_decode($str)) {
+          $this->data = $json->response->docs;
+          $this->currentPage++;
+        }
+      }
+    }
+    // TODO Messages in case of empty data / failed call etc.
     $item = NULL;
     if (count($this->data)) {
       $item = current($this->data);
       next($this->data);
+      $this->currentCount++;
     }
     return $item;
   }
