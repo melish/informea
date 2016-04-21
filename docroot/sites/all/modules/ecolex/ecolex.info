@@ -1,7 +1,7 @@
 name = ecolex
 core = 7.x
 package = InforMEA
-version = 7.x-0.5
+version = 7.x-0.6
 project = ecolex
 dependencies[] = ctools
 dependencies[] = date
@@ -165,6 +165,7 @@ features[node][] = court_decisions
 features[node][] = legislation
 features[node][] = literature
 features[taxonomy][] = ecolex_decision_status
+features[taxonomy][] = ecolex_subjects
 features[taxonomy][] = geographical_scope
 features[taxonomy][] = legislation_sub_file_code
 features[taxonomy][] = literature_type
