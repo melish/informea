@@ -25,7 +25,7 @@ function elis_consumer_xml_http_request($url, $xml_encoding) {
 
 function elis_consumer_http_request($url, $headers = array()) {
   migrate_instrument_start(__CLASS__ . ' http_request');
-  // elis_consumer_log(__METHOD__ . ": $url", MigrationBase::MESSAGE_INFORMATIONAL);
+  elis_consumer_log(__METHOD__ . ": $url", MigrationBase::MESSAGE_INFORMATIONAL);
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_URL, $url);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

@@ -35,12 +35,15 @@ class EcolexLegislationMigration extends Migration {
 
 class EcolexLegislationMigrateSource extends MigrateSource {
 
-  public function __construct($source_url_pattern, $xml_encoding) {
+  private $url_pattern = NULL;
+
+  public function __construct($source_url_pattern) {
     parent::__construct(array());
+    $this->url_pattern = 'http://ecolex-frontend.edw.ro:8983/solr/ecolex/select?q=type%3Alegislation&wt=json';
   }
 
   public function __toString() {
-    return sprintf('Extract legislation from ECOLEX');
+    return sprintf('Extract legislation from ECOLEX Solr');
   }
 
   /**
@@ -84,38 +87,45 @@ class EcolexLegislationMigrateSource extends MigrateSource {
     );
   }
 
-  function getFieldFilter($field_name) {
-    $filters = array(
-      'titleOfText' => 'filter_single_multilingual',
-      'titleOfTextShort' => 'filter_single_multilingual',
-      'country' => 'filter_multivalued',
-      'abstract' => 'filter_multivalued_multilingual_concatenated',
-      'subject' => 'filter_multivalued_multilingual',
-      'keyword' => 'filter_multivalued_multilingual',
-      'linkToFullText' => 'filter_single_multilingual',
-      'internetReference' => 'filter_single_multilingual',
-      'typeOfText' => 'filter_multivalued_multilingual',
-      'referenceToNationalLegislation' => 'filter_multivalued',
-      'referenceToEULegislation' => 'filter_multivalued',
-      'referenceToCourtDecision' => 'filter_multivalued',
-      'referenceToTreaties' => 'filter_multivalued',
-      'justices' => 'filter_multivalued',
-      'territorialSubdivision' => 'filter_multivalued_multilingual',
-      'region' => 'filter_multivalued_multilingual',
-      'referenceToFaolex' => 'filter_multivalued',
-    );
-    return !empty($filters[$field_name]) ? $filters[$field_name] : NULL;
+
+  /**
+   * Return the number of available source records.
+   */
+  public function computeCount() {
+    $ret = 0;
+    if ($str = elis_consumer_http_request($this->url_pattern . '&rows=0', array('Accept' => 'application/json'))) {
+      if ($json = json_decode($str)) {
+        $ret = $json->response->numFound;
+      }
+    }
+    return $ret;
   }
 
-  function prepareItem($item) {
-    $item->title_english = !empty($item->titleOfText[0]) ? $item->titleOfText[0] : NULL;
-    $languages = array();
-    if (!empty($item->titleOfText_languages)) {
-      $languages += $item->titleOfText_languages;
+  /**
+   * Do whatever needs to be done to start a fresh traversal of the source data.
+   *
+   * This is always called at the start of an import, so tasks such as opening
+   * file handles, running queries, and so on should be performed here.
+   */
+  public function performRewind() {
+    reset($this->data);
+  }
+
+  /**
+   * Fetch the next row of data, returning it as an object.
+   *
+   * @return object
+   *   FALSE data as stdClass, FALSE when there is no more data available.
+   */
+  public function getNextRow() {
+    if (empty($this->data)) {
+      $this->readData();
     }
-    if (!empty($item->linkToFullText_languages)) {
-      $languages += $item->linkToFullText_languages;
+    $item = NULL;
+    if (count($this->data)) {
+      $item = current($this->data);
+      next($this->data);
     }
-    $item->languages = array_unique($languages);
+    return $item;
   }
 }
