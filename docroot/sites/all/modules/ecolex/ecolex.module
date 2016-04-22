@@ -179,3 +179,12 @@ function ecolex_remote_content($context, $item, $type, $page = 0, $sid = '') {
   $data .= l(t('View more results on ECOLEX website'), $base_url, array('attributes' => array('class' => array('ecolex-link'), 'target' => '_blank')));
   return $data;
 }
+
+
+function ecolex_legislation_load_nid_by_faolexid($faolexId) {
+  $q = db_select('field_data_field_original_id')->fields(NULL, array('entity_id'));
+  $q->condition('bundle', 'legislation');
+  $q->condition('field_original_id_value', $faolexId);
+  $q->condition('entity_type', 'node');
+  return $q->execute()->fetchField();
+}
