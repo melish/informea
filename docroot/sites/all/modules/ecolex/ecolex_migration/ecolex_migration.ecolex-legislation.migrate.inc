@@ -41,7 +41,7 @@ class EcolexLegislationMigration extends Migration {
     $this->addFieldMapping('field_ecolex_region', 'legGeoArea_en');
     $this->addFieldMapping('field_ecolex_region:source_type')->defaultValue('tid');
 
-    $this->addFieldMapping('field_source_language', 'legLanguage_en');
+    // @todo: $this->addFieldMapping('field_source_language', 'legLanguage_code');
 
     $this->addFieldMapping('field_files', 'legLinkToFullText');
     $this->addFieldMapping('field_files:file_replace')->defaultValue(FILE_EXISTS_OVERWRITE);
@@ -135,6 +135,22 @@ class EcolexLegislationMigration extends Migration {
     }
     if (!empty($row->legOriginalYear) && strlen($row->legOriginalYear) == 4) {
       $row->legOriginalYear = $row->legOriginalYear . '-01-01';
+    }
+    var_dump($row->legLanguage_code);
+    if (!empty($row->legLanguage_code)) {
+      switch($row->legLanguage_code) {
+        case 'E':
+          $row->legLanguage_code = 'en';
+          break;
+        case 'F':
+          $row->legLanguage_code = 'en';
+          break;
+        case 'S':
+          $row->legLanguage_code = 'es';
+          break;
+        default:
+          $row->legLanguage_code = NULL;
+      }
     }
 //    if (!empty($row->legModificationDate) && strlen($row->legModificationDate) == 4) {
 //      $row->legModificationDate = $row->legModificationDate . '-01-01';
@@ -333,7 +349,7 @@ class EcolexLegislationMigrateSource extends MigrateSource {
       'legEntryIntoForce'        => 'Notes about enter into force',
       'legGeoArea_en'            => 'Geographical area, multivalued',
       // 'legBasin_en'              => 'Basin geographical area',
-      'legLanguage_en'           => 'Document language',
+      'legLanguage_code'           => 'Document language',
       'legLinkToFullText'        => 'Link to document file',
       // 'legModificationDate'      => 'Modification date',
       'legRelatedWebSite'        => 'Related website',
