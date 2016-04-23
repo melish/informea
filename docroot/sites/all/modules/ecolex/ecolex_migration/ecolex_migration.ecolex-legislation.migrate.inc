@@ -323,7 +323,7 @@ class EcolexLegislationMigrateSource extends MigrateSource {
 
   public function __construct($source_url_pattern) {
     parent::__construct(array());
-    $this->url_pattern = 'http://ecolex-frontend.edw.ro:8983/solr/ecolex/select?q=type%3Alegislation&wt=json';
+    $this->url_pattern = $source_url_pattern;
     $this->computeCount();
   }
 
