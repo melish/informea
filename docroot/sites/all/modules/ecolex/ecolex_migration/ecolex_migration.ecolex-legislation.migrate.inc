@@ -136,7 +136,6 @@ class EcolexLegislationMigration extends Migration {
     if (!empty($row->legOriginalYear) && strlen($row->legOriginalYear) == 4) {
       $row->legOriginalYear = $row->legOriginalYear . '-01-01';
     }
-    var_dump($row->legLanguage_code);
     if (!empty($row->legLanguage_code)) {
       switch($row->legLanguage_code) {
         case 'E':
