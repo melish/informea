@@ -69,7 +69,7 @@ Decisions
     'panels_breadcrumbs_paths' => 'treaties
 %treaty:url
 %treaty:url/decisions
-%node:url',
+<none>',
     'panels_breadcrumbs_home' => 1,
   );
   $display = new panels_display();
@@ -83,7 +83,7 @@ Decisions
           0 => 'main',
         ),
         'parent' => NULL,
-        'class' => '',
+        'class' => 'node-decision',
         'column_class' => '',
         'row_class' => '',
         'region_class' => '',
@@ -162,6 +162,7 @@ Decisions
           1 => 11,
           2 => 16,
           3 => 21,
+          4 => 26,
         ),
         'class' => 'col-sm-9',
         'hide_empty' => 0,
@@ -174,7 +175,7 @@ Decisions
         'children' => array(
           0 => 10,
         ),
-        'class' => 'col-sm-3',
+        'class' => 'col-sm-3 sidebar-right',
         'hide_empty' => 0,
       ),
       5 => array(
@@ -480,6 +481,25 @@ Decisions
         'class' => '',
         'hide_empty' => 0,
       ),
+      26 => array(
+        'type' => 'row',
+        'contains' => 'region',
+        'children' => array(
+          0 => 'text',
+        ),
+        'parent' => '3',
+        'class' => '',
+        'hide_empty' => 0,
+      ),
+      'text' => array(
+        'type' => 'region',
+        'title' => 'Text',
+        'width' => 100,
+        'width_type' => '%',
+        'parent' => '26',
+        'class' => '',
+        'hide_empty' => 0,
+      ),
     ),
   );
   $display->panel_settings = array(
@@ -496,6 +516,7 @@ Decisions
       'updates' => NULL,
       'related' => NULL,
       'tags_' => NULL,
+      'text' => NULL,
     ),
   );
   $display->cache = array();
@@ -611,7 +632,7 @@ Decisions
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'label' => 'above',
+      'label' => 'hidden',
       'formatter' => 'entityreference_label',
       'delta_limit' => 0,
       'delta_offset' => '0',
@@ -620,9 +641,9 @@ Decisions
         'link' => 1,
       ),
       'context' => 'argument_entity_id:node_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
+      'override_title' => 1,
+      'override_title_text' => 'Meeting',
+      'override_title_heading' => 'h4',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -696,6 +717,36 @@ Decisions
     $display->content['new-0b7f9376-dfdd-4da6-a8f1-2a8fd6d99fa4'] = $pane;
     $display->panels['other'][1] = 'new-0b7f9376-dfdd-4da6-a8f1-2a8fd6d99fa4';
     $pane = new stdClass();
+    $pane->pid = 'new-4dbad596-dbaa-462f-b8f5-b21b9b3b36e4';
+    $pane->panel = 'other';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_url';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'link_default',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '4dbad596-dbaa-462f-b8f5-b21b9b3b36e4';
+    $display->content['new-4dbad596-dbaa-462f-b8f5-b21b9b3b36e4'] = $pane;
+    $display->panels['other'][2] = 'new-4dbad596-dbaa-462f-b8f5-b21b9b3b36e4';
+    $pane = new stdClass();
     $pane->pid = 'new-a8ac1704-3835-41af-ae25-eefc7723b727';
     $pane->panel = 'related';
     $pane->type = 'views';
@@ -720,7 +771,7 @@ Decisions
       ),
       'override_title' => 1,
       'override_title_text' => 'Related decisions',
-      'override_title_heading' => 'h3',
+      'override_title_heading' => 'h4',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -810,6 +861,29 @@ Decisions
     $display->content['new-4cb6f15a-ef20-4552-b762-58f6b6f692f2'] = $pane;
     $display->panels['sidebar_'][1] = 'new-4cb6f15a-ef20-4552-b762-58f6b6f692f2';
     $pane = new stdClass();
+    $pane->pid = 'new-0ab02b61-b2c1-4556-973a-f563bb40c93a';
+    $pane->panel = 'tags';
+    $pane->type = 'block';
+    $pane->subtype = 'informea-informea_share';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Share decision',
+      'override_title_heading' => 'h4',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '0ab02b61-b2c1-4556-973a-f563bb40c93a';
+    $display->content['new-0ab02b61-b2c1-4556-973a-f563bb40c93a'] = $pane;
+    $display->panels['tags'][0] = 'new-0ab02b61-b2c1-4556-973a-f563bb40c93a';
+    $pane = new stdClass();
     $pane->pid = 'new-b07d2c94-b115-4220-b34b-8c5b6ada8f4d';
     $pane->panel = 'tags_';
     $pane->type = 'entity_field';
@@ -826,7 +900,7 @@ Decisions
       'context' => 'argument_entity_id:node_1',
       'override_title' => 1,
       'override_title_text' => 'Tags',
-      'override_title_heading' => 'h3',
+      'override_title_heading' => 'h4',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -840,25 +914,23 @@ Decisions
     $display->content['new-b07d2c94-b115-4220-b34b-8c5b6ada8f4d'] = $pane;
     $display->panels['tags_'][0] = 'new-b07d2c94-b115-4220-b34b-8c5b6ada8f4d';
     $pane = new stdClass();
-    $pane->pid = 'new-970f091e-4ef2-4007-9739-6d05cc377f24';
-    $pane->panel = 'treaty';
+    $pane->pid = 'new-3b880e00-5e94-455e-8004-7a43ca36aece';
+    $pane->panel = 'text';
     $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_treaty';
+    $pane->subtype = 'node:body';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'label' => 'above',
-      'formatter' => 'entityreference_label',
-      'delta_limit' => '0',
+      'label' => 'hidden',
+      'formatter' => 'text_default',
+      'delta_limit' => 0,
       'delta_offset' => '0',
-      'delta_reversed' => 0,
-      'formatter_settings' => array(
-        'link' => 1,
-      ),
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
       'context' => 'argument_entity_id:node_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
+      'override_title' => 1,
+      'override_title_text' => 'Full text',
+      'override_title_heading' => 'h4',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -868,9 +940,66 @@ Decisions
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '970f091e-4ef2-4007-9739-6d05cc377f24';
-    $display->content['new-970f091e-4ef2-4007-9739-6d05cc377f24'] = $pane;
-    $display->panels['treaty'][0] = 'new-970f091e-4ef2-4007-9739-6d05cc377f24';
+    $pane->uuid = '3b880e00-5e94-455e-8004-7a43ca36aece';
+    $display->content['new-3b880e00-5e94-455e-8004-7a43ca36aece'] = $pane;
+    $display->panels['text'][0] = 'new-3b880e00-5e94-455e-8004-7a43ca36aece';
+    $pane = new stdClass();
+    $pane->pid = 'new-042196e4-4f93-4987-9cab-133c3121514c';
+    $pane->panel = 'treaty';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_official_name';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'title_linked',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'title_style' => '_none',
+        'title_link' => 'content',
+        'title_class' => '',
+      ),
+      'context' => 'relationship_entity_from_field:field_treaty-node-node_1',
+      'override_title' => 1,
+      'override_title_text' => 'Treaty',
+      'override_title_heading' => 'h4',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '042196e4-4f93-4987-9cab-133c3121514c';
+    $display->content['new-042196e4-4f93-4987-9cab-133c3121514c'] = $pane;
+    $display->panels['treaty'][0] = 'new-042196e4-4f93-4987-9cab-133c3121514c';
+    $pane = new stdClass();
+    $pane->pid = 'new-8d4320d8-cdb4-44bb-975a-5c92088d11d1';
+    $pane->panel = 'updates';
+    $pane->type = 'block';
+    $pane->subtype = 'informea-informea_subscribe_updates';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Stay updated',
+      'override_title_heading' => 'h4',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '8d4320d8-cdb4-44bb-975a-5c92088d11d1';
+    $display->content['new-8d4320d8-cdb4-44bb-975a-5c92088d11d1'] = $pane;
+    $display->panels['updates'][0] = 'new-8d4320d8-cdb4-44bb-975a-5c92088d11d1';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-f8cecff6-6f4d-4f3b-8ac1-59f0656a9f29';
   $handler->conf['display'] = $display;

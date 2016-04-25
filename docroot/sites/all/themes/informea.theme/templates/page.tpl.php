@@ -77,7 +77,9 @@
 <div class="page-header">
   <div class="container">
     <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
+    <div class="title-prefix">
     <?php print render($title_prefix); ?>
+    </div>
     <h1><?php print $title; ?></h1>
   </div>
 </div><!-- .page-header -->

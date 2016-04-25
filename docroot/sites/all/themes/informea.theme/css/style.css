@@ -1790,3 +1790,59 @@ strong.excerpt {
 .results-for {
   margin-bottom: 10px;
 }
+
+/* Decision page */
+
+.view.text-overflow-ellipsis .views-field-title a{
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.node-decision .sidebar-right .views-row {
+  padding: 8px 0;
+  border-top: 1px solid #ddd;
+}
+.view-decisions-of-meeting.view-id-decisions_of_meeting .views-row {
+  padding: 8px 0;
+  border-top: 1px solid #ddd;
+}
+.node-decision .sidebar-right .views-row .views-field-field-decision-number,
+.view-decisions-of-meeting.view-id-decisions_of_meeting .views-row > .views-field-nothing {
+  font-size: .9em;
+  color: #777;
+}
+.view-decisions-of-meeting.view-id-decisions_of_meeting .views-row > .views-field-nothing a {
+  color: #777;
+}
+
+.node-decision .pane-node-field-decision-status,
+.node-decision .pane-node-field-decision-type {
+  display: inline-block;
+  margin-right: 10px;
+}
+.node-decision .panel-separator {
+  display: none;
+}
+.node-decision .field-name-field-files a.dropdown-toggle {
+  padding: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.node-type-decision .title-prefix {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #777;
+}
+#informea-subscribe-updates-form .form-type-textfield {
+  max-width: 60%;
+  float: left;
+}
+#informea-subscribe-updates-form .form-submit {
+  float: right;
+  width: 40%;
+}

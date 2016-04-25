@@ -56,6 +56,20 @@ function informea_block_info() {
       'visibility' => BLOCK_VISIBILITY_LISTED,
       'pages' => '<front>',
     ),
+    'informea_share' => array(
+      'info' => t('Informea Share'),
+      'cache' => DRUPAL_NO_CACHE,
+      'weight' => 10,
+      'status' => 1,
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+    ),
+    'informea_subscribe_updates' => array(
+      'info' => t('Informea updates'),
+      'cache' => DRUPAL_NO_CACHE,
+      'weight' => 10,
+      'status' => 1,
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+    ),
   );
 }
 
@@ -68,6 +82,40 @@ function informea_block_view($delta = '') {
   switch ($delta) {
     case 'informea_front_page_slider':
       $block['content'] = informea_theme_slider();
+      break;
+
+    case 'informea_share':
+      global $language;
+      $content = '';
+      $node = menu_get_object();
+      if (!empty($node->nid)) {
+        $url = url('/node/' . $node->nid, array('absolute' => TRUE));
+        $title = field_get_items('node', $node, 'title_field');
+        $title = current($title)['value'];
+        $site_name = variable_get('site_name', '');
+        // Construct the tweet.
+        $twitter_text = $title . ' | ' . $site_name;
+        $tweet_url = url('https://twitter.com/intent/tweet', array(
+          'query' => array(
+            'original_referer' => $url,
+            'text' => $twitter_text,
+//            'url' => shorten_url($url),
+            'url' => $url,
+          ),
+        ));
+        $vars = array(
+          'url' => $url,
+          'tweet_url' => $tweet_url,
+          'node' => $node,
+          'language' => $language,
+        );
+        $content = theme('informea_share_widget', $vars);
+      }
+      $block['content'] = $content;
+      break;
+
+    case 'informea_subscribe_updates':
+      $block['content'] = drupal_get_form('informea_subscribe_updates_form');
       break;
   }
   return $block;
@@ -294,6 +342,21 @@ function informea_library() {
   );
 }
 
+function informea_subscribe_updates_form($form, &$form_state) {
+  $form = array();
+  $form['mail'] = array(
+    '#title' => '',
+    '#type' => 'textfield',
+    '#attributes' => array('placeholder' => 'Enter email address'),
+  );
+  $form['submit'] = array(
+    '#value' => 'Send me updates',
+    '#type' => 'submit',
+  );
+  return $form;
+}
+
+
 class MigrationUtil {
 
     /**
@@ -446,7 +509,7 @@ function theme_informea_file_dropdown($variables) {
   }
   return theme('bootstrap_btn_dropdown', array(
     'links' => $items,
-    'label' => t('Files')
+    'label' => t('Choose a file')
   ));
 }
 
@@ -461,7 +524,14 @@ function informea_theme() {
     ),
     'informea_file_dropdown' => array(
       'variables' => array('items'),
-    )
+    ),
+    'informea_share_widget' => array(
+      'variables' => array(
+        'url' => '',
+        'node' => array(),
+      ),
+      'template' => 'templates/informea_share_widget',
+    ),
   );
 }
 

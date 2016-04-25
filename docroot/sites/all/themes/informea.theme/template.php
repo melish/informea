@@ -93,6 +93,14 @@ function informea_theme_preprocess_page(&$variables) {
           '#attributes' => array('class' => array('form-control')),
         );
         array_unshift($variables['page']['sidebar_first'], menu_secondary_local_tasks());
+        break;
+
+      case 'decision':
+        if (!empty($node->field_decision_number[LANGUAGE_NONE][0]['value'])) {
+          $variables['classes_array'][] = 'decision-page';
+          $variables['title_prefix'] = $node->field_decision_number[LANGUAGE_NONE][0]['value'];
+        }
+        break;
     }
   }
   if (isset($variables['node']->type)) {
