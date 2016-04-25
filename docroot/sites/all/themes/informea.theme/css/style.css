@@ -1832,6 +1832,13 @@ strong.excerpt {
   font-weight: bold;
 }
 
+.node-type-decision .page-header h1 {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .node-type-decision .title-prefix {
   font-size: 1.1em;
   font-weight: bold;
