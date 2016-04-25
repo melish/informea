@@ -145,8 +145,25 @@ function informea_theme_theme() {
     'informea_search_form_wrapper' => array(
       'render element' => 'element',
     ),
+    'bootstrap_btn_dropdown' => array(
+      'variables' => array(
+        'links' => array(),
+        'attributes' => array(),
+        'type' => NULL,
+      ),
+    ),
   );
 }
+
+/**
+ * Implements theme_bootstrap_btn_dropdown().
+ */
+function informea_theme_bootstrap_btn_dropdown($variables) {
+  $path = drupal_get_path('theme', 'bootstrap');
+  require_once $path . '/theme/bootstrap/bootstrap-btn-dropdown.func.php';
+  return theme_bootstrap_btn_dropdown($variables);
+}
+
 
 function informea_theme_meeting_type($term) {
   if ($term) {

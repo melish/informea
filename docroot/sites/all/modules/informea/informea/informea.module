@@ -403,6 +403,10 @@ function informea_field_formatter_info() {
       'label' => t('External URL to file'),
       'field types' => array('file')
     ),
+    'informea_file_dropdown' => array(
+      'label' => t('Dropdown'),
+      'field types' => array('file'),
+    ),
   );
 }
 
@@ -419,8 +423,31 @@ function informea_field_formatter_view($entity_type, $entity, $field, $instance,
         );
       }
       break;
+
+    case 'informea_file_dropdown':
+      if (!empty($items)) {
+        $elements[0] = array(
+          '#markup' => theme('informea_file_dropdown', array('items' => $items)),
+        );
+      }
+      break;
   }
   return $elements;
+}
+
+function theme_informea_file_dropdown($variables) {
+  $items = array();
+  foreach ($variables['items'] as $file) {
+    $items[] = array(
+      'title' => $file['filename'],
+      'href' => file_create_url($file['uri']),
+      'attributes' => array('target' => '_blank'),
+    );
+  }
+  return theme('bootstrap_btn_dropdown', array(
+    'links' => $items,
+    'label' => t('Files')
+  ));
 }
 
 function informea_theme() {
@@ -432,6 +459,9 @@ function informea_theme() {
       ),
       'path' => drupal_get_path('module', 'informea') . '/templates',
     ),
+    'informea_file_dropdown' => array(
+      'variables' => array('items'),
+    )
   );
 }
 
