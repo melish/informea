@@ -1821,14 +1821,17 @@ strong.excerpt {
   white-space: nowrap;
 }
 
+.node-type-decision .sidebar-right > div {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
 .node-type-decision .sidebar-right .views-row {
-  padding: 8px 0;
-  border-top: 1px solid #ddd;
+  padding: 10px 0;
 }
 
 .view-decisions-of-meeting.view-id-decisions_of_meeting .views-row {
-  padding: 8px 0;
-  border-top: 1px solid #ddd;
+  padding: 10px 0;
+  /*border-top: 1px solid #ddd;*/
 }
 .node-type-decision .sidebar-right .views-row .views-field-field-decision-number,
 .view-decisions-of-meeting.view-id-decisions_of_meeting .views-row > .views-field-nothing {
@@ -1843,6 +1846,7 @@ strong.excerpt {
 .node-type-decision .pane-node-field-decision-type {
   display: inline-block;
   margin-right: 10px;
+  text-transform: capitalize;
 }
 .node-type-decision .panel-separator {
   display: none;

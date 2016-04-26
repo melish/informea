@@ -498,6 +498,40 @@ Decisions
       'tags_' => NULL,
       'text' => NULL,
     ),
+    'style' => 'default',
+    'sidebar_' => array(
+      'style' => 'default',
+    ),
+    'meeting' => array(
+      'style' => 'default',
+    ),
+    'files' => array(
+      'style' => 'default',
+    ),
+    'center' => array(
+      'style' => 'default',
+    ),
+    'other' => array(
+      'style' => 'default',
+    ),
+    'treaty' => array(
+      'style' => 'default',
+    ),
+    'tags' => array(
+      'style' => 'default',
+    ),
+    'updates' => array(
+      'style' => 'default',
+    ),
+    'related' => array(
+      'style' => 'default',
+    ),
+    'tags_' => array(
+      'style' => 'default',
+    ),
+    'text' => array(
+      'style' => 'default',
+    ),
   );
   $display->cache = array();
   $display->title = '';
