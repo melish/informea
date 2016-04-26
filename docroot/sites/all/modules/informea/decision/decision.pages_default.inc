@@ -83,7 +83,7 @@ Decisions
           0 => 'main',
         ),
         'parent' => NULL,
-        'class' => 'node-decision',
+        'class' => 'node-decision row',
         'column_class' => '',
         'row_class' => '',
         'region_class' => '',
@@ -144,7 +144,7 @@ Decisions
           3 => 21,
           4 => 26,
         ),
-        'class' => 'col-sm-9',
+        'class' => 'col-md-8',
         'hide_empty' => 0,
       ),
       4 => array(
@@ -155,7 +155,7 @@ Decisions
         'children' => array(
           0 => 10,
         ),
-        'class' => 'col-sm-3 sidebar-right',
+        'class' => 'col-md-4 sidebar-right',
         'hide_empty' => 0,
       ),
       5 => array(
@@ -166,7 +166,7 @@ Decisions
           1 => 8,
         ),
         'parent' => '3',
-        'class' => '',
+        'class' => 'row',
         'hide_empty' => 0,
       ),
       6 => array(
@@ -187,7 +187,7 @@ Decisions
           0 => 'treaty',
         ),
         'parent' => '6',
-        'class' => '',
+        'class' => 'row',
         'hide_empty' => 0,
       ),
       'treaty' => array(
@@ -236,7 +236,7 @@ Decisions
           0 => 'sidebar_',
         ),
         'parent' => '4',
-        'class' => '',
+        'class' => 'row',
         'hide_empty' => 0,
       ),
       'sidebar_' => array(
@@ -256,7 +256,7 @@ Decisions
           1 => 14,
         ),
         'parent' => '3',
-        'class' => '',
+        'class' => 'row',
         'hide_empty' => 0,
       ),
       12 => array(
@@ -327,7 +327,7 @@ Decisions
           1 => 18,
         ),
         'parent' => '3',
-        'class' => '',
+        'class' => 'decision-update-container row',
         'hide_empty' => 0,
       ),
       17 => array(
@@ -378,7 +378,7 @@ Decisions
           0 => 'updates',
         ),
         'parent' => '17',
-        'class' => '',
+        'class' => 'decision-updates-form-container',
         'hide_empty' => 0,
       ),
       'updates' => array(
@@ -387,7 +387,7 @@ Decisions
         'width' => 100,
         'width_type' => '%',
         'parent' => '20',
-        'class' => '',
+        'class' => 'decision-updates-form-container',
         'hide_empty' => 0,
       ),
       21 => array(
@@ -398,7 +398,7 @@ Decisions
           1 => 23,
         ),
         'parent' => '3',
-        'class' => '',
+        'class' => 'decision-tags-container row',
         'hide_empty' => 0,
       ),
       22 => array(
@@ -430,7 +430,7 @@ Decisions
           0 => 'related',
         ),
         'parent' => '22',
-        'class' => '',
+        'class' => 'decision-',
         'hide_empty' => 0,
       ),
       'related' => array(
@@ -468,7 +468,7 @@ Decisions
           0 => 'text',
         ),
         'parent' => '3',
-        'class' => '',
+        'class' => 'decision-text-container row',
         'hide_empty' => 0,
       ),
       'text' => array(
@@ -477,7 +477,7 @@ Decisions
         'width' => 100,
         'width_type' => '%',
         'parent' => '26',
-        'class' => '',
+        'class' => 'col-md-12',
         'hide_empty' => 0,
       ),
     ),
@@ -690,6 +690,36 @@ Decisions
     $pane->uuid = '4dbad596-dbaa-462f-b8f5-b21b9b3b36e4';
     $display->content['new-4dbad596-dbaa-462f-b8f5-b21b9b3b36e4'] = $pane;
     $display->panels['other'][2] = 'new-4dbad596-dbaa-462f-b8f5-b21b9b3b36e4';
+    $pane = new stdClass();
+    $pane->pid = 'new-0454952e-d26e-4f56-b07c-95b96095dfa3';
+    $pane->panel = 'other';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_related_url';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'link_default',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'relationship_entity_from_field:field_meeting-node-node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = '0454952e-d26e-4f56-b07c-95b96095dfa3';
+    $display->content['new-0454952e-d26e-4f56-b07c-95b96095dfa3'] = $pane;
+    $display->panels['other'][3] = 'new-0454952e-d26e-4f56-b07c-95b96095dfa3';
     $pane = new stdClass();
     $pane->pid = 'new-a8ac1704-3835-41af-ae25-eefc7723b727';
     $pane->panel = 'related';
