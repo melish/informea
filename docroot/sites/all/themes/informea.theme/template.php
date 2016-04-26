@@ -104,6 +104,11 @@ function informea_theme_preprocess_page(&$variables) {
             '#attributes' => array(
               'id' => array('decision-date-title'),
             ),
+            '#attached' => array(
+              'js' => array(
+                drupal_get_path('theme', 'informea_theme') . '/js/decision.js',
+              ),
+            ),
           );
           $variables['page']['above_content']['date'] = array(
             '#type' => 'item',
@@ -505,4 +510,64 @@ function informea_theme_preprocess_node(&$vars) {
     $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->type . '__' . $view_mode;
     $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->nid . '__' . $view_mode;
   }
+}
+
+/**
+ * Draw the flexible layout.
+ */
+function informea_theme_panels_flexible($vars) {
+  $css_id = $vars['css_id'];
+  $content = $vars['content'];
+  $settings = $vars['settings'];
+  $display = $vars['display'];
+  $layout = $vars['layout'];
+  $handler = $vars['renderer'];
+
+  panels_flexible_convert_settings($settings, $layout);
+
+  $renderer = panels_flexible_create_renderer(FALSE, $css_id, $content, $settings, $display, $layout, $handler);
+
+  // CSS must be generated because it reports back left/middle/right
+  // positions.
+  /*
+  $css = panels_flexible_render_css($renderer);
+
+  if (!empty($renderer->css_cache_name) && empty($display->editing_layout)) {
+    ctools_include('css');
+    // Generate an id based upon rows + columns:
+    $filename = ctools_css_retrieve($renderer->css_cache_name);
+    if (!$filename) {
+      $filename = ctools_css_store($renderer->css_cache_name, $css, FALSE);
+    }
+
+    // Give the CSS to the renderer to put where it wants.
+    if ($handler) {
+      $handler->add_css($filename, 'module', 'all', FALSE);
+    }
+    else {
+      drupal_add_css($filename);
+    }
+  }
+  else {
+    // If the id is 'new' we can't reliably cache the CSS in the filesystem
+    // because the display does not truly exist, so we'll stick it in the
+    // head tag. We also do this if we've been told we're in the layout
+    // editor so that it always gets fresh CSS.
+    drupal_add_css($css, array('type' => 'inline', 'preprocess' => FALSE));
+  }
+
+  // Also store the CSS on the display in case the live preview or something
+  // needs it
+  $display->add_css = $css;
+  */
+
+  $output = "<div class=\"panel-flexible " . $renderer->base['canvas'] . " clearfix\" $renderer->id_str>\n";
+  $output .= "<div class=\"panel-flexible-inside " . $renderer->base['canvas'] . "-inside\">\n";
+
+  $output .= panels_flexible_render_items($renderer, $settings['items']['canvas']['children'], $renderer->base['canvas']);
+
+  // Wrap the whole thing up nice and snug
+  $output .= "</div>\n</div>\n";
+
+  return $output;
 }
