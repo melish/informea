@@ -327,7 +327,7 @@ Decisions
           1 => 18,
         ),
         'parent' => '3',
-        'class' => '',
+        'class' => 'decision-update-container',
         'hide_empty' => 0,
       ),
       17 => array(
@@ -378,7 +378,7 @@ Decisions
           0 => 'updates',
         ),
         'parent' => '17',
-        'class' => '',
+        'class' => 'decision-updates-form-container',
         'hide_empty' => 0,
       ),
       'updates' => array(
@@ -398,7 +398,7 @@ Decisions
           1 => 23,
         ),
         'parent' => '3',
-        'class' => '',
+        'class' => 'decision-tags-container',
         'hide_empty' => 0,
       ),
       22 => array(
@@ -468,7 +468,7 @@ Decisions
           0 => 'text',
         ),
         'parent' => '3',
-        'class' => '',
+        'class' => 'decision-text-container',
         'hide_empty' => 0,
       ),
       'text' => array(
@@ -690,6 +690,36 @@ Decisions
     $pane->uuid = '4dbad596-dbaa-462f-b8f5-b21b9b3b36e4';
     $display->content['new-4dbad596-dbaa-462f-b8f5-b21b9b3b36e4'] = $pane;
     $display->panels['other'][2] = 'new-4dbad596-dbaa-462f-b8f5-b21b9b3b36e4';
+    $pane = new stdClass();
+    $pane->pid = 'new-0454952e-d26e-4f56-b07c-95b96095dfa3';
+    $pane->panel = 'other';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_related_url';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'link_default',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'relationship_entity_from_field:field_meeting-node-node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = '0454952e-d26e-4f56-b07c-95b96095dfa3';
+    $display->content['new-0454952e-d26e-4f56-b07c-95b96095dfa3'] = $pane;
+    $display->panels['other'][3] = 'new-0454952e-d26e-4f56-b07c-95b96095dfa3';
     $pane = new stdClass();
     $pane->pid = 'new-a8ac1704-3835-41af-ae25-eefc7723b727';
     $pane->panel = 'related';
