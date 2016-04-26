@@ -1919,3 +1919,27 @@ strong.excerpt {
   font-weight: bold;
   padding: 15px 10px;
 }
+
+.node-decision .pane-informea-informea-share {
+  background-color: #fbfbfb;
+  border: 1px solid #f7f7f7;
+  padding: 25px 25px 15px 25px;
+}
+.node-decision .pane-informea-informea-share h4 {
+  font-weight: normal;
+  margin-top: 0;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #dcdcdc;
+}
+.node-decision .pane-informea-informea-share ul { list-style-type: none; margin: 0; padding: 0; }
+.node-decision .pane-informea-informea-share li.informea-share-widget-facebook { background: url('../img/facebook.png') no-repeat; }
+.node-decision .pane-informea-informea-share li.informea-share-widget-twitter { background: url('../img/twitter.png') no-repeat; }
+.node-decision .pane-informea-informea-share li.informea-share-widget-linkedin { background: url('../img/linkedin.png') no-repeat; }
+
+.node-decision .pane-informea-informea-share a.share-button,
+.node-decision .pane-informea-informea-share a.share-button:link,
+.node-decision .pane-informea-informea-share a.share-button:visited {
+  display: inline-block;
+  color: transparent;
+  height: 30px;
+}
