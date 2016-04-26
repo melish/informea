@@ -501,9 +501,13 @@ function informea_field_formatter_view($entity_type, $entity, $field, $instance,
 function theme_informea_file_dropdown($variables) {
   $items = array();
   foreach ($variables['items'] as $file) {
+    $url = file_create_url($file['uri']);
+    if (!empty($file['description']) && strpos($file['description'], 'http') !== FALSE) {
+      $url = $file['description'];
+    }
     $items[] = array(
       'title' => $file['filename'],
-      'href' => file_create_url($file['uri']),
+      'href' => $url,
       'attributes' => array('target' => '_blank'),
     );
   }
