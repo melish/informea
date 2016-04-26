@@ -99,6 +99,26 @@ function informea_theme_preprocess_page(&$variables) {
         if (!empty($node->field_decision_number[LANGUAGE_NONE][0]['value'])) {
           $variables['classes_array'][] = 'decision-page';
           $variables['title_prefix'] = $node->field_decision_number[LANGUAGE_NONE][0]['value'];
+          $variables['page']['above_content'] = array(
+            '#type' => 'container',
+            '#attributes' => array(
+              'id' => array('decision-date-title'),
+            ),
+          );
+          $variables['page']['above_content']['date'] = array(
+            '#type' => 'item',
+            '#title' => t('Date'),
+            '#markup' => date('d-m-Y'),
+            '#prefix' => '<div class="field-name-field-sorting-date"><div class="container">',
+            '#suffix' => '</div></div>',
+          );
+          $variables['page']['above_content']['title'] = array(
+            '#type' => 'item',
+            '#title' => t('Full title'),
+            '#markup' => $node->title,
+            '#prefix' => '<div class="field-name-title-field"><div class="container">',
+            '#suffix' => '</div></div>',
+          );
         }
         break;
     }

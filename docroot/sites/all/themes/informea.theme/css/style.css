@@ -35,7 +35,7 @@ h1 {
 }
 
 .breadcrumb {
-  margin: -15px 0 0 0;
+  margin: 5px 0 0 0;
   font-size: 85%;
   background-color: transparent;
   padding: 0;
@@ -353,6 +353,7 @@ h1 {
 .navbar {
   border: 0;
   min-height: 68px;
+  margin-bottom: 0;
 }
 
 /* Navbar logo */
@@ -401,7 +402,7 @@ h1 {
 
 /* Static top navbar */
 .navbar-static-top + .hero-unit {
-  margin-top: -20px;
+  margin-top: 0px;
 }
 
 
@@ -1792,6 +1793,25 @@ strong.excerpt {
 }
 
 /* Decision page */
+.above-content {
+  /*background: #fc3;*/
+}
+.node-type-decision .page-header {
+  background: #1a3a6f;
+  padding-bottom: 40px;
+  margin-bottom: 0;
+}
+.node-type-decision .page-header,
+.node-type-decision .page-header a {
+  color: #fff;
+}
+
+.node-type-decision .title-prefix {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #c6cedb;
+}
 
 .view.text-overflow-ellipsis .views-field-title a{
   display: block;
@@ -1801,15 +1821,16 @@ strong.excerpt {
   white-space: nowrap;
 }
 
-.node-decision .sidebar-right .views-row {
+.node-type-decision .sidebar-right .views-row {
   padding: 8px 0;
   border-top: 1px solid #ddd;
 }
+
 .view-decisions-of-meeting.view-id-decisions_of_meeting .views-row {
   padding: 8px 0;
   border-top: 1px solid #ddd;
 }
-.node-decision .sidebar-right .views-row .views-field-field-decision-number,
+.node-type-decision .sidebar-right .views-row .views-field-field-decision-number,
 .view-decisions-of-meeting.view-id-decisions_of_meeting .views-row > .views-field-nothing {
   font-size: .9em;
   color: #777;
@@ -1818,15 +1839,15 @@ strong.excerpt {
   color: #777;
 }
 
-.node-decision .pane-node-field-decision-status,
-.node-decision .pane-node-field-decision-type {
+.node-type-decision .pane-node-field-decision-status,
+.node-type-decision .pane-node-field-decision-type {
   display: inline-block;
   margin-right: 10px;
 }
-.node-decision .panel-separator {
+.node-type-decision .panel-separator {
   display: none;
 }
-.node-decision .field-name-field-files a.dropdown-toggle {
+.node-type-decision .field-name-field-files a.dropdown-toggle {
   padding: 10px;
   font-size: 1.2em;
   font-weight: bold;
@@ -1839,12 +1860,7 @@ strong.excerpt {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.node-type-decision .title-prefix {
-  font-size: 1.1em;
-  font-weight: bold;
-  margin-top: 10px;
-  color: #777;
-}
+
 #informea-subscribe-updates-form .form-type-textfield {
   max-width: 60%;
   float: left;
@@ -1873,3 +1889,33 @@ strong.excerpt {
 .node-decision .field-name-field-files a.dropdown-toggle .caret { margin-left: 5px; }
 .node-decision .field-name-field-files ul.dropdown-menu { padding: 0; min-width: 250px; }
 .node-decision .field-name-field-files ul.dropdown-menu a { padding: 8px 0 8px 20px; }
+
+#decision-date-title {
+  margin-top: -40px;
+}
+.page-node.node-type-decision .field-name-field-sorting-date {
+}
+.page-node.node-type-decision .field-name-field-sorting-date .form-group,
+.page-node.node-type-decision .field-name-title-field .form-group{
+  margin-bottom: 0;
+}
+.page-node.node-type-decision .field-name-field-sorting-date .form-type-item{
+  font-weight: bold;
+  display: inline-block;
+  background: #fc3;
+  padding: 10px;
+  height: 40px;
+}
+.page-node.node-type-decision .field-name-field-sorting-date label:after,
+.page-node.node-type-decision .field-name-title-field label:after {
+  content: ":";
+}
+.page-node.node-type-decision .field-name-title-field label{
+  text-decoration: underline;
+}
+.page-node.node-type-decision .field-name-title-field {
+  background: #fc3;
+  text-decoration: underline;
+  font-weight: bold;
+  padding: 15px 10px;
+}

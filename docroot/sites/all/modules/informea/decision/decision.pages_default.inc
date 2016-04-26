@@ -100,8 +100,7 @@ Decisions
         'width_type' => '%',
         'children' => array(
           0 => 'main-row',
-          1 => 1,
-          2 => 2,
+          1 => 2,
         ),
         'parent' => 'canvas',
       ),
@@ -112,7 +111,7 @@ Decisions
           0 => 'center',
         ),
         'parent' => 'main',
-        'class' => 'col-sm-9',
+        'class' => '',
         'hide_empty' => 0,
       ),
       'center' => array(
@@ -121,25 +120,6 @@ Decisions
         'width' => 100,
         'width_type' => '%',
         'parent' => 'main-row',
-      ),
-      1 => array(
-        'type' => 'row',
-        'contains' => 'region',
-        'children' => array(
-          0 => 'sidebar',
-        ),
-        'parent' => 'main',
-        'class' => 'col-sm-3',
-        'hide_empty' => 0,
-      ),
-      'sidebar' => array(
-        'type' => 'region',
-        'title' => 'Sidebar',
-        'width' => 100,
-        'width_type' => '%',
-        'parent' => '1',
-        'class' => '',
-        'hide_empty' => 0,
       ),
       2 => array(
         'type' => 'row',
@@ -524,76 +504,6 @@ Decisions
   $display->uuid = 'c7358b75-ee04-4833-b717-eadc41d040b6';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass();
-    $pane->pid = 'new-f8cecff6-6f4d-4f3b-8ac1-59f0656a9f29';
-    $pane->panel = 'center';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_sorting_date';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'inline',
-      'formatter' => 'date_default',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(
-        'format_type' => 'short',
-        'multiple_number' => '',
-        'multiple_from' => '',
-        'multiple_to' => '',
-        'fromto' => 'both',
-      ),
-      'context' => 'argument_entity_id:node_1',
-      'override_title' => 0,
-      'override_title_text' => 'Date',
-      'override_title_heading' => 'span',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = 'f8cecff6-6f4d-4f3b-8ac1-59f0656a9f29';
-    $display->content['new-f8cecff6-6f4d-4f3b-8ac1-59f0656a9f29'] = $pane;
-    $display->panels['center'][0] = 'new-f8cecff6-6f4d-4f3b-8ac1-59f0656a9f29';
-    $pane = new stdClass();
-    $pane->pid = 'new-55c72bb3-c49f-4e53-acb5-5e6fd02375a5';
-    $pane->panel = 'center';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:title_field';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'title_linked',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(
-        'title_style' => 'div',
-        'title_link' => '',
-        'title_class' => '',
-      ),
-      'context' => 'argument_entity_id:node_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $pane->uuid = '55c72bb3-c49f-4e53-acb5-5e6fd02375a5';
-    $display->content['new-55c72bb3-c49f-4e53-acb5-5e6fd02375a5'] = $pane;
-    $display->panels['center'][1] = 'new-55c72bb3-c49f-4e53-acb5-5e6fd02375a5';
     $pane = new stdClass();
     $pane->pid = 'new-6c18c74d-7074-4870-8391-d87999f9cbb1';
     $pane->panel = 'files';
@@ -1001,7 +911,7 @@ Decisions
     $display->content['new-8d4320d8-cdb4-44bb-975a-5c92088d11d1'] = $pane;
     $display->panels['updates'][0] = 'new-8d4320d8-cdb4-44bb-975a-5c92088d11d1';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-f8cecff6-6f4d-4f3b-8ac1-59f0656a9f29';
+  $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $export['node_view__panel_context_3945cec5-f166-42f9-bc42-092828e1c592'] = $handler;
 
