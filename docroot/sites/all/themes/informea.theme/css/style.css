@@ -1855,8 +1855,8 @@ strong.excerpt {
 }
 
 .node-decision .pane-node-field-files .btn {
-  background-image: url(http://iconbug.com/data/5b/507/52ff0e80b07d28b590bbc4b30befde52.png);
-  background-size: 64px;
+  background-image: url(../img/pdf.png);
+  background-size: 60px;
   background-repeat: no-repeat;
   padding-left: 75px;
   text-align: right;
@@ -1866,6 +1866,7 @@ strong.excerpt {
   background-color: #fc3;
   border-bottom: 5px solid #505050;
   background-position-y: center;
+  background-position-x: 5px;
 }
 
 .node-decision .field-name-field-files a.dropdown-toggle { padding-top: 27px; padding-right: 15px; }
