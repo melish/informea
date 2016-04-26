@@ -692,7 +692,7 @@ function decision_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_sorting_date',
-    'label' => 'Document date',
+    'label' => 'Date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'now',
@@ -1583,6 +1583,7 @@ function decision_field_default_field_instances() {
   t('Attach here any files related to this decision in English or the language selected above. Use the "Translate" tab feature to add in other languages, after you save this language!');
   t('Body');
   t('DO NOT EDIT! Original corresponding unique identifier in the MEA database, use in future synchronizations');
+  t('Date');
   t('Date when decision was made, usually this is the date of the COP/MOP meeting.');
   t('Decision number');
   t('Description');

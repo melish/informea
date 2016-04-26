@@ -24,3 +24,12 @@ function decision_update_7001() {
   $nids = $q->fetchCol();
   node_delete_multiple($nids);
 }
+
+/**
+ * Enable some modules and revert decision.
+ */
+function decision_update_7002(){
+  $modules = array('panels', 'page_manager', 'views_content', 'panels_breadcrumbs');
+  module_enable($modules);
+  features_revert_module('decision');
+}
