@@ -1954,6 +1954,9 @@ strong.excerpt {
   padding: 10px;
   height: 40px;
 }
+.page-node.node-type-decision .field-name-title-field {
+  display: none;
+}
 .page-node.node-type-decision .field-name-field-sorting-date label:after,
 .page-node.node-type-decision .field-name-title-field label:after {
   content: ":";

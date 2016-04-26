@@ -104,6 +104,11 @@ function informea_theme_preprocess_page(&$variables) {
             '#attributes' => array(
               'id' => array('decision-date-title'),
             ),
+            '#attached' => array(
+              'js' => array(
+                drupal_get_path('theme', 'informea_theme') . '/js/decision.js',
+              ),
+            ),
           );
           $variables['page']['above_content']['date'] = array(
             '#type' => 'item',
