@@ -93,6 +93,34 @@ function informea_theme_preprocess_page(&$variables) {
           '#attributes' => array('class' => array('form-control')),
         );
         array_unshift($variables['page']['sidebar_first'], menu_secondary_local_tasks());
+        break;
+
+      case 'decision':
+        if (!empty($node->field_decision_number[LANGUAGE_NONE][0]['value'])) {
+          $variables['classes_array'][] = 'decision-page';
+          $variables['title_prefix'] = $node->field_decision_number[LANGUAGE_NONE][0]['value'];
+          $variables['page']['above_content'] = array(
+            '#type' => 'container',
+            '#attributes' => array(
+              'id' => array('decision-date-title'),
+            ),
+          );
+          $variables['page']['above_content']['date'] = array(
+            '#type' => 'item',
+            '#title' => t('Date'),
+            '#markup' => date('d-m-Y'),
+            '#prefix' => '<div class="field-name-field-sorting-date"><div class="container">',
+            '#suffix' => '</div></div>',
+          );
+          $variables['page']['above_content']['title'] = array(
+            '#type' => 'item',
+            '#title' => t('Full title'),
+            '#markup' => $node->title,
+            '#prefix' => '<div class="field-name-title-field"><div class="container">',
+            '#suffix' => '</div></div>',
+          );
+        }
+        break;
     }
   }
   if (isset($variables['node']->type)) {
@@ -145,8 +173,25 @@ function informea_theme_theme() {
     'informea_search_form_wrapper' => array(
       'render element' => 'element',
     ),
+    'bootstrap_btn_dropdown' => array(
+      'variables' => array(
+        'links' => array(),
+        'attributes' => array(),
+        'type' => NULL,
+      ),
+    ),
   );
 }
+
+/**
+ * Implements theme_bootstrap_btn_dropdown().
+ */
+function informea_theme_bootstrap_btn_dropdown($variables) {
+  $path = drupal_get_path('theme', 'bootstrap');
+  require_once $path . '/theme/bootstrap/bootstrap-btn-dropdown.func.php';
+  return theme_bootstrap_btn_dropdown($variables);
+}
+
 
 function informea_theme_meeting_type($term) {
   if ($term) {

@@ -57,6 +57,20 @@ function informea_block_info() {
       'visibility' => BLOCK_VISIBILITY_LISTED,
       'pages' => '<front>',
     ),
+    'informea_share' => array(
+      'info' => t('Informea Share'),
+      'cache' => DRUPAL_NO_CACHE,
+      'weight' => 10,
+      'status' => 1,
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+    ),
+    'informea_subscribe_updates' => array(
+      'info' => t('Informea updates'),
+      'cache' => DRUPAL_NO_CACHE,
+      'weight' => 10,
+      'status' => 1,
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+    ),
   );
 }
 
@@ -69,6 +83,40 @@ function informea_block_view($delta = '') {
   switch ($delta) {
     case 'informea_front_page_slider':
       $block['content'] = informea_theme_slider();
+      break;
+
+    case 'informea_share':
+      global $language;
+      $content = '';
+      $node = menu_get_object();
+      if (!empty($node->nid)) {
+        $url = url('/node/' . $node->nid, array('absolute' => TRUE));
+        $title = field_get_items('node', $node, 'title_field');
+        $title = current($title)['value'];
+        $site_name = variable_get('site_name', '');
+        // Construct the tweet.
+        $twitter_text = $title . ' | ' . $site_name;
+        $tweet_url = url('https://twitter.com/intent/tweet', array(
+          'query' => array(
+            'original_referer' => $url,
+            'text' => $twitter_text,
+//            'url' => shorten_url($url),
+            'url' => $url,
+          ),
+        ));
+        $vars = array(
+          'url' => $url,
+          'tweet_url' => $tweet_url,
+          'node' => $node,
+          'language' => $language,
+        );
+        $content = theme('informea_share_widget', $vars);
+      }
+      $block['content'] = $content;
+      break;
+
+    case 'informea_subscribe_updates':
+      $block['content'] = drupal_get_form('informea_subscribe_updates_form');
       break;
   }
   return $block;
@@ -295,6 +343,21 @@ function informea_library() {
   );
 }
 
+function informea_subscribe_updates_form($form, &$form_state) {
+  $form = array();
+  $form['mail'] = array(
+    '#title' => '',
+    '#type' => 'textfield',
+    '#attributes' => array('placeholder' => 'Enter email address'),
+  );
+  $form['submit'] = array(
+    '#value' => 'Send me updates',
+    '#type' => 'submit',
+  );
+  return $form;
+}
+
+
 class MigrationUtil {
 
     /**
@@ -404,6 +467,10 @@ function informea_field_formatter_info() {
       'label' => t('External URL to file'),
       'field types' => array('file')
     ),
+    'informea_file_dropdown' => array(
+      'label' => t('Dropdown'),
+      'field types' => array('file'),
+    ),
   );
 }
 
@@ -420,8 +487,35 @@ function informea_field_formatter_view($entity_type, $entity, $field, $instance,
         );
       }
       break;
+
+    case 'informea_file_dropdown':
+      if (!empty($items)) {
+        $elements[0] = array(
+          '#markup' => theme('informea_file_dropdown', array('items' => $items)),
+        );
+      }
+      break;
   }
   return $elements;
+}
+
+function theme_informea_file_dropdown($variables) {
+  $items = array();
+  foreach ($variables['items'] as $file) {
+    $url = file_create_url($file['uri']);
+    if (!empty($file['description']) && strpos($file['description'], 'http') !== FALSE) {
+      $url = $file['description'];
+    }
+    $items[] = array(
+      'title' => $file['filename'],
+      'href' => $url,
+      'attributes' => array('target' => '_blank'),
+    );
+  }
+  return theme('bootstrap_btn_dropdown', array(
+    'links' => $items,
+    'label' => t('Choose a file')
+  ));
 }
 
 function informea_theme() {
@@ -432,6 +526,16 @@ function informea_theme() {
         'element' => NULL,
       ),
       'path' => drupal_get_path('module', 'informea') . '/templates',
+    ),
+    'informea_file_dropdown' => array(
+      'variables' => array('items'),
+    ),
+    'informea_share_widget' => array(
+      'variables' => array(
+        'url' => '',
+        'node' => array(),
+      ),
+      'template' => 'templates/informea_share_widget',
     ),
   );
 }
@@ -543,7 +647,7 @@ function informea_block_view_block_4_alter(&$data, $block) {
  * Implements hook_page_alter().
  */
 function informea_page_alter(&$page) {
-  if (!module_exists('anlytics_integration')) {
+  if (!module_exists('analytics_integration')) {
     return;
   }
   if ($ga_informea_key = variable_get('ga_informea_key')) {
