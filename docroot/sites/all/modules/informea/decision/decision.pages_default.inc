@@ -661,6 +661,36 @@ Decisions
     $display->content['new-0b7f9376-dfdd-4da6-a8f1-2a8fd6d99fa4'] = $pane;
     $display->panels['other'][1] = 'new-0b7f9376-dfdd-4da6-a8f1-2a8fd6d99fa4';
     $pane = new stdClass();
+    $pane->pid = 'new-fae01ff2-33b7-4c60-9677-ad73170eefe2';
+    $pane->panel = 'other';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(),
+    );
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => '',
+      'body' => '<p><a href="#decision-body-field">Skip to full text</a></p>',
+      'format' => 'full_html',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => 'skip-to-body',
+      'css_class' => '',
+    );
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = 'fae01ff2-33b7-4c60-9677-ad73170eefe2';
+    $display->content['new-fae01ff2-33b7-4c60-9677-ad73170eefe2'] = $pane;
+    $display->panels['other'][2] = 'new-fae01ff2-33b7-4c60-9677-ad73170eefe2';
+    $pane = new stdClass();
     $pane->pid = 'new-4dbad596-dbaa-462f-b8f5-b21b9b3b36e4';
     $pane->panel = 'other';
     $pane->type = 'entity_field';
@@ -685,11 +715,11 @@ Decisions
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 3;
     $pane->locks = array();
     $pane->uuid = '4dbad596-dbaa-462f-b8f5-b21b9b3b36e4';
     $display->content['new-4dbad596-dbaa-462f-b8f5-b21b9b3b36e4'] = $pane;
-    $display->panels['other'][2] = 'new-4dbad596-dbaa-462f-b8f5-b21b9b3b36e4';
+    $display->panels['other'][3] = 'new-4dbad596-dbaa-462f-b8f5-b21b9b3b36e4';
     $pane = new stdClass();
     $pane->pid = 'new-0454952e-d26e-4f56-b07c-95b96095dfa3';
     $pane->panel = 'other';
@@ -715,11 +745,11 @@ Decisions
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
+    $pane->position = 4;
     $pane->locks = array();
     $pane->uuid = '0454952e-d26e-4f56-b07c-95b96095dfa3';
     $display->content['new-0454952e-d26e-4f56-b07c-95b96095dfa3'] = $pane;
-    $display->panels['other'][3] = 'new-0454952e-d26e-4f56-b07c-95b96095dfa3';
+    $display->panels['other'][4] = 'new-0454952e-d26e-4f56-b07c-95b96095dfa3';
     $pane = new stdClass();
     $pane->pid = 'new-a8ac1704-3835-41af-ae25-eefc7723b727';
     $pane->panel = 'related';
@@ -910,7 +940,10 @@ Decisions
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => 'decision-body-field',
+      'css_class' => '',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
