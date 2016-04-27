@@ -265,13 +265,13 @@ function ecolex_strongarm() {
           'weight' => '1',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '33',
         ),
         'metatags' => array(
           'weight' => '40',
         ),
         'xmlsitemap' => array(
-          'weight' => '30',
+          'weight' => '32',
         ),
       ),
       'display' => array(),

@@ -209,5 +209,30 @@ function ecolex_taxonomy_default_vocabularies() {
         ),
       ),
     ),
+    'thesaurus_emerging_terms' => array(
+      'name' => 'Thesaurus - Emerging terms',
+      'machine_name' => 'thesaurus_emerging_terms',
+      'description' => 'LEO emerging terms. Imported and synchronized with VocBench DTIE',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
+      'rdf_mapping' => array(
+        'rdftype' => array(
+          0 => 'skos:ConceptScheme',
+        ),
+        'name' => array(
+          'predicates' => array(
+            0 => 'dc:title',
+          ),
+        ),
+        'description' => array(
+          'predicates' => array(
+            0 => 'rdfs:comment',
+          ),
+        ),
+      ),
+    ),
   );
 }
