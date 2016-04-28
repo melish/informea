@@ -144,7 +144,7 @@ Decisions
           3 => 21,
           4 => 26,
         ),
-        'class' => 'col-md-8',
+        'class' => 'col-md-9',
         'hide_empty' => 0,
       ),
       4 => array(
@@ -155,7 +155,7 @@ Decisions
         'children' => array(
           0 => 10,
         ),
-        'class' => 'col-md-4 sidebar-right',
+        'class' => 'col-md-3 sidebar-right',
         'hide_empty' => 0,
       ),
       5 => array(
@@ -813,7 +813,7 @@ Decisions
       ),
       'override_title' => 1,
       'override_title_text' => 'From the same meeting',
-      'override_title_heading' => 'h3',
+      'override_title_heading' => 'h4',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -848,10 +848,11 @@ Decisions
       'display' => 'block',
       'context' => array(
         0 => 'relationship_entity_from_field:field_treaty-node-node_1.nid',
+        1 => '',
       ),
       'override_title' => 1,
       'override_title_text' => 'Other meetings',
-      'override_title_heading' => 'h3',
+      'override_title_heading' => 'h4',
     );
     $pane->cache = array();
     $pane->style = array(

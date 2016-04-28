@@ -34,6 +34,8 @@ function decision_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '6';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = 'Previous';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'Next';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Field: Content: Number */
@@ -195,8 +197,8 @@ function decision_views_default_views() {
     t('- All -'),
     t('Offset'),
     t('« first'),
-    t('‹ previous'),
-    t('next ›'),
+    t('Previous'),
+    t('Next'),
     t('last »'),
     t('All'),
     t('Block'),
@@ -230,6 +232,8 @@ function decision_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '2';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = 'Previous';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'Next';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Footer: Global: Text area */
@@ -297,8 +301,8 @@ function decision_views_default_views() {
     t('- All -'),
     t('Offset'),
     t('« first'),
-    t('‹ previous'),
-    t('next ›'),
+    t('Previous'),
+    t('Next'),
     t('last »'),
     t('All'),
     t('Block'),
