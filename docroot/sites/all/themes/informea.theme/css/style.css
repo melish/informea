@@ -1895,7 +1895,22 @@ strong.excerpt {
 }
 
 .node-type-decision .decision-update-container {
-  padding: 20px 0;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.pane-node-field-official-name .pane-title,
+.pane-node-field-meeting .pane-title {
+  font-size: 85%;
+  margin-bottom: 7px;
+  margin-top: 16px;
+  text-transform: uppercase;
+}
+
+.pane-node-field-official-name .pane-content,
+.pane-node-field-meeting .pane-content {
+  font-size: 18px;
+  line-height: 1.1;
 }
 
 .node-type-decision .sidebar-right .views-row + .views-row {
@@ -2042,8 +2057,8 @@ strong.excerpt {
 .node-type-decision .decision-updates-form-container {
   background-color: #efefef;
   border: 1px solid #ddd;
-  padding: 10px;
   height: 180px;
+  padding: 15px 30px;
 }
 
 .node-type-decision .pane-informea-informea-share .informea-share-widget li {}
@@ -2055,9 +2070,8 @@ strong.excerpt {
 
 .node-type-decision .panels-flexible-region-node-decision-updates h4,
 .node-type-decision .pane-informea-informea-share h4 {
-  margin-top: 0;
-  padding-bottom: 15px;
   border-bottom: 1px solid #dcdcdc;
+  padding-bottom: 15px;
 }
 
 .node-type-decision .pane-informea-informea-share ul { list-style-type: none; margin: 0; padding: 0; }
