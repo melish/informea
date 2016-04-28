@@ -1813,7 +1813,7 @@ strong.excerpt {
   color: #c6cedb;
 }
 
-.view.text-overflow-ellipsis .views-field-title a{
+.view.text-overflow-ellipsis .views-field-title a {
   display: block;
   width: 100%;
   overflow: hidden;
@@ -1821,33 +1821,56 @@ strong.excerpt {
   white-space: nowrap;
 }
 
-.node-type-decision .sidebar-right .panels-flexible-region-inside > div {
-  padding: 10px;
-  margin-bottom: 15px;
+.node-type-decision .sidebar-right .panels-flexible-region-inside .panel-pane {
   border: 1px solid #ddd;
+  margin-bottom: 86px;
+  margin-top: 40px;
+  padding: 15px;
+  position: relative;
+}
+
+.node-type-decision .sidebar-right .panels-flexible-region-inside .pane-other-meetings {
+  margin-top: 116px;
+}
+
+.node-type-decision .sidebar-right .panels-flexible-region-inside .pane-title {
+  font-weight: 300;
+  left: -1px;
+  margin: 0;
+  position: absolute;
+  top: -31px;
+  white-space: nowrap;
+}
+
+.node-type-decision .sidebar-right .panels-flexible-region-inside .pager {
+  bottom: -37px;
+  left: -1px;
+  margin: 0;
+  position: absolute;
+  text-align: left;
+}
+
+.node-type-decision .sidebar-right .panels-flexible-region-inside .more-link {
+  bottom: -67px;
+  font-size: 85%;
+  left: -1px;
+  position: absolute;
+  text-transform: uppercase;
 }
 
 .node-type-decision .sidebar-right .panels-flexible-region-inside .pager > li.pager-current {
   display: none;
 }
-.node-type-decision .sidebar-right .panels-flexible-region-inside .pager > li.pager-previous,
-.node-type-decision .sidebar-right .panels-flexible-region-inside .pager > li.pager-next {
-  display: inline-block;
-  width: 50%;
-  float: left;
 
-}
-.node-type-decision .sidebar-right .panels-flexible-region-inside .pager > li.pager-next {
-  float: right;
-}
 .node-type-decision .sidebar-right .panels-flexible-region-inside .pager > li.pager-previous a,
-.node-type-decision .sidebar-right .panels-flexible-region-inside .pager > li.pager-next a{
-  display: inline-block;
-  width: 100%;
+.node-type-decision .sidebar-right .panels-flexible-region-inside .pager > li.pager-next a {
+  background-color: #ffcc33;
   border-radius: 0;
-  background: #267399;
-  color: #fff;
-
+  border: 0;
+  border-top: 3px solid #e3b52c;
+  color: #005289;
+  padding: 5px 30px 8px;
+  text-transform: uppercase;
 }
 
 .node-type-decision .decision-text-container,
@@ -1859,14 +1882,10 @@ strong.excerpt {
   padding: 20px 0;
 }
 
-.node-type-decision .sidebar-right .views-row {
-  padding: 10px 0;
+.node-type-decision .sidebar-right .views-row + .views-row {
+  margin-top: 15px;
 }
 
-.view-decisions-of-meeting.view-id-decisions_of_meeting .views-row {
-  padding: 10px 0;
-  /*border-top: 1px solid #ddd;*/
-}
 .node-type-decision .sidebar-right .views-row .views-field-field-decision-number,
 .view-decisions-of-meeting.view-id-decisions_of_meeting .views-row > .views-field-nothing {
   font-size: .9em;
