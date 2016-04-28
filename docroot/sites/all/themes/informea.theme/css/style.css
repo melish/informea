@@ -2007,12 +2007,25 @@ strong.excerpt {
   width: 99%;
 }
 
+#informea-subscribe-updates-form #edit-mail {
+  -webkit-box-shadow: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
 #informea-subscribe-updates-form #edit-actions {
   width: 1%;
 }
 
 #informea-subscribe-updates-form .form-submit {
-  margin-left: 10px;
+  background-color: #fc3;
+  border: 0;
+  border-bottom: 3px solid #e3b52c;
+  color: #005289;
+  font-size: 85%;
+  margin-left: 30px;
+  padding-top: 8px;
+  text-transform: uppercase;
 }
 
 .node-type-decision .pane-node-field-files .btn {
