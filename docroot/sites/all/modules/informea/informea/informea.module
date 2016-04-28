@@ -345,15 +345,21 @@ function informea_library() {
 
 function informea_subscribe_updates_form($form, &$form_state) {
   $form = array();
+
   $form['mail'] = array(
-    '#title' => '',
-    '#type' => 'textfield',
-    '#attributes' => array('placeholder' => 'Enter email address'),
+    '#attributes' => array('placeholder' => t('Enter email address')),
+    '#type' => 'textfield'
   );
-  $form['submit'] = array(
-    '#value' => 'Send me updates',
+
+  $form['actions'] = array(
+    '#type' => 'container'
+  );
+
+  $form['actions']['submit'] = array(
     '#type' => 'submit',
+    '#value' => 'Send me updates'
   );
+
   return $form;
 }
 
