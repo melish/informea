@@ -561,7 +561,7 @@ function treaty_page_alter(&$page) {
   }
 }
 
-function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
+function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node, $hide = array()) {
   if ($node->type == 'treaty') {
     module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
     module_load_include('inc', 'country_data', 'country_data.api');
@@ -635,7 +635,7 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
     if ($course_url = $wrapper->field_online_course_link->value()) {
       $menu_items['course'] = array(
         'title' => t('<span class="glyphicon glyphicon-book" aria-hidden="true"></span> e-Learning course'),
-        'url' => $course_url['display_url'],
+        'url' => !empty($course_url['display_url']) ? $course_url['display_url'] : $course_url['url'],
       );
     }
     foreach ($menu_items as $path => $menu_item) {
@@ -653,13 +653,18 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node) {
       if (!empty($menu_item['disabled'])) {
         $list_item['class'][] = 'disabled';
       }
-      $contextual_menu['#items'][] = $list_item;
+      $contextual_menu['#items'][$path] = $list_item;
     }
     if ($untc_url = $wrapper->field_un_treaty_database_link->value()) {
-      $contextual_menu['#items'][] = array(
+      $contextual_menu['#items']['un-treaty-collection-link'] = array(
         'data' => l(t('UN treaty collection link'), $untc_url['url'], $untc_url),
         'role' => 'presentation',
       );
+    }
+    if (!empty($hide)) {
+      foreach ($hide as $k) {
+        unset($contextual_menu['#items'][$k]);
+      }
     }
   }
 }

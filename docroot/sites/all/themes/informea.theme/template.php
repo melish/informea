@@ -126,7 +126,7 @@ function informea_theme_preprocess_page(&$variables) {
           );
           if (!empty($node->field_treaty[LANGUAGE_NONE][0]['target_id'])) {
             $treaty_node = node_load($node->field_treaty[LANGUAGE_NONE][0]['target_id']);
-            $variables['page']['above_content']['tabs'] = _decision_get_treaty_links($treaty_node);
+            $variables['page']['above_content']['tabs'] = _decision_get_treaty_links($treaty_node, array('un-treaty-collection-link'));
             $variables['page']['above_content']['tabs']['#prefix'] = '<div class="decision-treaty-tabs"><div class="container">';
             $variables['page']['above_content']['tabs']['#suffix'] = '</div></div>';
           }

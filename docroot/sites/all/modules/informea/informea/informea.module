@@ -12,6 +12,7 @@ define('INFORMEA_VOC_IEG', 'thesaurus_ieg');
 define('INFORMEA_VOC_GEMET', 'thesaurus_gemet');
 
 define('ROLE_MEA', 'MEA');
+define('ROLE_ADMINISTRATOR', 'administrator');
 
 /**
  * Implements hook_schema_alter()
@@ -728,6 +729,9 @@ function informea_user_get_assigned_treaties($user) {
  *   user's assigned treaties in field_user_treaties.
  */
 function informea_user_mea_can_edit_node($node, $user) {
+  if (in_array(ROLE_ADMINISTRATOR, $user->roles)) {
+    return TRUE;
+  }
   if (in_array(ROLE_MEA, $user->roles)) {
     $allowed = informea_user_get_assigned_treaties($user);
     $nid = NULL;
@@ -738,7 +742,7 @@ function informea_user_mea_can_edit_node($node, $user) {
     }
     return in_array($nid, $allowed);
   }
-  return TRUE;
+  return FALSE;
 }
 
 function informea_mea_content_types() {

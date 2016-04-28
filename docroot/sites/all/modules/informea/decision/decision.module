@@ -54,9 +54,9 @@ function decision_views_pre_render(&$view) {
   }
 }
 
-function _decision_get_treaty_links($node) {
+function _decision_get_treaty_links($node, $hide = array()) {
   $contextual_menu = array();
-  treaty_treaty_contextual_menu_alter($contextual_menu, $node);
+  treaty_treaty_contextual_menu_alter($contextual_menu, $node, $hide);
   $contextual_menu['#attributes']['class'] = array('nav', 'nav-tabs');
   return $contextual_menu;
 }
