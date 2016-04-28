@@ -124,6 +124,12 @@ function informea_theme_preprocess_page(&$variables) {
             '#prefix' => '<div class="field-name-title-field"><div class="container">',
             '#suffix' => '</div></div>',
           );
+          if (!empty($node->field_treaty[LANGUAGE_NONE][0]['target_id'])) {
+            $treaty_node = node_load($node->field_treaty[LANGUAGE_NONE][0]['target_id']);
+            $variables['page']['above_content']['tabs'] = _decision_get_treaty_links($treaty_node, array('un-treaty-collection-link'));
+            $variables['page']['above_content']['tabs']['#prefix'] = '<div class="decision-treaty-tabs"><div class="container">';
+            $variables['page']['above_content']['tabs']['#suffix'] = '</div></div>';
+          }
         }
         break;
     }
@@ -526,40 +532,6 @@ function informea_theme_panels_flexible($vars) {
   panels_flexible_convert_settings($settings, $layout);
 
   $renderer = panels_flexible_create_renderer(FALSE, $css_id, $content, $settings, $display, $layout, $handler);
-
-  // CSS must be generated because it reports back left/middle/right
-  // positions.
-  /*
-  $css = panels_flexible_render_css($renderer);
-
-  if (!empty($renderer->css_cache_name) && empty($display->editing_layout)) {
-    ctools_include('css');
-    // Generate an id based upon rows + columns:
-    $filename = ctools_css_retrieve($renderer->css_cache_name);
-    if (!$filename) {
-      $filename = ctools_css_store($renderer->css_cache_name, $css, FALSE);
-    }
-
-    // Give the CSS to the renderer to put where it wants.
-    if ($handler) {
-      $handler->add_css($filename, 'module', 'all', FALSE);
-    }
-    else {
-      drupal_add_css($filename);
-    }
-  }
-  else {
-    // If the id is 'new' we can't reliably cache the CSS in the filesystem
-    // because the display does not truly exist, so we'll stick it in the
-    // head tag. We also do this if we've been told we're in the layout
-    // editor so that it always gets fresh CSS.
-    drupal_add_css($css, array('type' => 'inline', 'preprocess' => FALSE));
-  }
-
-  // Also store the CSS on the display in case the live preview or something
-  // needs it
-  $display->add_css = $css;
-  */
 
   $output = "<div class=\"panel-flexible " . $renderer->base['canvas'] . " clearfix\" $renderer->id_str>\n";
   $output .= "<div class=\"panel-flexible-inside " . $renderer->base['canvas'] . "-inside\">\n";
