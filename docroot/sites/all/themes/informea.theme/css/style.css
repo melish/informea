@@ -1991,22 +1991,28 @@ strong.excerpt {
   white-space: nowrap;
 }
 
+#informea-subscribe-updates-form {
+  display: table;
+  margin-top: 30px;
+}
+
+#informea-subscribe-updates-form .form-type-textfield,
+#informea-subscribe-updates-form #edit-actions {
+  display: table-cell;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
 #informea-subscribe-updates-form .form-type-textfield {
-  max-width: 60%;
-  float: left;
+  width: 99%;
+}
+
+#informea-subscribe-updates-form #edit-actions {
+  width: 1%;
 }
 
 #informea-subscribe-updates-form .form-submit {
-  float: right;
-  width: 40%;
-  background: #267399;
-  border: 0;
-}
-
-#informea-subscribe-updates-form > div:after {
-  content: "";
-  display: block;
-  clear: both;
+  margin-left: 10px;
 }
 
 .node-type-decision .pane-node-field-files .btn {
