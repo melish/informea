@@ -1840,13 +1840,18 @@ strong.excerpt {
 .node-type-decision .sidebar-right .panels-flexible-region-inside .panel-pane {
   border: 1px solid #ddd;
   margin-bottom: 86px;
-  margin-top: 40px;
+  margin-top: 45px;
   padding: 15px;
   position: relative;
 }
 
+.pane-informea-informea-subscribe-updates .pane-title,
+.pane-informea-informea-share .pane-title {
+  font-weight: 300;
+}
+
 .node-type-decision .sidebar-right .panels-flexible-region-inside .pane-other-meetings {
-  margin-top: 116px;
+  margin-top: 131px;
 }
 
 .node-type-decision .sidebar-right .panels-flexible-region-inside .pane-title {
@@ -1854,7 +1859,7 @@ strong.excerpt {
   left: -1px;
   margin: 0;
   position: absolute;
-  top: -31px;
+  top: -36px;
 }
 
 .node-type-decision .sidebar-right .panels-flexible-region-inside .pager {
@@ -1891,7 +1896,8 @@ strong.excerpt {
 .node-type-decision .decision-text-container,
 .node-type-decision .decision-tags-container {
   border-top: 1px solid #ddd;
-  padding: 20px 0;
+  padding-bottom: 30px;
+  padding-top: 20px;
 }
 
 .node-type-decision .decision-update-container {
@@ -1902,7 +1908,7 @@ strong.excerpt {
 .pane-node-field-official-name .pane-title,
 .pane-node-field-meeting .pane-title {
   font-size: 85%;
-  margin-bottom: 7px;
+  margin-bottom: 10px;
   margin-top: 16px;
   text-transform: uppercase;
 }
