@@ -519,8 +519,11 @@ function theme_informea_file_dropdown($variables) {
     );
   }
   return theme('bootstrap_btn_dropdown', array(
-    'links' => $items,
-    'label' => t('Choose a file')
+    'attributes' => array(
+      'data-label' => t('Files')
+    ),
+    'label' => t('Choose a file'),
+    'links' => $items
   ));
 }
 
