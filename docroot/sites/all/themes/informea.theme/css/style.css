@@ -1879,6 +1879,14 @@ strong.excerpt {
   text-transform: uppercase;
 }
 
+.node-type-decision .sidebar-right .panels-flexible-region-inside .pager > li {
+  float: left;
+}
+
+.node-type-decision .sidebar-right .panels-flexible-region-inside .pager > li.pager-previous {
+  margin-right: 1px;
+}
+
 .node-type-decision .sidebar-right .panels-flexible-region-inside .pager > li.pager-current {
   display: none;
 }
@@ -1892,7 +1900,9 @@ strong.excerpt {
   color: #005289;
   font-size: 85%;
   font-weight: 500;
-  padding: 5px 30px 8px;
+  height: 33px;
+  line-height: 1;
+  padding: 8px 30px 10px;
   text-transform: uppercase;
 }
 
@@ -2148,7 +2158,8 @@ strong.excerpt {
   display: inline-block;
 }
 
-.pane-decisions-of-meeting .pane-title {
+.pane-decisions-of-meeting .pane-title,
+.pane-node-field-informea-tags .pane-title {
   font-weight: 300;
 }
 
