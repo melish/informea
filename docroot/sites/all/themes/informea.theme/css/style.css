@@ -2081,11 +2081,6 @@ strong.excerpt {
   margin-top: 20px;
 }
 
-.decision-treaty-tabs .nav-tabs > li > a {
-  padding-left: 8px;
-  padding-right: 8px;
-}
-
 .decision-treaty-tabs .pull-right {
   margin-left: 10px;
 }
@@ -2139,10 +2134,10 @@ strong.excerpt {
   background-color: #e0f7ff;
 }
 
-.node-type-decision .panels-flexible-region-node-decision-updates h4,
 .node-type-decision .pane-informea-informea-share h4 {
   border-bottom: 1px solid #dcdcdc;
-  padding-bottom: 15px;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .informea-share-widget {
