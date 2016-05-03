@@ -1873,6 +1873,7 @@ strong.excerpt {
 .node-type-decision .sidebar-right .panels-flexible-region-inside .more-link {
   bottom: -64px;
   font-size: 85%;
+  font-weight: 500;
   left: -1px;
   position: absolute;
   text-transform: uppercase;
@@ -1969,6 +1970,7 @@ strong.excerpt {
 .node-type-decision .pane-node-field-related-url,
 .node-type-decision .pane-node-field-url {
   font-size: 85%;
+  font-weight: 500;
   text-transform: uppercase;
 }
 
@@ -1978,6 +1980,9 @@ strong.excerpt {
 
 #skip-to-body {
   display: inline-block;
+  font-size: 85%;
+  font-weight: 500;
+  text-transform: uppercase;
 }
 
 #skip-to-body + .panel-separator {
@@ -2019,6 +2024,7 @@ strong.excerpt {
   -webkit-box-shadow: none;
   border-radius: 0;
   box-shadow: none;
+  height: 38px;
 }
 
 #informea-subscribe-updates-form #edit-actions {
@@ -2033,7 +2039,7 @@ strong.excerpt {
   font-size: 85%;
   font-weight: 500;
   margin-left: 30px;
-  padding-top: 8px;
+  padding: 10px 30px 8px;
   text-transform: uppercase;
 }
 
@@ -2140,4 +2146,13 @@ strong.excerpt {
 
 .informea-share-widget > li > a {
   display: inline-block;
+}
+
+.pane-decisions-of-meeting .pane-title {
+  font-weight: 300;
+}
+
+.pane-node-body .pane-title {
+  font-size: 85%;
+  text-transform: uppercase;
 }
