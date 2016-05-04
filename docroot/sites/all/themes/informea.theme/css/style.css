@@ -2100,7 +2100,14 @@ strong.excerpt {
   margin-top: 20px;
 }
 
+.decision-treaty-tabs .nav-tabs,
+.decision-treaty-tabs .nav-tabs > li > a:hover,
+.decision-treaty-tabs .nav-tabs > li:nth-child(4) > a {
+  border-bottom-color: #005289;
+}
+
 .decision-treaty-tabs .nav-tabs > li > a {
+  color: #005289;
   padding: 10px 15px 7px;
 }
 
