@@ -2095,11 +2095,28 @@ strong.excerpt {
 }
 
 .decision-treaty-tabs {
+  font-size: 85%;
+  font-weight: 500;
   margin-top: 20px;
 }
 
-.decision-treaty-tabs .pull-right {
-  margin-left: 10px;
+.decision-treaty-tabs .nav-tabs > li > a {
+  padding: 10px 15px 7px;
+}
+
+.decision-treaty-tabs .badge {
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.decision-treaty-tabs .badge:before {
+  content: "(";
+}
+
+.decision-treaty-tabs .badge:after {
+  content: ")";
 }
 
 .page-node.node-type-decision .field-name-field-sorting-date {}
