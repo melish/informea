@@ -1837,11 +1837,10 @@ strong.excerpt {
   white-space: nowrap;
 }
 
-.node-type-decision .sidebar-right .panels-flexible-region-inside .panel-pane {
+.node-type-decision .sidebar-right .panel-pane {
   border: 1px solid #b1d6e6;
   margin-bottom: 86px;
   margin-top: 45px;
-  padding: 15px;
   position: relative;
 }
 
@@ -1850,11 +1849,11 @@ strong.excerpt {
   font-weight: 300;
 }
 
-.node-type-decision .sidebar-right .panels-flexible-region-inside .pane-other-meetings {
+.node-type-decision .sidebar-right .pane-other-meetings {
   margin-top: 128px;
 }
 
-.node-type-decision .sidebar-right .panels-flexible-region-inside .pane-title {
+.node-type-decision .sidebar-right .pane-title {
   font-weight: 300;
   left: -1px;
   margin: 0;
@@ -1862,7 +1861,7 @@ strong.excerpt {
   top: -36px;
 }
 
-.node-type-decision .sidebar-right .panels-flexible-region-inside .pager {
+.node-type-decision .sidebar-right .pager {
   bottom: -34px;
   left: -1px;
   margin: 0;
@@ -1870,7 +1869,7 @@ strong.excerpt {
   text-align: left;
 }
 
-.node-type-decision .sidebar-right .panels-flexible-region-inside .more-link {
+.node-type-decision .sidebar-right .more-link {
   bottom: -64px;
   font-size: 85%;
   font-weight: 500;
@@ -1879,20 +1878,20 @@ strong.excerpt {
   text-transform: uppercase;
 }
 
-.node-type-decision .sidebar-right .panels-flexible-region-inside .pager > li {
+.node-type-decision .sidebar-right .pager > li {
   float: left;
 }
 
-.node-type-decision .sidebar-right .panels-flexible-region-inside .pager > li.pager-previous {
+.node-type-decision .sidebar-right .pager > li.pager-previous {
   margin-right: 1px;
 }
 
-.node-type-decision .sidebar-right .panels-flexible-region-inside .pager > li.pager-current {
+.node-type-decision .sidebar-right .pager > li.pager-current {
   display: none;
 }
 
-.node-type-decision .sidebar-right .panels-flexible-region-inside .pager > li.pager-previous a,
-.node-type-decision .sidebar-right .panels-flexible-region-inside .pager > li.pager-next a {
+.node-type-decision .sidebar-right .pager > li.pager-previous a,
+.node-type-decision .sidebar-right .pager > li.pager-next a {
   background-color: #ffcc33;
   border-radius: 0;
   border: 0;
@@ -1953,10 +1952,6 @@ strong.excerpt {
   color: #777;
   font-size: 16px;
   text-transform: capitalize;
-}
-
-.node-type-decision .sidebar-right .views-row + .views-row {
-  margin-top: 10px;
 }
 
 .node-type-decision .sidebar-right .views-row .views-field-field-decision-number,
@@ -2181,4 +2176,38 @@ strong.excerpt {
 .pane-node-body .pane-title {
   font-size: 85%;
   text-transform: uppercase;
+}
+
+.pane-decisions-of-meeting {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.pane-decisions-of-meeting .views-row {
+  height: 55px;
+  position: relative;
+}
+
+.pane-decisions-of-meeting .views-field-field-decision-number {
+  left: 20px;
+  pointer-events: none;
+  position: absolute;
+  top: 10px;
+  z-index: 1;
+}
+
+.pane-decisions-of-meeting .views-field-title a {
+  bottom: 0;
+  font-size: 85%;
+  font-weight: 500;
+  left: 0;
+  padding: 25px 20px 0;
+  position: absolute;
+  right: 0;
+  text-transform: uppercase;
+  top: 0;
+}
+
+.pane-decisions-of-meeting .views-field-title a:hover {
+  background-color: #effafe;
 }
