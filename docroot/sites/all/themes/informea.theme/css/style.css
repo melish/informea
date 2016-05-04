@@ -1907,11 +1907,16 @@ strong.excerpt {
   text-transform: uppercase;
 }
 
-.node-type-decision .decision-text-container,
-.node-type-decision .decision-tags-container {
+.decision-tags-container,
+#decision-body-field {
   border-top: 1px solid #ddd;
-  padding-bottom: 30px;
-  padding-top: 20px;
+  margin-top: 40px;
+  padding-top: 30px;
+}
+
+.decision-tags-container .panels-flexible-row-inside {
+  margin-left: -15px;
+  margin-right: -15px;
 }
 
 .node-type-decision .decision-update-container {
@@ -1954,12 +1959,6 @@ strong.excerpt {
   color: #777;
   font-size: 16px;
   text-transform: capitalize;
-}
-
-.node-type-decision .sidebar-right .views-row .views-field-field-decision-number,
-.view-decisions-of-meeting.view-id-decisions_of_meeting .views-row > .views-field-nothing {
-  font-size: .9em;
-  color: #777;
 }
 
 .view-decisions-of-meeting.view-id-decisions_of_meeting .views-row > .views-field-nothing a {
@@ -2194,9 +2193,17 @@ strong.excerpt {
   display: inline-block;
 }
 
-.pane-decisions-of-meeting .pane-title,
-.pane-node-field-informea-tags .pane-title {
+.decision-tags-container .pane-decisions-of-meeting .pane-title,
+.decision-tags-container .pane-node-field-informea-tags .pane-title {
   font-weight: 300;
+}
+
+.decision-tags-container .pane-decisions-of-meeting .views-row {
+  margin-top: 15px;
+}
+
+.decision-tags-container .pane-decisions-of-meeting .views-field-title {
+  text-transform: uppercase;
 }
 
 .pane-node-body .pane-title {
@@ -2242,4 +2249,14 @@ strong.excerpt {
 .sidebar-right .pane-other-meetings .views-field-title a {
   display: block;
   padding: 10px 20px;
+}
+
+.node-type-decision .sidebar-right .views-row .views-field-field-decision-number,
+.view-decisions-of-meeting.view-id-decisions_of_meeting .views-row > .views-field-nothing {
+  color: #777;
+  font-size: 85%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
