@@ -7,7 +7,7 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
   public function __construct($arguments) {
     parent::__construct($arguments);
     $this->source = new CourtDecisionElisMigrateSource($arguments['source_url_pattern'], $arguments['xml_encoding']);
-    $this->destination = new MigrateDestinationNode(DRUPAL_TYPE_COURT_DECISION);
+    $this->destination = new MigrateDestinationNode(DRUPAL_TYPE_COURT_DECISION, ['language' => 'en']);
 
     $this->addFieldMapping('field_alternative_record_id', 'id2');
     $this->addFieldMapping('field_original_id', 'id');
@@ -26,7 +26,7 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     $this->addFieldMapping('field_country', 'country');
     $this->addFieldMapping('field_ecolex_tags', 'subject');
     $this->addFieldMapping('field_ecolex_tags:source_type')->defaultValue('tid');
-    $this->addFieldMapping('field_source_language', 'languageOfDocument');
+    //@todo: $this->addFieldMapping('field_source_language', 'languageOfDocument');
     $this->addFieldMapping('field_court_name', 'courtName');
     $this->addFieldMapping('field_sorting_date', 'dateOfText');
     $this->addFieldMapping('field_sorting_date:timezone')->defaultValue('Europe/Zurich');
@@ -34,12 +34,9 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     $this->addFieldMapping('field_number_of_pages', 'numberOfPages');
     $this->addFieldMapping('field_available_in', 'availableIn');
     $this->addFieldMapping('field_url', 'linkToFullText');
-    $this->addFieldMapping('field_url:language', 'linkToFullText_languages');
     $this->addFieldMapping('field_url_other', 'linkToFullTextOther');
     $this->addFieldMapping('field_internet_reference_url', 'internetReference');
-    $this->addFieldMapping('field_internet_reference_url:language', 'internetReference_languages');
     $this->addFieldMapping('field_related_url', 'relatedWebSite');
-    $this->addFieldMapping('field_related_url:language', 'relatedWebSite_languages');
     $this->addFieldMapping('field_ecolex_keywords', 'keyword');
     $this->addFieldMapping('field_ecolex_keywords:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_abstract', 'abstract');
@@ -70,9 +67,13 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     $this->addFieldMapping('field_data_source:create_term')->defaultValue(TRUE);
     $this->addFieldMapping('field_data_source:ignore_case')->defaultValue(TRUE);
     $this->addFieldMapping('field_data_source:source_type')->defaultValue('term');
+    $this->addFieldMapping('field_files', 'linkToFullText');
+    $this->addFieldMapping('field_files:description', 'linkToFullText');
+    $this->addFieldMapping('field_files:file_replace')->defaultValue(MigrateFile::FILE_EXISTS_REUSE);
 
     // @ToDo: Map legislation by source id
     // $this->addFieldMapping('field_reference_to_legislation', 'referenceToNationalLegislation');
+    // @todo: field_faolex_url
 
     $this->addFieldMapping('comment')->defaultValue(FALSE);
     $this->addFieldMapping('uid')->defaultValue(0);
@@ -80,7 +81,6 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     $this->addFieldMapping('promote')->defaultValue(0);
     $this->addFieldMapping('sticky')->defaultValue(0);
     $this->addFieldMapping('revision')->defaultValue(0);
-    $this->addFieldMapping('language')->defaultValue('en');
 
     $this->addUnmigratedSources(array());
 
@@ -88,9 +88,9 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
       'created', 'changed', 'log', 'tnid', 'translate', 'revision_uid', 'is_new',
       'field_ecolex_tags:create_term', 'field_ecolex_tags:ignore_case',
       'field_keywords:create_term', 'field_keywords:ignore_case',
-      'field_files', 'field_files:file_class', 'field_files:language', 'field_files:preserve_files',
-      'field_files:destination_dir', 'field_files:destination_file', 'field_files:file_replace',
-      'field_files:display', 'field_files:description', 'field_files:urlencode',
+      'field_files:file_class', 'field_files:language', 'field_files:preserve_files',
+      'field_files:destination_dir', 'field_files:destination_file',
+      'field_files:display', 'field_files:urlencode',
       'field_files:source_dir', 'field_jurisdiction:ignore_case',
       'field_jurisdiction:create_term',
       'field_informea_tags:ignore_case', 'field_informea_tags:create_term',
@@ -104,7 +104,7 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
       'field_date_of_entry:to', 'field_date_of_entry:rrule' ,
       'field_ecolex_decision_status:create_term', 'field_ecolex_decision_status:ignore_case',
       'field_faolex_url:language', 'field_faolex_url:attributes', 'field_faolex_url:title',
-      'field_faolex_url', 'field_ecolex_url:language', 'field_ecolex_url:attributes',
+      'field_ecolex_url:language', 'field_ecolex_url:attributes',
       'field_ecolex_url:title', 'field_ecolex_url',
       'field_internet_reference_url:title', 'field_internet_reference_url:attributes',
       'field_sorting_date:to', 'field_sorting_date:rrule',
@@ -125,6 +125,9 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
         }
       }
       $row->country = $countries;
+    }
+    if (!empty($row->linkToFullText)) {
+      $row->linkToFullText = str_replace('/server2.php', '', $row->linkToFullText);
     }
     return $this->validateRow($row);
   }

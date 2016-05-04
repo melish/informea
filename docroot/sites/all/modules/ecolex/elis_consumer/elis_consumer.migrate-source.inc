@@ -249,7 +249,6 @@ class CourtDecisionElisMigrateSource extends AbsractElisMigrateSource {
       'linkToFullText_languages' => 'Languages of linkToFullText field',
       'linkToFullTextOther' => 'Link to the full text in unknown language',
       'internetReference' => 'Internet reference of the document',
-      'internetReference_languages' => 'Available languages',
       'relatedWebSite' => 'Internet related website of the document',
       'keyword' => 'Keywords',
       'keyword_fr' => 'Keywords in French',
@@ -285,8 +284,6 @@ class CourtDecisionElisMigrateSource extends AbsractElisMigrateSource {
       'abstract' => 'filter_multivalued_multilingual_concatenated',
       'subject' => 'filter_multivalued_multilingual',
       'keyword' => 'filter_multivalued_multilingual',
-      'linkToFullText' => 'filter_single_multilingual',
-      'internetReference' => 'filter_single_multilingual',
       'typeOfText' => 'filter_multivalued_multilingual',
       'referenceToNationalLegislation' => 'filter_multivalued',
       'referenceToEULegislation' => 'filter_multivalued',
@@ -303,12 +300,6 @@ class CourtDecisionElisMigrateSource extends AbsractElisMigrateSource {
   function prepareItem($item) {
     $item->title_english = !empty($item->titleOfText[0]) ? $item->titleOfText[0] : NULL;
     $languages = array();
-    if (!empty($item->titleOfText_languages)) {
-      $languages += $item->titleOfText_languages;
-    }
-    if (!empty($item->linkToFullText_languages)) {
-      $languages += $item->linkToFullText_languages;
-    }
     $item->languages = array_unique($languages);
   }
 }
