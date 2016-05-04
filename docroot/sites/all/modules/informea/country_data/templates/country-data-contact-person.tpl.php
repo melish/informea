@@ -8,7 +8,7 @@
   $wrapper = entity_metadata_wrapper('node', $contact_person);
   $position = $wrapper->field_person_position->value();
   $department = $wrapper->field_person_department->value();
-  $institution = $wrapper->field_person_department->value();
+  $institution = $wrapper->field_person_institution->value();
   $address = $wrapper->field_address->value();
   $fax = $wrapper->field_contact_fax->value();
   $mail = $wrapper->field_person_email->value();
