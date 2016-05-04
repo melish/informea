@@ -1946,15 +1946,9 @@ strong.excerpt {
   margin-top: 30px;
 }
 
-.row-other .pane-node-field-decision-type,
-.row-other .pane-node-field-decision-status {
-  min-width: 96px;
-}
-
 .row-other .pane-node-field-decision-type .field-label,
 .row-other .pane-node-field-decision-status .field-label {
   font-size: 85%;
-  margin-bottom: 5px;
   text-transform: uppercase;
 }
 
@@ -1969,8 +1963,6 @@ strong.excerpt {
   color: #777;
 }
 
-.node-type-decision .pane-node-field-decision-status,
-.node-type-decision .pane-node-field-decision-type,
 .node-type-decision .pane-node-field-related-url,
 .node-type-decision .pane-node-field-url {
   display: inline-block;
@@ -1988,15 +1980,43 @@ strong.excerpt {
   display: none;
 }
 
+.row-other .field-name-field-decision-type,
+.row-other .field-name-field-decision-status {
+  display: block;
+  float: left;
+  padding-right: 5px;
+  width: 25%;
+}
+
+.row-other .field-name-field-decision-type:before,
+.row-other .field-name-field-decision-status:before {
+  border-top: 5px solid #dff6fe;
+  content: "";
+  display: block;
+  height: 0;
+  margin-bottom: 10px;
+}
+
 #skip-to-body {
-  display: inline-block;
+  display: block;
+  float: left;
   font-size: 85%;
   font-weight: 500;
   text-transform: uppercase;
   vertical-align: top;
+  width: 50%;
+}
+
+#skip-to-body a {
+  background-color: #e0f7ff;
+  border: 1px solid #f7f7f7;
+  display: block;
+  padding: 18px;
+  text-align: center;
 }
 
 #skip-to-body + .panel-separator {
+  clear: both;
   display: block;
   margin-bottom: 10px;
 }
