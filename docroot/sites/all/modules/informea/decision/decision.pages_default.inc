@@ -256,7 +256,7 @@ Decisions
           1 => 14,
         ),
         'parent' => '3',
-        'class' => 'row',
+        'class' => 'decision-files-other-container row',
         'hide_empty' => 0,
       ),
       12 => array(
