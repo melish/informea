@@ -81,15 +81,16 @@ function ws_consumer_odata_migrate_api() {
 
 abstract class InforMEAAbstractODataMigrateSource extends MigrateSource {
 
-  protected $items = array();
+  protected $data = array();
   /** @var ODataConsumerConfig */
   protected $config = NULL;
   /** @var ODataConsumer */
   protected $consumer = NULL;
-  /** @var bool Data  */
-  protected $remote_queried = FALSE;
 
-  protected abstract function pullRemoteData();
+  protected $currentPage = 0;
+  protected $currentCount = 0;
+  protected $pageSize = 100;
+  protected $count = 0;
 
   public function __construct(array $options, $config) {
     parent::__construct($options);
@@ -103,38 +104,35 @@ abstract class InforMEAAbstractODataMigrateSource extends MigrateSource {
   }
 
   public function performRewind() {
-    $this->readRemoteItems();
-    reset($this->items);
+    reset($this->data);
   }
 
   public function computeCount() {
-    return $this->consumer->countTotal($this->config->odata_entity);
-  }
-
-  protected function readRemoteItems() {
-    if (empty($this->items) && !$this->remote_queried) {
-      migrate_instrument_start(get_class($this) . ' pullRemoteData', TRUE);
-      $this->items = array();
-      $this->remote_queried = TRUE;
-      try {
-        $rows = $this->pullRemoteData();
-        foreach ($rows as $row) {
-          if (empty($row->updated)) {
-            $row->updated = time();
-          }
-          $this->items[$row->id] = $row;
-        }
-      } catch (Exception $e) {
-        //@todo: Do we need to do anything here?
-      }
-      migrate_instrument_stop(get_class($this) . ' pullRemoteData');
+    if (empty($this->count)) {
+      $this->count = $this->consumer->countTotal($this->config->odata_entity);
     }
+    return $this->count;
   }
 
   public function getNextRow() {
-    $this->readRemoteItems();
-    $item = current($this->items);
-    next($this->items);
+    migrate_instrument_start(__METHOD__, TRUE);
+    $next_call_count = $this->currentPage * $this->pageSize;
+    if ($this->currentCount == $this->count()) {
+      return NULL;
+    }
+    if ($this->currentCount == $next_call_count && $next_call_count < $this->count()) {
+      $start = $this->currentPage * $this->pageSize;
+      if ($this->data = $this->consumer->getPage($this->config->odata_entity, $start, $this->activeMigration)) {
+        $this->currentPage++;
+      }
+    }
+    $item = NULL;
+    if (count($this->data)) {
+      $item = current($this->data);
+      next($this->data);
+      $this->currentCount++;
+    }
+    migrate_instrument_stop(__METHOD__);
     return $item;
   }
 
@@ -147,8 +145,7 @@ abstract class InforMEAAbstractODataMigrateSource extends MigrateSource {
   }
 
   public function resetData() {
-    $this->remote_queried = FALSE;
-    $this->items = array();
+    $this->data = array();
   }
 
   public function getConsumer() {
