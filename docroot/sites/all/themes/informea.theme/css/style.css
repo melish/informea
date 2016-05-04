@@ -2178,17 +2178,17 @@ strong.excerpt {
   text-transform: uppercase;
 }
 
-.pane-decisions-of-meeting {
+.sidebar-right .pane-decisions-of-meeting {
   padding-bottom: 10px;
   padding-top: 10px;
 }
 
-.pane-decisions-of-meeting .views-row {
+.sidebar-right .pane-decisions-of-meeting .views-row {
   height: 55px;
   position: relative;
 }
 
-.pane-decisions-of-meeting .views-field-field-decision-number {
+.sidebar-right .pane-decisions-of-meeting .views-field-field-decision-number {
   left: 20px;
   pointer-events: none;
   position: absolute;
@@ -2196,7 +2196,7 @@ strong.excerpt {
   z-index: 1;
 }
 
-.pane-decisions-of-meeting .views-field-title a {
+.sidebar-right .pane-decisions-of-meeting .views-field-title a {
   bottom: 0;
   font-size: 85%;
   font-weight: 500;
@@ -2208,12 +2208,12 @@ strong.excerpt {
   top: 0;
 }
 
-.pane-decisions-of-meeting .views-field-title a:hover,
-.pane-decisions-of-meeting .views-field-title a:focus {
+.sidebar-right .pane-decisions-of-meeting .views-field-title a:hover,
+.sidebar-right .pane-decisions-of-meeting .views-field-title a:focus {
   background-color: #effafe;
 }
 
-.pane-decisions-of-meeting .views-field-title a.active {
+.sidebar-right .pane-decisions-of-meeting .views-field-title a.active {
   background-color: #effafe;
   color: #555;
 }
