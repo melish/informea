@@ -2208,6 +2208,12 @@ strong.excerpt {
   top: 0;
 }
 
-.pane-decisions-of-meeting .views-field-title a:hover {
+.pane-decisions-of-meeting .views-field-title a:hover,
+.pane-decisions-of-meeting .views-field-title a:focus {
   background-color: #effafe;
+}
+
+.pane-decisions-of-meeting .views-field-title a.active {
+  background-color: #effafe;
+  color: #555;
 }
