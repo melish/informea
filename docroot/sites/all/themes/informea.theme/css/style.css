@@ -1841,6 +1841,8 @@ strong.excerpt {
   border: 1px solid #b1d6e6;
   margin-bottom: 86px;
   margin-top: 45px;
+  padding-bottom: 10px;
+  padding-top: 10px;
   position: relative;
 }
 
@@ -2178,11 +2180,6 @@ strong.excerpt {
   text-transform: uppercase;
 }
 
-.sidebar-right .pane-decisions-of-meeting {
-  padding-bottom: 10px;
-  padding-top: 10px;
-}
-
 .sidebar-right .pane-decisions-of-meeting .views-row {
   height: 55px;
   position: relative;
@@ -2216,4 +2213,9 @@ strong.excerpt {
 .sidebar-right .pane-decisions-of-meeting .views-field-title a.active {
   background-color: #effafe;
   color: #555;
+}
+
+.sidebar-right .pane-other-meetings .views-field-title a {
+  display: block;
+  padding: 10px 20px;
 }
