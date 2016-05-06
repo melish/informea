@@ -159,6 +159,50 @@ class ElisXMLConsumer {
 }
 
 
+class ElisXMLRowConsumer extends ElisXMLConsumer {
+
+  /**
+   * ElisXMLConsumer constructor.
+   * @param $urlTemplate
+   * @param $keyField
+   * @param string $xmlEncoding
+   */
+  public function __construct($urlTemplate, $keyField, $xmlEncoding = 'iso-8859-15') {
+    parent::__construct($urlTemplate, $keyField, $xmlEncoding);
+    $this->urlTemplate = $urlTemplate;
+    $this->keyField = $keyField;
+    $this->xmlEncoding = $xmlEncoding;
+  }
+
+
+  /**
+   * Pull records from the remote service
+   */
+  public function getData() {
+    $data = [];
+    $ids = json_decode(file_get_contents(drupal_get_path('module', 'elis_consumer') . '/court-decisions.json'));
+    $i = 1;
+    foreach ($ids as $id) {
+      $url = str_replace(
+        array('RECORD_ID'),
+        array($id),
+        $this->urlTemplate
+      );
+      /** @var \stdClass $doc */
+      if ($doc = elis_consumer_xml_http_request($url, $this->xmlEncoding)) {
+        if (!empty($doc->document[0])) {
+          $data[$id] = $doc->document[0];
+        }
+      }
+      if ($i++ % 50 == 0) {
+        elis_consumer_log('Retrieved ' . $i . ' of ' . count($ids), 'notice');
+      }
+    }
+    return $data;
+  }
+}
+
+
 function elis_consumer_xml_http_request($url, $xml_encoding) {
   elis_consumer_log($url);
   $ret = NULL;

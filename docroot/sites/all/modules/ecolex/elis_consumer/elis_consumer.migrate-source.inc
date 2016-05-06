@@ -214,6 +214,7 @@ class CourtDecisionElisMigrateSource extends AbsractElisMigrateSource {
 
   public function __construct($source_url_pattern, $xml_encoding) {
     parent::__construct($source_url_pattern, 'id', $xml_encoding);
+    $this->source = new Drupal\elis_consumer\ElisXMLRowConsumer($source_url_pattern, 'id', $xml_encoding);
   }
 
   public function __toString() {
