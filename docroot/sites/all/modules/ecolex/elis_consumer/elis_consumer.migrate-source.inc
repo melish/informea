@@ -203,7 +203,8 @@ abstract class AbsractElisMigrateSource extends MigrateSource {
       $ret = (string) $str;
     }
     else {
-      $ret = utf8_decode((string) $str);
+      // $ret = utf8_decode((string) $str);
+      $ret = (string) $str;
     }
     return trim($ret);
   }
@@ -286,7 +287,6 @@ class CourtDecisionElisMigrateSource extends AbsractElisMigrateSource {
       'subject' => 'filter_multivalued_multilingual',
       'keyword' => 'filter_multivalued_multilingual',
       'typeOfText' => 'filter_multivalued_multilingual',
-      'languageOfDocument' => 'filter_single_multilingual',
       'referenceToNationalLegislation' => 'filter_multivalued',
       'referenceToEULegislation' => 'filter_multivalued',
       'referenceToCourtDecision' => 'filter_multivalued',

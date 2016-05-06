@@ -2032,70 +2032,6 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_source_language'.
-  $field_instances['node-court_decisions-field_source_language'] = array(
-    'bundle' => 'court_decisions',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'The language of the source document (can be different from the node\'s language)',
-    'display' => array(
-      'ajax' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'languagefield',
-        'settings' => array(
-          'format' => array(
-            'name' => 'name',
-          ),
-        ),
-        'type' => 'language_default',
-        'weight' => 19,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'treaty_listing' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_source_language',
-    'label' => 'Source language',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'select2_integration' => array(
-        'styling' => array(
-          'dropdownAutoWidth' => 0,
-          'placeholder' => '',
-        ),
-        'use_select2' => 1,
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-        'use_select2' => FALSE,
-      ),
-      'type' => 'options_select',
-      'weight' => 3,
-    ),
-  );
-
   // Exported field_instance:
   // 'node-court_decisions-field_territorial_subdivision'.
   $field_instances['node-court_decisions-field_territorial_subdivision'] = array(
@@ -7207,7 +7143,6 @@ function ecolex_field_default_field_instances() {
   t('Subject(s)');
   t('Summary');
   t('Territorial subdivision');
-  t('The language of the source document (can be different from the node\'s language)');
   t('Title');
   t('Title abbreviation');
   t('Title in another language');

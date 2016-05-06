@@ -123,6 +123,35 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     if (!empty($row->linkToFullText)) {
       $row->linkToFullText = str_replace('/server2.php', '', $row->linkToFullText);
     }
+    // Handle crappy date fields
+    if ($row->dateOfText == '2005-14-04') {
+      $row->dateOfText = '2005-04-14';
+    }
+    if ($row->dateOfText == '2008-14-03') {
+      $row->dateOfText = '2008-03-14';
+    }
+    if ($row->dateOfText == '2009-07-82') {
+      $row->dateOfText = '2009-09-02';
+    }
+    if ($row->dateOfText == '2003-70-91') {
+      $row->dateOfText = '2008-12-30';
+    }
+    if ($row->dateOfText == '2000-31-5') {
+      $row->dateOfText = '2008-03-15';
+    }
+    if ($row->dateOfText == '2010-05-72') {
+      $row->dateOfText = '2010-07-29';
+    }
+    if ($row->dateOfText == '2011-10-71') {
+      $row->dateOfText = '2011-12-10';
+    }
+    if ($row->dateOfText == '2011-00-52') {
+      $row->dateOfText = '2010-05-20';
+    }
+    if ($row->dateOfText == '2011-00-80') {
+      $row->dateOfText = '2011-08-01';
+    }
+
     return $this->validateRow($row);
   }
 

@@ -213,7 +213,7 @@ function elis_consumer_xml_http_request($url, $xml_encoding) {
         $data = trim($response);
       }
       else {
-        $data = trim(utf8_decode($response));
+        $data = trim(iconv('ISO-8859-15', 'UTF-8', $response));
       }
       $ret = simplexml_load_string($data);
     } catch (\Exception $e) {
