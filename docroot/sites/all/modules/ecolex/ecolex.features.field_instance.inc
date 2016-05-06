@@ -826,7 +826,7 @@ function ecolex_field_default_field_instances() {
     'settings' => array(
       'description_field' => 1,
       'entity_translation_sync' => 0,
-      'file_directory' => 'field_files',
+      'file_directory' => 'court-decisions',
       'file_extensions' => 'txt pdf doc docx xls rtf odt',
       'max_filesize' => '',
       'user_register_form' => FALSE,
