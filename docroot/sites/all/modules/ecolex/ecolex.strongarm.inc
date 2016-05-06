@@ -217,13 +217,13 @@ function ecolex_strongarm() {
           'weight' => '1',
         ),
         'redirect' => array(
-          'weight' => '29',
+          'weight' => '28',
         ),
         'metatags' => array(
-          'weight' => '35',
+          'weight' => '31',
         ),
         'xmlsitemap' => array(
-          'weight' => '28',
+          'weight' => '27',
         ),
       ),
       'display' => array(),

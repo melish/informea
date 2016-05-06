@@ -59,7 +59,7 @@ function ecolex_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 20,
+      'weight' => 19,
     ),
   );
 
@@ -113,7 +113,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
@@ -166,7 +166,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 40,
+      'weight' => 36,
     ),
   );
 
@@ -219,7 +219,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 14,
+      'weight' => 13,
     ),
   );
 
@@ -281,7 +281,7 @@ function ecolex_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 9,
+      'weight' => 8,
     ),
   );
 
@@ -335,7 +335,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 24,
+      'weight' => 23,
     ),
   );
 
@@ -388,7 +388,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 44,
+      'weight' => 40,
     ),
   );
 
@@ -442,7 +442,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 13,
+      'weight' => 12,
     ),
   );
 
@@ -495,7 +495,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 12,
+      'weight' => 11,
     ),
   );
 
@@ -545,7 +545,7 @@ function ecolex_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 53,
+      'weight' => 47,
     ),
   );
 
@@ -611,7 +611,7 @@ function ecolex_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 7,
+      'weight' => 6,
     ),
   );
 
@@ -677,7 +677,7 @@ function ecolex_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 8,
+      'weight' => 7,
     ),
   );
 
@@ -739,7 +739,7 @@ function ecolex_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 33,
+      'weight' => 29,
     ),
   );
 
@@ -799,7 +799,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 22,
+      'weight' => 21,
     ),
   );
 
@@ -860,7 +860,7 @@ function ecolex_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 51,
+      'weight' => 46,
     ),
   );
 
@@ -920,7 +920,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 21,
+      'weight' => 20,
     ),
   );
 
@@ -960,6 +960,59 @@ function ecolex_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_ecolex_treaty_raw',
     'label' => 'Reference to treaties',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 39,
+    ),
+  );
+
+  // Exported field_instance: 'node-court_decisions-field_faolex_reference_raw'.
+  $field_instances['node-court_decisions-field_faolex_reference_raw'] = array(
+    'bundle' => 'court_decisions',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 53,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_faolex_reference_raw',
+    'label' => 'Reference to FAOLEX',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1028,7 +1081,7 @@ function ecolex_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 25,
+      'weight' => 24,
     ),
   );
 
@@ -1091,7 +1144,7 @@ function ecolex_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 23,
+      'weight' => 22,
     ),
   );
 
@@ -1144,7 +1197,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 47,
+      'weight' => 44,
     ),
   );
 
@@ -1215,7 +1268,7 @@ function ecolex_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 27,
+      'weight' => 26,
     ),
   );
 
@@ -1268,7 +1321,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 5,
+      'weight' => 4,
     ),
   );
 
@@ -1330,7 +1383,7 @@ function ecolex_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 15,
+      'weight' => 14,
     ),
   );
 
@@ -1383,7 +1436,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 16,
+      'weight' => 15,
     ),
   );
 
@@ -1453,7 +1506,60 @@ function ecolex_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 45,
+      'weight' => 41,
+    ),
+  );
+
+  // Exported field_instance: 'node-court_decisions-field_notes'.
+  $field_instances['node-court_decisions-field_notes'] = array(
+    'bundle' => 'court_decisions',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 54,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_notes',
+    'label' => 'Notes',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 50,
     ),
   );
 
@@ -1512,7 +1618,7 @@ function ecolex_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 19,
+      'weight' => 18,
     ),
   );
 
@@ -1565,7 +1671,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 49,
+      'weight' => 45,
     ),
   );
 
@@ -1671,7 +1777,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 46,
+      'weight' => 42,
     ),
   );
 
@@ -1725,7 +1831,7 @@ function ecolex_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 42,
+      'weight' => 38,
     ),
   );
 
@@ -1778,7 +1884,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 17,
+      'weight' => 16,
     ),
   );
 
@@ -1839,7 +1945,7 @@ function ecolex_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 36,
+      'weight' => 32,
     ),
   );
 
@@ -1909,7 +2015,7 @@ function ecolex_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 26,
+      'weight' => 25,
     ),
   );
 
@@ -1975,7 +2081,7 @@ function ecolex_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 34,
+      'weight' => 30,
     ),
   );
 
@@ -2038,7 +2144,7 @@ function ecolex_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 56,
+      'weight' => 48,
     ),
   );
 
@@ -2099,7 +2205,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 10,
+      'weight' => 9,
     ),
   );
 
@@ -2152,7 +2258,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 38,
+      'weight' => 34,
     ),
   );
 
@@ -2205,7 +2311,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 37,
+      'weight' => 33,
     ),
   );
 
@@ -2259,7 +2365,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 39,
+      'weight' => 35,
     ),
   );
 
@@ -2321,7 +2427,7 @@ function ecolex_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 11,
+      'weight' => 10,
     ),
   );
 
@@ -2391,7 +2497,7 @@ function ecolex_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 18,
+      'weight' => 17,
     ),
   );
 
@@ -2461,7 +2567,7 @@ function ecolex_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 41,
+      'weight' => 37,
     ),
   );
 
@@ -2516,7 +2622,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 4,
+      'weight' => 3,
     ),
   );
 
@@ -7131,6 +7237,7 @@ function ecolex_field_default_field_instances() {
   t('Publisher');
   t('Reference number');
   t('Reference to EU legislation');
+  t('Reference to FAOLEX');
   t('Reference to court decision');
   t('Reference to national legislation');
   t('Reference to treaties');
