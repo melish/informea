@@ -38,7 +38,7 @@ function decision_views_default_views() {
   $handler->display->display_options['pager']['options']['tags']['next'] = 'Next';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Field: Content: Number */
+  /* Field: Content: Decision number */
   $handler->display->display_options['fields']['field_decision_number']['id'] = 'field_decision_number';
   $handler->display->display_options['fields']['field_decision_number']['table'] = 'field_data_field_decision_number';
   $handler->display->display_options['fields']['field_decision_number']['field'] = 'field_decision_number';
@@ -121,7 +121,7 @@ function decision_views_default_views() {
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_treaty] / [field_meeting]';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  /* Field: Content: Number */
+  /* Field: Content: Decision number */
   $handler->display->display_options['fields']['field_decision_number']['id'] = 'field_decision_number';
   $handler->display->display_options['fields']['field_decision_number']['table'] = 'field_data_field_decision_number';
   $handler->display->display_options['fields']['field_decision_number']['field'] = 'field_decision_number';

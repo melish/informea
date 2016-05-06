@@ -1587,7 +1587,6 @@ function decision_field_default_field_instances() {
   t('Date when decision was made, usually this is the date of the COP/MOP meeting.');
   t('Decision number');
   t('Description');
-  t('Document date');
   t('Documents');
   t('English meeting title');
   t('InforMEA Tags');
