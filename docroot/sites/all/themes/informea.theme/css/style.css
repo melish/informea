@@ -2285,3 +2285,43 @@ strong.excerpt {
   text-transform: uppercase;
   white-space: nowrap;
 }
+
+.back-to-top {
+  background-color: #ffcc33;
+  border-radius: 50%;
+  bottom: 30px;
+  display: block;
+  display: none;
+  height: 56px;
+  position: fixed;
+  right: 30px;
+  width: 56px;
+}
+
+.back-to-top:before {
+  border-bottom: 12px solid #005289;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid transparent;
+  bottom: 54px;
+  content: "";
+  display: block;
+  height: 0;
+  position: fixed;
+  right: 46px;
+  width: 0;
+}
+
+.back-to-top:after {
+  border-bottom: 12px solid #ffcc33;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid transparent;
+  bottom: 53px;
+  content: "";
+  display: block;
+  height: 0;
+  position: fixed;
+  right: 46px;
+  width: 0;
+}
