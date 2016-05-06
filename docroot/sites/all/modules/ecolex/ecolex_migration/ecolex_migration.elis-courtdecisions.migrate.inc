@@ -26,7 +26,7 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     $this->addFieldMapping('field_country', 'country');
     $this->addFieldMapping('field_ecolex_tags', 'subject');
     $this->addFieldMapping('field_ecolex_tags:source_type')->defaultValue('tid');
-    $this->addFieldMapping('field_language_of_document', 'languageOfDocument');
+    $this->addFieldMapping('field_source_language', 'languageOfDocument');
     $this->addFieldMapping('field_court_name', 'courtName');
     $this->addFieldMapping('field_sorting_date', 'dateOfText');
     $this->addFieldMapping('field_sorting_date:timezone')->defaultValue('Europe/Zurich');
@@ -153,6 +153,23 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     }
 
     return $this->validateRow($row);
+  }
+
+  function prepare($entity, $row) {
+    parent::prepare($entity, $row);
+    $entity->field_source_language[LANGUAGE_NONE] = array();
+    if (!empty($row->languageOfDocument)) {
+      $language = strtolower($row->languageOfDocument);
+      if ($language == 'english') {
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'en';
+      }
+      if ($language == 'spanish') {
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'es';
+      }
+      if ($language == 'french') {
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'fr';
+      }
+    }
   }
 
   public function validateRow($row) {

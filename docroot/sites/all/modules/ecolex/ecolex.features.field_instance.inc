@@ -1387,59 +1387,6 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-court_decisions-field_language_of_document'.
-  $field_instances['node-court_decisions-field_language_of_document'] = array(
-    'bundle' => 'court_decisions',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'ajax' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 51,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'treaty_listing' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_language_of_document',
-    'label' => 'Document language',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 54,
-    ),
-  );
-
   // Exported field_instance: 'node-court_decisions-field_link_to_abstract'.
   $field_instances['node-court_decisions-field_link_to_abstract'] = array(
     'bundle' => 'court_decisions',
@@ -2029,6 +1976,69 @@ function ecolex_field_default_field_instances() {
       ),
       'type' => 'date_popup',
       'weight' => 34,
+    ),
+  );
+
+  // Exported field_instance: 'node-court_decisions-field_source_language'.
+  $field_instances['node-court_decisions-field_source_language'] = array(
+    'bundle' => 'court_decisions',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'languagefield',
+        'settings' => array(
+          'format' => array(
+            'name' => 'name',
+          ),
+        ),
+        'type' => 'language_default',
+        'weight' => 52,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_source_language',
+    'label' => 'Source language',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'use_select2' => FALSE,
+      ),
+      'type' => 'options_select',
+      'weight' => 56,
     ),
   );
 
@@ -7085,7 +7095,6 @@ function ecolex_field_default_field_instances() {
   t('Date of original text');
   t('Date of text');
   t('Description');
-  t('Document language');
   t('ECOLEX Keywords');
   t('ECOLEX Tags');
   t('ECOLEX URL');
