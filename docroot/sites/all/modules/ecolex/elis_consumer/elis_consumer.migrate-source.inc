@@ -287,7 +287,6 @@ class CourtDecisionElisMigrateSource extends AbsractElisMigrateSource {
       'subject' => 'filter_multivalued_multilingual',
       'keyword' => 'filter_multivalued_multilingual',
       'typeOfText' => 'filter_multivalued_multilingual',
-      'languageOfDocument' => 'filter_single_multilingual',
       'referenceToNationalLegislation' => 'filter_multivalued',
       'referenceToEULegislation' => 'filter_multivalued',
       'referenceToCourtDecision' => 'filter_multivalued',

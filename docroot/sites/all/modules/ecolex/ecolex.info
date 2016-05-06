@@ -110,7 +110,6 @@ features[field_instance][] = node-court_decisions-field_reference_number
 features[field_instance][] = node-court_decisions-field_region
 features[field_instance][] = node-court_decisions-field_related_url
 features[field_instance][] = node-court_decisions-field_sorting_date
-features[field_instance][] = node-court_decisions-field_source_language
 features[field_instance][] = node-court_decisions-field_territorial_subdivision
 features[field_instance][] = node-court_decisions-field_title_of_text_other
 features[field_instance][] = node-court_decisions-field_title_of_text_short
