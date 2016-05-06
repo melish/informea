@@ -256,7 +256,7 @@ Decisions
           1 => 14,
         ),
         'parent' => '3',
-        'class' => 'row',
+        'class' => 'decision-files-other-container row',
         'hide_empty' => 0,
       ),
       12 => array(
@@ -398,8 +398,8 @@ Decisions
           1 => 23,
         ),
         'parent' => '3',
-        'class' => 'decision-tags-container row',
-        'hide_empty' => 0,
+        'class' => 'decision-tags-container',
+        'hide_empty' => 1,
       ),
       22 => array(
         'type' => 'column',
@@ -410,7 +410,7 @@ Decisions
           0 => 24,
         ),
         'class' => 'col-sm-9',
-        'hide_empty' => 0,
+        'hide_empty' => 1,
       ),
       23 => array(
         'type' => 'column',
@@ -421,7 +421,7 @@ Decisions
           0 => 25,
         ),
         'class' => 'col-sm-3',
-        'hide_empty' => 0,
+        'hide_empty' => 1,
       ),
       24 => array(
         'type' => 'row',
@@ -431,7 +431,7 @@ Decisions
         ),
         'parent' => '22',
         'class' => 'decision-',
-        'hide_empty' => 0,
+        'hide_empty' => 1,
       ),
       'related' => array(
         'type' => 'region',
@@ -440,7 +440,7 @@ Decisions
         'width_type' => '%',
         'parent' => '24',
         'class' => '',
-        'hide_empty' => 0,
+        'hide_empty' => 1,
       ),
       25 => array(
         'type' => 'row',
@@ -450,7 +450,7 @@ Decisions
         ),
         'parent' => '23',
         'class' => '',
-        'hide_empty' => 0,
+        'hide_empty' => 1,
       ),
       'tags_' => array(
         'type' => 'region',
@@ -459,7 +459,7 @@ Decisions
         'width_type' => '%',
         'parent' => '25',
         'class' => '',
-        'hide_empty' => 0,
+        'hide_empty' => 1,
       ),
       26 => array(
         'type' => 'row',
