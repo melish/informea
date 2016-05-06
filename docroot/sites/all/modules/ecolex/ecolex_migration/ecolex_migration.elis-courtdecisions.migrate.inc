@@ -26,7 +26,7 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     $this->addFieldMapping('field_country', 'country');
     $this->addFieldMapping('field_ecolex_tags', 'subject');
     $this->addFieldMapping('field_ecolex_tags:source_type')->defaultValue('tid');
-    //@todo: $this->addFieldMapping('field_source_language', 'languageOfDocument');
+    $this->addFieldMapping('field_language_of_document', 'languageOfDocument');
     $this->addFieldMapping('field_court_name', 'courtName');
     $this->addFieldMapping('field_sorting_date', 'dateOfText');
     $this->addFieldMapping('field_sorting_date:timezone')->defaultValue('Europe/Zurich');
@@ -44,7 +44,7 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     $this->addFieldMapping('field_court_decision_id_number', 'id');
     $this->addFieldMapping('field_type_of_text', 'typeOfText');
     $this->addFieldMapping('field_type_of_text:source_type')->defaultValue('tid');
-    $this->addFieldMapping('field_reference_to_legislation_t', 'referenceToNationalLegislation');
+    $this->addFieldMapping('field_ref_to_nat_legislation_raw', 'referenceToNationalLegislation');
     $this->addFieldMapping('field_ecolex_treaty_raw', 'referenceToTreaties');
     $this->addFieldMapping('field_court_decision_raw', 'referenceToCourtDecision');
     $this->addFieldMapping('field_court_decision_subdivision', 'subdivision');
@@ -54,7 +54,7 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     $this->addFieldMapping('field_link_to_abstract', 'linkToAbstract');
     $this->addFieldMapping('field_ecolex_decision_status', 'statusOfDecision');
     $this->addFieldMapping('field_ecolex_decision_status:source_type')->defaultValue('tid');
-    $this->addFieldMapping('field_legislation_eu_reference', 'referenceToEULegislation');
+    $this->addFieldMapping('field_ref_to_eu_legislation_raw', 'referenceToEULegislation');
     $this->addFieldMapping('field_city', 'seatOfCourt');
     $this->addFieldMapping('field_jurisdiction', 'courtJurisdiction');
     $this->addFieldMapping('field_jurisdiction:source_type')->defaultValue('tid');
@@ -70,10 +70,6 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     $this->addFieldMapping('field_files', 'linkToFullText');
     $this->addFieldMapping('field_files:description', 'linkToFullText');
     $this->addFieldMapping('field_files:file_replace')->defaultValue(MigrateFile::FILE_EXISTS_REUSE);
-
-    // @ToDo: Map legislation by source id
-    // $this->addFieldMapping('field_reference_to_legislation', 'referenceToNationalLegislation');
-    // @todo: field_faolex_url
 
     $this->addFieldMapping('comment')->defaultValue(FALSE);
     $this->addFieldMapping('uid')->defaultValue(0);
@@ -104,8 +100,6 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
       'field_date_of_entry:to', 'field_date_of_entry:rrule' ,
       'field_ecolex_decision_status:create_term', 'field_ecolex_decision_status:ignore_case',
       'field_faolex_url:language', 'field_faolex_url:attributes', 'field_faolex_url:title',
-      'field_ecolex_url:language', 'field_ecolex_url:attributes',
-      'field_ecolex_url:title', 'field_ecolex_url',
       'field_internet_reference_url:title', 'field_internet_reference_url:attributes',
       'field_sorting_date:to', 'field_sorting_date:rrule',
       'field_related_url:attributes',
