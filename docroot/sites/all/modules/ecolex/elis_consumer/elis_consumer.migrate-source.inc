@@ -203,7 +203,8 @@ abstract class AbsractElisMigrateSource extends MigrateSource {
       $ret = (string) $str;
     }
     else {
-      $ret = utf8_decode((string) $str);
+      // $ret = utf8_decode((string) $str);
+      $ret = (string) $str;
     }
     return trim($ret);
   }
