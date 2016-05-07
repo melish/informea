@@ -115,11 +115,11 @@ class LeoCourtDecisionMigration extends DrupalNode7Migration {
     }
     // anni
     if ($row->uid == 2) {
-      $row->uid = 212;
+      $row->uid = 242;
     }
     // alexandra
     if ($row->uid == 144) {
-      $row->uid = 213;
+      $row->uid = 243;
     }
   }
 
