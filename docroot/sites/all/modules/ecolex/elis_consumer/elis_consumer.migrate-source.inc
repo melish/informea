@@ -301,6 +301,9 @@ class CourtDecisionElisMigrateSource extends AbsractElisMigrateSource {
 
   function prepareItem($item) {
     $item->title_english = !empty($item->titleOfText[0]) ? $item->titleOfText[0] : NULL;
+    if (empty($item->title_english) && !empty($item->titleOfTextOther[0])) {
+      $item->title_english = $item->titleOfTextOther[0];
+    }
     $languages = array();
     $item->languages = array_unique($languages);
   }
