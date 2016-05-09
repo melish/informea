@@ -829,12 +829,18 @@ function treaty_url_decision($id_treaty, $id_decision) {
   );
   $link = url('node/' . $id_treaty, $options) . '/decisions?';
   $query = array();
-  $w = entity_metadata_wrapper('node', $id_decision);
-  if ($meeting = $w->field_meeting->value()) {
-    $query['meeting'] = $meeting->nid;
+  $fragment = '#';
+  try {
+    $w = entity_metadata_wrapper('node', $id_decision);
+    if ($meeting = $w->field_meeting->value()) {
+      $query['meeting'] = $meeting->nid;
+    }
+    $fragment .= 'decision-' . $id_decision;
   }
-  $fragment = 'decision-' . $id_decision;
-  return $link . drupal_http_build_query($query) . '#' . $fragment;
+  catch(Exception $e) {
+    watchdog_exception('treaty', $e);
+  }
+  return $link . drupal_http_build_query($query) . $fragment;
 }
 
 function treaty_url_national_report($id_treaty, $id_report) {
