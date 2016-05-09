@@ -952,6 +952,36 @@ Decisions
     $display->content['new-3b880e00-5e94-455e-8004-7a43ca36aece'] = $pane;
     $display->panels['text'][0] = 'new-3b880e00-5e94-455e-8004-7a43ca36aece';
     $pane = new stdClass();
+    $pane->pid = 'new-4bfec490-b7b1-4f6b-8edb-ed8f2d751f31';
+    $pane->panel = 'text';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_files';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'informea_pdf_js',
+      'delta_limit' => '0',
+      'delta_offset' => '0',
+      'delta_reversed' => 0,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '4bfec490-b7b1-4f6b-8edb-ed8f2d751f31';
+    $display->content['new-4bfec490-b7b1-4f6b-8edb-ed8f2d751f31'] = $pane;
+    $display->panels['text'][1] = 'new-4bfec490-b7b1-4f6b-8edb-ed8f2d751f31';
+    $pane = new stdClass();
     $pane->pid = 'new-042196e4-4f93-4987-9cab-133c3121514c';
     $pane->panel = 'treaty';
     $pane->type = 'entity_field';

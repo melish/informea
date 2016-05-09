@@ -158,7 +158,7 @@ function decision_views_default_views() {
   $handler->display->display_options['sorts']['random']['table'] = 'views';
   $handler->display->display_options['sorts']['random']['field'] = 'random';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Content: InforMEA Tags (field_informea_tags) */
+  /* Contextual filter: Content: InforMEA tags (field_informea_tags) */
   $handler->display->display_options['arguments']['field_informea_tags_tid']['id'] = 'field_informea_tags_tid';
   $handler->display->display_options['arguments']['field_informea_tags_tid']['table'] = 'field_data_field_informea_tags';
   $handler->display->display_options['arguments']['field_informea_tags_tid']['field'] = 'field_informea_tags_tid';
