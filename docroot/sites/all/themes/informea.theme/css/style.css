@@ -1796,6 +1796,11 @@ strong.excerpt {
 .above-content {
   /*background: #fc3;*/
 }
+iframe.pdfjs {
+  border: 0;
+  width: 100%;
+  height: 600px;
+}
 .node-type-decision .page-header {
   background: #1a3a6f;
   padding-bottom: 40px;

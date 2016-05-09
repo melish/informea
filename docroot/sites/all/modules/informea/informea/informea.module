@@ -210,7 +210,12 @@ function informea_menu() {
     'type'              => MENU_CALLBACK,
     'access arguments'  => array('access content'),
   );
-
+  $items['pdfjs'] = array(
+    'page callback'     => 'informea_pdfjs_view',
+    'page arguments'    => array(1),
+    'type'              => MENU_CALLBACK,
+    'access arguments'  => array('access content'),
+  );
   $items['admin/config/services/analytics/google-analytics'] = array(
     'title' => 'Configure Google Analytics',
     'description' => 'Configure the keys for Google Analytics tracking',
@@ -471,6 +476,10 @@ function informea_field_formatter_info() {
       'label' => t('Dropdown'),
       'field types' => array('file'),
     ),
+    'informea_pdf_js' => array(
+      'label' => t('PDF JS viewport'),
+      'field types' => array('file'),
+    ),
   );
 }
 
@@ -492,6 +501,14 @@ function informea_field_formatter_view($entity_type, $entity, $field, $instance,
       if (!empty($items)) {
         $elements[0] = array(
           '#markup' => theme('informea_file_dropdown', array('items' => $items)),
+        );
+      }
+      break;
+
+    case 'informea_pdf_js':
+      if (!empty($items)) {
+        $elements[0] = array(
+          '#markup' => theme('informea_pdf_js', array('files' => $items)),
         );
       }
       break;
@@ -518,6 +535,29 @@ function theme_informea_file_dropdown($variables) {
   ));
 }
 
+function theme_informea_pdf_js($variables) {
+  if (!empty($variables['files'])) {
+    $files = $variables['files'];
+    $url = NULL;
+    foreach ($files as $file) {
+      if ($file['filemime'] == 'application/pdf') {
+        $url = file_create_url($file['uri']);
+        break;
+      }
+    }
+    if ($url)
+    $link = url(
+      'pdfjs',
+      [
+        'absolute' => 1,
+        'query' => ['file' => $url]
+      ]
+    );
+    return sprintf('<iframe mozallowfullscreen="true" webkitallowfullscreen="true" class="pdfjs decision" src="%s"></iframe>', $link);
+  }
+  return FALSE;
+}
+
 function informea_theme() {
   return array(
     'informea_field_formatter_external_url' => array(
@@ -529,6 +569,15 @@ function informea_theme() {
     ),
     'informea_file_dropdown' => array(
       'variables' => array('items'),
+    ),
+    'informea_pdf_js' => array(
+      'variables' => array('files'),
+      'path' => drupal_get_path('module', 'informea') . '/templates',
+    ),
+    'pdfjs_markup' => array(
+      'template' => 'pdfjs_markup',
+      'variables' => array('file'),
+      'path' => drupal_get_path('module', 'informea') . '/templates',
     ),
     'informea_share_widget' => array(
       'variables' => array(
@@ -865,4 +914,19 @@ function informea_user_is_mea($user) {
   return count($user->roles) == 2
       && in_array(ROLE_MEA, $user->roles)
       && in_array('authenticated user', $user->roles);
+}
+
+function informea_pdfjs_view() {
+  global $base_url;
+  $q = $base_url;
+  if (strpos($_GET['file'], '/') !== 0) {
+    $q .= '/';
+  }
+  $q .= $_GET['file'];
+  str_replace('..', '', $q);
+  if (strpos(strtolower($q), '.pdf') !== strlen($q) - 4) {
+    die();
+  }
+  print theme('pdfjs_markup', ['file' => $q]);
+  die();
 }
