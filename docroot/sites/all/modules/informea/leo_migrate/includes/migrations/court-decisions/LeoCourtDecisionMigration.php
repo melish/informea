@@ -20,7 +20,7 @@ class LeoCourtDecisionMigration extends DrupalNode7Migration {
       'field_reference_number',
       'field_url', 'field_url:title', 'field_url:attributes', 'field_url:language',
       'field_number_of_pages',
-      'field_abstract',
+      'field_abstract', 'field_abstract:language',
       'field_court_decision_id_number',
       'field_related_url',
       'field_internet_reference_url', 'field_internet_reference_url:title', 'field_internet_reference_url:attributes', 'field_internet_reference_url:language',
