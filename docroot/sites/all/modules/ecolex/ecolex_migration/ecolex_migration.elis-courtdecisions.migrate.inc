@@ -152,7 +152,13 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     if ($row->dateOfText == '2011-00-80') {
       $row->dateOfText = '2011-08-01';
     }
-
+    // Translations
+    $languages = [];
+    $languages += $row->abstract_languages;
+    $languages += $row->titleOfText_languages;
+    $languages = array_unique($languages);
+    unset($languages['en']);
+    $row->languages = $languages;
     return $this->validateRow($row);
   }
 
