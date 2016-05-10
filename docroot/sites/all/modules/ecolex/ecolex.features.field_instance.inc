@@ -681,6 +681,116 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-court_decisions-field_document_abstract'.
+  $field_instances['node-court_decisions-field_document_abstract'] = array(
+    'bundle' => 'court_decisions',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 55,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_document_abstract',
+    'label' => 'Abstract document',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 1,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => 'court-decisions/abstract',
+      'file_extensions' => 'txt pdf doc docx xls rtf odt',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'file',
+      'settings' => array(
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
+      'weight' => 55,
+    ),
+  );
+
+  // Exported field_instance: 'node-court_decisions-field_document_other'.
+  $field_instances['node-court_decisions-field_document_other'] = array(
+    'bundle' => 'court_decisions',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 56,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_document_other',
+    'label' => 'Other documents',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 1,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => 'court-decisions/other',
+      'file_extensions' => 'txt pdf doc docx xls rtf odt',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'file',
+      'settings' => array(
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
+      'weight' => 56,
+    ),
+  );
+
   // Exported field_instance:
   // 'node-court_decisions-field_ecolex_decision_status'.
   $field_instances['node-court_decisions-field_ecolex_decision_status'] = array(
@@ -960,6 +1070,59 @@ function ecolex_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_ecolex_treaty_raw',
     'label' => 'Reference to treaties',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 43,
+    ),
+  );
+
+  // Exported field_instance: 'node-court_decisions-field_faolex_reference_raw'.
+  $field_instances['node-court_decisions-field_faolex_reference_raw'] = array(
+    'bundle' => 'court_decisions',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 53,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_faolex_reference_raw',
+    'label' => 'Reference to FAOLEX',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1510,6 +1673,59 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-court_decisions-field_notes'.
+  $field_instances['node-court_decisions-field_notes'] = array(
+    'bundle' => 'court_decisions',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 54,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_notes',
+    'label' => 'Notes',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 50,
+    ),
+  );
+
   // Exported field_instance: 'node-court_decisions-field_number_of_pages'.
   $field_instances['node-court_decisions-field_number_of_pages'] = array(
     'bundle' => 'court_decisions',
@@ -2029,6 +2245,69 @@ function ecolex_field_default_field_instances() {
       ),
       'type' => 'date_popup',
       'weight' => 34,
+    ),
+  );
+
+  // Exported field_instance: 'node-court_decisions-field_source_language'.
+  $field_instances['node-court_decisions-field_source_language'] = array(
+    'bundle' => 'court_decisions',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'languagefield',
+        'settings' => array(
+          'format' => array(
+            'name' => 'name',
+          ),
+        ),
+        'type' => 'language_default',
+        'weight' => 52,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_source_language',
+    'label' => 'Source language',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'use_select2' => FALSE,
+      ),
+      'type' => 'options_select',
+      'weight' => 48,
     ),
   );
 
@@ -7065,6 +7344,7 @@ function ecolex_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Abstract');
+  t('Abstract document');
   t('Alternative Record ID');
   t('Amends');
   t('Attached files');
@@ -7116,12 +7396,14 @@ function ecolex_field_default_field_instances() {
   t('Official publication');
   t('Organizations');
   t('Original ID');
+  t('Other documents');
   t('Paper Title');
   t('Publication Place');
   t('Publication reference');
   t('Publisher');
   t('Reference number');
   t('Reference to EU legislation');
+  t('Reference to FAOLEX');
   t('Reference to court decision');
   t('Reference to national legislation');
   t('Reference to treaties');

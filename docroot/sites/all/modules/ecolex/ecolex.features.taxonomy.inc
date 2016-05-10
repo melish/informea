@@ -213,7 +213,7 @@ function ecolex_taxonomy_default_vocabularies() {
       'name' => 'Thesaurus - Emerging terms',
       'machine_name' => 'thesaurus_emerging_terms',
       'description' => 'LEO emerging terms. Imported and synchronized with VocBench DTIE',
-      'hierarchy' => 0,
+      'hierarchy' => 1,
       'module' => 'taxonomy',
       'weight' => 0,
       'language' => 'und',
