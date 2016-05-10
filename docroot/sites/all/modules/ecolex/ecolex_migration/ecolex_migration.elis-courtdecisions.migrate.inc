@@ -115,6 +115,15 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
         if (!empty($name) && $name == 'United Kingdom') {
           $name = 'United Kingdom of Great Britain and Northern Ireland';
         }
+        if (!empty($name) && $name == 'korea, republic of') {
+          $name = 'Republic of Korea';
+        }
+        if (!empty($name) && $name == 'anguilla (uk)') {
+          $name = 'anguilla';
+        }
+        if (!empty($name) && $name == 'europa island (france)') {
+          $name = 'france';
+        }
         if (!empty($name) && $name == 'Micronesia, Fed. States') {
           $name = 'Micronesia (Federated States of)';
         }
