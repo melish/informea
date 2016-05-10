@@ -51,7 +51,7 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     $this->addFieldMapping('field_justices', 'justices');
     $this->addFieldMapping('field_territorial_subdivision', 'territorialSubdivision');
     $this->addFieldMapping('field_territorial_subdivision:source_type')->defaultValue('tid');
-    $this->addFieldMapping('field_link_to_abstract', 'linkToAbstract');
+    $this->addFieldMapping('field_document_abstract', 'linkToAbstract');
     $this->addFieldMapping('field_ecolex_decision_status', 'statusOfDecision');
     $this->addFieldMapping('field_ecolex_decision_status:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_ref_to_eu_legislation_raw', 'referenceToEULegislation');
