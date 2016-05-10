@@ -113,6 +113,9 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     if (!empty($row->country)) {
       $countries = array();
       foreach($row->country as $name) {
+        if (!empty($name) && $name == 'United Kingdom') {
+          $name = 'United Kingdom of Great Britain and Northern Ireland';
+        }
         /** @var stdClass $country */
         if ($country = country_get_by_name($name)) {
           $countries[] = $country->nid;
