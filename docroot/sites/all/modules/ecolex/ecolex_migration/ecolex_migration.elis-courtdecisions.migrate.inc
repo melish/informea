@@ -40,7 +40,6 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     $this->addFieldMapping('field_ecolex_keywords:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_abstract', 'abstract');
     $this->addFieldMapping('field_abstract:language', 'abstract_languages');
-    $this->addFieldMapping('field_court_decision_id_number', 'id');
     $this->addFieldMapping('field_type_of_text', 'typeOfText');
     $this->addFieldMapping('field_type_of_text:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_ref_to_nat_legislation_raw', 'referenceToNationalLegislation');
@@ -238,7 +237,7 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
         $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'lv';
       }
       if ($language == 'moldavian') {
-        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'md';
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'mo';
       }
     }
   }
