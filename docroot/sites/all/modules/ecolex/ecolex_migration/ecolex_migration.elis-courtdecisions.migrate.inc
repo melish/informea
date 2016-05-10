@@ -33,8 +33,7 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     $this->addFieldMapping('field_reference_number', 'referenceNumber');
     $this->addFieldMapping('field_number_of_pages', 'numberOfPages');
     $this->addFieldMapping('field_available_in', 'availableIn');
-    $this->addFieldMapping('field_url', 'linkToFullText');
-    $this->addFieldMapping('field_url_other', 'linkToFullTextOther');
+    $this->addFieldMapping('field_document_other', 'linkToFullTextOther');
     $this->addFieldMapping('field_internet_reference_url', 'internetReference');
     $this->addFieldMapping('field_related_url', 'relatedWebSite');
     $this->addFieldMapping('field_ecolex_keywords', 'keyword');
@@ -51,7 +50,7 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     $this->addFieldMapping('field_justices', 'justices');
     $this->addFieldMapping('field_territorial_subdivision', 'territorialSubdivision');
     $this->addFieldMapping('field_territorial_subdivision:source_type')->defaultValue('tid');
-    $this->addFieldMapping('field_link_to_abstract', 'linkToAbstract');
+    $this->addFieldMapping('field_document_abstract', 'linkToAbstract');
     $this->addFieldMapping('field_ecolex_decision_status', 'statusOfDecision');
     $this->addFieldMapping('field_ecolex_decision_status:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_ref_to_eu_legislation_raw', 'referenceToEULegislation');
@@ -113,6 +112,24 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     if (!empty($row->country)) {
       $countries = array();
       foreach($row->country as $name) {
+        if (!empty($name) && $name == 'United Kingdom') {
+          $name = 'United Kingdom of Great Britain and Northern Ireland';
+        }
+        if (!empty($name) && $name == 'korea, republic of') {
+          $name = 'Republic of Korea';
+        }
+        if (!empty($name) && $name == 'anguilla (uk)') {
+          $name = 'anguilla';
+        }
+        if (!empty($name) && $name == 'europa island (france)') {
+          $name = 'france';
+        }
+        if (!empty($name) && $name == 'Micronesia, Fed. States') {
+          $name = 'Micronesia (Federated States of)';
+        }
+        if (!empty($name) && $name == 'Tanzania, Un. Rep. of') {
+          $name = 'United Republic of Tanzania';
+        }
         /** @var stdClass $country */
         if ($country = country_get_by_name($name)) {
           $countries[] = $country->nid;
@@ -126,6 +143,10 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     }
     if (!empty($row->linkToAbstract)) {
       $row->linkToAbstract = str_replace('/server2.php', '', $row->linkToAbstract);
+      $row->linkToAbstract = str_replace('http://www.ecolex.org/', 'http://www.ecolex.org:8984/', $row->linkToAbstract);
+    }
+    if (!empty($row->linkToFullTextOther)) {
+      $row->linkToFullTextOther = str_replace('/server2.php', '', $row->linkToFullTextOther);
       $row->linkToAbstract = str_replace('http://www.ecolex.org/', 'http://www.ecolex.org:8984/', $row->linkToAbstract);
     }
     // Handle crappy date fields
