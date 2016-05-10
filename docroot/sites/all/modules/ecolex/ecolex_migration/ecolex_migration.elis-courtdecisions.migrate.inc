@@ -187,6 +187,62 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     return $this->validateRow($row);
   }
 
+  function prepare($entity, $row) {
+    parent::prepare($entity, $row);
+    $entity->field_source_language[LANGUAGE_NONE] = array();
+    if (!empty($row->languageOfDocument)) {
+      $language = strtolower($row->languageOfDocument);
+      if ($language == 'english') {
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'en';
+      }
+      if ($language == 'spanish') {
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'es';
+      }
+      if ($language == 'french') {
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'fr';
+      }
+      if ($language == 'german') {
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'de';
+      }
+      if ($language == 'dutch') {
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'nl';
+      }
+      if ($language == 'italian') {
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'it';
+      }
+      if ($language == 'swedish') {
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'sv';
+      }
+      if ($language == 'portuguese') {
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'pt';
+      }
+      if ($language == 'danish') {
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'da';
+      }
+      if ($language == 'greek') {
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'el';
+      }
+      if ($language == 'finnish') {
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'fi';
+      }
+      if ($language == 'russian') {
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'ru';
+      }
+      if ($language == 'estonian') {
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'et';
+      }
+      if ($language == 'slovak') {
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'sk';
+      }
+      if ($language == 'latvian') {
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'lv';
+      }
+      if ($language == 'moldavian') {
+        $entity->field_source_language[LANGUAGE_NONE][0]['value'] = 'md';
+      }
+    }
+  }
+
   public function validateRow($row) {
     return !empty($row->title_english);
   }
