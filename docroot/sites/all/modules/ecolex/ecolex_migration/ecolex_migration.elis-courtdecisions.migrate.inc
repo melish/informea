@@ -146,7 +146,7 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     }
     if (!empty($row->linkToFullTextOther)) {
       $row->linkToFullTextOther = str_replace('/server2.php', '', $row->linkToFullTextOther);
-      $row->linkToAbstract = str_replace('http://www.ecolex.org/', 'http://www.ecolex.org:8984/', $row->linkToAbstract);
+      $row->linkToFullTextOther = str_replace('http://www.ecolex.org/', 'http://www.ecolex.org:8984/', $row->linkToFullTextOther);
     }
     // Handle crappy date fields
     if ($row->dateOfText == '2005-14-04') {
