@@ -35,7 +35,11 @@ function ws_provider_export_node_as_json($uuid) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->propertyCondition('uuid', $uuid);
-  $node = reset($query->execute()['node']);
+  $result = $query->execute();
+  if (empty($result)) {
+    drupal_not_found();
+  }
+  $node = reset($result['node']);
   $node = node_load($node->nid);
   if (!$node) {
     drupal_not_found();
@@ -107,10 +111,18 @@ function ws_provider_export_node_as_json($uuid) {
       if (is_array($values)) {
         if (!empty($values)) {
           foreach ($values as $key => $value) {
+            $translations = [];
             $terms[$key] = (object) array(
               'label' => $value->name,
               'url' => url(drupal_get_path_alias('taxonomy/term/' . $value->tid), array('absolute' => TRUE)),
             );
+            $term = taxonomy_term_load($value->tid);
+            foreach ($term->name_field as $language => $translation) {
+              if ($language != 'en') {
+                $translations[$language] = $translation;
+              }
+            }
+            $terms[$key]->translations = $translations;
           }
           $data[$field_name] = $terms;
           continue;
