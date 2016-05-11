@@ -49,7 +49,7 @@ function ws_provider_export_node_as_json($uuid) {
   $w = entity_metadata_wrapper('node', $node);
   foreach (array_keys($fields) as $field_name) {
     $info = field_info_field($field_name);
-    if ($field_name == 'field_files') {
+    if ($info['type'] == 'file') {
       $files = array();
       if (!empty($node->{$field_name})) {
         foreach ($node->{$field_name} as $lang => $lang_files) {
