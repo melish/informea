@@ -90,7 +90,7 @@ function informea_views_default_views() {
     'skip_safe' => 0,
     'skip_empty_values' => 0,
   );
-  /* Field: Content: InforMEA Tags */
+  /* Field: Content: InforMEA tags */
   $handler->display->display_options['fields']['field_informea_tags']['id'] = 'field_informea_tags';
   $handler->display->display_options['fields']['field_informea_tags']['table'] = 'field_data_field_informea_tags';
   $handler->display->display_options['fields']['field_informea_tags']['field'] = 'field_informea_tags';
@@ -332,7 +332,7 @@ function informea_views_default_views() {
     'image_style' => 'logo',
     'image_link' => '',
   );
-  /* Field: Indexed Content: URL */
+  /* Field: Indexed Content: Link to decision on MEA website */
   $handler->display->display_options['fields']['field_url']['id'] = 'field_url';
   $handler->display->display_options['fields']['field_url']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_url']['field'] = 'field_url';
@@ -471,7 +471,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_entity'] = 0;
-  /* Field: Indexed Content: URL */
+  /* Field: Indexed Content: Link to decision on MEA website */
   $handler->display->display_options['fields']['field_url']['id'] = 'field_url';
   $handler->display->display_options['fields']['field_url']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_url']['field'] = 'field_url';
@@ -612,12 +612,6 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['link_to_taxonomy'] = TRUE;
-  /* Field: Field: Keyword(s) */
-  $handler->display->display_options['fields']['field_keywords']['id'] = 'field_keywords';
-  $handler->display->display_options['fields']['field_keywords']['table'] = 'field_data_field_keywords';
-  $handler->display->display_options['fields']['field_keywords']['field'] = 'field_keywords';
-  $handler->display->display_options['fields']['field_keywords']['label'] = 'ECOLEX keywords';
-  $handler->display->display_options['fields']['field_keywords']['delta_offset'] = '0';
   /* Field: Taxonomy term: ECOLEX terms */
   $handler->display->display_options['fields']['field_thesaurus_map_ecolex']['id'] = 'field_thesaurus_map_ecolex';
   $handler->display->display_options['fields']['field_thesaurus_map_ecolex']['table'] = 'field_data_field_thesaurus_map_ecolex';

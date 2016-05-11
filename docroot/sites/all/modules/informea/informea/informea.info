@@ -107,7 +107,6 @@ features[field_instance][] = taxonomy_term-thesaurus_ieg-description_field
 features[field_instance][] = taxonomy_term-thesaurus_ieg-name_field
 features[field_instance][] = taxonomy_term-thesaurus_informea-description_field
 features[field_instance][] = taxonomy_term-thesaurus_informea-field_ecolex_tags
-features[field_instance][] = taxonomy_term-thesaurus_informea-field_keywords
 features[field_instance][] = taxonomy_term-thesaurus_informea-field_sorting_order
 features[field_instance][] = taxonomy_term-thesaurus_informea-field_taxonomy_term_uri
 features[field_instance][] = taxonomy_term-thesaurus_informea-field_term_geg_url

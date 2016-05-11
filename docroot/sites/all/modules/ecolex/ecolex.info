@@ -51,7 +51,6 @@ features[field_base][] = field_internet_reference_url
 features[field_base][] = field_isbn
 features[field_base][] = field_isis_number
 features[field_base][] = field_justices
-features[field_base][] = field_keywords
 features[field_base][] = field_literature_call_number
 features[field_base][] = field_literature_paper_title
 features[field_base][] = field_literature_serial_title
