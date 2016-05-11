@@ -89,9 +89,8 @@ class MeetingsODataMigration extends AbstractODataMigration {
       'field_event_repetition:source_type', 'field_event_kind:source_type',
       'field_event_type:source_type', 'field_informea_tags',
       'field_informea_tags:source_type', 'field_informea_tags:create_term',
-      'field_tags', 'field_tags:source_type', 'field_tags:create_term',
-      'field_tags:ignore_case', 'field_url:title', 'field_url:attributes',
-      'field_url:language', 'field_event_images:source_dir',
+      'field_url:title', 'field_url:attributes', 'field_url:language',
+      'field_event_images:source_dir',
       'field_last_update:rrule', 'field_last_update:to',
     ));
   }

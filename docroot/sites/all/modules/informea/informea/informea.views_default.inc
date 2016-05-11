@@ -332,7 +332,7 @@ function informea_views_default_views() {
     'image_style' => 'logo',
     'image_link' => '',
   );
-  /* Field: Indexed Content: Link to decision on MEA website */
+  /* Field: Indexed Content: URL */
   $handler->display->display_options['fields']['field_url']['id'] = 'field_url';
   $handler->display->display_options['fields']['field_url']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_url']['field'] = 'field_url';
@@ -358,15 +358,6 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nid']['link_to_entity'] = 0;
-  /* Field: Indexed Content: Tags */
-  $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
-  $handler->display->display_options['fields']['field_tags']['table'] = 'search_api_index_news_search_index';
-  $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
-  $handler->display->display_options['fields']['field_tags']['list']['mode'] = 'list';
-  $handler->display->display_options['fields']['field_tags']['list']['separator'] = '';
-  $handler->display->display_options['fields']['field_tags']['link_to_entity'] = 0;
-  $handler->display->display_options['fields']['field_tags']['view_mode'] = 'full';
-  $handler->display->display_options['fields']['field_tags']['bypass_access'] = 0;
   /* Field: Indexed Content: Date created */
   $handler->display->display_options['fields']['created']['id'] = 'created';
   $handler->display->display_options['fields']['created']['table'] = 'search_api_index_news_search_index';
@@ -471,7 +462,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_entity'] = 0;
-  /* Field: Indexed Content: Link to decision on MEA website */
+  /* Field: Indexed Content: URL */
   $handler->display->display_options['fields']['field_url']['id'] = 'field_url';
   $handler->display->display_options['fields']['field_url']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_url']['field'] = 'field_url';
@@ -658,7 +649,6 @@ function informea_views_default_views() {
     t('.'),
     t(','),
     t('Name'),
-    t('ECOLEX keywords'),
     t('ECOLEX subjects'),
     t('Operations'),
     t('Term'),
