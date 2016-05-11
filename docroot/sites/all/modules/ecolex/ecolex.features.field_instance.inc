@@ -3976,66 +3976,6 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-legislation-field_keywords'.
-  $field_instances['node-legislation-field_keywords'] = array(
-    'bundle' => 'legislation',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'ajax' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'i18n_taxonomy',
-        'settings' => array(),
-        'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 8,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'treaty_listing' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_keywords',
-    'label' => 'Keyword(s)',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'select2_integration' => array(
-        'styling' => array(
-          'dropdownAutoWidth' => 0,
-          'placeholder' => '',
-        ),
-        'use_select2' => 1,
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
-      'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
-      ),
-      'type' => 'taxonomy_autocomplete',
-      'weight' => 45,
-    ),
-  );
-
   // Exported field_instance: 'node-legislation-field_notes'.
   $field_instances['node-legislation-field_notes'] = array(
     'bundle' => 'legislation',
@@ -5661,66 +5601,6 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-literature-field_keywords'.
-  $field_instances['node-literature-field_keywords'] = array(
-    'bundle' => 'literature',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'ajax' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'i18n_taxonomy',
-        'settings' => array(),
-        'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 24,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'treaty_listing' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_keywords',
-    'label' => 'Keyword(s)',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'select2_integration' => array(
-        'styling' => array(
-          'dropdownAutoWidth' => 0,
-          'placeholder' => '',
-        ),
-        'use_select2' => 0,
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
-      'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
-      ),
-      'type' => 'taxonomy_autocomplete',
-      'weight' => 26,
-    ),
-  );
-
   // Exported field_instance: 'node-literature-field_literature_call_number'.
   $field_instances['node-literature-field_literature_call_number'] = array(
     'bundle' => 'literature',
@@ -7064,7 +6944,6 @@ function ecolex_field_default_field_instances() {
   t('Instance');
   t('Internet Reference');
   t('Justice(s)');
-  t('Keyword(s)');
   t('Legislation ID number');
   t('Link to full text');
   t('Literature type');
