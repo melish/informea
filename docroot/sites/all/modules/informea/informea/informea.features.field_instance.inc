@@ -1175,48 +1175,6 @@ function informea_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-thesaurus_informea-field_keywords'.
-  $field_instances['taxonomy_term-thesaurus_informea-field_keywords'] = array(
-    'bundle' => 'thesaurus_informea',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 10,
-      ),
-    ),
-    'entity_type' => 'taxonomy_term',
-    'field_name' => 'field_keywords',
-    'label' => 'ECOLEX Keyword(s)',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'select2_integration' => array(
-        'styling' => array(
-          'dropdownAutoWidth' => 0,
-          'placeholder' => '',
-        ),
-        'use_select2' => 0,
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'options',
-      'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
-        'use_select2' => FALSE,
-      ),
-      'type' => 'options_select',
-      'weight' => 8,
-    ),
-  );
-
   // Exported field_instance:
   // 'taxonomy_term-thesaurus_informea-field_sorting_order'.
   $field_instances['taxonomy_term-thesaurus_informea-field_sorting_order'] = array(
@@ -1701,7 +1659,6 @@ function informea_field_default_field_instances() {
   t('Attached files');
   t('Body');
   t('Description');
-  t('ECOLEX Keyword(s)');
   t('ECOLEX terms');
   t('Enter a comma-separated list of words to describe your content.');
   t('Environmental Goal');
