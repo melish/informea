@@ -3,6 +3,7 @@
 namespace Drupal\akoma_ntoso;
 
 use Drupal\akoma_ntoso\Elements\Element;
+use Drupal\akoma_ntoso\Elements\Document;
 
 class AkomaNtoso {
 
@@ -21,7 +22,7 @@ class AkomaNtoso {
     $this->xml->addChild('akomaNtoso');
   }
 
-  public function addChild(Element $element) {
+  public function addChild(Document $element) {
     $this->children[] = $element;
   }
 
