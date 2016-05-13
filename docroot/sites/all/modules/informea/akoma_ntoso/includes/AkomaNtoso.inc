@@ -18,8 +18,7 @@ class AkomaNtoso {
   protected $children = array();
 
   public function __construct() {
-    $this->xml = new \SimpleXMLElement('<xml/>');
-    $this->xml->addChild('akomaNtoso');
+    $this->xml = new \SimpleXMLElement('<akomaNtoso/>');
   }
 
   public function addChild(Document $element) {
@@ -30,11 +29,9 @@ class AkomaNtoso {
    * @return \SimpleXMLElement
    */
   public function render() {
-    /** @var \SimpleXMLElement $root */
-    $root = $this->xml->children()[0];
     foreach ($this->children as $child) {
       /** @var Element $child */
-      $child->appendToXML($root);
+      $child->appendToXML($this->xml);
     }
     return $this->xml;
   }
