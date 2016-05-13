@@ -1385,8 +1385,21 @@ EOT;
 
 function treaty_export_text_to_xml($treaty) {
   drupal_add_http_header('Content-Type', 'application/xml');
+  $wrapper = entity_metadata_wrapper('node', $treaty);
   $akomaNtoso = new AkomaNtoso();
   $document = new AkomaNtosoDocument();
+
+  /* META */
+  $meta = new AkomaNtosoElement('meta');
+  $publication = new AkomaNtosoElement('publication');
+  $publication->addAttribute('date', gmdate("Y/m/d", $wrapper->field_entry_into_force->value()));
+  $publication->addAttribute('name', $wrapper->field_official_name->value());
+  $publication->addAttribute('showAs', $wrapper->label());
+  $meta->addChild($publication);
+  $document->addChild($meta);
+  /* END META */
+
+  /* BODY */
   $body = new AkomaNtosoElement('body');
   $articles = treaty_get_treaty_text($treaty->nid);
   foreach ($articles as $article) {
@@ -1402,8 +1415,9 @@ function treaty_export_text_to_xml($treaty) {
     }
     $body->addChild($articleElement);
   }
-
   $document->addChild($body);
+  /* END BODY */
+
   $akomaNtoso->addChild($document);
   print $akomaNtoso->render()->asXML();
   drupal_exit();
