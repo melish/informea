@@ -2,11 +2,15 @@
 
 namespace Drupal\akoma_ntoso\Elements;
 
-abstract class Element {
+class Element {
 
   protected $type;
   protected $attributes = NULL;
   protected $children = array();
+
+  public function __construct($type) {
+    $this->type = $type;
+  }
 
   public function addChild(Element $element) {
     $this->children[] = $element;

@@ -18,7 +18,7 @@ class AkomaNtoso {
 
   public function __construct() {
     $this->xml = new \SimpleXMLElement('<xml/>');
-    $this->xml->addChild('akomantoso');
+    $this->xml->addChild('akomaNtoso');
   }
 
   public function addChild(Element $element) {

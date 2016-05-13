@@ -21,6 +21,6 @@ class Document extends Element {
     if (!in_array($type, self::$acceptedDocumentTypes)) {
       throw new \Exception("Document type not accepted: '{$type}'.");
     }
-    $this->type = $type;
+    parent::__construct($type);
   }
 }
