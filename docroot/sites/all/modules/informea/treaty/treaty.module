@@ -1403,8 +1403,13 @@ function treaty_export_text_to_xml($treaty) {
   $body = new AkomaNtosoElement('body');
   $articles = treaty_get_treaty_text($treaty->nid);
   foreach ($articles as $article) {
-    $articleElement = new AkomaNtosoElement('article');
-    $articleElement->addChild(new AkomaNtosoElement('heading', $article->official_title));
+    if (strtolower(trim($article->official_title)) == 'preamble') {
+      $articleElement = new AkomaNtosoElement('preamble');
+    }
+    else {
+      $articleElement = new AkomaNtosoElement('article');
+      $articleElement->addChild(new AkomaNtosoElement('heading', $article->official_title));
+    }
     if (!empty($article->paragraphs)) {
       foreach ($article->paragraphs as $paragraph) {
         $paragraphElement = new AkomaNtosoElement('paragraph');
@@ -1413,7 +1418,13 @@ function treaty_export_text_to_xml($treaty) {
         $articleElement->addChild($paragraphElement);
       }
     }
-    $body->addChild($articleElement);
+    switch ($articleElement->getType()) {
+      case 'preamble':
+        $document->addChild($articleElement);
+        break;
+      default:
+        $body->addChild($articleElement);
+    }
   }
   $document->addChild($body);
   /* END BODY */

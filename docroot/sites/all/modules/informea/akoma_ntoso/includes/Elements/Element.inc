@@ -18,6 +18,10 @@ class Element {
     $this->type = $type;
   }
 
+  public function getType() {
+    return $this->type;
+  }
+
   public function addAttribute($name, $value) {
     $this->attributes[$name] = $value;
   }
