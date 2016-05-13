@@ -2,9 +2,9 @@
 
 namespace Drupal\akoma_ntoso\Elements;
 
-class Documents extends Element {
+class Document extends Element {
 
-  static $acceptedDocumentTypes = [
+  protected static $acceptedDocumentTypes = [
     'act',
     'bill',
     'judgement',
@@ -17,12 +17,10 @@ class Documents extends Element {
     'doc',
   ];
 
-  protected $documentType;
-
   public function __construct($type = 'doc') {
     if (!in_array($type, self::$acceptedDocumentTypes)) {
-      throw new \Exception('Document type not found.');
+      throw new \Exception("Document type not accepted: '{$type}'.");
     }
-    $this->documentType = $type;
+    $this->type = $type;
   }
 }
