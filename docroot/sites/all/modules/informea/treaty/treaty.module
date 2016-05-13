@@ -1383,6 +1383,19 @@ EOT;
   }
 }
 
+function treaty_export_text_add_tags(AkomaNtosoElement &$akomaNtosoElement, $node) {
+  $wrapper = entity_metadata_wrapper('node', $node);
+  $tags = $wrapper->field_informea_tags->value();
+  if (!empty($tags) && is_array($tags)) {
+    foreach ($tags as $tag) {
+      $tw = entity_metadata_wrapper('taxonomy_term', $tag);
+      $keywordElement = new AkomaNtosoElement('keyword', $tw->getIdentifier());
+      $keywordElement->addAttribute('dictionary', 'thesaurus');
+      $akomaNtosoElement->addChild($keywordElement);
+    }
+  }
+}
+
 function treaty_export_text_to_xml($treaty) {
   drupal_add_http_header('Content-Type', 'application/xml');
   $wrapper = entity_metadata_wrapper('node', $treaty);
@@ -1410,9 +1423,11 @@ function treaty_export_text_to_xml($treaty) {
       $articleElement = new AkomaNtosoElement('article');
       $articleElement->addChild(new AkomaNtosoElement('heading', $article->official_title));
     }
+    treaty_export_text_add_tags($articleElement, $article);
     if (!empty($article->paragraphs)) {
       foreach ($article->paragraphs as $paragraph) {
         $paragraphElement = new AkomaNtosoElement('paragraph');
+        treaty_export_text_add_tags($paragraphElement, $paragraph);
         $text = field_view_field('node', $paragraph, 'body', 'full')[0]['#markup'];
         $paragraphElement->addChild(new AkomaNtosoElement('content', $text));
         $articleElement->addChild($paragraphElement);
