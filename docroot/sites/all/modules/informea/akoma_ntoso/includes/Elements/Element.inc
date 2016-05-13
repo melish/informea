@@ -16,7 +16,7 @@ abstract class Element {
     $current = $parent->addChild($this->type);
     foreach ($this->children as $child) {
       /** @var Element $child */
-     $child->render($current);
+     $child->appendToXML($current);
     }
   }
 
