@@ -18,9 +18,14 @@ class Document extends Element {
   ];
 
   public function __construct($type = 'doc') {
+    parent::__construct($type);
+    $this->setType($type);
+  }
+
+  public function setType($type) {
     if (!in_array($type, self::$acceptedDocumentTypes)) {
       throw new \Exception("Document type not accepted: '{$type}'.");
     }
-    parent::__construct($type);
+    $this->type = $type;
   }
 }

@@ -10,8 +10,12 @@ class Element {
   protected $content = NULL;
 
   public function __construct($type, $content = NULL) {
-    $this->type = $type;
+    $this->setType($type);
     $this->setContent($content);
+  }
+
+  public function setType($type) {
+    $this->type = $type;
   }
 
   public function addAttribute($name, $value) {
