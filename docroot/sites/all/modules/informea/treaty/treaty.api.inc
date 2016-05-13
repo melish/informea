@@ -25,7 +25,7 @@ function treaty_url_context($path) {
     $parts = explode('/', $path);
   }
   foreach ($parts as $part) {
-    if (in_array($part, array('print', 'text', 'protocols', 'decisions', 'parties', 'national-reports', 'action-plans'))) {
+    if (in_array($part, array('print', 'text', 'protocols', 'decisions', 'parties', 'national-reports', 'action-plans', 'export'))) {
       return $part;
     }
   }

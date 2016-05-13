@@ -6,6 +6,10 @@
 
 include_once 'treaty.features.inc';
 
+use Drupal\akoma_ntoso\AkomaNtoso;
+use Drupal\akoma_ntoso\Elements\Element as AkomaNtosoElement;
+use Drupal\akoma_ntoso\Elements\Document as AkomaNtosoDocument;
+
 define('INFORMEA_TREATY_TEXT_ALLOWED_TAGS', '<table><tr><td><th><tbody><thead><b><i><em><strong>');
 
 /**
@@ -427,6 +431,10 @@ EOT;
           return;
         }
         $node->content['context'] = country_deliverable_render_action_plans($rows);
+        break;
+
+      case 'export':
+        treaty_export_text_to_xml($node);
         break;
     }
     informea_theme_set_page_breadcrumb($breadcrumbs);
@@ -1373,4 +1381,19 @@ EOT;
   foreach ($keys as $key => $id) {
     analytics_integration_piwik_send_hit($key, $id, $page_title);
   }
+}
+
+function treaty_export_text_to_xml($treaty) {
+  drupal_add_http_header('Content-Type', 'application/xml');
+  $document = new AkomaNtosoDocument();
+  $articles = treaty_get_treaty_text($treaty->nid);
+  foreach ($articles as $article) {
+    $element = new AkomaNtosoElement('article', $article->official_title);
+    $document->addChild($element);
+  }
+
+  $akomaNtoso = new AkomaNtoso();
+  $akomaNtoso->addChild($document);
+  print $akomaNtoso->render()->asXML();
+  drupal_exit();
 }
