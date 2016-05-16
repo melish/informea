@@ -11,6 +11,7 @@
   $institution = $wrapper->field_person_institution->value();
   $address = $wrapper->field_address->value();
   $fax = $wrapper->field_contact_fax->value();
+  $telephone = $wrapper->field_contact_telephone->value();
   $mail = $wrapper->field_person_email->value();
   $mail_link = FALSE;
   if ($mail) {
@@ -56,14 +57,19 @@
   <dd><?php print $address; ?></dd>
 <?php endif; ?>
 
-<?php if ($fax): ?>
-  <dt><?php print t('Fax'); ?></dt>
-  <dd><?php print $fax; ?></dd>
-<?php endif; ?>
-
 <?php if ($mail_link): ?>
   <dt><?php print t('E-Mail'); ?></dt>
   <dd><?php print $mail_link; ?></dd>
+<?php endif; ?>
+
+<?php if ($telephone): ?>
+  <dt><?php print t('Telephone'); ?></dt>
+  <dd><?php print $telephone; ?></dd>
+<?php endif; ?>
+
+<?php if ($fax): ?>
+  <dt><?php print t('Fax'); ?></dt>
+  <dd><?php print $fax; ?></dd>
 <?php endif; ?>
 
 <?php if ($type_label): ?>
