@@ -1439,6 +1439,7 @@ function treaty_export_text_to_xml($treaty) {
         $paragraphElement = new AkomaNtosoElement('paragraph');
         treaty_export_text_add_tags($paragraphElement, $paragraph);
         $text = field_view_field('node', $paragraph, 'body', 'full')[0]['#markup'];
+        //@todo: add CData or strip tags?
         $text = strip_tags($text);
         if ($official_order = $pw->field_official_order->value()) {
           $paragraphElement->addChild(new AkomaNtosoElement('num', $official_order));
@@ -1450,7 +1451,7 @@ function treaty_export_text_to_xml($treaty) {
     else {
       if ($articleText = $aw->body->value()) {
         $articleText = check_markup($articleText['safe_value'], 'full_html');
-        $articleElement->addChild(new AkomaNtosoElement('content', $articleText));
+        $articleElement->addChild(new AkomaNtosoElement('content', $articleText, TRUE));
       }
     }
     switch ($articleElement->getType()) {
