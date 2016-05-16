@@ -1396,7 +1396,7 @@ function treaty_export_text_add_tags(AkomaNtosoElement &$akomaNtosoElement, $nod
       if (!empty($term)) {
         $tw = entity_metadata_wrapper('taxonomy_term', $term);
         $keywordElement = new AkomaNtosoElement('keyword', $tw->label());
-        $keywordElement->addAttribute('dictionary', 'thesaurus');
+        $keywordElement->addAttribute('dictionary', 'informea');
         $akomaNtosoElement->addChild($keywordElement);
       }
     }
@@ -1423,6 +1423,7 @@ function treaty_export_text_to_xml($treaty) {
   $body = new AkomaNtosoElement('body');
   $articles = treaty_get_treaty_text($treaty->nid);
   foreach ($articles as $article) {
+    $aw = entity_metadata_wrapper('node', $article);
     if (strtolower(trim($article->official_title)) == 'preamble') {
       $articleElement = new AkomaNtosoElement('preamble');
     }
@@ -1430,19 +1431,26 @@ function treaty_export_text_to_xml($treaty) {
       $articleElement = new AkomaNtosoElement('article');
       $articleElement->addChild(new AkomaNtosoElement('heading', $article->official_title));
     }
+
     treaty_export_text_add_tags($articleElement, $article);
     if (!empty($article->paragraphs)) {
       foreach ($article->paragraphs as $paragraph) {
-        $wa = entity_metadata_wrapper('node', $paragraph);
+        $pw = entity_metadata_wrapper('node', $paragraph);
         $paragraphElement = new AkomaNtosoElement('paragraph');
         treaty_export_text_add_tags($paragraphElement, $paragraph);
         $text = field_view_field('node', $paragraph, 'body', 'full')[0]['#markup'];
         $text = strip_tags($text);
-        if ($official_order = $wa->field_official_order->value()) {
+        if ($official_order = $pw->field_official_order->value()) {
           $paragraphElement->addChild(new AkomaNtosoElement('num', $official_order));
         }
         $paragraphElement->addChild(new AkomaNtosoElement('content', $text));
         $articleElement->addChild($paragraphElement);
+      }
+    }
+    else {
+      if ($articleText = $aw->body->value()) {
+        $articleText = check_markup($articleText['safe_value'], 'full_html');
+        $articleElement->addChild(new AkomaNtosoElement('content', $articleText));
       }
     }
     switch ($articleElement->getType()) {
