@@ -30,7 +30,9 @@ class AkomaNtoso {
   protected $children = array();
 
   public function __construct() {
-    $this->xml = new \SimpleXMLElement('<akomaNtoso/>');
+    $this->xml = new AkomaNtosoSimpleXMLElement('<akomaNtoso/>');
+    $this->xml->addAttribute('xmlns', 'http://docs.oasis-open.org/legalruleml/ns/v1.0/');
+    $this->xml->addAttribute('xsi:schemaLocation', 'http://www.akomantoso.org/2.0 ./akomantoso20.xsd', 'http://www.w3.org/2001/XMLSchema-instance');
   }
 
   public function addChild(Document $element) {
