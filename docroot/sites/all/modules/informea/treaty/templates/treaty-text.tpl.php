@@ -22,7 +22,7 @@ $akoma = sprintf('/treaties/%s/export', $odata_identifier);
         <i class="glyphicon glyphicon-print"></i>
         <?php print t('Print treaty text'); ?>
       </a>
-      <a class="btn btn-default" href="<?php print url($akoma); ?>" target="_blank" onclick="return confirm('This feature is highly EXPERIMENTAL for reviewing purposes!');">
+      <a class="btn btn-default" href="<?php print url($akoma); ?>" target="_blank" onclick="return confirm('This feature is EXPERIMENTAL for reviewing purposes!');">
         <img class="akoma-logo" style="width: 16px; height: 16px;" src="/sites/all/themes/informea.theme/img/akoma-logo.png">
         <?php print t('Akoma Ntoso XML'); ?>
       </a>

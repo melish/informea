@@ -1433,9 +1433,14 @@ function treaty_export_text_to_xml($treaty) {
     treaty_export_text_add_tags($articleElement, $article);
     if (!empty($article->paragraphs)) {
       foreach ($article->paragraphs as $paragraph) {
+        $wa = entity_metadata_wrapper('node', $paragraph);
         $paragraphElement = new AkomaNtosoElement('paragraph');
         treaty_export_text_add_tags($paragraphElement, $paragraph);
         $text = field_view_field('node', $paragraph, 'body', 'full')[0]['#markup'];
+        $text = strip_tags($text);
+        if ($official_order = $wa->field_official_order->value()) {
+          $paragraphElement->addChild(new AkomaNtosoElement('num', $official_order));
+        }
         $paragraphElement->addChild(new AkomaNtosoElement('content', $text));
         $articleElement->addChild($paragraphElement);
       }
