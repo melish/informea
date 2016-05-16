@@ -5,6 +5,18 @@ namespace Drupal\akoma_ntoso;
 use Drupal\akoma_ntoso\Elements\Element;
 use Drupal\akoma_ntoso\Elements\Document;
 
+
+class AkomaNtosoSimpleXMLElement extends \SimpleXMLElement {
+
+  public function addCData($cdata_text) {
+    $node = dom_import_simplexml($this);
+    $no   = $node->ownerDocument;
+    $node->appendChild($no->createCDATASection($cdata_text));
+  }
+
+}
+
+
 class AkomaNtoso {
 
   /**

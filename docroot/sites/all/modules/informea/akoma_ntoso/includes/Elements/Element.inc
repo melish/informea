@@ -8,10 +8,12 @@ class Element {
   protected $attributes = array();
   protected $children = array();
   protected $content = NULL;
+  protected $cdata = FALSE;
 
-  public function __construct($type, $content = NULL) {
+  public function __construct($type, $content = NULL, $cdata = FALSE) {
     $this->setType($type);
     $this->setContent($content);
+    $this->cdata = $cdata;
   }
 
   public function setType($type) {
@@ -35,9 +37,18 @@ class Element {
   }
 
   public function appendToXML(\SimpleXMLElement &$parent) {
-    $current = $parent->addChild($this->type, $this->content);
-    foreach ($this->attributes as $name => $value) {
-      $current->addAttribute($name, $value);
+    if ($this->cdata) {
+      $parent->{$this->type} = NULL;
+      $parent->{$this->type}->addCData($this->content);
+      foreach ($this->attributes as $name => $value) {
+        $parent->{$this->type}->addAttribute($name, $value);
+      }
+    }
+    else {
+      $current = $parent->addChild($this->type, $this->content);
+      foreach ($this->attributes as $name => $value) {
+        $current->addAttribute($name, $value);
+      }
     }
     foreach ($this->children as $child) {
       /** @var Element $child */
