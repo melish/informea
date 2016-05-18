@@ -26,7 +26,7 @@ class ElisCourtDecisionMigration extends AbstractElisMigration {
     $this->addFieldMapping('field_country', 'country');
     $this->addFieldMapping('field_ecolex_tags', 'subject');
     $this->addFieldMapping('field_ecolex_tags:source_type')->defaultValue('tid');
-    $this->addFieldMapping('field_language_of_document', 'languageOfDocument');
+    $this->addFieldMapping('field_source_language', 'languageOfDocument');
     $this->addFieldMapping('field_court_name', 'courtName');
     $this->addFieldMapping('field_sorting_date', 'dateOfText');
     $this->addFieldMapping('field_sorting_date:timezone')->defaultValue('Europe/Zurich');
