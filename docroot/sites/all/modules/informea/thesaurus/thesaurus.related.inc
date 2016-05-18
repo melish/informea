@@ -96,7 +96,7 @@ class InforMEAThesaurusTermRelatedContent {
           if (!empty($content)) {
             array_unshift($content, array(
               '#type' => 'item',
-              '#markup' => '<h3>' . t('Articles') . '</h3>',
+              '#markup' => '<h3>' . t('Treaty articles') . '</h3>',
             ));
           }
           // Decisions
