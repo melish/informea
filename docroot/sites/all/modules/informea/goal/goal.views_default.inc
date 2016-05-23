@@ -338,9 +338,7 @@ function goal_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '0';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'views_bootstrap_grid_plugin_style';
   $handler->display->display_options['style_options']['columns'] = '4';
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -386,12 +384,6 @@ function goal_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['path'] = 'goals';
-  $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = 'Goals and Principles';
-  $handler->display->display_options['menu']['weight'] = '8';
-  $handler->display->display_options['menu']['name'] = 'main-menu';
-  $handler->display->display_options['menu']['context'] = 0;
-  $handler->display->display_options['menu']['context_only_inline'] = 0;
   $translatables['strategic_goals_and_targets'] = array(
     t('Master'),
     t('Goals and Principles'),
