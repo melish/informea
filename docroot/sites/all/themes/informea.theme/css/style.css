@@ -2329,3 +2329,19 @@ iframe.pdfjs {
   right: 46px;
   width: 0;
 }
+
+.view-strategic-goals-and-targets h2 {
+  font-size: 24px;
+  margin-top: 0;
+}
+
+#block-block-4 {
+  margin-top: 30px;
+}
+
+#block-views-4efd08939690e3edf1a75a578e89ae32 .block-title {
+  border-top: 1px solid #ddd;
+  font-size: 24px;
+  margin-bottom: 15px;
+  padding-top: 15px;
+}
