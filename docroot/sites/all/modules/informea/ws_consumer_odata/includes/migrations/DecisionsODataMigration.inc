@@ -102,7 +102,6 @@ class DecisionsODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
-
     /* Fill with remote-data */
     $consumer = $this->source->getConsumer();
     $all_languages = array('en');
@@ -115,6 +114,11 @@ class DecisionsODataMigration extends AbstractODataMigration {
 
     $content = $consumer->loadNavigationProperty($row, 'content');
     list($contents, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($content);
+    $websites = $this->config->getMEAWebsites();
+    $domain = !empty($websites[$this->config->odata_name]) ? $websites[$this->config->odata_name] : NULL;
+    foreach($contents as &$content) {
+      $content = ODataMigrationUtil::fixHtmlAnchors($content, $domain);
+    }
     $row->content = $contents;
     $row->content_language = $languages;
     $all_languages = array_merge($all_languages, $languages);

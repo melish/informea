@@ -334,4 +334,44 @@ class ODataMigrationUtil {
       return NULL;
     }
   }
+
+  /**
+   * Make relative HTML anchors absolute, or remove if cannot resolve them properly.
+   * @param string $text
+   *   HTML text to check
+   * @param string $domain
+   *   Domain to append when making the anchors absolute
+   * @return string
+   *   Fixed string
+   */
+  static function fixHtmlAnchors($text, $domain) {
+    $doc = new DOMDocument();
+    if (@$doc->loadHTML($text, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD)) {
+      /** @var DOMNodeList $urls */
+      $anchors = $doc->getElementsByTagName('a');
+      /** @var DOMElement $anchor */
+      for($i = $anchors->length - 1; $i >= 0; $i--) {
+        $anchor = $anchors->item($i);
+        $href = $anchor->getAttribute('href');
+        if (preg_match('/^http/', $href)) {
+          $anchor->setAttribute('target', '_blank');
+        }
+        // Relative URL to the root of the domain, make it absolute
+        else if (preg_match('/^\//', $href) && $domain) {
+          $anchor->setAttribute('href', $domain . $href);
+          $anchor->setAttribute('target', '_blank');
+        }
+        // Relative URL, remove it - we don't know how to fix it
+        else {
+          $replacement = $doc->createTextNode($anchor->textContent);
+          $anchor->parentNode->replaceChild($replacement, $anchor);
+        }
+      }
+      return $doc->saveHTML();
+    }
+    else {
+      // Unparseable - clobber all anchors the REGEX way
+      return preg_replace('/<a[^>]*>|<\/a>/', '', $text);
+    }
+  }
 }
