@@ -2346,3 +2346,16 @@ iframe.pdfjs {
   margin-bottom: 15px;
   padding-top: 15px;
 }
+
+.panel-heading > .actions {
+  float: right;
+}
+
+.panel-heading > .actions > .action-hover {
+  display: none;
+}
+
+.panel-heading:hover > .actions > .action-hover,
+.panel-heading:focus > .actions > .action-hover {
+  display: inline-block;
+}
