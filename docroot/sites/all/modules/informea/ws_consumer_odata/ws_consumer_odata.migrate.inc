@@ -346,7 +346,13 @@ class ODataMigrationUtil {
    */
   static function fixHtmlAnchors($text, $domain) {
     $doc = new DOMDocument();
-    if (@$doc->loadHTML($text, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD)) {
+    if (defined('LIBXML_HTML_NOIMPLIED') && defined('LIBXML_HTML_NODEFDTD')) {
+      $loaded = @$doc->loadHTML($text, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+    }
+    else {
+      $loaded = @$doc->loadHTML($text);
+    }
+    if ($loaded) {
       /** @var DOMNodeList $urls */
       $anchors = $doc->getElementsByTagName('a');
       /** @var DOMElement $anchor */
@@ -367,7 +373,21 @@ class ODataMigrationUtil {
           $anchor->parentNode->replaceChild($replacement, $anchor);
         }
       }
-      return $doc->saveHTML();
+      if (defined('LIBXML_HTML_NOIMPLIED') && defined('LIBXML_HTML_NODEFDTD')) {
+        return $doc->saveHTML();
+      } else {
+        // Stone-age approach
+        $string = $doc->saveHTML();
+        return str_replace(
+          array(
+            '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">',
+            '<html><body>',
+            '</body></html>'
+          ),
+          '',
+          $string
+        );
+      }
     }
     else {
       // Unparseable - clobber all anchors the REGEX way
