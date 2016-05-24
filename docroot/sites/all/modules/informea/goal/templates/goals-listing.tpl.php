@@ -1,7 +1,7 @@
 <?php if (isset($goals) && is_array($goals)): ?>
   <div class="clearfix">
     <div class="btn-toolbar pull-right">
-      <button class="btn btn-default" data-toggle="group" data-target="#goal-text"><?php print t('Expand all'); ?></button>
+      <button class="btn btn-primary" data-toggle="group" data-target="#goal-text"><?php print t('Expand all'); ?></button>
     </div><!-- .btn-toolbar .pull-right -->
   </div>
   <h2><?php print t('Goals, targets and indicators:'); ?></h2>
