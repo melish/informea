@@ -110,13 +110,16 @@ function informea_theme_preprocess_page(&$variables) {
               ),
             ),
           );
-          $variables['page']['above_content']['date'] = array(
-            '#type' => 'item',
-            '#title' => t('Date'),
-            '#markup' => date('d-m-Y'),
-            '#prefix' => '<div class="field-name-field-sorting-date"><div class="container">',
-            '#suffix' => '</div></div>',
-          );
+          if (!empty($node->field_sorting_date[LANGUAGE_NONE][0]['value'])) {
+            $decision_date = date('d-m-Y', strtotime($node->field_sorting_date[LANGUAGE_NONE][0]['value']));
+            $variables['page']['above_content']['date'] = array(
+              '#type' => 'item',
+              '#title' => t('Date'),
+              '#markup' => $decision_date,
+              '#prefix' => '<div class="field-name-field-sorting-date"><div class="container">',
+              '#suffix' => '</div></div>',
+            );
+          }
           $variables['page']['above_content']['title'] = array(
             '#type' => 'item',
             '#title' => t('Full title'),
