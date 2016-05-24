@@ -2379,7 +2379,6 @@ iframe.pdfjs {
   left: 0;
   opacity: .2;
   position: absolute;
-  vertical-align: top;
 }
 
 
@@ -2390,4 +2389,13 @@ iframe.pdfjs {
 
 .panel-group .collapsed .panel-title:before {
   content: "\e081";
+}
+
+.panel-title-target {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.panel-title-target .title {
+  font-weight: bold;
 }
