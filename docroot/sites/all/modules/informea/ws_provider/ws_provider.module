@@ -87,10 +87,12 @@ function ws_provider_export_node_as_json($uuid) {
         foreach ($node->{$field_name}[LANGUAGE_NONE] as $element) {
           $target = node_load($element['target_id']);
           $original_id = !empty($target->field_original_id) ? $target->field_original_id[LANGUAGE_NONE][0]['value'] : NULL;
+          $odata_identifier = !empty($target->field_odata_identifier) ? $target->field_odata_identifier[LANGUAGE_NONE][0]['value'] : NULL;
           $data[$field_name][] = array(
             'uuid' => $target->uuid,
             'url' => url(drupal_get_path_alias('uuid/node/' . $target->uuid), array('absolute' => TRUE)),
             'original_id' => $original_id,
+            'odata_identifier' => $odata_identifier,
           );
         }
       }
@@ -119,6 +121,9 @@ function ws_provider_export_node_as_json($uuid) {
             $term = taxonomy_term_load($value->tid);
             foreach ($term->name_field as $language => $translation) {
               if ($language != 'en') {
+                foreach ($translation as &$v) {
+                  unset($v['safe_value']);
+                }
                 $translations[$language] = $translation;
               }
             }
@@ -142,12 +147,24 @@ function ws_provider_export_node_as_json($uuid) {
         $data[$field_name] = array();
       }
     }
-
     if ($field_name == 'title_field') {
-      $data = array($field_name => $node->{$field_name}) + $data;
+      $v = $node->{$field_name};
+      foreach($v as $l => &$d) {
+        foreach($d as &$d1) {
+          unset($d1['safe_value']);
+          unset($d1['format']);
+        }
+      }
+      $data = array($field_name => $v) + $data;
     }
     else {
-      $data[$field_name] = $node->{$field_name};
+      $v = $node->{$field_name};
+      foreach($v as $l => &$d) {
+        foreach($d as &$d1) {
+          unset($d1['safe_value']);
+        }
+      }
+      $data[$field_name] = $v;
     }
   }
   unset($data['field_data_source']);
