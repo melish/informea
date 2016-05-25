@@ -199,6 +199,23 @@ function decision_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'exclude_node_title_content_type_modes_decision';
+  $strongarm->value = array(
+    'treaty_listing' => 'treaty_listing',
+    'full' => 0,
+    'teaser' => 0,
+    'rss' => 0,
+    'print' => 0,
+    'diff_standard' => 0,
+    'ajax' => 0,
+    'token' => 0,
+    'nodeform' => 0,
+  );
+  $export['exclude_node_title_content_type_modes_decision'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__decision';
   $strongarm->value = array(
     'view_modes' => array(
