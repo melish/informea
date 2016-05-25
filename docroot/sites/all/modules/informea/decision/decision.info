@@ -73,6 +73,7 @@ features[variable][] = entity_translation_node_metadata_decision_paragraph
 features[variable][] = entity_translation_settings_node__decision
 features[variable][] = entity_translation_settings_taxonomy_term__decision_status
 features[variable][] = entity_translation_settings_taxonomy_term__decision_type
+features[variable][] = exclude_node_title_content_type_modes_decision
 features[variable][] = field_bundle_settings_node__decision
 features[variable][] = field_bundle_settings_node__decision_paragraph
 features[variable][] = i18n_node_extended_decision

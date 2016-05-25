@@ -61,8 +61,29 @@ function informea_theme_preprocess_page(&$variables) {
     $node = $variables['node'];
     switch ($node->type) {
       case 'event_calendar':
-        $breadcrumbs[] = l(t('Events'), 'events');
-        $breadcrumbs[] = $node->title;
+        $variables['page']['above_content'] = array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'id' => array('meeting-date-title'),
+          ),
+        );
+        if (!empty($node->event_calendar_date)) {
+          $variables['title_prefix'] = date('Y', strtotime($node->event_calendar_date[LANGUAGE_NONE][0]['value']));
+          $variables['page']['above_content']['date'] = array(
+            '#type' => 'item',
+            '#title' => t('Date'),
+            '#markup' => date('d-m-Y', strtotime($node->event_calendar_date[LANGUAGE_NONE][0]['value'])),
+            '#prefix' => '<div class="field-name-field-sorting-date"><div class="container">',
+            '#suffix' => '</div></div>',
+          );
+        };
+        $variables['classes_array'][] = 'meeting-page';
+        if (!empty($node->field_treaty[LANGUAGE_NONE][0]['target_id'])) {
+          $treaty_node = node_load($node->field_treaty[LANGUAGE_NONE][0]['target_id']);
+          $variables['page']['above_content']['tabs'] = _decision_get_treaty_links($treaty_node, array('un-treaty-collection-link'));
+          $variables['page']['above_content']['tabs']['#prefix'] = '<div class="decision-treaty-tabs"><div class="container">';
+          $variables['page']['above_content']['tabs']['#suffix'] = '</div></div>';
+        }
         break;
 
       case 'country':
