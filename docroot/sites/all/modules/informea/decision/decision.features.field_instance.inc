@@ -933,7 +933,7 @@ function decision_field_default_field_instances() {
         'settings' => array(
           'title_class' => '',
           'title_link' => 'content',
-          'title_style' => 'h4',
+          'title_style' => 'h3',
         ),
         'type' => 'title_linked',
         'weight' => 1,
