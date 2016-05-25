@@ -26,3 +26,10 @@ function meeting_form_alter(&$form, &$form_state, $form_id) {
     $form['field_treaty_target_id']['#options'] = $filtered;
   }
 }
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function meeting_views_pre_render(&$view) {
+  $view->build_info['title'] .= ' (' . $view->total_rows . ')';
+}
