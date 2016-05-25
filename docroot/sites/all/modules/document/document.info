@@ -38,6 +38,7 @@ features[field_instance][] = node-document-field_files
 features[field_instance][] = node-document-field_image
 features[field_instance][] = node-document-field_informea_tags
 features[field_instance][] = node-document-field_last_update
+features[field_instance][] = node-document-field_original_id
 features[field_instance][] = node-document-field_sorting_date
 features[field_instance][] = node-document-field_sorting_order
 features[field_instance][] = node-document-field_treaty
