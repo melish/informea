@@ -163,10 +163,21 @@ class ODataMigrationUtil {
    *
    * @return string title
    */
-  static function prepareTitle($values) {
+  static function prepareTitle(&$values) {
     if(empty($values) || !is_array($values)) {
       return NULL;
     }
+    foreach($values as &$value) {
+      $v = $value->value;
+      $v = strip_tags($v);
+      $v = str_replace(
+        array('&nbsp;', '&ldquo;', '&rdquo;', '&rsquo;', '&ndash;', '&#8209;', '&#8211;', '&#8217;', '&agrave;'),
+        array(' '     ,  '"'     , '"'      , "'"      , '-'      , '-'      , ''       , "'"      , 'à'),
+        $v
+      );
+      $value->value = $v;
+    }
+
     foreach ($values as $value) {
       if ($value->language == 'en') {
         return $value->value;
