@@ -213,7 +213,7 @@ class ODataConsumerConfig {
         self::$ODATA_NAME_CITES => 'http://www.cites.org',
         self::$ODATA_NAME_CMS => 'http://www.cms.int',
         self::$ODATA_NAME_AEWA => 'http://www.unep-aewa.org',
-        self::$ODATA_NAME_ASCOBANS = 'http://www.ascobans.org',
+        self::$ODATA_NAME_ASCOBANS => 'http://www.ascobans.org',
         self::$ODATA_NAME_EUROBATS=> 'http://www.eurobats.org',
         self::$ODATA_NAME_CBD => 'http://www.cbd.int',
         self::$ODATA_NAME_OZONE => 'http://ozone.unep.org',
