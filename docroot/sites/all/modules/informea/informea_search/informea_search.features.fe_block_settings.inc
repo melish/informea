@@ -20,7 +20,8 @@ function informea_search_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'search
+search/*',
     'roles' => array(),
     'themes' => array(
       'informea_theme' => array(
@@ -37,7 +38,7 @@ function informea_search_default_fe_block_settings() {
       ),
     ),
     'title' => 'Instrument',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['facetapi-EeqfYRvf4OeayxrDPBXmxh0uLs695r1S'] = array(
@@ -132,7 +133,8 @@ function informea_search_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'search
+search/*',
     'roles' => array(),
     'themes' => array(
       'informea_theme' => array(
@@ -149,7 +151,7 @@ function informea_search_default_fe_block_settings() {
       ),
     ),
     'title' => 'Type',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   return $export;
