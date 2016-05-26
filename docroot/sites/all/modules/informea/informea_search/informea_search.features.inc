@@ -199,7 +199,7 @@ function informea_search_default_search_api_index() {
           "treaty_paragraph"
         ]
       },
-      "index_directly" : 0,
+      "index_directly" : 1,
       "cron_limit" : "10",
       "fields" : {
         "attachments_field_files" : { "type" : "text" },
@@ -376,15 +376,17 @@ function informea_search_default_search_api_server() {
     "rdf_mapping" : []
   }');
   $items['search_solr_server'] = entity_import('search_api_server', '{
-    "name" : "Search Solr server",
+    "name" : "Apache Solr server",
     "machine_name" : "search_solr_server",
-    "description" : "The Apache Solr search server with InforMEA indexed entities",
+    "description" : "",
     "class" : "search_api_solr_service",
     "options" : {
-      "clean_ids" : true,
-      "site_hash" : true,
+      "clean_ids_form" : [],
+      "clean_ids" : false,
+      "site_hash_form" : [],
+      "site_hash" : false,
       "scheme" : "http",
-      "host" : "127.0.0.1",
+      "host" : "localhost",
       "port" : "8983",
       "path" : "\\/solr\\/informea",
       "http_user" : "",
@@ -393,8 +395,9 @@ function informea_search_default_search_api_server() {
       "retrieve_data" : 1,
       "highlight_data" : 1,
       "skip_schema_check" : 0,
-      "solr_version" : "4",
-      "http_method" : "AUTO"
+      "solr_version" : "",
+      "http_method" : "AUTO",
+      "http" : { "http_user" : "", "http_pass" : null }
     },
     "enabled" : "1",
     "rdf_mapping" : []
