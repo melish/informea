@@ -81,6 +81,19 @@ function meeting_views_pre_render(&$view) {
   if ($view->name == 'meeting_decisions') {
     $view->build_info['title'] .= ' (' . $view->total_rows . ')';
   }
+  if ($view->name == 'other_meetings') {
+    if ($view->current_display == 'block') {
+      $node = menu_get_object();
+      if (!empty($node->nid) && $node->type == 'event_calendar') {
+        $wrapper = entity_metadata_wrapper('node', $node);
+        $treaty = $wrapper->field_treaty->value()[0];
+        $view->display_handler->set_option('use_more', TRUE);
+        $view->display_handler->set_option('use_more_text', t('Browse all meetings'));
+        $view->display_handler->set_option('link_display', 'custom_url');
+        $view->display_handler->set_option('link_url', 'node/' . $treaty->nid . '/decisions');
+      }
+    }
+  }
 }
 
 /**
@@ -92,11 +105,15 @@ function meeting_views_query_alter(&$view, &$query) {
     $node = menu_get_object();
     $limit = FALSE;
     if (!empty($node->event_calendar_date[LANGUAGE_NONE][0]['value'])) {
+      // TODO - this query should match all filters in the view to have correct results.
       $q = db_query("SELECT n.nid, TIMESTAMPDIFF(SECOND, d.event_calendar_date_value, :date) AS date_diff, ABS(TIMESTAMPDIFF(SECOND, d.event_calendar_date_value, :date)) time_span
               FROM node n
-              INNER JOIN field_data_event_calendar_date d
-              ON d.entity_id = n.nid
-              WHERE n.status = 1 AND n.nid != :nid
+              INNER JOIN field_data_event_calendar_date d ON d.entity_id = n.nid
+              INNER JOIN field_data_field_treaty tr ON tr.entity_id = n.nid
+              INNER JOIN field_data_field_event_type et ON et.entity_id = n.nid
+              WHERE n.status = 1 
+              AND n.nid != :nid
+              AND et.field_event_type_tid = 821
               ORDER BY time_span ASC
               LIMIT 3
               ", array(':date' => $node->event_calendar_date[LANGUAGE_NONE][0]['value'], ':nid' => $node->nid));

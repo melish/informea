@@ -308,10 +308,10 @@ Decisions
       'url' => '',
       'display' => 'block',
       'context' => array(
-        0 => '',
+        0 => 'argument_entity_id:node_1.nid',
       ),
-      'override_title' => 0,
-      'override_title_text' => '',
+      'override_title' => 1,
+      'override_title_text' => '%title',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
@@ -410,7 +410,7 @@ Decisions
       'offset' => '0',
       'more_link' => 0,
       'feed_icons' => 0,
-      'panel_args' => 0,
+      'panel_args' => 1,
       'link_to_view' => 0,
       'args' => '',
       'url' => '',
