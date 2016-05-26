@@ -77,7 +77,8 @@ search/*',
     'i18n_mode' => 0,
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'search
+search/*',
     'roles' => array(),
     'themes' => array(
       'informea_theme' => array(
@@ -94,7 +95,7 @@ search/*',
       ),
     ),
     'title' => 'Keywords',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['facetapi-qTurWYUYYufA4n4p1OFoxmFTW0m9G81J'] = array(

@@ -70,6 +70,17 @@ function meeting_default_page_manager_handlers() {
       ),
       'logic' => 'and',
     ),
+    'panels_breadcrumbs_state' => 1,
+    'panels_breadcrumbs_titles' => 'Treaties
+%treaty:title-field
+Decisions
+%node:title_field',
+    'panels_breadcrumbs_paths' => 'treaties
+%treaty:url
+%treaty:url/decisions
+<none>
+',
+    'panels_breadcrumbs_home' => 1,
   );
   $display = new panels_display();
   $display->layout = 'flexible';
@@ -80,19 +91,20 @@ function meeting_default_page_manager_handlers() {
         'contains' => 'column',
         'children' => array(
           0 => 'main',
-          1 => 1,
         ),
         'parent' => NULL,
       ),
       'main' => array(
         'type' => 'column',
-        'width' => 50,
+        'width' => 100,
         'width_type' => '%',
         'children' => array(
           0 => 'main-row',
+          1 => 1,
+          2 => 2,
         ),
         'parent' => 'canvas',
-        'class' => 'col-md-9',
+        'class' => '',
         'hide_empty' => 1,
       ),
       'main-row' => array(
@@ -102,6 +114,8 @@ function meeting_default_page_manager_handlers() {
           0 => 'center',
         ),
         'parent' => 'main',
+        'class' => '',
+        'hide_empty' => 0,
       ),
       'center' => array(
         'type' => 'region',
@@ -111,54 +125,114 @@ function meeting_default_page_manager_handlers() {
         'parent' => 'main-row',
       ),
       1 => array(
-        'type' => 'column',
-        'width' => 50,
-        'width_type' => '%',
-        'parent' => 'canvas',
+        'type' => 'row',
+        'contains' => 'column',
         'children' => array(
-          0 => 2,
-          1 => 3,
+          0 => 3,
+          1 => 4,
         ),
-        'class' => 'col-md-3',
+        'parent' => 'main',
+        'class' => 'row',
         'hide_empty' => 1,
       ),
       2 => array(
         'type' => 'row',
         'contains' => 'region',
         'children' => array(
-          0 => 'right',
+          0 => 'bottom',
         ),
-        'parent' => '1',
-        'class' => '',
-        'hide_empty' => 0,
-      ),
-      'right' => array(
-        'type' => 'region',
-        'title' => 'Right',
-        'width' => 100,
-        'width_type' => '%',
-        'parent' => '2',
+        'parent' => 'main',
         'class' => '',
         'hide_empty' => 1,
       ),
       3 => array(
+        'type' => 'column',
+        'width' => 50,
+        'width_type' => '%',
+        'parent' => '1',
+        'children' => array(
+          0 => 5,
+        ),
+        'class' => 'col-sm-9',
+        'hide_empty' => 0,
+      ),
+      4 => array(
+        'type' => 'column',
+        'width' => 50,
+        'width_type' => '%',
+        'parent' => '1',
+        'children' => array(
+          0 => 6,
+          1 => 7,
+        ),
+        'class' => 'col-sm-3',
+        'hide_empty' => 0,
+      ),
+      'bottom' => array(
+        'type' => 'region',
+        'title' => 'Bottom',
+        'width' => 100,
+        'width_type' => '%',
+        'parent' => '2',
+        'class' => '',
+        'hide_empty' => 0,
+      ),
+      5 => array(
+        'type' => 'row',
+        'contains' => 'region',
+        'children' => array(
+          0 => 'left',
+        ),
+        'parent' => '3',
+        'class' => '',
+        'hide_empty' => 0,
+      ),
+      6 => array(
+        'type' => 'row',
+        'contains' => 'region',
+        'children' => array(
+          0 => 'right_1',
+        ),
+        'parent' => '4',
+        'class' => '',
+        'hide_empty' => 0,
+      ),
+      7 => array(
         'type' => 'row',
         'contains' => 'region',
         'children' => array(
           0 => 'right_2',
         ),
-        'parent' => '1',
+        'parent' => '4',
         'class' => '',
-        'hide_empty' => 1,
+        'hide_empty' => 0,
+      ),
+      'left' => array(
+        'type' => 'region',
+        'title' => 'Left',
+        'width' => 100,
+        'width_type' => '%',
+        'parent' => '5',
+        'class' => '',
+        'hide_empty' => 0,
+      ),
+      'right_1' => array(
+        'type' => 'region',
+        'title' => 'Right 1',
+        'width' => 100,
+        'width_type' => '%',
+        'parent' => '6',
+        'class' => '',
+        'hide_empty' => 0,
       ),
       'right_2' => array(
         'type' => 'region',
-        'title' => 'right 2',
+        'title' => 'Right 2',
         'width' => 100,
         'width_type' => '%',
-        'parent' => '3',
+        'parent' => '7',
         'class' => '',
-        'hide_empty' => 1,
+        'hide_empty' => 0,
       ),
     ),
   );
@@ -168,6 +242,9 @@ function meeting_default_page_manager_handlers() {
       'center' => NULL,
       'right' => NULL,
       'right_2' => NULL,
+      'bottom' => NULL,
+      'left' => NULL,
+      'right_1' => NULL,
     ),
   );
   $display->cache = array();
@@ -176,8 +253,43 @@ function meeting_default_page_manager_handlers() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-8e59cade-c699-4e5d-ad8f-f43b6293c344';
-    $pane->panel = 'center';
+    $pane->pid = 'new-5b0d4eb8-fdbe-4f14-b20d-7a16388ab038';
+    $pane->panel = 'bottom';
+    $pane->type = 'views';
+    $pane->subtype = 'other_meetings';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 1,
+      'nodes_per_page' => '3',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'block_1',
+      'override_title' => 1,
+      'override_title_text' => 'Recent meetings',
+      'override_title_heading' => 'h4',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '5b0d4eb8-fdbe-4f14-b20d-7a16388ab038';
+    $display->content['new-5b0d4eb8-fdbe-4f14-b20d-7a16388ab038'] = $pane;
+    $display->panels['bottom'][0] = 'new-5b0d4eb8-fdbe-4f14-b20d-7a16388ab038';
+    $pane = new stdClass();
+    $pane->pid = 'new-e8147582-ced4-4ee6-9cb2-c845bc4bd93b';
+    $pane->panel = 'left';
     $pane->type = 'views';
     $pane->subtype = 'meeting_decisions';
     $pane->shown = TRUE;
@@ -198,8 +310,8 @@ function meeting_default_page_manager_handlers() {
       'context' => array(
         0 => '',
       ),
-      'override_title' => 1,
-      'override_title_text' => '%title',
+      'override_title' => 0,
+      'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
@@ -210,12 +322,12 @@ function meeting_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '8e59cade-c699-4e5d-ad8f-f43b6293c344';
-    $display->content['new-8e59cade-c699-4e5d-ad8f-f43b6293c344'] = $pane;
-    $display->panels['center'][0] = 'new-8e59cade-c699-4e5d-ad8f-f43b6293c344';
+    $pane->uuid = 'e8147582-ced4-4ee6-9cb2-c845bc4bd93b';
+    $display->content['new-e8147582-ced4-4ee6-9cb2-c845bc4bd93b'] = $pane;
+    $display->panels['left'][0] = 'new-e8147582-ced4-4ee6-9cb2-c845bc4bd93b';
     $pane = new stdClass();
     $pane->pid = 'new-f80c54fc-df79-4ade-a695-26760f60c3f8';
-    $pane->panel = 'right';
+    $pane->panel = 'right_1';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_event_images';
     $pane->shown = TRUE;
@@ -245,10 +357,10 @@ function meeting_default_page_manager_handlers() {
     $pane->locks = array();
     $pane->uuid = 'f80c54fc-df79-4ade-a695-26760f60c3f8';
     $display->content['new-f80c54fc-df79-4ade-a695-26760f60c3f8'] = $pane;
-    $display->panels['right'][0] = 'new-f80c54fc-df79-4ade-a695-26760f60c3f8';
+    $display->panels['right_1'][0] = 'new-f80c54fc-df79-4ade-a695-26760f60c3f8';
     $pane = new stdClass();
     $pane->pid = 'new-f5dced74-7347-4577-9933-50af3d09d652';
-    $pane->panel = 'right';
+    $pane->panel = 'right_1';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:body';
     $pane->shown = TRUE;
@@ -282,7 +394,7 @@ function meeting_default_page_manager_handlers() {
     $pane->locks = array();
     $pane->uuid = 'f5dced74-7347-4577-9933-50af3d09d652';
     $display->content['new-f5dced74-7347-4577-9933-50af3d09d652'] = $pane;
-    $display->panels['right'][1] = 'new-f5dced74-7347-4577-9933-50af3d09d652';
+    $display->panels['right_1'][1] = 'new-f5dced74-7347-4577-9933-50af3d09d652';
     $pane = new stdClass();
     $pane->pid = 'new-d71b7f8c-0cd3-4de8-aef5-013f5f00ef31';
     $pane->panel = 'right_2';

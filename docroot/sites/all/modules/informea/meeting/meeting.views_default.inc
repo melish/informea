@@ -493,14 +493,16 @@ function meeting_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'decision' => 'decision',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Search: Fulltext search */
   $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_informea_fulltext_solr_index';
   $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['operator'] = 'OR';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['group'] = 1;
   $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
-  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Filter decision';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Fulltext search';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
@@ -521,6 +523,32 @@ function meeting_views_default_views() {
     'title' => 'title',
     'title_field' => 'title_field',
   );
+  /* Filter criterion: Indexed Content: InforMEA Tags */
+  $handler->display->display_options['filters']['field_informea_tags']['id'] = 'field_informea_tags';
+  $handler->display->display_options['filters']['field_informea_tags']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['filters']['field_informea_tags']['field'] = 'field_informea_tags';
+  $handler->display->display_options['filters']['field_informea_tags']['value'] = array();
+  $handler->display->display_options['filters']['field_informea_tags']['group'] = 1;
+  $handler->display->display_options['filters']['field_informea_tags']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_informea_tags']['expose']['operator_id'] = 'field_informea_tags_op';
+  $handler->display->display_options['filters']['field_informea_tags']['expose']['label'] = 'Tags';
+  $handler->display->display_options['filters']['field_informea_tags']['expose']['operator'] = 'field_informea_tags_op';
+  $handler->display->display_options['filters']['field_informea_tags']['expose']['identifier'] = 'field_informea_tags';
+  $handler->display->display_options['filters']['field_informea_tags']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+  );
+  $handler->display->display_options['filters']['field_informea_tags']['type'] = 'select';
+  $handler->display->display_options['filters']['field_informea_tags']['error_message'] = FALSE;
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
@@ -544,7 +572,8 @@ function meeting_views_default_views() {
     t('.'),
     t(','),
     t('All'),
-    t('Filter decision'),
+    t('Fulltext search'),
+    t('Tags'),
     t('Block'),
   );
   $export['meeting_decisions'] = $view;
