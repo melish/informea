@@ -117,7 +117,8 @@ class DecisionsODataMigration extends AbstractODataMigration {
     $websites = $this->config->getMEAWebsites();
     $domain = !empty($websites[$this->config->odata_name]) ? $websites[$this->config->odata_name] : NULL;
     foreach($contents as &$content) {
-      $content = ODataMigrationUtil::fixHtmlAnchors($content, $domain);
+      $content = ODataMigrationUtil::removeHtmlAnchors($content);
+      $content = ODataMigrationUtil::fixI18NString($content);
     }
     $row->content = $contents;
     $row->content_language = $languages;
