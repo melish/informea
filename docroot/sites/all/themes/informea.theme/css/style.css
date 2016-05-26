@@ -1818,7 +1818,7 @@ iframe.pdfjs {
 .above-content {}
 
 .node-type-decision .page-header {
-  background-color: #1a3a6f;
+  background-color: #005289;
   border-bottom: 0;
   margin-bottom: 0;
   padding-bottom: 40px;
@@ -1899,11 +1899,11 @@ iframe.pdfjs {
 
 .node-type-decision .sidebar-right .pager > li.pager-previous a,
 .node-type-decision .sidebar-right .pager > li.pager-next a {
-  background-color: #ffcc33;
+  background-color: #005289;
   border-radius: 0;
   border: 0;
-  border-top: 3px solid #e3b52c;
-  color: #005289;
+  border-top: 3px solid #1a3a6f;
+  color: #fff;
   font-size: 85%;
   font-weight: 500;
   height: 33px;
@@ -2060,10 +2060,10 @@ iframe.pdfjs {
 }
 
 #informea-subscribe-updates-form .form-submit {
-  background-color: #fc3;
+  background-color: #005289;
   border: 0;
-  border-bottom: 3px solid #e3b52c;
-  color: #005289;
+  border-bottom: 3px solid #1a3a6f;
+  color: #fff;
   font-size: 85%;
   font-weight: 500;
   margin-left: 30px;
