@@ -2360,42 +2360,12 @@ iframe.pdfjs {
   display: inline-block;
 }
 
-.panel-group .panel-title {
-  padding-left: 21px;
-  position: relative;
-}
-
-.panel-group .panel-title:before {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  color: #000;
-  content: "\e082";
-  display: inline-block;
-  filter: alpha(opacity=20);
-  font-family: 'Glyphicons Halflings';
-  font-size: 16px;
-  font-style: normal;
-  font-weight: normal;
-  left: 0;
-  opacity: .2;
-  position: absolute;
-}
-
-
-.panel-group .panel-heading:hover > .panel-title:before {
-  filter: alpha(opacity=50);
-  opacity: .5;
-}
-
-.panel-group .collapsed .panel-title:before {
-  content: "\e081";
-}
-
 .panel-title-target {
   font-size: 14px;
   font-weight: normal;
 }
 
 .panel-title-target .title {
+  display: inline-block;
   font-weight: bold;
 }

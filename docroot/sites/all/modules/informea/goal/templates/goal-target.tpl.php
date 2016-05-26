@@ -37,6 +37,7 @@ $expanded = isset($_GET['target']) ? $_GET['target'] == $target->nid : FALSE;
         </li>
       <?php endif; ?>
     </ul><!-- .list-inline .actions -->
+    <i class="glyphicon glyphicon-plus-sign"></i>
     <h4 class="<?php print !empty($target->indicators) ? 'panel-title' : ''; ?> panel-title-target">
       <p class="title"><?php print $pw->label(); ?></p>
       <?php if($pw->body->value()): ?>

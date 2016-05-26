@@ -5,7 +5,7 @@
     </div><!-- .btn-toolbar .pull-right -->
   </div>
   <h2><?php print t('Goals, targets and indicators:'); ?></h2>
-  <div class="panel-group tagged-content" id="goal-text" role="tablist" aria-multiselectable="true">
+  <div class="accordion panel-group tagged-content" id="goal-text" role="tablist" aria-multiselectable="true">
     <?php foreach ($goals as $goal) : ?>
       <?php print theme('goal_text', array('goal' => $goal, 'base_goal_url' => url('taxonomy/term/' . $term->tid))); ?>
     <?php endforeach; ?>
