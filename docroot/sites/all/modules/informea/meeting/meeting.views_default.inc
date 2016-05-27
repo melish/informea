@@ -471,12 +471,26 @@ function meeting_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['row_plugin'] = 'entity';
-  $handler->display->display_options['row_options']['view_mode'] = 'treaty_listing';
-  /* Field: Indexed Content: Node ID */
-  $handler->display->display_options['fields']['nid']['id'] = 'nid';
-  $handler->display->display_options['fields']['nid']['table'] = 'search_api_index_informea_fulltext_solr_index';
-  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Indexed Content: Decision number */
+  $handler->display->display_options['fields']['field_decision_number']['id'] = 'field_decision_number';
+  $handler->display->display_options['fields']['field_decision_number']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['fields']['field_decision_number']['field'] = 'field_decision_number';
+  $handler->display->display_options['fields']['field_decision_number']['label'] = '';
+  $handler->display->display_options['fields']['field_decision_number']['element_label_colon'] = FALSE;
+  /* Field: Indexed Content: Title */
+  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
+  $handler->display->display_options['fields']['title_field']['settings'] = array(
+    'title_style' => 'h3',
+    'title_link' => 'content',
+    'title_class' => '',
+  );
   /* Contextual filter: Indexed Content: Meeting */
   $handler->display->display_options['arguments']['field_meeting']['id'] = 'field_meeting';
   $handler->display->display_options['arguments']['field_meeting']['table'] = 'search_api_index_informea_fulltext_solr_index';
@@ -502,7 +516,7 @@ function meeting_views_default_views() {
   $handler->display->display_options['filters']['search_api_views_fulltext']['group'] = 1;
   $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
-  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Fulltext search';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Filter decisions:';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
@@ -531,7 +545,7 @@ function meeting_views_default_views() {
   $handler->display->display_options['filters']['field_informea_tags']['group'] = 1;
   $handler->display->display_options['filters']['field_informea_tags']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_informea_tags']['expose']['operator_id'] = 'field_informea_tags_op';
-  $handler->display->display_options['filters']['field_informea_tags']['expose']['label'] = 'Tags';
+  $handler->display->display_options['filters']['field_informea_tags']['expose']['label'] = 'By tags:';
   $handler->display->display_options['filters']['field_informea_tags']['expose']['operator'] = 'field_informea_tags_op';
   $handler->display->display_options['filters']['field_informea_tags']['expose']['identifier'] = 'field_informea_tags';
   $handler->display->display_options['filters']['field_informea_tags']['expose']['remember_roles'] = array(
@@ -568,12 +582,9 @@ function meeting_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('Node ID'),
-    t('.'),
-    t(','),
     t('All'),
-    t('Fulltext search'),
-    t('Tags'),
+    t('Filter decisions:'),
+    t('By tags:'),
     t('Block'),
   );
   $export['meeting_decisions'] = $view;
