@@ -42,6 +42,10 @@ function goal_theme() {
 }
 
 function _get_goal_source_goals($source, $type_of_goals) {
+  if (empty($source) || empty($type_of_goals)) {
+    return array();
+  }
+
   $query = new EntityFieldQuery();
 
   $goal_type_tid = NULL;
@@ -93,22 +97,28 @@ function goal_taxonomy_term_view($term, $view_mode, $langcode) {
     drupal_add_library('informea', 'smallipop');
     drupal_add_css(drupal_get_path('module', 'goal') . '/styles/goal.css');
     switch ($term->tid) {
-      case '1753':
+      case '1738':
         // Magic number for Aichi Biodiversity Targets
         $goal_type = 'Strategic goal';
         $target_type = 'Aichi Target';
         break;
-      case '1754':
+      case '1739':
         // Magic number for GEG. We only show the view
-        unset($term->content);
+        hide($term->content);
         $goal_type = '';
         $target_type = '';
         break;
-      case '1755':
+      case '1740':
         // Magic number for MDG's
         $goal_type = 'Goal';
         $target_type = 'Target';
         break;
+      case '1753':
+        // Magic number for SDG's
+        return; // TODO
+      default:
+        $goal_type = '';
+        $target_type = '';
     }
     $goals = _get_goal_source_goals($term, $goal_type);
     foreach ($goals as $goal) {

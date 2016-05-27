@@ -1445,16 +1445,16 @@ body.page-node-303 h2.block-title { font-size: 18px; font-weight: bold;}
   margin-top: -1px;
 }
 
-div.accordion .panel-heading h4 { display: inline; margin-left: 15px; }
+div.accordion .panel-heading h4 { margin-left: 25px; }
 div.accordion .panel-heading .meta { text-align: right; font-size: 12px; color: #999; font-weight: normal; }
 div.accordion .panel-heading ul { margin: 0; }
-div.accordion .panel-heading .glyphicon-plus-sign { color: #777; font-size: 14px; }
+div.accordion .panel-heading .glyphicon-plus-sign { color: #777; font-size: 14px; position: absolute; top: 12px; }
 div.accordion .panel-heading .glyphicon-plus-sign:before { content: "\e082"; }
 div.accordion .panel-heading.collapsed .glyphicon-plus-sign { color: #c6cedb; }
 div.accordion .panel-heading.collapsed .glyphicon-plus-sign:before { content: "\e081"; }
 
 div.accordion .panel { margin: 0; border-bottom: 1px solid #ddd; border-radius: 0; }
-div.accordion .panel-heading { border: 1px solid transparent; cursor: pointer; margin: 0; border-radius: 0; }
+div.accordion .panel-heading { border: 1px solid transparent; cursor: pointer; margin: 0; border-radius: 0; position: relative; }
 div.accordion .panel-heading:hover { border: 1px solid #39c; background-color: #D2EEFC; }
 
 img.flag-xs { max-height: 16px; }
@@ -1810,15 +1810,21 @@ strong.excerpt {
 
 /* Decision page */
 iframe.pdfjs {
-  border: 0;
-  width: 100%;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+  border-radius: 4px;
+  border: 1px solid #333;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
   height: 600px;
+  width: 100%;
 }
+
 .above-content {}
+
 .node-type-decision .page-header {
-  background: #1a3a6f;
-  padding-bottom: 40px;
+  background-color: #005289;
+  border-bottom: 0;
   margin-bottom: 0;
+  padding-bottom: 40px;
 }
 
 .node-type-decision .page-header,
@@ -1827,10 +1833,8 @@ iframe.pdfjs {
 }
 
 .node-type-decision .title-prefix {
-  font-size: 1.1em;
+  font-size: 21px;
   font-weight: bold;
-  margin-top: 10px;
-  color: #c6cedb;
 }
 
 .view.text-overflow-ellipsis .views-field-title a {
@@ -1898,11 +1902,11 @@ iframe.pdfjs {
 
 .node-type-decision .sidebar-right .pager > li.pager-previous a,
 .node-type-decision .sidebar-right .pager > li.pager-next a {
-  background-color: #ffcc33;
+  background-color: #005289;
   border-radius: 0;
   border: 0;
-  border-top: 3px solid #e3b52c;
-  color: #005289;
+  border-top: 3px solid #1a3a6f;
+  color: #fff;
   font-size: 85%;
   font-weight: 500;
   height: 33px;
@@ -2026,11 +2030,9 @@ iframe.pdfjs {
 }
 
 .node-type-decision .page-header h1 {
-  display: block;
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.4;
 }
 
 #informea-subscribe-updates-form {
@@ -2061,10 +2063,10 @@ iframe.pdfjs {
 }
 
 #informea-subscribe-updates-form .form-submit {
-  background-color: #fc3;
+  background-color: #005289;
   border: 0;
-  border-bottom: 3px solid #e3b52c;
-  color: #005289;
+  border-bottom: 3px solid #1a3a6f;
+  color: #fff;
   font-size: 85%;
   font-weight: 500;
   margin-left: 30px;
@@ -2119,7 +2121,7 @@ iframe.pdfjs {
 }
 
 #decision-date-title {
-  margin-top: -31px;
+  margin-top: -32px;
 }
 
 .decision-treaty-tabs {
@@ -2162,7 +2164,9 @@ iframe.pdfjs {
 }
 
 .page-node.node-type-decision .field-name-field-sorting-date .form-type-item {
-  background-color: #fc3;
+  background-color: #fff;
+  border: 2px solid #fc3;
+  border-bottom: 0;
   display: inline-block;
   font-weight: bold;
   padding: 5px 15px;
@@ -2328,4 +2332,43 @@ iframe.pdfjs {
   position: fixed;
   right: 46px;
   width: 0;
+}
+
+.view-strategic-goals-and-targets h2 {
+  font-size: 21px;
+  font-weight: 400;
+  margin-top: 0;
+}
+
+#block-block-4 {
+  margin-top: 30px;
+}
+
+#block-views-4efd08939690e3edf1a75a578e89ae32 .block-title {
+  border-top: 1px solid #ddd;
+  font-size: 24px;
+  margin-bottom: 15px;
+  padding-top: 15px;
+}
+
+.panel-heading > .actions {
+  float: right;
+}
+
+.panel-heading > .actions > .action-hover {
+  display: none;
+}
+
+.panel-heading:hover > .actions > .action-hover,
+.panel-heading:focus > .actions > .action-hover {
+  display: inline-block;
+}
+
+.panel-title-target {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.panel-title-target .title {
+  font-weight: bold;
 }
