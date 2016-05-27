@@ -2490,3 +2490,25 @@ iframe.pdfjs {
   position: absolute;
   right: 15px;
 }
+
+.node-type-event-calendar .sidebar {
+  margin-top: 30px;
+}
+
+.node-type-event-calendar .sidebar .panel-separator {
+  margin-bottom: 30px;
+}
+
+.node-type-event-calendar .sidebar .pane-other-meetings .pane-title {
+  color: #555;
+  font-weight: 200;
+}
+
+.node-type-event-calendar .sidebar .pane-other-meetings .view-content {
+  border: 1px solid #b6dbeb;
+  padding: 30px;
+}
+
+.node-type-event-calendar .sidebar .pane-other-meetings .views-row + .views-row {
+  margin-top: 20px;
+}
