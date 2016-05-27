@@ -165,7 +165,7 @@ Decisions
           0 => 6,
           1 => 7,
         ),
-        'class' => 'col-sm-3',
+        'class' => 'col-sm-3 sidebar',
         'hide_empty' => 0,
       ),
       'bottom' => array(
@@ -280,7 +280,10 @@ Decisions
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => 'recent-meetings',
+      'css_class' => '',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
