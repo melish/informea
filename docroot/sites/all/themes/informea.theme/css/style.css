@@ -609,8 +609,9 @@ h1 {
 /* Well backgrounds */
 
 .well {
-  border: 1px solid transparent;
+  -webkit-box-shadow: none;
   border-radius: 0;
+  border: 1px solid transparent;
   box-shadow: none;
 }
 
@@ -2388,7 +2389,7 @@ iframe.pdfjs {
 }
 
 .pane-other-meetings .pane-title {
-  color: #777;
+  color: #555;
   font-weight: 300;
 }
 
@@ -2423,6 +2424,7 @@ iframe.pdfjs {
 .view-other-meetings .views-field-nothing-1 > .field-content > h5 {
   font-size: inherit;
   line-height: 1.2;
+  margin-bottom: 30px;
 }
 
 .view-other-meetings .date-display-single {
@@ -2435,4 +2437,57 @@ iframe.pdfjs {
   padding: 5px 10px;
   position: absolute;
   right: 15px;
+}
+
+.pane-meeting-decisions .pane-title {
+  color: #555;
+  font-size: 18px;
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+
+.view-meeting-decisions .view-filters {
+  background-color: #effafe;
+  border: 1px solid #b6dbeb;
+  font-size: 12px;
+  margin-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.view-meeting-decisions .view-filters label {
+  font-weight: normal;
+  margin-bottom: 0;
+  margin-right: 10px;
+  position: relative;
+  text-transform: uppercase;
+  top: 2px;
+}
+
+.view-meeting-decisions .view-filters .form-control {
+  -webkit-box-shadow: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.view-meeting-decisions .views-widget {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.view-meeting-decisions .views-exposed-form .views-exposed-widget .form-submit {
+  margin-top: 0;
+}
+
+.view-meeting-decisions .views-field-field-decision-number {
+  color: #999;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.view-meeting-decisions .views-field-title-field h3 {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+  margin-top: 0;
 }
