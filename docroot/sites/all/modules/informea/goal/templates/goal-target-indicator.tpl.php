@@ -22,7 +22,7 @@ $highlight = isset($_GET['indicator']) ? $_GET['indicator'] == $indicator->nid :
         'attributes' => array(
           'data-toggle' => 'tooltip', 'data-placement' => 'top',
           'title' => t('Permalink'),
-          'class' => array('pull-right permalink'),
+          'class' => array('permalink'),
           'target' => '_blank'
         ),
         'fragment' => 'indicator-' . $indicator->nid,

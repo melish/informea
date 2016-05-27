@@ -18,7 +18,7 @@
             'attributes' => array(
               'data-toggle' => 'tooltip', 'data-placement' => 'top',
               'title' => t('Permalink'),
-              'class' => array('pull-right permalink'),
+              'class' => array('permalink'),
               'target' => '_blank'
             ),
             'fragment' => 'goal-' . $goal->nid,
@@ -38,12 +38,13 @@
           </li>
         <?php endif; ?>
       </ul><!-- .list-inline .actions -->
+      <i class="glyphicon glyphicon-plus-sign"></i>
       <h4 class="panel-title">
         <?php echo $aw->label(); ?>
       </h4><!-- .panel-title -->
       <?php print theme('goal_text_tags', array('tags' => $tags)); ?>
     </div><!-- .panel-heading .smallipop -->
-    <div id="goal-<?php echo $goal->nid; ?>" class="panel-collapse collapse<?php print $expanded ? ' in' : '' ;?>" role="tabpanel" aria-labelledby="heading-<?php echo $goal->nid; ?>">
+    <div id="goal-<?php echo $goal->nid; ?>" class="accordion panel-group panel-collapse collapse<?php print $expanded ? ' in' : '' ;?>" role="tabpanel" aria-labelledby="heading-<?php echo $goal->nid; ?>">
       <div class="goal">
         <?php if (!empty($goal->targets)): ?>
           <?php foreach ($goal->targets as $target): ?>
