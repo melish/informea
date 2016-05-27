@@ -1905,7 +1905,7 @@ iframe.pdfjs {
   text-align: left;
 }
 
-.node-type-decision .sidebar-right .pager > li.
+.node-type-decision .sidebar-right .pager > li,
 .node-type-event-calendar .sidebar .pager > li {
   float: left;
 }
@@ -1913,6 +1913,11 @@ iframe.pdfjs {
 .node-type-decision .sidebar-right .pager > li.pager-previous,
 .node-type-event-calendar .sidebar .pager > li.pager-previous {
   margin-right: 1px;
+}
+
+.node-type-decision .sidebar-right .pager > li.pager-previous:empty,
+.node-type-event-calendar .sidebar .pager > li.pager-previous:empty {
+  display: none;
 }
 
 .node-type-decision .sidebar-right .pager > li.pager-current,
@@ -2528,4 +2533,53 @@ iframe.pdfjs {
 
 .node-type-event-calendar .sidebar .pane-other-meetings .views-row + .views-row {
   margin-top: 20px;
+}
+
+.pagination {
+  font-size: 85%;
+  font-weight: 500;
+}
+
+.pagination > li > a {
+  border: 0;
+  border-bottom: 2px solid #b6dbeb;
+}
+
+.pagination > li.active > a {
+  background-color: transparent;
+  border-bottom: 4px solid #b6dbeb;
+  color: #b6dbeb;
+  padding-bottom: 4px;
+}
+
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.pagination > li.prev > a,
+.pagination > li.prev > span,
+.pagination > li.next > a,
+.pagination > li.next > span {
+  background-color: #005289;
+  border-bottom-color: #1a3a6f;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.pagination > li.prev > a,
+.pagination > li.prev > span {
+  margin-right: 15px;
+}
+
+.pagination > li.next > a,
+.pagination > li.next > span {
+  margin-left: 15px;
 }
