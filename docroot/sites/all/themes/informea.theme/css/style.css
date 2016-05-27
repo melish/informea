@@ -1893,20 +1893,37 @@ iframe.pdfjs {
   text-transform: uppercase;
 }
 
-.node-type-decision .sidebar-right .pager > li {
+.node-type-event-calendar .sidebar .more-link {
+  font-size: 85%;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.node-type-event-calendar .sidebar .pager {
+  margin-bottom: 15px;
+  margin-top: 0;
+  text-align: left;
+}
+
+.node-type-decision .sidebar-right .pager > li.
+.node-type-event-calendar .sidebar .pager > li {
   float: left;
 }
 
-.node-type-decision .sidebar-right .pager > li.pager-previous {
+.node-type-decision .sidebar-right .pager > li.pager-previous,
+.node-type-event-calendar .sidebar .pager > li.pager-previous {
   margin-right: 1px;
 }
 
-.node-type-decision .sidebar-right .pager > li.pager-current {
+.node-type-decision .sidebar-right .pager > li.pager-current,
+.node-type-event-calendar .sidebar .pager > li.pager-current {
   display: none;
 }
 
 .node-type-decision .sidebar-right .pager > li.pager-previous a,
-.node-type-decision .sidebar-right .pager > li.pager-next a {
+.node-type-decision .sidebar-right .pager > li.pager-next a,
+.node-type-event-calendar .sidebar .pager > li.pager-previous a,
+.node-type-event-calendar .sidebar .pager > li.pager-next a {
   background-color: #005289;
   border-radius: 0;
   border: 0;
