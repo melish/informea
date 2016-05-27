@@ -1820,7 +1820,8 @@ iframe.pdfjs {
 
 .above-content {}
 
-.node-type-decision .page-header {
+.node-type-decision .page-header,
+.node-type-event-calendar .page-header {
   background-color: #005289;
   border-bottom: 0;
   margin-bottom: 0;
@@ -1828,11 +1829,14 @@ iframe.pdfjs {
 }
 
 .node-type-decision .page-header,
-.node-type-decision .page-header a {
+.node-type-decision .page-header a,
+.node-type-event-calendar .page-header,
+.node-type-event-calendar .page-header a {
   color: #fff;
 }
 
-.node-type-decision .title-prefix {
+.node-type-decision .title-prefix,
+.node-type-event-calendar .title-prefix {
   font-size: 21px;
   font-weight: bold;
 }
@@ -2029,7 +2033,8 @@ iframe.pdfjs {
   margin-bottom: 10px;
 }
 
-.node-type-decision .page-header h1 {
+.node-type-decision .page-header h1,
+.node-type-event-calendar .page-header h1 {
   font-size: 16px;
   font-weight: 300;
   line-height: 1.4;
@@ -2120,7 +2125,8 @@ iframe.pdfjs {
   content: "\e259";
 }
 
-#decision-date-title {
+#decision-date-title,
+#meeting-date-title {
   margin-top: -32px;
 }
 
@@ -2163,7 +2169,8 @@ iframe.pdfjs {
   margin-bottom: 0;
 }
 
-.page-node.node-type-decision .field-name-field-sorting-date .form-type-item {
+.page-node.node-type-decision .field-name-field-sorting-date .form-type-item,
+.page-node.node-type-event-calendar .field-name-field-sorting-date .form-type-item {
   background-color: #fff;
   border: 2px solid #fc3;
   border-bottom: 0;
@@ -2172,7 +2179,8 @@ iframe.pdfjs {
   padding: 5px 15px;
 }
 
-.page-node.node-type-decision .field-name-field-sorting-date .form-type-item label {
+.page-node.node-type-decision .field-name-field-sorting-date .form-type-item label,
+.page-node.node-type-event-calendar .field-name-field-sorting-date .form-type-item label {
   margin-bottom: 0;
 }
 
