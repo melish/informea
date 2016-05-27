@@ -309,8 +309,7 @@ function decision_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'grid';
-  $handler->display->display_options['style_options']['row_class'] = 'row col-sm-4';
+  $handler->display->display_options['style_plugin'] = 'views_bootstrap_grid_plugin_style';
   $handler->display->display_options['style_options']['columns'] = '3';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
@@ -330,11 +329,10 @@ function decision_views_default_views() {
   $handler->display->display_options['fields']['field_logo']['field'] = 'field_logo';
   $handler->display->display_options['fields']['field_logo']['relationship'] = 'field_treaty_target_id';
   $handler->display->display_options['fields']['field_logo']['label'] = '';
-  $handler->display->display_options['fields']['field_logo']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_logo']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_logo']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_logo']['settings'] = array(
-    'image_style' => 'medium',
+    'image_style' => 'logo-large',
     'image_link' => 'content',
   );
   /* Field: Content: Title */
@@ -381,24 +379,13 @@ function decision_views_default_views() {
     'multiple_to' => '',
   );
   /* Field: Global: Custom text */
-  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="col-md-4">
-[field_logo]
-</div>';
-  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
   $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
   $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing_1']['label'] = '';
-  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '<div class="col-md-8">
-[title_field]
+  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '[title_field]
 [title_field_1]
-[event_calendar_date]
-</div>';
+[event_calendar_date]';
   $handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Date -  start date (event_calendar_date) */
@@ -451,14 +438,9 @@ function decision_views_default_views() {
     t('Block'),
     t('Recent meetings'),
     t('Content entity referenced from field_treaty'),
-    t('<div class="col-md-4">
-[field_logo]
-</div>'),
-    t('<div class="col-md-8">
-[title_field]
+    t('[title_field]
 [title_field_1]
-[event_calendar_date]
-</div>'),
+[event_calendar_date]'),
   );
   $export['other_meetings'] = $view;
 
