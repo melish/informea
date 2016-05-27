@@ -18,7 +18,7 @@
             'attributes' => array(
               'data-toggle' => 'tooltip', 'data-placement' => 'top',
               'title' => t('Permalink'),
-              'class' => array('pull-right permalink'),
+              'class' => array('permalink'),
               'target' => '_blank'
             ),
             'fragment' => 'goal-' . $goal->nid,

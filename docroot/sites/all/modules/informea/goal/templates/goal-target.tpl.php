@@ -17,7 +17,7 @@ $expanded = isset($_GET['target']) ? $_GET['target'] == $target->nid : FALSE;
           'attributes' => array(
             'data-toggle' => 'tooltip', 'data-placement' => 'top',
             'title' => t('Permalink'),
-            'class' => array('pull-right permalink'),
+            'class' => array('permalink'),
             'target' => '_blank'
           ),
           'fragment' => 'target-' . $target->nid,
