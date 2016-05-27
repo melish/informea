@@ -2386,3 +2386,53 @@ iframe.pdfjs {
 .panel-title-target .title {
   font-weight: bold;
 }
+
+.pane-other-meetings .pane-title {
+  color: #777;
+  font-weight: 300;
+}
+
+.view-other-meetings .view-content {
+  border: 1px solid #b6dbeb;
+  font-size: 13px;
+  padding: 30px;
+}
+
+.view-other-meetings .view-content .row {
+  display: table;
+}
+
+.view-other-meetings .view-content .col {
+  display: table-cell;
+  float: none;
+}
+
+.view-other-meetings .views-field-field-logo {
+  float: left;
+  margin-right: 10px;
+}
+
+.view-other-meetings .views-field-nothing-1 {
+  overflow: hidden;
+}
+
+.view-other-meetings .views-field-nothing-1 > .field-content > a {
+  color: #999;
+}
+
+.view-other-meetings .views-field-nothing-1 > .field-content > h5 {
+  font-size: inherit;
+  line-height: 1.2;
+}
+
+.view-other-meetings .date-display-single {
+  background-color: #b6dbeb;
+  bottom: -30px;
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  left: 89px;
+  padding: 5px 10px;
+  position: absolute;
+  right: 15px;
+}
