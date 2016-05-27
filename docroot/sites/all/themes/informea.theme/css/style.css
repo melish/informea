@@ -2385,56 +2385,7 @@ iframe.pdfjs {
   font-weight: bold;
 }
 
-.pane-other-meetings .pane-title {
-  color: #555;
-  font-weight: 300;
-}
-
-.view-other-meetings .view-content {
-  border: 1px solid #b6dbeb;
-  font-size: 13px;
-  padding: 30px;
-}
-
-.view-other-meetings .view-content .row {
-  display: table;
-}
-
-.view-other-meetings .view-content .col {
-  display: table-cell;
-  float: none;
-}
-
-.view-other-meetings .views-field-field-logo {
-  float: left;
-  margin-right: 10px;
-}
-
-.view-other-meetings .views-field-nothing-1 {
-  overflow: hidden;
-}
-
-.view-other-meetings .views-field-nothing-1 > .field-content > a {
-  color: #999;
-}
-
-.view-other-meetings .views-field-nothing-1 > .field-content > h5 {
-  font-size: inherit;
-  line-height: 1.2;
-  margin-bottom: 30px;
-}
-
-.view-other-meetings .date-display-single {
-  background-color: #b6dbeb;
-  bottom: -30px;
-  display: block;
-  font-size: 12px;
-  font-weight: 500;
-  left: 89px;
-  padding: 5px 10px;
-  position: absolute;
-  right: 15px;
-}
+/* Meeting decisions page */
 
 .pane-meeting-decisions .pane-title {
   color: #555;
@@ -2487,4 +2438,55 @@ iframe.pdfjs {
   line-height: 1.4;
   margin-bottom: 20px;
   margin-top: 0;
+}
+
+#recent-meetings .pane-title {
+  color: #555;
+  font-weight: 300;
+}
+
+#recent-meetings .view-other-meetings .view-content {
+  border: 1px solid #b6dbeb;
+  font-size: 13px;
+  padding: 30px;
+}
+
+#recent-meetings .view-other-meetings .view-content .row {
+  display: table;
+}
+
+#recent-meetings .view-other-meetings .view-content .col {
+  display: table-cell;
+  float: none;
+}
+
+#recent-meetings .view-other-meetings .views-field-field-logo {
+  float: left;
+  margin-right: 10px;
+}
+
+#recent-meetings .view-other-meetings .views-field-nothing-1 {
+  overflow: hidden;
+}
+
+#recent-meetings .view-other-meetings .views-field-nothing-1 > .field-content > a {
+  color: #999;
+}
+
+#recent-meetings .view-other-meetings .views-field-nothing-1 > .field-content > h5 {
+  font-size: inherit;
+  line-height: 1.2;
+  margin-bottom: 30px;
+}
+
+#recent-meetings .view-other-meetings .date-display-single {
+  background-color: #b6dbeb;
+  bottom: -30px;
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  left: 89px;
+  padding: 5px 10px;
+  position: absolute;
+  right: 15px;
 }
