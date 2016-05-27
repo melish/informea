@@ -109,6 +109,14 @@ function goal_taxonomy_term_view($term, $view_mode, $langcode) {
         $goal_type = 'Goal';
         $target_type = 'Target';
         break;
+      case '1753':
+        // Magic number for SDG's
+        $goal_type = '';
+        $target_type = '';
+        return; // TODO
+      default:
+        // Nothing to do
+        return;
     }
     $goals = _get_goal_source_goals($term, $goal_type);
     foreach ($goals as $goal) {
