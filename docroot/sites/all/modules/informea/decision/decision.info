@@ -46,6 +46,7 @@ features[field_instance][] = taxonomy_term-decision_status-name_field
 features[field_instance][] = taxonomy_term-decision_type-name_field
 features[node][] = decision
 features[node][] = decision_paragraph
+features[page_manager_handlers][] = node_view__panel_context_3945cec5-f166-42f9-bc42-092828e1c592
 features[taxonomy][] = decision_status
 features[taxonomy][] = decision_type
 features[variable][] = additional_settings__active_tab_decision_paragraph
