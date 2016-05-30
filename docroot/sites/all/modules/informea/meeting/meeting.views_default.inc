@@ -499,6 +499,10 @@ function meeting_views_default_views() {
     'title_link' => 'content',
     'title_class' => '',
   );
+  /* Sort criterion: Indexed Content: Order */
+  $handler->display->display_options['sorts']['field_sorting_order']['id'] = 'field_sorting_order';
+  $handler->display->display_options['sorts']['field_sorting_order']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['sorts']['field_sorting_order']['field'] = 'field_sorting_order';
   /* Contextual filter: Indexed Content: Meeting */
   $handler->display->display_options['arguments']['field_meeting']['id'] = 'field_meeting';
   $handler->display->display_options['arguments']['field_meeting']['table'] = 'search_api_index_informea_fulltext_solr_index';
@@ -542,6 +546,10 @@ function meeting_views_default_views() {
   );
   $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
     'attachments_field_files' => 'attachments_field_files',
+    'body:summary' => 'body:summary',
+    'body:value' => 'body:value',
+    'field_decision_number' => 'field_decision_number',
+    'field_informea_tags:name' => 'field_informea_tags:name',
     'title' => 'title',
     'title_field' => 'title_field',
   );
