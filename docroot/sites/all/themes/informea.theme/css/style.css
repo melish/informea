@@ -2449,13 +2449,17 @@ iframe.pdfjs {
   margin-top: 0;
 }
 
-.view-meeting-decisions .views-field-field-decision-number {
+.view-meeting-decisions h2 {
+  display: none;
+}
+
+.view-meeting-decisions .field-name-field-decision-number {
   color: #999;
   font-size: 12px;
   font-weight: 500;
 }
 
-.view-meeting-decisions .views-field-title-field h3 {
+.view-meeting-decisions .field-name-title-field h3 {
   font-size: 14px;
   line-height: 1.4;
   margin-bottom: 20px;
