@@ -1,5 +1,4 @@
 jQuery(document).ready(function ($) {
-
   // Disable all clicks
   $('.disabled').click(function (event) { event.preventDefault() });
 
@@ -72,21 +71,7 @@ jQuery(document).ready(function ($) {
     }
   });
 
-
-  /* Select to switch treaty in treaty index page */
-  jQuery('#treaty-selector').on('change', function() {
-    var url = window.location.href.split('/');
-    console.log(url);
-    if(url.length == 5 || url.length == 6) {
-      var treaty = url[4];
-      var dest = '/treaties/' + jQuery(this).val();
-      window.location.href = dest;
-    }
-  });
-
-  /* Select to switch treaty in treaty index page */
-  // jQuery('#treaty-selector').select2();
-  $('#country-selector').on('change', function() {
+  $('.node-switcher').on('change', function() {
     var val = $(this).val();
 
     if (val !== 0) {

@@ -126,10 +126,15 @@ function treaty_get_treaties_as_select_options() {
     $fields = field_info_instances('node', 'treaty');
     field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['title_field']['field_id']));
     field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_odata_identifier']['field_id']));
+    $menu_object = menu_get_object();
     foreach ($rows as $nid => $node) {
       $label = field_get_items('node', $node, 'title_field');
       $label = isset($label[0]['value']) ? $label[0]['value'] : $node->title;
-      $ret[$node->field_odata_identifier[LANGUAGE_NONE][0]['value']] = $label;
+      $path = 'treaties/' . $node->field_odata_identifier[LANGUAGE_NONE][0]['value'];
+      if (isset($menu_object->context)) {
+        $path .= '/' . $menu_object->context;
+      }
+      $ret[url($path, array('absolute' => TRUE))] = $label;
     }
   }
   return $ret;
