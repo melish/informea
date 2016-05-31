@@ -871,8 +871,8 @@ button.toggle {
 }
 
 
-/* Country selector */
-/* ---------------- */
+/* Front page country switcher */
+/* --------------------------- */
 
 
 /* Wrapper and base class */
@@ -884,14 +884,14 @@ button.toggle {
 
 /* Form alignment */
 
-.country-selector > form {
+.country-selector form {
   position: absolute;
   left: 0;
   right: 0;
   top: 50%;
 }
 
-.country-selector > form > .form-control {
+.country-selector .form-control {
   margin-left: auto;
   margin-right: auto;
   margin-top: -15px;
