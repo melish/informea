@@ -1422,7 +1422,7 @@ iframe.ecolex {
 /* Disclaimer block from the Minamata convention page */
 body.page-node-303 h2.block-title { font-size: 18px; font-weight: bold;}
 
-.smallipop-instance a{ color: white; text-transform: none; text-shadow: none; }
+.smallipop-theme-default a { color: white; text-transform: none; text-shadow: none; }
 
 .media-list .media-list > .media {
   margin-left: 50px;
@@ -1445,16 +1445,16 @@ body.page-node-303 h2.block-title { font-size: 18px; font-weight: bold;}
   margin-top: -1px;
 }
 
-div.accordion .panel-heading h4 { display: inline; margin-left: 15px; }
+div.accordion .panel-heading h4 { margin-left: 25px; }
 div.accordion .panel-heading .meta { text-align: right; font-size: 12px; color: #999; font-weight: normal; }
 div.accordion .panel-heading ul { margin: 0; }
-div.accordion .panel-heading .glyphicon-plus-sign { color: #777; font-size: 14px; }
+div.accordion .panel-heading .glyphicon-plus-sign { color: #777; font-size: 14px; position: absolute; top: 12px; }
 div.accordion .panel-heading .glyphicon-plus-sign:before { content: "\e082"; }
 div.accordion .panel-heading.collapsed .glyphicon-plus-sign { color: #c6cedb; }
 div.accordion .panel-heading.collapsed .glyphicon-plus-sign:before { content: "\e081"; }
 
 div.accordion .panel { margin: 0; border-bottom: 1px solid #ddd; border-radius: 0; }
-div.accordion .panel-heading { border: 1px solid transparent; cursor: pointer; margin: 0; border-radius: 0; }
+div.accordion .panel-heading { border: 1px solid transparent; cursor: pointer; margin: 0; border-radius: 0; position: relative; }
 div.accordion .panel-heading:hover { border: 1px solid #39c; background-color: #D2EEFC; }
 
 img.flag-xs { max-height: 16px; }
@@ -2332,4 +2332,43 @@ iframe.pdfjs {
   position: fixed;
   right: 46px;
   width: 0;
+}
+
+.view-strategic-goals-and-targets h2 {
+  font-size: 21px;
+  font-weight: 400;
+  margin-top: 0;
+}
+
+#block-block-4 {
+  margin-top: 30px;
+}
+
+#block-views-4efd08939690e3edf1a75a578e89ae32 .block-title {
+  border-top: 1px solid #ddd;
+  font-size: 24px;
+  margin-bottom: 15px;
+  padding-top: 15px;
+}
+
+.panel-heading > .actions {
+  float: right;
+}
+
+.panel-heading > .actions > .action-hover {
+  display: none;
+}
+
+.panel-heading:hover > .actions > .action-hover,
+.panel-heading:focus > .actions > .action-hover {
+  display: inline-block;
+}
+
+.panel-title-target {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.panel-title-target .title {
+  font-weight: bold;
 }
