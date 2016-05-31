@@ -7,11 +7,6 @@
   <div class="panel <?php print $expanded ? 'panel-warning' : 'panel-default'; ?>">
     <div class="panel-heading smallipop <?php print $expanded ? '' : ' collapsed' ;?>" role="tab" id="heading-<?php echo $goal->nid; ?>" data-toggle="collapse" data-target="#goal-<?php echo $goal->nid; ?>" aria-expanded="<?php print $expanded ? 'true' : 'false' ;?>" aria-controls="article-<?php echo $goal->nid; ?>">
       <ul class="list-inline actions">
-        <?php if (!empty($tags) && is_array($tags)): ?>
-          <li>
-            <span class="glyphicon glyphicon-tag" data-toggle="tooltip" data-placement="top" title="<?php print t('Tagged terms'); ?>"></span>
-          </li>
-        <?php endif; ?>
         <li class="action-hover">
           <?php
           print l('<i class="glyphicon glyphicon-link"></i>', $base_goal_url, array(
@@ -35,6 +30,11 @@
               'html' => TRUE
             ));
             ?>
+          </li>
+        <?php endif; ?>
+        <?php if (!empty($tags) && is_array($tags)): ?>
+          <li>
+            <span class="glyphicon glyphicon-tag" data-toggle="tooltip" data-placement="top" title="<?php print t('Tagged terms'); ?>"></span>
           </li>
         <?php endif; ?>
       </ul><!-- .list-inline .actions -->
