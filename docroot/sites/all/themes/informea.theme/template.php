@@ -72,10 +72,9 @@ function informea_theme_preprocess_page(&$variables) {
         $variables['content_column_class'] = ' class="col-sm-9"';
         $variables['countries'] = $countries;
         $variables['select-switch-countries'] = array(
-          '#id' => 'country-selector',
-          '#type' => 'select',
+          '#attributes' => array('class' => array('form-control', 'node-switcher', 'country-switcher')),
           '#options' => $countries1,
-          '#attributes' => array('class' => array('form-control')),
+          '#type' => 'select'
         );
         array_unshift($variables['page']['sidebar_first'], menu_secondary_local_tasks());
         break;
@@ -87,10 +86,9 @@ function informea_theme_preprocess_page(&$variables) {
         $treaties1 = $treaties;
         array_unshift($treaties1, t('View another treaty'));
         $variables['select-switch-treaties'] = array(
-          '#id' => 'treaty-selector',
-          '#type' => 'select',
+          '#attributes' => array('class' => array('form-control', 'node-switcher', 'treaty-switcher')),
           '#options' => $treaties1,
-          '#attributes' => array('class' => array('form-control')),
+          '#type' => 'select'
         );
         array_unshift($variables['page']['sidebar_first'], menu_secondary_local_tasks());
         break;
@@ -149,14 +147,14 @@ function informea_theme_preprocess_page(&$variables) {
     // Replace the <select> at this stage to avoid replacement issue coming from i18n_block_translate_block
     if (!empty($variables['page']['front_page_content']['block_10'])) {
       $block_data =& $variables['page']['front_page_content']['block_10'];
-      $countries = countries_get_countries('name', array('enabled' => COUNTRIES_ENABLED));
-      $html = '<select id="front-page-country-list-block" class="form-control input-sm">';
-      $html .= '<option>' . t('Select a country ...') . '</option>';
-      foreach ($countries as $iso2 => $country) {
-        $html .= sprintf('<option value="%s">%s</option>', $iso2, $country);
-      }
-      $html .= '</select>';
-      $block_data['#markup'] = preg_replace('/<select.*><\/select>/i', $html, $block_data['#markup']);
+      $countries = country_get_countries_select_options();
+      array_unshift($countries, t('Select a country…'));
+      $html = array(
+        '#attributes' => array('class' => array('form-control', 'node-switcher', 'country-switcher')),
+        '#options' => $countries,
+        '#type' => 'select'
+      );
+      $block_data['#markup'] = preg_replace('/<select.*><\/select>/i', drupal_render($html), $block_data['#markup']);
     }
   }
 
