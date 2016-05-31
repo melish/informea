@@ -67,7 +67,13 @@ function informea_theme_preprocess_page(&$variables) {
 
       case 'country':
         $countries = country_get_countries_select_options();
-        $countries1 = $countries;
+        $countries1 = array();
+
+        foreach ($countries as $iso2 => $country) {
+          $key = url(sprintf('countries/%s/%s', $iso2, $node->context), array('absolute' => TRUE));
+          $countries1[$key] = $country;
+        }
+
         array_unshift($countries1, t('View another country'));
         $variables['content_column_class'] = ' class="col-sm-9"';
         $variables['countries'] = $countries;

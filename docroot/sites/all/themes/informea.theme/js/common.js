@@ -86,16 +86,11 @@ jQuery(document).ready(function ($) {
 
   /* Select to switch treaty in treaty index page */
   // jQuery('#treaty-selector').select2();
-  jQuery('#country-selector').on('change', function() {
-    var url = window.location.href.split('/');
-    console.log(url);
-    if(url.length == 5 || url.length == 6) {
-      var treaty = url[4];
-      var dest = '/countries/' + jQuery(this).val();
-      if (url.length == 6) {
-        dest += '/' + url[5];
-      }
-      window.location.href = dest;
+  $('#country-selector').on('change', function() {
+    var val = $(this).val();
+
+    if (val !== 0) {
+      window.location.href = val;
     }
   });
 
