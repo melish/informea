@@ -1422,7 +1422,7 @@ iframe.ecolex {
 /* Disclaimer block from the Minamata convention page */
 body.page-node-303 h2.block-title { font-size: 18px; font-weight: bold;}
 
-.smallipop-instance a{ color: white; text-transform: none; text-shadow: none; }
+.smallipop-theme-default a { color: white; text-transform: none; text-shadow: none; }
 
 .media-list .media-list > .media {
   margin-left: 50px;

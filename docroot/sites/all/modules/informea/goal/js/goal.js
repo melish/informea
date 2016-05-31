@@ -1,8 +1,8 @@
 jQuery(document).ready(function ($) {
     $('.smallipop').smallipop({
         invertAnimation: true,
-        preferredPosition: 'left',
-        theme: 'white'
+        preferredPosition: 'bottom',
+        theme: 'default'
     });
 
     $('[data-toggle="group"]').click(function () {
@@ -31,5 +31,4 @@ jQuery(document).ready(function ($) {
             });
         }
     }
-
 });
