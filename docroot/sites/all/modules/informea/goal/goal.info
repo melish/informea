@@ -1,7 +1,7 @@
 name = goal
 core = 7.x
 package = InforMEA
-version = 7.x-1.2
+version = 7.x-1.3
 project = goal
 dependencies[] = ctools
 dependencies[] = ecolex
@@ -73,6 +73,7 @@ features[variable][] = node_options_goal
 features[variable][] = node_preview_goal
 features[variable][] = node_submitted_goal
 features[variable][] = pathauto_node_goal_pattern
+features[variable][] = pathauto_taxonomy_term_goal_sources_pattern
 features[views_view][] = geg
 features[views_view][] = goals_geg_listing_admin_page
 features[views_view][] = list_of_principles_declarations

@@ -835,7 +835,7 @@ function goal_field_default_field_instances() {
     'entity_type' => 'taxonomy_term',
     'field_name' => 'field_abbreviation',
     'label' => 'Abbreviation',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'text_processing' => 0,
@@ -898,9 +898,8 @@ function goal_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'link',
         'settings' => array(),
-        'type' => 'link_default',
+        'type' => 'hidden',
         'weight' => 1,
       ),
     ),
