@@ -6,11 +6,6 @@ $expanded = isset($_GET['target']) ? $_GET['target'] == $target->nid : FALSE;
 <div class="panel <?php print $expanded ? 'panel-warning' : 'panel-default'; ?>">
   <div class="panel-heading smallipop <?php print $expanded ? '' : ' collapsed' ;?>" role="tab" id="heading-<?php echo $target->nid; ?>" data-toggle="collapse" data-target="#target-<?php echo $target->nid; ?>" aria-expanded="<?php print $expanded ? 'true' : 'false' ;?>" aria-controls="goal-<?php echo $target->nid; ?>">
     <ul class="list-inline actions">
-      <?php if (!empty($tags) && is_array($tags)): ?>
-        <li>
-          <span class="glyphicon glyphicon-tag" data-toggle="tooltip" data-placement="top" title="<?php print t('Tagged terms'); ?>"></span>
-        </li>
-      <?php endif; ?>
       <li class="action-hover">
         <?php
         print l('<i class="glyphicon glyphicon-link"></i>', $base_goal_url, array(
@@ -36,9 +31,14 @@ $expanded = isset($_GET['target']) ? $_GET['target'] == $target->nid : FALSE;
           ?>
         </li>
       <?php endif; ?>
+      <?php if (!empty($tags) && is_array($tags)): ?>
+        <li>
+          <span class="glyphicon glyphicon-tag" data-toggle="tooltip" data-placement="top" title="<?php print t('Tagged terms'); ?>"></span>
+        </li>
+      <?php endif; ?>
     </ul><!-- .list-inline .actions -->
     <i class="glyphicon glyphicon-plus-sign"></i>
-    <h4 class="<?php print !empty($target->indicators) ? 'panel-title' : ''; ?> panel-title-target">
+    <h4 class="panel-title panel-title-target">
       <p class="title"><?php print $pw->label(); ?></p>
       <?php if($pw->body->value()): ?>
         <?php print($pw->body->value->value(array('decode' => FALSE))); ?>
