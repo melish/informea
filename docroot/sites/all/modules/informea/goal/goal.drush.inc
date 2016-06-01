@@ -6,11 +6,11 @@
 function goal_drush_command() {
   $items = array();
 
-  $items['informea-sdg-indicators-import'] = array(
+  $items['informea-sdg-full-import'] = array(
     'drupal dependencies' => array('phpexcel'),
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
-    'description' => 'SDG Indicators Import',
-    'aliases' => array('sdg-ii'),
+    'description' => 'SDG Full Import',
+    'aliases' => array('sdg-fi'),
   );
 
   return $items;
@@ -71,9 +71,9 @@ function _goal_create_node($info) {
 }
 
 /**
- * Imports SDG indicators from SDG_datasheet.xlsx file.
+ * Imports SDG goals, targets & indicators from SDG_datasheet.xlsx file.
  */
-function drush_goal_informea_sdg_indicators_import() {
+function drush_goal_informea_sdg_full_import() {
   $columns = [
     'goal_no' => 'SDG Goal No.',
     'goal_text' => 'SDG Goal Text',
