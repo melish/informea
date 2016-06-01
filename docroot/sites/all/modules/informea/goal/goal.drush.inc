@@ -64,4 +64,49 @@ function drush_goal_informea_sdg_indicators_import() {
       'children' => [],
     ];
   }
+
+  // ToDo: Do we need to retrieve these tids programmatically matched by term name?
+  $sdg_tid = 1753;
+  $goal_tid = 1734;
+  $target_tid = 1737;
+  $indicator_tid = 1735;
+
+  foreach ($goals as $goal) {
+    // ToDo: field_goal_tools ??
+    // ToDo: field_informea_tags !!
+    $node = [
+      'title' => $goal['title'],
+      'status' => '1',
+      'type' => 'goal',
+      'language' => 'en',
+      'field_goal_source' => [
+        LANGUAGE_NONE => [
+          0 => [
+            'tid' => $sdg_tid,
+          ],
+        ],
+      ],
+      'field_goal_type' => [
+        LANGUAGE_NONE => [
+          0 => [
+            'tid' => $goal_tid,
+          ],
+        ],
+      ],
+      'title_field' => [
+        'en' => [
+          0 => [
+            'value' => $goal['title'],
+          ],
+        ],
+      ],
+      'field_original_id' => [
+        LANGUAGE_NONE => [
+          0 => [
+            'value' => $goal['id'],
+          ],
+        ],
+      ],
+    ];
+  }
 }
