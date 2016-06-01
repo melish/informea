@@ -17,6 +17,60 @@ function goal_drush_command() {
 }
 
 /**
+ * @param array $info
+ *  Array containing:
+ *    - title_field
+ *    - field_goal_source
+ *    - field_goal_type
+ *    - field_parent_goal
+ *    - field_original_id
+ */
+function _goal_create_node($info) {
+  $node = [
+    'title' => $info['title_field'],
+    'status' => '1',
+    'type' => 'goal',
+    'language' => 'en',
+    'title_original' => $info['title_field'],
+  ];
+  foreach (['field_goal_source', 'field_goal_type'] as $field) {
+    if (!empty($info[$field])) {
+      $node[$field] = [
+        LANGUAGE_NONE => [
+          0 => [
+            'tid' => $info[$field],
+          ],
+        ],
+      ];
+    }
+  }
+  if (!empty($info['field_parent_goal'])) {
+    $node['field_parent_goal'] = [
+      LANGUAGE_NONE => [
+        0 => [
+          'target_id' => $info['field_parent_goal'],
+        ],
+      ],
+    ];
+  }
+  foreach (['title_field', 'field_original_id'] as $field) {
+    if (!empty($info[$field])) {
+      $node[$field] = [
+        'en' => [
+          0 => [
+            'value' => $info[$field],
+          ],
+        ],
+      ];
+    }
+  }
+  $node = (object) $node;
+  $node = node_submit($node);
+  node_save($node);
+  return $node;
+}
+
+/**
  * Imports SDG indicators from SDG_datasheet.xlsx file.
  */
 function drush_goal_informea_sdg_indicators_import() {
@@ -74,41 +128,26 @@ function drush_goal_informea_sdg_indicators_import() {
   foreach ($goals as $goal) {
     // ToDo: field_goal_tools ??
     // ToDo: field_informea_tags !!
-    $goal_node = (object) [
-      'title' => $goal['title'],
-      'status' => '1',
-      'type' => 'goal',
-      'language' => 'en',
-      'field_goal_source' => [
-        LANGUAGE_NONE => [
-          0 => [
-            'tid' => $sdg_tid,
-          ],
-        ],
-      ],
-      'field_goal_type' => [
-        LANGUAGE_NONE => [
-          0 => [
-            'tid' => $goal_tid,
-          ],
-        ],
-      ],
-      'title_field' => [
-        'en' => [
-          0 => [
-            'value' => $goal['title'],
-          ],
-        ],
-      ],
-      'field_original_id' => [
-        LANGUAGE_NONE => [
-          0 => [
-            'value' => $goal['id'],
-          ],
-        ],
-      ],
-    ];
-    $goal_node = node_submit($goal_node);
-    node_save($goal_node);
+    $goal_node = _goal_create_node([
+      'title_field' => $goal['title'],
+      'field_goal_source' => $sdg_tid,
+      'field_goal_type' => $goal_tid,
+      'field_original_id' => $goal['id'],
+    ]);
+
+    foreach ($goal['children'] as $target) {
+      // ToDo: field_informea_tags !!
+      $target_node = _goal_create_node([
+        'title_field' => $target['title'],
+        'field_goal_source' => $sdg_tid,
+        'field_goal_type' => $target_tid,
+        'field_parent_goal' => $goal_node->nid,
+        'field_original_id' => $target['id'],
+      ]);
+
+      foreach ($target['children'] as $indicator) {
+
+      }
+    }
   }
 }
