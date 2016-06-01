@@ -30,6 +30,8 @@ foreach ($data as $row) {
       $value[$term->tid] = $term;
       $wrapper->field_informea_tags->set($value);
       $wrapper->save();
+
+      search_api_track_item_change('search_api_et_node', array($nid));
     }
 
     drush_log('Saved: ' . $nid . ': ' . $row->field_decision_number_value . ': ' . $row->title, 'success');
