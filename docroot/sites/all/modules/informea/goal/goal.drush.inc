@@ -91,10 +91,17 @@ function drush_goal_informea_sdg_indicators_import() {
   }
   $goals = [];
   foreach ($data as $key => $row) {
-    if (empty($row[$columns['goal_text']]) ||
-      empty($row[$columns['target_text']]) ||
-      empty($row[$columns['indicator_text']])) {
-      drush_log("Found an empty column on row {$key + 2}", 'error');
+    $missing = 0;
+    foreach (['goal_text', 'target_text', 'indicator_text'] as $req_col) {
+      if (empty($row[$columns[$req_col]])) {
+        $missing ++;
+      }
+    }
+    if ($missing > 0) {
+      if ($missing < 3) {
+        $rownum = $key + 2;
+        drush_log("Found an empty column on row {$rownum}", 'error');
+      }
       continue;
     }
     $goal = $row[$columns['goal_no']] . ' ' . $row[$columns['goal_text']];
