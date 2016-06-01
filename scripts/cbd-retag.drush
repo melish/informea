@@ -1,6 +1,6 @@
 #!/usr/bin/env drush
 <?php
-$data = json_decode(file_get_contents('cbd-tags.json'));
+$data = json_decode(file_get_contents(DRUPAL_ROOT . '/../scripts/cbd-tags.json'));
 
 foreach ($data as $row) {
   $query = new EntityFieldQuery();
