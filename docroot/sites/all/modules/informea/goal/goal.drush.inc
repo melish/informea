@@ -24,7 +24,7 @@ function goal_drush_command() {
 
 function _goal_sdg_get_tags(array $tags, array $thesaurus_informea) {
   foreach ($tags as $key => $tag) {
-    $tag = trim($tag);
+    $tag = trim(preg_replace('/\s+/', ' ', $tag));
     if (empty($thesaurus_informea[$tag])) {
       if (!empty($tag)) {
         drush_log("Term \"{$tag}\" not found.", 'error');
