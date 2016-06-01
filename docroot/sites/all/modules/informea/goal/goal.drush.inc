@@ -26,7 +26,9 @@ function _goal_sdg_get_tags(array $tags, array $thesaurus_informea) {
   foreach ($tags as $key => $tag) {
     $tag = trim(strtolower($tag));
     if (empty($thesaurus_informea[$tag])) {
-      drush_log("Term \"{$tag}\" not found.", 'error');
+      if (!empty($tag)) {
+        drush_log("Term \"{$tag}\" not found.", 'error');
+      }
       unset($tags[$key]);
     }
     else {
