@@ -45,17 +45,23 @@ function drush_goal_informea_sdg_indicators_import() {
     $indicator = $row[$columns['indicator_no']] . ' ' . $indicator;
 
     if (empty($goals[$goal])) {
-      $goals[$goal] = array();
+      $goals[$goal] = [
+        'title' => $goal,
+        'id' => $row[$columns['goal_no']],
+        'children' => [],
+      ];
     }
-    $goals[] = $goal;
-    $targets[] = $target;
-    $indicators[] = [
-      'goal_no' => $row[$columns['goal_no']],
-      'goal' => $goal,
-      'target_no' => $row[$columns['target_no']],
-      'target' => $target,
-      'indicator_no' => $row[$columns['indicator_no']],
-      'indicator' => $indicator,
+    if (!array_key_exists($target, $goals[$goal]['children'])) {
+      $goals[$goal]['children'][$target] = [
+        'title' => $target,
+        'id' => $row[$columns['target_no']],
+        'children' => [],
+      ];
+    }
+    $goals[$goal]['children'][$target]['children'][] = [
+      'title' => $indicator,
+      'id' => $row[$columns['indicator_no']],
+      'children' => [],
     ];
   }
 }
