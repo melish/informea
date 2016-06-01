@@ -44,7 +44,7 @@ function _goal_create_node($info) {
       'col' => 'value',
     ],
   ];
-  $fields['field_goal_type'] = $fields['field_goal_source'];
+  $fields['field_informea_tags'] = $fields['field_goal_type'] = $fields['field_goal_source'];
   $node = [
     'title' => $info['title_field'],
     'status' => '1',
