@@ -125,10 +125,10 @@ class DecisionsODataMigration extends AbstractODataMigration {
     $all_languages = array_merge($all_languages, $languages);
 
     $summary = $consumer->loadNavigationProperty($row, 'summary');
-    foreach($summary as &$sum) {
-      $sum = ODataMigrationUtil::fixHtmlAnchors($sum, $domain);
-    }
     list($summaries, $langs) = ODataMigrationUtil::getSingleValuedMultilingualField($summary);
+    foreach($summaries as &$sum) {
+      $sum = ODataMigrationUtil::removeHtmlAnchors($sum);
+    }
     $row->summary = $summaries;
 
     $files = $consumer->loadNavigationProperty($row, 'files');
