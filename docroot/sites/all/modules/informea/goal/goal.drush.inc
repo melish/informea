@@ -16,12 +16,31 @@ function goal_drush_command() {
   return $items;
 }
 
+function _goal_get_tags(array $tags, array $thesaurus_informea) {
+  $errors = [];
+  foreach ($tags as $key => $tag) {
+    $tag = trim(strtolower($tag));
+    if (empty($thesaurus_informea[$tag])) {
+      $errors[] = "Term \"{$tag}\" not found.";
+      unset($tags[$key]);
+    }
+    else {
+      $tags[$key] = $thesaurus_informea[$tag];
+    }
+  }
+  return [
+    'tags' => $tags,
+    'errors' => $errors,
+  ];
+}
+
 /**
  * @param array $info
  *  Array containing:
  *    - title_field
  *    - field_goal_source
  *    - field_goal_type
+ *    - field_informea_tags
  *    - field_parent_goal
  *    - field_original_id
  */
@@ -93,7 +112,7 @@ function drush_goal_informea_sdg_full_import() {
     'goal_tags' => 2,
     'target_no' => 4,
     'target_text' => 5,
-    'target_tags' => 6,
+    'target_tags' => 7,
     'indicator_no' => 10,
     'indicator_text' => 11,
     'indicator_tags' => 12,
@@ -132,6 +151,7 @@ function drush_goal_informea_sdg_full_import() {
       $goals[$goal] = [
         'title' => $goal,
         'id' => trim(str_replace(['Goal', '.'], '', $row[$columns['goal_no']])),
+        'tags' => explode(',', $row[$columns['goal_tags']]),
         'children' => [],
       ];
     }
@@ -139,12 +159,14 @@ function drush_goal_informea_sdg_full_import() {
       $goals[$goal]['children'][$target] = [
         'title' => $target,
         'id' => $row[$columns['target_no']],
+        'tags' => explode(',', $row[$columns['target_tags']]),
         'children' => [],
       ];
     }
     $goals[$goal]['children'][$target]['children'][] = [
       'title' => $indicator,
       'id' => $row[$columns['indicator_no']],
+      'tags' => explode(',', $row[$columns['indicator_tags']]),
       'children' => [],
     ];
   }
@@ -161,39 +183,47 @@ function drush_goal_informea_sdg_full_import() {
     ->execute()->fetchAllKeyed();
 
   foreach ($goals as $goal) {
-    // ToDo: field_goal_tools ??
-    // ToDo: field_informea_tags !!
+    $getTags = _goal_get_tags($goal['tags'], $informea_tags);
+    $goal['tags'] = $getTags['tags'];
+    $errors += $getTags['errors'];
     $goal_node = _goal_create_node([
       'title_field' => $goal['title'],
       'field_goal_source' => $sdg_tid,
       'field_goal_type' => $goal_tid,
       'field_original_id' => $goal['id'],
+      'field_informea_tags' => $goal['tags'],
     ]);
     if (!empty($goal_node->nid)) {
       drush_log("Created goal ({$goal_node->nid}): {$goal['title']}", 'ok');
       drush_log("Creating targets...", 'ok');
 
       foreach ($goal['children'] as $target) {
-        // ToDo: field_informea_tags !!
+        $getTags = _goal_get_tags($target['tags'], $informea_tags);
+        $target['tags'] = $getTags['tags'];
+        $errors += $getTags['errors'];
         $target_node = _goal_create_node([
           'title_field' => $target['title'],
           'field_goal_source' => $sdg_tid,
           'field_goal_type' => $target_tid,
           'field_parent_goal' => $goal_node->nid,
           'field_original_id' => $target['id'],
+          'field_informea_tags' => $target['tags'],
         ]);
         if (!empty($target_node->nid)) {
           drush_log("  * Created target ({$target_node->nid}): {$target['title']}", 'ok');
           drush_log("  Creating indicators...", 'ok');
 
           foreach ($target['children'] as $indicator) {
-            // ToDo: field_informea_tags !!
+            $getTags = _goal_get_tags($indicator['tags'], $informea_tags);
+            $indicator['tags'] = $getTags['tags'];
+            $errors += $getTags['errors'];
             $indicator_node = _goal_create_node([
               'title_field' => $indicator['title'],
               'field_goal_source' => $sdg_tid,
               'field_goal_type' => $indicator_tid,
               'field_parent_goal' => $target_node->nid,
               'field_original_id' => $indicator['id'],
+              'field_informea_tags' => $indicator['tags'],
             ]);
             if (!empty($indicator_node->nid)) {
               drush_log("    - Created indicator ({$indicator_node->nid}): {$indicator['title']}", 'ok');
