@@ -149,6 +149,11 @@ function drush_goal_informea_sdg_full_import() {
   $target_tid = 1737;
   $indicator_tid = 1735;
 
+  $informea_tags = db_select('taxonomy_term_data', 't')
+    ->fields('t', ['name', 'tid'])
+    ->condition('t.vid', '14')
+    ->execute()->fetchAllKeyed();
+
   foreach ($goals as $goal) {
     // ToDo: field_goal_tools ??
     // ToDo: field_informea_tags !!
