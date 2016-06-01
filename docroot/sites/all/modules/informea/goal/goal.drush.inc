@@ -88,16 +88,19 @@ function _goal_create_node($info) {
  */
 function drush_goal_informea_sdg_full_import() {
   $columns = [
-    'goal_no' => 'SDG Goal No.',
-    'goal_text' => 'SDG Goal Text',
-    'target_no' => 'SDG Target No.',
-    'target_text' => 'SDG Target Text',
-    'indicator_no' => 'SDG Indicator No.',
-    'indicator_text' => 'SDG Indicator Text*',
+    'goal_no' => 0,
+    'goal_text' => 1,
+    'goal_tags' => 2,
+    'target_no' => 4,
+    'target_text' => 5,
+    'target_tags' => 6,
+    'indicator_no' => 10,
+    'indicator_text' => 11,
+    'indicator_tags' => 12,
   ];
   module_load_include('inc', 'phpexcel');
   $path = drupal_get_path('module', 'goal') . '/files/SDG_datasheet.xlsx';
-  $data = phpexcel_import($path)[0];
+  $data = phpexcel_import($path, FALSE)[0];
   if (!is_array($data)) {
     drush_log("We could not get the data from the excel file.", 'error');
     return;
@@ -105,6 +108,9 @@ function drush_goal_informea_sdg_full_import() {
   $goals = [];
   $errors = [];
   foreach ($data as $key => $row) {
+    if ($key == 0) {
+      continue;
+    }
     $missing = 0;
     foreach (['goal_text', 'target_text', 'indicator_text'] as $req_col) {
       if (empty($row[$columns[$req_col]])) {
@@ -113,7 +119,7 @@ function drush_goal_informea_sdg_full_import() {
     }
     if ($missing > 0) {
       if ($missing < 3) {
-        $rownum = $key + 2;
+        $rownum = $key + 1;
         $errors[] = "Found an empty column on row {$rownum}";
       }
       continue;
