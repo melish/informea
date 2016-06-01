@@ -182,6 +182,10 @@ function drush_goal_informea_sdg_full_import() {
       ];
     }
     if (!array_key_exists($target, $goals[$goal]['children'])) {
+      if (strlen($row[$columns['target_no']]) > 6) {
+        $row[$columns['target_no']] = number_format((float)$row[$columns['target_no']],1,'.','');
+        drush_log("Fixed id for target: {$target}", 'warning');
+      }
       $goals[$goal]['children'][$target] = [
         'title' => $target,
         'id' => $row[$columns['target_no']],
