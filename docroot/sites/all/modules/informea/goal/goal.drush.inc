@@ -90,10 +90,11 @@ function drush_goal_informea_sdg_indicators_import() {
     return;
   }
   $goals = [];
-  foreach ($data as $row) {
+  foreach ($data as $key => $row) {
     if (empty($row[$columns['goal_text']]) ||
       empty($row[$columns['target_text']]) ||
       empty($row[$columns['indicator_text']])) {
+      drush_log("Found an empty column on row {$key + 2}", 'error');
       continue;
     }
     $goal = $row[$columns['goal_no']] . ' ' . $row[$columns['goal_text']];
