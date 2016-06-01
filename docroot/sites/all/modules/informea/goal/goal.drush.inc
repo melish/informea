@@ -1,5 +1,11 @@
 <?php
 
+// ToDo: Do we need to retrieve these tids programmatically matched by term name?
+define('DRUSH_GOAL_SDG_TID', 1753);
+define('DRUSH_GOAL_GOAL_TID', 1734);
+define('DRUSH_GOAL_TARGET_TID', 1737);
+define('DRUSH_GOAL_INDICATOR_TID', 1735);
+
 /**
  * Implementation of hook_drush_command().
  */
@@ -16,22 +22,18 @@ function goal_drush_command() {
   return $items;
 }
 
-function _goal_get_tags(array $tags, array $thesaurus_informea) {
-  $errors = [];
+function _goal_sdg_get_tags(array $tags, array $thesaurus_informea) {
   foreach ($tags as $key => $tag) {
     $tag = trim(strtolower($tag));
     if (empty($thesaurus_informea[$tag])) {
-      $errors[] = "Term \"{$tag}\" not found.";
+      drush_log("Term \"{$tag}\" not found.", 'error');
       unset($tags[$key]);
     }
     else {
       $tags[$key] = $thesaurus_informea[$tag];
     }
   }
-  return [
-    'tags' => $tags,
-    'errors' => $errors,
-  ];
+  return $tags;
 }
 
 /**
@@ -44,7 +46,7 @@ function _goal_get_tags(array $tags, array $thesaurus_informea) {
  *    - field_parent_goal
  *    - field_original_id
  */
-function _goal_create_node($info) {
+function _goal_sdg_create_node($info) {
   $fields = [
     'field_goal_source' => [
       'lang' => LANGUAGE_NONE,
@@ -101,6 +103,30 @@ function _goal_create_node($info) {
   return $node;
 }
 
+function _goal_sdg_handle_item($item, $parent_tid = NULL) {
+  $informea_tags = db_select('taxonomy_term_data', 't')
+    ->fields('t', ['name', 'tid'])
+    ->condition('t.vid', '14')
+    ->execute()->fetchAllKeyed();
+  $item['tags'] = _goal_sdg_get_tags($item['tags'], $informea_tags);
+  $info = [
+    'title_field' => $item['title'],
+    'field_goal_source' => $item['source'],
+    'field_goal_type' => $item['type'],
+    'field_original_id' => $item['id'],
+    'field_informea_tags' => $item['tags'],
+  ];
+  if (!empty($parent_tid)) {
+    $info['field_parent_goal'] = $parent_tid;
+  }
+  $node = _goal_sdg_create_node($info);
+  if (!empty($node->nid) && !empty($item['children'])) {
+    foreach ($item['children'] as $child) {
+      _goal_sdg_handle_item($child, $node->nid);
+    }
+  }
+}
+
 /**
  * Imports SDG goals, targets & indicators from SDG_datasheet.xlsx file.
  */
@@ -124,7 +150,7 @@ function drush_goal_informea_sdg_full_import() {
     return;
   }
   $goals = [];
-  $errors = [];
+
   foreach ($data as $key => $row) {
     if ($key == 0) {
       continue;
@@ -138,7 +164,7 @@ function drush_goal_informea_sdg_full_import() {
     if ($missing > 0) {
       if ($missing < 3) {
         $rownum = $key + 1;
-        $errors[] = "Found an empty column on row {$rownum}";
+        drush_log("Found an empty column on row {$rownum}", 'error');
       }
       continue;
     }
@@ -151,6 +177,8 @@ function drush_goal_informea_sdg_full_import() {
         'title' => $goal,
         'id' => trim(str_replace(['Goal', '.'], '', $row[$columns['goal_no']])),
         'tags' => explode(',', $row[$columns['goal_tags']]),
+        'source' => DRUSH_GOAL_SDG_TID,
+        'type' => DRUSH_GOAL_GOAL_TID,
         'children' => [],
       ];
     }
@@ -159,6 +187,8 @@ function drush_goal_informea_sdg_full_import() {
         'title' => $target,
         'id' => $row[$columns['target_no']],
         'tags' => explode(',', $row[$columns['target_tags']]),
+        'source' => DRUSH_GOAL_SDG_TID,
+        'type' => DRUSH_GOAL_TARGET_TID,
         'children' => [],
       ];
     }
@@ -166,74 +196,13 @@ function drush_goal_informea_sdg_full_import() {
       'title' => $indicator,
       'id' => $row[$columns['indicator_no']],
       'tags' => explode(',', $row[$columns['indicator_tags']]),
+      'source' => DRUSH_GOAL_SDG_TID,
+      'type' => DRUSH_GOAL_INDICATOR_TID,
       'children' => [],
     ];
   }
 
-  // ToDo: Do we need to retrieve these tids programmatically matched by term name?
-  $sdg_tid = 1753;
-  $goal_tid = 1734;
-  $target_tid = 1737;
-  $indicator_tid = 1735;
-
-  $informea_tags = db_select('taxonomy_term_data', 't')
-    ->fields('t', ['name', 'tid'])
-    ->condition('t.vid', '14')
-    ->execute()->fetchAllKeyed();
-
   foreach ($goals as $goal) {
-    $getTags = _goal_get_tags($goal['tags'], $informea_tags);
-    $goal['tags'] = $getTags['tags'];
-    $errors += $getTags['errors'];
-    $goal_node = _goal_create_node([
-      'title_field' => $goal['title'],
-      'field_goal_source' => $sdg_tid,
-      'field_goal_type' => $goal_tid,
-      'field_original_id' => $goal['id'],
-      'field_informea_tags' => $goal['tags'],
-    ]);
-    if (!empty($goal_node->nid)) {
-      drush_log("Created goal ({$goal_node->nid}): {$goal['title']}", 'ok');
-      drush_log("Creating targets...", 'ok');
-
-      foreach ($goal['children'] as $target) {
-        $getTags = _goal_get_tags($target['tags'], $informea_tags);
-        $target['tags'] = $getTags['tags'];
-        $errors += $getTags['errors'];
-        $target_node = _goal_create_node([
-          'title_field' => $target['title'],
-          'field_goal_source' => $sdg_tid,
-          'field_goal_type' => $target_tid,
-          'field_parent_goal' => $goal_node->nid,
-          'field_original_id' => $target['id'],
-          'field_informea_tags' => $target['tags'],
-        ]);
-        if (!empty($target_node->nid)) {
-          drush_log("  * Created target ({$target_node->nid}): {$target['title']}", 'ok');
-          drush_log("  Creating indicators...", 'ok');
-
-          foreach ($target['children'] as $indicator) {
-            $getTags = _goal_get_tags($indicator['tags'], $informea_tags);
-            $indicator['tags'] = $getTags['tags'];
-            $errors += $getTags['errors'];
-            $indicator_node = _goal_create_node([
-              'title_field' => $indicator['title'],
-              'field_goal_source' => $sdg_tid,
-              'field_goal_type' => $indicator_tid,
-              'field_parent_goal' => $target_node->nid,
-              'field_original_id' => $indicator['id'],
-              'field_informea_tags' => $indicator['tags'],
-            ]);
-            if (!empty($indicator_node->nid)) {
-              drush_log("    - Created indicator ({$indicator_node->nid}): {$indicator['title']}", 'ok');
-            }
-          }
-        }
-      }
-    }
-  }
-
-  foreach ($errors as $error) {
-    drush_log($error, 'error');
+    _goal_sdg_handle_item($goal);
   }
 }
