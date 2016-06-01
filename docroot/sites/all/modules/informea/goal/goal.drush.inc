@@ -91,12 +91,14 @@ function drush_goal_informea_sdg_indicators_import() {
   }
   $goals = [];
   foreach ($data as $row) {
-    if (empty($indicator = $row[$columns['indicator_text']])) {
+    if (empty($row[$columns['goal_text']]) ||
+      empty($row[$columns['target_text']]) ||
+      empty($row[$columns['indicator_text']])) {
       continue;
     }
     $goal = $row[$columns['goal_no']] . ' ' . $row[$columns['goal_text']];
     $target = $row[$columns['target_no']] . ' ' . $row[$columns['target_text']];
-    $indicator = $row[$columns['indicator_no']] . ' ' . $indicator;
+    $indicator = $row[$columns['indicator_no']] . ' ' . $row[$columns['indicator_text']];
 
     if (empty($goals[$goal])) {
       $goals[$goal] = [
@@ -134,31 +136,37 @@ function drush_goal_informea_sdg_indicators_import() {
       'field_goal_type' => $goal_tid,
       'field_original_id' => $goal['id'],
     ]);
-    drush_log("Created goal ({$goal_node->nid}): {$goal['title']}", 'ok');
-    drush_log("Creating targets...", 'ok');
+    if (!empty($goal_node->nid)) {
+      drush_log("Created goal ({$goal_node->nid}): {$goal['title']}", 'ok');
+      drush_log("Creating targets...", 'ok');
 
-    foreach ($goal['children'] as $target) {
-      // ToDo: field_informea_tags !!
-      $target_node = _goal_create_node([
-        'title_field' => $target['title'],
-        'field_goal_source' => $sdg_tid,
-        'field_goal_type' => $target_tid,
-        'field_parent_goal' => $goal_node->nid,
-        'field_original_id' => $target['id'],
-      ]);
-      drush_log("  * Created target ({$target_node->nid}): {$target['title']}", 'ok');
-      drush_log("  Creating indicators...", 'ok');
-
-      foreach ($target['children'] as $indicator) {
+      foreach ($goal['children'] as $target) {
         // ToDo: field_informea_tags !!
-        $indicator_node = _goal_create_node([
-          'title_field' => $indicator['title'],
+        $target_node = _goal_create_node([
+          'title_field' => $target['title'],
           'field_goal_source' => $sdg_tid,
-          'field_goal_type' => $indicator_tid,
-          'field_parent_goal' => $target_node->nid,
-          'field_original_id' => $indicator['id'],
+          'field_goal_type' => $target_tid,
+          'field_parent_goal' => $goal_node->nid,
+          'field_original_id' => $target['id'],
         ]);
-        drush_log("    - Created indicator ({$indicator_node->nid}): {$indicator['title']}", 'ok');
+        if (!empty($target_node->nid)) {
+          drush_log("  * Created target ({$target_node->nid}): {$target['title']}", 'ok');
+          drush_log("  Creating indicators...", 'ok');
+
+          foreach ($target['children'] as $indicator) {
+            // ToDo: field_informea_tags !!
+            $indicator_node = _goal_create_node([
+              'title_field' => $indicator['title'],
+              'field_goal_source' => $sdg_tid,
+              'field_goal_type' => $indicator_tid,
+              'field_parent_goal' => $target_node->nid,
+              'field_original_id' => $indicator['id'],
+            ]);
+            if (!empty($indicator_node->nid)) {
+              drush_log("    - Created indicator ({$indicator_node->nid}): {$indicator['title']}", 'ok');
+            }
+          }
+        }
       }
     }
   }
