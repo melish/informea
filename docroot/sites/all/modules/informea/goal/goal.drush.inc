@@ -146,7 +146,14 @@ function drush_goal_informea_sdg_indicators_import() {
       ]);
 
       foreach ($target['children'] as $indicator) {
-
+        // ToDo: field_informea_tags !!
+        $indicator_node = _goal_create_node([
+          'title_field' => $indicator['title'],
+          'field_goal_source' => $sdg_tid,
+          'field_goal_type' => $indicator_tid,
+          'field_parent_goal' => $target_node->nid,
+          'field_original_id' => $indicator['id'],
+        ]);
       }
     }
   }
