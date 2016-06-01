@@ -64,7 +64,7 @@ function goal_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -134,7 +134,7 @@ function goal_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 14,
+      'weight' => 13,
     ),
   );
 
@@ -210,7 +210,7 @@ function goal_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -270,7 +270,7 @@ function goal_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 15,
+      'weight' => 14,
     ),
   );
 
@@ -444,7 +444,7 @@ function goal_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -580,7 +580,7 @@ function goal_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -633,7 +633,60 @@ function goal_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 17,
+      'weight' => 15,
+    ),
+  );
+
+  // Exported field_instance: 'node-goal-field_original_id'.
+  $field_instances['node-goal-field_original_id'] = array(
+    'bundle' => 'goal',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Goal/Target/Indicator identifier (ex. 17, 17.1, 2.2.c etc.)',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 13,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_original_id',
+    'label' => 'Identifier',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 5,
     ),
   );
 
@@ -689,7 +742,63 @@ function goal_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 9,
+      'weight' => 10,
+    ),
+  );
+
+  // Exported field_instance: 'node-goal-field_referenced_decisions'.
+  $field_instances['node-goal-field_referenced_decisions'] = array(
+    'bundle' => 'goal',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Reference to a decision or decision paragraph',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 14,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_referenced_decisions',
+    'label' => 'Referenced decisions',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete_tags',
+      'weight' => 19,
     ),
   );
 
@@ -759,7 +868,7 @@ function goal_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -1026,12 +1135,16 @@ function goal_field_default_field_instances() {
   t('GEG Theme');
   t('Geographical scope');
   t('Goal Type');
+  t('Goal/Target/Indicator identifier (ex. 17, 17.1, 2.2.c etc.)');
+  t('Identifier');
   t('InforMEA tags');
   t('Link to source website where relevant information can be found');
   t('Name');
   t('Official order');
   t('Parent goal');
   t('Reference');
+  t('Reference to a decision or decision paragraph');
+  t('Referenced decisions');
   t('Select a parent goal in case of Targets or Indicators, which are linked to a corresponding Goal or Target ...');
   t('Source');
   t('Source of goal, ex. MDG, SDG, Aichi Biodiversity Targets etc.');

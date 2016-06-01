@@ -122,6 +122,15 @@ function goal_strongarm() {
         'language' => array(
           'weight' => '0',
         ),
+        'metatags' => array(
+          'weight' => '18',
+        ),
+        'redirect' => array(
+          'weight' => '17',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '16',
+        ),
       ),
       'display' => array(),
     ),
