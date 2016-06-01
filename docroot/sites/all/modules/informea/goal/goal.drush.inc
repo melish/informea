@@ -134,6 +134,8 @@ function drush_goal_informea_sdg_indicators_import() {
       'field_goal_type' => $goal_tid,
       'field_original_id' => $goal['id'],
     ]);
+    drush_log("Created goal ({$goal_node->nid}): {$goal['title']}", 'ok');
+    drush_log("Creating targets...", 'ok');
 
     foreach ($goal['children'] as $target) {
       // ToDo: field_informea_tags !!
@@ -144,6 +146,8 @@ function drush_goal_informea_sdg_indicators_import() {
         'field_parent_goal' => $goal_node->nid,
         'field_original_id' => $target['id'],
       ]);
+      drush_log("  * Created target ({$target_node->nid}): {$target['title']}", 'ok');
+      drush_log("  Creating indicators...", 'ok');
 
       foreach ($target['children'] as $indicator) {
         // ToDo: field_informea_tags !!
@@ -154,6 +158,7 @@ function drush_goal_informea_sdg_indicators_import() {
           'field_parent_goal' => $target_node->nid,
           'field_original_id' => $indicator['id'],
         ]);
+        drush_log("    - Created indicator ({$indicator_node->nid}): {$indicator['title']}", 'ok');
       }
     }
   }
