@@ -55,13 +55,26 @@ function _goal_create_node($info) {
 
   foreach ($fields as $field => $det) {
     if (!empty($info[$field])) {
-      $node[$field] = [
-        $det['lang'] => [
-          0 => [
-            $det['col'] => $info[$field],
+      if (is_array($info[$field])) {
+        foreach ($info[$field] as $key => $val) {
+          $node[$field] = [
+            $det['lang'] => [
+              $key => [
+                $det['col'] => $val,
+              ],
+            ],
+          ];
+        }
+      }
+      else {
+        $node[$field] = [
+          $det['lang'] => [
+            0 => [
+              $det['col'] => $info[$field],
+            ],
           ],
-        ],
-      ];
+        ];
+      }
     }
   }
   $node = (object) $node;
