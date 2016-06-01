@@ -26,6 +26,25 @@ function goal_drush_command() {
  *    - field_original_id
  */
 function _goal_create_node($info) {
+  $fields = [
+    'field_goal_source' => [
+      'lang' => LANGUAGE_NONE,
+      'col' => 'tid',
+    ],
+    'field_parent_goal' => [
+      'lang' => LANGUAGE_NONE,
+      'col' => 'target_id',
+    ],
+    'title_field' => [
+      'lang' => 'en',
+      'col' => 'value',
+    ],
+    'field_original_id' => [
+      'lang' => LANGUAGE_NONE,
+      'col' => 'value',
+    ],
+  ];
+  $fields['field_goal_type'] = $fields['field_goal_source'];
   $node = [
     'title' => $info['title_field'],
     'status' => '1',
@@ -33,32 +52,13 @@ function _goal_create_node($info) {
     'language' => 'en',
     'title_original' => $info['title_field'],
   ];
-  foreach (['field_goal_source', 'field_goal_type'] as $field) {
+
+  foreach ($fields as $field => $det) {
     if (!empty($info[$field])) {
       $node[$field] = [
-        LANGUAGE_NONE => [
+        $det['lang'] => [
           0 => [
-            'tid' => $info[$field],
-          ],
-        ],
-      ];
-    }
-  }
-  if (!empty($info['field_parent_goal'])) {
-    $node['field_parent_goal'] = [
-      LANGUAGE_NONE => [
-        0 => [
-          'target_id' => $info['field_parent_goal'],
-        ],
-      ],
-    ];
-  }
-  foreach (['title_field', 'field_original_id'] as $field) {
-    if (!empty($info[$field])) {
-      $node[$field] = [
-        'en' => [
-          0 => [
-            'value' => $info[$field],
+            $det['col'] => $info[$field],
           ],
         ],
       ];
