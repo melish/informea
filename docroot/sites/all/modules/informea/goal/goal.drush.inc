@@ -47,7 +47,7 @@ function drush_goal_informea_sdg_indicators_import() {
     if (empty($goals[$goal])) {
       $goals[$goal] = [
         'title' => $goal,
-        'id' => $row[$columns['goal_no']],
+        'id' => trim(str_replace(['Goal', '.'], '', $row[$columns['goal_no']])),
         'children' => [],
       ];
     }
@@ -74,7 +74,7 @@ function drush_goal_informea_sdg_indicators_import() {
   foreach ($goals as $goal) {
     // ToDo: field_goal_tools ??
     // ToDo: field_informea_tags !!
-    $node = [
+    $goal_node = (object) [
       'title' => $goal['title'],
       'status' => '1',
       'type' => 'goal',
@@ -108,5 +108,7 @@ function drush_goal_informea_sdg_indicators_import() {
         ],
       ],
     ];
+    $goal_node = node_submit($goal_node);
+    node_save($goal_node);
   }
 }
