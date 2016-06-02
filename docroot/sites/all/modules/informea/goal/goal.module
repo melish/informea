@@ -41,6 +41,10 @@ function goal_theme() {
   );
 }
 
+function goal_preprocess_goal_target_indicator(&$variables) {
+  $variables['theme_hook_suggestions'][] = 'goal_target_indicator__' . arg(2);
+}
+
 function _get_goal_source_goals($source, $type_of_goals) {
   if (empty($source) || empty($type_of_goals)) {
     return array();
