@@ -4,11 +4,7 @@ $tags = $pw->field_informea_tags->value();
 $highlight = isset($_GET['indicator']) ? $_GET['indicator'] == $indicator->nid : FALSE;
 ?>
 <div class="indicator smallipop <?php print $highlight ? 'highlight' : '' ;?>" id="indicator-<?php print $indicator->nid; ?>">
-  <p>
-    <?php if($pw->body->value()): ?>
-      <?php print($pw->body->value->value(array('decode' => FALSE))); ?>
-    <?php endif; ?>
-  </p>
+  <p><?php print $pw->label(); ?></p>
   <?php print theme('goal_text_tags', array('tags' => $tags)); ?>
   <ul class="list-inline actions">
     <li class="action-hover">
