@@ -11,4 +11,5 @@ function meeting_update_7001() {
   module_enable($modules);
   features_revert_module('meeting');
   features_revert_module('decision');
+  features_revert_module('informea_search');
 }
