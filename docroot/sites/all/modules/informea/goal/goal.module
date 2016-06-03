@@ -41,6 +41,10 @@ function goal_theme() {
   );
 }
 
+function goal_preprocess_goal_target_indicator(&$variables) {
+  $variables['theme_hook_suggestions'][] = 'goal_target_indicator__' . arg(2);
+}
+
 function _get_goal_source_goals($source, $type_of_goals) {
   if (empty($source) || empty($type_of_goals)) {
     return array();
@@ -60,10 +64,12 @@ function _get_goal_source_goals($source, $type_of_goals) {
     ->fieldCondition('field_goal_type', 'tid', $goal_type_tid)
     ->propertyOrderBy('title', 'ASC');
 
+  $ret = array();
   $result = $query->execute();
-  $nodes = $result['node'];
-
-  return $nodes;
+  if (!empty($result['node'])) {
+    $ret = $result['node'];
+  }
+  return $ret;
 }
 
 function _get_goal_children($source, $parent, $type_of_goals) {
