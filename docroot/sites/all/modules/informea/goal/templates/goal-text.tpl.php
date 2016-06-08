@@ -9,7 +9,7 @@
       <ul class="list-inline actions">
         <li class="action-hover">
           <?php
-          print l('<i class="glyphicon glyphicon-zoom-in"></i>', "node/{$goal->nid}", array(
+          print l('<i class="glyphicon glyphicon-eye-open"></i>', "node/{$goal->nid}", array(
             'attributes' => array(
               'data-toggle' => 'tooltip', 'data-placement' => 'top',
               'title' => t('View goal page'),
