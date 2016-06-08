@@ -62,14 +62,15 @@ class InforMEASearchResultsGrouping {
         break;
         case 'decision':
           $treaty = $wrapper->field_treaty->value();reset($treaty);
-          $treaty = current($treaty);
-          if (array_key_exists($treaty->nid, $results)) {
-            $treaty = $results[$treaty->nid];
+          if ($treaty = current($treaty)) {
+            if (array_key_exists($treaty->nid, $results)) {
+              $treaty = $results[$treaty->nid];
+            }
+            if (!isset($treaty->decisions) || !array_key_exists($node->nid, $treaty->decisions)) {
+              $treaty->decisions[$node->nid] = $node;
+            }
+            $results[$treaty->nid] = $treaty;
           }
-          if (!isset($treaty->decisions) || !array_key_exists($node->nid, $treaty->decisions)) {
-            $treaty->decisions[$node->nid] = $node;
-          }
-          $results[$treaty->nid] = $treaty;
           break;
         case 'decision_paragraph':
           $treaty = $wrapper->field_treaty->value();reset($treaty);
