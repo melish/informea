@@ -509,6 +509,69 @@ function goal_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-goal-field_images'.
+  $field_instances['node-goal-field_images'] = array(
+    'bundle' => 'goal',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => '',
+        ),
+        'type' => 'image',
+        'weight' => 15,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_images',
+    'label' => 'Images',
+    'required' => 0,
+    'settings' => array(
+      'alt_field' => 0,
+      'default_image' => 0,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => '',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'image',
+      'settings' => array(
+        'preview_image_style' => 'thumbnail',
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'image_image',
+      'weight' => 21,
+    ),
+  );
+
   // Exported field_instance: 'node-goal-field_informea_tags'.
   $field_instances['node-goal-field_informea_tags'] = array(
     'bundle' => 'goal',
@@ -1137,6 +1200,7 @@ function goal_field_default_field_instances() {
   t('Goal Type');
   t('Goal/Target/Indicator identifier (ex. 17, 17.1, 2.2.c etc.)');
   t('Identifier');
+  t('Images');
   t('InforMEA tags');
   t('Link to source website where relevant information can be found');
   t('Name');
