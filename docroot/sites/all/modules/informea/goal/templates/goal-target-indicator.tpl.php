@@ -13,6 +13,17 @@ $highlight = isset($_GET['indicator']) ? $_GET['indicator'] == $indicator->nid :
   <ul class="list-inline actions">
     <li class="action-hover">
       <?php
+      print l('<i class="glyphicon glyphicon-eye-open"></i>', "node/{$indicator->nid}", array(
+        'attributes' => array(
+          'data-toggle' => 'tooltip', 'data-placement' => 'top',
+          'title' => t('View indicator page'),
+        ),
+        'html' => TRUE,
+      ));
+      ?>
+    </li>
+    <li class="action-hover">
+      <?php
       print l('<i class="glyphicon glyphicon-link"></i>', $base_goal_url, array(
         'attributes' => array(
           'data-toggle' => 'tooltip', 'data-placement' => 'top',

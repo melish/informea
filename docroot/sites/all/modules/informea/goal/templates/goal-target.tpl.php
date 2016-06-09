@@ -8,6 +8,17 @@ $expanded = isset($_GET['target']) ? $_GET['target'] == $target->nid : FALSE;
     <ul class="list-inline actions">
       <li class="action-hover">
         <?php
+        print l('<i class="glyphicon glyphicon-eye-open"></i>', "node/{$target->nid}", array(
+          'attributes' => array(
+            'data-toggle' => 'tooltip', 'data-placement' => 'top',
+            'title' => t('View target page'),
+          ),
+          'html' => TRUE,
+        ));
+        ?>
+      </li>
+      <li class="action-hover">
+        <?php
         print l('<i class="glyphicon glyphicon-link"></i>', $base_goal_url, array(
           'attributes' => array(
             'data-toggle' => 'tooltip', 'data-placement' => 'top',
