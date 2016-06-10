@@ -133,6 +133,18 @@ function informea_theme_preprocess_page(&$variables) {
           }
         }
         break;
+
+      case 'goal':
+        $sdgs_tid = 1753;
+        if (!empty($node->field_goal_source)
+          && !empty($node->field_goal_source[LANGUAGE_NONE])
+          && $node->field_goal_source[LANGUAGE_NONE][0]['tid'] == $sdgs_tid) {
+          $items = goal_get_related_national_reports($node->nid);
+          $variables['page']['content']['related_national_reports'] = [
+            '#markup' => theme('goal_related_national_reports', array('items' => $items)),
+          ];
+        }
+        break;
     }
   }
   if (isset($variables['node']->type)) {
