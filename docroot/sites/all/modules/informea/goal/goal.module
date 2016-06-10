@@ -88,7 +88,7 @@ function goal_block_view($delta = '') {
               $block['content'] .= '<div class="children-container"><div class="accordion panel-group panel-collapse collapse in" role="tabpanel">';
               foreach ($ob->targets as $target) {
                 $target->indicators = _get_goal_children($ob_w->field_goal_source->value(), $target, 'Indicator');
-                $block['content'] .= theme('goal_target', array('goal' => $ob, 'target' => $target, 'base_goal_url' => url('taxonomy/term/' . $type->tid, ['absolute' => TRUE,])));
+                $block['content'] .= theme('goal_target', array('goal' => $ob, 'target' => $target, 'base_goal_url' => url('taxonomy/term/' . $ob_w->field_goal_source->value()->tid, ['absolute' => TRUE,])));
               }
               $block['content'] .= '</div></div>';
             }
@@ -100,7 +100,7 @@ function goal_block_view($delta = '') {
               $block['content'] = '<h3>' . t('Indicators') . '</h3>';
               $block['content'] .= '<div class="children-container"><div class="accordion panel-group panel-collapse collapse in" role="tabpanel">';
               foreach ($ob->indicators as $indicator) {
-                $block['content'] .= theme('goal_target_indicator', array('goal' => $parent, 'target' => $ob, 'indicator' => $indicator, 'base_goal_url' => url('taxonomy/term/' . $type->tid, ['absolute' => TRUE,])));
+                $block['content'] .= theme('goal_target_indicator', array('goal' => $parent, 'target' => $ob, 'indicator' => $indicator, 'base_goal_url' => url('taxonomy/term/' . $ob_w->field_goal_source->value()->tid, ['absolute' => TRUE,])));
               }
               $block['content'] .= '</div></div>';
             }
