@@ -144,14 +144,6 @@ function informea_theme_preprocess_page(&$variables) {
             $tw = entity_metadata_wrapper('taxonomy_term', $term);
             drupal_set_title($tw->label() . ' ' . $node_w->label());
           }
-          drupal_add_js(drupal_get_path('module', 'goal') . '/js/goal.js');
-          drupal_add_library('informea', 'scrollto');
-          drupal_add_library('informea', 'smallipop');
-          drupal_add_css(drupal_get_path('module', 'goal') . '/styles/goal.css');
-          $items = goal_get_related_content($node->nid);
-          $variables['page']['content']['related_content'] = [
-            '#markup' => theme('goal_related_content', array('items' => $items)),
-          ];
         }
         break;
     }

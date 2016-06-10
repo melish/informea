@@ -47,6 +47,44 @@ function goal_theme() {
   );
 }
 
+/**
+ * Implements hook_block_info().
+ */
+function goal_block_info() {
+  $blocks = [
+    'goal_related_content_block' => [
+      'info' => t('Goal related content'),
+      'cache' => DRUPAL_NO_CACHE,
+      'status' => 1,
+      'region' => 'content',
+      'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+      'pages' => '',
+    ],
+  ];
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function goal_block_view($delta = '') {
+  $block = [];
+  switch ($delta) {
+    case 'goal_related_content_block':
+      $ob = menu_get_object();
+      if (!empty($ob) && $ob->type == 'goal') {
+        drupal_add_js(drupal_get_path('module', 'goal') . '/js/goal.js');
+        drupal_add_library('informea', 'scrollto');
+        drupal_add_library('informea', 'smallipop');
+        drupal_add_css(drupal_get_path('module', 'goal') . '/styles/goal.css');
+        $items = goal_get_related_content($ob->nid);
+        $block['content'] = theme('goal_related_content', array('items' => $items));
+      }
+      break;
+  }
+  return $block;
+}
+
 function goal_get_related_content($goal_nid) {
   $return = [];
   $nids = db_select('field_data_field_sdg_goals', 'g')
