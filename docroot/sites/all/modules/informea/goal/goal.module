@@ -77,8 +77,38 @@ function goal_block_view($delta = '') {
         drupal_add_library('informea', 'scrollto');
         drupal_add_library('informea', 'smallipop');
         drupal_add_css(drupal_get_path('module', 'goal') . '/styles/goal.css');
+
+        $ob_w = entity_metadata_wrapper('node', $ob);
+        $type = $ob_w->field_goal_type->value();
+        switch ($type->name) {
+          case 'Goal':
+            $ob->targets = _get_goal_children($ob_w->field_goal_source->value(), $ob, 'Target');
+            if (!empty($ob->targets)) {
+
+              $block['content'] = '<div class="accordion panel-group panel-collapse collapse in" role="tabpanel">';
+              foreach ($ob->targets as $target) {
+                $target->indicators = _get_goal_children($ob_w->field_goal_source->value(), $target, 'Indicator');
+                $block['content'] .= theme('goal_target', array('goal' => $ob, 'target' => $target, 'base_goal_url' => url('taxonomy/term/' . $type->tid, ['absolute' => TRUE,])));
+              }
+              $block['content'] .= '</div>';
+            }
+            break;
+          case 'Target':
+            $parent = $ob_w->field_parent_goal->value();
+            $ob->indicators = _get_goal_children($ob_w->field_goal_source->value(), $ob, 'Indicator');
+            if (!empty($ob->indicators)) {
+              $block['content'] = '<div class="accordion panel-group panel-collapse collapse in" role="tabpanel">';
+              foreach ($ob->indicators as $indicator) {
+                $block['content'] .= theme('goal_target_indicator', array('goal' => $parent, 'target' => $ob, 'indicator' => $indicator, 'base_goal_url' => url('taxonomy/term/' . $type->tid, ['absolute' => TRUE,])));
+              }
+              $block['content'] .= '</div>';
+            }
+            break;
+          default:
+            $block['content'] = '';
+        }
         $items = goal_get_related_content($ob->nid);
-        $block['content'] = theme('goal_related_content', array('items' => $items));
+        $block['content'] .= theme('goal_related_content', array('items' => $items));
       }
       break;
   }
@@ -120,7 +150,16 @@ function goal_get_related_content($goal_nid) {
 }
 
 function goal_preprocess_goal_target_indicator(&$variables) {
-  $variables['theme_hook_suggestions'][] = 'goal_target_indicator__' . arg(2);
+  if (arg(0) == 'node' && !empty(arg(1)) && is_numeric(arg(1))) {
+    $goal = is_array($variables['goal']) ? reset($variables['goal']) : $variables['goal'];
+    $source = $goal->field_goal_source;
+    if (!empty($source) && !empty($source[LANGUAGE_NONE])) {
+      $variables['theme_hook_suggestions'][] = 'goal_target_indicator__' . $source[LANGUAGE_NONE][0]['tid'];
+    }
+  }
+  else {
+    $variables['theme_hook_suggestions'][] = 'goal_target_indicator__' . arg(2);
+  }
 }
 
 function _get_goal_source_goals($source, $type_of_goals) {
