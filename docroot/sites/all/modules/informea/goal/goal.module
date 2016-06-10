@@ -74,7 +74,7 @@ function goal_get_related_national_reports($goal_nid) {
         $national_report->children = [];
         $return[$treaty_id]->children[$national_report_id] = $national_report;
       }
-      $paragraph = node_load($paragraph);
+      $paragraph = node_load($paragraph->entity_id);
       $return[$treaty_id]->children[$national_report_id]->children[] = $paragraph;
     }
   }

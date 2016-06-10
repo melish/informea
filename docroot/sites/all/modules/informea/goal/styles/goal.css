@@ -58,3 +58,7 @@
 .page-taxonomy-term-1552 .views-field-body {
     margin-top: 5px;
 }
+
+.related-national-reports-container .national-report-paragraphs .item {
+    border-bottom: 1px solid #ddd;
+}

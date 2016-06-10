@@ -139,6 +139,10 @@ function informea_theme_preprocess_page(&$variables) {
         if (!empty($node->field_goal_source)
           && !empty($node->field_goal_source[LANGUAGE_NONE])
           && $node->field_goal_source[LANGUAGE_NONE][0]['tid'] == $sdgs_tid) {
+          drupal_add_js(drupal_get_path('module', 'goal') . '/js/goal.js');
+          drupal_add_library('informea', 'scrollto');
+          drupal_add_library('informea', 'smallipop');
+          drupal_add_css(drupal_get_path('module', 'goal') . '/styles/goal.css');
           $items = goal_get_related_national_reports($node->nid);
           $variables['page']['content']['related_national_reports'] = [
             '#markup' => theme('goal_related_national_reports', array('items' => $items)),
