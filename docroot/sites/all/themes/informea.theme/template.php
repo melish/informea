@@ -139,7 +139,11 @@ function informea_theme_preprocess_page(&$variables) {
         if (!empty($node->field_goal_source)
           && !empty($node->field_goal_source[LANGUAGE_NONE])
           && $node->field_goal_source[LANGUAGE_NONE][0]['tid'] == $sdgs_tid) {
-          drupal_set_title(t('Target') . ' ' . drupal_get_title());
+          $node_w = entity_metadata_wrapper('node', $node);
+          if (($term = $node_w->field_goal_type->value()) && in_array($term->name, ['Target', 'Indicator'])) {
+            $tw = entity_metadata_wrapper('taxonomy_term', $term);
+            drupal_set_title($tw->label() . ' ' . $node_w->label());
+          }
           drupal_add_js(drupal_get_path('module', 'goal') . '/js/goal.js');
           drupal_add_library('informea', 'scrollto');
           drupal_add_library('informea', 'smallipop');
