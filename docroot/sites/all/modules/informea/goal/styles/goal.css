@@ -72,3 +72,11 @@
     border: none;
     max-height: 23px;
 }
+
+.node-type-goal .children-container {
+    margin-top: 20px;
+}
+
+.node-type-goal .children-container .accordion {
+    padding-left: 0;
+}

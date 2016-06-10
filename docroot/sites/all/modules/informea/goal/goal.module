@@ -84,31 +84,35 @@ function goal_block_view($delta = '') {
           case 'Goal':
             $ob->targets = _get_goal_children($ob_w->field_goal_source->value(), $ob, 'Target');
             if (!empty($ob->targets)) {
-
-              $block['content'] = '<div class="accordion panel-group panel-collapse collapse in" role="tabpanel">';
+              $block['content'] = '<h3>' . t('Targets') . '</h3>';
+              $block['content'] .= '<div class="children-container"><div class="accordion panel-group panel-collapse collapse in" role="tabpanel">';
               foreach ($ob->targets as $target) {
                 $target->indicators = _get_goal_children($ob_w->field_goal_source->value(), $target, 'Indicator');
                 $block['content'] .= theme('goal_target', array('goal' => $ob, 'target' => $target, 'base_goal_url' => url('taxonomy/term/' . $type->tid, ['absolute' => TRUE,])));
               }
-              $block['content'] .= '</div>';
+              $block['content'] .= '</div></div>';
             }
             break;
           case 'Target':
             $parent = $ob_w->field_parent_goal->value();
             $ob->indicators = _get_goal_children($ob_w->field_goal_source->value(), $ob, 'Indicator');
             if (!empty($ob->indicators)) {
-              $block['content'] = '<div class="accordion panel-group panel-collapse collapse in" role="tabpanel">';
+              $block['content'] = '<h3>' . t('Indicators') . '</h3>';
+              $block['content'] .= '<div class="children-container"><div class="accordion panel-group panel-collapse collapse in" role="tabpanel">';
               foreach ($ob->indicators as $indicator) {
                 $block['content'] .= theme('goal_target_indicator', array('goal' => $parent, 'target' => $ob, 'indicator' => $indicator, 'base_goal_url' => url('taxonomy/term/' . $type->tid, ['absolute' => TRUE,])));
               }
-              $block['content'] .= '</div>';
+              $block['content'] .= '</div></div>';
             }
             break;
           default:
             $block['content'] = '';
         }
         $items = goal_get_related_content($ob->nid);
-        $block['content'] .= theme('goal_related_content', array('items' => $items));
+        if (!empty($items)) {
+          $block['content'] .= '<h3>' . t('Related content') . '</h3>';
+          $block['content'] .= theme('goal_related_content', array('items' => $items));
+        }
       }
       break;
   }
