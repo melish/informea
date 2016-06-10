@@ -82,7 +82,7 @@
   <div class="container">
     <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
     <?php print render($title_prefix); ?>
-    <div class="col-md-9"><h1><?php print informea_theme_treaty_logo_link($node); ?><?php print $title; ?></h1></div>
+    <div class="col-md-9"><?php print informea_theme_treaty_logo_link($node); ?><?php print $title; ?></div>
     <div class="col-md-3">
       <form role="form">
         <?php print drupal_render($variables['select-switch-treaties']); ?>
