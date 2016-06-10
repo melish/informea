@@ -38,16 +38,16 @@ function goal_theme() {
       'variables' => array('goal', 'target', 'indicator', 'base_goal_url'),
       'path' => drupal_get_path('module', 'goal'),
     ),
-    'goal_related_national_reports' => array(
+    'goal_related_content' => array(
       'render element' => 'element',
-      'template' => 'templates/goal-related-national-reports',
+      'template' => 'templates/goal-related-content',
       'variables' => array('items'),
       'path' => drupal_get_path('module', 'goal'),
     ),
   );
 }
 
-function goal_get_related_national_reports($goal_nid) {
+function goal_get_related_content($goal_nid) {
   $return = [];
   $nids = db_select('field_data_field_sdg_goals', 'g')
     ->fields('g', ['entity_id'])
@@ -66,16 +66,16 @@ function goal_get_related_national_reports($goal_nid) {
       $national_report_id = $paragraph->field_parent_national_report_target_id;
       if (empty($return[$treaty_id])) {
         $treaty = node_load($treaty_id);
-        $treaty->children = [];
+        $treaty->national_reports = [];
         $return[$treaty_id] = $treaty;
       }
-      if (empty($return[$treaty_id]->children[$national_report_id])) {
+      if (empty($return[$treaty_id]->national_reports[$national_report_id])) {
         $national_report = node_load($national_report_id);
         $national_report->children = [];
-        $return[$treaty_id]->children[$national_report_id] = $national_report;
+        $return[$treaty_id]->national_reports[$national_report_id] = $national_report;
       }
       $paragraph = node_load($paragraph->entity_id);
-      $return[$treaty_id]->children[$national_report_id]->children[] = $paragraph;
+      $return[$treaty_id]->national_reports[$national_report_id]->children[] = $paragraph;
     }
   }
   return $return;

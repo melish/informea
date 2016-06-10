@@ -143,9 +143,9 @@ function informea_theme_preprocess_page(&$variables) {
           drupal_add_library('informea', 'scrollto');
           drupal_add_library('informea', 'smallipop');
           drupal_add_css(drupal_get_path('module', 'goal') . '/styles/goal.css');
-          $items = goal_get_related_national_reports($node->nid);
-          $variables['page']['content']['related_national_reports'] = [
-            '#markup' => theme('goal_related_national_reports', array('items' => $items)),
+          $items = goal_get_related_content($node->nid);
+          $variables['page']['content']['related_content'] = [
+            '#markup' => theme('goal_related_content', array('items' => $items)),
           ];
         }
         break;
