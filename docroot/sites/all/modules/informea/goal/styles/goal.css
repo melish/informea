@@ -62,3 +62,9 @@
 .related-national-reports-container .national-report-paragraphs .item {
     border-bottom: 1px solid #ddd;
 }
+
+.related-national-reports-container .national-reports .flag {
+    padding: 0;
+    border: none;
+    max-height: 23px;
+}

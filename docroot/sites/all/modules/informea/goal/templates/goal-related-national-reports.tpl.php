@@ -21,6 +21,10 @@
                     <div class="panel-heading collapsed" role="tab" id="heading-<?php print $national_report->nid; ?>" data-target="#content-<?php print $national_report->nid; ?>" data-toggle="collapse" aria-expanded="false">
                       <i class="glyphicon glyphicon-plus-sign"></i>
                       <h4 class="panel-title">
+                        <?php if (!empty($country = $national_report_w->field_country->value())): ?>
+                          <?php $country = reset($country);?>
+                          <?php print informea_theme_country_flag($country); ?>
+                        <?php endif; ?>
                         <?php print $national_report_w->label(); ?>
                       </h4><!-- .panel-title -->
                     </div>
@@ -30,7 +34,6 @@
                           <?php $national_report_paragraph_w = entity_metadata_wrapper('node', $national_report_paragraph); ?>
                           <div class="item" id="content-<?php print $national_report->nid; ?>">
                             <p>
-                              <h4><?php print $national_report_paragraph_w->label(); ?></h4>
                               <?php if($national_report_paragraph_w->body->value()): ?>
                                 <?php print($national_report_paragraph_w->body->value->value(array('decode' => FALSE))); ?>
                               <?php endif; ?>
