@@ -139,6 +139,7 @@ function informea_theme_preprocess_page(&$variables) {
         if (!empty($node->field_goal_source)
           && !empty($node->field_goal_source[LANGUAGE_NONE])
           && $node->field_goal_source[LANGUAGE_NONE][0]['tid'] == $sdgs_tid) {
+          drupal_set_title(t('Target') . ' ' . drupal_get_title());
           drupal_add_js(drupal_get_path('module', 'goal') . '/js/goal.js');
           drupal_add_library('informea', 'scrollto');
           drupal_add_library('informea', 'smallipop');
