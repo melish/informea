@@ -367,7 +367,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['created']['date_format'] = 'short';
   $handler->display->display_options['fields']['created']['second_date_format'] = 'long';
   $handler->display->display_options['fields']['created']['link_to_entity'] = 0;
-  /* Field: Indexed Content: Tags */
+  /* Field: Indexed Content: MEA topic */
   $handler->display->display_options['fields']['field_mea_topic']['id'] = 'field_mea_topic';
   $handler->display->display_options['fields']['field_mea_topic']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_mea_topic']['field'] = 'field_mea_topic';
@@ -407,7 +407,7 @@ function informea_views_default_views() {
     4 => 0,
     5 => 0,
   );
-  /* Filter criterion: Indexed Content: Tags */
+  /* Filter criterion: Indexed Content: MEA topic */
   $handler->display->display_options['filters']['field_mea_topic']['id'] = 'field_mea_topic';
   $handler->display->display_options['filters']['field_mea_topic']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['filters']['field_mea_topic']['field'] = 'field_mea_topic';
@@ -601,6 +601,10 @@ function informea_views_default_views() {
   $handler->display->display_options['relationships']['entity_translations']['id'] = 'entity_translations';
   $handler->display->display_options['relationships']['entity_translations']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['relationships']['entity_translations']['field'] = 'entity_translations';
+  /* Relationship: Taxonomy term: Parent term */
+  $handler->display->display_options['relationships']['parent']['id'] = 'parent';
+  $handler->display->display_options['relationships']['parent']['table'] = 'taxonomy_term_hierarchy';
+  $handler->display->display_options['relationships']['parent']['field'] = 'parent';
   /* Field: Taxonomy term: Term ID */
   $handler->display->display_options['fields']['tid']['id'] = 'tid';
   $handler->display->display_options['fields']['tid']['table'] = 'taxonomy_term_data';
@@ -611,6 +615,13 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['fields']['name']['field'] = 'name';
+  /* Field: Entity translation: Name: translated */
+  $handler->display->display_options['fields']['name_field_et']['id'] = 'name_field_et';
+  $handler->display->display_options['fields']['name_field_et']['table'] = 'field_data_name_field';
+  $handler->display->display_options['fields']['name_field_et']['field'] = 'name_field_et';
+  $handler->display->display_options['fields']['name_field_et']['relationship'] = 'parent';
+  $handler->display->display_options['fields']['name_field_et']['label'] = 'Parent';
+  $handler->display->display_options['fields']['name_field_et']['type'] = 'text_plain';
   /* Field: Taxonomy term: Description */
   $handler->display->display_options['fields']['description_field']['id'] = 'description_field';
   $handler->display->display_options['fields']['description_field']['table'] = 'field_data_description_field';
@@ -663,6 +674,7 @@ function informea_views_default_views() {
     t('Desc'),
     t('Displaying @total terms'),
     t('Translations'),
+    t('Parent'),
     t('ID'),
     t('.'),
     t(','),
