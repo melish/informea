@@ -64,7 +64,7 @@ function goal_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -210,7 +210,7 @@ function goal_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -391,7 +391,7 @@ function goal_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -463,9 +463,8 @@ function goal_field_default_field_instances() {
       ),
       'default' => array(
         'label' => 'inline',
-        'module' => 'i18n_taxonomy',
         'settings' => array(),
-        'type' => 'i18n_taxonomy_term_reference_link',
+        'type' => 'hidden',
         'weight' => 1,
       ),
       'teaser' => array(
@@ -568,7 +567,7 @@ function goal_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 21,
+      'weight' => 4,
     ),
   );
 
@@ -643,7 +642,7 @@ function goal_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -696,7 +695,7 @@ function goal_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 15,
+      'weight' => 17,
     ),
   );
 
@@ -715,9 +714,8 @@ function goal_field_default_field_instances() {
       ),
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'hidden',
         'weight' => 13,
       ),
       'teaser' => array(
@@ -749,7 +747,7 @@ function goal_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -790,7 +788,7 @@ function goal_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_parent_goal',
-    'label' => 'Parent goal',
+    'label' => 'Goal',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -805,7 +803,7 @@ function goal_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 10,
+      'weight' => 0,
     ),
   );
 
@@ -931,7 +929,7 @@ function goal_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -1007,7 +1005,7 @@ function goal_field_default_field_instances() {
     'entity_type' => 'taxonomy_term',
     'field_name' => 'field_abbreviation',
     'label' => 'Abbreviation',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'text_processing' => 0,
@@ -1070,8 +1068,9 @@ function goal_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
+        'module' => 'link',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'link_default',
         'weight' => 1,
       ),
     ),
@@ -1197,6 +1196,7 @@ function goal_field_default_field_instances() {
   t('GEG Tags');
   t('GEG Theme');
   t('Geographical scope');
+  t('Goal');
   t('Goal Type');
   t('Goal/Target/Indicator identifier (ex. 17, 17.1, 2.2.c etc.)');
   t('Identifier');
@@ -1205,7 +1205,6 @@ function goal_field_default_field_instances() {
   t('Link to source website where relevant information can be found');
   t('Name');
   t('Official order');
-  t('Parent goal');
   t('Reference');
   t('Reference to a decision or decision paragraph');
   t('Referenced decisions');
