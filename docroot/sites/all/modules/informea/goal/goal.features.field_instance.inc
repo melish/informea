@@ -28,7 +28,7 @@ function goal_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -86,7 +86,7 @@ function goal_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 10,
+        'weight' => 6,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -171,7 +171,7 @@ function goal_field_default_field_instances() {
           'textformatter_type' => 'comma',
         ),
         'type' => 'textformatter_list',
-        'weight' => 7,
+        'weight' => 11,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -229,10 +229,22 @@ function goal_field_default_field_instances() {
       ),
       'default' => array(
         'label' => 'inline',
-        'module' => 'i18n_taxonomy',
-        'settings' => array(),
-        'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 11,
+        'module' => 'textformatter',
+        'settings' => array(
+          'textformatter_class' => 'textformatter-list',
+          'textformatter_comma_and' => 0,
+          'textformatter_comma_full_stop' => 0,
+          'textformatter_comma_override' => 0,
+          'textformatter_comma_tag' => 'div',
+          'textformatter_contrib' => array(),
+          'textformatter_separator_custom' => '',
+          'textformatter_separator_custom_class' => 'textformatter-separator',
+          'textformatter_separator_custom_tag' => 'span',
+          'textformatter_term_plain' => 0,
+          'textformatter_type' => 'comma',
+        ),
+        'type' => 'textformatter_list',
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -291,8 +303,8 @@ function goal_field_default_field_instances() {
         'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
-        'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 9,
+        'type' => 'i18n_taxonomy_term_reference_plain',
+        'weight' => 8,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -525,10 +537,10 @@ function goal_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
-          'image_style' => '',
+          'image_style' => 'medium',
         ),
         'type' => 'image',
-        'weight' => 15,
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -604,7 +616,7 @@ function goal_field_default_field_instances() {
           'textformatter_type' => 'comma',
         ),
         'type' => 'textformatter_list',
-        'weight' => 6,
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -661,9 +673,8 @@ function goal_field_default_field_instances() {
       ),
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'hidden',
         'weight' => 12,
       ),
       'teaser' => array(
@@ -716,7 +727,7 @@ function goal_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 16,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -827,7 +838,7 @@ function goal_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 14,
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -860,6 +871,59 @@ function goal_field_default_field_instances() {
       ),
       'type' => 'entityreference_autocomplete_tags',
       'weight' => 19,
+    ),
+  );
+
+  // Exported field_instance: 'node-goal-field_sorting_order'.
+  $field_instances['node-goal-field_sorting_order'] = array(
+    'bundle' => 'goal',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 13,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_sorting_order',
+    'label' => 'Sort order',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 21,
     ),
   );
 
@@ -950,7 +1014,7 @@ function goal_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 15,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1209,6 +1273,7 @@ function goal_field_default_field_instances() {
   t('Reference to a decision or decision paragraph');
   t('Referenced decisions');
   t('Select a parent goal in case of Targets or Indicators, which are linked to a corresponding Goal or Target ...');
+  t('Sort order');
   t('Source');
   t('Source of goal, ex. MDG, SDG, Aichi Biodiversity Targets etc.');
   t('Title');
