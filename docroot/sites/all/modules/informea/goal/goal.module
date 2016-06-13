@@ -95,6 +95,9 @@ function goal_block_view($delta = '') {
             break;
           case 'Target':
             $parent = $ob_w->field_parent_goal->value();
+            if (!empty($parent) && is_array($parent)) {
+              $parent = reset($parent);
+            }
             $ob->indicators = _get_goal_children($ob_w->field_goal_source->value(), $ob, 'Indicator');
             if (!empty($ob->indicators)) {
               $block['content'] = '<h3>' . t('Indicators') . '</h3>';
