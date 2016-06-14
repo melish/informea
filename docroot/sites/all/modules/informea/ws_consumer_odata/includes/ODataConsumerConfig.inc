@@ -19,6 +19,7 @@ class ODataConsumerConfig {
   public static $ODATA_NAME_WHC = 'whc';
   public static $ODATA_NAME_MONTREAL = 'montreal';
   public static $ODATA_NAME_RAMSAR = 'ramsar';
+  public static $ODATA_NAME_UNFCCC = 'unfccc';
 
   public static $ODATA_ENTITY_CONTACTS = 'Contacts';
   public static $DRUPAL_TYPE_CONTACTS = 'contact_person';
@@ -73,6 +74,7 @@ class ODataConsumerConfig {
       ODataConsumerConfig::$ODATA_NAME_WHC,
       ODataConsumerConfig::$ODATA_NAME_MONTREAL,
       ODataConsumerConfig::$ODATA_NAME_RAMSAR,
+      ODataConsumerConfig::$ODATA_NAME_UNFCCC,
     );
   }
 
