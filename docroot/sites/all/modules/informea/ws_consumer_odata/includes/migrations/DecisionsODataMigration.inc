@@ -174,8 +174,8 @@ class DecisionsODataMigration extends AbstractODataMigration {
     if (!empty($row->published)) {
       $row->published = $this->fixDateValue($row->published);
     }
-    $row->meetingId = $this->map_source_meeting($row->meetingId);
     $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
+    $row->meetingId = $this->map_source_meeting($row->meetingId, $row->meetingTitle, $row->treaty);
     $row->filename = array();
     foreach ($row->files as $file) {
       if ($filename = $this->extractFilenameFromURL($file)) {
@@ -185,16 +185,29 @@ class DecisionsODataMigration extends AbstractODataMigration {
     return $this->validateRow($row);
   }
 
-  public function map_source_meeting($id) {
-    $table_name = $this->config->getDecisionMeetingMappingTable();
-    $query = db_select($table_name, 'm')
-      ->fields('m', array('destid1'))
-      ->condition('m.sourceid1', $id);
-    $result = $query->execute()->fetchField();
-    if (!$result) {
-      ws_consumer_odata_log('Meeting with source id=' . $id .' has not been found.', MigrationBase::MESSAGE_ERROR);
+  public function map_source_meeting($id_event, $meeting_title, $id_treaty) {
+    $ret = NULL;
+    if (!empty($id_event)) {
+      $table_name = $this->config->getDecisionMeetingMappingTable();
+      $query = db_select($table_name, 'm')
+        ->fields('m', array('destid1'))
+        ->condition('m.sourceid1', $id_event);
+      $ret = $query->execute()->fetchField();
+      if (!$ret) {
+        ws_consumer_odata_log('Meeting with source id=' . $id .' has not been found.', MigrationBase::MESSAGE_ERROR);
+      }
     }
-    return $result;
+    else if (!empty($meeting_title) && !empty($id_treaty)) {
+      $q = db_select('node', 'a')->fields('a', array('nid'));
+      $q->innerJoin('field_data_field_treaty', 'b', 'a.nid = b.entity_id');
+      $q->condition('a.title', $meeting_title);
+      $q->condition('b.field_treaty_target_id', $id_treaty);
+      $ret = $q->execute()->fetchField();
+      if (!$ret) {
+        ws_consumer_odata_log('Meeting with title `' . $meeting_title .'` not been found.', MigrationBase::MESSAGE_ERROR);
+      }
+    }
+    return $ret;
   }
 
   public function validateRow($row) {
