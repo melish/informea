@@ -35,6 +35,9 @@
                             <?php $national_report_paragraph_w = entity_metadata_wrapper('node', $national_report_paragraph); ?>
                             <div class="item" id="content-<?php print $national_report->nid; ?>">
                               <p>
+                                <strong><?php print($national_report_paragraph_w->label()); ?></strong>
+                              </p>
+                              <p>
                                 <?php if($national_report_paragraph_w->body->value()): ?>
                                   <?php print($national_report_paragraph_w->body->value->value(array('decode' => FALSE))); ?>
                                 <?php endif; ?>
