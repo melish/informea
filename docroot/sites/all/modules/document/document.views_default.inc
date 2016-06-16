@@ -112,6 +112,7 @@ function document_views_default_views() {
   $handler->display->display_options['fields']['field_treaty']['table'] = 'search_api_index_informea_documents';
   $handler->display->display_options['fields']['field_treaty']['field'] = 'field_treaty';
   $handler->display->display_options['fields']['field_treaty']['label'] = '';
+  $handler->display->display_options['fields']['field_treaty']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_treaty']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_treaty']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_treaty']['view_mode'] = 'full';
