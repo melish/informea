@@ -211,6 +211,38 @@ function document_views_default_views() {
     10 => 0,
     11 => 0,
   );
+  /* Filter criterion: Indexed Content: InforMEA Tags */
+  $handler->display->display_options['filters']['field_informea_tags']['id'] = 'field_informea_tags';
+  $handler->display->display_options['filters']['field_informea_tags']['table'] = 'search_api_index_informea_documents';
+  $handler->display->display_options['filters']['field_informea_tags']['field'] = 'field_informea_tags';
+  $handler->display->display_options['filters']['field_informea_tags']['value'] = array();
+  $handler->display->display_options['filters']['field_informea_tags']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_informea_tags']['expose']['operator_id'] = 'field_informea_tags_op';
+  $handler->display->display_options['filters']['field_informea_tags']['expose']['label'] = 'InforMEA Tags';
+  $handler->display->display_options['filters']['field_informea_tags']['expose']['operator'] = 'field_informea_tags_op';
+  $handler->display->display_options['filters']['field_informea_tags']['expose']['identifier'] = 'field_informea_tags';
+  $handler->display->display_options['filters']['field_informea_tags']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+  );
+  $handler->display->display_options['filters']['field_informea_tags']['group_info']['label'] = 'InforMEA Tags';
+  $handler->display->display_options['filters']['field_informea_tags']['group_info']['identifier'] = 'field_informea_tags';
+  $handler->display->display_options['filters']['field_informea_tags']['group_info']['remember'] = FALSE;
+  $handler->display->display_options['filters']['field_informea_tags']['group_info']['group_items'] = array(
+    1 => array(),
+    2 => array(),
+    3 => array(),
+  );
+  $handler->display->display_options['filters']['field_informea_tags']['type'] = 'select';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -245,6 +277,7 @@ function document_views_default_views() {
     t('Country'),
     t('Document type'),
     t('Instrument'),
+    t('InforMEA Tags'),
     t('Page'),
   );
   $export['documents'] = $view;
