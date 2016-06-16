@@ -137,12 +137,10 @@ class DocumentsODataMigration extends AbstractODataMigration {
     $odata_values = $consumer->loadNavigationProperty($row, 'keywords');
     $keywords = array();
     foreach($odata_values as $v) {
-      var_dump($v->literalForm);
       if ($tid = ODataMigrationUtil::getOrCreateTaxonomyTermByName($v->literalForm, $vdk->vid)) {
         $keywords[] = $tid;
       }
     }
-    var_dump($keywords);
     $row->keywords = $keywords;
 
     // authors
@@ -174,8 +172,8 @@ class DocumentsODataMigration extends AbstractODataMigration {
 
         // Filename validation
         $filename = NULL;
-        if (!empty($row->filename)) {
-          $filename = $row->filename;
+        if (!empty($file->filename)) {
+          $filename = $file->filename;
         }
         else {
           $filename = ODataMigrationUtil::filenameFromURL($file->url);
