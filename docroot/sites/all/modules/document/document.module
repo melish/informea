@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Document feature.
+ */
+
+include_once 'document.features.inc';
