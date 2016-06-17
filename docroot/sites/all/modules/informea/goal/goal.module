@@ -6,6 +6,47 @@
 
 include_once 'goal.features.inc';
 
+/**
+ * Implements hook_menu().
+ */
+function goal_menu() {
+
+  $items = array();
+
+  $items['goal/autocomplete/field_sdg_goals'] = array(
+    'title' => 'SDG goals Autocomplete',
+    'page callback' => 'sdg_goals_autocomplete_callback',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Menu callback for SDG goals autocomplete.
+ *
+ * @param $string
+ */
+function sdg_goals_autocomplete_callback($string) {
+  $matches = [];
+
+  $args = func_get_args();
+  $string = implode('/', $args);
+
+  $q = db_select('node', 'n');
+  $q->innerJoin('field_data_field_goal_source', 'gs', 'n.nid = gs.entity_id');
+  $q->fields('n', ['nid', 'title']);
+  $q->condition('gs.field_goal_source_tid', '1753'); /* SDG goals */
+  $q->condition('n.title', '%' . db_like($string) . '%', 'LIKE');
+  $items = $q->execute()->fetchAllKeyed();
+  foreach ($items as $nid => $title) {
+    $matches["{$title} ({$nid})"] = '<div class="reference-autocomplete">' . $title . '</div>';
+  }
+
+  drupal_json_output($matches);
+}
+
 function goal_theme() {
   return array(
     'goals_listing' => array(
