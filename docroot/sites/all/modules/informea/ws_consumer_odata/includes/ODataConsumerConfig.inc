@@ -267,9 +267,9 @@ class ODataConsumerConfig {
           self::$ODATA_NAME_ROTTERDAM,
           self::$ODATA_NAME_BASEL
         ))) {
-          return '&$expand=title,files,summary&$orderby=updated%20desc,id';
+          return '&$expand=title,files,keywords,summary&$orderby=updated%20desc,id';
         }
-        return '&$expand=title,files,content,summary&$orderby=updated%20desc,id';
+        return '&$expand=title,keywords,files,content,summary&$orderby=updated%20desc,id';
 
       case self::$ODATA_ENTITY_MEETINGS:
         return '&$expand=title,description&$orderby=updated%20desc,id';

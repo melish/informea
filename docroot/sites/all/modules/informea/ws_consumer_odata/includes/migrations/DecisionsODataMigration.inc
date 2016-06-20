@@ -66,6 +66,9 @@ class DecisionsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_last_update:timezone')->defaultValue('Europe/Zurich');
     $this->addFieldMapping('changed', 'updated');
 
+    $this->addFieldMapping('field_informea_tags', 'keywords');
+    $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
+
     $this->addFieldMapping('field_sorting_order', 'displayOrder');
 
     $this->addFieldMapping('comment')->defaultValue(FALSE);
@@ -87,7 +90,6 @@ class DecisionsODataMigration extends AbstractODataMigration {
       'field_decision_updated:to', 'field_decision_updated',
       'field_meeting_url:attributes', 'field_meeting_url:language',
       'field_url:attributes', 'field_url:language', 'field_url:title',
-      'field_informea_tags', 'field_informea_tags:source_type',
       'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
       'field_files:preserve_files',
       'field_files:source_dir', 'field_files:urlencode', 'field_files:display',
@@ -169,6 +171,17 @@ class DecisionsODataMigration extends AbstractODataMigration {
       }
     }
     $row->languages = array_unique($all_languages);
+
+    // keywords
+    $vdk = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
+    $odata_values = $consumer->loadNavigationProperty($row, 'keywords');
+    $keywords = array();
+    foreach($odata_values as $v) {
+      if ($tid = ODataMigrationUtil::getTaxonomyTermByName($v->term, $vdk->vid)) {
+        $keywords[] = $tid;
+      }
+    }
+    $row->keywords = $keywords;
 
     /* Do some data transformation */
     if (!empty($row->published)) {
@@ -252,6 +265,7 @@ class InforMEAODataDecisionsMigrateSource extends InforMEAAbstractODataMigrateSo
       'content_language' => 'Body field languages',
       'summary' => 'Body summary',
       'link' => 'URL',
+      'keywords' => 'InforMEA thesaurus keywords',
       'filename' => 'filename',
       'updated' => 'Updated',
     );
