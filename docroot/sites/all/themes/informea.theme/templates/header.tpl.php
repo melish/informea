@@ -79,7 +79,6 @@
             </li><!-- .col-sm-3 -->
             <li class="col-sm-3">
               <ul>
-                <li class="dropdown-header"><?php print t('Regional Treaties'); ?></li>
                 <li>
                   <?php print l(t('Barcelona'), 'node/275'); ?>
                   <ul>
