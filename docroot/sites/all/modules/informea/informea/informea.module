@@ -17,7 +17,7 @@ define('ROLE_ADMINISTRATOR', 'administrator');
 /**
  * Implements hook_schema_alter()
  */
-function informea_migration_schema_alter(&$schema) {
+function informea_schema_alter(&$schema) {
   $table = 'field_data_title_field';
   $column = 'title_field_value';
 
