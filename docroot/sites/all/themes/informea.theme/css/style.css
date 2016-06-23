@@ -27,6 +27,7 @@ h1 {
   font-size: 2.2em;
   font-weight: normal;
   margin-top: 5px;
+  display: inline-block;
 }
 
 /* Section header */
