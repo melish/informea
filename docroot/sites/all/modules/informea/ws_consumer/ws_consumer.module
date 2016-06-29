@@ -326,6 +326,8 @@ function ws_consumer_un_database_get_country($country_name) {
     'Congo (Brazzaville)' => 52,
     'Holy See' => 243,
     'Cabo Verde' => 42,
+    'Macedonia' => 131,
+    'Syria' => 218,
   );
   if (array_key_exists($country_name, $mappings)) {
     $country_ob = node_load($mappings[$country_name]);
