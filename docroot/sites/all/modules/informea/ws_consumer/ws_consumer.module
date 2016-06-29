@@ -309,24 +309,30 @@ function ws_consumer_un_database_get_country($country_name) {
   // Some hardcodings for their broken country names
   $fixed_country_name = htmlspecialchars_decode($country_name, ENT_QUOTES);
   $mappings = array(
-    'Bolivia' => 'Bolivia (Plurinational State of)',
-    'Iran' => 'Iran (Islamic Republic of)',
-    'United Kingdom' => 'United Kingdom of Great Britain and Northern Ireland',
-    'Gambia' => 'The Gambia',
-    'Lao People\'s Democratic Republic' => 'Laos',
-    'St. Kitts and Nevis' => 'Saint Kitts and Nevis',
-    'St. Lucia' => 'Saint Lucia',
-    'St. Vincent and the Grenadines' => 'Saint Vincent and the Grenadines',
-    'State of Palestine' => 'Palestinian Territory, Occupied',
-    'Lao People&#039;s Democratic Republic' => 'Laos',
-    'Sao Tome and Principe' => 'São Tomé and Príncipe',
-    'Congo' => 'Congo (Brazzaville)',
-    'Holy See' => 'Vatican City State',
+    'Bolivia' => 28,
+    'Iran' => 106,
+    'United Kingdom' => 236,
+    'Gambia' => 83,
+    'Lao People\'s Democratic Republic' => 121,
+    'Lao People&#039;s Democratic Republic' => 121,
+    'St. Kitts and Nevis' => 187,
+    'St. Lucia' => 188,
+    'St. Vincent and the Grenadines' => 191,
+    'State of Palestine' => 170,
+    'Sao Tome and Principe' => 194,
+    'São Tomé and Príncipe' => 194,
+    'Democratic Republic of the Congo (Kinshasa)' => 61,
+    'Congo' => 52,
+    'Congo (Brazzaville)' => 52,
+    'Holy See' => 243,
+    'Cabo Verde' => 42,
   );
   if (array_key_exists($country_name, $mappings)) {
-    $fixed_country_name = $mappings[$country_name];
+    $country_ob = node_load($mappings[$country_name]);
   }
-  $country_ob = country_get_by_name($fixed_country_name);
+  else {
+    $country_ob = country_get_by_name($fixed_country_name);
+  }
   if (empty($country_ob) && strtolower($country_name) != 'participant') { // participant is the heading
     watchdog('ws_consumer', 'Cannot find country: !c', array('!c' => $country_name), WATCHDOG_ERROR);
   }

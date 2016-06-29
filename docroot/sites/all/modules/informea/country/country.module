@@ -508,11 +508,15 @@ function country_views_query_alter(&$view, &$query) {
 function country_node_update($node) {
   if ($node->type == 'country') {
     $old_regions = $new_regions = array();
-    foreach ($node->original->field_region[LANGUAGE_NONE] as $region) {
-      $old_regions[] = $region['tid'];
+    if (!empty($node->original->field_region)) {
+      foreach ($node->original->field_region[LANGUAGE_NONE] as $region) {
+        $old_regions[] = $region['tid'];
+      }
     }
-    foreach ($node->field_region[LANGUAGE_NONE] as $region) {
-      $new_regions[] = $region['tid'];
+    if (!empty($node->field_region)) {
+      foreach ($node->field_region[LANGUAGE_NONE] as $region) {
+        $new_regions[] = $region['tid'];
+      }
     }
     if (!(array_diff($old_regions, $new_regions) == array_diff($new_regions, $old_regions))) {
       drupal_set_message('Region for country ' . $node->title . ' was changed! ' .

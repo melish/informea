@@ -16,7 +16,7 @@ function country_data_country_get_parties($id_country) {
 }
 
 function country_data_get_allowed_membership_status() {
-  return array('acceptance', 'accession', 'approval', 'continuation', 'ratification', 'succession');
+  return array('acceptance', 'accession', 'approval', 'continuation', 'ratification', 'succession', 'party');
 }
 
 function country_data_treaty_get_membership($id_treaty, $other = FALSE) {
