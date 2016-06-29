@@ -33,8 +33,13 @@ class SearchApiAttachmentsEntityreferenceAlterSettings extends SearchApiAttachme
       foreach ($entityreference_fields as $entityreference_field) {
         if (isset($item->{$entityreference_field['field_name']})) {
           $referenced_entities = $item_wrapper->{$entityreference_field['field_name']}->value();
+          // Manage case of single value fields by reproducing the structure of
+          // multiple values fields.
+          if (is_object($referenced_entities)) {
+            $referenced_entities = array($referenced_entities);
+          }
           // Index the files content.
-          if (!empty($file_fields)) {
+          if (!empty($file_fields) && !empty($referenced_entities)) {
             foreach ($file_fields as $file_field) {
               foreach ($referenced_entities as $referenced_entity) {
                 // The referenced entity has the file field.
