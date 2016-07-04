@@ -18,7 +18,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Aruba",
+                "nameOfficial": "Aruba of the Kingdom of the Netherlands"
+            }
         ]
     },
     {
@@ -43,7 +47,7 @@
             {
                 "language": "ar",
                 "name": "أفغانستان",
-                "nameOfficial": "جمهورية أفغانستان الإسلامية "
+                "nameOfficial": "جمهورية أفغانستان الإسلامية"
             },
             {
                 "language": "en",
@@ -63,17 +67,17 @@
             {
                 "language": "it",
                 "name": "Afghanistan",
-                "nameOfficial": "Repubblica Islamica di Afghanistan  "
-            },
-            {
-                "language": "zh",
-                "name": "阿富汗",
-                "nameOfficial": "阿富汗伊斯兰共和国"
+                "nameOfficial": "Repubblica Islamica di Afghanistan"
             },
             {
                 "language": "ru",
                 "name": "Афганистан",
                 "nameOfficial": "Исламская Республика Афганистан"
+            },
+            {
+                "language": "zh",
+                "name": "阿富汗",
+                "nameOfficial": "阿富汗伊斯兰共和国"
             }
         ]
     },
@@ -99,7 +103,7 @@
             {
                 "language": "ar",
                 "name": "أنغولا",
-                "nameOfficial": "أنغولا جمهورية "
+                "nameOfficial": "أنغولا جمهورية"
             },
             {
                 "language": "en",
@@ -122,14 +126,14 @@
                 "nameOfficial": "Repubblica d'Angola"
             },
             {
-                "language": "zh",
-                "name": "安哥拉",
-                "nameOfficial": "安哥拉共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Ангола",
                 "nameOfficial": "Республика Ангола"
+            },
+            {
+                "language": "zh",
+                "name": "安哥拉",
+                "nameOfficial": "安哥拉共和国"
             }
         ]
     },
@@ -152,7 +156,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Anguilla",
+                "nameOfficial": "Anguilla"
+            }
         ]
     },
     {
@@ -174,7 +182,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Åland Islands",
+                "nameOfficial": "Åland Islands"
+            }
         ]
     },
     {
@@ -199,7 +211,7 @@
             {
                 "language": "ar",
                 "name": "ألبانيا",
-                "nameOfficial": "ألبانيا جمهورية "
+                "nameOfficial": "ألبانيا جمهورية"
             },
             {
                 "language": "en",
@@ -222,14 +234,14 @@
                 "nameOfficial": "Repubblica d'Albania"
             },
             {
-                "language": "zh",
-                "name": "阿尔巴尼亚",
-                "nameOfficial": "阿尔巴尼亚共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Албания",
                 "nameOfficial": "Республика Албания"
+            },
+            {
+                "language": "zh",
+                "name": "阿尔巴尼亚",
+                "nameOfficial": "阿尔巴尼亚共和国"
             }
         ]
     },
@@ -255,7 +267,7 @@
             {
                 "language": "ar",
                 "name": "أندورا",
-                "nameOfficial": "أندورا إمارة "
+                "nameOfficial": "أندورا إمارة"
             },
             {
                 "language": "en",
@@ -278,14 +290,14 @@
                 "nameOfficial": "Principato d'Andorra"
             },
             {
-                "language": "zh",
-                "name": "安道尔",
-                "nameOfficial": "安道尔公国"
-            },
-            {
                 "language": "ru",
                 "name": "Андорра",
                 "nameOfficial": "Княжество Андорра"
+            },
+            {
+                "language": "zh",
+                "name": "安道尔",
+                "nameOfficial": "安道尔公国"
             }
         ]
     },
@@ -310,8 +322,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "المتحدة العربية الإمارات ",
-                "nameOfficial": "المتحدة العربية الإمارات "
+                "name": "المتحدة العربية الإمارات",
+                "nameOfficial": "المتحدة العربية الإمارات"
             },
             {
                 "language": "en",
@@ -334,14 +346,14 @@
                 "nameOfficial": "Emirati arabi uniti"
             },
             {
-                "language": "zh",
-                "name": "阿拉伯联合酋长国",
-                "nameOfficial": "阿拉伯联合酋长国"
-            },
-            {
                 "language": "ru",
                 "name": "Объединенные Арабские Эмираты",
                 "nameOfficial": "Объединенные Арабские Эмираты"
+            },
+            {
+                "language": "zh",
+                "name": "阿拉伯联合酋长国",
+                "nameOfficial": "阿拉伯联合酋长国"
             }
         ]
     },
@@ -367,7 +379,7 @@
             {
                 "language": "ar",
                 "name": "الأرجنتين",
-                "nameOfficial": "جمهورية الأرجنتين "
+                "nameOfficial": "جمهورية الأرجنتين"
             },
             {
                 "language": "en",
@@ -390,14 +402,14 @@
                 "nameOfficial": "Repubblica argentina"
             },
             {
-                "language": "zh",
-                "name": "阿根廷",
-                "nameOfficial": "阿根廷共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Аргентина",
                 "nameOfficial": "Аргентинская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "阿根廷",
+                "nameOfficial": "阿根廷共和国"
             }
         ]
     },
@@ -423,7 +435,7 @@
             {
                 "language": "ar",
                 "name": "أرمينيا",
-                "nameOfficial": "أرمينيا جمهورية "
+                "nameOfficial": "أرمينيا جمهورية"
             },
             {
                 "language": "en",
@@ -446,14 +458,14 @@
                 "nameOfficial": "Repubblica d'Armenia"
             },
             {
-                "language": "zh",
-                "name": "亚美尼亚",
-                "nameOfficial": "亚美尼亚共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Армения",
                 "nameOfficial": "Республика Армения"
+            },
+            {
+                "language": "zh",
+                "name": "亚美尼亚",
+                "nameOfficial": "亚美尼亚共和国"
             }
         ]
     },
@@ -476,7 +488,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "American Samoa",
+                "nameOfficial": "The United States Territory of American Samoa"
+            }
         ]
     },
     {
@@ -495,7 +511,11 @@
 
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Antarctica",
+                "nameOfficial": "Antarctica"
+            }
         ]
     },
     {
@@ -514,7 +534,11 @@
 
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "French Southern and Antarctic Lands",
+                "nameOfficial": "Territory of the French Southern and Antarctic Lands"
+            }
         ]
     },
     {
@@ -538,8 +562,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "أنتيغوا وبربودا ",
-                "nameOfficial": "أنتيغوا وبربودا "
+                "name": "أنتيغوا وبربودا",
+                "nameOfficial": "أنتيغوا وبربودا"
             },
             {
                 "language": "en",
@@ -562,14 +586,14 @@
                 "nameOfficial": "Antigua e Barbuda"
             },
             {
-                "language": "zh",
-                "name": "安提瓜和巴布达",
-                "nameOfficial": "安提瓜和巴布达"
-            },
-            {
                 "language": "ru",
                 "name": "Антигуа и Барбуда",
                 "nameOfficial": "Антигуа и Барбуда"
+            },
+            {
+                "language": "zh",
+                "name": "安提瓜和巴布达",
+                "nameOfficial": "安提瓜和巴布达"
             }
         ]
     },
@@ -618,14 +642,14 @@
                 "nameOfficial": "Australia"
             },
             {
-                "language": "zh",
-                "name": "澳大利亚",
-                "nameOfficial": "澳大利亚"
-            },
-            {
                 "language": "ru",
                 "name": "Австралия",
                 "nameOfficial": "Австралия"
+            },
+            {
+                "language": "zh",
+                "name": "澳大利亚",
+                "nameOfficial": "澳大利亚"
             }
         ]
     },
@@ -651,7 +675,7 @@
             {
                 "language": "ar",
                 "name": "النمسا",
-                "nameOfficial": "النمسا جمهورية "
+                "nameOfficial": "النمسا جمهورية"
             },
             {
                 "language": "en",
@@ -674,14 +698,14 @@
                 "nameOfficial": "Repubblica d'Austria"
             },
             {
-                "language": "zh",
-                "name": "奥地利",
-                "nameOfficial": "奥地利共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Австрия",
                 "nameOfficial": "Австрийская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "奥地利",
+                "nameOfficial": "奥地利共和国"
             }
         ]
     },
@@ -707,7 +731,7 @@
             {
                 "language": "ar",
                 "name": "أذربيجان",
-                "nameOfficial": "الجمهورية الأذربيجانية "
+                "nameOfficial": "الجمهورية الأذربيجانية"
             },
             {
                 "language": "en",
@@ -730,14 +754,14 @@
                 "nameOfficial": "Repubblica dell'Azerbaigian"
             },
             {
-                "language": "zh",
-                "name": "阿塞拜疆",
-                "nameOfficial": "阿塞拜疆共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Азербайджан",
                 "nameOfficial": "Азербайджанская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "阿塞拜疆",
+                "nameOfficial": "阿塞拜疆共和国"
             }
         ]
     },
@@ -763,7 +787,7 @@
             {
                 "language": "ar",
                 "name": "بوروندي",
-                "nameOfficial": "جمهورية بوروندي "
+                "nameOfficial": "جمهورية بوروندي"
             },
             {
                 "language": "en",
@@ -786,14 +810,14 @@
                 "nameOfficial": "Repubblica del Burundi"
             },
             {
-                "language": "zh",
-                "name": "布隆迪",
-                "nameOfficial": "布隆迪共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Бурунди",
                 "nameOfficial": "Республика Бурунди"
+            },
+            {
+                "language": "zh",
+                "name": "布隆迪",
+                "nameOfficial": "布隆迪共和国"
             }
         ]
     },
@@ -819,7 +843,7 @@
             {
                 "language": "ar",
                 "name": "بلجيكا",
-                "nameOfficial": "بلجيكا مملكة "
+                "nameOfficial": "بلجيكا مملكة"
             },
             {
                 "language": "en",
@@ -842,14 +866,14 @@
                 "nameOfficial": "Regno del Belgio"
             },
             {
-                "language": "zh",
-                "name": "比利时",
-                "nameOfficial": "比利时王国"
-            },
-            {
                 "language": "ru",
                 "name": "Бельгия",
                 "nameOfficial": "Королевство Бельгия"
+            },
+            {
+                "language": "zh",
+                "name": "比利时",
+                "nameOfficial": "比利时王国"
             }
         ]
     },
@@ -875,7 +899,7 @@
             {
                 "language": "ar",
                 "name": "بنن",
-                "nameOfficial": "جمهورية بنن "
+                "nameOfficial": "جمهورية بنن"
             },
             {
                 "language": "en",
@@ -898,14 +922,14 @@
                 "nameOfficial": "Repubblica del Benin"
             },
             {
-                "language": "zh",
-                "name": "贝 宁",
-                "nameOfficial": "贝宁共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Бенин",
                 "nameOfficial": "Республика Бенин"
+            },
+            {
+                "language": "zh",
+                "name": "贝 宁",
+                "nameOfficial": "贝宁共和国"
             }
         ]
     },
@@ -928,7 +952,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Bonaire, Saint Eustatius And Saba",
+                "nameOfficial": "Bonaire, Saint Eustatius and Saba"
+            }
         ]
     },
     {
@@ -952,8 +980,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "بوركينا فاسو ",
-                "nameOfficial": "بوركينا فاسو "
+                "name": "بوركينا فاسو",
+                "nameOfficial": "بوركينا فاسو"
             },
             {
                 "language": "en",
@@ -976,14 +1004,14 @@
                 "nameOfficial": "Burkina Faso"
             },
             {
-                "language": "zh",
-                "name": "布基纳法索",
-                "nameOfficial": "布基纳法索"
-            },
-            {
                 "language": "ru",
                 "name": "Буркина-Фасо",
                 "nameOfficial": "Буркина-Фасо"
+            },
+            {
+                "language": "zh",
+                "name": "布基纳法索",
+                "nameOfficial": "布基纳法索"
             }
         ]
     },
@@ -1009,7 +1037,7 @@
             {
                 "language": "ar",
                 "name": "بنغلاديش",
-                "nameOfficial": "الشعبية بنغلاديش جمهورية "
+                "nameOfficial": "الشعبية بنغلاديش جمهورية"
             },
             {
                 "language": "en",
@@ -1032,14 +1060,14 @@
                 "nameOfficial": "Repubblica popolare del Bangladesh"
             },
             {
-                "language": "zh",
-                "name": "孟加拉国",
-                "nameOfficial": "孟加拉人民共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Бангладеш",
                 "nameOfficial": "Народная Республика Бангладеш"
+            },
+            {
+                "language": "zh",
+                "name": "孟加拉国",
+                "nameOfficial": "孟加拉人民共和国"
             }
         ]
     },
@@ -1065,7 +1093,7 @@
             {
                 "language": "ar",
                 "name": "بلغاريا",
-                "nameOfficial": "جمهورية بلغاريا "
+                "nameOfficial": "جمهورية بلغاريا"
             },
             {
                 "language": "en",
@@ -1088,14 +1116,14 @@
                 "nameOfficial": "Repubblica di Bulgaria"
             },
             {
-                "language": "zh",
-                "name": "保加利亚",
-                "nameOfficial": "保加利亚共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Болгария",
                 "nameOfficial": "Республика Болгария"
+            },
+            {
+                "language": "zh",
+                "name": "保加利亚",
+                "nameOfficial": "保加利亚共和国"
             }
         ]
     },
@@ -1121,7 +1149,7 @@
             {
                 "language": "ar",
                 "name": "البحرين",
-                "nameOfficial": "مملكة البحرين "
+                "nameOfficial": "مملكة البحرين"
             },
             {
                 "language": "en",
@@ -1144,14 +1172,14 @@
                 "nameOfficial": "Regno del Bahrein"
             },
             {
-                "language": "zh",
-                "name": "巴 林",
-                "nameOfficial": "巴林王国"
-            },
-            {
                 "language": "ru",
                 "name": "Бахрейн",
                 "nameOfficial": "Королевство Бахрейн"
+            },
+            {
+                "language": "zh",
+                "name": "巴 林",
+                "nameOfficial": "巴林王国"
             }
         ]
     },
@@ -1176,8 +1204,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "البهاما جزر ",
-                "nameOfficial": "البهاما جزر كمنولث "
+                "name": "البهاما جزر",
+                "nameOfficial": "البهاما جزر كمنولث"
             },
             {
                 "language": "en",
@@ -1200,14 +1228,14 @@
                 "nameOfficial": "Commonwealth delle Bahamas"
             },
             {
-                "language": "zh",
-                "name": "巴哈马",
-                "nameOfficial": "巴哈马国"
-            },
-            {
                 "language": "ru",
                 "name": "Багамские Острова",
                 "nameOfficial": "Содружество Багамских Островов"
+            },
+            {
+                "language": "zh",
+                "name": "巴哈马",
+                "nameOfficial": "巴哈马国"
             }
         ]
     },
@@ -1232,8 +1260,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "والهرسك البوسنة ",
-                "nameOfficial": "والهرسك البوسنة "
+                "name": "والهرسك البوسنة",
+                "nameOfficial": "والهرسك البوسنة"
             },
             {
                 "language": "en",
@@ -1256,14 +1284,14 @@
                 "nameOfficial": "Bosnia-Erzegovina"
             },
             {
-                "language": "zh",
-                "name": "波斯尼亚和黑塞哥维那",
-                "nameOfficial": "波斯尼亚和黑塞哥维那"
-            },
-            {
                 "language": "ru",
                 "name": "Босния и Герцеговина",
                 "nameOfficial": "Босния и Герцеговина"
+            },
+            {
+                "language": "zh",
+                "name": "波斯尼亚和黑塞哥维那",
+                "nameOfficial": "波斯尼亚和黑塞哥维那"
             }
         ]
     },
@@ -1286,7 +1314,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Saint Barthélemy",
+                "nameOfficial": "Territorial collectivity of Saint Barthélemy"
+            }
         ]
     },
     {
@@ -1311,7 +1343,7 @@
             {
                 "language": "ar",
                 "name": "بيلاروس",
-                "nameOfficial": "بيلاروس جمهورية "
+                "nameOfficial": "بيلاروس جمهورية"
             },
             {
                 "language": "en",
@@ -1334,14 +1366,14 @@
                 "nameOfficial": "Repubblica di Bielorussia"
             },
             {
-                "language": "zh",
-                "name": "白俄罗斯",
-                "nameOfficial": "白俄罗斯共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Беларусь",
                 "nameOfficial": "Республика Беларусь"
+            },
+            {
+                "language": "zh",
+                "name": "白俄罗斯",
+                "nameOfficial": "白俄罗斯共和国"
             }
         ]
     },
@@ -1390,14 +1422,14 @@
                 "nameOfficial": "Belize"
             },
             {
-                "language": "zh",
-                "name": "伯利兹",
-                "nameOfficial": "伯利兹"
-            },
-            {
                 "language": "ru",
                 "name": "Белиз",
                 "nameOfficial": "Белиз"
+            },
+            {
+                "language": "zh",
+                "name": "伯利兹",
+                "nameOfficial": "伯利兹"
             }
         ]
     },
@@ -1420,7 +1452,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Bermuda",
+                "nameOfficial": "the Bermudas"
+            }
         ]
     },
     {
@@ -1444,8 +1480,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "بوليفيا - دولة - المتعددة القوميات ",
-                "nameOfficial": "دولة بوليفيا المتعددة القوميات "
+                "name": "بوليفيا - دولة - المتعددة القوميات",
+                "nameOfficial": "دولة بوليفيا المتعددة القوميات"
             },
             {
                 "language": "en",
@@ -1468,14 +1504,14 @@
                 "nameOfficial": "Stato plurinazionale della Bolivia"
             },
             {
-                "language": "zh",
-                "name": "玻利维亚（多民族国）",
-                "nameOfficial": "玻利维亚多民族国"
-            },
-            {
                 "language": "ru",
                 "name": "Боливия (Многонациональное Государство)",
                 "nameOfficial": "Многонациональное Государство Боливия"
+            },
+            {
+                "language": "zh",
+                "name": "玻利维亚（多民族国）",
+                "nameOfficial": "玻利维亚多民族国"
             }
         ]
     },
@@ -1501,7 +1537,7 @@
             {
                 "language": "ar",
                 "name": "البرازيل",
-                "nameOfficial": "الجمهورية الاتحادية البرازيلية "
+                "nameOfficial": "الجمهورية الاتحادية البرازيلية"
             },
             {
                 "language": "en",
@@ -1524,14 +1560,14 @@
                 "nameOfficial": "Repubblica federativa del Brasile"
             },
             {
-                "language": "zh",
-                "name": "巴 西",
-                "nameOfficial": "巴西联邦共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Бразилия",
                 "nameOfficial": "Федеративная Республика Бразилия"
+            },
+            {
+                "language": "zh",
+                "name": "巴 西",
+                "nameOfficial": "巴西联邦共和国"
             }
         ]
     },
@@ -1580,14 +1616,14 @@
                 "nameOfficial": "Barbados"
             },
             {
-                "language": "zh",
-                "name": "巴巴多斯",
-                "nameOfficial": "巴巴多斯"
-            },
-            {
                 "language": "ru",
                 "name": "Барбадос",
                 "nameOfficial": "Барбадос"
+            },
+            {
+                "language": "zh",
+                "name": "巴巴多斯",
+                "nameOfficial": "巴巴多斯"
             }
         ]
     },
@@ -1612,8 +1648,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "السلام دار برونى ",
-                "nameOfficial": "السلام دار بروني "
+                "name": "السلام دار برونى",
+                "nameOfficial": "السلام دار بروني"
             },
             {
                 "language": "en",
@@ -1636,14 +1672,14 @@
                 "nameOfficial": "Stato di Brunei Darussalam"
             },
             {
-                "language": "zh",
-                "name": "文莱达鲁萨兰国",
-                "nameOfficial": "文莱达鲁萨兰国"
-            },
-            {
                 "language": "ru",
                 "name": "Бруней-Даруссалам",
                 "nameOfficial": "Бруней-Даруссалам"
+            },
+            {
+                "language": "zh",
+                "name": "文莱达鲁萨兰国",
+                "nameOfficial": "文莱达鲁萨兰国"
             }
         ]
     },
@@ -1669,7 +1705,7 @@
             {
                 "language": "ar",
                 "name": "بوتان",
-                "nameOfficial": "بوتان مملكة "
+                "nameOfficial": "بوتان مملكة"
             },
             {
                 "language": "en",
@@ -1692,14 +1728,14 @@
                 "nameOfficial": "Regno del Bhutan"
             },
             {
-                "language": "zh",
-                "name": "不 丹",
-                "nameOfficial": "不丹王国"
-            },
-            {
                 "language": "ru",
                 "name": "Бутан",
                 "nameOfficial": "Королевство Бутан"
+            },
+            {
+                "language": "zh",
+                "name": "不 丹",
+                "nameOfficial": "不丹王国"
             }
         ]
     },
@@ -1719,7 +1755,11 @@
 
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Bouvet Island",
+                "nameOfficial": "Bouvet Island"
+            }
         ]
     },
     {
@@ -1744,7 +1784,7 @@
             {
                 "language": "ar",
                 "name": "بوتسوانا",
-                "nameOfficial": "بوتسوانا جمهورية "
+                "nameOfficial": "بوتسوانا جمهورية"
             },
             {
                 "language": "en",
@@ -1767,14 +1807,14 @@
                 "nameOfficial": "Repubblica del Botswana"
             },
             {
-                "language": "zh",
-                "name": "博茨瓦纳",
-                "nameOfficial": "博茨瓦纳共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Ботсвана",
                 "nameOfficial": "Республика Ботсвана"
+            },
+            {
+                "language": "zh",
+                "name": "博茨瓦纳",
+                "nameOfficial": "博茨瓦纳共和国"
             }
         ]
     },
@@ -1799,8 +1839,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "الوسطى أفريقيا جمهورية ",
-                "nameOfficial": "الوسطى أفريقيا جمهورية "
+                "name": "الوسطى أفريقيا جمهورية",
+                "nameOfficial": "الوسطى أفريقيا جمهورية"
             },
             {
                 "language": "en",
@@ -1823,14 +1863,14 @@
                 "nameOfficial": "Repubblica centrafricana"
             },
             {
-                "language": "zh",
-                "name": "中非共和国",
-                "nameOfficial": "中非共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Центральноафриканская Республика",
                 "nameOfficial": "Центральноафриканская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "中非共和国",
+                "nameOfficial": "中非共和国"
             }
         ]
     },
@@ -1883,14 +1923,14 @@
                 "nameOfficial": "Canada"
             },
             {
-                "language": "zh",
-                "name": "加拿大",
-                "nameOfficial": "加拿大"
-            },
-            {
                 "language": "ru",
                 "name": "Канада",
                 "nameOfficial": "Канада"
+            },
+            {
+                "language": "zh",
+                "name": "加拿大",
+                "nameOfficial": "加拿大"
             }
         ]
     },
@@ -1910,7 +1950,11 @@
 
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Cocos (Keeling) Islands",
+                "nameOfficial": "Territory of Cocos (Keeling) Islands"
+            }
         ]
     },
     {
@@ -1935,7 +1979,7 @@
             {
                 "language": "ar",
                 "name": "سويسرا",
-                "nameOfficial": "الاتحاد السويسري "
+                "nameOfficial": "الاتحاد السويسري"
             },
             {
                 "language": "en",
@@ -1958,14 +2002,14 @@
                 "nameOfficial": "Confederazione svizzera"
             },
             {
-                "language": "zh",
-                "name": "瑞 士",
-                "nameOfficial": "瑞士联邦"
-            },
-            {
                 "language": "ru",
                 "name": "Швейцария",
                 "nameOfficial": "Швейцарская Конфедерация"
+            },
+            {
+                "language": "zh",
+                "name": "瑞 士",
+                "nameOfficial": "瑞士联邦"
             }
         ]
     },
@@ -1991,7 +2035,7 @@
             {
                 "language": "ar",
                 "name": "شيلى",
-                "nameOfficial": "جمهورية شيلى "
+                "nameOfficial": "جمهورية شيلى"
             },
             {
                 "language": "en",
@@ -2014,14 +2058,14 @@
                 "nameOfficial": "Repubblica del Cile"
             },
             {
-                "language": "zh",
-                "name": "智 利",
-                "nameOfficial": "智利共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Чили",
                 "nameOfficial": "Республика Чили"
+            },
+            {
+                "language": "zh",
+                "name": "智 利",
+                "nameOfficial": "智利共和国"
             }
         ]
     },
@@ -2047,7 +2091,7 @@
             {
                 "language": "ar",
                 "name": "الصين",
-                "nameOfficial": "الشعبية الصين جمهورية "
+                "nameOfficial": "الشعبية الصين جمهورية"
             },
             {
                 "language": "en",
@@ -2070,14 +2114,14 @@
                 "nameOfficial": "Repubblica popolare cinese"
             },
             {
-                "language": "zh",
-                "name": "中 国",
-                "nameOfficial": "中华人民共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Китай",
                 "nameOfficial": "Китайская Народная Республика"
+            },
+            {
+                "language": "zh",
+                "name": "中 国",
+                "nameOfficial": "中华人民共和国"
             }
         ]
     },
@@ -2102,8 +2146,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "ديفوار كوت ",
-                "nameOfficial": "ديفوار كوت جمهورية "
+                "name": "ديفوار كوت",
+                "nameOfficial": "ديفوار كوت جمهورية"
             },
             {
                 "language": "en",
@@ -2126,14 +2170,14 @@
                 "nameOfficial": "Repubblica della Côte d'Ivoire"
             },
             {
-                "language": "zh",
-                "name": "科特迪瓦",
-                "nameOfficial": "科特迪瓦共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Кот-д`Ивуар",
                 "nameOfficial": "Республика Кот-д`Ивуар"
+            },
+            {
+                "language": "zh",
+                "name": "科特迪瓦",
+                "nameOfficial": "科特迪瓦共和国"
             }
         ]
     },
@@ -2159,7 +2203,7 @@
             {
                 "language": "ar",
                 "name": "الكاميرون",
-                "nameOfficial": "جمهورية الكاميرون "
+                "nameOfficial": "جمهورية الكاميرون"
             },
             {
                 "language": "en",
@@ -2182,14 +2226,14 @@
                 "nameOfficial": "Repubblica del Camerun"
             },
             {
-                "language": "zh",
-                "name": "喀麦隆",
-                "nameOfficial": "喀麦隆共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Камерун",
                 "nameOfficial": "Республика Камерун"
+            },
+            {
+                "language": "zh",
+                "name": "喀麦隆",
+                "nameOfficial": "喀麦隆共和国"
             }
         ]
     },
@@ -2214,8 +2258,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "الديمقراطية الكونغو جمهورية ",
-                "nameOfficial": "الديمقراطية الكونغو جمهورية "
+                "name": "الديمقراطية الكونغو جمهورية",
+                "nameOfficial": "الديمقراطية الكونغو جمهورية"
             },
             {
                 "language": "en",
@@ -2238,14 +2282,14 @@
                 "nameOfficial": "Repubblica democratica del Congo"
             },
             {
-                "language": "zh",
-                "name": "刚果民主共和国",
-                "nameOfficial": "刚果民主共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Демократическая Республика Конго",
                 "nameOfficial": "Демократическая Республика Конго"
+            },
+            {
+                "language": "zh",
+                "name": "刚果民主共和国",
+                "nameOfficial": "刚果民主共和国"
             }
         ]
     },
@@ -2271,7 +2315,7 @@
             {
                 "language": "ar",
                 "name": "الكونغو",
-                "nameOfficial": "الكونغو جمهورية "
+                "nameOfficial": "الكونغو جمهورية"
             },
             {
                 "language": "en",
@@ -2294,14 +2338,14 @@
                 "nameOfficial": "Repubblica del Congo"
             },
             {
-                "language": "zh",
-                "name": "刚 果",
-                "nameOfficial": "刚果共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Конго",
                 "nameOfficial": "Республика Конго"
+            },
+            {
+                "language": "zh",
+                "name": "刚 果",
+                "nameOfficial": "刚果共和国"
             }
         ]
     },
@@ -2326,8 +2370,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "كوك جزر ",
-                "nameOfficial": "كوك جزر "
+                "name": "كوك جزر",
+                "nameOfficial": "كوك جزر"
             },
             {
                 "language": "en",
@@ -2350,14 +2394,14 @@
                 "nameOfficial": "Isole Cook"
             },
             {
-                "language": "zh",
-                "name": "库克群岛",
-                "nameOfficial": "库克群岛"
-            },
-            {
                 "language": "ru",
                 "name": "Острова Кука",
                 "nameOfficial": "Острова Кука"
+            },
+            {
+                "language": "zh",
+                "name": "库克群岛",
+                "nameOfficial": "库克群岛"
             }
         ]
     },
@@ -2383,7 +2427,7 @@
             {
                 "language": "ar",
                 "name": "كولومبيا",
-                "nameOfficial": "جمهورية كولومبيا "
+                "nameOfficial": "جمهورية كولومبيا"
             },
             {
                 "language": "en",
@@ -2406,14 +2450,14 @@
                 "nameOfficial": "Repubblica di Colombia"
             },
             {
-                "language": "zh",
-                "name": "哥伦比亚",
-                "nameOfficial": "哥伦比亚共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Колумбия",
                 "nameOfficial": "Республика Колумбия"
+            },
+            {
+                "language": "zh",
+                "name": "哥伦比亚",
+                "nameOfficial": "哥伦比亚共和国"
             }
         ]
     },
@@ -2438,8 +2482,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "جزر القمر ",
-                "nameOfficial": "اتحاد جزر القمر "
+                "name": "جزر القمر",
+                "nameOfficial": "اتحاد جزر القمر"
             },
             {
                 "language": "en",
@@ -2462,14 +2506,14 @@
                 "nameOfficial": "Unione delle Comore"
             },
             {
-                "language": "zh",
-                "name": "科摩罗",
-                "nameOfficial": "科摩罗联盟"
-            },
-            {
                 "language": "ru",
                 "name": "Коморские Острова",
                 "nameOfficial": "Союз Коморских Островов"
+            },
+            {
+                "language": "zh",
+                "name": "科摩罗",
+                "nameOfficial": "科摩罗联盟"
             }
         ]
     },
@@ -2494,8 +2538,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "كابو فيردي ",
-                "nameOfficial": "جمهورية كابو فيردي "
+                "name": "كابو فيردي",
+                "nameOfficial": "جمهورية كابو فيردي"
             },
             {
                 "language": "en",
@@ -2518,14 +2562,14 @@
                 "nameOfficial": "Repubblica del Cabo Verde"
             },
             {
-                "language": "zh",
-                "name": "佛得角",
-                "nameOfficial": "佛得角共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Кабо-Верде",
                 "nameOfficial": "Республика Кабо-Верде"
+            },
+            {
+                "language": "zh",
+                "name": "佛得角",
+                "nameOfficial": "佛得角共和国"
             }
         ]
     },
@@ -2551,7 +2595,7 @@
             {
                 "language": "ar",
                 "name": "كوستاريكا",
-                "nameOfficial": "جمهورية كوستاريكا "
+                "nameOfficial": "جمهورية كوستاريكا"
             },
             {
                 "language": "en",
@@ -2574,14 +2618,14 @@
                 "nameOfficial": "Repubblica di Costa Rica"
             },
             {
-                "language": "zh",
-                "name": "哥斯达黎加",
-                "nameOfficial": "哥斯达黎加共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Коста-Рика",
                 "nameOfficial": "Республика Коста-Рика"
+            },
+            {
+                "language": "zh",
+                "name": "哥斯达黎加",
+                "nameOfficial": "哥斯达黎加共和国"
             }
         ]
     },
@@ -2607,7 +2651,7 @@
             {
                 "language": "ar",
                 "name": "كوبا",
-                "nameOfficial": "جمهورية كوبا "
+                "nameOfficial": "جمهورية كوبا"
             },
             {
                 "language": "en",
@@ -2630,14 +2674,14 @@
                 "nameOfficial": "Repubblica di Cuba"
             },
             {
-                "language": "zh",
-                "name": "古 巴",
-                "nameOfficial": "古巴共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Куба",
                 "nameOfficial": "Республика Куба"
+            },
+            {
+                "language": "zh",
+                "name": "古 巴",
+                "nameOfficial": "古巴共和国"
             }
         ]
     },
@@ -2660,7 +2704,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Curaçao",
+                "nameOfficial": "Curaçao"
+            }
         ]
     },
     {
@@ -2679,7 +2727,11 @@
 
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Christmas Island",
+                "nameOfficial": "Territory of Christmas Island"
+            }
         ]
     },
     {
@@ -2701,7 +2753,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Cayman Islands",
+                "nameOfficial": "The Cayman Islands"
+            }
         ]
     },
     {
@@ -2726,7 +2782,7 @@
             {
                 "language": "ar",
                 "name": "قبرص",
-                "nameOfficial": "جمهورية قبرص "
+                "nameOfficial": "جمهورية قبرص"
             },
             {
                 "language": "en",
@@ -2749,14 +2805,14 @@
                 "nameOfficial": "Repubblica di Cipro"
             },
             {
-                "language": "zh",
-                "name": "塞浦路斯",
-                "nameOfficial": "塞浦路斯共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Кипр",
                 "nameOfficial": "Республика Кипр"
+            },
+            {
+                "language": "zh",
+                "name": "塞浦路斯",
+                "nameOfficial": "塞浦路斯共和国"
             }
         ]
     },
@@ -2781,8 +2837,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "التشيكية الجمهورية ",
-                "nameOfficial": "التشيكية الجمهورية "
+                "name": "التشيكية الجمهورية",
+                "nameOfficial": "التشيكية الجمهورية"
             },
             {
                 "language": "en",
@@ -2805,14 +2861,14 @@
                 "nameOfficial": "Repubblica ceca"
             },
             {
-                "language": "zh",
-                "name": "捷克共和国",
-                "nameOfficial": "捷克共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Чешская Республика",
                 "nameOfficial": "Чешская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "捷克共和国",
+                "nameOfficial": "捷克共和国"
             }
         ]
     },
@@ -2838,7 +2894,7 @@
             {
                 "language": "ar",
                 "name": "ألمانيا",
-                "nameOfficial": "الاتحادية ألمانيا جمهورية "
+                "nameOfficial": "الاتحادية ألمانيا جمهورية"
             },
             {
                 "language": "en",
@@ -2861,14 +2917,14 @@
                 "nameOfficial": "Repubblica federale di Germania"
             },
             {
-                "language": "zh",
-                "name": "德 国",
-                "nameOfficial": "德意志联邦共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Германия",
                 "nameOfficial": "Федеративная Республика Германия"
+            },
+            {
+                "language": "zh",
+                "name": "德 国",
+                "nameOfficial": "德意志联邦共和国"
             }
         ]
     },
@@ -2894,7 +2950,7 @@
             {
                 "language": "ar",
                 "name": "جيبوتي",
-                "nameOfficial": "جيبوتي جمهورية "
+                "nameOfficial": "جيبوتي جمهورية"
             },
             {
                 "language": "en",
@@ -2917,14 +2973,14 @@
                 "nameOfficial": "Repubblica di Gibuti"
             },
             {
-                "language": "zh",
-                "name": "吉布提",
-                "nameOfficial": "吉布提共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Джибути",
                 "nameOfficial": "Республика Джибути"
+            },
+            {
+                "language": "zh",
+                "name": "吉布提",
+                "nameOfficial": "吉布提共和国"
             }
         ]
     },
@@ -2950,7 +3006,7 @@
             {
                 "language": "ar",
                 "name": "دومينيكا",
-                "nameOfficial": "كمنولث دومينيكا "
+                "nameOfficial": "كمنولث دومينيكا"
             },
             {
                 "language": "en",
@@ -2973,14 +3029,14 @@
                 "nameOfficial": "Commonwealth di Dominica"
             },
             {
-                "language": "zh",
-                "name": "多米尼克",
-                "nameOfficial": "多米尼克国"
-            },
-            {
                 "language": "ru",
                 "name": "Доминика",
                 "nameOfficial": "Содружество Доминики"
+            },
+            {
+                "language": "zh",
+                "name": "多米尼克",
+                "nameOfficial": "多米尼克国"
             }
         ]
     },
@@ -3010,7 +3066,7 @@
             {
                 "language": "ar",
                 "name": "الدانمرك",
-                "nameOfficial": "مملكة الدانمرك "
+                "nameOfficial": "مملكة الدانمرك"
             },
             {
                 "language": "en",
@@ -3033,14 +3089,14 @@
                 "nameOfficial": "Regno di Danimarca"
             },
             {
-                "language": "zh",
-                "name": "丹 麦",
-                "nameOfficial": "丹麦王国"
-            },
-            {
                 "language": "ru",
                 "name": "Дания",
                 "nameOfficial": "Королевство Дания"
+            },
+            {
+                "language": "zh",
+                "name": "丹 麦",
+                "nameOfficial": "丹麦王国"
             }
         ]
     },
@@ -3065,8 +3121,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "الجمهورية الدومينيكية ",
-                "nameOfficial": "الجمهورية الدومينيكية "
+                "name": "الجمهورية الدومينيكية",
+                "nameOfficial": "الجمهورية الدومينيكية"
             },
             {
                 "language": "en",
@@ -3089,14 +3145,14 @@
                 "nameOfficial": "Repubblica dominicana"
             },
             {
-                "language": "zh",
-                "name": "多米尼加共和国",
-                "nameOfficial": "多米尼加共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Доминиканская Республика",
                 "nameOfficial": "Доминиканская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "多米尼加共和国",
+                "nameOfficial": "多米尼加共和国"
             }
         ]
     },
@@ -3122,7 +3178,7 @@
             {
                 "language": "ar",
                 "name": "الجزائر",
-                "nameOfficial": "الجمهورية الجزائرية الديمقراطية الشعبية "
+                "nameOfficial": "الجمهورية الجزائرية الديمقراطية الشعبية"
             },
             {
                 "language": "en",
@@ -3145,14 +3201,14 @@
                 "nameOfficial": "Repubblica algerina democratica e popolare"
             },
             {
-                "language": "zh",
-                "name": "阿尔及利亚",
-                "nameOfficial": "阿尔及利亚民主人民共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Алжир",
                 "nameOfficial": "Алжирская Народная Демократическая Республика"
+            },
+            {
+                "language": "zh",
+                "name": "阿尔及利亚",
+                "nameOfficial": "阿尔及利亚民主人民共和国"
             }
         ]
     },
@@ -3178,7 +3234,7 @@
             {
                 "language": "ar",
                 "name": "إكوادور",
-                "nameOfficial": "إكوادور جمهورية "
+                "nameOfficial": "إكوادور جمهورية"
             },
             {
                 "language": "en",
@@ -3201,14 +3257,14 @@
                 "nameOfficial": "Repubblica dell'Ecuador"
             },
             {
-                "language": "zh",
-                "name": "厄瓜多尔",
-                "nameOfficial": "厄瓜多尔共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Эквадор",
                 "nameOfficial": "Республика Эквадор"
+            },
+            {
+                "language": "zh",
+                "name": "厄瓜多尔",
+                "nameOfficial": "厄瓜多尔共和国"
             }
         ]
     },
@@ -3234,7 +3290,7 @@
             {
                 "language": "ar",
                 "name": "مصر",
-                "nameOfficial": "العربية مصر جمهورية "
+                "nameOfficial": "العربية مصر جمهورية"
             },
             {
                 "language": "en",
@@ -3257,14 +3313,14 @@
                 "nameOfficial": "Repubblica araba d'Egitto"
             },
             {
-                "language": "zh",
-                "name": "埃 及",
-                "nameOfficial": "阿拉伯埃及共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Египет",
                 "nameOfficial": "Арабская Республика Египет"
+            },
+            {
+                "language": "zh",
+                "name": "埃 及",
+                "nameOfficial": "阿拉伯埃及共和国"
             }
         ]
     },
@@ -3290,7 +3346,7 @@
             {
                 "language": "ar",
                 "name": "إريتريا",
-                "nameOfficial": "إريتريا دولة "
+                "nameOfficial": "إريتريا دولة"
             },
             {
                 "language": "en",
@@ -3313,14 +3369,14 @@
                 "nameOfficial": "Stato di Eritrea"
             },
             {
-                "language": "zh",
-                "name": "厄立特里亚",
-                "nameOfficial": "厄立特里亚国"
-            },
-            {
                 "language": "ru",
                 "name": "Эритрея",
                 "nameOfficial": "Государство Эритрея"
+            },
+            {
+                "language": "zh",
+                "name": "厄立特里亚",
+                "nameOfficial": "厄立特里亚国"
             }
         ]
     },
@@ -3343,7 +3399,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Western Sahara",
+                "nameOfficial": "Western Sahara"
+            }
         ]
     },
     {
@@ -3368,7 +3428,7 @@
             {
                 "language": "ar",
                 "name": "إسبانيا",
-                "nameOfficial": "إسبانيا مملكة "
+                "nameOfficial": "إسبانيا مملكة"
             },
             {
                 "language": "en",
@@ -3391,14 +3451,14 @@
                 "nameOfficial": "Regno di Spagna"
             },
             {
-                "language": "zh",
-                "name": "西班牙",
-                "nameOfficial": "西班牙王国"
-            },
-            {
                 "language": "ru",
                 "name": "Испания",
                 "nameOfficial": "Королевство Испания"
+            },
+            {
+                "language": "zh",
+                "name": "西班牙",
+                "nameOfficial": "西班牙王国"
             }
         ]
     },
@@ -3424,7 +3484,7 @@
             {
                 "language": "ar",
                 "name": "إستونيا",
-                "nameOfficial": "جمهورية إستونيا "
+                "nameOfficial": "جمهورية إستونيا"
             },
             {
                 "language": "en",
@@ -3447,14 +3507,14 @@
                 "nameOfficial": "Repubblica di Estonia"
             },
             {
-                "language": "zh",
-                "name": "爱沙尼亚",
-                "nameOfficial": "爱沙尼亚共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Эстония",
                 "nameOfficial": "Эстонская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "爱沙尼亚",
+                "nameOfficial": "爱沙尼亚共和国"
             }
         ]
     },
@@ -3480,7 +3540,7 @@
             {
                 "language": "ar",
                 "name": "إثيوبيا",
-                "nameOfficial": "جمهورية إثيوبيا الديمقراطية الاتحادية "
+                "nameOfficial": "جمهورية إثيوبيا الديمقراطية الاتحادية"
             },
             {
                 "language": "en",
@@ -3503,14 +3563,14 @@
                 "nameOfficial": "Repubblica federale democratica di Etiopia"
             },
             {
-                "language": "zh",
-                "name": "埃塞俄比亚",
-                "nameOfficial": "埃塞俄比亚联邦民主共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Эфиопия",
                 "nameOfficial": "Федеративная Демократическая Республика Эфиопия"
+            },
+            {
+                "language": "zh",
+                "name": "埃塞俄比亚",
+                "nameOfficial": "埃塞俄比亚联邦民主共和国"
             }
         ]
     },
@@ -3535,8 +3595,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "عضو منظمة - الأوروبي الإتحاد ",
-                "nameOfficial": "عضو منظمة - الأوروبي الإتحاد "
+                "name": "عضو منظمة - الأوروبي الإتحاد",
+                "nameOfficial": "عضو منظمة - الأوروبي الإتحاد"
             },
             {
                 "language": "en",
@@ -3559,14 +3619,14 @@
                 "nameOfficial": "Unione europea (Organizzazione membro)"
             },
             {
-                "language": "zh",
-                "name": "欧洲联盟 （成员组织）",
-                "nameOfficial": "欧洲联盟（成员组织）"
-            },
-            {
                 "language": "ru",
                 "name": "Европейский союз (организация-член)",
                 "nameOfficial": "Европейский союз (организация-член)"
+            },
+            {
+                "language": "zh",
+                "name": "欧洲联盟 （成员组织）",
+                "nameOfficial": "欧洲联盟（成员组织）"
             }
         ]
     },
@@ -3596,7 +3656,7 @@
             {
                 "language": "ar",
                 "name": "فنلندا",
-                "nameOfficial": "فنلندا جمهورية "
+                "nameOfficial": "فنلندا جمهورية"
             },
             {
                 "language": "en",
@@ -3619,14 +3679,14 @@
                 "nameOfficial": "Repubblica di Finlandia"
             },
             {
-                "language": "zh",
-                "name": "芬 兰",
-                "nameOfficial": "芬兰共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Финляндия",
                 "nameOfficial": "Финляндская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "芬 兰",
+                "nameOfficial": "芬兰共和国"
             }
         ]
     },
@@ -3652,7 +3712,7 @@
             {
                 "language": "ar",
                 "name": "فيجي",
-                "nameOfficial": "جمهورية فيجي "
+                "nameOfficial": "جمهورية فيجي"
             },
             {
                 "language": "en",
@@ -3675,14 +3735,14 @@
                 "nameOfficial": "Repubblica delle Figi"
             },
             {
-                "language": "zh",
-                "name": "斐济",
-                "nameOfficial": "斐济共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Фиджи",
                 "nameOfficial": "Республика Фиджи"
+            },
+            {
+                "language": "zh",
+                "name": "斐济",
+                "nameOfficial": "斐济共和国"
             }
         ]
     },
@@ -3705,7 +3765,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Falkland Islands (Malvinas)",
+                "nameOfficial": "Falkland Islands"
+            }
         ]
     },
     {
@@ -3730,7 +3794,7 @@
             {
                 "language": "ar",
                 "name": "فرنسا",
-                "nameOfficial": "الفرنسية الجمهورية "
+                "nameOfficial": "الفرنسية الجمهورية"
             },
             {
                 "language": "en",
@@ -3753,14 +3817,14 @@
                 "nameOfficial": "Repubblica francese"
             },
             {
-                "language": "zh",
-                "name": "法  国",
-                "nameOfficial": "法兰西共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Франция",
                 "nameOfficial": "Французская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "法  国",
+                "nameOfficial": "法兰西共和国"
             }
         ]
     },
@@ -3785,8 +3849,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "جزر فيرويه ",
-                "nameOfficial": "جزر فيرويه "
+                "name": "جزر فيرويه",
+                "nameOfficial": "جزر فيرويه"
             },
             {
                 "language": "en",
@@ -3809,14 +3873,14 @@
                 "nameOfficial": "Isole Faer øer"
             },
             {
-                "language": "zh",
-                "name": "法罗群岛 (准成员)",
-                "nameOfficial": "法罗群岛"
-            },
-            {
                 "language": "ru",
                 "name": "Фарерские Острова (ассоциированный член)",
                 "nameOfficial": "Фарерские Острова"
+            },
+            {
+                "language": "zh",
+                "name": "法罗群岛 (准成员)",
+                "nameOfficial": "法罗群岛"
             }
         ]
     },
@@ -3842,7 +3906,7 @@
             {
                 "language": "ar",
                 "name": "ميكرونيزيا",
-                "nameOfficial": "الموحدة ميكرونيزيا ولايات "
+                "nameOfficial": "الموحدة ميكرونيزيا ولايات"
             },
             {
                 "language": "en",
@@ -3865,14 +3929,14 @@
                 "nameOfficial": "Stati federati di Micronesia"
             },
             {
-                "language": "zh",
-                "name": "密克罗尼西亚(联邦)",
-                "nameOfficial": "密克罗尼西亚联邦"
-            },
-            {
                 "language": "ru",
                 "name": "Микронезия (Федеративные Штаты)",
                 "nameOfficial": "Федеративные Штаты Микронезии"
+            },
+            {
+                "language": "zh",
+                "name": "密克罗尼西亚(联邦)",
+                "nameOfficial": "密克罗尼西亚联邦"
             }
         ]
     },
@@ -3898,7 +3962,7 @@
             {
                 "language": "ar",
                 "name": "غابون",
-                "nameOfficial": "الجمهورية الغابونية "
+                "nameOfficial": "الجمهورية الغابونية"
             },
             {
                 "language": "en",
@@ -3921,14 +3985,14 @@
                 "nameOfficial": "Repubblica gabonese"
             },
             {
-                "language": "zh",
-                "name": "加 蓬",
-                "nameOfficial": "加蓬共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Габон",
                 "nameOfficial": "Габонская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "加 蓬",
+                "nameOfficial": "加蓬共和国"
             }
         ]
     },
@@ -3953,8 +4017,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "المملكة المتحدة ",
-                "nameOfficial": "المملكة المتحدة لبريطانيا العظمى وآيرلندا الشمالية "
+                "name": "المملكة المتحدة",
+                "nameOfficial": "المملكة المتحدة لبريطانيا العظمى وآيرلندا الشمالية"
             },
             {
                 "language": "en",
@@ -3977,14 +4041,14 @@
                 "nameOfficial": "Regno Unito di Gran Bretagna e Irlanda del nord"
             },
             {
-                "language": "zh",
-                "name": "联合王国",
-                "nameOfficial": "大不列颠及北爱尔兰联合王国"
-            },
-            {
                 "language": "ru",
                 "name": "Соединенное Королевство",
                 "nameOfficial": "Соединенное Королевство Великобритании и Северной Ирландии"
+            },
+            {
+                "language": "zh",
+                "name": "联合王国",
+                "nameOfficial": "大不列颠及北爱尔兰联合王国"
             }
         ]
     },
@@ -4033,14 +4097,14 @@
                 "nameOfficial": "Georgia"
             },
             {
-                "language": "zh",
-                "name": "格鲁吉亚",
-                "nameOfficial": "格鲁吉亚"
-            },
-            {
                 "language": "ru",
                 "name": "Грузия",
                 "nameOfficial": "Грузия"
+            },
+            {
+                "language": "zh",
+                "name": "格鲁吉亚",
+                "nameOfficial": "格鲁吉亚"
             }
         ]
     },
@@ -4063,7 +4127,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Guernsey",
+                "nameOfficial": "Bailiwick of Guernsey"
+            }
         ]
     },
     {
@@ -4088,7 +4156,7 @@
             {
                 "language": "ar",
                 "name": "غانا",
-                "nameOfficial": "غانا جمهورية "
+                "nameOfficial": "غانا جمهورية"
             },
             {
                 "language": "en",
@@ -4111,14 +4179,14 @@
                 "nameOfficial": "Repubblica del Ghana"
             },
             {
-                "language": "zh",
-                "name": "加 纳",
-                "nameOfficial": "加纳共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Гана",
                 "nameOfficial": "Республика Гана"
+            },
+            {
+                "language": "zh",
+                "name": "加 纳",
+                "nameOfficial": "加纳共和国"
             }
         ]
     },
@@ -4141,7 +4209,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Gibraltar",
+                "nameOfficial": "Gibraltar"
+            }
         ]
     },
     {
@@ -4166,7 +4238,7 @@
             {
                 "language": "ar",
                 "name": "غينيا",
-                "nameOfficial": "جمهورية غينيا "
+                "nameOfficial": "جمهورية غينيا"
             },
             {
                 "language": "en",
@@ -4189,14 +4261,14 @@
                 "nameOfficial": "Repubblica di Guinea"
             },
             {
-                "language": "zh",
-                "name": "几内亚",
-                "nameOfficial": "几内亚共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Гвинея",
                 "nameOfficial": "Гвинейская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "几内亚",
+                "nameOfficial": "几内亚共和国"
             }
         ]
     },
@@ -4219,7 +4291,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Guadeloupe",
+                "nameOfficial": "Department of Guadeloupe"
+            }
         ]
     },
     {
@@ -4244,7 +4320,7 @@
             {
                 "language": "ar",
                 "name": "غامبيا",
-                "nameOfficial": "الإسلامية غامبيا جمهورية "
+                "nameOfficial": "الإسلامية غامبيا جمهورية"
             },
             {
                 "language": "en",
@@ -4267,14 +4343,14 @@
                 "nameOfficial": "Repubblica islamica del Gambia"
             },
             {
-                "language": "zh",
-                "name": "冈比亚",
-                "nameOfficial": "冈比亚伊斯兰共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Гамбия",
                 "nameOfficial": "Исламская Республика Гамбия"
+            },
+            {
+                "language": "zh",
+                "name": "冈比亚",
+                "nameOfficial": "冈比亚伊斯兰共和国"
             }
         ]
     },
@@ -4299,8 +4375,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "غينيا - بيساو ",
-                "nameOfficial": "جمهورية غينيا بيساو "
+                "name": "غينيا - بيساو",
+                "nameOfficial": "جمهورية غينيا بيساو"
             },
             {
                 "language": "en",
@@ -4323,14 +4399,14 @@
                 "nameOfficial": "Repubblica di Guinea-Bissau"
             },
             {
-                "language": "zh",
-                "name": "几内亚比绍",
-                "nameOfficial": "几内亚比绍共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Гвинея-Бисау",
                 "nameOfficial": "Республика Гвинея-Бисау"
+            },
+            {
+                "language": "zh",
+                "name": "几内亚比绍",
+                "nameOfficial": "几内亚比绍共和国"
             }
         ]
     },
@@ -4355,8 +4431,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "الاستوائية غينيا ",
-                "nameOfficial": "الاستوائية غينيا جمهورية "
+                "name": "الاستوائية غينيا",
+                "nameOfficial": "الاستوائية غينيا جمهورية"
             },
             {
                 "language": "en",
@@ -4379,14 +4455,14 @@
                 "nameOfficial": "Repubblica di Guinea equatoriale"
             },
             {
-                "language": "zh",
-                "name": "赤道几内亚",
-                "nameOfficial": "赤道几内亚共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Экваториальная Гвинея",
                 "nameOfficial": "Республика Экваториальная Гвинея"
+            },
+            {
+                "language": "zh",
+                "name": "赤道几内亚",
+                "nameOfficial": "赤道几内亚共和国"
             }
         ]
     },
@@ -4412,7 +4488,7 @@
             {
                 "language": "ar",
                 "name": "اليونان",
-                "nameOfficial": "الهيلانية الجمهورية "
+                "nameOfficial": "الهيلانية الجمهورية"
             },
             {
                 "language": "en",
@@ -4435,14 +4511,14 @@
                 "nameOfficial": "Repubblica ellenica"
             },
             {
-                "language": "zh",
-                "name": "希 腊",
-                "nameOfficial": "希腊共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Греция",
                 "nameOfficial": "Греческая Республика"
+            },
+            {
+                "language": "zh",
+                "name": "希 腊",
+                "nameOfficial": "希腊共和国"
             }
         ]
     },
@@ -4491,14 +4567,14 @@
                 "nameOfficial": "Grenada"
             },
             {
-                "language": "zh",
-                "name": "格林纳达",
-                "nameOfficial": "格林纳达"
-            },
-            {
                 "language": "ru",
                 "name": "Гренада",
                 "nameOfficial": "Гренада"
+            },
+            {
+                "language": "zh",
+                "name": "格林纳达",
+                "nameOfficial": "格林纳达"
             }
         ]
     },
@@ -4521,7 +4597,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Greenland",
+                "nameOfficial": "Greenland"
+            }
         ]
     },
     {
@@ -4546,7 +4626,7 @@
             {
                 "language": "ar",
                 "name": "غواتيمالا",
-                "nameOfficial": "جمهورية غواتيمالا "
+                "nameOfficial": "جمهورية غواتيمالا"
             },
             {
                 "language": "en",
@@ -4569,14 +4649,14 @@
                 "nameOfficial": "Repubblica del Guatemala"
             },
             {
-                "language": "zh",
-                "name": "危地马拉",
-                "nameOfficial": "危地马拉共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Гватемала",
                 "nameOfficial": "Республика Гватемала"
+            },
+            {
+                "language": "zh",
+                "name": "危地马拉",
+                "nameOfficial": "危地马拉共和国"
             }
         ]
     },
@@ -4599,7 +4679,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "French Guiana",
+                "nameOfficial": "French Guiana"
+            }
         ]
     },
     {
@@ -4621,7 +4705,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Guam",
+                "nameOfficial": "Territory of Guam"
+            }
         ]
     },
     {
@@ -4646,7 +4734,7 @@
             {
                 "language": "ar",
                 "name": "غيانا",
-                "nameOfficial": "جمهورية غيانا "
+                "nameOfficial": "جمهورية غيانا"
             },
             {
                 "language": "en",
@@ -4669,14 +4757,14 @@
                 "nameOfficial": "Repubblica della Guyana"
             },
             {
-                "language": "zh",
-                "name": "圭亚那",
-                "nameOfficial": "圭亚那共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Гайана",
                 "nameOfficial": "Республика Гайана"
+            },
+            {
+                "language": "zh",
+                "name": "圭亚那",
+                "nameOfficial": "圭亚那共和国"
             }
         ]
     },
@@ -4699,7 +4787,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Hong Kong",
+                "nameOfficial": "Hong Kong Special Administrative Region of the People's Republic"
+            }
         ]
     },
     {
@@ -4718,7 +4810,11 @@
 
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Heard Island And McDonald Islands",
+                "nameOfficial": "Heard and McDonald Islands"
+            }
         ]
     },
     {
@@ -4743,7 +4839,7 @@
             {
                 "language": "ar",
                 "name": "هندوراس",
-                "nameOfficial": "هندوراس جمهورية "
+                "nameOfficial": "هندوراس جمهورية"
             },
             {
                 "language": "en",
@@ -4766,14 +4862,14 @@
                 "nameOfficial": "Repubblica di Honduras"
             },
             {
-                "language": "zh",
-                "name": "洪都拉斯",
-                "nameOfficial": "洪都拉斯共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Гондурас",
                 "nameOfficial": "Республика Гондурас"
+            },
+            {
+                "language": "zh",
+                "name": "洪都拉斯",
+                "nameOfficial": "洪都拉斯共和国"
             }
         ]
     },
@@ -4799,7 +4895,7 @@
             {
                 "language": "ar",
                 "name": "كرواتيا",
-                "nameOfficial": "جمهورية كرواتيا "
+                "nameOfficial": "جمهورية كرواتيا"
             },
             {
                 "language": "en",
@@ -4822,14 +4918,14 @@
                 "nameOfficial": "Repubblica di Croazia"
             },
             {
-                "language": "zh",
-                "name": "克罗地亚",
-                "nameOfficial": "克罗地亚共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Хорватия",
                 "nameOfficial": "Республика Хорватия"
+            },
+            {
+                "language": "zh",
+                "name": "克罗地亚",
+                "nameOfficial": "克罗地亚共和国"
             }
         ]
     },
@@ -4855,7 +4951,7 @@
             {
                 "language": "ar",
                 "name": "هايتي",
-                "nameOfficial": "جمهورية هايتي "
+                "nameOfficial": "جمهورية هايتي"
             },
             {
                 "language": "en",
@@ -4878,14 +4974,14 @@
                 "nameOfficial": "Repubblica di Haiti"
             },
             {
-                "language": "zh",
-                "name": "海 地",
-                "nameOfficial": "海地共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Гаити",
                 "nameOfficial": "Республика Гаити"
+            },
+            {
+                "language": "zh",
+                "name": "海 地",
+                "nameOfficial": "海地共和国"
             }
         ]
     },
@@ -4934,14 +5030,14 @@
                 "nameOfficial": "Ungheria"
             },
             {
-                "language": "zh",
-                "name": "匈牙利",
-                "nameOfficial": "匈牙利"
-            },
-            {
                 "language": "ru",
                 "name": "Венгрия",
                 "nameOfficial": "Венгрия"
+            },
+            {
+                "language": "zh",
+                "name": "匈牙利",
+                "nameOfficial": "匈牙利"
             }
         ]
     },
@@ -4967,7 +5063,7 @@
             {
                 "language": "ar",
                 "name": "إندونيسيا",
-                "nameOfficial": "جمهورية إندونيسيا "
+                "nameOfficial": "جمهورية إندونيسيا"
             },
             {
                 "language": "en",
@@ -4990,14 +5086,14 @@
                 "nameOfficial": "Indonesia"
             },
             {
-                "language": "zh",
-                "name": "印度尼西亚",
-                "nameOfficial": "印度尼西亚共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Индонезия",
                 "nameOfficial": "Республика Индонезия"
+            },
+            {
+                "language": "zh",
+                "name": "印度尼西亚",
+                "nameOfficial": "印度尼西亚共和国"
             }
         ]
     },
@@ -5020,7 +5116,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Isle of Man",
+                "nameOfficial": "The Isle of Man"
+            }
         ]
     },
     {
@@ -5045,7 +5145,7 @@
             {
                 "language": "ar",
                 "name": "الهند",
-                "nameOfficial": "جمهورية الهند "
+                "nameOfficial": "جمهورية الهند"
             },
             {
                 "language": "en",
@@ -5068,14 +5168,14 @@
                 "nameOfficial": "Repubblica dell'India"
             },
             {
-                "language": "zh",
-                "name": "印 度",
-                "nameOfficial": "印度共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Индия",
                 "nameOfficial": "Республика Индия"
+            },
+            {
+                "language": "zh",
+                "name": "印 度",
+                "nameOfficial": "印度共和国"
             }
         ]
     },
@@ -5095,7 +5195,11 @@
 
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "British Indian Ocean Territory",
+                "nameOfficial": "The British Indian Ocean Territory"
+            }
         ]
     },
     {
@@ -5143,14 +5247,14 @@
                 "nameOfficial": "Irlanda"
             },
             {
-                "language": "zh",
-                "name": "爱尔兰",
-                "nameOfficial": "爱尔兰"
-            },
-            {
                 "language": "ru",
                 "name": "Ирландия",
                 "nameOfficial": "Ирландия"
+            },
+            {
+                "language": "zh",
+                "name": "爱尔兰",
+                "nameOfficial": "爱尔兰"
             }
         ]
     },
@@ -5175,8 +5279,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "الإسلامية - جمهورية - إيران ",
-                "nameOfficial": "الإسلامية إيران جمهورية "
+                "name": "الإسلامية - جمهورية - إيران",
+                "nameOfficial": "الإسلامية إيران جمهورية"
             },
             {
                 "language": "en",
@@ -5199,14 +5303,14 @@
                 "nameOfficial": "Repubblica islamica dell'Iran"
             },
             {
-                "language": "zh",
-                "name": "伊 朗(伊斯兰共和国)",
-                "nameOfficial": "伊朗伊斯兰共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Иран (Исламская Республика)",
                 "nameOfficial": "Исламская Республика Иран"
+            },
+            {
+                "language": "zh",
+                "name": "伊 朗(伊斯兰共和国)",
+                "nameOfficial": "伊朗伊斯兰共和国"
             }
         ]
     },
@@ -5232,7 +5336,7 @@
             {
                 "language": "ar",
                 "name": "العراق",
-                "nameOfficial": "جمهورية العراق "
+                "nameOfficial": "جمهورية العراق"
             },
             {
                 "language": "en",
@@ -5255,14 +5359,14 @@
                 "nameOfficial": "Repubblica dell'Iraq"
             },
             {
-                "language": "zh",
-                "name": "伊拉克",
-                "nameOfficial": "伊拉克共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Ирак",
                 "nameOfficial": "Республика Ирак"
+            },
+            {
+                "language": "zh",
+                "name": "伊拉克",
+                "nameOfficial": "伊拉克共和国"
             }
         ]
     },
@@ -5292,7 +5396,7 @@
             {
                 "language": "ar",
                 "name": "آيسلندا",
-                "nameOfficial": "آيسلندا جمهورية "
+                "nameOfficial": "آيسلندا جمهورية"
             },
             {
                 "language": "en",
@@ -5315,14 +5419,14 @@
                 "nameOfficial": "Repubblica d'Islanda"
             },
             {
-                "language": "zh",
-                "name": "冰 岛",
-                "nameOfficial": "冰岛共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Исландия",
                 "nameOfficial": "Республика Исландия"
+            },
+            {
+                "language": "zh",
+                "name": "冰 岛",
+                "nameOfficial": "冰岛共和国"
             }
         ]
     },
@@ -5348,7 +5452,7 @@
             {
                 "language": "ar",
                 "name": "إسرائيل",
-                "nameOfficial": "إسرائيل دولة "
+                "nameOfficial": "إسرائيل دولة"
             },
             {
                 "language": "en",
@@ -5371,14 +5475,14 @@
                 "nameOfficial": "Stato d'Israele"
             },
             {
-                "language": "zh",
-                "name": "以色列",
-                "nameOfficial": "以色列国"
-            },
-            {
                 "language": "ru",
                 "name": "Израиль",
                 "nameOfficial": "Государство Израиль"
+            },
+            {
+                "language": "zh",
+                "name": "以色列",
+                "nameOfficial": "以色列国"
             }
         ]
     },
@@ -5404,7 +5508,7 @@
             {
                 "language": "ar",
                 "name": "إيطاليا",
-                "nameOfficial": "الإيطالية الجمهورية "
+                "nameOfficial": "الإيطالية الجمهورية"
             },
             {
                 "language": "en",
@@ -5427,14 +5531,14 @@
                 "nameOfficial": "Repubblica italiana"
             },
             {
-                "language": "zh",
-                "name": "意大利",
-                "nameOfficial": "意大利共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Италия",
                 "nameOfficial": "Итальянская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "意大利",
+                "nameOfficial": "意大利共和国"
             }
         ]
     },
@@ -5483,14 +5587,14 @@
                 "nameOfficial": "Giamaica"
             },
             {
-                "language": "zh",
-                "name": "牙买加",
-                "nameOfficial": "牙买加"
-            },
-            {
                 "language": "ru",
                 "name": "Ямайка",
                 "nameOfficial": "Ямайка"
+            },
+            {
+                "language": "zh",
+                "name": "牙买加",
+                "nameOfficial": "牙买加"
             }
         ]
     },
@@ -5513,7 +5617,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Jersey",
+                "nameOfficial": "Bailiwick of Jersey"
+            }
         ]
     },
     {
@@ -5538,7 +5646,7 @@
             {
                 "language": "ar",
                 "name": "الأردن",
-                "nameOfficial": "الهاشمية الأردنية المملكة "
+                "nameOfficial": "الهاشمية الأردنية المملكة"
             },
             {
                 "language": "en",
@@ -5561,14 +5669,14 @@
                 "nameOfficial": "Regno hascemita di Giordania"
             },
             {
-                "language": "zh",
-                "name": "约 旦",
-                "nameOfficial": "约旦哈希姆王国"
-            },
-            {
                 "language": "ru",
                 "name": "Иордания",
                 "nameOfficial": "Иорданское Хашимитское Королевство"
+            },
+            {
+                "language": "zh",
+                "name": "约 旦",
+                "nameOfficial": "约旦哈希姆王国"
             }
         ]
     },
@@ -5617,14 +5725,14 @@
                 "nameOfficial": "Giappone"
             },
             {
-                "language": "zh",
-                "name": "日 本",
-                "nameOfficial": "日本国"
-            },
-            {
                 "language": "ru",
                 "name": "Япония",
                 "nameOfficial": "Япония"
+            },
+            {
+                "language": "zh",
+                "name": "日 本",
+                "nameOfficial": "日本国"
             }
         ]
     },
@@ -5650,7 +5758,7 @@
             {
                 "language": "ar",
                 "name": "كازاخستان",
-                "nameOfficial": "جمهورية كازاخستان "
+                "nameOfficial": "جمهورية كازاخستان"
             },
             {
                 "language": "en",
@@ -5673,14 +5781,14 @@
                 "nameOfficial": "Repubblica del Kazakhstan"
             },
             {
-                "language": "zh",
-                "name": "哈萨克斯坦",
-                "nameOfficial": "哈萨克斯坦共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Казахстан",
                 "nameOfficial": "Республика Казахстан"
+            },
+            {
+                "language": "zh",
+                "name": "哈萨克斯坦",
+                "nameOfficial": "哈萨克斯坦共和国"
             }
         ]
     },
@@ -5706,7 +5814,7 @@
             {
                 "language": "ar",
                 "name": "كينيا",
-                "nameOfficial": "كينيا جمهورية "
+                "nameOfficial": "كينيا جمهورية"
             },
             {
                 "language": "en",
@@ -5729,14 +5837,14 @@
                 "nameOfficial": "Repubblica del Kenya"
             },
             {
-                "language": "zh",
-                "name": "肯尼亚",
-                "nameOfficial": "肯尼亚共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Кения",
                 "nameOfficial": "Республика Кения"
+            },
+            {
+                "language": "zh",
+                "name": "肯尼亚",
+                "nameOfficial": "肯尼亚共和国"
             }
         ]
     },
@@ -5762,7 +5870,7 @@
             {
                 "language": "ar",
                 "name": "قيرغيزستان",
-                "nameOfficial": "جمهورية القيرغيز "
+                "nameOfficial": "جمهورية القيرغيز"
             },
             {
                 "language": "en",
@@ -5785,14 +5893,14 @@
                 "nameOfficial": "Repubblica di Kirghizistan"
             },
             {
-                "language": "zh",
-                "name": "吉尔吉斯斯坦",
-                "nameOfficial": "吉尔吉斯共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Кыргызстан",
                 "nameOfficial": "Кыргызская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "吉尔吉斯斯坦",
+                "nameOfficial": "吉尔吉斯共和国"
             }
         ]
     },
@@ -5818,7 +5926,7 @@
             {
                 "language": "ar",
                 "name": "كمبوديا",
-                "nameOfficial": "مملكة كمبوديا "
+                "nameOfficial": "مملكة كمبوديا"
             },
             {
                 "language": "en",
@@ -5841,14 +5949,14 @@
                 "nameOfficial": "Regno di Cambogia"
             },
             {
-                "language": "zh",
-                "name": "柬埔寨",
-                "nameOfficial": "柬埔寨王国"
-            },
-            {
                 "language": "ru",
                 "name": "Камбоджа",
                 "nameOfficial": "Королевство Камбоджа"
+            },
+            {
+                "language": "zh",
+                "name": "柬埔寨",
+                "nameOfficial": "柬埔寨王国"
             }
         ]
     },
@@ -5874,7 +5982,7 @@
             {
                 "language": "ar",
                 "name": "كيريباس",
-                "nameOfficial": "كيريباس  جمهورية "
+                "nameOfficial": "كيريباس  جمهورية"
             },
             {
                 "language": "en",
@@ -5897,14 +6005,14 @@
                 "nameOfficial": "Repubblica di Kiribati"
             },
             {
-                "language": "zh",
-                "name": "基里巴斯",
-                "nameOfficial": "基里巴斯共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Кирибати",
                 "nameOfficial": "Республика Кирибати"
+            },
+            {
+                "language": "zh",
+                "name": "基里巴斯",
+                "nameOfficial": "基里巴斯共和国"
             }
         ]
     },
@@ -5929,8 +6037,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "ونيفيس كيتس سانت ",
-                "nameOfficial": "ونيفيس كيتس سانت "
+                "name": "ونيفيس كيتس سانت",
+                "nameOfficial": "ونيفيس كيتس سانت"
             },
             {
                 "language": "en",
@@ -5953,14 +6061,14 @@
                 "nameOfficial": "Federazione di Saint Kitts e Nevis"
             },
             {
-                "language": "zh",
-                "name": "圣基茨和尼维斯",
-                "nameOfficial": "圣基茨和尼维斯"
-            },
-            {
                 "language": "ru",
                 "name": "Сент-Китс и Невис",
                 "nameOfficial": "Сент-Китс и Невис"
+            },
+            {
+                "language": "zh",
+                "name": "圣基茨和尼维斯",
+                "nameOfficial": "圣基茨和尼维斯"
             }
         ]
     },
@@ -5985,8 +6093,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "جمهورية كوريا ",
-                "nameOfficial": "جمهورية كوريا "
+                "name": "جمهورية كوريا",
+                "nameOfficial": "جمهورية كوريا"
             },
             {
                 "language": "en",
@@ -6009,14 +6117,14 @@
                 "nameOfficial": "Repubblica di Corea"
             },
             {
-                "language": "zh",
-                "name": "大韩民国",
-                "nameOfficial": "大韩民国"
-            },
-            {
                 "language": "ru",
                 "name": "Республика Корея",
                 "nameOfficial": "Республика Корея"
+            },
+            {
+                "language": "zh",
+                "name": "大韩民国",
+                "nameOfficial": "大韩民国"
             }
         ]
     },
@@ -6042,7 +6150,7 @@
             {
                 "language": "ar",
                 "name": "الكويت",
-                "nameOfficial": "الكويت دولة "
+                "nameOfficial": "الكويت دولة"
             },
             {
                 "language": "en",
@@ -6065,14 +6173,14 @@
                 "nameOfficial": "Stato del Kuwait"
             },
             {
-                "language": "zh",
-                "name": "科威特",
-                "nameOfficial": "科威特国"
-            },
-            {
                 "language": "ru",
                 "name": "Кувейт",
                 "nameOfficial": "Государство Кувейт"
+            },
+            {
+                "language": "zh",
+                "name": "科威特",
+                "nameOfficial": "科威特国"
             }
         ]
     },
@@ -6097,8 +6205,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "الشعبية الديمقراطية لاو جمهورية ",
-                "nameOfficial": "الشعبية الديمقراطية لاو جمهورية "
+                "name": "الشعبية الديمقراطية لاو جمهورية",
+                "nameOfficial": "الشعبية الديمقراطية لاو جمهورية"
             },
             {
                 "language": "en",
@@ -6121,14 +6229,14 @@
                 "nameOfficial": "Repubblica democratica popolare del Laos"
             },
             {
-                "language": "zh",
-                "name": "老挝人民民主共和国",
-                "nameOfficial": "老挝人民民主共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Лаосская Народно-Демократическая Республика",
                 "nameOfficial": "Лаосская Народно-Демократическая Республика"
+            },
+            {
+                "language": "zh",
+                "name": "老挝人民民主共和国",
+                "nameOfficial": "老挝人民民主共和国"
             }
         ]
     },
@@ -6154,7 +6262,7 @@
             {
                 "language": "ar",
                 "name": "لبنان",
-                "nameOfficial": "اللبنانية الجمهورية "
+                "nameOfficial": "اللبنانية الجمهورية"
             },
             {
                 "language": "en",
@@ -6177,14 +6285,14 @@
                 "nameOfficial": "Repubblica libanese"
             },
             {
-                "language": "zh",
-                "name": "黎巴嫩",
-                "nameOfficial": "黎巴嫩共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Ливан",
                 "nameOfficial": "Ливанская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "黎巴嫩",
+                "nameOfficial": "黎巴嫩共和国"
             }
         ]
     },
@@ -6210,7 +6318,7 @@
             {
                 "language": "ar",
                 "name": "ليبريا",
-                "nameOfficial": "جمهورية ليبريا "
+                "nameOfficial": "جمهورية ليبريا"
             },
             {
                 "language": "en",
@@ -6233,14 +6341,14 @@
                 "nameOfficial": "Repubblica di Liberia"
             },
             {
-                "language": "zh",
-                "name": "利比里亚",
-                "nameOfficial": "利比里亚共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Либерия",
                 "nameOfficial": "Республика Либерия"
+            },
+            {
+                "language": "zh",
+                "name": "利比里亚",
+                "nameOfficial": "利比里亚共和国"
             }
         ]
     },
@@ -6289,14 +6397,14 @@
                 "nameOfficial": "Libia"
             },
             {
-                "language": "zh",
-                "name": "利比亚",
-                "nameOfficial": "利比亚"
-            },
-            {
                 "language": "ru",
                 "name": "Ливия",
                 "nameOfficial": "Ливия"
+            },
+            {
+                "language": "zh",
+                "name": "利比亚",
+                "nameOfficial": "利比亚"
             }
         ]
     },
@@ -6321,8 +6429,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "لوسيا سانت ",
-                "nameOfficial": "لوسيا سانت "
+                "name": "لوسيا سانت",
+                "nameOfficial": "لوسيا سانت"
             },
             {
                 "language": "en",
@@ -6341,18 +6449,18 @@
             },
             {
                 "language": "it",
-                "name": "Santa Lucia  ",
-                "nameOfficial": "Santa Lucia  "
-            },
-            {
-                "language": "zh",
-                "name": "圣卢西亚",
-                "nameOfficial": "圣卢西亚"
+                "name": "Santa Lucia",
+                "nameOfficial": "Santa Lucia"
             },
             {
                 "language": "ru",
                 "name": "Сент-Люсия",
                 "nameOfficial": "Сент-Люсия"
+            },
+            {
+                "language": "zh",
+                "name": "圣卢西亚",
+                "nameOfficial": "圣卢西亚"
             }
         ]
     },
@@ -6378,7 +6486,7 @@
             {
                 "language": "ar",
                 "name": "لختنشتاين",
-                "nameOfficial": "إمارة لختنشتاين "
+                "nameOfficial": "إمارة لختنشتاين"
             },
             {
                 "language": "en",
@@ -6401,14 +6509,14 @@
                 "nameOfficial": "Principato del Liechtenstein"
             },
             {
-                "language": "zh",
-                "name": "列支敦士登",
-                "nameOfficial": "列支敦士登公国"
-            },
-            {
                 "language": "ru",
                 "name": "Лихтенштейн",
                 "nameOfficial": "Княжество Лихтенштейн"
+            },
+            {
+                "language": "zh",
+                "name": "列支敦士登",
+                "nameOfficial": "列支敦士登公国"
             }
         ]
     },
@@ -6433,8 +6541,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "سري لانكا ",
-                "nameOfficial": "جمهورية سري لانكا الاشتراكية الديمقراطية "
+                "name": "سري لانكا",
+                "nameOfficial": "جمهورية سري لانكا الاشتراكية الديمقراطية"
             },
             {
                 "language": "en",
@@ -6457,14 +6565,14 @@
                 "nameOfficial": "Repubblica democratica socialista di Sri Lanka"
             },
             {
-                "language": "zh",
-                "name": "斯里兰卡",
-                "nameOfficial": "斯里兰卡民主社会主义共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Шри-Ланка",
                 "nameOfficial": "Демократическая Социалистическая Республика Шри-Ланка"
+            },
+            {
+                "language": "zh",
+                "name": "斯里兰卡",
+                "nameOfficial": "斯里兰卡民主社会主义共和国"
             }
         ]
     },
@@ -6490,7 +6598,7 @@
             {
                 "language": "ar",
                 "name": "ليسوتو",
-                "nameOfficial": "ليسوتو مملكة "
+                "nameOfficial": "ليسوتو مملكة"
             },
             {
                 "language": "en",
@@ -6513,14 +6621,14 @@
                 "nameOfficial": "Regno di Lesotho"
             },
             {
-                "language": "zh",
-                "name": "莱索托",
-                "nameOfficial": "莱索托王国"
-            },
-            {
                 "language": "ru",
                 "name": "Лесото",
                 "nameOfficial": "Королевство Лесото"
+            },
+            {
+                "language": "zh",
+                "name": "莱索托",
+                "nameOfficial": "莱索托王国"
             }
         ]
     },
@@ -6546,7 +6654,7 @@
             {
                 "language": "ar",
                 "name": "ليتوانيا",
-                "nameOfficial": "جمهورية ليتوانيا "
+                "nameOfficial": "جمهورية ليتوانيا"
             },
             {
                 "language": "en",
@@ -6569,14 +6677,14 @@
                 "nameOfficial": "Repubblica di Lituania"
             },
             {
-                "language": "zh",
-                "name": "立陶宛",
-                "nameOfficial": "立陶宛共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Литва",
                 "nameOfficial": "Литовская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "立陶宛",
+                "nameOfficial": "立陶宛共和国"
             }
         ]
     },
@@ -6602,7 +6710,7 @@
             {
                 "language": "ar",
                 "name": "لكسمبرغ",
-                "nameOfficial": "الكبرى لكسمبرغ دوقية "
+                "nameOfficial": "الكبرى لكسمبرغ دوقية"
             },
             {
                 "language": "en",
@@ -6625,14 +6733,14 @@
                 "nameOfficial": "Granducato di Lussemburgo"
             },
             {
-                "language": "zh",
-                "name": "卢森堡",
-                "nameOfficial": "卢森堡大公国"
-            },
-            {
                 "language": "ru",
                 "name": "Люксембург",
                 "nameOfficial": "Великое Герцогство Люксембург"
+            },
+            {
+                "language": "zh",
+                "name": "卢森堡",
+                "nameOfficial": "卢森堡大公国"
             }
         ]
     },
@@ -6658,7 +6766,7 @@
             {
                 "language": "ar",
                 "name": "لاتفيا",
-                "nameOfficial": "جمهورية لاتفيا "
+                "nameOfficial": "جمهورية لاتفيا"
             },
             {
                 "language": "en",
@@ -6681,14 +6789,14 @@
                 "nameOfficial": "Repubblica di Lettonia"
             },
             {
-                "language": "zh",
-                "name": "拉脱维亚",
-                "nameOfficial": "拉脱维亚共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Латвия",
                 "nameOfficial": "Латвийская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "拉脱维亚",
+                "nameOfficial": "拉脱维亚共和国"
             }
         ]
     },
@@ -6711,7 +6819,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Macao",
+                "nameOfficial": "Macau Special Administrative Region"
+            }
         ]
     },
     {
@@ -6733,7 +6845,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Saint Martin",
+                "nameOfficial": "Saint Martin"
+            }
         ]
     },
     {
@@ -6758,7 +6874,7 @@
             {
                 "language": "ar",
                 "name": "المغرب",
-                "nameOfficial": "المملكة المغربية "
+                "nameOfficial": "المملكة المغربية"
             },
             {
                 "language": "en",
@@ -6781,14 +6897,14 @@
                 "nameOfficial": "Regno del Marocco"
             },
             {
-                "language": "zh",
-                "name": "摩洛哥",
-                "nameOfficial": "摩洛哥王国"
-            },
-            {
                 "language": "ru",
                 "name": "Марокко",
                 "nameOfficial": "Королевство Марокко"
+            },
+            {
+                "language": "zh",
+                "name": "摩洛哥",
+                "nameOfficial": "摩洛哥王国"
             }
         ]
     },
@@ -6814,7 +6930,7 @@
             {
                 "language": "ar",
                 "name": "موناكو",
-                "nameOfficial": "إمارة موناكو "
+                "nameOfficial": "إمارة موناكو"
             },
             {
                 "language": "en",
@@ -6837,14 +6953,14 @@
                 "nameOfficial": "Principato di Monaco"
             },
             {
-                "language": "zh",
-                "name": "摩纳哥",
-                "nameOfficial": "摩纳哥公国"
-            },
-            {
                 "language": "ru",
                 "name": "Монако",
                 "nameOfficial": "Княжество Монако"
+            },
+            {
+                "language": "zh",
+                "name": "摩纳哥",
+                "nameOfficial": "摩纳哥公国"
             }
         ]
     },
@@ -6869,8 +6985,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "جمهورية مولدوفا ",
-                "nameOfficial": "جمهورية مولدوفا "
+                "name": "جمهورية مولدوفا",
+                "nameOfficial": "جمهورية مولدوفا"
             },
             {
                 "language": "en",
@@ -6893,14 +7009,14 @@
                 "nameOfficial": "Repubblica di Moldova"
             },
             {
-                "language": "zh",
-                "name": "摩尔多瓦共和国",
-                "nameOfficial": "摩尔多瓦共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Республика Молдова",
                 "nameOfficial": "Республика Молдова"
+            },
+            {
+                "language": "zh",
+                "name": "摩尔多瓦共和国",
+                "nameOfficial": "摩尔多瓦共和国"
             }
         ]
     },
@@ -6926,7 +7042,7 @@
             {
                 "language": "ar",
                 "name": "مدغشقر",
-                "nameOfficial": "جمهورية مدغشقر "
+                "nameOfficial": "جمهورية مدغشقر"
             },
             {
                 "language": "en",
@@ -6949,14 +7065,14 @@
                 "nameOfficial": "Repubblica del Madagascar"
             },
             {
-                "language": "zh",
-                "name": "马达加斯加",
-                "nameOfficial": "马达加斯加共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Мадагаскар",
                 "nameOfficial": "Республика Мадагаскар"
+            },
+            {
+                "language": "zh",
+                "name": "马达加斯加",
+                "nameOfficial": "马达加斯加共和国"
             }
         ]
     },
@@ -6982,7 +7098,7 @@
             {
                 "language": "ar",
                 "name": "ملديف",
-                "nameOfficial": "جمهورية ملديف "
+                "nameOfficial": "جمهورية ملديف"
             },
             {
                 "language": "en",
@@ -7005,14 +7121,14 @@
                 "nameOfficial": "Repubblica delle Maldive"
             },
             {
-                "language": "zh",
-                "name": "马尔代夫",
-                "nameOfficial": "马尔代夫共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Мальдивы",
                 "nameOfficial": "Мальдивская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "马尔代夫",
+                "nameOfficial": "马尔代夫共和国"
             }
         ]
     },
@@ -7038,7 +7154,7 @@
             {
                 "language": "ar",
                 "name": "المكسيك",
-                "nameOfficial": "المكسيكية المتحدة الولايات "
+                "nameOfficial": "المكسيكية المتحدة الولايات"
             },
             {
                 "language": "en",
@@ -7061,14 +7177,14 @@
                 "nameOfficial": "Stati Uniti messicani"
             },
             {
-                "language": "zh",
-                "name": "墨西哥",
-                "nameOfficial": "墨西哥合众国"
-            },
-            {
                 "language": "ru",
                 "name": "Мексика",
                 "nameOfficial": "Мексиканские Соединенные Штаты"
+            },
+            {
+                "language": "zh",
+                "name": "墨西哥",
+                "nameOfficial": "墨西哥合众国"
             }
         ]
     },
@@ -7093,8 +7209,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "جزر مارشال ",
-                "nameOfficial": "جمهورية جزر مارشال "
+                "name": "جزر مارشال",
+                "nameOfficial": "جمهورية جزر مارشال"
             },
             {
                 "language": "en",
@@ -7117,14 +7233,14 @@
                 "nameOfficial": "Repubblica delle Isole Marshall"
             },
             {
-                "language": "zh",
-                "name": "马绍尔群岛",
-                "nameOfficial": "马绍尔群岛共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Маршалловы Острова",
                 "nameOfficial": "Республика Маршалловы Острова"
+            },
+            {
+                "language": "zh",
+                "name": "马绍尔群岛",
+                "nameOfficial": "马绍尔群岛共和国"
             }
         ]
     },
@@ -7149,8 +7265,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "جمهورية مقدونيا اليوغوسلافية السابقة ",
-                "nameOfficial": "جمهورية مقدونيا اليوغوسلافية السابقة "
+                "name": "جمهورية مقدونيا اليوغوسلافية السابقة",
+                "nameOfficial": "جمهورية مقدونيا اليوغوسلافية السابقة"
             },
             {
                 "language": "en",
@@ -7173,14 +7289,14 @@
                 "nameOfficial": "L'ex Repubblica jugoslava di Macedonia"
             },
             {
-                "language": "zh",
-                "name": "前南斯拉夫的马其顿共和国",
-                "nameOfficial": "前南斯拉夫的马其顿共和国"
-            },
-            {
                 "language": "ru",
                 "name": "бывшая югославская Республика Македония",
                 "nameOfficial": "бывшая югославская Республика Македония"
+            },
+            {
+                "language": "zh",
+                "name": "前南斯拉夫的马其顿共和国",
+                "nameOfficial": "前南斯拉夫的马其顿共和国"
             }
         ]
     },
@@ -7206,7 +7322,7 @@
             {
                 "language": "ar",
                 "name": "مالي",
-                "nameOfficial": "مالي جمهورية "
+                "nameOfficial": "مالي جمهورية"
             },
             {
                 "language": "en",
@@ -7229,14 +7345,14 @@
                 "nameOfficial": "Repubblica del Mali"
             },
             {
-                "language": "zh",
-                "name": "马 里",
-                "nameOfficial": "马里共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Мали",
                 "nameOfficial": "Республика Мали"
+            },
+            {
+                "language": "zh",
+                "name": "马 里",
+                "nameOfficial": "马里共和国"
             }
         ]
     },
@@ -7262,7 +7378,7 @@
             {
                 "language": "ar",
                 "name": "مالطة",
-                "nameOfficial": "جمهورية مالطة "
+                "nameOfficial": "جمهورية مالطة"
             },
             {
                 "language": "en",
@@ -7285,14 +7401,14 @@
                 "nameOfficial": "Repubblica di Malta"
             },
             {
-                "language": "zh",
-                "name": "马耳他",
-                "nameOfficial": "马耳他共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Мальта",
                 "nameOfficial": "Республика Мальта"
+            },
+            {
+                "language": "zh",
+                "name": "马耳他",
+                "nameOfficial": "马耳他共和国"
             }
         ]
     },
@@ -7318,7 +7434,7 @@
             {
                 "language": "ar",
                 "name": "ميانمار",
-                "nameOfficial": "ميانمار اتحاد جمهورية "
+                "nameOfficial": "ميانمار اتحاد جمهورية"
             },
             {
                 "language": "en",
@@ -7341,14 +7457,14 @@
                 "nameOfficial": "Repubblica dell'Unione di Myanmar"
             },
             {
-                "language": "zh",
-                "name": "缅 甸",
-                "nameOfficial": "缅甸联邦共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Мьянма",
                 "nameOfficial": "Республика Союз Мьянма"
+            },
+            {
+                "language": "zh",
+                "name": "缅 甸",
+                "nameOfficial": "缅甸联邦共和国"
             }
         ]
     },
@@ -7373,8 +7489,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "الأسود الجبل ",
-                "nameOfficial": "الأسود الجبل "
+                "name": "الأسود الجبل",
+                "nameOfficial": "الأسود الجبل"
             },
             {
                 "language": "en",
@@ -7397,14 +7513,14 @@
                 "nameOfficial": "Montenegro"
             },
             {
-                "language": "zh",
-                "name": "黑山",
-                "nameOfficial": "黑山"
-            },
-            {
                 "language": "ru",
                 "name": "Черногория",
                 "nameOfficial": "Черногория"
+            },
+            {
+                "language": "zh",
+                "name": "黑山",
+                "nameOfficial": "黑山"
             }
         ]
     },
@@ -7453,14 +7569,14 @@
                 "nameOfficial": "Mongolia"
             },
             {
-                "language": "zh",
-                "name": "蒙 古",
-                "nameOfficial": "蒙古国"
-            },
-            {
                 "language": "ru",
                 "name": "Монголия",
                 "nameOfficial": "Монголия"
+            },
+            {
+                "language": "zh",
+                "name": "蒙 古",
+                "nameOfficial": "蒙古国"
             }
         ]
     },
@@ -7483,7 +7599,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Northern Mariana Islands",
+                "nameOfficial": "Commonwealth of the Northern Mariana Islands"
+            }
         ]
     },
     {
@@ -7508,7 +7628,7 @@
             {
                 "language": "ar",
                 "name": "موزامبيق",
-                "nameOfficial": "جمهورية موزامبيق "
+                "nameOfficial": "جمهورية موزامبيق"
             },
             {
                 "language": "en",
@@ -7531,14 +7651,14 @@
                 "nameOfficial": "Repubblica del Mozambico"
             },
             {
-                "language": "zh",
-                "name": "莫桑比克",
-                "nameOfficial": "莫桑比克共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Мозамбик",
                 "nameOfficial": "Республика Мозамбик"
+            },
+            {
+                "language": "zh",
+                "name": "莫桑比克",
+                "nameOfficial": "莫桑比克共和国"
             }
         ]
     },
@@ -7564,7 +7684,7 @@
             {
                 "language": "ar",
                 "name": "موريتانيا",
-                "nameOfficial": "الجمهورية الإسلامية الموريتانية "
+                "nameOfficial": "الجمهورية الإسلامية الموريتانية"
             },
             {
                 "language": "en",
@@ -7587,14 +7707,14 @@
                 "nameOfficial": "Repubblica islamica di Mauritania"
             },
             {
-                "language": "zh",
-                "name": "毛里塔尼亚",
-                "nameOfficial": "毛里塔尼亚伊斯兰共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Мавритания",
                 "nameOfficial": "Исламская Республика Мавритания"
+            },
+            {
+                "language": "zh",
+                "name": "毛里塔尼亚",
+                "nameOfficial": "毛里塔尼亚伊斯兰共和国"
             }
         ]
     },
@@ -7617,7 +7737,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Montserrat",
+                "nameOfficial": "Montserrat"
+            }
         ]
     },
     {
@@ -7639,7 +7763,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Martinique",
+                "nameOfficial": "Department of Martinique"
+            }
         ]
     },
     {
@@ -7664,7 +7792,7 @@
             {
                 "language": "ar",
                 "name": "موريشيوس",
-                "nameOfficial": "موريشيوس جمهورية "
+                "nameOfficial": "موريشيوس جمهورية"
             },
             {
                 "language": "en",
@@ -7687,14 +7815,14 @@
                 "nameOfficial": "Repubblica di Maurizio"
             },
             {
-                "language": "zh",
-                "name": "毛里求斯",
-                "nameOfficial": "毛里求斯共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Маврикий",
                 "nameOfficial": "Республика Маврикий"
+            },
+            {
+                "language": "zh",
+                "name": "毛里求斯",
+                "nameOfficial": "毛里求斯共和国"
             }
         ]
     },
@@ -7720,7 +7848,7 @@
             {
                 "language": "ar",
                 "name": "ملاوي",
-                "nameOfficial": "جمهورية ملاوي "
+                "nameOfficial": "جمهورية ملاوي"
             },
             {
                 "language": "en",
@@ -7743,14 +7871,14 @@
                 "nameOfficial": "Repubblica del Malawi"
             },
             {
-                "language": "zh",
-                "name": "马拉维",
-                "nameOfficial": "马拉维共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Малави",
                 "nameOfficial": "Республика Малави"
+            },
+            {
+                "language": "zh",
+                "name": "马拉维",
+                "nameOfficial": "马拉维共和国"
             }
         ]
     },
@@ -7799,14 +7927,14 @@
                 "nameOfficial": "Malaysia"
             },
             {
-                "language": "zh",
-                "name": "马来西亚",
-                "nameOfficial": "马来西亚"
-            },
-            {
                 "language": "ru",
                 "name": "Малайзия",
                 "nameOfficial": "Малайзия"
+            },
+            {
+                "language": "zh",
+                "name": "马来西亚",
+                "nameOfficial": "马来西亚"
             }
         ]
     },
@@ -7829,7 +7957,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Mayotte",
+                "nameOfficial": "Overseas Department of Mayotte"
+            }
         ]
     },
     {
@@ -7854,7 +7986,7 @@
             {
                 "language": "ar",
                 "name": "ناميبيا",
-                "nameOfficial": "جمهورية ناميبيا "
+                "nameOfficial": "جمهورية ناميبيا"
             },
             {
                 "language": "en",
@@ -7877,14 +8009,14 @@
                 "nameOfficial": "Repubblica di Namibia"
             },
             {
-                "language": "zh",
-                "name": "纳米比亚",
-                "nameOfficial": "纳米比亚共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Намибия",
                 "nameOfficial": "Республика Намибия"
+            },
+            {
+                "language": "zh",
+                "name": "纳米比亚",
+                "nameOfficial": "纳米比亚共和国"
             }
         ]
     },
@@ -7907,7 +8039,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "New Caledonia",
+                "nameOfficial": "Territory of New Caledonia and Dependencies"
+            }
         ]
     },
     {
@@ -7932,7 +8068,7 @@
             {
                 "language": "ar",
                 "name": "النيجر",
-                "nameOfficial": "جمهورية النيجر "
+                "nameOfficial": "جمهورية النيجر"
             },
             {
                 "language": "en",
@@ -7955,14 +8091,14 @@
                 "nameOfficial": "Repubblica del Niger"
             },
             {
-                "language": "zh",
-                "name": "尼日尔",
-                "nameOfficial": "尼日尔共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Нигер",
                 "nameOfficial": "Республика Нигер"
+            },
+            {
+                "language": "zh",
+                "name": "尼日尔",
+                "nameOfficial": "尼日尔共和国"
             }
         ]
     },
@@ -7985,7 +8121,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Norfolk Island",
+                "nameOfficial": "Norfolk Islands"
+            }
         ]
     },
     {
@@ -8010,7 +8150,7 @@
             {
                 "language": "ar",
                 "name": "نيجيريا",
-                "nameOfficial": "الاتحادية نيجيريا جمهورية "
+                "nameOfficial": "الاتحادية نيجيريا جمهورية"
             },
             {
                 "language": "en",
@@ -8033,14 +8173,14 @@
                 "nameOfficial": "Repubblica federale della Nigeria"
             },
             {
-                "language": "zh",
-                "name": "尼日利亚",
-                "nameOfficial": "尼日利亚联邦共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Нигерия",
                 "nameOfficial": "Федеративная Республика Нигерия"
+            },
+            {
+                "language": "zh",
+                "name": "尼日利亚",
+                "nameOfficial": "尼日利亚联邦共和国"
             }
         ]
     },
@@ -8066,7 +8206,7 @@
             {
                 "language": "ar",
                 "name": "نيكاراغوا",
-                "nameOfficial": "جمهورية  نيكاراغوا "
+                "nameOfficial": "جمهورية  نيكاراغوا"
             },
             {
                 "language": "en",
@@ -8089,14 +8229,14 @@
                 "nameOfficial": "Repubblica di Nicaragua"
             },
             {
-                "language": "zh",
-                "name": "尼加拉瓜",
-                "nameOfficial": "尼加拉瓜共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Никарагуа",
                 "nameOfficial": "Республика Никарагуа"
+            },
+            {
+                "language": "zh",
+                "name": "尼加拉瓜",
+                "nameOfficial": "尼加拉瓜共和国"
             }
         ]
     },
@@ -8145,14 +8285,14 @@
                 "nameOfficial": "Niue"
             },
             {
-                "language": "zh",
-                "name": "纽 埃",
-                "nameOfficial": "纽埃共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Ниуэ",
                 "nameOfficial": "Ниуэ"
+            },
+            {
+                "language": "zh",
+                "name": "纽 埃",
+                "nameOfficial": "纽埃共和国"
             }
         ]
     },
@@ -8178,7 +8318,7 @@
             {
                 "language": "ar",
                 "name": "هولندا",
-                "nameOfficial": "هولندا مملكة "
+                "nameOfficial": "هولندا مملكة"
             },
             {
                 "language": "en",
@@ -8201,14 +8341,14 @@
                 "nameOfficial": "Regno dei Paesi Bassi"
             },
             {
-                "language": "zh",
-                "name": "荷 兰",
-                "nameOfficial": "荷兰王国"
-            },
-            {
                 "language": "ru",
                 "name": "Нидерланды",
                 "nameOfficial": "Королевство Нидерландов"
+            },
+            {
+                "language": "zh",
+                "name": "荷 兰",
+                "nameOfficial": "荷兰王国"
             }
         ]
     },
@@ -8238,7 +8378,7 @@
             {
                 "language": "ar",
                 "name": "النرويج",
-                "nameOfficial": "النرويج مملكة "
+                "nameOfficial": "النرويج مملكة"
             },
             {
                 "language": "en",
@@ -8261,14 +8401,14 @@
                 "nameOfficial": "Regno di Norvegia"
             },
             {
-                "language": "zh",
-                "name": "挪 威",
-                "nameOfficial": "挪威王国"
-            },
-            {
                 "language": "ru",
                 "name": "Норвегия",
                 "nameOfficial": "Королевство Норвегия"
+            },
+            {
+                "language": "zh",
+                "name": "挪 威",
+                "nameOfficial": "挪威王国"
             }
         ]
     },
@@ -8294,7 +8434,7 @@
             {
                 "language": "ar",
                 "name": "نيبال",
-                "nameOfficial": "الاتحادية الديمقراطية نيبال جمهورية "
+                "nameOfficial": "الاتحادية الديمقراطية نيبال جمهورية"
             },
             {
                 "language": "en",
@@ -8317,14 +8457,14 @@
                 "nameOfficial": "Repubblica Democratica Federale di Nepal"
             },
             {
-                "language": "zh",
-                "name": "尼泊尔",
-                "nameOfficial": "尼泊尔联邦民主共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Непал",
                 "nameOfficial": "Федеративная Демократическая Республика Непал"
+            },
+            {
+                "language": "zh",
+                "name": "尼泊尔",
+                "nameOfficial": "尼泊尔联邦民主共和国"
             }
         ]
     },
@@ -8350,7 +8490,7 @@
             {
                 "language": "ar",
                 "name": "ناورو",
-                "nameOfficial": "ناورو جمهورية "
+                "nameOfficial": "ناورو جمهورية"
             },
             {
                 "language": "en",
@@ -8373,14 +8513,14 @@
                 "nameOfficial": "Repubblica di Nauru"
             },
             {
-                "language": "zh",
-                "name": "瑙 鲁",
-                "nameOfficial": "瑙鲁共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Науру",
                 "nameOfficial": "Республика Науру"
+            },
+            {
+                "language": "zh",
+                "name": "瑙 鲁",
+                "nameOfficial": "瑙鲁共和国"
             }
         ]
     },
@@ -8429,14 +8569,14 @@
                 "nameOfficial": "Nuova Zelanda"
             },
             {
-                "language": "zh",
-                "name": "新西兰",
-                "nameOfficial": "新西兰"
-            },
-            {
                 "language": "ru",
                 "name": "Новая Зеландия",
                 "nameOfficial": "Новая Зеландия"
+            },
+            {
+                "language": "zh",
+                "name": "新西兰",
+                "nameOfficial": "新西兰"
             }
         ]
     },
@@ -8462,7 +8602,7 @@
             {
                 "language": "ar",
                 "name": "عمان",
-                "nameOfficial": "سلطنة عمان "
+                "nameOfficial": "سلطنة عمان"
             },
             {
                 "language": "en",
@@ -8485,14 +8625,14 @@
                 "nameOfficial": "Sultanato dell'Oman"
             },
             {
-                "language": "zh",
-                "name": "阿 曼",
-                "nameOfficial": "阿曼苏丹国"
-            },
-            {
                 "language": "ru",
                 "name": "Оман",
                 "nameOfficial": "Султанат Оман"
+            },
+            {
+                "language": "zh",
+                "name": "阿 曼",
+                "nameOfficial": "阿曼苏丹国"
             }
         ]
     },
@@ -8518,7 +8658,7 @@
             {
                 "language": "ar",
                 "name": "باكستان",
-                "nameOfficial": "الإسلامية باكستان جمهورية "
+                "nameOfficial": "الإسلامية باكستان جمهورية"
             },
             {
                 "language": "en",
@@ -8541,14 +8681,14 @@
                 "nameOfficial": "Repubblica islamica del Pakistan"
             },
             {
-                "language": "zh",
-                "name": "巴基斯坦",
-                "nameOfficial": "巴基斯坦伊斯兰共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Пакистан",
                 "nameOfficial": "Исламская Республика Пакистан"
+            },
+            {
+                "language": "zh",
+                "name": "巴基斯坦",
+                "nameOfficial": "巴基斯坦伊斯兰共和国"
             }
         ]
     },
@@ -8574,7 +8714,7 @@
             {
                 "language": "ar",
                 "name": "بنما",
-                "nameOfficial": "بنما جمهورية "
+                "nameOfficial": "بنما جمهورية"
             },
             {
                 "language": "en",
@@ -8597,14 +8737,14 @@
                 "nameOfficial": "Repubblica di Panama"
             },
             {
-                "language": "zh",
-                "name": "巴拿马",
-                "nameOfficial": "巴拿马共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Панама",
                 "nameOfficial": "Республика Панама"
+            },
+            {
+                "language": "zh",
+                "name": "巴拿马",
+                "nameOfficial": "巴拿马共和国"
             }
         ]
     },
@@ -8627,7 +8767,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Pitcairn Islands",
+                "nameOfficial": "Pitcairn Group of Islands"
+            }
         ]
     },
     {
@@ -8652,7 +8796,7 @@
             {
                 "language": "ar",
                 "name": "بيرو",
-                "nameOfficial": "بيرو جمهورية "
+                "nameOfficial": "بيرو جمهورية"
             },
             {
                 "language": "en",
@@ -8675,14 +8819,14 @@
                 "nameOfficial": "Repubblica del Perù"
             },
             {
-                "language": "zh",
-                "name": "秘 鲁",
-                "nameOfficial": "秘鲁共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Перу",
                 "nameOfficial": "Республика Перу"
+            },
+            {
+                "language": "zh",
+                "name": "秘 鲁",
+                "nameOfficial": "秘鲁共和国"
             }
         ]
     },
@@ -8708,7 +8852,7 @@
             {
                 "language": "ar",
                 "name": "الفلبين",
-                "nameOfficial": "الفلبين جمهورية "
+                "nameOfficial": "الفلبين جمهورية"
             },
             {
                 "language": "en",
@@ -8731,14 +8875,14 @@
                 "nameOfficial": "Repubblica delle Filippine"
             },
             {
-                "language": "zh",
-                "name": "菲律宾",
-                "nameOfficial": "菲律宾共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Филиппины",
                 "nameOfficial": "Республика Филиппины"
+            },
+            {
+                "language": "zh",
+                "name": "菲律宾",
+                "nameOfficial": "菲律宾共和国"
             }
         ]
     },
@@ -8764,7 +8908,7 @@
             {
                 "language": "ar",
                 "name": "بالاو",
-                "nameOfficial": "جمهورية بالاو "
+                "nameOfficial": "جمهورية بالاو"
             },
             {
                 "language": "en",
@@ -8787,14 +8931,14 @@
                 "nameOfficial": "Repubblica di Palau"
             },
             {
-                "language": "zh",
-                "name": "帕劳",
-                "nameOfficial": "帕劳共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Палау",
                 "nameOfficial": "Республика Палау"
+            },
+            {
+                "language": "zh",
+                "name": "帕劳",
+                "nameOfficial": "帕劳共和国"
             }
         ]
     },
@@ -8819,8 +8963,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "الجديدة غينيا بابوا ",
-                "nameOfficial": "المستقلة الجديدة غينيا بابوا دولة "
+                "name": "الجديدة غينيا بابوا",
+                "nameOfficial": "المستقلة الجديدة غينيا بابوا دولة"
             },
             {
                 "language": "en",
@@ -8843,14 +8987,14 @@
                 "nameOfficial": "Stato indipendente di Papua Nuova Guinea"
             },
             {
-                "language": "zh",
-                "name": "巴布亚新几内亚",
-                "nameOfficial": "巴布亚新几内亚独立国"
-            },
-            {
                 "language": "ru",
                 "name": "Папуа-Новая Гвинея",
                 "nameOfficial": "Независимое государство Папуа-Новая Гвинея"
+            },
+            {
+                "language": "zh",
+                "name": "巴布亚新几内亚",
+                "nameOfficial": "巴布亚新几内亚独立国"
             }
         ]
     },
@@ -8876,7 +9020,7 @@
             {
                 "language": "ar",
                 "name": "بولندا",
-                "nameOfficial": "جمهورية بولندا "
+                "nameOfficial": "جمهورية بولندا"
             },
             {
                 "language": "en",
@@ -8899,14 +9043,14 @@
                 "nameOfficial": "Repubblica di Polonia"
             },
             {
-                "language": "zh",
-                "name": "波 兰",
-                "nameOfficial": "波兰共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Польша",
                 "nameOfficial": "Республика Польша"
+            },
+            {
+                "language": "zh",
+                "name": "波 兰",
+                "nameOfficial": "波兰共和国"
             }
         ]
     },
@@ -8929,7 +9073,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Puerto Rico",
+                "nameOfficial": "Commonwealth of Puerto Rico"
+            }
         ]
     },
     {
@@ -8953,8 +9101,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "الديمقراطية الشعبية كوريا جمهورية ",
-                "nameOfficial": "الديمقراطية الشعبية كوريا جمهورية "
+                "name": "الديمقراطية الشعبية كوريا جمهورية",
+                "nameOfficial": "الديمقراطية الشعبية كوريا جمهورية"
             },
             {
                 "language": "en",
@@ -8977,14 +9125,14 @@
                 "nameOfficial": "Repubblica popolare democratica di Corea"
             },
             {
-                "language": "zh",
-                "name": "朝鲜民主主义人民共和国",
-                "nameOfficial": "朝鲜民主主义人民共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Корейская Народно-Демократическая Республика",
                 "nameOfficial": "Корейская Народно-Демократическая Республика"
+            },
+            {
+                "language": "zh",
+                "name": "朝鲜民主主义人民共和国",
+                "nameOfficial": "朝鲜民主主义人民共和国"
             }
         ]
     },
@@ -9010,7 +9158,7 @@
             {
                 "language": "ar",
                 "name": "البرتغال",
-                "nameOfficial": "البرتغال جمهورية "
+                "nameOfficial": "البرتغال جمهورية"
             },
             {
                 "language": "en",
@@ -9033,14 +9181,14 @@
                 "nameOfficial": "Repubblica portoghese"
             },
             {
-                "language": "zh",
-                "name": "葡萄牙",
-                "nameOfficial": "葡萄牙共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Португалия",
                 "nameOfficial": "Португальская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "葡萄牙",
+                "nameOfficial": "葡萄牙共和国"
             }
         ]
     },
@@ -9066,7 +9214,7 @@
             {
                 "language": "ar",
                 "name": "باراغواي",
-                "nameOfficial": "باراغواي جمهورية "
+                "nameOfficial": "باراغواي جمهورية"
             },
             {
                 "language": "en",
@@ -9089,14 +9237,14 @@
                 "nameOfficial": "Repubblica del Paraguay"
             },
             {
-                "language": "zh",
-                "name": "巴拉圭",
-                "nameOfficial": "巴拉圭共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Парагвай",
                 "nameOfficial": "Республика Парагвай"
+            },
+            {
+                "language": "zh",
+                "name": "巴拉圭",
+                "nameOfficial": "巴拉圭共和国"
             }
         ]
     },
@@ -9119,7 +9267,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Palestinian Territory, Occupied",
+                "nameOfficial": "the Occupied Palestinian Territory"
+            }
         ]
     },
     {
@@ -9141,7 +9293,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "French Polynesia",
+                "nameOfficial": "Territory of French Polynesia"
+            }
         ]
     },
     {
@@ -9166,7 +9322,7 @@
             {
                 "language": "ar",
                 "name": "قطر",
-                "nameOfficial": "قطر دولة "
+                "nameOfficial": "قطر دولة"
             },
             {
                 "language": "en",
@@ -9189,14 +9345,14 @@
                 "nameOfficial": "Stato del Qatar"
             },
             {
-                "language": "zh",
-                "name": "卡塔尔",
-                "nameOfficial": "卡塔尔国"
-            },
-            {
                 "language": "ru",
                 "name": "Катар",
                 "nameOfficial": "Государство Катар"
+            },
+            {
+                "language": "zh",
+                "name": "卡塔尔",
+                "nameOfficial": "卡塔尔国"
             }
         ]
     },
@@ -9219,7 +9375,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Réunion",
+                "nameOfficial": "Department of Reunion"
+            }
         ]
     },
     {
@@ -9267,14 +9427,14 @@
                 "nameOfficial": "Romania"
             },
             {
-                "language": "zh",
-                "name": "罗马尼亚",
-                "nameOfficial": "罗马尼亚"
-            },
-            {
                 "language": "ru",
                 "name": "Румыния",
                 "nameOfficial": "Румыния"
+            },
+            {
+                "language": "zh",
+                "name": "罗马尼亚",
+                "nameOfficial": "罗马尼亚"
             }
         ]
     },
@@ -9303,8 +9463,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "الاتحاد الروسي ",
-                "nameOfficial": "الاتحاد الروسي "
+                "name": "الاتحاد الروسي",
+                "nameOfficial": "الاتحاد الروسي"
             },
             {
                 "language": "en",
@@ -9327,14 +9487,14 @@
                 "nameOfficial": "Federazione russa"
             },
             {
-                "language": "zh",
-                "name": "俄罗斯联邦",
-                "nameOfficial": "俄罗斯联邦"
-            },
-            {
                 "language": "ru",
                 "name": "Российская Федерация",
                 "nameOfficial": "Российская Федерация"
+            },
+            {
+                "language": "zh",
+                "name": "俄罗斯联邦",
+                "nameOfficial": "俄罗斯联邦"
             }
         ]
     },
@@ -9360,7 +9520,7 @@
             {
                 "language": "ar",
                 "name": "رواندا",
-                "nameOfficial": "رواندا  جمهورية "
+                "nameOfficial": "رواندا  جمهورية"
             },
             {
                 "language": "en",
@@ -9383,14 +9543,14 @@
                 "nameOfficial": "Repubblica del Ruanda"
             },
             {
-                "language": "zh",
-                "name": "卢旺达",
-                "nameOfficial": "卢旺达共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Руанда",
                 "nameOfficial": "Республика Руанда"
+            },
+            {
+                "language": "zh",
+                "name": "卢旺达",
+                "nameOfficial": "卢旺达共和国"
             }
         ]
     },
@@ -9415,8 +9575,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "السعودية العربية المملكة ",
-                "nameOfficial": "السعودية العربية المملكة "
+                "name": "السعودية العربية المملكة",
+                "nameOfficial": "السعودية العربية المملكة"
             },
             {
                 "language": "en",
@@ -9439,14 +9599,14 @@
                 "nameOfficial": "Regno dell'Arabia Saudita"
             },
             {
-                "language": "zh",
-                "name": "沙特阿拉伯",
-                "nameOfficial": "沙特阿拉伯王国"
-            },
-            {
                 "language": "ru",
                 "name": "Саудовская Аравия",
                 "nameOfficial": "Королевство Саудовская Аравия"
+            },
+            {
+                "language": "zh",
+                "name": "沙特阿拉伯",
+                "nameOfficial": "沙特阿拉伯王国"
             }
         ]
     },
@@ -9472,7 +9632,7 @@
             {
                 "language": "ar",
                 "name": "السودان",
-                "nameOfficial": "السودان جمهورية "
+                "nameOfficial": "السودان جمهورية"
             },
             {
                 "language": "en",
@@ -9495,14 +9655,14 @@
                 "nameOfficial": "Repubblica del Sudan"
             },
             {
-                "language": "zh",
-                "name": "苏 丹",
-                "nameOfficial": "苏丹共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Судан",
                 "nameOfficial": "Республика Судан"
+            },
+            {
+                "language": "zh",
+                "name": "苏 丹",
+                "nameOfficial": "苏丹共和国"
             }
         ]
     },
@@ -9528,7 +9688,7 @@
             {
                 "language": "ar",
                 "name": "السنغال",
-                "nameOfficial": "السنغال جمهورية "
+                "nameOfficial": "السنغال جمهورية"
             },
             {
                 "language": "en",
@@ -9551,14 +9711,14 @@
                 "nameOfficial": "Repubblica del Senegal"
             },
             {
-                "language": "zh",
-                "name": "塞内加尔",
-                "nameOfficial": "塞内加尔共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Сенегал",
                 "nameOfficial": "Республика Сенегал"
+            },
+            {
+                "language": "zh",
+                "name": "塞内加尔",
+                "nameOfficial": "塞内加尔共和国"
             }
         ]
     },
@@ -9584,7 +9744,7 @@
             {
                 "language": "ar",
                 "name": "سنغافورة",
-                "nameOfficial": "جمهورية سنغافورة "
+                "nameOfficial": "جمهورية سنغافورة"
             },
             {
                 "language": "en",
@@ -9607,14 +9767,14 @@
                 "nameOfficial": "Repubblica di Singapore"
             },
             {
-                "language": "zh",
-                "name": "新加坡",
-                "nameOfficial": "新加坡共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Сингапур",
                 "nameOfficial": "Республика Сингапур"
+            },
+            {
+                "language": "zh",
+                "name": "新加坡",
+                "nameOfficial": "新加坡共和国"
             }
         ]
     },
@@ -9634,7 +9794,11 @@
 
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "South Georgia and the South Sandwich Islands",
+                "nameOfficial": "South Georgia and the South Sandwich Islands"
+            }
         ]
     },
     {
@@ -9656,7 +9820,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Saint Helena, Ascension and Tristan da Cunha",
+                "nameOfficial": "Saint Helena, Ascension and Tristan da Cunha"
+            }
         ]
     },
     {
@@ -9678,7 +9846,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Svalbard and Jan Mayen",
+                "nameOfficial": "Svalbard and Jan Mayen"
+            }
         ]
     },
     {
@@ -9702,8 +9874,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "جزر سليمان ",
-                "nameOfficial": "جزر سليمان "
+                "name": "جزر سليمان",
+                "nameOfficial": "جزر سليمان"
             },
             {
                 "language": "en",
@@ -9726,14 +9898,14 @@
                 "nameOfficial": "Isole Salomone"
             },
             {
-                "language": "zh",
-                "name": "所罗门群岛",
-                "nameOfficial": "所罗门群岛"
-            },
-            {
                 "language": "ru",
                 "name": "Соломоновы Острова",
                 "nameOfficial": "Соломоновы Острова"
+            },
+            {
+                "language": "zh",
+                "name": "所罗门群岛",
+                "nameOfficial": "所罗门群岛"
             }
         ]
     },
@@ -9759,7 +9931,7 @@
             {
                 "language": "ar",
                 "name": "سيراليون",
-                "nameOfficial": "جمهورية سيراليون "
+                "nameOfficial": "جمهورية سيراليون"
             },
             {
                 "language": "en",
@@ -9782,14 +9954,14 @@
                 "nameOfficial": "Repubblica di Sierra Leone"
             },
             {
-                "language": "zh",
-                "name": "塞拉利昂",
-                "nameOfficial": "塞拉利昂共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Сьерра-Леоне",
                 "nameOfficial": "Республика Сьерра-Леоне"
+            },
+            {
+                "language": "zh",
+                "name": "塞拉利昂",
+                "nameOfficial": "塞拉利昂共和国"
             }
         ]
     },
@@ -9815,7 +9987,7 @@
             {
                 "language": "ar",
                 "name": "السلفادور",
-                "nameOfficial": "السلفادور جمهورية "
+                "nameOfficial": "السلفادور جمهورية"
             },
             {
                 "language": "en",
@@ -9838,14 +10010,14 @@
                 "nameOfficial": "Repubblica di El Salvador"
             },
             {
-                "language": "zh",
-                "name": "萨尔瓦多",
-                "nameOfficial": "萨尔瓦多共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Сальвадор",
                 "nameOfficial": "Республика Эль-Сальвадор"
+            },
+            {
+                "language": "zh",
+                "name": "萨尔瓦多",
+                "nameOfficial": "萨尔瓦多共和国"
             }
         ]
     },
@@ -9870,8 +10042,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "مارينو سان ",
-                "nameOfficial": "مارينو سان جمهورية "
+                "name": "مارينو سان",
+                "nameOfficial": "مارينو سان جمهورية"
             },
             {
                 "language": "en",
@@ -9894,14 +10066,14 @@
                 "nameOfficial": "Repubblica di San Marino"
             },
             {
-                "language": "zh",
-                "name": "圣马力诺",
-                "nameOfficial": "圣马力诺共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Сан-Марино",
                 "nameOfficial": "Республика Сан-Марино"
+            },
+            {
+                "language": "zh",
+                "name": "圣马力诺",
+                "nameOfficial": "圣马力诺共和国"
             }
         ]
     },
@@ -9927,7 +10099,7 @@
             {
                 "language": "ar",
                 "name": "الصومال",
-                "nameOfficial": "جمهورية الصومال الإتحادية "
+                "nameOfficial": "جمهورية الصومال الإتحادية"
             },
             {
                 "language": "en",
@@ -9950,14 +10122,14 @@
                 "nameOfficial": "Repubblica Federale di Somalia"
             },
             {
-                "language": "zh",
-                "name": "索马里",
-                "nameOfficial": "索马里联邦共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Сомали",
                 "nameOfficial": "Федеративная Республика Сомали"
+            },
+            {
+                "language": "zh",
+                "name": "索马里",
+                "nameOfficial": "索马里联邦共和国"
             }
         ]
     },
@@ -9980,7 +10152,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Saint Pierre and Miquelon",
+                "nameOfficial": "Saint Pierre and Miquelon"
+            }
         ]
     },
     {
@@ -10005,7 +10181,7 @@
             {
                 "language": "ar",
                 "name": "صربيا",
-                "nameOfficial": "جمهورية صربيا "
+                "nameOfficial": "جمهورية صربيا"
             },
             {
                 "language": "en",
@@ -10028,14 +10204,14 @@
                 "nameOfficial": "la Repubblica di Serbia"
             },
             {
-                "language": "zh",
-                "name": "塞尔维亚",
-                "nameOfficial": "塞尔维亚共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Сербия",
                 "nameOfficial": "Республика Сербия"
+            },
+            {
+                "language": "zh",
+                "name": "塞尔维亚",
+                "nameOfficial": "塞尔维亚共和国"
             }
         ]
     },
@@ -10060,8 +10236,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "السودان جنوب ",
-                "nameOfficial": "السودان جنوب جمهورية "
+                "name": "السودان جنوب",
+                "nameOfficial": "السودان جنوب جمهورية"
             },
             {
                 "language": "en",
@@ -10084,14 +10260,14 @@
                 "nameOfficial": "Repubblica del Sud Sudan"
             },
             {
-                "language": "zh",
-                "name": "南苏丹",
-                "nameOfficial": "南苏丹共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Южный Судан",
                 "nameOfficial": "Республика Южный Судан"
+            },
+            {
+                "language": "zh",
+                "name": "南苏丹",
+                "nameOfficial": "南苏丹共和国"
             }
         ]
     },
@@ -10116,8 +10292,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "وبرنسيبي تومي سان ",
-                "nameOfficial": "الديمقراطية وبرنسيبي تومي سان جمهورية "
+                "name": "وبرنسيبي تومي سان",
+                "nameOfficial": "الديمقراطية وبرنسيبي تومي سان جمهورية"
             },
             {
                 "language": "en",
@@ -10140,14 +10316,14 @@
                 "nameOfficial": "Repubblica democratica di São Tomé e Príncipe"
             },
             {
-                "language": "zh",
-                "name": "圣多美和普林西比",
-                "nameOfficial": "圣多美和普林西比民主共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Сан-Томе и Принсипи",
                 "nameOfficial": "Демократическая Республика Сан-Томе и Принсипи"
+            },
+            {
+                "language": "zh",
+                "name": "圣多美和普林西比",
+                "nameOfficial": "圣多美和普林西比民主共和国"
             }
         ]
     },
@@ -10173,7 +10349,7 @@
             {
                 "language": "ar",
                 "name": "سورينام",
-                "nameOfficial": "جمهورية سورينام "
+                "nameOfficial": "جمهورية سورينام"
             },
             {
                 "language": "en",
@@ -10196,14 +10372,14 @@
                 "nameOfficial": "Repubblica di Suriname"
             },
             {
-                "language": "zh",
-                "name": "苏里南",
-                "nameOfficial": "苏里南共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Суринам",
                 "nameOfficial": "Республика Суринам"
+            },
+            {
+                "language": "zh",
+                "name": "苏里南",
+                "nameOfficial": "苏里南共和国"
             }
         ]
     },
@@ -10229,7 +10405,7 @@
             {
                 "language": "ar",
                 "name": "سلوفاكيا",
-                "nameOfficial": "السلوفاكية الجمهورية "
+                "nameOfficial": "السلوفاكية الجمهورية"
             },
             {
                 "language": "en",
@@ -10252,14 +10428,14 @@
                 "nameOfficial": "Repubblica slovacca"
             },
             {
-                "language": "zh",
-                "name": "斯洛伐克",
-                "nameOfficial": "斯洛伐克共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Словакия",
                 "nameOfficial": "Словацкая Республика"
+            },
+            {
+                "language": "zh",
+                "name": "斯洛伐克",
+                "nameOfficial": "斯洛伐克共和国"
             }
         ]
     },
@@ -10285,7 +10461,7 @@
             {
                 "language": "ar",
                 "name": "سلوفينيا",
-                "nameOfficial": "جمهورية سلوفينيا "
+                "nameOfficial": "جمهورية سلوفينيا"
             },
             {
                 "language": "en",
@@ -10308,14 +10484,14 @@
                 "nameOfficial": "Repubblica di Slovenia"
             },
             {
-                "language": "zh",
-                "name": "斯洛文尼亚",
-                "nameOfficial": "斯洛文尼亚共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Словения",
                 "nameOfficial": "Республика Словения"
+            },
+            {
+                "language": "zh",
+                "name": "斯洛文尼亚",
+                "nameOfficial": "斯洛文尼亚共和国"
             }
         ]
     },
@@ -10345,7 +10521,7 @@
             {
                 "language": "ar",
                 "name": "السويد",
-                "nameOfficial": "مملكة السويد "
+                "nameOfficial": "مملكة السويد"
             },
             {
                 "language": "en",
@@ -10368,14 +10544,14 @@
                 "nameOfficial": "Regno di Svezia"
             },
             {
-                "language": "zh",
-                "name": "瑞 典",
-                "nameOfficial": "瑞典王国"
-            },
-            {
                 "language": "ru",
                 "name": "Швеция",
                 "nameOfficial": "Королевство Швеция"
+            },
+            {
+                "language": "zh",
+                "name": "瑞 典",
+                "nameOfficial": "瑞典王国"
             }
         ]
     },
@@ -10401,7 +10577,7 @@
             {
                 "language": "ar",
                 "name": "سوازيلند",
-                "nameOfficial": "سوازيلند مملكة "
+                "nameOfficial": "سوازيلند مملكة"
             },
             {
                 "language": "en",
@@ -10424,14 +10600,14 @@
                 "nameOfficial": "Regno dello Swaziland"
             },
             {
-                "language": "zh",
-                "name": "斯威士兰",
-                "nameOfficial": "斯威士兰王国"
-            },
-            {
                 "language": "ru",
                 "name": "Свазиленд",
                 "nameOfficial": "Королевство Свазиленд"
+            },
+            {
+                "language": "zh",
+                "name": "斯威士兰",
+                "nameOfficial": "斯威士兰王国"
             }
         ]
     },
@@ -10454,7 +10630,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Sint Maarten",
+                "nameOfficial": "Sint Maarten"
+            }
         ]
     },
     {
@@ -10479,7 +10659,7 @@
             {
                 "language": "ar",
                 "name": "سيشيل",
-                "nameOfficial": "جمهورية سيشيل "
+                "nameOfficial": "جمهورية سيشيل"
             },
             {
                 "language": "en",
@@ -10499,17 +10679,17 @@
             {
                 "language": "it",
                 "name": "Seychelles",
-                "nameOfficial": "Repubblica delle Seychelles  "
-            },
-            {
-                "language": "zh",
-                "name": "塞舌尔",
-                "nameOfficial": "塞舌尔共和国"
+                "nameOfficial": "Repubblica delle Seychelles"
             },
             {
                 "language": "ru",
                 "name": "Сейшельские Острова",
                 "nameOfficial": "Республика Сейшельские Острова"
+            },
+            {
+                "language": "zh",
+                "name": "塞舌尔",
+                "nameOfficial": "塞舌尔共和国"
             }
         ]
     },
@@ -10534,8 +10714,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "الجمهورية العربية السورية ",
-                "nameOfficial": "الجمهورية العربية السورية "
+                "name": "الجمهورية العربية السورية",
+                "nameOfficial": "الجمهورية العربية السورية"
             },
             {
                 "language": "en",
@@ -10558,14 +10738,14 @@
                 "nameOfficial": "Repubblica araba siriana"
             },
             {
-                "language": "zh",
-                "name": "阿拉伯叙利亚共和国",
-                "nameOfficial": "阿拉伯叙利亚共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Сирийская Арабская Республика",
                 "nameOfficial": "Сирийская Арабская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "阿拉伯叙利亚共和国",
+                "nameOfficial": "阿拉伯叙利亚共和国"
             }
         ]
     },
@@ -10588,7 +10768,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Turks and Caicos Islands",
+                "nameOfficial": "Turks and Caicos Islands"
+            }
         ]
     },
     {
@@ -10613,7 +10797,7 @@
             {
                 "language": "ar",
                 "name": "تشاد",
-                "nameOfficial": "تشاد جمهورية "
+                "nameOfficial": "تشاد جمهورية"
             },
             {
                 "language": "en",
@@ -10636,14 +10820,14 @@
                 "nameOfficial": "Repubblica del Ciad"
             },
             {
-                "language": "zh",
-                "name": "乍 得",
-                "nameOfficial": "乍得共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Чад",
                 "nameOfficial": "Республика Чад"
+            },
+            {
+                "language": "zh",
+                "name": "乍 得",
+                "nameOfficial": "乍得共和国"
             }
         ]
     },
@@ -10669,7 +10853,7 @@
             {
                 "language": "ar",
                 "name": "توغو",
-                "nameOfficial": "توغو جمهورية "
+                "nameOfficial": "توغو جمهورية"
             },
             {
                 "language": "en",
@@ -10692,14 +10876,14 @@
                 "nameOfficial": "Repubblica del Togo"
             },
             {
-                "language": "zh",
-                "name": "多 哥",
-                "nameOfficial": "多哥共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Того",
                 "nameOfficial": "Тоголезская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "多 哥",
+                "nameOfficial": "多哥共和国"
             }
         ]
     },
@@ -10725,7 +10909,7 @@
             {
                 "language": "ar",
                 "name": "تايلند",
-                "nameOfficial": "تايلند مملكة "
+                "nameOfficial": "تايلند مملكة"
             },
             {
                 "language": "en",
@@ -10748,14 +10932,14 @@
                 "nameOfficial": "Regno di Thailandia"
             },
             {
-                "language": "zh",
-                "name": "泰 国",
-                "nameOfficial": "泰王国"
-            },
-            {
                 "language": "ru",
                 "name": "Таиланд",
                 "nameOfficial": "Королевство Таиланд"
+            },
+            {
+                "language": "zh",
+                "name": "泰 国",
+                "nameOfficial": "泰王国"
             }
         ]
     },
@@ -10781,7 +10965,7 @@
             {
                 "language": "ar",
                 "name": "طاجيكستان",
-                "nameOfficial": "جمهورية طاجيكستان "
+                "nameOfficial": "جمهورية طاجيكستان"
             },
             {
                 "language": "en",
@@ -10804,14 +10988,14 @@
                 "nameOfficial": "Repubblica del Tagikistan"
             },
             {
-                "language": "zh",
-                "name": "塔吉克斯坦",
-                "nameOfficial": "塔吉克斯坦共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Таджикистан",
                 "nameOfficial": "Республика Таджикистан"
+            },
+            {
+                "language": "zh",
+                "name": "塔吉克斯坦",
+                "nameOfficial": "塔吉克斯坦共和国"
             }
         ]
     },
@@ -10836,7 +11020,7 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "منتسب عضو - توكيلاو ",
+                "name": "منتسب عضو - توكيلاو",
                 "nameOfficial": "توكيلاو"
             },
             {
@@ -10860,14 +11044,14 @@
                 "nameOfficial": "Tokelau"
             },
             {
-                "language": "zh",
-                "name": "托克劳（准成员）",
-                "nameOfficial": "托克劳"
-            },
-            {
                 "language": "ru",
                 "name": "Токелау (ассоциированный член)",
                 "nameOfficial": "Токелау"
+            },
+            {
+                "language": "zh",
+                "name": "托克劳（准成员）",
+                "nameOfficial": "托克劳"
             }
         ]
     },
@@ -10916,14 +11100,14 @@
                 "nameOfficial": "Repubblica di Turkmenistan"
             },
             {
-                "language": "zh",
-                "name": "土库曼斯坦",
-                "nameOfficial": "土库曼斯坦"
-            },
-            {
                 "language": "ru",
                 "name": "Туркменистан",
                 "nameOfficial": "Туркменистан"
+            },
+            {
+                "language": "zh",
+                "name": "土库曼斯坦",
+                "nameOfficial": "土库曼斯坦"
             }
         ]
     },
@@ -10948,8 +11132,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "ليشتى تيمور- ",
-                "nameOfficial": "الديمقراطية ليشتى تيمور- جمهورية "
+                "name": "ليشتى تيمور-",
+                "nameOfficial": "الديمقراطية ليشتى تيمور- جمهورية"
             },
             {
                 "language": "en",
@@ -10972,14 +11156,14 @@
                 "nameOfficial": "Repubblica democratica di Timor-Leste"
             },
             {
-                "language": "zh",
-                "name": "东帝汶",
-                "nameOfficial": "东帝汶民主共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Тимор-Лешти",
                 "nameOfficial": "Демократическая Республика Тимор-Лешти"
+            },
+            {
+                "language": "zh",
+                "name": "东帝汶",
+                "nameOfficial": "东帝汶民主共和国"
             }
         ]
     },
@@ -11005,7 +11189,7 @@
             {
                 "language": "ar",
                 "name": "تونغا",
-                "nameOfficial": "تونغا مملكة "
+                "nameOfficial": "تونغا مملكة"
             },
             {
                 "language": "en",
@@ -11028,14 +11212,14 @@
                 "nameOfficial": "Regno di Tonga"
             },
             {
-                "language": "zh",
-                "name": "汤 加",
-                "nameOfficial": "汤加王国"
-            },
-            {
                 "language": "ru",
                 "name": "Тонга",
                 "nameOfficial": "Королевство Тонга"
+            },
+            {
+                "language": "zh",
+                "name": "汤 加",
+                "nameOfficial": "汤加王国"
             }
         ]
     },
@@ -11060,8 +11244,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "وتوباغو ترينيداد ",
-                "nameOfficial": "وتوباغو ترينيداد جمهورية "
+                "name": "وتوباغو ترينيداد",
+                "nameOfficial": "وتوباغو ترينيداد جمهورية"
             },
             {
                 "language": "en",
@@ -11084,14 +11268,14 @@
                 "nameOfficial": "Repubblica di Trinidad e Tobago"
             },
             {
-                "language": "zh",
-                "name": "特立尼达和多巴哥",
-                "nameOfficial": "特立尼达和多巴哥共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Тринидад и Тобаго",
                 "nameOfficial": "Республика Тринидад и Тобаго"
+            },
+            {
+                "language": "zh",
+                "name": "特立尼达和多巴哥",
+                "nameOfficial": "特立尼达和多巴哥共和国"
             }
         ]
     },
@@ -11117,7 +11301,7 @@
             {
                 "language": "ar",
                 "name": "تونس",
-                "nameOfficial": "الجمهورية التونسية "
+                "nameOfficial": "الجمهورية التونسية"
             },
             {
                 "language": "en",
@@ -11140,14 +11324,14 @@
                 "nameOfficial": "Repubblica tunisina"
             },
             {
-                "language": "zh",
-                "name": "突尼斯",
-                "nameOfficial": "突尼斯共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Тунис",
                 "nameOfficial": "Тунисская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "突尼斯",
+                "nameOfficial": "突尼斯共和国"
             }
         ]
     },
@@ -11173,7 +11357,7 @@
             {
                 "language": "ar",
                 "name": "تركيا",
-                "nameOfficial": "الجمهورية التركية "
+                "nameOfficial": "الجمهورية التركية"
             },
             {
                 "language": "en",
@@ -11196,14 +11380,14 @@
                 "nameOfficial": "Repubblica di Turchia"
             },
             {
-                "language": "zh",
-                "name": "土耳其",
-                "nameOfficial": "土耳其共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Турция",
                 "nameOfficial": "Турецкая Республика"
+            },
+            {
+                "language": "zh",
+                "name": "土耳其",
+                "nameOfficial": "土耳其共和国"
             }
         ]
     },
@@ -11252,14 +11436,14 @@
                 "nameOfficial": "Tuvalu"
             },
             {
-                "language": "zh",
-                "name": "图瓦卢",
-                "nameOfficial": "图瓦卢"
-            },
-            {
                 "language": "ru",
                 "name": "Тувалу",
                 "nameOfficial": "Тувалу"
+            },
+            {
+                "language": "zh",
+                "name": "图瓦卢",
+                "nameOfficial": "图瓦卢"
             }
         ]
     },
@@ -11279,7 +11463,11 @@
 
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Taiwan",
+                "nameOfficial": "Republic of China"
+            }
         ]
     },
     {
@@ -11303,8 +11491,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "جمهورية تنزانيا المتحدة ",
-                "nameOfficial": "جمهورية تنزانيا المتحدة "
+                "name": "جمهورية تنزانيا المتحدة",
+                "nameOfficial": "جمهورية تنزانيا المتحدة"
             },
             {
                 "language": "en",
@@ -11327,14 +11515,14 @@
                 "nameOfficial": "Repubblica unita di Tanzania"
             },
             {
-                "language": "zh",
-                "name": "坦桑尼亚联合共和国",
-                "nameOfficial": "坦桑尼亚联合共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Объединенная Республика Танзания",
                 "nameOfficial": "Объединенная Республика Танзания"
+            },
+            {
+                "language": "zh",
+                "name": "坦桑尼亚联合共和国",
+                "nameOfficial": "坦桑尼亚联合共和国"
             }
         ]
     },
@@ -11360,7 +11548,7 @@
             {
                 "language": "ar",
                 "name": "أوغندا",
-                "nameOfficial": "جمهورية أوغندا "
+                "nameOfficial": "جمهورية أوغندا"
             },
             {
                 "language": "en",
@@ -11383,14 +11571,14 @@
                 "nameOfficial": "Repubblica dell'Uganda"
             },
             {
-                "language": "zh",
-                "name": "乌干达",
-                "nameOfficial": "乌干达共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Уганда",
                 "nameOfficial": "Республика Уганда"
+            },
+            {
+                "language": "zh",
+                "name": "乌干达",
+                "nameOfficial": "乌干达共和国"
             }
         ]
     },
@@ -11439,14 +11627,14 @@
                 "nameOfficial": "Ucraina"
             },
             {
-                "language": "zh",
-                "name": "乌克兰",
-                "nameOfficial": "乌克兰"
-            },
-            {
                 "language": "ru",
                 "name": "Украина",
                 "nameOfficial": "Украина"
+            },
+            {
+                "language": "zh",
+                "name": "乌克兰",
+                "nameOfficial": "乌克兰"
             }
         ]
     },
@@ -11466,7 +11654,11 @@
 
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "United States Minor Outlying Islands",
+                "nameOfficial": "United States Minor Outlying Islands"
+            }
         ]
     },
     {
@@ -11491,7 +11683,7 @@
             {
                 "language": "ar",
                 "name": "أوروغواي",
-                "nameOfficial": "الشرقية أوروغواي جمهورية "
+                "nameOfficial": "الشرقية أوروغواي جمهورية"
             },
             {
                 "language": "en",
@@ -11514,14 +11706,14 @@
                 "nameOfficial": "Repubblica orientale dell'Uruguay"
             },
             {
-                "language": "zh",
-                "name": "乌拉圭",
-                "nameOfficial": "乌拉圭东岸共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Уругвай",
                 "nameOfficial": "Восточная Республика Уругвай"
+            },
+            {
+                "language": "zh",
+                "name": "乌拉圭",
+                "nameOfficial": "乌拉圭东岸共和国"
             }
         ]
     },
@@ -11550,8 +11742,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "الأمريكية المتحدة الولايات ",
-                "nameOfficial": "الأمريكية المتحدة الولايات "
+                "name": "الأمريكية المتحدة الولايات",
+                "nameOfficial": "الأمريكية المتحدة الولايات"
             },
             {
                 "language": "en",
@@ -11574,14 +11766,14 @@
                 "nameOfficial": "Stati Uniti d'America"
             },
             {
-                "language": "zh",
-                "name": "美 国",
-                "nameOfficial": "美利坚合众国"
-            },
-            {
                 "language": "ru",
                 "name": "Соединенные Штаты Америки",
                 "nameOfficial": "Соединенные Штаты Америки"
+            },
+            {
+                "language": "zh",
+                "name": "美 国",
+                "nameOfficial": "美利坚合众国"
             }
         ]
     },
@@ -11607,7 +11799,7 @@
             {
                 "language": "ar",
                 "name": "أوزبكستان",
-                "nameOfficial": "جمهورية أوزبكستان "
+                "nameOfficial": "جمهورية أوزبكستان"
             },
             {
                 "language": "en",
@@ -11630,14 +11822,14 @@
                 "nameOfficial": "Repubblica dell'Uzbekistan"
             },
             {
-                "language": "zh",
-                "name": "乌兹别克斯坦",
-                "nameOfficial": "乌兹别克斯坦共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Узбекистан",
                 "nameOfficial": "Республика Узбекистан"
+            },
+            {
+                "language": "zh",
+                "name": "乌兹别克斯坦",
+                "nameOfficial": "乌兹别克斯坦共和国"
             }
         ]
     },
@@ -11662,8 +11854,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "الكرسي الرسولي ",
-                "nameOfficial": "الكرسي الرسولي "
+                "name": "الكرسي الرسولي",
+                "nameOfficial": "الكرسي الرسولي"
             },
             {
                 "language": "en",
@@ -11686,14 +11878,14 @@
                 "nameOfficial": "Santa Sede"
             },
             {
-                "language": "zh",
-                "name": "教廷",
-                "nameOfficial": "教廷"
-            },
-            {
                 "language": "ru",
                 "name": "Святой Престол",
                 "nameOfficial": "Святой Престол"
+            },
+            {
+                "language": "zh",
+                "name": "教廷",
+                "nameOfficial": "教廷"
             }
         ]
     },
@@ -11718,8 +11910,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "سانت فنسنت وجزر غرينادين ",
-                "nameOfficial": "سانت فنسنت وجزر غرينادين "
+                "name": "سانت فنسنت وجزر غرينادين",
+                "nameOfficial": "سانت فنسنت وجزر غرينادين"
             },
             {
                 "language": "en",
@@ -11742,14 +11934,14 @@
                 "nameOfficial": "Saint Vincent e Grenadine"
             },
             {
-                "language": "zh",
-                "name": "圣文森特和格林纳丁斯",
-                "nameOfficial": "圣文森特和格林纳丁斯"
-            },
-            {
                 "language": "ru",
                 "name": "Сент-Винсент и Гренадины",
                 "nameOfficial": "Сент-Винсент и Гренадины"
+            },
+            {
+                "language": "zh",
+                "name": "圣文森特和格林纳丁斯",
+                "nameOfficial": "圣文森特和格林纳丁斯"
             }
         ]
     },
@@ -11774,8 +11966,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "البوليفارية - جمهورية - فنزويلا ",
-                "nameOfficial": "البوليفارية فنزويلا جمهورية "
+                "name": "البوليفارية - جمهورية - فنزويلا",
+                "nameOfficial": "البوليفارية فنزويلا جمهورية"
             },
             {
                 "language": "en",
@@ -11798,14 +11990,14 @@
                 "nameOfficial": "Repubblica bolivariana di Venezuela"
             },
             {
-                "language": "zh",
-                "name": "委内瑞拉 (玻利瓦尔共和国)",
-                "nameOfficial": "委内瑞拉玻利瓦尔共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Венесуэла (Боливарианская Республика)",
                 "nameOfficial": "Боливарианская Республика Венесуэла"
+            },
+            {
+                "language": "zh",
+                "name": "委内瑞拉 (玻利瓦尔共和国)",
+                "nameOfficial": "委内瑞拉玻利瓦尔共和国"
             }
         ]
     },
@@ -11828,7 +12020,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Virgin Islands",
+                "nameOfficial": "British Virgin Islands"
+            }
         ]
     },
     {
@@ -11850,7 +12046,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "United States Virgin Islands",
+                "nameOfficial": "Virgin Islands of the United States"
+            }
         ]
     },
     {
@@ -11874,8 +12074,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "فييت نام ",
-                "nameOfficial": "جمهورية فييت نام الاشتراكية "
+                "name": "فييت نام",
+                "nameOfficial": "جمهورية فييت نام الاشتراكية"
             },
             {
                 "language": "en",
@@ -11898,14 +12098,14 @@
                 "nameOfficial": "Repubblica socialista del Vietnam"
             },
             {
-                "language": "zh",
-                "name": "越 南",
-                "nameOfficial": "越南社会主义共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Вьетнам",
                 "nameOfficial": "Социалистическая Республика Вьетнам"
+            },
+            {
+                "language": "zh",
+                "name": "越 南",
+                "nameOfficial": "越南社会主义共和国"
             }
         ]
     },
@@ -11931,7 +12131,7 @@
             {
                 "language": "ar",
                 "name": "فانواتو",
-                "nameOfficial": "جمهورية فانواتو "
+                "nameOfficial": "جمهورية فانواتو"
             },
             {
                 "language": "en",
@@ -11954,14 +12154,14 @@
                 "nameOfficial": "Repubblica di Vanuatu"
             },
             {
-                "language": "zh",
-                "name": "瓦努阿图",
-                "nameOfficial": "瓦努阿图共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Вануату",
                 "nameOfficial": "Республика Вануату"
+            },
+            {
+                "language": "zh",
+                "name": "瓦努阿图",
+                "nameOfficial": "瓦努阿图共和国"
             }
         ]
     },
@@ -11984,7 +12184,11 @@
             }
         ],
         "countryNames": [
-
+            {
+                "language": "en",
+                "name": "Wallis and Futuna",
+                "nameOfficial": "Territory of the Wallis and Futuna Islands"
+            }
         ]
     },
     {
@@ -12009,7 +12213,7 @@
             {
                 "language": "ar",
                 "name": "ساموا",
-                "nameOfficial": "المستقلة ساموا دولة "
+                "nameOfficial": "المستقلة ساموا دولة"
             },
             {
                 "language": "en",
@@ -12032,14 +12236,14 @@
                 "nameOfficial": "Stato indipendente di Samoa"
             },
             {
-                "language": "zh",
-                "name": "萨摩亚",
-                "nameOfficial": "萨摩亚独立国"
-            },
-            {
                 "language": "ru",
                 "name": "Самоа",
                 "nameOfficial": "Независимое Государство Самоа"
+            },
+            {
+                "language": "zh",
+                "name": "萨摩亚",
+                "nameOfficial": "萨摩亚独立国"
             }
         ]
     },
@@ -12065,7 +12269,7 @@
             {
                 "language": "ar",
                 "name": "اليمن",
-                "nameOfficial": "الجمهورية اليمنية "
+                "nameOfficial": "الجمهورية اليمنية"
             },
             {
                 "language": "en",
@@ -12088,14 +12292,14 @@
                 "nameOfficial": "Repubblica dello Yemen"
             },
             {
-                "language": "zh",
-                "name": "也 门",
-                "nameOfficial": "也门共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Йемен",
                 "nameOfficial": "Йеменская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "也 门",
+                "nameOfficial": "也门共和国"
             }
         ]
     },
@@ -12120,8 +12324,8 @@
         "countryNames": [
             {
                 "language": "ar",
-                "name": "أفريقيا جنوب ",
-                "nameOfficial": "أفريقيا جنوب جمهورية "
+                "name": "أفريقيا جنوب",
+                "nameOfficial": "أفريقيا جنوب جمهورية"
             },
             {
                 "language": "en",
@@ -12144,14 +12348,14 @@
                 "nameOfficial": "Repubblica del Sudafrica"
             },
             {
-                "language": "zh",
-                "name": "南 非",
-                "nameOfficial": "南非共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Южная Африка",
                 "nameOfficial": "Южно-Африканская Республика"
+            },
+            {
+                "language": "zh",
+                "name": "南 非",
+                "nameOfficial": "南非共和国"
             }
         ]
     },
@@ -12177,7 +12381,7 @@
             {
                 "language": "ar",
                 "name": "زامبيا",
-                "nameOfficial": "جمهورية زامبيا "
+                "nameOfficial": "جمهورية زامبيا"
             },
             {
                 "language": "en",
@@ -12200,14 +12404,14 @@
                 "nameOfficial": "Repubblica dello Zambia"
             },
             {
-                "language": "zh",
-                "name": "赞比亚",
-                "nameOfficial": "赞比亚共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Замбия",
                 "nameOfficial": "Республика Замбия"
+            },
+            {
+                "language": "zh",
+                "name": "赞比亚",
+                "nameOfficial": "赞比亚共和国"
             }
         ]
     },
@@ -12233,7 +12437,7 @@
             {
                 "language": "ar",
                 "name": "زمبابوي",
-                "nameOfficial": "جمهورية زمبابوي "
+                "nameOfficial": "جمهورية زمبابوي"
             },
             {
                 "language": "en",
@@ -12256,14 +12460,14 @@
                 "nameOfficial": "Repubblica dello Zimbabwe"
             },
             {
-                "language": "zh",
-                "name": "津巴布韦",
-                "nameOfficial": "津巴布韦共和国"
-            },
-            {
                 "language": "ru",
                 "name": "Зимбабве",
                 "nameOfficial": "Республика Зимбабве"
+            },
+            {
+                "language": "zh",
+                "name": "津巴布韦",
+                "nameOfficial": "津巴布韦共和国"
             }
         ]
     }

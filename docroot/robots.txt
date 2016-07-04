@@ -15,6 +15,11 @@
 
 User-agent: *
 Crawl-delay: 10
+
+# Disallow indexing MEA PDF files
+Disallow: /sites/default/files/*
+Disallow: /sites/default/files/
+
 # Directories
 Disallow: /includes/
 Disallow: /misc/
