@@ -71,6 +71,7 @@ function drush_country_informea_country_update() {
                     ->fieldCondition('field_country_iso3', 'value', $country->code3l)
                     ->execute();
     if (isset($result['node'])) {
+      /** @var \EntityMetadataWrapper $wrapper */
       $wrapper = entity_metadata_wrapper('node', key($result['node']));
       $wrapper->field_country_official_name->set($country->name_official);
       $wrapper->field_country_iso2->set($country->code2l);
@@ -78,6 +79,33 @@ function drush_country_informea_country_update() {
       $wrapper->field_longitude->set($country->longitude);
       $wrapper->field_zoom->set($country->zoom);
       $wrapper->title->set($country->name);
+      $allowed_languages = array_keys(language_list());
+      if (!empty($country->countryNames)) {
+        $handler = entity_translation_get_handler('node', $node);
+        $handler->setOriginalLanguage('en');
+        $handler->initTranslations();
+        foreach ($country->countryNames as $name) {
+          $language = $name->language == 'zh' ? 'zh-hans' : $name->language;
+          if (in_array($language, $allowed_languages)) {
+            $wrapper->language($language);
+            if (!empty($name->name)) {
+              $wrapper->title_field->set($name->name);
+            }
+            if (!empty($name->nameOfficial)) {
+              $wrapper->field_country_official_name->set($name->nameOfficial);
+            }
+            if ($language != 'en') {
+              $handler->setTranslation(array(
+                'translate' => 0,
+                'status' => 1,
+                'uid' => 1,
+                'language' => $language,
+                'source' => 'en',
+              ));
+            }
+          }
+        }
+      }
       $wrapper->save();
     }
   }
