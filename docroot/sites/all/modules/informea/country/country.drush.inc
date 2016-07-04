@@ -71,8 +71,9 @@ function drush_country_informea_country_update() {
                     ->fieldCondition('field_country_iso3', 'value', $country->code3l)
                     ->execute();
     if (isset($result['node'])) {
+      $node = reset($result['node']);
       /** @var \EntityMetadataWrapper $wrapper */
-      $wrapper = entity_metadata_wrapper('node', key($result['node']));
+      $wrapper = entity_metadata_wrapper('node', $node->nid);
       $wrapper->field_country_official_name->set($country->name_official);
       $wrapper->field_country_iso2->set($country->code2l);
       $wrapper->field_latitude->set($country->latitude);
