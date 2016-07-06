@@ -111,10 +111,11 @@
                   <ul>
                     <li><?php print l(t('Barcelona Dumping Protocol'), 'node/276'); ?></li>
                     <li><?php print l(t('Hazardous Wastes Protocol'), 'node/281'); ?></li>
+                    <li><?php print l(t('ICZM Protocol'), 'node/77747'); ?></li>
                     <li><?php print l(t('Land-Based Sources Protocol'), 'node/278'); ?></li>
                     <li><?php print l(t('Offshore Protocol'), 'node/280'); ?></li>
                     <li><?php print l(t('Prevention and Emergency Protocol'), 'node/277'); ?></li>
-                    <li><?php print l(t('Specially Protected Areas Protocol'), 'node/279'); ?></li>
+                    <li><?php print l(t('Specially Protected Areas and Biodiversity Protocol'), 'node/279'); ?></li>
                   </ul>
                 </li>
                 <li><?php print l(t('Bamako Convention'), 'node/297'); ?></li>
