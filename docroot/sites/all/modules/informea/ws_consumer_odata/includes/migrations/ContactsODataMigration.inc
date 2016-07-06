@@ -135,6 +135,11 @@ class ContactsODataMigration extends AbstractODataMigration {
       return FALSE;
     }
 
+    if (empty($row->country)) {
+      ws_consumer_odata_log('Skipping Contact without country (' . $row->id .')', MigrationBase::MESSAGE_ERROR);
+      return FALSE;
+    }
+
     foreach ($row->roles as $odata_name => $roles) {
       if (!$this->getTreatyByODataIdentifier($odata_name)) {
         ws_consumer_odata_log('Skipping Contact with source id=' . $row->id . ' and unknown treaty:' . $odata_name, MigrationBase::MESSAGE_ERROR);

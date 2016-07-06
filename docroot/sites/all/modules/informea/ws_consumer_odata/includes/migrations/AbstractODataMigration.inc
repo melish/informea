@@ -51,8 +51,15 @@ abstract class AbstractODataMigration extends Migration {
     if (!empty($row->updated)) {
       $row->updated = $this->fixDateValue($row->updated);
     }
-    if (!empty($row->country) && $country = $this->getCountryByISO($row->country)) {
-      $row->country = $country->nid;
+    if (!empty($row->country)) {
+      $country = $this->getCountryByISO($row->country);
+      if (!empty($country)) {
+        $row->country = $country->nid;
+      }
+      else {
+        $row->country_original = $row->country;
+        $row->country = NULL;
+      }
     }
     migrate_instrument_stop(__METHOD__);
   }
