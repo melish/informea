@@ -735,19 +735,23 @@ function treaty_preprocess_views_view(&$variables) {
 function treaty_views_pre_render(&$view) {
   if ($view->name == 'treaty_listing_page') {
     $regions = array();
-    $treaties = _treaty_get_treaties();
+    $treaties = [];
+    if (!empty($view->result)) {
+      foreach ($view->result as $result) {
+        $treaties[] = $result->nid;
+      }
+    }
+    if (!empty($treaties)) {
+      $q = db_select('field_data_field_region', 'r')
+        ->fields('r', ['field_region_tid'])
+        ->condition('r.bundle', 'treaty')
+        ->condition('r.entity_id', $treaties, 'IN');
+      $regions_tids = array_unique($q->execute()->fetchCol());
 
-    foreach ($treaties as $node) {
-      $wrapper = entity_metadata_wrapper('node', $node);
-      $rs = $wrapper->field_region->value();
-
-      foreach ($rs as $t) {
-        if ($t === NULL) {
-          continue;
+      foreach ($regions_tids as $tid) {
+        if ($t = taxonomy_term_load($tid)) {
+          $regions[$tid] = $t;
         }
-        $t_wrapper = entity_metadata_wrapper('taxonomy_term', $t);
-        $t->name = $t_wrapper->label();
-        $regions[$t->tid] = $t;
       }
     }
 
