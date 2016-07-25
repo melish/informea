@@ -118,6 +118,14 @@ function informea_theme_preprocess_page(&$variables) {
               '#suffix' => '</div></div>',
             );
           }
+          else {
+            $variables['page']['above_content']['date'] = array(
+              '#type' => 'item',
+              '#markup' => '&nbsp;',
+              '#prefix' => '<div class="field-name-field-sorting-date empty"><div class="container">',
+              '#suffix' => '</div></div>',
+            );
+          }
           $variables['page']['above_content']['title'] = array(
             '#type' => 'item',
             '#title' => t('Full title'),

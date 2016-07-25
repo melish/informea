@@ -2173,6 +2173,11 @@ iframe.pdfjs {
   padding: 5px 15px;
 }
 
+.page-node.node-type-decision .field-name-field-sorting-date.empty .form-type-item {
+  background-color: transparent;
+  border: none;
+}
+
 .page-node.node-type-decision .field-name-field-sorting-date .form-type-item label {
   margin-bottom: 0;
 }
