@@ -2237,9 +2237,17 @@ iframe.pdfjs {
   padding: 15px 30px;
 }
 
-.node-type-decision .pane-informea-informea-share,
-.node-type-event-calendar .pane-informea-informea-share {
+.node-type-decision .pane-informea-informea-share {
   background-color: #effafe;
+}
+
+.node-type-event-calendar .pane-informea-informea-share {
+  padding: 0;
+  height: auto;
+}
+
+.node-type-event-calendar .pane-informea-informea-share .informea-share-widget li {
+  display: inline-block;
 }
 
 .node-type-decision .decision-updates-form-container {
@@ -2534,6 +2542,10 @@ iframe.pdfjs {
 .node-type-event-calendar .sidebar .pane-other-meetings .pane-title {
   color: #555;
   font-weight: 200;
+}
+
+.node-type-event-calendar .sidebar .pane-other-meetings .pager .pager-next {
+  float: right;
 }
 
 .node-type-event-calendar .sidebar .field-name-field-event-images {
