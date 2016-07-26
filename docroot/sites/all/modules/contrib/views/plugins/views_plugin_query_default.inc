@@ -1658,7 +1658,6 @@ class views_plugin_query_default extends views_plugin_query {
         }
       }
     }
-
     return array($entity_type, $result);
   }
 }
