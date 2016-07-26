@@ -2544,6 +2544,13 @@ iframe.pdfjs {
   font-weight: 200;
 }
 
+.node-type-decision .pane-decisions-of-meeting .pager,
+.node-type-event-calendar .sidebar .pane-other-meetings .pager {
+  width: 100%;
+}
+.node-type-decision .pane-decisions-of-meeting .pager .pager-next {
+  float: right;
+}
 .node-type-event-calendar .sidebar .pane-other-meetings .pager .pager-next {
   float: right;
 }
