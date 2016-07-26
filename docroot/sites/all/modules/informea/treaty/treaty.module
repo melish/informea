@@ -238,21 +238,6 @@ EOT
         }
         drupal_add_library('informea', 'scrollto');
         if ($odata_identifier != 'cites') {
-          $elements = array();
-          $mid = isset($_GET['meeting']) ? $_GET['meeting'] : FALSE;
-          foreach ($data as $id => $row) {
-            $rw = entity_metadata_wrapper('node', $row);
-            $abbreviation = $rw->field_abbreviation->value();
-            if ($abbreviation) {
-              $abbreviation .= ' - ';
-            }
-            $elements[$id] = array(
-              'header' => $abbreviation . $rw->label() . treaty_format_meeting_description($row),
-            );
-            if($id == $mid) {
-              $elements[$id]['in'] = TRUE;
-            }
-          }
           $node->content['context'] = array(
             '#markup' => theme('treaty_meetings', array('meetings' => $data)),
             '#type' => 'item',
