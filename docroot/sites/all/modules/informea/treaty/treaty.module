@@ -455,18 +455,6 @@ EOT
     $ga_informea_key = variable_get('ga_informea_key');
 
     switch ($context) {
-      case 'summary':
-        $informea_url .= '/summary';
-        $breadcrumbs = array(l(t('Treaties'),'treaties'),$node->title);
-        break;
-
-      case 'print':
-        $articles = treaty_get_treaty_text($node->nid);
-        echo theme('treaty_print', array('treaty' => $node, 'articles' => $articles));
-        drupal_exit();
-
-        break;
-
       case 'export':
         treaty_export_text_to_xml($node);
         break;
