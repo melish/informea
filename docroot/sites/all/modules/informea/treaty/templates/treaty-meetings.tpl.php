@@ -16,7 +16,7 @@ $meetings = $variables['meetings'];
     $count = !empty($meeting->decisions) ? count($meeting->decisions) : 0;
     ?>
     <div id="meeting-<?php print $nid ?>" class="panel panel-default">
-      <h4 class="panel-heading">
+      <div class="panel-heading">
         <?php
         print l($wrapper->label(), 'node/' . $nid);
         if (user_access('edit any event_calendar content')):
@@ -28,7 +28,7 @@ $meetings = $variables['meetings'];
           <li><?php print $wrapper->field_country->label(); ?></li>
           <li class="last"><?php print "{$count} " . t('decisions'); ?></li>
         </ul>
-      </h4>
+      </div>
     </div>
   <?php endforeach; ?>
 </div>
