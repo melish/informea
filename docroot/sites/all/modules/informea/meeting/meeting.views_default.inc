@@ -450,6 +450,162 @@ function meeting_views_default_views() {
   $export['events'] = $view;
 
   $view = new view();
+  $view->name = 'meeting_decisions';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'search_api_index_informea_fulltext_solr_index';
+  $view->human_name = 'Meeting decisions';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Meeting decisions';
+  $handler->display->display_options['use_ajax'] = TRUE;
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['pager']['options']['tags']['first'] = 'First';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = 'Previous';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'Next';
+  $handler->display->display_options['pager']['options']['tags']['last'] = 'Last';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'entity';
+  $handler->display->display_options['row_options']['view_mode'] = 'treaty_listing';
+  /* Field: Indexed Content: Decision number */
+  $handler->display->display_options['fields']['field_decision_number']['id'] = 'field_decision_number';
+  $handler->display->display_options['fields']['field_decision_number']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['fields']['field_decision_number']['field'] = 'field_decision_number';
+  $handler->display->display_options['fields']['field_decision_number']['label'] = '';
+  $handler->display->display_options['fields']['field_decision_number']['element_label_colon'] = FALSE;
+  /* Field: Indexed Content: Title */
+  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
+  $handler->display->display_options['fields']['title_field']['settings'] = array(
+    'title_style' => 'h3',
+    'title_link' => 'content',
+    'title_class' => '',
+  );
+  /* Sort criterion: Indexed Content: Order */
+  $handler->display->display_options['sorts']['field_sorting_order']['id'] = 'field_sorting_order';
+  $handler->display->display_options['sorts']['field_sorting_order']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['sorts']['field_sorting_order']['field'] = 'field_sorting_order';
+  /* Contextual filter: Indexed Content: Meeting */
+  $handler->display->display_options['arguments']['field_meeting']['id'] = 'field_meeting';
+  $handler->display->display_options['arguments']['field_meeting']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['arguments']['field_meeting']['field'] = 'field_meeting';
+  $handler->display->display_options['arguments']['field_meeting']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_meeting']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['field_meeting']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_meeting']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['field_meeting']['not'] = 0;
+  /* Filter criterion: Indexed Content: Content type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'decision' => 'decision',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Search: Fulltext search */
+  $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['operator'] = 'OR';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['group'] = 1;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Filter decisions:';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+  );
+  $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
+    'attachments_field_files' => 'attachments_field_files',
+    'body:summary' => 'body:summary',
+    'body:value' => 'body:value',
+    'field_decision_number' => 'field_decision_number',
+    'field_informea_tags:name' => 'field_informea_tags:name',
+    'title' => 'title',
+    'title_field' => 'title_field',
+  );
+  /* Filter criterion: Indexed Content: InforMEA Tags */
+  $handler->display->display_options['filters']['field_informea_tags']['id'] = 'field_informea_tags';
+  $handler->display->display_options['filters']['field_informea_tags']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['filters']['field_informea_tags']['field'] = 'field_informea_tags';
+  $handler->display->display_options['filters']['field_informea_tags']['value'] = array();
+  $handler->display->display_options['filters']['field_informea_tags']['group'] = 1;
+  $handler->display->display_options['filters']['field_informea_tags']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_informea_tags']['expose']['operator_id'] = 'field_informea_tags_op';
+  $handler->display->display_options['filters']['field_informea_tags']['expose']['label'] = 'By tags:';
+  $handler->display->display_options['filters']['field_informea_tags']['expose']['operator'] = 'field_informea_tags_op';
+  $handler->display->display_options['filters']['field_informea_tags']['expose']['identifier'] = 'field_informea_tags';
+  $handler->display->display_options['filters']['field_informea_tags']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+  );
+  $handler->display->display_options['filters']['field_informea_tags']['type'] = 'select';
+  $handler->display->display_options['filters']['field_informea_tags']['error_message'] = FALSE;
+
+  /* Display: Block */
+  $handler = $view->new_display('block', 'Block', 'block');
+  $translatables['meeting_decisions'] = array(
+    t('Master'),
+    t('Meeting decisions'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('First'),
+    t('Previous'),
+    t('Next'),
+    t('Last'),
+    t('All'),
+    t('Filter decisions:'),
+    t('By tags:'),
+    t('Block'),
+  );
+  $export['meeting_decisions'] = $view;
+
+  $view = new view();
   $view->name = 'past_events';
   $view->description = '';
   $view->tag = 'default';
