@@ -287,6 +287,7 @@ function decision_views_default_views() {
   $handler->display->display_options['filters']['field_event_type_tid']['field'] = 'field_event_type_tid';
   $handler->display->display_options['filters']['field_event_type_tid']['value'] = array(
     821 => '821',
+    1157 => '1157',
   );
   $handler->display->display_options['filters']['field_event_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_event_type_tid']['vocabulary'] = 'event_type';
