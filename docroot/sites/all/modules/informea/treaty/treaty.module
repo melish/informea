@@ -443,11 +443,6 @@ EOT
     drupal_add_js(drupal_get_path('module', 'treaty') . '/js/treaty.js');
     $context = _treaty_url_context(request_uri());
     $node->context = $context;
-    if ($context != 'summary') {
-      foreach(element_children($node->content) as $field_name) {
-        hide($node->content[$field_name]);
-      }
-    }
     $breadcrumbs = array(l(t('Treaties'),'treaties'),l($node->title, 'node/' . $node->nid));
 
     $node_w = entity_metadata_wrapper('node', $node);
