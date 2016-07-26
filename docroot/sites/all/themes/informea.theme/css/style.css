@@ -2661,3 +2661,7 @@ iframe.pdfjs {
 .pagination > li.next > span {
   margin-left: 15px;
 }
+
+.page-node-decisions #meetings .panel-heading {
+  cursor: default;
+}

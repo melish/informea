@@ -113,6 +113,12 @@ function treaty_theme() {
       'variables' => array('tags'),
       'path' => drupal_get_path('module', 'treaty'),
     ),
+    'treaty_meetings' => array(
+      'render element' => 'element',
+      'template' => 'templates/treaty-meetings',
+      'variables' => array('meetings'),
+      'path' => drupal_get_path('module', 'treaty'),
+    ),
     'treaty_decisions' => array(
       'render element' => 'element',
       'template' => 'templates/treaty-decisions',
@@ -242,19 +248,13 @@ EOT
             }
             $elements[$id] = array(
               'header' => $abbreviation . $rw->label() . treaty_format_meeting_description($row),
-              'body' => theme('treaty_decisions', array('decisions' => $row->decisions)),
             );
             if($id == $mid) {
               $elements[$id]['in'] = TRUE;
             }
           }
           $node->content['context'] = array(
-            '#markup' => theme('informea_bootstrap_collapse', array(
-                'elements' => $elements,
-                'id' => 'accordion',
-                'no-data-parent' => TRUE,
-                'no-panel-body' => TRUE,
-              )),
+            '#markup' => theme('treaty_meetings', array('meetings' => $data)),
             '#type' => 'item',
             '#weight' => 10
           );
@@ -287,25 +287,6 @@ EOT
           $node->content['context'] = array(
             array('#type' => 'item', '#weight' => 10, '#markup' => theme('informea_bootstrap_tabs', array('elements' => $tabs)))
           );
-        }
-
-        if (module_exists('analytics_integration')) {
-          /* Insert GA code to execute when user clicks on decision */
-          $url = $informea_url . '/decisions';
-          analytics_integration_google_analytics_send_hit($ga_informea_key, $url, 'informea', $node_w->label());
-          $script =
-            <<<EOT
-            (function ($) {
-          $('#dialog-modal-ajax').on('shown.bs.modal', function() {
-            analytics_integration_google_analytics_send_hit('$ga_informea_key', '$url', 'informea', $('#dialog-modal-ajax h4.modal-title').text());
-          });
-        })(jQuery)
-EOT;
-          drupal_add_js($script, array(
-            'scope' => 'footer',
-            'type' => 'inline',
-            'weight' => 130
-          ));
         }
 
         break;
