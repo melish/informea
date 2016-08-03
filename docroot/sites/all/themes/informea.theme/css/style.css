@@ -609,8 +609,9 @@ h1 {
 /* Well backgrounds */
 
 .well {
-  border: 1px solid transparent;
+  -webkit-box-shadow: none;
   border-radius: 0;
+  border: 1px solid transparent;
   box-shadow: none;
 }
 
@@ -1821,7 +1822,8 @@ iframe.pdfjs {
 
 .above-content {}
 
-.node-type-decision .page-header {
+.node-type-decision .page-header,
+.node-type-event-calendar .page-header {
   background-color: #005289;
   border-bottom: 0;
   margin-bottom: 0;
@@ -1829,11 +1831,14 @@ iframe.pdfjs {
 }
 
 .node-type-decision .page-header,
-.node-type-decision .page-header a {
+.node-type-decision .page-header a,
+.node-type-event-calendar .page-header,
+.node-type-event-calendar .page-header a {
   color: #fff;
 }
 
-.node-type-decision .title-prefix {
+.node-type-decision .title-prefix,
+.node-type-event-calendar .title-prefix {
   font-size: 21px;
   font-weight: bold;
 }
@@ -1889,20 +1894,42 @@ iframe.pdfjs {
   text-transform: uppercase;
 }
 
-.node-type-decision .sidebar-right .pager > li {
+.node-type-event-calendar .sidebar .more-link {
+  font-size: 85%;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.node-type-event-calendar .sidebar .pager {
+  margin-bottom: 15px;
+  margin-top: 0;
+  text-align: left;
+}
+
+.node-type-decision .sidebar-right .pager > li,
+.node-type-event-calendar .sidebar .pager > li {
   float: left;
 }
 
-.node-type-decision .sidebar-right .pager > li.pager-previous {
+.node-type-decision .sidebar-right .pager > li.pager-previous,
+.node-type-event-calendar .sidebar .pager > li.pager-previous {
   margin-right: 1px;
 }
 
-.node-type-decision .sidebar-right .pager > li.pager-current {
+.node-type-decision .sidebar-right .pager > li.pager-previous:empty,
+.node-type-event-calendar .sidebar .pager > li.pager-previous:empty {
+  display: none;
+}
+
+.node-type-decision .sidebar-right .pager > li.pager-current,
+.node-type-event-calendar .sidebar .pager > li.pager-current {
   display: none;
 }
 
 .node-type-decision .sidebar-right .pager > li.pager-previous a,
-.node-type-decision .sidebar-right .pager > li.pager-next a {
+.node-type-decision .sidebar-right .pager > li.pager-next a,
+.node-type-event-calendar .sidebar .pager > li.pager-previous a,
+.node-type-event-calendar .sidebar .pager > li.pager-next a {
   background-color: #005289;
   border-radius: 0;
   border: 0;
@@ -2030,7 +2057,8 @@ iframe.pdfjs {
   margin-bottom: 10px;
 }
 
-.node-type-decision .page-header h1 {
+.node-type-decision .page-header h1,
+.node-type-event-calendar .page-header h1 {
   font-size: 16px;
   font-weight: 300;
   line-height: 1.4;
@@ -2121,7 +2149,8 @@ iframe.pdfjs {
   content: "\e259";
 }
 
-#decision-date-title {
+#decision-date-title,
+#meeting-date-title {
   margin-top: -32px;
 }
 
@@ -2133,7 +2162,7 @@ iframe.pdfjs {
 
 .decision-treaty-tabs .nav-tabs,
 .decision-treaty-tabs .nav-tabs > li > a:hover,
-.decision-treaty-tabs .nav-tabs > li:nth-child(4) > a {
+.node-type-event-calendar .decision-treaty-tabs .nav-tabs > li > a[href$="/decisions"] {
   border-bottom-color: #005289;
 }
 
@@ -2164,7 +2193,8 @@ iframe.pdfjs {
   margin-bottom: 0;
 }
 
-.page-node.node-type-decision .field-name-field-sorting-date .form-type-item {
+.page-node.node-type-decision .field-name-field-sorting-date .form-type-item,
+.page-node.node-type-event-calendar .field-name-field-sorting-date .form-type-item {
   background-color: #fff;
   border: 2px solid #fc3;
   border-bottom: 0;
@@ -2173,7 +2203,13 @@ iframe.pdfjs {
   padding: 5px 15px;
 }
 
-.page-node.node-type-decision .field-name-field-sorting-date .form-type-item label {
+.page-node.node-type-decision .field-name-field-sorting-date.empty .form-type-item {
+  background-color: transparent;
+  border: none;
+}
+
+.page-node.node-type-decision .field-name-field-sorting-date .form-type-item label,
+.page-node.node-type-event-calendar .field-name-field-sorting-date .form-type-item label {
   margin-bottom: 0;
 }
 
@@ -2194,6 +2230,7 @@ iframe.pdfjs {
 }
 
 .node-type-decision .pane-informea-informea-share,
+.node-type-event-calendar .pane-informea-informea-share,
 .node-type-decision .decision-updates-form-container {
   border: 1px solid #f7f7f7;
   height: 180px;
@@ -2204,11 +2241,21 @@ iframe.pdfjs {
   background-color: #effafe;
 }
 
+.node-type-event-calendar .pane-informea-informea-share {
+  padding: 0;
+  height: auto;
+}
+
+.node-type-event-calendar .pane-informea-informea-share .informea-share-widget li {
+  display: inline-block;
+}
+
 .node-type-decision .decision-updates-form-container {
   background-color: #e0f7ff;
 }
 
-.node-type-decision .pane-informea-informea-share h4 {
+.node-type-decision .pane-informea-informea-share h4,
+.node-type-event-calendar .pane-informea-informea-share h4 {
   border-bottom: 1px solid #dcdcdc;
   padding-bottom: 10px;
   margin-bottom: 15px;
@@ -2372,4 +2419,249 @@ iframe.pdfjs {
 
 .panel-title-target .title {
   font-weight: bold;
+}
+
+/* Meeting decisions page */
+
+.pane-meeting-decisions .pane-title {
+  color: #555;
+  font-size: 18px;
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+
+.view-meeting-decisions .view-filters {
+  background-color: #effafe;
+  border: 1px solid #b6dbeb;
+  font-size: 12px;
+  margin-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.view-meeting-decisions .view-filters label {
+  font-weight: normal;
+  margin-bottom: 0;
+  margin-right: 10px;
+  position: relative;
+  text-transform: uppercase;
+  top: 2px;
+}
+
+.view-meeting-decisions .view-filters .form-control {
+  -webkit-box-shadow: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.view-meeting-decisions .views-widget {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.view-meeting-decisions .views-exposed-form .views-exposed-widget .form-submit {
+  margin-top: 0;
+}
+
+.view-meeting-decisions h2 {
+  display: none;
+}
+
+.view-meeting-decisions .field-name-field-decision-number {
+  color: #999;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.view-meeting-decisions .field-name-title-field h3 {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+#recent-meetings .pane-title {
+  color: #555;
+  font-weight: 300;
+}
+
+#recent-meetings .view-other-meetings .view-content {
+  border: 1px solid #b6dbeb;
+  font-size: 13px;
+  padding: 30px;
+}
+
+#recent-meetings .view-other-meetings .view-content .row {
+  display: table;
+}
+
+#recent-meetings .view-other-meetings .view-content .col {
+  display: table-cell;
+  float: none;
+}
+
+#recent-meetings .view-other-meetings .views-field-field-logo {
+  float: left;
+  margin-right: 10px;
+}
+
+#recent-meetings .view-other-meetings .views-field-nothing-1 {
+  overflow: hidden;
+}
+
+#recent-meetings .view-other-meetings .views-field-nothing-1 > .field-content > a {
+  color: #999;
+}
+
+#recent-meetings .view-other-meetings .views-field-nothing-1 > .field-content > h5 {
+  font-size: inherit;
+  line-height: 1.2;
+  margin-bottom: 30px;
+}
+
+#recent-meetings .view-other-meetings .date-display-single {
+  background-color: #b6dbeb;
+  bottom: -30px;
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  left: 89px;
+  padding: 5px 10px;
+  position: absolute;
+  right: 15px;
+}
+
+.node-type-event-calendar .sidebar {
+  margin-top: 30px;
+}
+
+.node-type-event-calendar .sidebar .panel-separator {
+  margin-bottom: 30px;
+}
+
+.node-type-event-calendar .sidebar .pane-other-meetings .pane-title {
+  color: #555;
+  font-weight: 200;
+}
+
+.node-type-decision .pane-decisions-of-meeting .pager,
+.node-type-event-calendar .sidebar .pane-other-meetings .pager {
+  width: 100%;
+}
+.node-type-decision .pane-decisions-of-meeting .pager .pager-next {
+  float: right;
+}
+.node-type-event-calendar .sidebar .pane-other-meetings .pager .pager-next {
+  float: right;
+}
+
+.node-type-event-calendar .sidebar .field-name-field-event-images {
+  border: 1px solid #b6dbeb;
+}
+
+.node-type-event-calendar .sidebar .field-name-field-event-images img {
+  min-width: 100%;
+  max-width: 100%;
+}
+
+.node-type-event-calendar .sidebar .field-name-body {
+  margin-top: -30px;
+  margin-bottom: 30px;
+  padding: 30px;
+  border-width: 0 1px 1px 1px;
+  border-style: solid;
+  border-color: #b6dbeb;
+}
+
+.node-type-event-calendar .sidebar .pane-other-meetings .view-content {
+  border: 1px solid #b6dbeb;
+  padding: 30px;
+}
+
+.node-type-event-calendar .sidebar .pane-other-meetings .views-row + .views-row {
+  margin-top: 20px;
+}
+
+.node-type-event-calendar .field-name-body .read-more a,
+.node-type-event-calendar .field-name-body .read-less a {
+  font-size: 85%;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.node-type-event-calendar .field-name-body .read-more a{
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+74&0+0,0.5+16,0.7+33,0.9+51,1+74 */
+  background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 16%, rgba(255,255,255,0.7) 33%, rgba(255,255,255,0.9) 51%, rgba(255,255,255,1) 74%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.5) 16%,rgba(255,255,255,0.7) 33%,rgba(255,255,255,0.9) 51%,rgba(255,255,255,1) 74%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.5) 16%,rgba(255,255,255,0.7) 33%,rgba(255,255,255,0.9) 51%,rgba(255,255,255,1) 74%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+
+  display: block;
+  position: relative;
+  padding-top: 65px;
+  margin-top: -50px;
+  z-index: 1;
+}
+
+.pagination {
+  font-size: 85%;
+  font-weight: 500;
+}
+
+.pagination > li > a,
+.pagination > li > span,
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid #b6dbeb;
+}
+
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-color: transparent;
+  border-bottom: 4px solid #b6dbeb;
+  color: #b6dbeb;
+  padding-bottom: 4px;
+}
+
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.pagination > li.prev > a,
+.pagination > li.prev > span,
+.pagination > li.next > a,
+.pagination > li.next > span {
+  background-color: #005289;
+  border-bottom-color: #1a3a6f;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.pagination > li.prev > a,
+.pagination > li.prev > span {
+  margin-right: 15px;
+}
+
+.pagination > li.next > a,
+.pagination > li.next > span {
+  margin-left: 15px;
+}
+
+.node-type-treaty #meetings .panel-heading {
+  cursor: default;
 }

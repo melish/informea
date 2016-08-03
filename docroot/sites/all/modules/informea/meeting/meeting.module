@@ -25,4 +25,132 @@ function meeting_form_alter(&$form, &$form_state, $form_id) {
     }
     $form['field_treaty_target_id']['#options'] = $filtered;
   }
+  elseif ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-meeting-decisions-block') {
+    // Add only active tags in select.
+    $node = menu_get_object();
+    $tids = meeting_get_active_tags_decision($node);
+    $any = array();
+    if (!empty($form['field_informea_tags']['#options']['All'])) {
+      $any['All'] = $form['field_informea_tags']['#options']['All'];
+    }
+    $options = $any + array_intersect_key($form['field_informea_tags']['#options'], array_flip($tids));
+    $form['field_informea_tags']['#options'] = $options;
+//    $searchers_info = facetapi_get_searcher_info();
+//    if (!empty($searchers_info['search_api@informea_fulltext_solr_index'])) {
+//      $searcher = $searchers_info['search_api@informea_fulltext_solr_index'];
+//      $adapter = new SearchApiFacetapiAdapter($searcher);
+//      $search = $adapter->getCurrentSearch();
+//      if (!empty($search[1]['search_api_facets']['field_informea_tags'])) {
+//        $facet_results = $search[1]['search_api_facets']['field_informea_tags'];
+//        $tids = array();
+//        $counts = array();
+//        foreach ($facet_results as $filter) {
+//          $tid = str_replace('"', '', $filter['filter']);
+//          $counts[$tid] = $filter['count'];
+//          $tids[$tid] = $tid;
+//        }
+//        $terms = taxonomy_term_load_multiple($tids);
+//        $options = array('All' => '- Any -');
+//        foreach ($terms as $term) {
+//          $options[$term->tid] = $term->name . ' (' . $counts[$term->tid] . ')';
+//        }
+//        $form['field_informea_tags']['#options'] = $options;
+//      }
+//    }
+  }
+}
+
+function meeting_get_active_tags_decision($node) {
+  $query = db_select('taxonomy_term_data', 't');
+  $query->fields('t', array('tid'));
+  $query->innerJoin('field_data_field_informea_tags', 'it', 'it.field_informea_tags_tid = t.tid');
+  $query->leftJoin('field_data_field_meeting', 'm', 'it.entity_id = m.entity_id');
+  $query->condition('m.field_meeting_target_id', $node->nid);
+  $result = $query->execute()->fetchAllAssoc('tid');
+  return array_keys($result);
+}
+
+function meeting_alter_tags_options($element) {
+  return $element;
+}
+
+/**
+ * Implements hook_panels_pre_render().
+ */
+function meeting_panels_pre_render($panels_display, $renderer) {
+  if ($panels_display->uuid == '28410d2f-7636-46f1-93e7-a42ffe221921') {
+    drupal_add_js(libraries_get_path('jquery.expander') . '/jquery.expander.js', 'file');
+    drupal_add_js(drupal_get_path('module', 'meeting') . '/js/see_more.js', 'file');
+  }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function meeting_views_pre_render(&$view) {
+  if ($view->name == 'meeting_decisions') {
+    $view->build_info['title'] .= ' (' . $view->total_rows . ')';
+  }
+  if ($view->name == 'other_meetings') {
+    if ($view->current_display == 'block') {
+      $node = menu_get_object();
+      if (!empty($node->nid) && $node->type == 'event_calendar') {
+        $wrapper = entity_metadata_wrapper('node', $node);
+        $treaty = $wrapper->field_treaty->value()[0];
+        $view->display_handler->set_option('use_more', TRUE);
+        $view->display_handler->set_option('use_more_text', t('Browse all meetings'));
+        $view->display_handler->set_option('link_display', 'custom_url');
+        $view->display_handler->set_option('link_url', 'node/' . $treaty->nid . '/decisions');
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function meeting_views_query_alter(&$view, &$query) {
+  // Alter recent meetign view to show meetings closest future and past 3 meetings.
+  if ($view->name == 'other_meetings' && $view->current_display == 'block_1') {
+    $node = menu_get_object();
+    $limit = FALSE;
+    if (!empty($node->event_calendar_date[LANGUAGE_NONE][0]['value'])) {
+      // TODO - this query should match all filters in the view to have correct results.
+      $q = db_query("SELECT n.nid, TIMESTAMPDIFF(SECOND, d.event_calendar_date_value, :date) AS date_diff, ABS(TIMESTAMPDIFF(SECOND, d.event_calendar_date_value, :date)) time_span
+              FROM node n
+              INNER JOIN field_data_event_calendar_date d ON d.entity_id = n.nid
+              INNER JOIN field_data_field_treaty tr ON tr.entity_id = n.nid
+              INNER JOIN field_data_field_event_type et ON et.entity_id = n.nid
+              WHERE n.status = 1 
+              AND n.nid != :nid
+              AND et.field_event_type_tid = 821
+              ORDER BY time_span ASC
+              LIMIT 3
+              ", array(':date' => $node->event_calendar_date[LANGUAGE_NONE][0]['value'], ':nid' => $node->nid));
+
+      $res = $q->fetchAllAssoc('nid');
+      if (!empty($res)) {
+        $query->add_where(0, 'node.nid', array_keys($res), 'IN');
+        $limit = TRUE;
+      }
+    }
+    if (!$limit) {
+      // If the filter was not applied, show no results.
+      $query->add_where(0, 'node.nid', 0);
+    }
+  }
+}
+
+function meeting_views_post_execute(&$view) {
+//  if ($view->name == 'meeting_decisions' && !empty($view->exposed_widgets)) {
+//    $form_state = array(
+//      'view' => $view,
+//      'display' => $view->display_handler->display,
+//      'method' => 'get',
+//      'rerender' => TRUE,
+//      'no_redirect' => TRUE,
+//    );
+//    $form = drupal_build_form('views_exposed_form', $form_state);
+//    $view->exposed_widgets = drupal_render($form);
+//  }
 }
