@@ -757,7 +757,7 @@ function informea_remove_duplicate_news() {
  */
 function informea_form_user_profile_form_alter(&$form) {
   global $user;
-  $form['field_user_treaties']['#access'] = $user->uid == 1 || in_array('administer users', $user->roles);
+  $form['field_user_treaties']['#access'] = $user->uid == 1 || user_access('administer users');
 }
 
 function informea_user_get_assigned_treaties($user) {
