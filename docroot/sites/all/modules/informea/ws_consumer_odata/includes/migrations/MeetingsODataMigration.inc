@@ -133,7 +133,9 @@ class MeetingsODataMigration extends AbstractODataMigration {
     if (!empty($row->end)) {
       $row->end = $this->fixDateValue($row->end);
     }
-    $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
+    if ($tob = $this->getTreatyByODataIdentifier($row->treaty)) {
+      $row->treaty = $tob->nid;
+    }
     return $this->validateRow($row);
   }
 

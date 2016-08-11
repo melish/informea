@@ -20,6 +20,7 @@ function ws_consumer_odata_migrate_api() {
       'odata_whc' => array('title' => 'WHC/UNESCO OData importers'),
       'odata_montreal' => array('title' => 'OZONE OData importers'),
       'odata_ramsar' => array('title' => 'Ramsar OData importers'),
+      'odata_barcelona' => array('title' => 'Regional Seas conventions'),
     ),
     'migrations' => array(
       /* Contacts migrations */
@@ -30,6 +31,7 @@ function ws_consumer_odata_migrate_api() {
       'odata_cites_Contacts'      => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
       'odata_ramsar_Contacts'      => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
       'odata_unfccc_Contacts'      => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_UNFCCC, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
+      'odata_barcelona_Contacts'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BARCELONA, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
 
       /* Meetings migrations */
       'odata_cbd_Meetings'        => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
@@ -44,6 +46,7 @@ function ws_consumer_odata_migrate_api() {
       'odata_montreal_Meetings'   => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_MONTREAL, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
       'odata_ramsar_Meetings'     => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
       'odata_unfccc_Meetings'     => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_UNFCCC, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_barcelona_Meetings'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BARCELONA, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
 
       /* NationalPlans migrations */
       'odata_stockholm_NationalPlans' => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN),
@@ -62,6 +65,7 @@ function ws_consumer_odata_migrate_api() {
       'odata_montreal_Decisions'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_MONTREAL, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_montreal_Meetings')),
       'odata_ramsar_Decisions'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_ramsar_Meetings')),
       'odata_unfccc_Decisions'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_UNFCCC, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_unfccc_Meetings')),
+      'odata_barcelona_Decisions'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BARCELONA, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS),
 
       /* CountryReports migrations */
       'odata_ascobans_CountryReports'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),

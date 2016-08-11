@@ -125,13 +125,25 @@ abstract class AbstractODataMigration extends Migration {
    * @return mixed
    *   Treaty object or NULL
    */
-  protected function getTreatyByODataIdentifier($identifier) {
-    module_load_include('inc', 'treaty', 'treaty.api');
-    $node = treaty_load_by_odata_name($identifier);
-    if (!$node) {
-      ws_consumer_odata_log(__METHOD__ . "($identifier): Cannot find treaty by OData identifier code");
+  protected function getTreatyByODataIdentifier($machine_name) {
+    $q = db_select('field_data_field_odata_identifier', 'a')->fields('a', array('field_odata_identifier_value', 'entity_id'));
+    $q->condition('bundle', 'treaty');
+    $rows = $q->execute()->fetchAllKeyed();
+    $static = array(
+      'Cartagena Convention' => 291,
+      'Barcelona Convention' => 275,
+    );
+    $rows = array_merge($rows, $static);
+    $identifiers = array();
+    foreach ($rows as $k => $nid) {
+      $identifiers[strtolower($k)] = $nid;
     }
-    return $node;
+    if (array_key_exists(strtolower($machine_name), $identifiers)) {
+      $nid = $identifiers[strtolower($machine_name)];
+      return node_load($nid);
+    }
+    ws_consumer_odata_log(__METHOD__ . "($machine_name): Cannot find treaty by OData identifier code");
+    return NULL;
   }
 
   function validateEnglishTitle($row) {
@@ -143,7 +155,7 @@ abstract class AbstractODataMigration extends Migration {
   }
 
   function validateTreaty($row) {
-    if (empty($row->treaty)) {
+    if (empty($row->treaty) || !is_numeric($row->treaty)) {
       ws_consumer_odata_log('Skipping ' . $this->config->odata_entity . ' with source id=' . $row->id .' because is missing treaty', MigrationBase::MESSAGE_ERROR);
       return FALSE;
     }
