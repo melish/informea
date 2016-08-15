@@ -129,7 +129,7 @@
             </li><!-- .col-sm-3 -->
           </ul><!-- .dropdown-menu -->
         </li><!-- .dropdown -->
-        <li><?php print l(t('Countries'), 'countries'); ?></li>
+        <li><?php print l(t('Parties'), 'countries'); ?></li>
         <li><?php print l(t('Glossary'), 'http://leo.informea.org/'); ?></li>
         <li class="dropdown">
           <?php print l(
