@@ -36,7 +36,7 @@ function informea_theme_preprocess_page(&$variables) {
   $path = request_path();
   switch ($path) {
     case 'countries':
-      $breadcrumbs[] = t('Countries');
+      $breadcrumbs[] = t('Parties');
       break;
     case 'terms':
       $breadcrumbs[] = t('Glossary');
@@ -89,7 +89,7 @@ function informea_theme_preprocess_page(&$variables) {
       case 'country':
         $countries = country_get_countries_select_options();
         $countries1 = $countries;
-        array_unshift($countries1, t('View another country'));
+        array_unshift($countries1, t('View another party'));
         $variables['content_column_class'] = ' class="col-sm-9"';
         $variables['countries'] = $countries;
         $variables['select-switch-countries'] = array(
@@ -190,7 +190,7 @@ function informea_theme_preprocess_page(&$variables) {
     if (!empty($variables['page']['front_page_content']['block_10'])) {
       $block_data =& $variables['page']['front_page_content']['block_10'];
       $countries = country_get_countries_select_options();
-      array_unshift($countries, t('Select a country…'));
+      array_unshift($countries, t('Select a arty…'));
       $html = array(
         '#attributes' => array('class' => array('form-control', 'node-switcher', 'country-switcher')),
         '#options' => $countries,
