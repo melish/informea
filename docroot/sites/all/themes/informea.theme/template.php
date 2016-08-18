@@ -190,7 +190,7 @@ function informea_theme_preprocess_page(&$variables) {
     if (!empty($variables['page']['front_page_content']['block_10'])) {
       $block_data =& $variables['page']['front_page_content']['block_10'];
       $countries = country_get_countries_select_options();
-      array_unshift($countries, t('Select a arty…'));
+      array_unshift($countries, t('Select a party…'));
       $html = array(
         '#attributes' => array('class' => array('form-control', 'node-switcher', 'country-switcher')),
         '#options' => $countries,
