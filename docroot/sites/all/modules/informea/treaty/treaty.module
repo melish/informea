@@ -210,6 +210,11 @@ function treaty_theme() {
  * Menu callback for node/%node/view_type.
  */
 function treaty_custom_view_node($node, $context) {
+  // Do not process non-treaty
+  if ($node->type != 'treaty') {
+    return node_view($node);
+  }
+
   // Build view mode full - this is the starting point.
   node_build_content($node, 'full');
   $node->context = _treaty_url_context(request_uri());
