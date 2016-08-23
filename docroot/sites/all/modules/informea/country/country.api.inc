@@ -263,7 +263,6 @@ function country_get_countries_select_options() {
   $result = $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'country')
     ->propertyCondition('status', NODE_PUBLISHED)
-    ->fieldOrderBy('title_field', 'value')
     ->execute();
   if (isset($result['node'])) {
     $rows = $result['node'];
