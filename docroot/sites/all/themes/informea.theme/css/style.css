@@ -1535,7 +1535,11 @@ div.accordion ol.paragraphs { list-style-type: none; margin-left: 10px; padding:
 .view-events .media-body,
 .view-past-events .media-body { padding-bottom: 5px; }
 
-/* News page */
+.view-events .media-body { margin-top: 0; padding-top: 0; }
+.view-events .date-display-range { padding-left: 15px; }
+.view-events .img-responsive { min-width: 40px; }
+
+  /* News page */
 .view-news .media-body,
 .view-news .media-left { border: 0; border-bottom: 1px dashed #c6cedb; }
 
