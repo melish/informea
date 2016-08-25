@@ -557,6 +557,20 @@ h1 {
 
 #search-form button { border: 1px solid #fc3; background-color: #fc3; border-radius: 0 2px 2px 0; width: 50px; height: 34px; }
 
+#search-form .navbar-form .input-group .input-group-btn {
+  width: 1%;
+}
+@media (min-width: 768px) {
+  #search-form { width: 370px; }
+
+  .navbar-form .input-group .input-group-btn {
+    width: 1%;
+  }
+}
+
+@media (min-width: 1199px) {
+  #search-form { width: 420px; }
+}
 
 @media (max-width: 1199px) {
   .navbar-default .navbar-nav .open .dropdown-menu > .dropdown-header,
@@ -1739,6 +1753,7 @@ strong.excerpt {
 
 .region-navigation > .block {
   float: right;
+  text-align: right;
 }
 
 #dLanguage {
