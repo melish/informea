@@ -9,6 +9,23 @@
     <div class="modal-content"></div>
   </div><!-- .modal-dialog .modal-lg -->
 </div><!-- .modal .fade #dialog-modal-ajax -->
+<div class="secondary-nav">
+  <div class="container">
+    <ul class="nav d-language">
+      <li><a href="">Arabic*</a></li>
+      <li><a href="">Chinese*</a></li>
+      <li><a href="">English</a></li>
+      <li><a href="">Francais</a></li>
+      <li><a href="">Russian</a></li>
+    </ul>
+    <ul class="nav">
+      <li><a href="">Home</a></li>
+      <li><a href="">About</a></li>
+      <li><a href="">Calendar</a></li>
+      <li><a href="">News</a></li>
+    </ul>
+  </div>
+</div>
 <header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
   <div class="container">
     <div class="navbar-header header-brand">

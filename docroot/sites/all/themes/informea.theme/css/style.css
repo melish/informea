@@ -591,6 +591,31 @@ h1 {
   }
 }
 
+/*Secondary Nav*/
+/* ------ */
+.secondary-nav {
+  background-color: #038AC1;
+  width: 100%;
+  border-bottom: 1px solid #0483C4;
+}
+.secondary-nav ul {
+  list-style-type: none;
+  display: inline-block;
+}
+.secondary-nav ul li {
+  display: inline-block;
+
+}
+.secondary-nav li > a {
+  color: #fff;
+  padding: 5px 10px;
+}
+.secondary-nav li > a:hover {
+  color: #8a95a6;
+}
+.d-language {
+  float: right;
+}
 
 /* Badges */
 /* ------ */
