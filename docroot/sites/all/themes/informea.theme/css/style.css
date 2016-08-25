@@ -612,9 +612,13 @@ h1 {
   border-bottom: 1px solid #0483C4;
   z-index: 1000;
 }
+.secondary-nav .container {
+  padding: 0;
+}
 .region-above-nav {
   background-color: transparent;
   width: 100%;
+  text-align: center;
 }
 .region-above-nav section {
   display: inline-block;
@@ -635,7 +639,8 @@ h1 {
 .region-above-nav li > a {
   margin: -5px -1px;
   color: #fff;
-  padding: 5px 10px;
+  font-size: 13px;
+  padding: 10px 5px;
   display: block;
 }
 .region-above-nav li > a:hover {
@@ -645,19 +650,84 @@ h1 {
 }
 .region-above-nav li > a:active,
 .region-above-nav li > a:focus {
-  color: #16232e;
-  background-color: #ffcc66;
+  color: #fff;
+  background-color: #216587;
   text-decoration: none;
 }
-.region-above-nav #block-locale-language-content {
-  float: right;
-}
-.region-above-nav #block-locale-language-content .dropdown {
-  display: none;
-}
+@media only screen and (max-width : 767px) {
+  .region-above-nav #block-menu-menu-secondary-menu {
+    width: 79%;
+  }
+  .region-above-nav #block-menu-menu-secondary-menu li{
+    width: 25%;
+  }
+  .region-above-nav #block-locale-language-content {
+    width: 19%;
+  }
+  .region-above-nav #block-locale-language-content .dropdown > ul {
+    z-index: 1001;
+    margin-top: 5px;
+    box-shadow: none;
+    min-width: 100px;
+  }
+  .region-above-nav #block-locale-language-content .dropdown li {
+    display: block;
+    background-color: #0099D5;
+    margin: 0;
+    text-align: right;
+  }
+  .region-above-nav #block-locale-language-content .dropdown li a {
+    margin: 0;
+    padding-right: 1em;
+  }
 
+  .region-above-nav #block-locale-language-content .dropdown button {
+    width: 100%;
+    margin-top: -5px;
+    margin-bottom: -5px;
+    padding: 5px;
+    background-color: transparent;
+    border: 2px solid #ffcc33;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 13px;
+  }
+  .region-above-nav #block-locale-language-content .dropdown button:hover {
+    background-color: #ffcc33;
+    color: #000;
+  }
+  .region-above-nav #block-locale-language-content .dropdown.open button {
+    border-radius: 5px 5px 0 0;
+    background-color: #ffcc33;
+    color: #000;
+  }
+  .region-above-nav #block-locale-language-content > .language-switcher-locale-url {
+    display: none;
+  }
+}
 .region-above-nav div.contextual-links-wrapper {
   z-index: 1001;
+}
+
+@media only screen and (min-width : 768px) {
+  .secondary-nav .container {
+    padding: 0 15px;
+  }
+  .region-above-nav {
+    text-align: left;
+  }
+  .region-above-nav li > a {
+    padding: 5px 10px;
+  }
+  .region-above-nav #block-locale-language-content {
+    float: right;
+  }
+  .region-above-nav #block-locale-language-content > .language-switcher-locale-url {
+    display: initial;
+  }
+  .region-above-nav #block-locale-language-content .dropdown {
+    display: none;
+  }
 }
 
 /* Badges */
@@ -1757,7 +1827,7 @@ strong.excerpt {
 }
 
 #dLanguage {
-  margin-left: 8px;
+  /*margin-left: 8px;*/
 }
 
 .navbar-btn {
