@@ -668,7 +668,7 @@ h1 {
     z-index: 1001;
     margin-top: 5px;
     box-shadow: none;
-    min-width: 100px;
+    min-width: 150px;
   }
   .region-above-nav #block-locale-language-content .dropdown li {
     display: block;
