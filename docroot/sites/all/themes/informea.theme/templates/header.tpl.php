@@ -9,6 +9,13 @@
     <div class="modal-content"></div>
   </div><!-- .modal-dialog .modal-lg -->
 </div><!-- .modal .fade #dialog-modal-ajax -->
+<?php if (!empty($page['above_nav'])): ?>
+<div class="secondary-nav">
+  <div class="container">
+      <?php print render($page['above_nav']); ?>
+  </div>
+</div>
+<?php endif; ?>
 <header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
   <div class="container">
     <div class="navbar-header header-brand">
@@ -131,29 +138,7 @@
         </li><!-- .dropdown -->
         <li><?php print l(t('Parties'), 'countries'); ?></li>
         <li><?php print l(t('Glossary'), 'http://leo.informea.org/'); ?></li>
-        <li class="dropdown">
-          <?php print l(
-            t('Events') . ' <span class="caret"></span>',
-            'events',
-            array('attributes' => array('class' => array('dropdown-toggle')), 'absolute' => TRUE, 'html' => TRUE)); ?>
-          <ul class="dropdown-menu dropdown-menu-right" role="menu">
-            <li><?php print l(t('Past events'), 'events/past'); ?></li>
-            <li><?php print l(t('News'), 'news'); ?></li>
-          </ul><!-- .dropdown-menu .dropdown-menu-right -->
-        </li>
-        <li class="dropdown">
-          <?php print l(
-            t('About') . ' <span class="caret"></span>',
-            'about',
-            array('attributes' => array('class' => array('dropdown-toggle')), 'absolute' => TRUE, 'html' => TRUE)); ?>
-          <ul class="dropdown-menu dropdown-menu-right" role="menu">
-            <li><?php print l(t('About InforMEA'), 'about'); ?></li>
-            <li><?php print l(t('Branding'), 'node/73543'); ?></li>
-            <li><?php print l(t('Resources for Developers'), 'about/api'); ?></li>
-            <li><?php print l(t('Contact'), 'node/70411'); ?></li>
-          </ul><!-- .dropdown-menu .dropdown-menu-right -->
-        </li><!-- .dropdown -->
-        <li><?php print l(t('Learning'), 'http://e-learning.informea.org/'); ?></li>
+        <li><?php print l(t('Learning'), 'http://e-learning.informea.org/', array('attributes' => array('target' => '_blank'))); ?></li>
       </ul><!-- .nav .navbar-nav -->
       </nav><!-- .navbar-collapse .collapse -->
   </div><!-- .container -->

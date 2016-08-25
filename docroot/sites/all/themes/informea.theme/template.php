@@ -491,17 +491,18 @@ function informea_theme_informea_search_form_wrapper($variables) {
 
 function informea_theme_links__locale_block(&$variables) {
   global $user, $language;
-
-  $variables['attributes']['class'][] = 'dropdown-menu';
-  $variables['attributes']['class'][] = 'dropdown-menu-right';
-  $variables['attributes']['aria-labelledby'] = 'dLanguage';
-
+  $variables1 = $variables;
+  $variables1['attributes']['class'][] = 'dropdown-menu';
+  $variables1['attributes']['class'][] = 'dropdown-menu-right';
+  $variables1['attributes']['aria-labelledby'] = 'dLanguage';
+  $output = '';
   $output = '<div class="dropdown">';
   $output .= '<button type="button" id="dLanguage" class="btn btn-default navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
-  $output .= strtoupper($language->language);
+  $output .= $language->native;
   $output .= '</button>';
-  $output .= theme_links($variables);
+  $output .= theme_links($variables1);
   $output .= '</div>';
+  $output .= theme_links($variables);
 
   return $output;
 }
