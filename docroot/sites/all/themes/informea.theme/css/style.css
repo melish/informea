@@ -612,7 +612,7 @@ h1 {
 }
 .region-above-nav li {
   display: inline-block;
-  border-right: 1px solid rgba(255,255,255,.5);
+  border-right: 1px solid #80C4E0;
   margin: 5px -4px 5px 0;
 }
 .region-above-nav li:last-of-type {
