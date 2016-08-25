@@ -595,39 +595,55 @@ h1 {
 /* ------ */
 .secondary-nav {
   background-color: #038AC1;
-  width: 100%;
   border-bottom: 1px solid #0483C4;
+  z-index: 1000;
 }
-.secondary-nav ul {
+.region-above-nav {
+  background-color: transparent;
+  width: 100%;
+}
+.region-above-nav section {
+  display: inline-block;
+}
+.region-above-nav ul {
   list-style-type: none;
+  margin-bottom: 0;
+  padding: 0;
+}
+.region-above-nav li {
   display: inline-block;
+  border-right: 1px solid rgba(255,255,255,.5);
+  margin: 5px -4px 5px 0;
 }
-.secondary-nav ul li {
-  display: inline-block;
-  margin-left: -5px;
+.region-above-nav li:last-of-type {
+  border-right: none;
 }
-.secondary-nav ul li:after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 15%;
-  right: 0;
-  height: 70%;
-  width: 1px;
-  background-color: rgba(255,255,255,.5);
-}
-.secondary-nav ul li:last-of-type:after {
-  display: none;
-}
-.secondary-nav li > a {
+.region-above-nav li > a {
+  margin: -5px -1px;
   color: #fff;
   padding: 5px 10px;
+  display: block;
 }
-.secondary-nav li > a:hover {
-  color: #8a95a6;
+.region-above-nav li > a:hover {
+  color: #ffffff;
+  background-color: #257399;
+  text-decoration: none;
 }
-.d-language {
+.region-above-nav li > a:active,
+.region-above-nav li > a:focus {
+  color: #16232e;
+  background-color: #ffcc66;
+  text-decoration: none;
+}
+.region-above-nav #block-locale-language-content {
   float: right;
+}
+.region-above-nav #block-locale-language-content .dropdown {
+  display: none;
+}
+
+.region-above-nav div.contextual-links-wrapper {
+  z-index: 1001;
 }
 
 /* Badges */
@@ -1794,9 +1810,9 @@ strong.excerpt {
     width: auto;
   }
 
-  #block-locale-language {
+  /*#block-locale-language {
     float: right;
-  }
+  }*/
 }
 
 .view-treaty-listing-page .views-field-field-logo,
