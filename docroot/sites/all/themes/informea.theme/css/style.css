@@ -604,7 +604,20 @@ h1 {
 }
 .secondary-nav ul li {
   display: inline-block;
-
+  margin-left: -5px;
+}
+.secondary-nav ul li:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 15%;
+  right: 0;
+  height: 70%;
+  width: 1px;
+  background-color: rgba(255,255,255,.5);
+}
+.secondary-nav ul li:last-of-type:after {
+  display: none;
 }
 .secondary-nav li > a {
   color: #fff;
