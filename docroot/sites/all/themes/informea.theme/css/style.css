@@ -690,13 +690,11 @@ h1 {
 
   .region-above-nav #block-locale-language-content .dropdown button {
     width: 97%;
-    margin-top: -5px;
-    margin-bottom: -5px;
-    margin-left: 2px;
+    margin: -5px auto;
     padding: 5px;
     background-color: transparent;
     border: 2px solid #ffcc33;
-    border-radius: 5px;
+    border-radius: 2px;
     color: #fff;
     font-size: 13px;
   }
@@ -705,7 +703,7 @@ h1 {
     color: #000;
   }
   .region-above-nav #block-locale-language-content .dropdown.open button {
-    border-radius: 5px 5px 0 0;
+    border-radius: 2px 2px 0 0;
     background-color: #ffcc33;
     color: #000;
   }
