@@ -668,6 +668,9 @@ h1 {
   .region-above-nav #block-locale-language-content {
     width: 19%;
   }
+  .region-above-nav li > a.active {
+    padding-bottom: 11px;
+  }
   .region-above-nav #block-locale-language-content .dropdown > ul {
     z-index: 1001;
     margin-top: 5px;
@@ -723,6 +726,9 @@ h1 {
   }
   .region-above-nav li > a {
     padding: 5px 10px;
+  }
+  .region-above-nav li > a.active {
+    padding-bottom: 6px;
   }
   .region-above-nav #block-locale-language-content {
     float: right;
