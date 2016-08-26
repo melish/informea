@@ -639,7 +639,7 @@ h1 {
 .region-above-nav li > a {
   margin: -5px -1px;
   color: #fff;
-  font-size: 13px;
+  font-size: 12px;
   padding: 10px 5px;
   display: block;
 }
@@ -686,9 +686,10 @@ h1 {
   }
 
   .region-above-nav #block-locale-language-content .dropdown button {
-    width: 100%;
+    width: 97%;
     margin-top: -5px;
     margin-bottom: -5px;
+    margin-left: 2px;
     padding: 5px;
     background-color: transparent;
     border: 2px solid #ffcc33;
