@@ -1,0 +1,13 @@
+diff --git a/docroot/sites/all/modules/contrib/bootstrap_tour/bootstrap_tour.module b/docroot/sites/all/modules/contrib/bootstrap_tour/bootstrap_tour.module
+index 77fc028..1bf6b95 100644
+--- a/bootstrap_tour.module
++++ b/bootstrap_tour.module
+@@ -253,7 +253,7 @@ function bootstrap_tour_run_tour($id, $force = FALSE) {
+       }
+     }
+     // Filter user supplied content.
+-    $step->title = check_plain($step->title);
++    $step->title = ($key + 1).'/'.count($tour->steps);
+     $step->content = check_markup($step->content, $step->content_text_format);
+   }
+   $tour->force = $force;

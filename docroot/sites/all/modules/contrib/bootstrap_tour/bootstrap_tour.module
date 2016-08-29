@@ -253,7 +253,7 @@ function bootstrap_tour_run_tour($id, $force = FALSE) {
       }
     }
     // Filter user supplied content.
-    $step->title = check_plain($step->title);
+    $step->title = ($key + 1).'/'.count($tour->steps);
     $step->content = check_markup($step->content, $step->content_text_format);
   }
   $tour->force = $force;
