@@ -130,3 +130,7 @@ jQuery(document).ready(function ($) {
     }
   });
 });
+
+jQuery(window).load(function() {
+  jQuery('.nav-tabs a[href="' + window.location.hash + '"]').tab('show');
+});

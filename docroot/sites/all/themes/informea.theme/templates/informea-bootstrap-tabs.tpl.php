@@ -7,6 +7,10 @@
 <?php
 $id = isset($variables['id']) ? $variables['id'] : 'tabpanel';
 $elements = $variables['elements'];
+if ($variables['active'] === FALSE && !empty($_GET['active_bootstrap_tab'])) {
+	$variables['active'] = $_GET['active_bootstrap_tab'];
+}
+
 ?>
 <?php ?>
 <div role="tabpanel" id="<?php print $id; ?>">

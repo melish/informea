@@ -344,7 +344,6 @@ function treaty_custom_view_node($node, $context) {
         $map_tab = array(
           'header' => t('Map of Parties'),
           'body' => drupal_render($elements),
-          'active' => TRUE
         );
 
         // Tables with parties.
