@@ -234,12 +234,12 @@ class ODataMigrationUtil {
     if(empty($values) || !is_array($values)) {
       return NULL;
     }
-    foreach($values as &$value) {
-      $value->value = self::fixI18NString($value->value, TRUE);
+    foreach($values as &$v) {
+      $v->value = self::fixI18NString($v->value, TRUE);
     }
-    foreach ($values as $value) {
-      if ($value->language == 'en') {
-        return $value->value;
+    foreach ($values as $ob) {
+      if ($ob->language == 'en') {
+        return $ob->value;
       }
     }
     return NULL;
