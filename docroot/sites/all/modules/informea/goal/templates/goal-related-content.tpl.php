@@ -52,7 +52,6 @@
                 <?php endforeach; ?>
               <?php endif; ?>
               <!-- END OF NATIONAL REPORTS -->
-
               <!-- TREATY ARTICLES -->
               <?php if(!empty($treaty->treaty_articles)): ?>
                 <h3><?php print t('Treaty articles'); ?></h3>
@@ -85,6 +84,38 @@
                 <?php endforeach; ?>
               <?php endif; ?>
               <!-- END OF TREATY ARTICLES -->
+              <!-- Decision Paragraphs -->
+              <?php if(!empty($treaty->decision_paragraphs)): ?>
+                <h3><?php print t('Decisions'); ?></h3>
+                <?php foreach($treaty->decision_paragraphs as $decision_paragraph): ?>
+                  <?php $decision_paragraph_w = entity_metadata_wrapper('node', $decision_paragraph); ?>
+                    <div class="accordion panel-group tagged-content" role="tablist" aria-multiselectable="true">
+                      <div class="panel panel-default">
+                        <div class="panel-heading collapsed" role="tab" id="heading-<?php print $decision_paragraph->nid; ?>" data-target="#content-<?php print $decision_paragraph->nid; ?>" data-toggle="collapse" aria-expanded="false">
+                          <i class="glyphicon glyphicon-plus-sign"></i>
+                          <h4 class="panel-title">
+                            <?php print $decision_paragraph_w->label(); ?>
+                          </h4><!-- .panel-title -->
+                        </div>
+                        <div class="accordion panel-group panel-collapse collapse" id="content-<?php print $decision_paragraph->nid; ?>" role="tabpanel">
+                          <div class="national-report-paragraphs panel-body">
+                              <?php foreach($decision_paragraph->children as $decision_paragraph): ?>
+                              <?php $decision_paragraph = entity_metadata_wrapper('node', $decision_paragraph); ?>
+                              <div class="item" id="content-<?php print $decision_paragraph->nid; ?>">
+                                <p>
+                                  <?php if($decision_paragraph_w->body->value()): ?>
+                                    <?php print($decision_paragraph_w->body->value->value(array('decode' => FALSE))); ?>
+                                  <?php endif; ?>
+                                </p>
+                              </div>
+                            <?php endforeach; ?>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                <?php endforeach; ?>
+              <?php endif; ?>
+              <!-- END OF DECISIONS PARAGRAPHS-->
             </div>
           </div>
         </div>

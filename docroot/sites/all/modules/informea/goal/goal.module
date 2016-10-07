@@ -167,7 +167,7 @@ function goal_get_related_content($goal_nid) {
   $return = [];
   $nids = db_select('field_data_field_sdg_goals', 'g')
     ->fields('g', ['entity_id', 'bundle'])
-    ->condition('g.bundle', ['national_report_paragraph', 'treaty_paragraph'], 'IN')
+    ->condition('g.bundle', ['national_report_paragraph', 'treaty_paragraph' , 'decision_paragraph'], 'IN')
     ->condition('g.field_sdg_goals_target_id', $goal_nid)
     ->execute()->fetchAllKeyed();
   if (!empty($nids)) {
@@ -194,7 +194,6 @@ function goal_get_related_content($goal_nid) {
       $paragraph = node_load($paragraph->entity_id);
       $return[$treaty_id]->national_reports[$national_report_id]->children[] = $paragraph;
     }
-
     // Get the treaty articles
     $q = db_select('field_data_field_parent_treaty_article', 'a');
     $q->innerJoin('field_data_field_treaty', 't', 'a.field_parent_treaty_article_target_id = t.entity_id');
@@ -218,8 +217,32 @@ function goal_get_related_content($goal_nid) {
       $paragraph = node_load($paragraph->entity_id);
       $return[$treaty_id]->treaty_articles[$article_id]->children[] = $paragraph;
     }
+ // Get the decisions
+    $q = db_select('field_data_field_parent_decision  ', 'p');
+    $q->innerJoin('field_data_field_treaty', 't', 'p.field_parent_decision_target_id  = t.entity_id');
+    $q->fields('p', ['entity_id', 'field_parent_decision_target_id '])
+      ->fields('t', ['field_treaty_target_id'])
+      ->condition('p.entity_id', array_keys($nids), 'IN');
+    $paragraphs = $q->execute()->fetchAll();
+    foreach ($paragraphs as $paragraph) {
+      $treaty_id = $paragraph->field_treaty_target_id;
+      $decision_paragraph_id = $paragraph->field_parent_decision_target_id ;
+      if (empty($return[$treaty_id])) {
+        $treaty = node_load($treaty_id);
+        $treaty->decision_paragraphs= [];
+        $return[$treaty_id] = $treaty;
+      }
+      if (empty($return[$treaty_id]->decision_paragraphs[$decision_paragraph_id])) {
+        $decision=node_load($decision_paragraph_id);
+        $decision->children=[];
+        $return[$treaty_id]->decision_paragraphs[$decision_paragraph_id] = $decision;
+      }
+      $paragraph = node_load($paragraph->entity_id);
+      $return[$treaty_id]->decision_paragraphs[$decision_paragraph_id]->children[] = $paragraph;
+    }
+     return $return;
   }
-  return $return;
+
 }
 
 function goal_preprocess_goal_target_indicator(&$variables) {
