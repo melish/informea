@@ -240,7 +240,6 @@ function goal_get_related_content($goal_nid) {
       $paragraph = node_load($paragraph->entity_id);
       $return[$treaty_id]->decision_paragraphs[$decision_paragraph_id]->children[] = $paragraph;
     }
-   
   }
     return $return;
 
