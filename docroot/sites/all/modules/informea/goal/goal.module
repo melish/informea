@@ -242,7 +242,6 @@ function goal_get_related_content($goal_nid) {
     }
   }
     return $return;
-
 }
 
 function goal_preprocess_goal_target_indicator(&$variables) {
