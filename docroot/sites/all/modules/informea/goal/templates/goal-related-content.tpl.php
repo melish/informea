@@ -13,7 +13,71 @@
           </div>
           <div class="accordion panel-group panel-collapse collapse" id="content-<?php print $treaty->nid; ?>" role="tabpanel">
             <div class="national-reports panel-body">
-              <!-- NATIONAL REPORTS -->
+                           <!-- TREATY ARTICLES -->
+              <?php if(!empty($treaty->treaty_articles)): ?>
+                <h3><?php print t('Treaty articles'); ?></h3>
+                <?php foreach($treaty->treaty_articles as $treaty_article): ?>
+                  <?php $treaty_article_w = entity_metadata_wrapper('node', $treaty_article); ?>
+                    <div class="accordion panel-group tagged-content" role="tablist" aria-multiselectable="true">
+                      <div class="panel panel-default">
+                        <div class="panel-heading collapsed" role="tab" id="heading-<?php print $treaty_article->nid; ?>" data-target="#content-<?php print $treaty_article->nid; ?>" data-toggle="collapse" aria-expanded="false">
+                          <i class="glyphicon glyphicon-plus-sign"></i>
+                          <h4 class="panel-title">
+                            <?php print $treaty_article_w->label(); ?>
+                          </h4><!-- .panel-title -->
+                        </div>
+                        <div class="accordion panel-group panel-collapse collapse" id="content-<?php print $treaty_article->nid; ?>" role="tabpanel">
+                          <div class="national-report-paragraphs panel-body">
+                            <?php foreach($treaty_article->children as $treaty_article_paragraph): ?>
+                              <?php $treaty_article_paragraph_w = entity_metadata_wrapper('node', $treaty_article_paragraph); ?>
+                              <div class="item" id="content-<?php print $treaty_article_paragraph->nid; ?>">
+                                <p>
+                                  <?php if($treaty_article_paragraph_w->body->value()): ?>
+                                    <?php print($treaty_article_paragraph_w->body->value->value(array('decode' => FALSE))); ?>
+                                  <?php endif; ?>
+                                </p>
+                              </div>
+                            <?php endforeach; ?>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                <?php endforeach; ?>
+              <?php endif; ?>
+              <!-- END OF TREATY ARTICLES -->
+              <!-- Decision Paragraphs -->
+              <?php if(!empty($treaty->decisions)): ?>
+                <h3><?php print t('Decisions'); ?></h3>
+                <?php foreach($treaty->decisions as $decision): ?>
+                  <?php $decision_w = entity_metadata_wrapper('node', $decision); ?>
+                    <div class="accordion panel-group tagged-content" role="tablist" aria-multiselectable="true">
+                      <div class="panel panel-default">
+                        <div class="panel-heading collapsed" role="tab" id="heading-<?php print $decision_paragraph->nid; ?>" data-target="#content-<?php print $decision_paragraph->nid; ?>" data-toggle="collapse" aria-expanded="false">
+                          <i class="glyphicon glyphicon-plus-sign"></i>
+                          <h4 class="panel-title">
+                            <?php print $decision_w->label(); ?>
+                          </h4><!-- .panel-title -->
+                        </div>
+                        <div class="accordion panel-group panel-collapse collapse" id="content-<?php print $decision_paragraph->nid; ?>" role="tabpanel">
+                          <div class="national-report-paragraphs panel-body">
+                              <?php foreach($decision->children as $decision_paragraph): ?>
+                              <?php $decision_paragraph_w = entity_metadata_wrapper('node', $decision_paragraph); ?>
+                              <div class="item" id="content-<?php print $decision->nid; ?>">
+                                <p>
+                                  <?php if($decision_paragraph_w->body->value()): ?>
+                                    <?php print($decision_paragraph_w->body->value->value(array('decode' => FALSE))); ?>
+                                  <?php endif; ?>
+                                </p>
+                              </div>
+                            <?php endforeach; ?>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                <?php endforeach; ?>
+              <?php endif; ?>
+              <!-- END OF DECISIONS PARAGRAPHS-->
+                <!-- NATIONAL REPORTS -->
               <?php if(!empty($treaty->national_reports)): ?>
                 <h3><?php print t('National reports'); ?></h3>
                 <?php foreach($treaty->national_reports as $national_report): ?>
@@ -52,39 +116,6 @@
                 <?php endforeach; ?>
               <?php endif; ?>
               <!-- END OF NATIONAL REPORTS -->
-
-              <!-- TREATY ARTICLES -->
-              <?php if(!empty($treaty->treaty_articles)): ?>
-                <h3><?php print t('Treaty articles'); ?></h3>
-                <?php foreach($treaty->treaty_articles as $treaty_article): ?>
-                  <?php $treaty_article_w = entity_metadata_wrapper('node', $treaty_article); ?>
-                    <div class="accordion panel-group tagged-content" role="tablist" aria-multiselectable="true">
-                      <div class="panel panel-default">
-                        <div class="panel-heading collapsed" role="tab" id="heading-<?php print $treaty_article->nid; ?>" data-target="#content-<?php print $treaty_article->nid; ?>" data-toggle="collapse" aria-expanded="false">
-                          <i class="glyphicon glyphicon-plus-sign"></i>
-                          <h4 class="panel-title">
-                            <?php print $treaty_article_w->label(); ?>
-                          </h4><!-- .panel-title -->
-                        </div>
-                        <div class="accordion panel-group panel-collapse collapse" id="content-<?php print $treaty_article->nid; ?>" role="tabpanel">
-                          <div class="national-report-paragraphs panel-body">
-                            <?php foreach($treaty_article->children as $treaty_article_paragraph): ?>
-                              <?php $treaty_article_paragraph_w = entity_metadata_wrapper('node', $treaty_article_paragraph); ?>
-                              <div class="item" id="content-<?php print $treaty_article_paragraph->nid; ?>">
-                                <p>
-                                  <?php if($treaty_article_paragraph_w->body->value()): ?>
-                                    <?php print($treaty_article_paragraph_w->body->value->value(array('decode' => FALSE))); ?>
-                                  <?php endif; ?>
-                                </p>
-                              </div>
-                            <?php endforeach; ?>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                <?php endforeach; ?>
-              <?php endif; ?>
-              <!-- END OF TREATY ARTICLES -->
             </div>
           </div>
         </div>
