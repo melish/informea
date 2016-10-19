@@ -226,19 +226,19 @@ function goal_get_related_content($goal_nid) {
     $paragraphs = $q->execute()->fetchAll();
     foreach ($paragraphs as $paragraph) {
       $treaty_id = $paragraph->field_treaty_target_id;
-      $decision_paragraph_id = $paragraph->field_parent_decision_target_id ;
+      $decision_id = $paragraph->field_parent_decision_target_id ;
       if (empty($return[$treaty_id])) {
         $treaty = node_load($treaty_id);
-        $treaty->decision_paragraphs= [];
+        $treaty->decisions = [];
         $return[$treaty_id] = $treaty;
       }
-      if (empty($return[$treaty_id]->decision_paragraphs[$decision_paragraph_id])) {
-        $decision=node_load($decision_paragraph_id);
+      if (empty($return[$treaty_id]->decisions[$decision_id])) {
+        $decision =node_load($decision_id);
         $decision->children=[];
-        $return[$treaty_id]->decision_paragraphs[$decision_paragraph_id] = $decision;
+        $return[$treaty_id]->decisions[$decision_id] = $decision;
       }
       $paragraph = node_load($paragraph->entity_id);
-      $return[$treaty_id]->decision_paragraphs[$decision_paragraph_id]->children[] = $paragraph;
+      $return[$treaty_id]->decisions[$decision_id]->children[] = $paragraph;
     }
   }
     return $return;

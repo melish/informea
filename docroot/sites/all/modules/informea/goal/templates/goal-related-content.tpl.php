@@ -46,23 +46,23 @@
               <?php endif; ?>
               <!-- END OF TREATY ARTICLES -->
               <!-- Decision Paragraphs -->
-              <?php if(!empty($treaty->decision_paragraphs)): ?>
+              <?php if(!empty($treaty->decisions)): ?>
                 <h3><?php print t('Decisions'); ?></h3>
-                <?php foreach($treaty->decision_paragraphs as $decision_paragraph): ?>
-                  <?php $decision_paragraph_w = entity_metadata_wrapper('node', $decision_paragraph); ?>
+                <?php foreach($treaty->decisions as $decision): ?>
+                  <?php $decision_w = entity_metadata_wrapper('node', $decision); ?>
                     <div class="accordion panel-group tagged-content" role="tablist" aria-multiselectable="true">
                       <div class="panel panel-default">
                         <div class="panel-heading collapsed" role="tab" id="heading-<?php print $decision_paragraph->nid; ?>" data-target="#content-<?php print $decision_paragraph->nid; ?>" data-toggle="collapse" aria-expanded="false">
                           <i class="glyphicon glyphicon-plus-sign"></i>
                           <h4 class="panel-title">
-                            <?php print $decision_paragraph_w->label(); ?>
+                            <?php print $decision_w->label(); ?>
                           </h4><!-- .panel-title -->
                         </div>
                         <div class="accordion panel-group panel-collapse collapse" id="content-<?php print $decision_paragraph->nid; ?>" role="tabpanel">
                           <div class="national-report-paragraphs panel-body">
-                              <?php foreach($decision_paragraph->children as $decision_paragraph): ?>
+                              <?php foreach($decision->children as $decision_paragraph): ?>
                               <?php $decision_paragraph_w = entity_metadata_wrapper('node', $decision_paragraph); ?>
-                              <div class="item" id="content-<?php print $decision_paragraph->nid; ?>">
+                              <div class="item" id="content-<?php print $decision->nid; ?>">
                                 <p>
                                   <?php if($decision_paragraph_w->body->value()): ?>
                                     <?php print($decision_paragraph_w->body->value->value(array('decode' => FALSE))); ?>
