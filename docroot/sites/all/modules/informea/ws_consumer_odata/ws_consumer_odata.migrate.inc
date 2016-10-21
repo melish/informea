@@ -78,6 +78,7 @@ function ws_consumer_odata_migrate_api() {
 
       /* Documents migrations */
       'odata_cms_documents' => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CMS, ODataConsumerConfig::$ODATA_ENTITY_DOCUMENT),
+      'odata_aewa_documents' => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_DOCUMENT),
 
     )
   );
@@ -235,11 +236,11 @@ class ODataMigrationUtil {
       return NULL;
     }
     foreach($values as &$v) {
-      $v->value = self::fixI18NString($v->value, TRUE);
+      $v->value = strip_tags(self::fixI18NString($v->value, TRUE));
     }
     foreach ($values as $ob) {
       if ($ob->language == 'en') {
-        return $ob->value;
+        return strip_tags($ob->value);
       }
     }
     return NULL;
