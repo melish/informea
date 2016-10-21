@@ -2808,3 +2808,25 @@ iframe.pdfjs {
 .node-type-treaty #meetings .panel-heading {
   cursor: default;
 }
+
+/** Documents page */
+
+body.page-documents .views-row h2 { font-size: 24px; font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body.page-documents div.views-row { margin-bottom: 15px; padding-bottom: 5px; border-bottom: 1px dashed #999; }
+body.page-documents div.views-row div.content { padding-left: 10px; }
+body.page-documents div.views-row div.field-name-field-image { float: left; margin-right: 15px; }
+body.page-documents div.views-row div.field-name-field-treaty,
+body.page-documents div.views-row div.field-name-field-country,
+body.page-documents div.views-row div.field-name-field-document-type,
+body.page-documents div.views-row div.field-name-title-field
+{ margin-bottom: 5px; }
+
+body.page-documents div.views-row div.field-name-body { margin-bottom: 15px; }
+
+body.page-documents div.views-row div.field-name-field-files { margin-top: 10px; float: left; }
+body.page-documents div.views-row div.field-name-field-files thead { display: none; }
+body.page-documents div.views-row ul.links { display: none; }
