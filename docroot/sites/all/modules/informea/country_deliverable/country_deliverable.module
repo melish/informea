@@ -249,3 +249,17 @@ function country_deliverable_autocomplete_field_parent_national_report_callback(
   }
   drupal_json_output($matches);
 }
+
+/**
+ * Implements hook_node_view().
+ */
+function country_deliverable_node_view($node, $view_mode, $langcode) {
+  if ($node->type == 'court_decisions' && $view_mode == 'full') {
+    $node_w = entity_metadata_wrapper('node', $node);
+    if (module_exists('analytics_integration') && $node_w->field_data_source->value()[0]->tid == 2767 /* ECOLEX-ELIS */) {
+      $url = 'http://www.ecolex.org/court_decision/details/';
+      $url .= $node_w->field_original_id->value();
+      analytics_integration_google_analytics_send_hit('UA-58379026-1', $url, 'ecolex', $node_w->label());
+    }
+  }
+}
