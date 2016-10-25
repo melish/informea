@@ -75,21 +75,21 @@ class InforMEASearchResultsGrouping {
           }
           break;
         case 'decision_paragraph':
-          $treaty = $wrapper->field_treaty->value();reset($treaty);
-          $treaty = current($treaty);
-          if (array_key_exists($treaty->nid, $results)) {
-            $treaty = $results[$treaty->nid];
-          }
-          if ($decision = $wrapper->field_parent_decision->value()) {
-            if (isset($treaty->decisions) && array_key_exists($decision->nid, $treaty->decisions)) {
-              $decision = $treaty->decisions[$decision->nid];
-            }
-            if (!isset($decision->paragraphs) || !array_key_exists($node->nid, $decision->paragraphs)) {
-              $decision->paragraphs[$node->nid] = $node;
-            }
-            $treaty->decisions[$decision->nid] = $decision;
-            $results[$treaty->nid] = $treaty;
-          }
+//          $treaty = $wrapper->field_treaty->value();reset($treaty);
+//          $treaty = current($treaty);
+//          if (array_key_exists($treaty->nid, $results)) {
+//            $treaty = $results[$treaty->nid];
+//          }
+//          if ($decision = $wrapper->field_parent_decision->value()) {
+//            if (isset($treaty->decisions) && array_key_exists($decision->nid, $treaty->decisions)) {
+//              $decision = $treaty->decisions[$decision->nid];
+//            }
+//            if (!isset($decision->paragraphs) || !array_key_exists($node->nid, $decision->paragraphs)) {
+//              $decision->paragraphs[$node->nid] = $node;
+//            }
+//            $treaty->decisions[$decision->nid] = $decision;
+//            $results[$treaty->nid] = $treaty;
+//          }
           break;
         case 'national_report':
           $treaty = $wrapper->field_treaty->value();reset($treaty);
