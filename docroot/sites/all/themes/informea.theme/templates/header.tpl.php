@@ -9,6 +9,13 @@
     <div class="modal-content"></div>
   </div><!-- .modal-dialog .modal-lg -->
 </div><!-- .modal .fade #dialog-modal-ajax -->
+<?php if (!empty($page['above_nav'])): ?>
+<div class="secondary-nav">
+  <div class="container">
+      <?php print render($page['above_nav']); ?>
+  </div>
+</div>
+<?php endif; ?>
 <header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
   <div class="container">
     <div class="navbar-header header-brand">
@@ -32,7 +39,7 @@
     <nav class="navbar-collapse collapse navbar-left" role="navigation">
       <ul class="nav navbar-nav">
         <li class="dropdown dropdown-full-width">
-          <?php print l(t('Treaties') . ' <span class="caret"></span>', 'treaties', array('attributes' => array('class' => array('dropdown-toggle')), 'absolute' => TRUE, 'html' => TRUE)); ?>
+          <?php print l(t('Treaties') . ' <span class="caret"></span>', 'treaties', array('attributes' => array('class' => array('dropdown-toggle'), 'id' => 'treaties-menu-link'), 'absolute' => TRUE, 'html' => TRUE)); ?>
           <ul class="dropdown-menu row" role="menu">
             <li class="col-sm-3">
               <ul>
@@ -79,16 +86,10 @@
             </li><!-- .col-sm-3 -->
             <li class="col-sm-3">
               <ul>
-                <li class="dropdown-header"><?php print t('Regional Treaties'); ?></li>
                 <li>
-                  <?php print l(t('Barcelona'), 'node/275'); ?>
+                  <?php print l(t('Aarhus Convention'), 'node/283'); ?>
                   <ul>
-                    <li><?php print l(t('Barcelona Dumping Protocol'), 'node/276'); ?></li>
-                    <li><?php print l(t('Hazardous Wastes Protocol'), 'node/281'); ?></li>
-                    <li><?php print l(t('Land-Based Sources Protocol'), 'node/278'); ?></li>
-                    <li><?php print l(t('Offshore Protocol'), 'node/280'); ?></li>
-                    <li><?php print l(t('Prevention and Emergency Protocol'), 'node/277'); ?></li>
-                    <li><?php print l(t('Specially Protected Areas Protocol'), 'node/279'); ?></li>
+                    <li><?php print l(t('Kiev Protocol'), 'node/298'); ?></li>
                   </ul>
                 </li>
                 <li>
@@ -97,63 +98,47 @@
                     <li><?php print l(t('The Kyiv Protocol'), 'node/288'); ?></li>
                   </ul>
                 </li>
-                <li><?php print l(t('Jeddah Convention'), 'node/292'); ?></li>
-                <li><?php print l(t('Long-Range Transboundary Air Pollution'), 'node/284'); ?></li>
-                <li><?php print l(t('Nairobi Convention'), 'node/293'); ?></li>
-              </ul>
-            </li><!-- .col-sm-3 -->
-            <li class="col-sm-3">
-              <ul>
-              <li>
-                  <?php print l(t('Aarhus Convention'), 'node/283'); ?>
-                  <ul>
-                    <li><?php print l(t('Kiev Protocol'), 'node/298'); ?></li>
-                  </ul>
-                </li>
-                <li><?php print l(t('Abidjan Convention'), 'node/289'); ?></li>
-                <li><?php print l(t('Antigua Convention'), 'node/295'); ?></li>
-                <li><?php print l(t('Apia Convention'), 'node/294'); ?></li>
-                <li><?php print l(t('Bamako Convention'), 'node/297'); ?></li>
-                <li><?php print l(t('Cartagena Convention'), 'node/291'); ?></li>
                 <li><?php print l(t('Industrial Accidents Convention'), 'node/299'); ?></li>
-                <li><?php print l(t('Kuwait Regional Convention'), 'node/296'); ?></li>
-                <li><?php print l(t('Lusaka Agreement'), 'node/300'); ?></li>
-                <li><?php print l(t('Noumea Convention'), 'node/290'); ?></li>
+                <li><?php print l(t('Long-Range Transboundary Air Pollution'), 'node/284'); ?></li>
                 <li>
                   <?php print l(t('Water Convention'), 'node/287'); ?>
                   <ul>
                     <li><?php print l(t('Protocol on Water and Health'), 'node/286'); ?></li>
-                </ul>
-                </li>          
-           </ul>
+                  </ul>
+                </li>
+              </ul>
+            </li><!-- .col-sm-3 -->
+            <li class="col-sm-3">
+              <ul>
+                <li><?php print l(t('Abidjan Convention'), 'node/289'); ?></li>
+                <li><?php print l(t('Antigua Convention'), 'node/295'); ?></li>
+                <li><?php print l(t('Apia Convention'), 'node/294'); ?></li>
+                <li>
+                  <?php print l(t('Barcelona'), 'node/275'); ?>
+                  <ul>
+                    <li><?php print l(t('Barcelona Dumping Protocol'), 'node/276'); ?></li>
+                    <li><?php print l(t('Hazardous Wastes Protocol'), 'node/281'); ?></li>
+                    <li><?php print l(t('ICZM Protocol'), 'node/77747'); ?></li>
+                    <li><?php print l(t('Land-Based Sources Protocol'), 'node/278'); ?></li>
+                    <li><?php print l(t('Offshore Protocol'), 'node/280'); ?></li>
+                    <li><?php print l(t('Prevention and Emergency Protocol'), 'node/277'); ?></li>
+                    <li><?php print l(t('Specially Protected Areas and Biodiversity Protocol'), 'node/279'); ?></li>
+                  </ul>
+                </li>
+                <li><?php print l(t('Bamako Convention'), 'node/297'); ?></li>
+                <li><?php print l(t('Jeddah Convention'), 'node/292'); ?></li>
+                <li><?php print l(t('Nairobi Convention'), 'node/293'); ?></li>
+                <li><?php print l(t('Cartagena Convention'), 'node/291'); ?></li>
+                <li><?php print l(t('Kuwait Regional Convention'), 'node/296'); ?></li>
+                <li><?php print l(t('Lusaka Agreement'), 'node/300'); ?></li>
+                <li><?php print l(t('Noumea Convention'), 'node/290'); ?></li>
+              </ul>
             </li><!-- .col-sm-3 -->
           </ul><!-- .dropdown-menu -->
         </li><!-- .dropdown -->
-        <li><?php print l(t('Countries'), 'countries'); ?></li>
-        <li><?php print l(t('Glossary'), 'http://leo.informea.org/'); ?></li>
-        <li class="dropdown">
-          <?php print l(
-            t('Events') . ' <span class="caret"></span>',
-            'events',
-            array('attributes' => array('class' => array('dropdown-toggle')), 'absolute' => TRUE, 'html' => TRUE)); ?>
-          <ul class="dropdown-menu dropdown-menu-right" role="menu">
-            <li><?php print l(t('Past events'), 'events/past'); ?></li>
-            <li><?php print l(t('News'), 'news'); ?></li>
-          </ul><!-- .dropdown-menu .dropdown-menu-right -->
-        </li>
-        <li class="dropdown">
-          <?php print l(
-            t('About') . ' <span class="caret"></span>',
-            'about',
-            array('attributes' => array('class' => array('dropdown-toggle')), 'absolute' => TRUE, 'html' => TRUE)); ?>
-          <ul class="dropdown-menu dropdown-menu-right" role="menu">
-            <li><?php print l(t('About InforMEA'), 'about'); ?></li>
-            <li><?php print l(t('Branding'), 'node/73543'); ?></li>
-            <li><?php print l(t('Resources for Developers'), 'about/api'); ?></li>
-            <li><?php print l(t('Contact'), 'node/70411'); ?></li>
-          </ul><!-- .dropdown-menu .dropdown-menu-right -->
-        </li><!-- .dropdown -->
-        <li><?php print l(t('Learning'), 'http://e-learning.informea.org/'); ?></li>
+        <li><?php print l(t('Parties'), 'countries', array('attributes' => array('id' => 'parties-menu-link'))); ?></li>
+        <li><?php print l(t('Glossary'), 'http://leo.informea.org/', array('attributes' => array('id' => 'glossary-menu-link'))); ?></li>
+        <li><?php print l(t('Learning'), 'http://e-learning.informea.org/', array('attributes' => array('target' => '_blank', 'id' => 'learning-menu-link'))); ?></li>
       </ul><!-- .nav .navbar-nav -->
       </nav><!-- .navbar-collapse .collapse -->
   </div><!-- .container -->

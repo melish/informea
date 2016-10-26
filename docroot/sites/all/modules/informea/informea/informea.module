@@ -17,7 +17,7 @@ define('ROLE_ADMINISTRATOR', 'administrator');
 /**
  * Implements hook_schema_alter()
  */
-function informea_migration_schema_alter(&$schema) {
+function informea_schema_alter(&$schema) {
   $table = 'field_data_title_field';
   $column = 'title_field_value';
 
@@ -622,7 +622,7 @@ function informea_block_view_block_4_alter(&$data, $block) {
   if (arg(0) == 'node') {
     $node = menu_get_object();
     if (!empty($node) && $node->type == 'treaty') {
-      $context = treaty_url_context(request_path());
+      $context = _treaty_url_context(request_uri());
       $available_source = FALSE;
       $node_w = entity_metadata_wrapper('node', $node);
       //Set treaty website url
@@ -710,7 +710,7 @@ function informea_page_alter(&$page) {
   }
   if ($ga_informea_key = variable_get('ga_informea_key')) {
     analytics_integration_add_google_analytics_library($ga_informea_key);
-    $current_path = url($_GET['q'], array('absolute' => TRUE));
+    $current_path = url(request_uri(), array('absolute' => TRUE));
     analytics_integration_google_analytics_send_hit($ga_informea_key, $current_path, 'informea', drupal_get_title());
     /*UNEP webmaster request to send hits to monitor all affliate unep.org websites*/
     analytics_integration_google_analytics_send_hit('UA-59519586-13', $current_path, 'unep', drupal_get_title());
@@ -757,7 +757,7 @@ function informea_remove_duplicate_news() {
  */
 function informea_form_user_profile_form_alter(&$form) {
   global $user;
-  $form['field_user_treaties']['#access'] = $user->uid == 1 || in_array('administer users', $user->roles);
+  $form['field_user_treaties']['#access'] = $user->uid == 1 || user_access('administer users');
 }
 
 function informea_user_get_assigned_treaties($user) {
@@ -907,6 +907,12 @@ function informea_form_node_form_alter(&$form, &$form_state, $form_id) {
     $q->condition('c.field_goal_source_tid', 1753); // Sustainable development goals (vid=28)
     $q->orderBy('a.title');
     $form['field_sdg_goals'][LANGUAGE_NONE]['#options'] = $q->execute()->fetchAllKeyed();
+  }
+}
+
+function informea_field_widget_entityreference_autocomplete_form_alter(&$element, &$form_state, $context) {
+  if (!empty($context['field']) && $context['field']['field_name'] == 'field_sdg_goals' && !empty($element['target_id'])) {
+    $element['target_id']['#autocomplete_path'] = 'goal/autocomplete/field_sdg_goals';
   }
 }
 

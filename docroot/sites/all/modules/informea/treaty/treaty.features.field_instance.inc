@@ -3856,6 +3856,64 @@ function treaty_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-treaty-field_user_owners'.
+  $field_instances['node-treaty-field_user_owners'] = array(
+    'bundle' => 'treaty',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Users who own this node (MEA accounts - representatives)',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 59,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_user_owners',
+    'label' => 'Owners',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'use_select2' => FALSE,
+      ),
+      'type' => 'options_select',
+      'weight' => 22,
+    ),
+  );
+
   // Exported field_instance: 'node-treaty-title_field'.
   $field_instances['node-treaty-title_field'] = array(
     'bundle' => 'treaty',
@@ -4592,6 +4650,70 @@ function treaty_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-treaty_paragraph-field_sdg_goals'.
+  $field_instances['node-treaty_paragraph-field_sdg_goals'] = array(
+    'bundle' => 'treaty_paragraph',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 7,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_sdg_goals',
+    'label' => 'SDG goals',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+        'use_select2' => FALSE,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 42,
+    ),
+  );
+
   // Exported field_instance: 'node-treaty_paragraph-field_sorting_order'.
   $field_instances['node-treaty_paragraph-field_sorting_order'] = array(
     'bundle' => 'treaty_paragraph',
@@ -5221,6 +5343,7 @@ function treaty_field_default_field_instances() {
   t('Order of the articles as they apear when text is listed. For example use 10, 20, 30 for first, second and third articles. Later you can add articles between, using for instance "15" to add a paragraph between first and second');
   t('Order of the paragraph within the treaty article listing. For example use 10, 20, 30 for first, second and third paragraphs. Later you can add paragraphs between, using for instance "15" to add a paragraph between first and second');
   t('Original ID');
+  t('Owners');
   t('Paragraph text');
   t('Parent Treaty Article');
   t('Parent treaty');
@@ -5234,6 +5357,7 @@ function treaty_field_default_field_instances() {
   t('Related website');
   t('Reporting obligation treaty article');
   t('Reporting obligation treaty article paragraphs');
+  t('SDG goals');
   t('Secondary topic');
   t('Select an article that belongs to the treaty selected above');
   t('Select the treaty from the list to which this paragraph belongs to');
@@ -5252,6 +5376,7 @@ function treaty_field_default_field_instances() {
   t('UN Region');
   t('UN Treaty database link');
   t('URL');
+  t('Users who own this node (MEA accounts - representatives)');
   t('You can attach one or more files here that contain the text of the article. This is especially useful for attaching annexes to the treaty text, as PDF files.');
 
   return $field_instances;

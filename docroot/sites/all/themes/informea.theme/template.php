@@ -36,7 +36,7 @@ function informea_theme_preprocess_page(&$variables) {
   $path = request_path();
   switch ($path) {
     case 'countries':
-      $breadcrumbs[] = t('Countries');
+      $breadcrumbs[] = t('Parties');
       break;
     case 'terms':
       $breadcrumbs[] = t('Glossary');
@@ -61,14 +61,35 @@ function informea_theme_preprocess_page(&$variables) {
     $node = $variables['node'];
     switch ($node->type) {
       case 'event_calendar':
-        $breadcrumbs[] = l(t('Events'), 'events');
-        $breadcrumbs[] = $node->title;
+        $variables['page']['above_content'] = array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'id' => array('meeting-date-title'),
+          ),
+        );
+        if (!empty($node->event_calendar_date)) {
+          $variables['title_prefix'] = date('Y', strtotime($node->event_calendar_date[LANGUAGE_NONE][0]['value']));
+          $variables['page']['above_content']['date'] = array(
+            '#type' => 'item',
+            '#title' => t('Date'),
+            '#markup' => date('d-m-Y', strtotime($node->event_calendar_date[LANGUAGE_NONE][0]['value'])),
+            '#prefix' => '<div class="field-name-field-sorting-date"><div class="container">',
+            '#suffix' => '</div></div>',
+          );
+        };
+        $variables['classes_array'][] = 'meeting-page';
+        if (!empty($node->field_treaty[LANGUAGE_NONE][0]['target_id'])) {
+          $treaty_node = node_load($node->field_treaty[LANGUAGE_NONE][0]['target_id']);
+          $variables['page']['above_content']['tabs'] = _decision_get_treaty_links($treaty_node, array('un-treaty-collection-link'));
+          $variables['page']['above_content']['tabs']['#prefix'] = '<div class="decision-treaty-tabs"><div class="container">';
+          $variables['page']['above_content']['tabs']['#suffix'] = '</div></div>';
+        }
         break;
 
       case 'country':
         $countries = country_get_countries_select_options();
         $countries1 = $countries;
-        array_unshift($countries1, t('View another country'));
+        array_unshift($countries1, t('View another party'));
         $variables['content_column_class'] = ' class="col-sm-9"';
         $variables['countries'] = $countries;
         $variables['select-switch-countries'] = array(
@@ -118,6 +139,14 @@ function informea_theme_preprocess_page(&$variables) {
               '#suffix' => '</div></div>',
             );
           }
+          else {
+            $variables['page']['above_content']['date'] = array(
+              '#type' => 'item',
+              '#markup' => '&nbsp;',
+              '#prefix' => '<div class="field-name-field-sorting-date empty"><div class="container">',
+              '#suffix' => '</div></div>',
+            );
+          }
           $variables['page']['above_content']['title'] = array(
             '#type' => 'item',
             '#title' => t('Full title'),
@@ -130,6 +159,19 @@ function informea_theme_preprocess_page(&$variables) {
             $variables['page']['above_content']['tabs'] = _decision_get_treaty_links($treaty_node, array('un-treaty-collection-link'));
             $variables['page']['above_content']['tabs']['#prefix'] = '<div class="decision-treaty-tabs"><div class="container">';
             $variables['page']['above_content']['tabs']['#suffix'] = '</div></div>';
+          }
+        }
+        break;
+
+      case 'goal':
+        $sdgs_tid = 1753;
+        if (!empty($node->field_goal_source)
+          && !empty($node->field_goal_source[LANGUAGE_NONE])
+          && $node->field_goal_source[LANGUAGE_NONE][0]['tid'] == $sdgs_tid) {
+          $node_w = entity_metadata_wrapper('node', $node);
+          if (($term = $node_w->field_goal_type->value()) && in_array($term->name, ['Target', 'Indicator'])) {
+            $tw = entity_metadata_wrapper('taxonomy_term', $term);
+            drupal_set_title($tw->label() . ' ' . $node_w->label());
           }
         }
         break;
@@ -148,7 +190,7 @@ function informea_theme_preprocess_page(&$variables) {
     if (!empty($variables['page']['front_page_content']['block_10'])) {
       $block_data =& $variables['page']['front_page_content']['block_10'];
       $countries = country_get_countries_select_options();
-      array_unshift($countries, t('Select a country…'));
+      array_unshift($countries, t('Select a party…'));
       $html = array(
         '#attributes' => array('class' => array('form-control', 'node-switcher', 'country-switcher')),
         '#options' => $countries,
@@ -449,17 +491,18 @@ function informea_theme_informea_search_form_wrapper($variables) {
 
 function informea_theme_links__locale_block(&$variables) {
   global $user, $language;
-
-  $variables['attributes']['class'][] = 'dropdown-menu';
-  $variables['attributes']['class'][] = 'dropdown-menu-right';
-  $variables['attributes']['aria-labelledby'] = 'dLanguage';
-
+  $variables1 = $variables;
+  $variables1['attributes']['class'][] = 'dropdown-menu';
+  $variables1['attributes']['class'][] = 'dropdown-menu-right';
+  $variables1['attributes']['aria-labelledby'] = 'dLanguage';
+  $output = '';
   $output = '<div class="dropdown">';
   $output .= '<button type="button" id="dLanguage" class="btn btn-default navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
-  $output .= strtoupper($language->language);
+  $output .= $language->native;
   $output .= '</button>';
-  $output .= theme_links($variables);
+  $output .= theme_links($variables1);
   $output .= '</div>';
+  $output .= theme_links($variables);
 
   return $output;
 }
@@ -506,6 +549,26 @@ function informea_theme_views_pre_render(&$view) {
     }
   }
 }
+
+/**
+ * Implements hook_preporcess_image_style().
+ */
+function informea_theme_preprocess_image_style(&$variables) {
+  $variables['attributes']['class'][] = 'img-responsive';
+  // Add default width and height attr.
+  if (empty($variables['width']) && empty($variables['height'])) {
+    $image_info = image_get_info($variables['path']);
+    if (!empty($image_info)) {
+      $variables['width'] = $image_info['width'];
+      $variables['height'] = $image_info['height'];
+    }
+  }
+  // Add an alt attribute.
+  if (empty($variables['alt'])) {
+    $variables['alt'] = drupal_basename($variables['path']);
+  }
+}
+
 
 function informea_theme_set_page_breadcrumb($breadcrumbs = array()) {
   array_unshift($breadcrumbs, l(t('Home'), '<front>'));

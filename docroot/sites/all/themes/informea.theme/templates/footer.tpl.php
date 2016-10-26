@@ -53,7 +53,7 @@
       </ul><!-- .list-inline -->
     </div><!-- .footer-section -->
     <div class="footer-section">
-      <h5 class="text-uppercase"><?php print t('Global treaties'); ?></h5>
+      <h5 class="text-uppercase"><?php print t('Treaties'); ?></h5>
       <ul class="list-inline">
         <li>
           <a class="brand brand-hover brand-unfccc" href="http://unfccc.int/" target="_blank">
@@ -128,11 +128,8 @@
           </a><!-- .brand .brand-hover .brand-cms -->
         </li>
       </ul><!-- .list-inline -->
-    </div><!-- .footer-section -->
-    <div class="footer-section">
-      <h5 class="text-uppercase"><?php print t('Regional treaties'); ?></h5>
       <div class="row">
-       <!-- .col-md-3 -->
+        <!-- .col-md-3 -->
         <div class="col-md-3">
           <h6><?php print t('UNECE'); ?></h6>
           <ul class="list-unstyled">

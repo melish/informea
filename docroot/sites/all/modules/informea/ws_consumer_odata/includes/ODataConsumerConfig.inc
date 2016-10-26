@@ -19,6 +19,7 @@ class ODataConsumerConfig {
   public static $ODATA_NAME_WHC = 'whc';
   public static $ODATA_NAME_MONTREAL = 'montreal';
   public static $ODATA_NAME_RAMSAR = 'ramsar';
+  public static $ODATA_NAME_UNFCCC = 'unfccc';
 
   public static $ODATA_ENTITY_CONTACTS = 'Contacts';
   public static $DRUPAL_TYPE_CONTACTS = 'contact_person';
@@ -37,6 +38,9 @@ class ODataConsumerConfig {
 
   public static $ODATA_ENTITY_DECISIONS = 'Decisions';
   public static $DRUPAL_TYPE_DECISIONS = 'decision';
+
+  public static $ODATA_ENTITY_DOCUMENT = 'Documents';
+  public static $DRUPAL_TYPE_DOCUMENT = 'document';
 
   protected static $SETTINGS_VARIABLE = 'informea_odata_consumer_config';
   public $odata_entity = NULL;
@@ -73,6 +77,7 @@ class ODataConsumerConfig {
       ODataConsumerConfig::$ODATA_NAME_WHC,
       ODataConsumerConfig::$ODATA_NAME_MONTREAL,
       ODataConsumerConfig::$ODATA_NAME_RAMSAR,
+      ODataConsumerConfig::$ODATA_NAME_UNFCCC,
     );
   }
 
@@ -84,6 +89,7 @@ class ODataConsumerConfig {
       ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN,
       ODataConsumerConfig::$ODATA_ENTITY_SITES,
       ODataConsumerConfig::$ODATA_ENTITY_DECISIONS,
+      ODataConsumerConfig::$ODATA_ENTITY_DOCUMENT,
     );
   }
 
@@ -135,6 +141,7 @@ class ODataConsumerConfig {
       self::$ODATA_ENTITY_ACTION_PLAN => self::$DRUPAL_TYPE_ACTION_PLAN,
       self::$ODATA_ENTITY_SITES => self::$DRUPAL_TYPE_SITES,
       self::$ODATA_ENTITY_DECISIONS => self::$DRUPAL_TYPE_DECISIONS,
+      self::$ODATA_ENTITY_DOCUMENT => self::$DRUPAL_TYPE_DOCUMENT,
     );
     return $mappings[$this->odata_entity];
   }
@@ -176,7 +183,8 @@ class ODataConsumerConfig {
           'default' => 'http://odata.cites.org/informea.svc'
         ),
         self::$ODATA_NAME_CMS => array(
-          'default' => 'http://odata.cms.eaudeweb.ro/cms/informea.svc'
+          'default' => 'http://odata.cms.eaudeweb.ro/cms/informea.svc',
+          'Documents' => 'http://localhost:8180/informea.svc'
         ),
         self::$ODATA_NAME_AEWA => array(
           'default' => 'http://odata.cms.eaudeweb.ro/aewa/informea.svc'
@@ -259,9 +267,9 @@ class ODataConsumerConfig {
           self::$ODATA_NAME_ROTTERDAM,
           self::$ODATA_NAME_BASEL
         ))) {
-          return '&$expand=title,files,summary&$orderby=updated%20desc,id';
+          return '&$expand=title,files,keywords,summary&$orderby=updated%20desc,id';
         }
-        return '&$expand=title,files,content,summary&$orderby=updated%20desc,id';
+        return '&$expand=title,keywords,files,content,summary&$orderby=updated%20desc,id';
 
       case self::$ODATA_ENTITY_MEETINGS:
         return '&$expand=title,description&$orderby=updated%20desc,id';
@@ -271,6 +279,9 @@ class ODataConsumerConfig {
 
       case self::$ODATA_ENTITY_SITES:
         return '&$expand=name&$orderby=updated%20desc,id';
+
+      case self::$ODATA_ENTITY_DOCUMENT:
+        return '&$expand=authors,descriptions,files,identifier,keywords,referenceToEntities,tag,titles,types&$orderby=updated%20desc,id';
     }
     return '';
   }

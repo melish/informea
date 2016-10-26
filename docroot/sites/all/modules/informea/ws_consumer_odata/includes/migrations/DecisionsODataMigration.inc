@@ -66,6 +66,9 @@ class DecisionsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_last_update:timezone')->defaultValue('Europe/Zurich');
     $this->addFieldMapping('changed', 'updated');
 
+    $this->addFieldMapping('field_informea_tags', 'keywords');
+    $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
+
     $this->addFieldMapping('field_sorting_order', 'displayOrder');
 
     $this->addFieldMapping('comment')->defaultValue(FALSE);
@@ -87,7 +90,6 @@ class DecisionsODataMigration extends AbstractODataMigration {
       'field_decision_updated:to', 'field_decision_updated',
       'field_meeting_url:attributes', 'field_meeting_url:language',
       'field_url:attributes', 'field_url:language', 'field_url:title',
-      'field_informea_tags', 'field_informea_tags:source_type',
       'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
       'field_files:preserve_files',
       'field_files:source_dir', 'field_files:urlencode', 'field_files:display',
@@ -144,8 +146,8 @@ class DecisionsODataMigration extends AbstractODataMigration {
 
         // Filename validation
         $filename = NULL;
-        if (!empty($row->filename)) {
-          $filename = $row->filename;
+        if (!empty($file->filename)) {
+          $filename = $file->filename;
         }
         else {
           $filename = ODataMigrationUtil::filenameFromURL($file->url);
@@ -160,7 +162,7 @@ class DecisionsODataMigration extends AbstractODataMigration {
           ws_consumer_odata_log('Missing language for file, Decision id=' . $row->id . '. File URL: ' . $file->url, MigrationBase::MESSAGE_WARNING);
           continue;
         }
-        $language = $file->language;
+        $language = ODataMigrationUtil::fixLanguage($file->language);
         $all_languages[] = $language;
 
         $row->files[] = $file->url;
@@ -170,12 +172,23 @@ class DecisionsODataMigration extends AbstractODataMigration {
     }
     $row->languages = array_unique($all_languages);
 
+    // keywords
+    $vdk = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
+    $odata_values = $consumer->loadNavigationProperty($row, 'keywords');
+    $keywords = array();
+    foreach($odata_values as $v) {
+      if ($tid = ODataMigrationUtil::getTaxonomyTermByName($v->term, $vdk->vid)) {
+        $keywords[] = $tid;
+      }
+    }
+    $row->keywords = $keywords;
+
     /* Do some data transformation */
     if (!empty($row->published)) {
       $row->published = $this->fixDateValue($row->published);
     }
-    $row->meetingId = $this->map_source_meeting($row->meetingId);
     $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
+    $row->meetingId = $this->map_source_meeting($row->meetingId, $row->meetingTitle, $row->treaty);
     $row->filename = array();
     foreach ($row->files as $file) {
       if ($filename = $this->extractFilenameFromURL($file)) {
@@ -185,16 +198,29 @@ class DecisionsODataMigration extends AbstractODataMigration {
     return $this->validateRow($row);
   }
 
-  public function map_source_meeting($id) {
-    $table_name = $this->config->getDecisionMeetingMappingTable();
-    $query = db_select($table_name, 'm')
-      ->fields('m', array('destid1'))
-      ->condition('m.sourceid1', $id);
-    $result = $query->execute()->fetchField();
-    if (!$result) {
-      ws_consumer_odata_log('Meeting with source id=' . $id .' has not been found.', MigrationBase::MESSAGE_ERROR);
+  public function map_source_meeting($id_event, $meeting_title, $id_treaty) {
+    $ret = NULL;
+    if (!empty($id_event)) {
+      $table_name = $this->config->getDecisionMeetingMappingTable();
+      $query = db_select($table_name, 'm')
+        ->fields('m', array('destid1'))
+        ->condition('m.sourceid1', $id_event);
+      $ret = $query->execute()->fetchField();
+      if (!$ret) {
+        ws_consumer_odata_log('Meeting with source id=' . $id_event .' has not been found.', MigrationBase::MESSAGE_ERROR);
+      }
     }
-    return $result;
+    else if (!empty($meeting_title) && !empty($id_treaty)) {
+      $q = db_select('node', 'a')->fields('a', array('nid'));
+      $q->innerJoin('field_data_field_treaty', 'b', 'a.nid = b.entity_id');
+      $q->condition('a.title', $meeting_title);
+      $q->condition('b.field_treaty_target_id', $id_treaty);
+      $ret = $q->execute()->fetchField();
+      if (!$ret) {
+        ws_consumer_odata_log('Meeting with title `' . $meeting_title .'` not been found.', MigrationBase::MESSAGE_ERROR);
+      }
+    }
+    return $ret;
   }
 
   public function validateRow($row) {
@@ -239,6 +265,7 @@ class InforMEAODataDecisionsMigrateSource extends InforMEAAbstractODataMigrateSo
       'content_language' => 'Body field languages',
       'summary' => 'Body summary',
       'link' => 'URL',
+      'keywords' => 'InforMEA thesaurus keywords',
       'filename' => 'filename',
       'updated' => 'Updated',
     );

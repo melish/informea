@@ -569,9 +569,10 @@ function _xmlsitemap_sitemap_rehash_all() {
   }
 }
 
+/**
+ * Add new primary key including the language.
+ */
 function xmlsitemap_update_7204() {
-  // Drop all primary keys.
   db_drop_primary_key('xmlsitemap');
-  // Add primary keys.
   db_add_primary_key('xmlsitemap', array('id', 'type', 'language'));
 }

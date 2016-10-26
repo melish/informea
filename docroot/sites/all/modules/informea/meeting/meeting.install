@@ -1,5 +1,15 @@
 <?php
 
-function meeting_install_7001() {
+/**
+ * Enable some modules and revert meetings, decision.
+ */
+function meeting_update_7001() {
+  $modules = array(
+    'jquery_expander',
+    'exclude_node_title',
+  );
+  module_enable($modules);
   features_revert_module('meeting');
+  features_revert_module('decision');
+  features_revert_module('informea_search');
 }

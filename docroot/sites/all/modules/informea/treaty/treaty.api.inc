@@ -1,20 +1,5 @@
 <?php
 
-function treaty_url_match_node($path) {
-  if (arg(0, $path) == 'treaties') {
-    if ($node = treaty_load_by_odata_name(arg(1, $path))) {
-      return $node;
-    }
-  } else if(strlen(arg(0, $path)) == 2) { // Assume language prefix @todo enhance
-    if (arg(1, $path) == 'treaties') {
-      if ($node = treaty_load_by_odata_name(arg(2, $path))) {
-        return $node;
-      }
-    }
-  }
-  return FALSE;
-}
-
 function treaty_url_context($path) {
   if (preg_match('/^node/', $path)) {
     $path = preg_replace('/node\/?[0-9]*\/?/', '', $path);
@@ -191,9 +176,16 @@ function treaty_format_meeting_description($meeting) {
     '#attributes' => array('class' => array('list-inline', 'meta'))
   );
   $description['#items'][] = format_date(strtotime($w->event_calendar_date->value()['value']), 'short');
-  $location = $w->field_location->value();
-  if (!empty($location)) {
+  if ($location = $w->field_location->value()) {
     $description['#items'][] = $location;
+  }
+  if ($city = $w->field_city->value()) {
+    $description['#items'][] = $city;
+  }
+  if ($country = $w->field_country->value()) {
+    if (!empty($country[0])) {
+      $description['#items'][] = $country[0]->title;
+    }
   }
   if (!empty($meeting->decisions)) {
     $description['#items'][] = format_plural(count($meeting->decisions), 'one decision', '@count decisions');
