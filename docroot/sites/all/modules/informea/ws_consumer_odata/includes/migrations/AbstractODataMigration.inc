@@ -126,21 +126,50 @@ abstract class AbstractODataMigration extends Migration {
    *   Treaty object or NULL
    */
   protected function getTreatyByODataIdentifier($machine_name) {
-    $q = db_select('field_data_field_odata_identifier', 'a')->fields('a', array('field_odata_identifier_value', 'entity_id'));
-    $q->condition('bundle', 'treaty');
-    $rows = $q->execute()->fetchAllKeyed();
+    // Regional Seas hard-coded IDs ...
     $static = array(
-      'Cartagena Convention' => 291,
-      'Barcelona Convention' => 275,
+      strtolower('Cartagena Convention') => 291,
+      strtolower('Barcelona Convention') => 275,
+      strtolower('Protocol Concerning Cooperation in Preventing Pollution from Ships and, in Cases of Emergency, Combating Pollution of the Mediterranean Sea') => 277,
+      strtolower('Protocol for the Protection of the Mediterranean Sea against Pollution from Land-Based Sources') => 278,
+
+      // Nice present
+      strtolower('Protocol Concerning Specially Protected Areas and Biological Diversity in the Mediterranean Sea') => 279,
+      strtolower('Protocol concerning Specially Protected Areas and Biological Diversity in the Mediterranean') => 279,
+
+      strtolower('Protocol for the Protection of the Mediterranean Sea against Pollution Resulting from Exploration and Exploitation of the Continental Shelf and the Seabed and its Subsoil') => 280,
+      strtolower('Protocol on the Prevention of Pollution of the Mediterranean Sea by Transboundary Movements of Hazardous Wastes and their Disposal') => 281,
+      strtolower('Abidjan Convention') => 289,
+      strtolower('Protocol on Integrated Coastal Zone Management in the Mediterranean') => 48205,
+      strtolower('Protocol Concerning Specially Protected Areas and Wildlife (SPAW) in the Wider Caribbean Region') => 81004,
+      strtolower('Protocol Concerning Pollution from Land-Based Sources and Activities (LBS)') => 81035,
+      strtolower('Protocol for the Protection of the Mediterranean Sea against Pollution from Land-based Sources and Activities') => 238505,
+      strtolower('Protocol Concerning Cooperation in Combating Pollution of the Mediterranean Sea by Oil and other Harmful Substances in Cases of Emergency') => 241288,
     );
-    $rows = array_merge($rows, $static);
-    $identifiers = array();
-    foreach ($rows as $k => $nid) {
-      $identifiers[strtolower($k)] = $nid;
+    if (array_key_exists(strtolower($machine_name), $static)) {
+      return node_load($static[strtolower($machine_name)]);
     }
-    if (array_key_exists(strtolower($machine_name), $identifiers)) {
-      $nid = $identifiers[strtolower($machine_name)];
-      return node_load($nid);
+
+    module_load_include('inc', 'treaty', 'treaty.api');
+    $node = treaty_load_by_odata_name($machine_name);
+    if (!$node) {
+      static $identifiers = array();
+      if (empty($identifiers)) {
+        $q = db_select('field_data_field_odata_identifier', 'a')->fields('a', array(
+          'field_odata_identifier_value',
+          'entity_id'
+        ));
+        $q->condition('bundle', 'treaty');
+        $rows = $q->execute()->fetchAllKeyed();
+        $identifiers = array();
+        foreach ($rows as $k => $nid) {
+          $identifiers[strtolower($k)] = $nid;
+        }
+      }
+      if (array_key_exists(strtolower($machine_name), $identifiers)) {
+        $nid = $identifiers[strtolower($machine_name)];
+        return node_load($nid);
+      }
     }
     ws_consumer_odata_log(__METHOD__ . "($machine_name): Cannot find treaty by OData identifier code");
     return NULL;
