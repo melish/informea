@@ -145,13 +145,7 @@ class DecisionsODataMigration extends AbstractODataMigration {
         }
 
         // Filename validation
-        $filename = NULL;
-        if (!empty($file->filename)) {
-          $filename = $file->filename;
-        }
-        else {
-          $filename = ODataMigrationUtil::filenameFromURL($file->url);
-        }
+        $filename = !empty($file->filename) ? $file->filename : ODataMigrationUtil::filenameFromURL($file->url);
         if (empty($filename)) {
           ws_consumer_odata_log('Invalid filename for Decision id=' . $row->id . '. File URL: ' . $file->url, MigrationBase::MESSAGE_WARNING);
           continue;
@@ -189,12 +183,6 @@ class DecisionsODataMigration extends AbstractODataMigration {
     }
     $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
     $row->meetingId = $this->map_source_meeting($row->meetingId, $row->meetingTitle, $row->treaty);
-    $row->filename = array();
-    foreach ($row->files as $file) {
-      if ($filename = $this->extractFilenameFromURL($file)) {
-        $row->filename[] = $filename;
-      }
-    }
     return $this->validateRow($row);
   }
 
