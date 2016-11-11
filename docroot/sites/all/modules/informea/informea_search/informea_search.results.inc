@@ -256,7 +256,7 @@ class InforMEASearchResultsGrouping {
         $elements = array(
           'header' => $row->title . l(
               '[View]',
-              treaty_url_decision($row->nid, $paragraphs),
+              treaty_url_decision($treaty->nid, $row->nid),
               array(
                 'html' => TRUE,
                 'attributes' => array(

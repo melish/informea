@@ -860,7 +860,7 @@ function treaty_url_decision($id_treaty, $id_decision) {
   $options = array(
     'absolute' => TRUE,
   );
-  return url('node/' . $id_treaty, $options);
+  return url('node/' . $id_decision, $options);
 }
 
 function treaty_url_national_report($id_treaty, $id_report) {
