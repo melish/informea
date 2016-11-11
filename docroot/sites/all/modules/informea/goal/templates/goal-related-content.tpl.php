@@ -33,8 +33,8 @@
                               <div class="item" id="content-<?php print $treaty_article_paragraph->nid; ?>">
                                 <p>
                                   <?php if($treaty_article_paragraph_w->body->value()): ?>
+                                      <?php print l('['.t('View').']', 'node/'. $treaty->nid .'/text', array('attributes' => array('class' => array('permalink pull-right'),'target' => '_blank'), 'fragment' => 'article-' . $treaty_article->nid, 'html' => TRUE, 'query' => array('article' => $treaty_article->nid))); ?>
                                     <?php print($treaty_article_paragraph_w->body->value->value(array('decode' => FALSE))); ?>
-                                    <?php print l('['.t('View').']', 'node/'. $treaty->nid .'/text', array('attributes' => array('class' => array('permalink pull-right'),'target' => '_blank'), 'fragment' => 'article-' . $treaty_article->nid, 'html' => TRUE, 'query' => array('article' => $treaty_article->nid))); ?>
                                   <?php endif; ?>
                                 </p>
                               </div>
@@ -65,9 +65,9 @@
                               <?php $decision_paragraph_w = entity_metadata_wrapper('node', $decision_paragraph); ?>
                               <div class="item" id="content-<?php print $decision->nid; ?>">
                                 <p>
-                                  <?php if($decision_paragraph_w->body->value()): ?>
+                               <?php if($decision_paragraph_w->body->value()): ?>
+                                    <?php print l('['.t('View').']', 'node/'. $decision_paragraph->nid, array('attributes' => array('class' => array('permalink pull-right'),'target' => '_blank'), 'fragment' => $decision_paragraph->nid, 'html' => TRUE)); ?>
                                     <?php print($decision_paragraph_w->body->value->value(array('decode' => FALSE))); ?>
-                                      <?php print l('['.t('View').']', 'node/'. $decision_paragraph->nid, array('attributes' => array('class' => array('permalink pull-right'),'target' => '_blank'), 'fragment' => $decision_paragraph->nid, 'html' => TRUE)); ?>
                                   <?php endif; ?>
                                 </p>
                               </div>
@@ -106,8 +106,8 @@
                               </p>
                               <p>
                                  <?php if($national_report_paragraph_w->body->value()): ?>
+                                   <?php print l('['.t('View').']', 'node/'. $national_report_paragraph->nid, array('attributes' => array('class' => array('permalink pull-right'),'target' => '_blank'), 'fragment' =>  $national_report_paragraph->nid, 'html' => TRUE)); ?>
                                   <?php print($national_report_paragraph_w->body->value->value(array('decode' => FALSE))); ?>
-                                  <?php print l('['.t('View').']', 'node/'. $national_report_paragraph->nid, array('attributes' => array('class' => array('permalink pull-right'),'target' => '_blank'), 'fragment' =>  $national_report_paragraph->nid, 'html' => TRUE)); ?>
                                <?php endif; ?>
                               </p>
                             </div>
