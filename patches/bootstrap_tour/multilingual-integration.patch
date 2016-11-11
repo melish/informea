@@ -1,0 +1,33 @@
+diff --git a/docroot/sites/all/modules/contrib/bootstrap_tour/js/bootstrap-tour.js b/docroot/sites/all/modules/contrib/bootstrap_tour/js/bootstrap-tour.js
+index e234ee7..bde1f5c 100644
+--- a/bootstrap-tour.js
++++ b/bootstrap-tour.js
+@@ -66,6 +66,8 @@
+         },
+         redirect: function (path) {
+           var browserPath = cleanPath("" + document.location.pathname + document.location.hash),
++              // Remove language from URL
++              cleanedBrowserPath = browserPath.substr(browserPath.indexOf('/', 1)),
+               cleanedPath = cleanPath(path),
+               // Newer versions have a this.getCurrentStep() function - this is for backcompat.
+               currentIndex = this._current,
+@@ -76,7 +78,8 @@
+           // If we haven't shown a single step and bootstrap tour is trying to
+           // redirect, well, it means we've wandered off from the tour. Ask the
+           // user if they'd like to return.
+-          if (!shown && browserPath !== cleanedPath && browserPath !== cleanedNextPath && !window.confirm(wanderedOff)) {
++          if (!shown && browserPath !== cleanedPath && browserPath !== cleanedNextPath
++              && cleanedBrowserPath !== cleanedNextPath && !window.confirm(wanderedOff)) {
+             // The user has opted to leave the tour!
+             this.end();
+             return;
+@@ -85,7 +88,8 @@
+           // If the user has shown initiative and jumped to the next step, then
+           // we advance the step counter for them, before redirecting the the
+           // path which has &tour= and &step= in it.
+-          if (!shown && browserPath !== cleanedPath && browserPath === cleanedNextPath) {
++          if (!shown && browserPath !== cleanedPath
++              && (browserPath === cleanedNextPath || cleanedBrowserPath === cleanedNextPath)) {
+             this.setCurrentStep(currentIndex + 1);
+             path = nextPath;
+           }

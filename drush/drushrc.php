@@ -351,6 +351,8 @@ $options['init-modules'] = array(
   'analytics_integration',
   'hotjar',
   'varnish',
+  'bootstrap_tour',
+  'inline_entity_form',
 );
 
 

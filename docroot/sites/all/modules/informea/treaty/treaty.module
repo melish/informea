@@ -344,7 +344,6 @@ function treaty_custom_view_node($node, $context) {
         $map_tab = array(
           'header' => t('Map of Parties'),
           'body' => drupal_render($elements),
-          'active' => TRUE
         );
 
         // Tables with parties.
@@ -550,7 +549,7 @@ function treaty_create_table_with_members($members, $node) {
       'class' => 'table-no-striping'
     ),
     'header' => array(
-      t('Country'),
+      t('Party'),
       array('data' => t('Signature'), 'class' => array('text-center')),
       array('data' => t('Ratification'), 'class' => array('text-center')),
       array('data' => t('Status'), 'class' => array('text-center')),
