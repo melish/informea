@@ -860,20 +860,7 @@ function treaty_url_decision($id_treaty, $id_decision) {
   $options = array(
     'absolute' => TRUE,
   );
-  $link = url('node/' . $id_treaty, $options) . '/decisions?';
-  $query = array();
-  $fragment = '#';
-  try {
-    $w = entity_metadata_wrapper('node', $id_decision);
-    if ($meeting = $w->field_meeting->value()) {
-      $query['meeting'] = $meeting->nid;
-    }
-    $fragment .= 'decision-' . $id_decision;
-  }
-  catch(Exception $e) {
-    watchdog_exception('treaty', $e);
-  }
-  return $link . drupal_http_build_query($query) . $fragment;
+  return url('node/' . $id_decision, $options);
 }
 
 function treaty_url_national_report($id_treaty, $id_report) {
