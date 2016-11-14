@@ -1083,6 +1083,7 @@ button.toggle {
   margin-right: 12px;
   padding: 6px;
   border: 1px solid #c6cedb;
+  display: inline;
 }
 
 
