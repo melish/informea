@@ -1,17 +1,17 @@
 version: '2'
 services:
-  db:
-    image: mariadb
-    restart: always
-    volumes:
-      - ./.sql/:/docker-entrypoint-initdb.d/
-      - ./.docker/db/conf:/etc/mysql/conf.d/
-    # Map port to host for debugging
-    # ports:
-    #  - "3306:3306"
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=drupal
+#  db:
+#    image: mariadb
+#    restart: always
+#    volumes:
+#      - ./.sql/:/docker-entrypoint-initdb.d/
+#      - ./.docker/db/conf:/etc/mysql/conf.d/
+#    # Map port to host for debugging
+#    # ports:
+#    #  - "3306:3306"
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=root
+#      - MYSQL_DATABASE=drupal
 
   cli:
     build: .docker/cli
@@ -19,17 +19,17 @@ services:
     volumes_from:
       - web
     links:
-      - db
+#      - db
       - web
 
-  solr:
-    image: solr:5.5
-    restart: always
-    # Map port to host for debugging
-    # ports:
-    #  - "8983:8983"
-    volumes:
-      - ./.docker/solr:/opt/solr/server/solr
+#  solr:
+#    image: solr:5.5
+#    restart: always
+#    # Map port to host for debugging
+#    # ports:
+#    #  - "8983:8983"
+#    volumes:
+#      - ./.docker/solr:/opt/solr/server/solr
 
   web:
     build: .docker/web
@@ -40,6 +40,6 @@ services:
       - ./docroot:/var/www/html
       - .docker/web/php.ini:/usr/local/etc/php/php.ini
       - ./docroot/sites/default/files:/var/www/html/sites/default/files
-    depends_on:
-      - db
-      - solr
+#    depends_on:
+#      - db
+#      - solr
