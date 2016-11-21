@@ -60,7 +60,7 @@ class DocumentsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_informea_tags', 'keywords');
     $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
 
-//    $this->addFieldMapping('field_document_identifiers', 'identifier');
+//    $this->addFieldMapping('field_document_identifiers', 'identifiers');
 
     $this->addFieldMapping('field_files', 'files');
     $this->addFieldMapping('field_files:language', 'files_language');
@@ -249,10 +249,10 @@ class InforMEAODataDocumentsMigrateSource extends InforMEAAbstractODataMigrateSo
       'descriptions_language' => 'Document description languages',
       'files' => 'Document files',
       'files_language' => 'Document files languages',
-      'identifier' => 'Document identifiers',
+      'identifiers' => 'Document identifiers',
       'keywords' => 'InforMEA thesaurus keywords',
       'referenceToEntities' => 'Reference to othe entities',
-      'tag' => 'Other specific tags',
+      'tags' => 'Other specific tags',
       'types' => 'Document type',
     );
   }
