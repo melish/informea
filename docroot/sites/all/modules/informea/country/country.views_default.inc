@@ -22,7 +22,7 @@ function country_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Countries';
+  $handler->display->display_options['title'] = 'Parties';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -65,7 +65,7 @@ function country_views_default_views() {
   $handler->display->display_options['path'] = 'countries';
   $translatables['countries'] = array(
     t('Master'),
-    t('Countries'),
+    t('Parties'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -89,6 +89,7 @@ function country_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Default';
+  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'time';
@@ -100,7 +101,10 @@ function country_views_default_views() {
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '100';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'node';
   /* Relationship: Entity Reference: Referenced Entity */
@@ -227,24 +231,15 @@ function country_views_default_views() {
 
   /* Display: Legislation */
   $handler = $view->new_display('page', 'Legislation', 'page_legislation');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Legislation';
-  $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '50';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['pager']['options']['id'] = '0';
-  $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['style_options']['grouping'] = array(
     0 => array(
-      'field' => 'field_treaty',
+      'field' => 'field_type_of_text',
       'rendered' => 1,
       'rendered_strip' => 0,
     ),
   );
-  $handler->display->display_options['style_options']['uses_fields'] = TRUE;
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -269,7 +264,6 @@ function country_views_default_views() {
   $handler->display->display_options['fields']['field_treaty']['field'] = 'field_treaty';
   $handler->display->display_options['fields']['field_treaty']['label'] = '';
   $handler->display->display_options['fields']['field_treaty']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_treaty']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_treaty']['settings'] = array(
     'link' => 0,
   );
@@ -281,6 +275,14 @@ function country_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Type of document */
+  $handler->display->display_options['fields']['field_type_of_text']['id'] = 'field_type_of_text';
+  $handler->display->display_options['fields']['field_type_of_text']['table'] = 'field_data_field_type_of_text';
+  $handler->display->display_options['fields']['field_type_of_text']['field'] = 'field_type_of_text';
+  $handler->display->display_options['fields']['field_type_of_text']['label'] = '';
+  $handler->display->display_options['fields']['field_type_of_text']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_type_of_text']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_type_of_text']['type'] = 'i18n_taxonomy_term_reference_plain';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Title */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
@@ -409,7 +411,7 @@ function country_views_default_views() {
   $handler->display->display_options['title'] = 'Court decisions';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '50';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '150';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
