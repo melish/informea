@@ -188,3 +188,19 @@ function ecolex_legislation_load_nid_by_faolexid($faolexId) {
   $q->condition('entity_type', 'node');
   return $q->execute()->fetchField();
 }
+
+function ecolex_get_legislation_types_in_use() {
+  // SELECT field_type_of_text_tid FROM field_data_field_type_of_text WHERE bundle = 'legislation' GROUP BY field_type_of_text_tid;
+  $query = db_select('field_data_field_type_of_text')->fields(NULL, array('field_type_of_text_tid'));
+  $query->condition('bundle', 'legislation');
+  $query->groupBy('field_type_of_text_tid');
+  return $query->execute()->fetchCol();
+}
+
+
+function ecolex_get_court_decisions_types_in_use() {
+  $query = db_select('field_data_field_type_of_text')->fields(NULL, array('field_type_of_text_tid'));
+  $query->condition('bundle', 'court_decisions');
+  $query->groupBy('field_type_of_text_tid');
+  return $query->execute()->fetchCol();
+}

@@ -675,9 +675,23 @@ function country_batch_update_region_finish($success, $results, $operations) {
  */
 function country_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-country-related-content-page-court-decisions') {
-    $form['field_type_of_text_tid']['#options']['All'] = '- ' . t('All') . ' -';
+    $allowed = ecolex_get_court_decisions_types_in_use();
+    $options = array('All' => '- ' . t('All') . ' -');
+    foreach ($form['field_type_of_text_tid']['#options'] as $k => $v) {
+      if (in_array($k, $allowed)) {
+        $options[$k] = $v;
+      }
+    }
+    $form['field_type_of_text_tid']['#options'] = $options;
   }
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-country-related-content-page-legislation') {
-    $form['field_type_of_text_tid']['#options']['ALL'] = '- ' . t('All') . ' -';
+    $allowed = ecolex_get_legislation_types_in_use();
+    $options = array('All' => '- ' . t('All') . ' -');
+    foreach ($form['field_type_of_text_tid']['#options'] as $k => $v) {
+      if (in_array($k, $allowed)) {
+        $options[$k] = $v;
+      }
+    }
+    $form['field_type_of_text_tid']['#options'] = $options;
   }
 }
