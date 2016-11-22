@@ -22,7 +22,7 @@ function country_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Parties';
+  $handler->display->display_options['title'] = 'Countries';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -65,7 +65,7 @@ function country_views_default_views() {
   $handler->display->display_options['path'] = 'countries';
   $translatables['countries'] = array(
     t('Master'),
-    t('Parties'),
+    t('Countries'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -233,13 +233,6 @@ function country_views_default_views() {
   $handler = $view->new_display('page', 'Legislation', 'page_legislation');
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
-  $handler->display->display_options['style_options']['grouping'] = array(
-    0 => array(
-      'field' => 'field_type_of_text',
-      'rendered' => 1,
-      'rendered_strip' => 0,
-    ),
-  );
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -314,6 +307,30 @@ function country_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'legislation' => 'legislation',
   );
+  /* Filter criterion: Content: Type of document (field_type_of_text) */
+  $handler->display->display_options['filters']['field_type_of_text_tid']['id'] = 'field_type_of_text_tid';
+  $handler->display->display_options['filters']['field_type_of_text_tid']['table'] = 'field_data_field_type_of_text';
+  $handler->display->display_options['filters']['field_type_of_text_tid']['field'] = 'field_type_of_text_tid';
+  $handler->display->display_options['filters']['field_type_of_text_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_type_of_text_tid']['expose']['operator_id'] = 'field_type_of_text_tid_op';
+  $handler->display->display_options['filters']['field_type_of_text_tid']['expose']['label'] = 'Legislation type';
+  $handler->display->display_options['filters']['field_type_of_text_tid']['expose']['operator'] = 'field_type_of_text_tid_op';
+  $handler->display->display_options['filters']['field_type_of_text_tid']['expose']['identifier'] = 'field_type_of_text_tid';
+  $handler->display->display_options['filters']['field_type_of_text_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+  );
+  $handler->display->display_options['filters']['field_type_of_text_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_type_of_text_tid']['vocabulary'] = 'type_of_text';
   $handler->display->display_options['path'] = 'countries/%/parties';
 
   /* Display: Literature */
@@ -417,13 +434,6 @@ function country_views_default_views() {
   $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
-  $handler->display->display_options['style_options']['grouping'] = array(
-    0 => array(
-      'field' => 'field_type_of_text',
-      'rendered' => 1,
-      'rendered_strip' => 0,
-    ),
-  );
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -499,6 +509,30 @@ function country_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'court_decisions' => 'court_decisions',
   );
+  /* Filter criterion: Content: Type of document (field_type_of_text) */
+  $handler->display->display_options['filters']['field_type_of_text_tid']['id'] = 'field_type_of_text_tid';
+  $handler->display->display_options['filters']['field_type_of_text_tid']['table'] = 'field_data_field_type_of_text';
+  $handler->display->display_options['filters']['field_type_of_text_tid']['field'] = 'field_type_of_text_tid';
+  $handler->display->display_options['filters']['field_type_of_text_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_type_of_text_tid']['expose']['operator_id'] = 'field_type_of_text_tid_op';
+  $handler->display->display_options['filters']['field_type_of_text_tid']['expose']['label'] = 'Type of court decision';
+  $handler->display->display_options['filters']['field_type_of_text_tid']['expose']['operator'] = 'field_type_of_text_tid_op';
+  $handler->display->display_options['filters']['field_type_of_text_tid']['expose']['identifier'] = 'field_type_of_text_tid';
+  $handler->display->display_options['filters']['field_type_of_text_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+  );
+  $handler->display->display_options['filters']['field_type_of_text_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_type_of_text_tid']['vocabulary'] = 'type_of_text';
   $handler->display->display_options['path'] = 'countries/%/parties';
 
   /* Display: Embed national reports */
@@ -931,8 +965,10 @@ function country_views_default_views() {
     t('Country focal points'),
     t('Content entity referenced from field_treaty'),
     t('Legislation'),
+    t('Legislation type'),
     t('Literature'),
     t('Court decisions'),
+    t('Type of court decision'),
     t('Embed national reports'),
     t('National reports'),
     t('Document(s)'),
