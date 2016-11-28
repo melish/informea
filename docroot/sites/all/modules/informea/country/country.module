@@ -374,7 +374,7 @@ function country_country_contextual_menu_alter(&$contextual_menu, $node) {
         'count' => country_get_national_report_count($node->nid)
       ),
         'legislation' => array(
-        'title' => t('Legislation'),
+        'title' => t('Legislations'),
         'count' => country_get_legislation_count($node->nid)
       ),
       'court-decisions' => array(
