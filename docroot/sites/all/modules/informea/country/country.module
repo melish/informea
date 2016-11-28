@@ -114,14 +114,14 @@ function country_node_view($node, $view_mode, $langcode) {
         foreach($raw_data as $t) {
           $data[] = (object) array('the_title' => $t->name, 'the_value' => (int)$t->count);
         }
-        $chart_config = edw_amcharts_default_config_chart_pie();
-        $chart_config->theme = 'light';
-        $chart_config->dataProvider = $data;
-        edw_amcharts_add_chart('country_legislation_chart', 'pie', $chart_config, array(), array('width' => '460px', 'height' => '260px'));
+      //  $chart_config = edw_amcharts_default_config_chart_pie();
+      // $chart_config->theme = 'light';
+      //  $chart_config->dataProvider = $data;
+      //  edw_amcharts_add_chart('country_legislation_chart', 'pie', $chart_config, array(),array('width' => '460px', 'height' => '260px'));
         $node->content['context'] = array(
-          array(
-              '#type' => 'item', '#weight' => 10, '#prefix' => '<p></p><h4>Types of Legislations</h4>', '#suffix' => '', '#id' => 'country_legislation_chart',
-          ),
+         // array(
+         //     '#type' => 'item', '#weight' => 10, '#prefix' => '<p></p><h4>Types of Legislations</h4>', '#suffix' => '', '#id' => 'country_legislation_chart',
+          //),
           array(
             '#type' => 'item', '#weight' => 100, '#markup' => $view->render(),
             )
@@ -136,14 +136,14 @@ function country_node_view($node, $view_mode, $langcode) {
         foreach($raw_data as $t) {
           $data[] = (object) array('the_category' => $t->name, 'the_value' =>(int) $t->count);
         }
-        $chart_config = edw_amcharts_default_config_chart_column();
-        $chart_config->rotate = TRUE;
-        $chart_config->dataProvider = $data;
-        edw_amcharts_add_chart('country_decisions_chart', 'column', $chart_config, array(), array('width' => '850px', 'height' => '300px'));
+        //$chart_config = edw_amcharts_default_config_chart_column();
+        //$chart_config->rotate = TRUE;
+        //$chart_config->dataProvider = $data;
+        //edw_amcharts_add_chart('country_decisions_chart', 'column', $chart_config, array(), array('width' => '850px', 'height' => '300px'));
         $node->content['context'] = array(
-          array(
-            '#type' => 'item', '#weight' => 1, '#prefix' => '<p></p><h4>Types of Court Decisions</h4>', '#suffix' => '', '#id' => 'country_decisions_chart',
-          ),
+          //array(
+          //  '#type' => 'item', '#weight' => 1, '#prefix' => '<p></p><h4>Types of Court Decisions</h4>', '#suffix' => '', '#id' => 'country_decisions_chart',
+          //),
           array(
             '#type' => 'item', '#weight' => 10, '#markup' => $view->render(),
           )
