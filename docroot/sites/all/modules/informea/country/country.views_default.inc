@@ -276,6 +276,11 @@ function country_views_default_views() {
   $handler->display->display_options['fields']['field_type_of_text']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_type_of_text']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_type_of_text']['type'] = 'i18n_taxonomy_term_reference_plain';
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['exclude'] = TRUE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Title */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
@@ -313,7 +318,7 @@ function country_views_default_views() {
   $handler->display->display_options['filters']['field_type_of_text_tid']['field'] = 'field_type_of_text_tid';
   $handler->display->display_options['filters']['field_type_of_text_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_type_of_text_tid']['expose']['operator_id'] = 'field_type_of_text_tid_op';
-  $handler->display->display_options['filters']['field_type_of_text_tid']['expose']['label'] = 'Legislation type';
+  $handler->display->display_options['filters']['field_type_of_text_tid']['expose']['label'] = 'Type of text:';
   $handler->display->display_options['filters']['field_type_of_text_tid']['expose']['operator'] = 'field_type_of_text_tid_op';
   $handler->display->display_options['filters']['field_type_of_text_tid']['expose']['identifier'] = 'field_type_of_text_tid';
   $handler->display->display_options['filters']['field_type_of_text_tid']['expose']['remember_roles'] = array(
@@ -331,6 +336,90 @@ function country_views_default_views() {
   );
   $handler->display->display_options['filters']['field_type_of_text_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_type_of_text_tid']['vocabulary'] = 'type_of_text';
+  /* Filter criterion: Content: Date of text (field_sorting_date) */
+  $handler->display->display_options['filters']['field_sorting_date_value']['id'] = 'field_sorting_date_value';
+  $handler->display->display_options['filters']['field_sorting_date_value']['table'] = 'field_data_field_sorting_date';
+  $handler->display->display_options['filters']['field_sorting_date_value']['field'] = 'field_sorting_date_value';
+  $handler->display->display_options['filters']['field_sorting_date_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_sorting_date_value']['expose']['operator_id'] = 'field_sorting_date_value_op';
+  $handler->display->display_options['filters']['field_sorting_date_value']['expose']['label'] = 'Date of text:';
+  $handler->display->display_options['filters']['field_sorting_date_value']['expose']['operator'] = 'field_sorting_date_value_op';
+  $handler->display->display_options['filters']['field_sorting_date_value']['expose']['identifier'] = 'field_sorting_date_value';
+  $handler->display->display_options['filters']['field_sorting_date_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+  );
+  $handler->display->display_options['filters']['field_sorting_date_value']['granularity'] = 'year';
+  $handler->display->display_options['filters']['field_sorting_date_value']['year_range'] = '-10:+0';
+  /* Filter criterion: Content: ECOLEX Keywords (field_ecolex_keywords) */
+  $handler->display->display_options['filters']['field_ecolex_keywords_tid']['id'] = 'field_ecolex_keywords_tid';
+  $handler->display->display_options['filters']['field_ecolex_keywords_tid']['table'] = 'field_data_field_ecolex_keywords';
+  $handler->display->display_options['filters']['field_ecolex_keywords_tid']['field'] = 'field_ecolex_keywords_tid';
+  $handler->display->display_options['filters']['field_ecolex_keywords_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_ecolex_keywords_tid']['expose']['operator_id'] = 'field_ecolex_keywords_tid_op';
+  $handler->display->display_options['filters']['field_ecolex_keywords_tid']['expose']['label'] = 'Keywords';
+  $handler->display->display_options['filters']['field_ecolex_keywords_tid']['expose']['operator'] = 'field_ecolex_keywords_tid_op';
+  $handler->display->display_options['filters']['field_ecolex_keywords_tid']['expose']['identifier'] = 'field_ecolex_keywords_tid';
+  $handler->display->display_options['filters']['field_ecolex_keywords_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+  );
+  $handler->display->display_options['filters']['field_ecolex_keywords_tid']['group_info']['label'] = 'ECOLEX Keywords (field_ecolex_keywords)';
+  $handler->display->display_options['filters']['field_ecolex_keywords_tid']['group_info']['identifier'] = 'field_ecolex_keywords_tid';
+  $handler->display->display_options['filters']['field_ecolex_keywords_tid']['group_info']['remember'] = FALSE;
+  $handler->display->display_options['filters']['field_ecolex_keywords_tid']['group_info']['group_items'] = array(
+    1 => array(),
+    2 => array(),
+    3 => array(),
+  );
+  $handler->display->display_options['filters']['field_ecolex_keywords_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_ecolex_keywords_tid']['vocabulary'] = 'thesaurus_ecolex';
+  $handler->display->display_options['filters']['field_ecolex_keywords_tid']['error_message'] = FALSE;
+  /* Filter criterion: Global: Combine fields filter */
+  $handler->display->display_options['filters']['combine']['id'] = 'combine';
+  $handler->display->display_options['filters']['combine']['table'] = 'views';
+  $handler->display->display_options['filters']['combine']['field'] = 'combine';
+  $handler->display->display_options['filters']['combine']['operator'] = 'word';
+  $handler->display->display_options['filters']['combine']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['combine']['expose']['operator_id'] = 'combine_op';
+  $handler->display->display_options['filters']['combine']['expose']['label'] = 'Search';
+  $handler->display->display_options['filters']['combine']['expose']['operator'] = 'combine_op';
+  $handler->display->display_options['filters']['combine']['expose']['identifier'] = 'combine';
+  $handler->display->display_options['filters']['combine']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+  );
+  $handler->display->display_options['filters']['combine']['fields'] = array(
+    'title' => 'title',
+    'body' => 'body',
+  );
   $handler->display->display_options['path'] = 'countries/%/parties';
 
   /* Display: Literature */
@@ -478,6 +567,11 @@ function country_views_default_views() {
   $handler->display->display_options['fields']['field_type_of_text']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_type_of_text']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_type_of_text']['type'] = 'i18n_taxonomy_term_reference_plain';
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['exclude'] = TRUE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Title */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
@@ -533,6 +627,58 @@ function country_views_default_views() {
   );
   $handler->display->display_options['filters']['field_type_of_text_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_type_of_text_tid']['vocabulary'] = 'type_of_text';
+  /* Filter criterion: Content: Date of text (field_sorting_date) */
+  $handler->display->display_options['filters']['field_sorting_date_value']['id'] = 'field_sorting_date_value';
+  $handler->display->display_options['filters']['field_sorting_date_value']['table'] = 'field_data_field_sorting_date';
+  $handler->display->display_options['filters']['field_sorting_date_value']['field'] = 'field_sorting_date_value';
+  $handler->display->display_options['filters']['field_sorting_date_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_sorting_date_value']['expose']['operator_id'] = 'field_sorting_date_value_op';
+  $handler->display->display_options['filters']['field_sorting_date_value']['expose']['label'] = 'Date of text:';
+  $handler->display->display_options['filters']['field_sorting_date_value']['expose']['operator'] = 'field_sorting_date_value_op';
+  $handler->display->display_options['filters']['field_sorting_date_value']['expose']['identifier'] = 'field_sorting_date_value';
+  $handler->display->display_options['filters']['field_sorting_date_value']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['field_sorting_date_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+  );
+  $handler->display->display_options['filters']['field_sorting_date_value']['granularity'] = 'year';
+  $handler->display->display_options['filters']['field_sorting_date_value']['year_range'] = '-10:+0';
+  /* Filter criterion: Global: Combine fields filter */
+  $handler->display->display_options['filters']['combine']['id'] = 'combine';
+  $handler->display->display_options['filters']['combine']['table'] = 'views';
+  $handler->display->display_options['filters']['combine']['field'] = 'combine';
+  $handler->display->display_options['filters']['combine']['operator'] = 'word';
+  $handler->display->display_options['filters']['combine']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['combine']['expose']['operator_id'] = 'combine_op';
+  $handler->display->display_options['filters']['combine']['expose']['label'] = 'Search';
+  $handler->display->display_options['filters']['combine']['expose']['operator'] = 'combine_op';
+  $handler->display->display_options['filters']['combine']['expose']['identifier'] = 'combine';
+  $handler->display->display_options['filters']['combine']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+  );
+  $handler->display->display_options['filters']['combine']['fields'] = array(
+    'title' => 'title',
+    'body' => 'body',
+  );
   $handler->display->display_options['path'] = 'countries/%/parties';
 
   /* Display: Embed national reports */
@@ -965,7 +1111,12 @@ function country_views_default_views() {
     t('Country focal points'),
     t('Content entity referenced from field_treaty'),
     t('Legislation'),
-    t('Legislation type'),
+    t('Body'),
+    t('Type of text:'),
+    t('Date of text:'),
+    t('Keywords'),
+    t('ECOLEX Keywords (field_ecolex_keywords)'),
+    t('Search'),
     t('Literature'),
     t('Court decisions'),
     t('Type of court decision'),
