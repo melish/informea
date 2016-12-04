@@ -674,24 +674,49 @@ function country_batch_update_region_finish($success, $results, $operations) {
  * Implements hook_form_alter().
  */
 function country_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-country-related-content-page-court-decisions') {
-    $allowed = ecolex_get_court_decisions_types_in_use();
-    $options = array('All' => '- ' . t('All') . ' -');
-    foreach ($form['field_type_of_text_tid']['#options'] as $k => $v) {
-      if (in_array($k, $allowed)) {
-        $options[$k] = $v;
+  if ($form_id == 'views_exposed_form') {
+    if ($form['#id'] == 'views-exposed-form-country-related-content-page-court-decisions') {
+      $view = $form_state['view'];
+      $allowed = ecolex_get_court_decisions_types_in_use();
+      $options = array('All' => '- ' . t('All') . ' -');
+      foreach ($form['field_type_of_text_tid']['#options'] as $k => $v) {
+        if (in_array($k, $allowed)) {
+          $options[$k] = $v;
+        }
       }
-    }
-    $form['field_type_of_text_tid']['#options'] = $options;
-  }
-  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-country-related-content-page-legislation') {
-    $allowed = ecolex_get_legislation_types_in_use();
-    $options = array('All' => '- ' . t('All') . ' -');
-    foreach ($form['field_type_of_text_tid']['#options'] as $k => $v) {
-      if (in_array($k, $allowed)) {
-        $options[$k] = $v;
+      $form['field_type_of_text_tid']['#options'] = $options;
+
+      $country = !empty($view->args[0]) ? $view->args[0] : NULL;
+      $allowed = ecolex_get_court_decisions_keywords_in_use($country);
+      $options = array('All' => '- ' . t('Any') . ' -');
+      foreach ($form['field_ecolex_keywords_tid']['#options'] as $k => $v) {
+        if (in_array($k, $allowed)) {
+          $options[$k] = $v;
+        }
       }
+      $form['field_ecolex_keywords_tid']['#options'] = $options;
     }
-    $form['field_type_of_text_tid']['#options'] = $options;
+    if ($form['#id'] == 'views-exposed-form-country-related-content-page-legislation') {
+      $view = $form_state['view'];
+      $allowed = ecolex_get_legislation_types_in_use();
+      $options = array('All' => '- ' . t('All') . ' -');
+      foreach ($form['field_type_of_text_tid']['#options'] as $k => $v) {
+        if (in_array($k, $allowed)) {
+          $options[$k] = $v;
+        }
+      }
+      $form['field_type_of_text_tid']['#options'] = $options;
+
+      $country = !empty($view->args[0]) ? $view->args[0] : NULL;
+      $allowed = ecolex_get_court_decisions_keywords_in_use($country);
+      $options = array('All' => '- ' . t('Any') . ' -');
+      foreach ($form['field_ecolex_keywords_tid']['#options'] as $k => $v) {
+        if (in_array($k, $allowed)) {
+          $options[$k] = $v;
+        }
+      }
+      $form['field_ecolex_keywords_tid']['#options'] = $options;
+    }
+
   }
 }
