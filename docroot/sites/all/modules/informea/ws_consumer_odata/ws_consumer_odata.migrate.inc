@@ -232,23 +232,25 @@ class ODataMigrationUtil {
   /**
    * Prepare English title (node.title).
    *
-   * @param $values
+   * @param array $values
    *
    * @return string title
    */
   static function prepareTitle(&$values) {
     if(empty($values) || !is_array($values)) {
-      return NULL;
+      return null;
     }
     foreach($values as &$v) {
-      $v->value = self::fixI18NString($v->value, TRUE);
+      $v->value = self::fixI18NString($v->value, true);
     }
     foreach ($values as $ob) {
       if ($ob->language == 'en') {
         return $ob->value;
       }
     }
-    return NULL;
+    // Just return the first value encountered (some items do not have an english title)
+    $item = array_shift($values);
+    return $item->value;
   }
 
   static function getSingleValuedMultilingualField($data) {
