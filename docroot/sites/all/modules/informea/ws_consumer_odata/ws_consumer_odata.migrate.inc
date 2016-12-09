@@ -258,8 +258,9 @@ class ODataMigrationUtil {
     $values = array();
     if (!empty($data) && is_array($data)) {
       foreach ($data as $value) {
-        if (!empty($value->value)) {
-          $languages[] = $value->language;
+        $language = self::fixLanguage($value->language);
+        if (!empty($value->value) && !in_array($language, $languages)) {
+          $languages[] = $language;
           $values[] = $value->value;
         }
       }
@@ -322,14 +323,29 @@ class ODataMigrationUtil {
   }
 
   static function fixLanguage($language) {
-    // Sometimes chinese comes as 'zh' instead of 'zh-hans'
-    if (empty($language)) {
+    static $allowed = array('en', 'fr', 'es', 'ru', 'ar', 'zh-hans');
+    $language = strtolower($language);
+    switch ($language) {
+      case 'english':
+        return 'en';
+      case 'french':
+        return 'fr';
+      case 'spanish':
+        return 'es';
+      case 'russian':
+        return 'ru';
+      case 'arabic':
+        return 'ar';
+      case 'chinese':
+      case 'chinese, simplified':
+      case 'cn':
+      case 'zh':
+        return 'zh-hans';
+    }
+    if (!in_array($language, $allowed)) {
       return 'en';
     }
-    if ($language == 'zh') {
-      return 'zh-hans';
-    }
-    return $language;
+    return strtolower($language);
   }
 
   /**

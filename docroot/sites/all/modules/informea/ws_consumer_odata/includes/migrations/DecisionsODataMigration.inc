@@ -139,6 +139,10 @@ class DecisionsODataMigration extends AbstractODataMigration {
     $row->filename = array();
     if (!empty($files)) {
       foreach ($files as $file) {
+        // Skip non-document files
+        if (in_array(strtolower($file->mimeType), array('image/jpeg'))) {
+          continue;
+        }
         if (empty($file->url)) {
           ws_consumer_odata_log('Invalid file for Decision id=' . $row->id, MigrationBase::MESSAGE_WARNING);
           continue;
@@ -156,12 +160,13 @@ class DecisionsODataMigration extends AbstractODataMigration {
           ws_consumer_odata_log('Missing language for file, Decision id=' . $row->id . '. File URL: ' . $file->url, MigrationBase::MESSAGE_WARNING);
           continue;
         }
-        $language = ODataMigrationUtil::fixLanguage($file->language);
-        $all_languages[] = $language;
-
-        $row->files[] = $file->url;
-        $row->filename[] = $filename;
-        $row->files_language[] = $language;
+        if (!in_array($file->url, $row->files)) {
+          $language = ODataMigrationUtil::fixLanguage($file->language);
+          $all_languages[] = $language;
+          $row->files[] = $file->url;
+          $row->filename[] = $filename;
+          $row->files_language[] = $language;
+        }
       }
     }
     $row->languages = array_unique($all_languages);
