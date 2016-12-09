@@ -495,23 +495,6 @@ Decisions
     'name' => '',
     'access' => array(
       'plugins' => array(
-        0 => array(
-          'name' => 'entity_field_value:node:event_calendar:field_event_type',
-          'settings' => array(
-            'field_event_type' => array(
-              'und' => array(
-                0 => array(
-                  'tid' => '821',
-                ),
-              ),
-            ),
-            'field_event_type_tid' => array(
-              0 => '821',
-            ),
-          ),
-          'context' => 'argument_entity_id:node_1',
-          'not' => FALSE,
-        ),
         1 => array(
           'name' => 'node_type',
           'settings' => array(
@@ -520,6 +503,14 @@ Decisions
             ),
           ),
           'context' => 'argument_entity_id:node_1',
+          'not' => FALSE,
+        ),
+        2 => array(
+          'name' => 'php',
+          'settings' => array(
+            'description' => 'Meeting has decisions',
+            'php' => 'return treaty_select_meeting_render_panel();',
+          ),
           'not' => FALSE,
         ),
       ),

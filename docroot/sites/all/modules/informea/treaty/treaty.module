@@ -1479,3 +1479,12 @@ function treaty_export_text_to_xml($treaty) {
   print $akomaNtoso->render()->asXML();
   drupal_exit();
 }
+
+function treaty_select_meeting_render_panel() {
+  if ($node = menu_get_object()) {
+    module_load_include('module', 'decision', 'decision.api');
+    $count = decision_get_meeting_decisions_count($node->nid);
+    return $count > 0;
+  }
+  return false;
+}

@@ -60,3 +60,12 @@ function _decision_get_treaty_links($node, $hide = array()) {
   $contextual_menu['#attributes']['class'] = array('nav', 'nav-tabs');
   return $contextual_menu;
 }
+
+function decision_get_meeting_decisions_count($calendar_event_nid) {
+  $q = db_select('field_data_field_meeting', 'a')->fields('a', array('entity_id'));
+  $q->innerJoin('node', 'b', 'a.entity_id = b.nid');
+  $q->condition('b.status', 1);
+  $q->condition('a.bundle', 'decision');
+  $q->condition('a.field_meeting_target_id', $calendar_event_nid);
+  return $q->countQuery()->execute()->fetchField();
+}
