@@ -41,6 +41,34 @@ search/*',
     'visibility' => 1,
   );
 
+  $export['facetapi-EJI9yeRFhLWENPn7RhYCKcQ0pnv7ekBz'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'EJI9yeRFhLWENPn7RhYCKcQ0pnv7ekBz',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'facetapi',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'informea_theme' => array(
+        'region' => 'sidebar_first',
+        'status' => 1,
+        'theme' => 'informea_theme',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => 'InforMEA Tags',
+    'visibility' => 0,
+  );
+
   $export['facetapi-EeqfYRvf4OeayxrDPBXmxh0uLs695r1S'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -96,6 +124,90 @@ search/*',
     ),
     'title' => 'Keywords',
     'visibility' => 1,
+  );
+
+  $export['facetapi-Iu7DfdMz8nE1pWqlLbPh7W3qy5FwfXA7'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'Iu7DfdMz8nE1pWqlLbPh7W3qy5FwfXA7',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'facetapi',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'informea_theme' => array(
+        'region' => 'sidebar_first',
+        'status' => 1,
+        'theme' => 'informea_theme',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
+  $export['facetapi-X0NDj5HVNJ7NyGJl1LG0ZT4fQlCHnXai'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'X0NDj5HVNJ7NyGJl1LG0ZT4fQlCHnXai',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'facetapi',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'informea_theme' => array(
+        'region' => 'sidebar_first',
+        'status' => 1,
+        'theme' => 'informea_theme',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => 'Country',
+    'visibility' => 0,
+  );
+
+  $export['facetapi-h1XPMBqppfm1UO8Vwq9J5GZclabHuaY9'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'h1XPMBqppfm1UO8Vwq9J5GZclabHuaY9',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'facetapi',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'informea_theme' => array(
+        'region' => 'sidebar_first',
+        'status' => 1,
+        'theme' => 'informea_theme',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => 'Instrument',
+    'visibility' => 0,
   );
 
   $export['facetapi-qTurWYUYYufA4n4p1OFoxmFTW0m9G81J'] = array(

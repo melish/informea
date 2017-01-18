@@ -24,6 +24,18 @@ class InforMEASearchResultsGrouping {
         $node->relevance = $row->_entity_properties['search_api_relevance'];
       }
       switch ($bundle) {
+
+        case 'court_decisions':
+        case 'legislation':
+        case 'literature':
+          if (!array_key_exists($nid, $results)) {
+            $node->articles = array();
+            $node->national_reports = array();
+            $node->action_plans = array();
+            $results[$nid] = $node;
+          }
+          break;
+
         case 'treaty':
           if (!array_key_exists($nid, $results)) {
             $node->articles = array();
@@ -163,9 +175,13 @@ class InforMEASearchResultsGrouping {
       $content = array_merge($content, $action_plans);
     }
 
+    $url_logo = '';
+    if (property_exists($row, 'field_logo')) {
+      $url_logo = treaty_url_logo($row);
+    }
     $elements = array(
       'header' =>
-        treaty_url_logo($row)
+        $url_logo
         . $row->title
         . l(
           '[View]',
@@ -190,6 +206,13 @@ class InforMEASearchResultsGrouping {
       '#no-data-parent' => 1,
     );
     return $ret;
+  }
+
+  public static function raw_view($row) {
+    $title = l($row->title, 'node/' . $row->nid);
+    return array(
+      '#markup' => '<h4>' . $title . '</h4>' . $row->excerpt,
+    );
   }
 
   public static function view_articles($treaty) {

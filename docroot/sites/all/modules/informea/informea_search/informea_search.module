@@ -10,7 +10,7 @@ include_once 'informea_search.features.inc';
  * Implements hook_views_pre_render().
  */
 function informea_search_views_pre_render(&$view) {
-  if ($view->name == 'informea_search') {
+  if ($view->name == 'informea_search' || $view->name == 'search_tabs') {
     drupal_add_library('informea', 'smallipop');
     drupal_add_js(drupal_get_path('module', 'informea_search') . '/js/informea_search.js');
 
@@ -30,6 +30,16 @@ function informea_search_views_pre_render(&$view) {
       $content .= '.</div>';
     }
     $view->attachment_before = $content;
+  }
+}
+
+function informea_search_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  if (arg(0) == 'search') {
+    $search = str_replace($root_path, '', implode('/' , arg()));
+    foreach($data['tabs'][0]['output'] as $k => $v) {
+      $data['tabs'][0]['output'][$k]['#link']['href'] .= $search;
+      $data['tabs'][0]['output'][$k]['#link']['localized_options']['query'] = drupal_get_query_parameters();
+    }
   }
 }
 
@@ -212,19 +222,24 @@ function informea_search_ajax_callback($data) {
 }
 
 function informea_search_form($form, $form_state) {
-  $action = 'search';
-  $form['#action'] = $action;
   $form['#method'] = 'post';
   $form['#id'] = 'search-form';
-  $form['#action'] = url('search');
   // Record the $action for later use in redirecting.
   $form['#attributes'] = array(
     'class' => array('navbar-form')
   );
   $q = $_GET['q'];
   $search_query = '';
-  if (strpos($q, 'search/') === 0) {
-    $search_query = str_replace('search/', '', $q);
+
+  $replace = 'search/';
+  $arg01 = arg(0) . '/' . arg(1);
+  if (in_array($arg01, ['search/legislation', 'search/court-decisions', 'search/literature'])) {
+    $replace = $arg01 . '/';
+  }
+  $form['#action'] = url($replace);
+
+  if (strpos($q, $replace) === 0) {
+    $search_query = str_replace($replace, '', $q);
   }
   $form['basic'] = array('#type' => 'container');
   $form['basic']['keys'] = array(
@@ -250,7 +265,9 @@ function informea_search_form($form, $form_state) {
 
 function informea_search_form_submit($form, $form_state) {
   $input = $form_state['values']['keys'];
-  drupal_goto('search/' . $input);
+  $action = explode('/', $form['#action']);
+  unset($action[1]);
+  drupal_goto(implode('/', $action) . $input);
 }
 
 function informea_search_external_search() {
