@@ -36,6 +36,19 @@ function taxonomy_external_sync_cronapi($op, $job = NULL) {
   return $ret;
 }
 
+/**
+ * Implements hook_cron().
+ */
+function taxonomy_external_sync_cron() {
+  if (module_exists('elysia_cron')) {
+    return;
+  }
+  $last_run = variable_get('taxonomy_external_sync_migration_last_run', NULL);
+  if (empty($last_run) || (time() - $last_run) > (60 * 30)) {
+    taxonomy_external_sync_migrate_all_vocabularies();
+    variable_set('taxonomy_external_sync_migration_last_run', time());
+  }
+}
 
 /**
  * Run the actual elysia synchronisation task
@@ -66,10 +79,22 @@ function taxonomy_external_sync_form_taxonomy_form_vocabulary_alter(&$form, &$fo
  */
 function taxonomy_external_sync_entity_info_alter(&$entity_info) {
   $info = taxonomy_external_sync_config_load();
-  foreach ($entity_info['taxonomy_term']['bundles'] as $bundle => &$config) {
+  foreach ($entity_info['taxonomy_term']['bundles'] as $bundle => $config) {
     if (!empty($info[$bundle])) {
-      $config['tes'] = $info[$bundle];
+      $entity_info['taxonomy_term']['bundles'][$bundle]['tes'] = $info[$bundle];
     }
+    else {
+      $entity_info['taxonomy_term']['bundles'][$bundle]['tes'] = array('enable' => FALSE);
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function taxonomy_external_sync_entity_presave($entity, $type) {
+  if (!empty($entity->machine_name) && !empty($entity->tes)) {
+    taxonomy_external_sync_config_save($entity->machine_name, $entity->tes);
   }
 }
 
@@ -77,10 +102,21 @@ function taxonomy_external_sync_entity_info_alter(&$entity_info) {
  * Implements hook_entity_load().
  */
 function taxonomy_external_sync_entity_load($entities, $type) {
-  $config = taxonomy_external_sync_config_load();
   foreach ($entities as $entity) {
-    if (!empty($entity->machine_name) && !empty($config[$entity->machine_name])) {
-      $entity->tes = $config[$entity->machine_name];
+    if (!empty($entity->machine_name)) {
+      $entity_info = entity_get_info('taxonomy_term');
+      if (!empty($entity_info['bundles'][$entity->machine_name]['tes'])) {
+        $entity->tes = $entity_info['bundles'][$entity->machine_name]['tes'];
+      }
+      else {
+        $config = taxonomy_external_sync_config_load();
+        if (!empty($config[$entity->machine_name])) {
+          $entity->tes = $config[$entity->machine_name];
+        }
+        else {
+          $entity->tes = array('enable' => FALSE);
+        }
+      }
     }
   }
 }
