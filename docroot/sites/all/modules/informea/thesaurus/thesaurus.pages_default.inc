@@ -49,17 +49,16 @@ function thesaurus_default_page_manager_pages() {
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
-      'center' => NULL,
       'middle' => NULL,
     ),
   );
   $display->cache = array();
   $display->title = 'Glossary';
-  $display->uuid = '3e4d41c4-d7f7-476d-a836-0f70f4a70e9b';
+  $display->uuid = 'bff169cb-6a0a-4a4a-bc93-ac75704ee7e1';
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-a424f24d-c955-4301-b8c0-127a47e9f8ed';
+    $pane->pid = 'new-475aa95f-5da5-453f-a8e4-d94ca539b591';
     $pane->panel = 'middle';
     $pane->type = 'block';
     $pane->subtype = 'thesaurus-terms-listing';
@@ -81,11 +80,11 @@ function thesaurus_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = 'a424f24d-c955-4301-b8c0-127a47e9f8ed';
-    $display->content['new-a424f24d-c955-4301-b8c0-127a47e9f8ed'] = $pane;
-    $display->panels['middle'][0] = 'new-a424f24d-c955-4301-b8c0-127a47e9f8ed';
+    $pane->uuid = '475aa95f-5da5-453f-a8e4-d94ca539b591';
+    $display->content['new-475aa95f-5da5-453f-a8e4-d94ca539b591'] = $pane;
+    $display->panels['middle'][0] = 'new-475aa95f-5da5-453f-a8e4-d94ca539b591';
     $pane = new stdClass();
-    $pane->pid = 'new-c42c9f01-3d90-433d-8170-0bb23c77b1be';
+    $pane->pid = 'new-68b2f3ad-5970-48f4-9db7-413c59ba1072';
     $pane->panel = 'middle';
     $pane->type = 'block';
     $pane->subtype = 'foamtree-foamtree';
@@ -107,11 +106,11 @@ function thesaurus_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = 'c42c9f01-3d90-433d-8170-0bb23c77b1be';
-    $display->content['new-c42c9f01-3d90-433d-8170-0bb23c77b1be'] = $pane;
-    $display->panels['middle'][1] = 'new-c42c9f01-3d90-433d-8170-0bb23c77b1be';
+    $pane->uuid = '68b2f3ad-5970-48f4-9db7-413c59ba1072';
+    $display->content['new-68b2f3ad-5970-48f4-9db7-413c59ba1072'] = $pane;
+    $display->panels['middle'][1] = 'new-68b2f3ad-5970-48f4-9db7-413c59ba1072';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = '0';
+  $display->title_pane = 'new-475aa95f-5da5-453f-a8e4-d94ca539b591';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['glossary'] = $page;
