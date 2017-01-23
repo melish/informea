@@ -769,7 +769,7 @@ function thesaurus_vocbench_export_ontologies() {
         thesaurus_export_to_xls($rdf_url, $xls_destination);
       }
       else {
-        watchdog('thesaurus', 'Failed to export ontology ' . $ontology, WATCHDOG_ERROR);
+        watchdog('thesaurus', 'Failed to export ontology ' . $ontology, [], WATCHDOG_ERROR);
       }
     }
     $vb_conn->destroy();
