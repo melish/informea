@@ -1,0 +1,173 @@
+<?php
+/**
+ * @file
+ * Code for the goal feature.
+ */
+
+/**
+ * Implements hook_block_info().
+ */
+function foamtree_block_info() {
+  $blocks = array();
+  $blocks['foamtree'] = array(
+    'info' => t('Foamtree: interactive Voronoi treemap'),
+    'status' => 1,
+    'region' => '-1',
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'terms',
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function foamtree_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'foamtree':
+      $block['subject'] = 'Foamtree';
+      $block['content'] = foamtree_block_content(
+        array(
+          'width' => variable_get('foamtree_block_width', '500px'),
+          'height' => variable_get('foamtree_block_height', '500px'),
+          'id' => variable_get('foamtree_block_div_id', 'foamtree-visualization'),
+        )
+      );
+      break;
+  }
+  return $block;
+}
+
+function foamtree_block_content($options = array()) {
+  drupal_add_library('foamtree', 'foamtree');
+  $defaults = array(
+    'width' => '500px',
+    'height' => '500px',
+    'id' => 'foamtree-visualization',
+  );
+
+  $options = array_merge($defaults, $options);
+
+  drupal_add_css(sprintf('#%s { width: %s; height: %s;}', $options['id'], $options['width'], $options['height']), array('type' => 'inline'));
+
+  $clusters = array();
+
+  drupal_alter('foamtree_data', $clusters);
+
+  $data = array(
+    "clusters" => $clusters,
+  );
+
+  drupal_add_js(array('foamtree' => $data), 'setting');
+
+  $output = theme('foamtree-theme', array('div_id' => $options['id'], 'options' => $options));
+  return $output;
+}
+
+function foamtree_theme() {
+  return array(
+    'foamtree-theme' => array(
+      'template' => 'templates/foamtree',
+      'variables' => array(
+        'div_id' => '',
+        'options' => array(),
+      ),
+      'path' => drupal_get_path('module', 'foamtree'),
+    ),
+    'terms-listing' => array(
+      'template' => 'templates/terms-listing',
+      'variables' => array('terms_hierarchical' => array()),
+      'path' => drupal_get_path('module', 'foamtree'),
+    ),
+    'term-tree' => array(
+      'render element' => 'element',
+      'template' => 'templates/term-tree',
+      'variables' => array('term' => FALSE),
+      'path' => drupal_get_path('module', 'foamtree'),
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_library().
+ */
+function foamtree_library() {
+  $path = libraries_get_path('foamtree');
+  return array(
+    'foamtree' => array(
+      'title' => 'FoamTree',
+      'website' => 'http://carrotsearch.com/foamtree-overview',
+      'version' => '1.0',
+      'js' => array(
+        $path . '/carrotsearch.foamtree.js' => array(),
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_block_configure().
+ */
+function foamtree_block_configure($delta = '') {
+  $form = array();
+  switch ($delta) {
+    case 'foamtree':
+      $form['foamtree_block_width'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Width'),
+        '#size' => 5,
+        '#description' => 'The width of the div containing the foamtree.',
+        '#default_value' => variable_get('foamtree_block_width', '500px'),
+      );
+      $form['foamtree_block_height'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Height'),
+        '#size' => 5,
+        '#description' => 'The height of the div containing the foamtree.',
+        '#default_value' => variable_get('foamtree_block_height', '500px'),
+      );
+      $form['foamtree_block_div_id'] = array(
+        '#type' => 'textfield',
+        '#title' => t('ID'),
+        '#size' => 60,
+        '#description' => 'The ID of the div containing the foamtree.',
+        '#default_value' => variable_get('foamtree_block_div_id', 'foamtree-visualization'),
+      );
+      drupal_alter('foamtree_block_config', $form);
+      break;
+  }
+  return $form;
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function foamtree_block_save($delta = '', $edit = array()) {
+  switch ($delta) {
+    case 'foamtree':
+      foreach ($edit as $key => $value) {
+        variable_set($key, $value);
+      }
+      break;
+  }
+}
+
+function foamtree_foamtree_data_alter(&$clusters) {
+  $query = db_select('field_data_field_informea_tags','t');
+  $query->addField('t', 'field_informea_tags_tid', 'id');
+  $query->groupBy('field_informea_tags_tid');
+  $query->addExpression('COUNT(*)', 'size');
+  $query->orderBy('size', 'DESC');
+  $query->range(0,15);
+  $results = $query->execute()->fetchAll();
+
+  foreach ($results as $term) {
+    $taxonomy_term = taxonomy_term_load($term->id);
+    $term->phrases = array($taxonomy_term->name);
+    $term->size = (int) $term->size;
+  }
+
+  $clusters = $results;
+}

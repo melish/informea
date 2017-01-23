@@ -1,0 +1,4 @@
+name = FoamTree
+description = Interactive Voronoi treemap
+core = 7.x
+version = 7.x-0.1
