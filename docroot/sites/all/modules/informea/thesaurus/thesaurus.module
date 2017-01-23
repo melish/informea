@@ -3,6 +3,7 @@
 require_once 'includes/export.inc';
 require_once 'includes/vocbench.inc';
 require_once 'thesaurus.foamtree.inc';
+require_once 'thesaurus.features.inc';
 
 if(!function_exists('slugify')) {
   function slugify($phrase, $maxLength = 50) {
