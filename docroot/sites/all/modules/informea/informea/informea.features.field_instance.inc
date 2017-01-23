@@ -1758,7 +1758,9 @@ function informea_field_default_field_instances() {
   t('Popularity');
   t('Queue items');
   t('Reference URL');
+  t('Related terms');
   t('Substantive');
+  t('Synonyms');
   t('Tag');
   t('Tags');
   t('Taxonomy term URI');
