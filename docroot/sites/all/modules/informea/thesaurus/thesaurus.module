@@ -79,6 +79,66 @@ function thesaurus_libraries_info() {
   );
 }
 
+function thesaurus_block_info() {
+  $blocks = array();
+  $blocks['terms-listing'] = array(
+    'info' => t('Terms listing with 2 tabs.'),
+    'status' => 1,
+    'region' => '-1',
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => '',
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function thesaurus_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'terms-listing':
+      $block['subject'] = 'Terms listing with 2 tabs';
+      $block['content'] = thesaurus_terms_listing_block_content();
+      break;
+  }
+  return $block;
+}
+
+function thesaurus_terms_listing_block_content() {
+  drupal_add_js(drupal_get_path('module', 'thesaurus') . '/js/jquery.fastLiveFilter.js');
+  drupal_add_js(drupal_get_path('module', 'thesaurus') . '/js/terms.js');
+  $terms_atoz = array();
+  $terms_hierarchical = array();
+  $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
+
+  // AtoZ
+  $q = new EntityFieldQuery();
+  $tids = $q->entityCondition('entity_type', 'taxonomy_term')
+    ->propertyCondition('vid', $voc->vid)
+    ->fieldOrderBy('name_field', 'value', 'ASC')
+    ->execute();
+  if (!empty($tids['taxonomy_term'])) {
+    $terms_atoz = taxonomy_term_load_multiple(array_keys($tids['taxonomy_term']));
+  }
+
+  // Hierarchical
+  $q = db_select('taxonomy_term_hierarchy', 'a')
+    ->fields('a', array('tid'));
+  $q->innerJoin('taxonomy_term_data', 'b', 'a.tid = b.tid');
+  $q->condition('b.vid', $voc->vid)
+    ->condition('a.parent', 0);
+  $tids = $q->execute()->fetchCol();
+
+  foreach($tids as $tid) {
+    $term = taxonomy_term_load($tid);
+    $children = taxonomy_get_tree($voc->vid, $tid);
+    $term->children = thesaurus_get_nested_tree($children, NULL, $tid);
+    $terms_hierarchical[$tid] = $term;
+  }
+  return theme('terms-listing', array('terms_atoz' => $terms_atoz, 'terms_hierarchical' => $terms_hierarchical));
+}
+
 function thesaurus_menu_export_rdf() {
   if ($xml = thesaurus_export_rdf()) {
     $filename = sprintf('thesaurus-%s.rdf', date('Ymd-Hi'));
@@ -117,6 +177,11 @@ function thesaurus_theme() {
       'render element' => 'element',
       'template' => 'templates/terms',
       'variables' => array('substantives' => array()),
+      'path' => drupal_get_path('module', 'thesaurus'),
+    ),
+    'terms-listing' => array(
+      'template' => 'templates/terms-listing',
+      'variables' => array('terms_hierarchical' => array()),
       'path' => drupal_get_path('module', 'thesaurus'),
     ),
   );
