@@ -2809,3 +2809,33 @@ iframe.pdfjs {
 .node-type-treaty #meetings .panel-heading {
   cursor: default;
 }
+
+#terms-listing-tabs .tab-pane{
+  height: 446px;
+  width: 100%;
+}
+#terms-listing-tabs .tab-pane-content{
+  overflow-y: scroll;
+  width: 100%;
+  height: 413px;
+}
+#terms-listing-tabs .tab-pane-content.full-height{
+  height: 446px;
+}
+
+#terms-listing-tabs a {
+  color: #336696;
+}
+
+#terms-listing-tabs .tab-content {
+  padding: 10px;
+}
+
+#terms-listing-tabs .tab-pane-content > button {
+  margin-right: 10px;
+}
+
+#terms-listing-tabs #terms-atoz-filter {
+  min-width: 100%;
+  margin-bottom: 10px;
+}
