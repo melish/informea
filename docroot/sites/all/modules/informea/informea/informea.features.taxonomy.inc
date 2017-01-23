@@ -220,7 +220,7 @@ function informea_taxonomy_default_vocabularies() {
         ),
         'plugin_config' => array(
           'url' => 'http://informea.org/sites/default/files/export/informea.rdf',
-          'id_field' => 'prefLabel',
+          'id_field' => 'uri',
           'parent_field' => 'broader',
         ),
       ),
