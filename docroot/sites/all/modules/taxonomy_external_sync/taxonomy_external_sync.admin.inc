@@ -9,9 +9,10 @@ function taxonomy_external_sync_taxonomy_form_element($form, $form_state) {
     '#title' => t('Synchronise with external data source'),
     '#prefix' => '<div id="wrapper-taxonomy-external-sync-plugins">',
     '#suffix' => '</div>',
+    '#tree' => TRUE,
   );
 
-  $ret['tes']['tes_enable'] = array(
+  $ret['tes']['enable'] = array(
     '#type' => 'checkbox',
     '#default_value' => !empty($vocabulary->tes),
     '#title' => 'Enable',
@@ -23,7 +24,7 @@ function taxonomy_external_sync_taxonomy_form_element($form, $form_state) {
     ),
   );
 
-  if (!empty($form_state['values']['tes_enable']) || !empty($vocabulary->tes)) {
+  if (!empty($form_state['values']['tes']['enable']) || !empty($vocabulary->tes)) {
     $options = array();
     $plugins = taxonomy_external_sync_source_plugins();
     /**
@@ -34,10 +35,10 @@ function taxonomy_external_sync_taxonomy_form_element($form, $form_state) {
       $options[$machine_name] = $ob->getName();
     }
     $selected = !empty($vocabulary->tes['plugin']) ? $vocabulary->tes['plugin'] : NULL;
-    if (!empty($form_state['values']['tes_plugin'])) {
-      $selected = $form_state['values']['tes_plugin'];
+    if (!empty($form_state['values']['tes']['plugin'])) {
+      $selected = $form_state['values']['tes']['plugin'];
     }
-    $ret['tes']['tes_plugin'] = array(
+    $ret['tes']['plugin'] = array(
       '#type' => 'select',
       '#options' => $options,
       '#title' => t('Source'),
@@ -53,24 +54,26 @@ function taxonomy_external_sync_taxonomy_form_element($form, $form_state) {
     );
     /** @var \Drupal\taxonomy_external_sync\plugin\SourceInterface $plugin */
     if ($selected && $plugin = $plugins[$selected]) {
-      $ret['tes']['plugin'] = array(
+      $ret['tes']['plugin_config'] = array(
         '#type' => 'fieldset',
-        '#title' => t('Configuration')
+        '#title' => t('Configuration'),
+        '#tree' => TRUE,
       );
-      $ret['tes']['plugin']['description'] = array(
+      $ret['tes']['plugin_config']['description'] = array(
         '#type' => 'item',
         '#markup' => '<div>' . $plugin->getDescription() . '</div>',
       );
       if ($plugin_form = $plugin->getConfigurationForm($vocabulary, $form_state)) {
         foreach ($plugin_form as $key => $element) {
-          $ret['tes']['plugin']['tes_plugin_config_' . $key] = $element;
+          $ret['tes']['plugin_config'][$key] = $element;
         }
       }
       // Mappings
       $destination_fields = taxonomy_external_sync_get_taxonomy_fields($vocabulary->machine_name);
-      $ret['tes']['plugin']['mappings'] = array(
+      $ret['tes']['mappings'] = array(
         '#type' => 'fieldset',
         '#title' => t('Mappings'),
+        '#tree' => TRUE,
       );
       foreach ($destination_fields as $field_name => $label) {
         $options = array('' => t('-- Not mapped --'));
@@ -78,7 +81,7 @@ function taxonomy_external_sync_taxonomy_form_element($form, $form_state) {
           $options += $source_fields;
         }
         $selected = !empty($vocabulary->tes['mappings'][$field_name]) ? $vocabulary->tes['mappings'][$field_name] : NULL;
-        $ret['tes']['plugin']['mappings']['tes_' . $field_name] = array(
+        $ret['tes']['mappings'][$field_name] = array(
           '#type' => 'select',
           '#options' => $options,
           '#default_value' => $selected,

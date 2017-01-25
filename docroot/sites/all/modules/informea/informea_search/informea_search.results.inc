@@ -51,15 +51,19 @@ class InforMEASearchResultsGrouping {
             if (array_key_exists($treaty->nid, $results)) {
               $treaty = $results[$treaty->nid];
             }
-            $article = $wrapper->field_parent_treaty_article->value();
-            if (isset($treaty->articles) && array_key_exists($article->nid, $treaty->articles)) {
-              $article = $treaty->articles[$article->nid];
+            if ($article = $wrapper->field_parent_treaty_article->value()) {
+              if (isset($treaty->articles) && array_key_exists($article->nid, $treaty->articles)) {
+                $article = $treaty->articles[$article->nid];
+              }
+              if (!isset($article->paragraphs) || !array_key_exists($node->nid, $article->paragraphs)) {
+                $article->paragraphs[$node->nid] = $node;
+              }
+              $treaty->articles[$article->nid] = $article;
+              $results[$treaty->nid] = $treaty;
             }
-            if (!isset($article->paragraphs) || !array_key_exists($node->nid, $article->paragraphs)) {
-              $article->paragraphs[$node->nid] = $node;
+            else {
+              watchdog('informea_search', 'Found treaty paragraph without parent article: /node/!nid', array('!nid' => $nid), WATCHDOG_ERROR);
             }
-            $treaty->articles[$article->nid] = $article;
-            $results[$treaty->nid] = $treaty;
           }
         break;
         case 'decision':
