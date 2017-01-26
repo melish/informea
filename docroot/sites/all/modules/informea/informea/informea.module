@@ -711,7 +711,7 @@ function informea_page_alter(&$page) {
   if ($ga_informea_key = variable_get('ga_informea_key')) {
     analytics_integration_add_google_analytics_library($ga_informea_key);
     $current_path = url(request_uri(), array('absolute' => TRUE));
-    analytics_integration_google_analytics_send_hit($ga_informea_key, $current_path, 'informea', drupal_get_title());
+    analytics_integration_google_analytics_send_hit($ga_informea_key, $current_path, 'informea', drupal_get_title(), 'pageview', false);
     /*UNEP webmaster request to send hits to monitor all affliate unep.org websites*/
     analytics_integration_google_analytics_send_hit('UA-59519586-13', $current_path, 'unep', drupal_get_title());
   }
