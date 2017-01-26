@@ -39,9 +39,22 @@ function thesaurus_url_inbound_alter(&$path, $original_path, $path_language) {
   }
 }
 
-function thesaurus_get_section($path) {
-  if((arg(0, $path) == 'terms' || arg(1, $path) == 'terms') && preg_match('/\/ecolex$/', $path)) {
-    return 'ecolex';
+function thesaurus_get_section($path = null) {
+  if (empty($path)) {
+    $path = request_path();
+  }
+  $i = 0;
+  if ((arg($i, $path) == 'terms' || arg(++$i, $path) == 'terms')) {
+    $allowed_sections = [
+      'ecolex',
+    ];
+    $section = arg($i+2, $path);
+    if (empty($section)) {
+      return 'default';
+    }
+    if (in_array($section, $allowed_sections)) {
+      return $section;
+    }
   }
   return FALSE;
 }
