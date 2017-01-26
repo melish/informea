@@ -224,6 +224,15 @@ sub vcl_hash {
   # if (req.http.Cookie) {
   #   set req.hash += req.http.Cookie;
   # }
+  # req.http.host ~ "odata.informea.org" or req.http.host == "odata.informea.org:8080" - require port
+  if (req.http.host ~ "odata.informea.org" || req.http.host ~ "tomcat.informea.org") {
+    if (req.http.accept ~ "application/xml") {
+      hash_data("application/xml");
+    }
+    if (req.http.accept ~ "application/json") {
+      hash_data("application/json");
+    }
+  }
 
   # Cache also per User-Agent
   # if (req.url ~ "^/stylesheets/browser_specific.css") {
