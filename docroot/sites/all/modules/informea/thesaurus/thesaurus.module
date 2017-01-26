@@ -24,7 +24,8 @@ if(!function_exists('slugify')) {
  *  Implements hook_url_inbound_alter().
  */
 function thesaurus_url_inbound_alter(&$path, $original_path, $path_language) {
-  if((arg(0, $path) == 'terms' || arg(1, $path) == 'terms') && preg_match('/\/ecolex$/', $path)) {
+  $section = thesaurus_get_section($path);
+  if (!empty($section) && $section != 'default') {
     global $language;
     $prefix = $language->language . '/';
     if (strpos($path, $prefix) === 0) {
@@ -32,7 +33,7 @@ function thesaurus_url_inbound_alter(&$path, $original_path, $path_language) {
     }
     $q = db_select('url_alias', 'a');
     $q->addField('a', 'source');
-    $q->where("CONCAT(a.alias, '/ecolex') LIKE :p", array(':p' => '%' . $path));
+    $q->where("CONCAT(a.alias, '/" . $section . "') LIKE :p", array(':p' => '%' . $path));
     if ($source = $q->execute()->fetchField()) {
       $path = $source;
     }
@@ -47,6 +48,8 @@ function thesaurus_get_section($path = null) {
   if ((arg($i, $path) == 'terms' || arg(++$i, $path) == 'terms')) {
     $allowed_sections = [
       'ecolex',
+      'legislations',
+      'literatures',
     ];
     $section = arg($i+2, $path);
     if (empty($section)) {
