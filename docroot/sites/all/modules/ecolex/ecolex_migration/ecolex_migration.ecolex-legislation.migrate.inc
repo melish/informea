@@ -41,10 +41,10 @@ class EcolexLegislationMigration extends Migration {
     $this->addFieldMapping('field_ecolex_region', 'legGeoArea_en');
     $this->addFieldMapping('field_ecolex_region:source_type')->defaultValue('tid');
 
-    // $this->addFieldMapping('field_source_language', 'legLanguage_code');
+    // $this->addFieldMapping('field_source_language', 'legLanguage_code'); // 1 letter code - not needed
 
     $this->addFieldMapping('field_files', 'legLinkToFullText');
-    $this->addFieldMapping('field_files:file_replace')->defaultValue(FILE_EXISTS_OVERWRITE);
+    $this->addFieldMapping('field_files:file_replace')->defaultValue(FILE_EXISTS_REPLACE); // FILE_EXISTS_OVERWRITE
 
     $this->addFieldMapping('field_url', 'legRelatedWebSite');
 
@@ -64,10 +64,9 @@ class EcolexLegislationMigration extends Migration {
     $this->addFieldMapping('field_ecolex_keywords', 'legKeyword_en');
     $this->addFieldMapping('field_ecolex_keywords:source_type')->defaultValue('tid');
 
-    $this->addFieldMapping('field_ecolex_url', 'ecolex_url');
-    $this->addFieldMapping('field_faolex_url', 'faolex_url');
-    // $this->addFieldMapping('field_date_of_modification', 'legModificationDate');
-    // $this->addFieldMapping('field_date_of_entry', 'legEntryDate');
+    $this->addFieldMapping('field_date_of_modification', 'updatedDate');
+    $this->addFieldMapping('field_date_of_modification:timezone')->defaultValue('Europe/Zurich');
+
 
     $this->addFieldMapping('field_data_source')->defaultValue('ECOLEX/FAOLEX');
     $this->addFieldMapping('comment')->defaultValue(FALSE);
@@ -78,12 +77,19 @@ class EcolexLegislationMigration extends Migration {
     $this->addFieldMapping('revision')->defaultValue(0);
     $this->addFieldMapping('language')->defaultValue('en');
 
+    // TODO NOT FOUND:
+    $this->addFieldMapping('field_date_of_entry', 'legEntryDate');//may be will be enabled later - not clear...
+    $this->addFieldMapping('field_date_of_entry:timezone')->defaultValue('Europe/Zurich');
+    $this->addFieldMapping('field_ecolex_url', 'ecolex_url'); // not used
+    $this->addFieldMapping('field_faolex_url', 'faolex_url'); // not used
+
+
     $this->addUnmigratedSources(array());
     $this->addUnmigratedDestinations(array(
       'nid', 'created', 'changed', 'log', 'tnid', 'translate', 'revision_uid', 'path',
       'is_new', 'body:summary', 'body:format', 'body:language',
       'field_sorting_date:to', 'field_sorting_date:rrule',
-      'field_abstract',
+      'field_abstract','field_abstract:language',
       'field_date_of_original_text:rrule',
       'metatag_title', 'metatag_description', 'metatag_abstract', 'metatag_keywords',
       'metatag_robots', 'metatag_news_keywords', 'metatag_standout', 'metatag_rating',
@@ -97,9 +103,8 @@ class EcolexLegislationMigration extends Migration {
       'field_ecolex_tags:create_term', 'field_ecolex_tags:ignore_case',
       'field_type_of_text:create_term', 'field_type_of_text:ignore_case',
       'field_url:title', 'field_url:attributes', 'field_url:language',
-      'field_date_of_entry', 'field_date_of_entry:timezone', 'field_date_of_entry:rrule',
+      'field_date_of_entry:rrule',
       'field_date_of_entry:to',
-      'field_date_of_modification', 'field_date_of_modification:timezone',
       'field_date_of_modification:rrule', 'field_date_of_modification:to',
       'field_internet_reference_url', 'field_internet_reference_url:title',
       'field_internet_reference_url:attributes', 'field_internet_reference_url:language',
@@ -124,24 +129,26 @@ class EcolexLegislationMigration extends Migration {
       'field_date_of_consolidation:rrule', 'field_date_of_consolidation:to',
       'field_isis_number',
       'field_keywords', 'field_keywords:source_type', 'field_keywords:create_term', 'field_keywords:ignore_case',
+      'field_ecolex_url:title', 'field_ecolex_url:attributes', 'field_ecolex_url:language',
+      'field_faolex_url:title',  'field_faolex_url:attributes', 'field_faolex_url:language',
+      'field_emerging_terms','field_emerging_terms:source_type', 'field_emerging_terms:create_term', 'field_emerging_terms:ignore_case',
+      'field_source_language',
     ));
   }
 
   public function prepareRow($row) {
     parent::prepareRow($row);
-    // Dates
+
+    $row->updatedDate = substr($row->updatedDate, 0, 10);
+
     if (!empty($row->legYear) && strlen($row->legYear) == 4) {
       $row->legYear = $row->legYear . '-01-01';
     }
     if (!empty($row->legOriginalYear) && strlen($row->legOriginalYear) == 4) {
       $row->legOriginalYear = $row->legOriginalYear . '-01-01';
     }
-//    if (!empty($row->legModificationDate) && strlen($row->legModificationDate) == 4) {
-//      $row->legModificationDate = $row->legModificationDate . '-01-01';
-//    }
     // 'title_field',
     // 'title_field:language',
-
 
     // Taxonomies
     $this->prepare_term_reference_field_multilingual($row, 'legType', 'type_of_text');
@@ -152,7 +159,6 @@ class EcolexLegislationMigration extends Migration {
     $this->prepare_term_reference_field($row, 'legTerritorialSubdivision', 'territorial_subdivision');
 
     // Entity references
-
     if ($country = country_load_by_iso($row->legCountry_iso)) {
       $row->legCountry_iso = $country->nid;
     }
@@ -300,15 +306,22 @@ class EcolexLegislationMigrateSource extends MigrateSource {
 
   private $url_pattern = NULL;
 
+  public $found_rows = 0;
+  public $fetched_rows = 0;
+  public $fetch_limit = 100;
+  public $log_detail;
   public $totalCount = 0;
   public $currentCount = 0;
   public $currentPage = 0;
-  public $pagination = 100;
+  public $pagination = 1000;
   protected $data = array();
 
   public function __construct($source_url_pattern) {
     parent::__construct(array());
-    $this->url_pattern = $source_url_pattern;
+    //$this->url_pattern = $source_url_pattern; - because of cache
+    $this->url_pattern = 'http://www.ecolex.org/export/?type=legislation&format=json'; // todo cache
+    $this->fetch_limit = variable_get('ecolex_legislation_fetch_limit', 100);
+    $this->log_detail = variable_get('ecolex_legislation_log_detail', FALSE);
     $this->computeCount();
   }
 
@@ -358,9 +371,9 @@ class EcolexLegislationMigrateSource extends MigrateSource {
    * Return the number of available source records.
    */
   public function computeCount() {
-    if ($str = elis_consumer_http_request($this->url_pattern . '&rows=0', array('Accept' => 'application/json'))) {
+    if ($str = elis_consumer_http_request($this->url_pattern . '&count=yes')) {
       if ($json = json_decode($str)) {
-        $this->totalCount = $json->response->numFound;
+        $this->totalCount = $json->count;
       }
     }
     return $this->totalCount;
@@ -374,8 +387,83 @@ class EcolexLegislationMigrateSource extends MigrateSource {
    */
   public function performRewind() {
     $this->data = array();
+    $this->found_rows = 0;
     $this->currentPage = 0;
     $this->currentCount = 0;
+    $this->fetched_rows = 0;
+  }
+
+  public function getDatesOfModification($sourceid1) {
+    $op = is_array($sourceid1) ? 'IN' : '=';
+    $q = db_select('migrate_map_ecolex_legislation', 'm')
+      ->fields('m', array('sourceid1'))
+      ->condition('m.sourceid1', $sourceid1, $op);
+
+    $q->leftJoin('field_data_field_date_of_modification', 'dm', 'dm.entity_id = m.destid1');
+    $q->fields('dm', array('field_date_of_modification_value'));
+
+    return $q->execute()->fetchAllKeyed();
+  }
+
+  public function getData() {
+    $next_call_count = $this->currentPage * $this->pagination;
+    if ($this->currentCount == $this->totalCount) {
+      return NULL;
+    }
+    $this->found_rows = 0;
+    if ($this->currentCount == $next_call_count && $next_call_count < $this->totalCount) {
+      $start = $this->currentPage * $this->pagination;
+      if ($str = elis_consumer_http_request($this->url_pattern . '&rows=' . $this->pagination . '&start=' . $start, array('Accept' => 'application/json'))) {
+        if ($json = json_decode($str)) {
+          $this->found_rows = count($json); // before filter
+
+          $sourceid1 = [];
+          foreach($json as $row) {
+            $sourceid1[] = $row->docId;
+          }
+          if ($sourceid1) {
+            $mig_data = $this->getDatesOfModification($sourceid1);
+          }
+
+          foreach($json as $row) { // exclude the same updated Date rows
+            if (!isset($mig_data[$row->docId])) { // new item
+              $this->data[] = $row;
+              continue;
+            }
+            if (substr($mig_data[$row->docId], 0, 10) != substr($row->updatedDate, 0, 10)) {
+              $this->data[] = $row;
+              continue;
+            }
+            $this->currentCount++;
+          }
+          $this->currentPage++;
+        }
+      }
+    }
+    if (!$this->data && $this->found_rows) {
+      $this->getData();
+    }
+  }
+
+  public function getItem() {
+    $item = NULL;
+    if (count($this->data)) {
+      $item = current($this->data);
+      next($this->data);
+      $this->currentCount++;
+      if (!$item) {
+        return NULL;
+      }
+      $str = elis_consumer_http_request($item->url, array('Accept' => 'application/json') );
+      if ($this->log_detail) {
+        file_put_contents('../ecolex/'.$item->docId . '.json' , $str);
+      }
+      $json = json_decode($str);
+      if ($json) {
+        $item = $json[0];
+      }
+    }
+    return $item;
   }
 
   /**
@@ -385,26 +473,20 @@ class EcolexLegislationMigrateSource extends MigrateSource {
    *   FALSE data as stdClass, FALSE when there is no more data available.
    */
   public function getNextRow() {
-    $next_call_count = $this->currentPage * $this->pagination;
-    if ($this->currentCount == $this->totalCount) {
-      return NULL;
+    if ($this->fetched_rows >= $this->fetch_limit) {
+      return FALSE;
     }
-    if ($this->currentCount == $next_call_count && $next_call_count < $this->totalCount) {
-      $start = $this->currentPage * $this->pagination;
-      if ($str = elis_consumer_http_request($this->url_pattern . '&rows=' . $this->pagination . '&start=' . $start, array('Accept' => 'application/json'))) {
-        if ($json = json_decode($str)) {
-          $this->data = $json->response->docs;
-          $this->currentPage++;
-        }
+
+    $item = $this->getItem();
+    if (!$item) {
+      $this->getData();
+      $item = $this->getItem();
+      if (!$item) {
+        return FALSE;
       }
     }
-    // TODO Messages in case of empty data / failed call etc.
-    $item = NULL;
-    if (count($this->data)) {
-      $item = current($this->data);
-      next($this->data);
-      $this->currentCount++;
-    }
+    $this->fetched_rows++;
+
     return $item;
   }
 }

@@ -1,5 +1,22 @@
 <?php
 
+function ecolex_migration_legislation_sync() {
+  module_load_include('inc', 'migrate_ui', 'migrate_ui.pages');
+  $machine_name = 'ecolex_legislation';
+  $migration = Migration::getInstance($machine_name);
+  /* @var $migration EcolexLegislationMigration */
+  $migration->prepareUpdate();
+  watchdog('ecolex_migration', 'Starting import @migration',
+    array('@migration' => $machine_name), WATCHDOG_INFO);
+
+  $result = $migration->processImport(array('update' => TRUE));
+
+  watchdog('ecolex_migration', 'Done @migration with result: @result',
+    array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
+
+  return '';
+}
+
 /**
  * Implements hook_migrate_api().
  *
@@ -33,10 +50,11 @@ function ecolex_migration_migrate_api() {
     'source_url_pattern' => 'http://www.ecolex.org/elis_isis3w.php?database=cou&search_type=view_query_search&table=all&format_name=@xmlexp&lang=xmlf&page_header=@xmlh&vq_query=ID:"RECORD_ID"',
     'xml_encoding' => 'iso-8859-15',
   );
+  // source_url_pattern also dublicated in EcolexLegislationMigrateSource because of cache
   $ret['migrations']['ecolex_legislation'] = array(
     'class_name' => 'EcolexLegislationMigration',
     'group_name' => 'ecolex',
-    'source_url_pattern' => 'http://ecolex-frontend.edw.ro:8983/solr/ecolex/select?q=type%3Alegislation&wt=json',
+    'source_url_pattern' => 'http://www.ecolex.org/export/?type=legislation&format=json',
   );
   return $ret;
 }

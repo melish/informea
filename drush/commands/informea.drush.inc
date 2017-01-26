@@ -20,6 +20,13 @@ function informea_drush_command() {
     ),
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
   );
+  $items['sync-ecolex-legislation'] = array(
+    'description' => 'Sync ecolex legislation',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'examples' => array(
+      'sync-ecolex-legislation' => 'Sync ecolex legislation',
+    ),
+  );
   return $items;
 }
 
@@ -60,4 +67,8 @@ function drush_informea_cache_warm() {
   }
   print implode("\n", $output);
   print "\n";
+}
+
+function drush_informea_sync_ecolex_legislation() {
+  ecolex_migration_legislation_sync();
 }
