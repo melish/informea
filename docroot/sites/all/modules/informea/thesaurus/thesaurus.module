@@ -26,6 +26,7 @@ function thesaurus_get_section($path = null) {
   }
   if (preg_match('/.*(taxonomy\/term\/\d*|terms\/.*)\/*(.*)/', $path, $matches)) {
     $allowed_sections = [
+      'default', //treaties
       'court-decisions',
       'legislations',
       'literatures',
@@ -242,22 +243,6 @@ function thesaurus_taxonomy_term_view($term, $view_mode, $langcode) {
       $term->content['tagged_content'] = array(
         '#markup' => drupal_render($related_content),
         '#weight' => 10,
-      );
-    }
-  }
-}
-
-/**
- * Implements hook_page_alter().
- */
-function thesaurus_page_alter(&$page) {
-  if ($ob = menu_get_object('taxonomy_term', 2)) {
-    $hierarchy = thesaurus_term_hierarchy($ob);
-    $hierarchy['term'] = $ob;
-    if (!empty($hierarchy['children']) && !empty($hierarchy['parents'])) {
-      $page['sidebar_first']['hierarchy'] = array(
-        '#type' => 'item',
-        '#markup' => theme('term-hierarchy', $hierarchy),
       );
     }
   }

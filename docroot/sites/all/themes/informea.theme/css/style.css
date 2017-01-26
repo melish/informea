@@ -2839,3 +2839,8 @@ iframe.pdfjs {
   min-width: 100%;
   margin-bottom: 10px;
 }
+
+.tabs--secondary {
+  width: 100%;
+  font-size: 100%;
+}
