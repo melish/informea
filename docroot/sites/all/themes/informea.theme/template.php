@@ -23,15 +23,6 @@ function informea_theme_preprocess_page(&$variables) {
     unset($variables['page']['content']['system_main']['nodes']);
     unset($variables['page']['content']['system_main']['pager']);
     unset($variables['page']['content']['system_main']['no_content']);
-    $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
-    /** @var stdClass $term */
-    if ($term = taxonomy_term_load(arg(2))) {
-      if ($term->vid == $voc->vid) {
-        $variables['theme_hook_suggestions'][] = 'page__taxonomy__thesaurus_informea';
-        $variables['content_column_class'] = ' class="col-sm-9"';
-        array_unshift($variables['page']['sidebar_first'], menu_secondary_local_tasks());
-      }
-    }
   }
   $path = request_path();
   switch ($path) {
