@@ -87,6 +87,13 @@ function thesaurus_block_info() {
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => '',
   );
+  $blocks['thesaurus-treaties'] = array(
+    'info' => t('Treaties tagged with current term'),
+    'status' => 1,
+    'region' => '-1',
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => '',
+  );
   return $blocks;
 }
 
@@ -99,6 +106,20 @@ function thesaurus_block_view($delta = '') {
     case 'terms-listing':
       $block['subject'] = 'Terms listing with 2 tabs';
       $block['content'] = thesaurus_terms_listing_block_content();
+      break;
+    case 'thesaurus-treaties':
+      $block['subject'] = t('Treaties tagged with current term');
+      module_load_include('inc', 'thesaurus', 'thesaurus.related');
+      $term = menu_get_object('taxonomy_term', 2);
+      if (!empty($term)) {
+        $dp = new InforMEAThesaurusTermRelatedContent($term);
+        $related_data = $dp->getRelatedContent($term);
+        $related_content = InforMEAThesaurusTermRelatedContent::view($term, $related_data['treaties']);
+        $block['content'] = array(
+          '#markup' => drupal_render($related_content),
+          '#weight' => 10,
+        );
+      }
       break;
   }
   return $block;
@@ -225,25 +246,6 @@ function thesaurus_menu_local_tasks_alter(&$data, $router_item, $root_path) {
           'output' => $contextual_menu,
         );
       }
-    }
-  }
-}
-
-/**
- * Implements hook_taxonomy_term_view().
- */
-function thesaurus_taxonomy_term_view($term, $view_mode, $langcode) {
-  if ($view_mode == 'full') {
-    $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
-    if ($term->vid == $voc->vid) {
-      module_load_include('inc', 'thesaurus', 'thesaurus.related');
-      $dp = new InforMEAThesaurusTermRelatedContent($term);
-      $related_data = $dp->getRelatedContent($term);
-      $related_content = InforMEAThesaurusTermRelatedContent::view($term, $related_data['treaties']);
-      $term->content['tagged_content'] = array(
-        '#markup' => drupal_render($related_content),
-        '#weight' => 10,
-      );
     }
   }
 }

@@ -298,6 +298,29 @@ function thesaurus_default_page_manager_handlers() {
     $display->content['new-84b6e493-1a73-47ee-8d80-0eb043271475'] = $pane;
     $display->panels['definition'][0] = 'new-84b6e493-1a73-47ee-8d80-0eb043271475';
     $pane = new stdClass();
+    $pane->pid = 'new-a6655c2e-30e6-4aad-8ce7-ea4ed9932cca';
+    $pane->panel = 'full_width_content';
+    $pane->type = 'block';
+    $pane->subtype = 'thesaurus-thesaurus-treaties';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'a6655c2e-30e6-4aad-8ce7-ea4ed9932cca';
+    $display->content['new-a6655c2e-30e6-4aad-8ce7-ea4ed9932cca'] = $pane;
+    $display->panels['full_width_content'][0] = 'new-a6655c2e-30e6-4aad-8ce7-ea4ed9932cca';
+    $pane = new stdClass();
     $pane->pid = 'new-91aa4fbd-98cf-4ca0-9124-ba0574762f7d';
     $pane->panel = 'menu';
     $pane->type = 'page_tabs';
@@ -445,7 +468,10 @@ function thesaurus_default_page_manager_pages() {
   $page->admin_title = 'Glossary';
   $page->admin_description = '';
   $page->path = 'terms';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
