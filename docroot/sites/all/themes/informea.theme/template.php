@@ -268,7 +268,7 @@ function informea_theme_treaty_logo($node, $style = 'logo-large') {
 }
 
 function informea_theme_country_flag($node, $style = 'logo-large') {
-  $w = entity_metadata_wrapper('node', $node->nid);
+  $w = entity_metadata_wrapper('node', is_object($node) ? $node->nid : $node);
   if($code = $w->field_country_iso2->value()) {
     $code = strtolower($code);
     global $base_url;

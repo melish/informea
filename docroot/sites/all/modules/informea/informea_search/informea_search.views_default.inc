@@ -143,7 +143,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
   $handler->display->display_options['fields']['title_field']['settings'] = array(
-    'title_style' => '_none',
+    'title_style' => 'h3',
     'title_link' => 'content',
     'title_class' => '',
   );
@@ -152,13 +152,27 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['type']['table'] = 'search_api_index_law_and_literature';
   $handler->display->display_options['fields']['type']['field'] = 'type';
   $handler->display->display_options['fields']['type']['label'] = '';
+  $handler->display->display_options['fields']['type']['exclude'] = TRUE;
   $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['type']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['type']['format_name'] = 1;
+  /* Field: Indexed Content: Type of text */
+  $handler->display->display_options['fields']['field_type_of_text']['id'] = 'field_type_of_text';
+  $handler->display->display_options['fields']['field_type_of_text']['table'] = 'search_api_index_law_and_literature';
+  $handler->display->display_options['fields']['field_type_of_text']['field'] = 'field_type_of_text';
+  $handler->display->display_options['fields']['field_type_of_text']['label'] = '';
+  $handler->display->display_options['fields']['field_type_of_text']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_type_of_text']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['field_type_of_text']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_type_of_text']['bypass_access'] = 0;
   /* Field: Indexed Content: Country */
   $handler->display->display_options['fields']['field_country']['id'] = 'field_country';
   $handler->display->display_options['fields']['field_country']['table'] = 'search_api_index_law_and_literature';
   $handler->display->display_options['fields']['field_country']['field'] = 'field_country';
+  $handler->display->display_options['fields']['field_country']['label'] = '';
+  $handler->display->display_options['fields']['field_country']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_country']['alter']['text'] = '<span class="glyphicon glyphicon-globe"></span>[field_country]';
+  $handler->display->display_options['fields']['field_country']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_country']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_country']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_country']['bypass_access'] = 0;
@@ -178,15 +192,6 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['search_api_excerpt']['label'] = '';
   $handler->display->display_options['fields']['search_api_excerpt']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['search_api_excerpt']['link_to_entity'] = 0;
-  /* Field: Indexed Content: Type of text */
-  $handler->display->display_options['fields']['field_type_of_text']['id'] = 'field_type_of_text';
-  $handler->display->display_options['fields']['field_type_of_text']['table'] = 'search_api_index_law_and_literature';
-  $handler->display->display_options['fields']['field_type_of_text']['field'] = 'field_type_of_text';
-  $handler->display->display_options['fields']['field_type_of_text']['label'] = '';
-  $handler->display->display_options['fields']['field_type_of_text']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_type_of_text']['link_to_entity'] = 0;
-  $handler->display->display_options['fields']['field_type_of_text']['view_mode'] = 'full';
-  $handler->display->display_options['fields']['field_type_of_text']['bypass_access'] = 0;
 
   /* Display: Legislation */
   $handler = $view->new_display('page', 'Legislation', 'page_legislation');
@@ -357,7 +362,7 @@ function informea_search_views_default_views() {
     t('last »'),
     t('.'),
     t(','),
-    t('Country'),
+    t('<span class="glyphicon glyphicon-globe"></span>[field_country]'),
     t('Legislation'),
     t('Search legislation'),
     t('Search'),
