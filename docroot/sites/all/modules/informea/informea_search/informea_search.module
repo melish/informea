@@ -43,6 +43,15 @@ function informea_search_block_info() {
       'region' => 'navigation',
       'visibility' => BLOCK_VISIBILITY_NOTLISTED,
       'pages' => '',
+    ),
+    'search_informea_switch_topic' => array(
+      'info' => t('Switch search topic'),
+      'cache' => DRUPAL_NO_CACHE,
+      'weight' => 10,
+      'status' => 1,
+      'region' => 'navigation',
+      'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+      'pages' => '',
     )
   );
 }
@@ -55,6 +64,9 @@ function informea_search_block_view($delta = '') {
   switch($delta) {
     case 'search_informea':
       $block['content'] = drupal_get_form('informea_search_form');
+      break;
+    case 'search_informea_switch_topic':
+      $block['content'] = informea_search_block_switch_topic_view();
   }
   return $block;
 }
@@ -256,4 +268,28 @@ function informea_search_form_submit($form, $form_state) {
 function informea_search_external_search() {
   $input = isset($_GET['keys']) ? check_plain($_GET['keys']) : '';
   drupal_goto('search/' . $input);
+}
+
+function informea_search_block_switch_topic_view() {
+  $url = check_plain(arg(0));
+  $elements = array(
+    'search' => t('Multilateral treaties'),
+    'search-legislation' => t('Legislation'),
+    'search-court-decisions' => t('Court decisions'),
+    'search-literature' => t('Literature'),
+    'search-bilateral-treaties' => t('Bilateral treaties'),
+  );
+  $tabs = array();
+  foreach($elements as $k => $v) {
+    $tabs[] = array(
+      'data' => l($v, $k),
+      'class' => $k == $url ? array('active') : array()
+    );
+  }
+  $ret = array(
+    '#theme' => 'item_list',
+    '#items' => $tabs,
+    '#attributes' => array('class' => array('nav nav-tabs'))
+  );
+  return $ret;
 }
