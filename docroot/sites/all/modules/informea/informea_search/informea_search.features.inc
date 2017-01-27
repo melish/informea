@@ -52,7 +52,6 @@ function informea_search_default_search_api_index() {
           "entity_type" : "field_collection_item"
         },
         "field_document_type" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
-        "field_image:alt" : { "type" : "text" },
         "field_image:file" : { "type" : "integer", "entity_type" : "file" },
         "field_informea_tags" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_last_update" : { "type" : "date" },
