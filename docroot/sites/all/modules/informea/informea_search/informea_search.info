@@ -37,5 +37,6 @@ features[variable][] = search_api_attachments_extract_using
 features[variable][] = search_api_attachments_extracting_servlet_path
 features[variable][] = search_api_attachments_preserve_cache
 features[views_view][] = informea_search
+features[views_view][] = search_law_and_literature
 files[] = informea_search.pages.inc
 files[] = informea_search.results.inc
