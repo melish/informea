@@ -280,8 +280,6 @@ function informea_search_form_submit($form, $form_state) {
     $arguments['query'] = array('search_api_views_fulltext' => $input);
     $redirect_url = $form['#action'];
   }
-  dpm($arguments);
-  dpm($redirect_url);
   drupal_goto($redirect_url, $arguments);
 }
 
