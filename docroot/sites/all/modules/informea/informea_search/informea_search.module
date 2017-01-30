@@ -273,12 +273,12 @@ function informea_search_form_submit($form, $form_state) {
   $input = check_plain($form_state['values']['keys']);
   $arguments = array();
   $redirect_url = $form['#action'];
-  if ($redirect_url == 'search') {
-    $redirect_url = 'search/' . $input;
-  }
-  else {
+  if (in_array($redirect_url, array('search-legislation', 'search-court-decisions', 'search-literature', 'search-bilateral-treaties'))) {
     $arguments['query'] = array('search_api_views_fulltext' => $input);
     $redirect_url = $form['#action'];
+  }
+  else {
+    $redirect_url = 'search/' . $input;
   }
   drupal_goto($redirect_url, $arguments);
 }
