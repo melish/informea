@@ -2861,6 +2861,16 @@ iframe.pdfjs {
   margin-bottom: 20px;
 }
 
+.taxonomy-term-related-content .views-row .img-thumbnail {
+  max-width: 50px;
+  position: absolute;
+  margin: 0;
+}
+
+.taxonomy-term-related-content .views-row .views-field {
+  margin-left: 60px;
+}
+
 .taxonomy-term-related-content .meta .separator {
   visibility: visible!important;
   margin-left: 3px;

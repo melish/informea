@@ -35,6 +35,18 @@ function thesaurus_views_default_views() {
   $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Indexed Content: Country */
+  $handler->display->display_options['relationships']['field_country']['id'] = 'field_country';
+  $handler->display->display_options['relationships']['field_country']['table'] = 'search_api_index_informea_court_decisions';
+  $handler->display->display_options['relationships']['field_country']['field'] = 'field_country';
+  /* Field: Content: ISO alpha-2 code */
+  $handler->display->display_options['fields']['field_country_iso2']['id'] = 'field_country_iso2';
+  $handler->display->display_options['fields']['field_country_iso2']['table'] = 'entity_node';
+  $handler->display->display_options['fields']['field_country_iso2']['field'] = 'field_country_iso2';
+  $handler->display->display_options['fields']['field_country_iso2']['relationship'] = 'field_country';
+  $handler->display->display_options['fields']['field_country_iso2']['label'] = '';
+  $handler->display->display_options['fields']['field_country_iso2']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_country_iso2']['element_default_classes'] = FALSE;
   /* Field: Indexed Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_informea_court_decisions';
@@ -104,6 +116,7 @@ function thesaurus_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('Country'),
     t('<div class="meta search-index">
 <span class="glyphicon glyphicon-globe"></span> [field_country]
 <span class="separator">·</span>
