@@ -3,10 +3,10 @@ $aliases['prod'] = array(
   'uri' => 'http://www.informea.org',
 );
 
-$aliases['staging'] = array(
-  'uri' => 'http://informea-staging.edw.ro',
-  'root' => '/var/www/html/informea-staging.edw.ro/docroot',
-  'remote-host' => 'php-devel1.edw.ro',
+$aliases['test'] = array(
+  'uri' => 'http://test.informea.org',
+  'root' => '/var/www/html/informea/docroot',
+  'remote-host' => '5.9.54.24',
   'remote-user' => 'php',
 );
 
