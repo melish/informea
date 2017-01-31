@@ -217,13 +217,9 @@ function _thesaurus_get_related_content_count($term, $bundle) {
       return !empty($related_data['treaties']) ? count($related_data['treaties']) : 0;
 
     case 'court_decisions':
-      return $select->condition('bundle', 'court_decisions')->execute()->rowCount();
-
     case 'legislation':
-      return $select->condition('bundle', 'legislation')->execute()->rowCount();
-
     case 'literature':
-      return $select->condition('bundle', 'literature')->execute()->rowCount();
+      return $select->condition('bundle', $bundle)->execute()->rowCount();
 
     default:
       return false;
