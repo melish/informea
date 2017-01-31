@@ -2844,3 +2844,23 @@ iframe.pdfjs {
   width: 100%;
   font-size: 100%;
 }
+
+/* Taxonomy term related content */
+.taxonomy-term-related-content h2 {
+  font-size: 20px;
+}
+
+.taxonomy-term-related-content-facets h2 {
+  font-size: 16px;
+}
+
+.taxonomy-term-related-content-facets ul {
+  list-style-type: none;
+  margin: 0 0 0 5px;
+  padding: 0;
+}
+
+.taxonomy-term-related-content-facets input.facetapi-checkbox {
+  margin-right: 5px;
+}
+

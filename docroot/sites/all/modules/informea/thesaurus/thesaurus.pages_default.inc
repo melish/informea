@@ -147,7 +147,7 @@ function thesaurus_default_page_manager_handlers() {
         'children' => array(
           0 => 10,
         ),
-        'class' => '',
+        'class' => 'col-sm-3 taxonomy-term-related-content-facets',
         'hide_empty' => 0,
       ),
       8 => array(
@@ -158,7 +158,7 @@ function thesaurus_default_page_manager_handlers() {
         'children' => array(
           0 => 9,
         ),
-        'class' => '',
+        'class' => 'col-sm-9 taxonomy-term-related-content',
         'hide_empty' => 0,
       ),
       9 => array(
@@ -778,7 +778,7 @@ function thesaurus_default_page_manager_pages() {
         'children' => array(
           0 => 10,
         ),
-        'class' => 'col-sm-3',
+        'class' => 'col-sm-3 taxonomy-term-related-content-facets',
         'hide_empty' => 0,
       ),
       8 => array(
@@ -789,7 +789,7 @@ function thesaurus_default_page_manager_pages() {
         'children' => array(
           0 => 9,
         ),
-        'class' => 'col-sm-9',
+        'class' => 'col-sm-9 taxonomy-term-related-content',
         'hide_empty' => 0,
       ),
       9 => array(
