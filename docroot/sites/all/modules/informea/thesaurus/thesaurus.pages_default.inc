@@ -778,7 +778,7 @@ function thesaurus_default_page_manager_pages() {
         'children' => array(
           0 => 10,
         ),
-        'class' => '',
+        'class' => 'col-sm-3',
         'hide_empty' => 0,
       ),
       8 => array(
@@ -789,7 +789,7 @@ function thesaurus_default_page_manager_pages() {
         'children' => array(
           0 => 9,
         ),
-        'class' => '',
+        'class' => 'col-sm-9',
         'hide_empty' => 0,
       ),
       9 => array(
@@ -929,6 +929,98 @@ function thesaurus_default_page_manager_pages() {
     $display->content['new-84b6e493-1a73-47ee-8d80-0eb043271475'] = $pane;
     $display->panels['definition'][0] = 'new-84b6e493-1a73-47ee-8d80-0eb043271475';
     $pane = new stdClass();
+    $pane->pid = 'new-5e2ddf60-c47c-4b37-aa45-58f6bf4c934c';
+    $pane->panel = 'facets';
+    $pane->type = 'block';
+    $pane->subtype = 'facetapi-fdq04xNUyxSV1CkoyeTHIwwlufwxjcFK';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Region',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '5e2ddf60-c47c-4b37-aa45-58f6bf4c934c';
+    $display->content['new-5e2ddf60-c47c-4b37-aa45-58f6bf4c934c'] = $pane;
+    $display->panels['facets'][0] = 'new-5e2ddf60-c47c-4b37-aa45-58f6bf4c934c';
+    $pane = new stdClass();
+    $pane->pid = 'new-d68d5ebb-82c7-4581-849d-8bf8c88579eb';
+    $pane->panel = 'facets';
+    $pane->type = 'block';
+    $pane->subtype = 'facetapi-jX6n57R09128yKk8mDTq4yM84f6PAh5a';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Country',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'd68d5ebb-82c7-4581-849d-8bf8c88579eb';
+    $display->content['new-d68d5ebb-82c7-4581-849d-8bf8c88579eb'] = $pane;
+    $display->panels['facets'][1] = 'new-d68d5ebb-82c7-4581-849d-8bf8c88579eb';
+    $pane = new stdClass();
+    $pane->pid = 'new-c06ab238-4cc2-45b6-bb1e-80ea20e9f8c3';
+    $pane->panel = 'facets';
+    $pane->type = 'block';
+    $pane->subtype = 'facetapi-ABol1qBh79jsfGqF27usDpaBznEzCn7M';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Type of text',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = 'c06ab238-4cc2-45b6-bb1e-80ea20e9f8c3';
+    $display->content['new-c06ab238-4cc2-45b6-bb1e-80ea20e9f8c3'] = $pane;
+    $display->panels['facets'][2] = 'new-c06ab238-4cc2-45b6-bb1e-80ea20e9f8c3';
+    $pane = new stdClass();
+    $pane->pid = 'new-5fa30ddb-06fb-4476-9a65-1f0889d35581';
+    $pane->panel = 'facets';
+    $pane->type = 'block';
+    $pane->subtype = 'facetapi-AXPJXX5P37Swm7dwbcF395wDS4ZQbaYl';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Date of text',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = '5fa30ddb-06fb-4476-9a65-1f0889d35581';
+    $display->content['new-5fa30ddb-06fb-4476-9a65-1f0889d35581'] = $pane;
+    $display->panels['facets'][3] = 'new-5fa30ddb-06fb-4476-9a65-1f0889d35581';
+    $pane = new stdClass();
     $pane->pid = 'new-91aa4fbd-98cf-4ca0-9124-ba0574762f7d';
     $pane->panel = 'menu';
     $pane->type = 'page_tabs';
@@ -1056,6 +1148,44 @@ function thesaurus_default_page_manager_pages() {
     $pane->uuid = '27524512-75b9-453c-b279-6a96a3a97c21';
     $display->content['new-27524512-75b9-453c-b279-6a96a3a97c21'] = $pane;
     $display->panels['other_information'][2] = 'new-27524512-75b9-453c-b279-6a96a3a97c21';
+    $pane = new stdClass();
+    $pane->pid = 'new-2b8e332f-09f4-4e6c-ac37-bdcbc4a0a8c0';
+    $pane->panel = 'tagged_content';
+    $pane->type = 'views';
+    $pane->subtype = 'taxonomy_term_related_court_decisions';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 1,
+      'nodes_per_page' => '20',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'default',
+      'override_title' => 1,
+      'override_title_text' => 'Content tagged with "%taxonomy_term:name_field"',
+      'override_title_heading' => 'h2',
+      'context' => array(
+        0 => 'argument_term_1.tid',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '2b8e332f-09f4-4e6c-ac37-bdcbc4a0a8c0';
+    $display->content['new-2b8e332f-09f4-4e6c-ac37-bdcbc4a0a8c0'] = $pane;
+    $display->panels['tagged_content'][0] = 'new-2b8e332f-09f4-4e6c-ac37-bdcbc4a0a8c0';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
