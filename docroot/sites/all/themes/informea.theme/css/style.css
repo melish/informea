@@ -2871,6 +2871,11 @@ iframe.pdfjs {
   margin-left: 60px;
 }
 
+.taxonomy-term-related-content .meta {
+  color: #666;
+}
+
+
 .taxonomy-term-related-content .meta .separator {
   visibility: visible!important;
   margin-left: 3px;
