@@ -2845,6 +2845,13 @@ iframe.pdfjs {
   font-size: 100%;
 }
 
+/* Taxonomy term page header */
+.column-other-information h2 {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+}
+
 /* Taxonomy term related content */
 .taxonomy-term-related-content h2 {
   font-size: 20px;

@@ -707,7 +707,7 @@ function thesaurus_default_page_manager_pages() {
         'children' => array(
           0 => 5,
         ),
-        'class' => 'col-sm-3',
+        'class' => 'col-sm-3 column-other-information',
         'hide_empty' => 0,
       ),
       3 => array(
@@ -1061,7 +1061,7 @@ function thesaurus_default_page_manager_pages() {
       'context' => 'argument_term_1',
       'override_title' => 1,
       'override_title_text' => 'Broader',
-      'override_title_heading' => 'div',
+      'override_title_heading' => 'h2',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -1090,7 +1090,7 @@ function thesaurus_default_page_manager_pages() {
       'context' => 'argument_term_1',
       'override_title' => 1,
       'override_title_text' => 'Narrower',
-      'override_title_heading' => 'div',
+      'override_title_heading' => 'h2',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -1113,7 +1113,7 @@ function thesaurus_default_page_manager_pages() {
       'plugins' => array(),
     );
     $pane->configuration = array(
-      'label' => 'above',
+      'label' => 'title',
       'formatter' => 'textformatter_list',
       'delta_limit' => '0',
       'delta_offset' => '0',
@@ -1133,8 +1133,8 @@ function thesaurus_default_page_manager_pages() {
         'textformatter_separator_custom_class' => 'textformatter-separator',
       ),
       'context' => 'argument_term_1',
-      'override_title' => 0,
-      'override_title_text' => '',
+      'override_title' => 1,
+      'override_title_text' => 'Synonyms',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
