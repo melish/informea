@@ -140,3 +140,267 @@ function informea_node_info() {
   drupal_alter('node_info', $items);
   return $items;
 }
+
+/**
+ * Implements hook_default_search_api_index().
+ */
+function informea_default_search_api_index() {
+  $items = array();
+  $items['informea_court_decisions'] = entity_import('search_api_index', '{
+    "name" : "InforMEA Court Decisions",
+    "machine_name" : "informea_court_decisions",
+    "description" : null,
+    "server" : "search_solr_server",
+    "item_type" : "node",
+    "options" : {
+      "datasource" : { "bundles" : [ "court_decisions" ] },
+      "index_directly" : 1,
+      "cron_limit" : "50",
+      "fields" : {
+        "attachments_field_document_abstract" : { "type" : "text" },
+        "attachments_field_document_other" : { "type" : "text" },
+        "attachments_field_files" : { "type" : "text" },
+        "changed" : { "type" : "date" },
+        "created" : { "type" : "date" },
+        "field_abstract" : { "type" : "text" },
+        "field_alternative_record_id" : { "type" : "text" },
+        "field_available_in" : { "type" : "text" },
+        "field_city" : { "type" : "text" },
+        "field_country" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "node" },
+        "field_court_decision_raw" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_court_decision_subdivision" : { "type" : "text" },
+        "field_court_name" : { "type" : "text" },
+        "field_data_source" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_date_of_entry" : { "type" : "date" },
+        "field_date_of_modification" : { "type" : "date" },
+        "field_ecolex_decision_status" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_ecolex_keywords" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_ecolex_region" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_ecolex_tags" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_ecolex_treaty_raw" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_faolex_reference_raw" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_informea_tags" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_instance" : { "type" : "text" },
+        "field_isis_number" : { "type" : "text" },
+        "field_jurisdiction" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_justices" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_notes" : { "type" : "text" },
+        "field_number_of_pages" : { "type" : "integer" },
+        "field_official_publication" : { "type" : "text" },
+        "field_original_id" : { "type" : "text" },
+        "field_ref_to_eu_legislation_raw" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_ref_to_nat_legislation_raw" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_reference_number" : { "type" : "text" },
+        "field_region" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_sorting_date" : { "type" : "date" },
+        "field_territorial_subdivision" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_title_of_text_other" : { "type" : "text" },
+        "field_title_of_text_short" : { "type" : "text" },
+        "field_title_of_text_short_other" : { "type" : "text" },
+        "field_type_of_text" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "language" : { "type" : "string" },
+        "nid" : { "type" : "integer" },
+        "search_api_language" : { "type" : "string" },
+        "status" : { "type" : "integer" },
+        "title" : { "type" : "text" },
+        "title_field" : { "type" : "text" },
+        "type" : { "type" : "string" },
+        "url" : { "type" : "uri" },
+        "uuid" : { "type" : "text" },
+        "vid" : { "type" : "integer" }
+      },
+      "data_alter_callbacks" : {
+        "search_api_alter_bundle_filter" : {
+          "status" : 0,
+          "weight" : "-10",
+          "settings" : { "default" : "1", "bundles" : [] }
+        },
+        "search_api_alter_node_access" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_node_status" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_attachments_entityreference_alter_settings" : {
+          "status" : 0,
+          "weight" : "0",
+          "settings" : {
+            "excluded_extensions" : "aif art avi bmp gif ico mov oga ogv png psd ra ram rgb flv",
+            "number_indexed" : "0",
+            "max_file_size" : "0",
+            "excluded_private" : 1
+          }
+        },
+        "search_api_alter_language_control" : {
+          "status" : 0,
+          "weight" : "0",
+          "settings" : { "lang_field" : "", "languages" : [] }
+        },
+        "search_api_attachments_alter_settings" : {
+          "status" : 1,
+          "weight" : "0",
+          "settings" : {
+            "excluded_extensions" : "aif art avi bmp gif ico mov oga ogv png psd ra ram rgb flv",
+            "number_indexed" : "0",
+            "max_file_size" : "0",
+            "excluded_private" : 1
+          }
+        },
+        "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } },
+        "search_api_alter_add_url" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_aggregation" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
+        "search_api_metatag_alter_callback" : { "status" : 0, "weight" : "0", "settings" : [] }
+      },
+      "processors" : {
+        "search_api_case_ignore" : {
+          "status" : 0,
+          "weight" : "0",
+          "settings" : { "fields" : {
+              "title" : true,
+              "uuid" : true,
+              "title_field" : true,
+              "field_city" : true,
+              "field_original_id" : true,
+              "field_abstract" : true,
+              "field_alternative_record_id" : true,
+              "field_available_in" : true,
+              "field_official_publication" : true,
+              "field_reference_number" : true,
+              "field_isis_number" : true,
+              "field_notes" : true,
+              "field_court_name" : true,
+              "field_justices" : true,
+              "field_court_decision_subdivision" : true,
+              "field_court_decision_raw" : true,
+              "field_ecolex_treaty_raw" : true,
+              "field_faolex_reference_raw" : true,
+              "field_instance" : true,
+              "field_ref_to_eu_legislation_raw" : true,
+              "field_title_of_text_other" : true,
+              "field_title_of_text_short" : true,
+              "field_title_of_text_short_other" : true,
+              "field_ref_to_nat_legislation_raw" : true
+            }
+          }
+        },
+        "search_api_html_filter" : {
+          "status" : 0,
+          "weight" : "10",
+          "settings" : {
+            "fields" : {
+              "title" : true,
+              "uuid" : true,
+              "title_field" : true,
+              "field_city" : true,
+              "field_original_id" : true,
+              "field_abstract" : true,
+              "field_alternative_record_id" : true,
+              "field_available_in" : true,
+              "field_official_publication" : true,
+              "field_reference_number" : true,
+              "field_isis_number" : true,
+              "field_notes" : true,
+              "field_court_name" : true,
+              "field_justices" : true,
+              "field_court_decision_subdivision" : true,
+              "field_court_decision_raw" : true,
+              "field_ecolex_treaty_raw" : true,
+              "field_faolex_reference_raw" : true,
+              "field_instance" : true,
+              "field_ref_to_eu_legislation_raw" : true,
+              "field_title_of_text_other" : true,
+              "field_title_of_text_short" : true,
+              "field_title_of_text_short_other" : true,
+              "field_ref_to_nat_legislation_raw" : true
+            },
+            "title" : 0,
+            "alt" : 1,
+            "tags" : "h1 = 5\\r\\nh2 = 3\\r\\nh3 = 2\\r\\nstrong = 2\\r\\nb = 2\\r\\nem = 1.5\\r\\nu = 1.5"
+          }
+        },
+        "search_api_tokenizer" : {
+          "status" : 0,
+          "weight" : "20",
+          "settings" : {
+            "fields" : {
+              "title" : true,
+              "uuid" : true,
+              "title_field" : true,
+              "field_city" : true,
+              "field_original_id" : true,
+              "field_abstract" : true,
+              "field_alternative_record_id" : true,
+              "field_available_in" : true,
+              "field_official_publication" : true,
+              "field_reference_number" : true,
+              "field_isis_number" : true,
+              "field_notes" : true,
+              "field_court_name" : true,
+              "field_justices" : true,
+              "field_court_decision_subdivision" : true,
+              "field_court_decision_raw" : true,
+              "field_ecolex_treaty_raw" : true,
+              "field_faolex_reference_raw" : true,
+              "field_instance" : true,
+              "field_ref_to_eu_legislation_raw" : true,
+              "field_title_of_text_other" : true,
+              "field_title_of_text_short" : true,
+              "field_title_of_text_short_other" : true,
+              "field_ref_to_nat_legislation_raw" : true
+            },
+            "spaces" : "[^[:alnum:]]",
+            "ignorable" : "[\\u0027]"
+          }
+        },
+        "search_api_stopwords" : {
+          "status" : 0,
+          "weight" : "30",
+          "settings" : {
+            "fields" : {
+              "title" : true,
+              "uuid" : true,
+              "title_field" : true,
+              "field_city" : true,
+              "field_original_id" : true,
+              "field_abstract" : true,
+              "field_alternative_record_id" : true,
+              "field_available_in" : true,
+              "field_official_publication" : true,
+              "field_reference_number" : true,
+              "field_isis_number" : true,
+              "field_notes" : true,
+              "field_court_name" : true,
+              "field_justices" : true,
+              "field_court_decision_subdivision" : true,
+              "field_court_decision_raw" : true,
+              "field_ecolex_treaty_raw" : true,
+              "field_faolex_reference_raw" : true,
+              "field_instance" : true,
+              "field_ref_to_eu_legislation_raw" : true,
+              "field_title_of_text_other" : true,
+              "field_title_of_text_short" : true,
+              "field_title_of_text_short_other" : true,
+              "field_ref_to_nat_legislation_raw" : true
+            },
+            "file" : "",
+            "stopwords" : "but\\r\\ndid\\r\\nthe this that those\\r\\netc"
+          }
+        },
+        "search_api_highlighting" : {
+          "status" : 1,
+          "weight" : "35",
+          "settings" : {
+            "prefix" : "\\u003Cstrong\\u003E",
+            "suffix" : "\\u003C\\/strong\\u003E",
+            "excerpt" : 1,
+            "excerpt_length" : "256",
+            "exclude_fields" : [],
+            "highlight" : "always"
+          }
+        }
+      }
+    },
+    "enabled" : "1",
+    "read_only" : "0",
+    "rdf_mapping" : [],
+    "tes" : { "enable" : false }
+  }');
+  return $items;
+}
