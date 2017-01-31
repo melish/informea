@@ -52,6 +52,7 @@ function thesaurus_views_default_views() {
   $handler->display->display_options['fields']['field_country']['table'] = 'search_api_index_informea_court_decisions';
   $handler->display->display_options['fields']['field_country']['field'] = 'field_country';
   $handler->display->display_options['fields']['field_country']['label'] = '';
+  $handler->display->display_options['fields']['field_country']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_country']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_country']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_country']['view_mode'] = 'full';
@@ -61,11 +62,17 @@ function thesaurus_views_default_views() {
   $handler->display->display_options['fields']['field_type_of_text']['table'] = 'search_api_index_informea_court_decisions';
   $handler->display->display_options['fields']['field_type_of_text']['field'] = 'field_type_of_text';
   $handler->display->display_options['fields']['field_type_of_text']['label'] = '';
+  $handler->display->display_options['fields']['field_type_of_text']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_type_of_text']['alter']['text'] = '<div class="meta search-index">
+<span class="glyphicon glyphicon-globe"></span> [field_country]
+<span class="separator">·</span>
+[field_type_of_text]
+</div>';
   $handler->display->display_options['fields']['field_type_of_text']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_type_of_text']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_type_of_text']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_type_of_text']['bypass_access'] = 0;
-  /* Sort criterion: Indexed Content: Date of text */
+  /* Sort criterion: Indexed Content: Date */
   $handler->display->display_options['sorts']['field_sorting_date']['id'] = 'field_sorting_date';
   $handler->display->display_options['sorts']['field_sorting_date']['table'] = 'search_api_index_informea_court_decisions';
   $handler->display->display_options['sorts']['field_sorting_date']['field'] = 'field_sorting_date';
@@ -97,6 +104,11 @@ function thesaurus_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('<div class="meta search-index">
+<span class="glyphicon glyphicon-globe"></span> [field_country]
+<span class="separator">·</span>
+[field_type_of_text]
+</div>'),
     t('All'),
     t('Block'),
   );
