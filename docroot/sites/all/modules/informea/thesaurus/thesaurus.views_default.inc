@@ -84,7 +84,7 @@ function thesaurus_views_default_views() {
   $handler->display->display_options['fields']['field_type_of_text']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_type_of_text']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_type_of_text']['bypass_access'] = 0;
-  /* Sort criterion: Indexed Content: Date */
+  /* Sort criterion: Indexed Content: Date of text */
   $handler->display->display_options['sorts']['field_sorting_date']['id'] = 'field_sorting_date';
   $handler->display->display_options['sorts']['field_sorting_date']['table'] = 'search_api_index_informea_court_decisions';
   $handler->display->display_options['sorts']['field_sorting_date']['field'] = 'field_sorting_date';

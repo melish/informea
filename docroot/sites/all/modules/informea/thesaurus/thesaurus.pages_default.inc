@@ -76,7 +76,7 @@ function thesaurus_default_page_manager_handlers() {
         'children' => array(
           0 => 5,
         ),
-        'class' => 'col-sm-3',
+        'class' => 'col-sm-3 column-other-information',
         'hide_empty' => 0,
       ),
       3 => array(
@@ -361,7 +361,7 @@ function thesaurus_default_page_manager_handlers() {
       'context' => 'argument_term_1',
       'override_title' => 1,
       'override_title_text' => 'Broader',
-      'override_title_heading' => 'div',
+      'override_title_heading' => 'h2',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -390,7 +390,7 @@ function thesaurus_default_page_manager_handlers() {
       'context' => 'argument_term_1',
       'override_title' => 1,
       'override_title_text' => 'Narrower',
-      'override_title_heading' => 'div',
+      'override_title_heading' => 'h2',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -413,7 +413,7 @@ function thesaurus_default_page_manager_handlers() {
       'plugins' => array(),
     );
     $pane->configuration = array(
-      'label' => 'above',
+      'label' => 'hidden',
       'formatter' => 'textformatter_list',
       'delta_limit' => '0',
       'delta_offset' => '0',
@@ -433,8 +433,8 @@ function thesaurus_default_page_manager_handlers() {
         'textformatter_separator_custom_class' => 'textformatter-separator',
       ),
       'context' => 'argument_term_1',
-      'override_title' => 0,
-      'override_title_text' => '',
+      'override_title' => 1,
+      'override_title_text' => 'Synonyms',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
@@ -578,7 +578,10 @@ function thesaurus_default_page_manager_pages() {
   $page->admin_title = 'Thesaurus - court decisions';
   $page->admin_description = '';
   $page->path = 'taxonomy/term/%taxonomy_term/court-decisions';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array(
     'taxonomy_term' => array(
@@ -663,6 +666,14 @@ function thesaurus_default_page_manager_pages() {
     'access' => array(
       'logic' => 'and',
     ),
+    'panels_breadcrumbs_state' => 1,
+    'panels_breadcrumbs_titles' => 'Glossary
+%taxonomy_term:name_field
+Court decisions',
+    'panels_breadcrumbs_paths' => '/terms
+%taxonomy_term:url
+<none>',
+    'panels_breadcrumbs_home' => 1,
   );
   $display = new panels_display();
   $display->layout = 'flexible';
