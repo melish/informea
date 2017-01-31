@@ -1393,7 +1393,7 @@ function informea_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'taxonomy_term-thesaurus_informea-field_term_related_uri'
+  // 'taxonomy_term-thesaurus_informea-field_term_related_uri'.
   $field_instances['taxonomy_term-thesaurus_informea-field_term_related_uri'] = array(
     'bundle' => 'thesaurus_informea',
     'default_value' => NULL,
@@ -1483,7 +1483,7 @@ function informea_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'taxonomy_term-thesaurus_informea-field_term_synonyms'
+  // 'taxonomy_term-thesaurus_informea-field_term_synonyms'.
   $field_instances['taxonomy_term-thesaurus_informea-field_term_synonyms'] = array(
     'bundle' => 'thesaurus_informea',
     'default_value' => NULL,

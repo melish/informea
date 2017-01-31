@@ -321,7 +321,7 @@ function informea_views_default_views() {
   $handler->display->display_options['style_options']['default_row_class'] = FALSE;
   $handler->display->display_options['style_options']['class'] = 'media-list';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Field: Indexed Content: Image */
+  /* Field: Indexed Content: Thumbnail */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
@@ -332,7 +332,7 @@ function informea_views_default_views() {
     'image_style' => 'logo',
     'image_link' => '',
   );
-  /* Field: Indexed Content: URL */
+  /* Field: Indexed Content: Link to decision on MEA website */
   $handler->display->display_options['fields']['field_url']['id'] = 'field_url';
   $handler->display->display_options['fields']['field_url']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_url']['field'] = 'field_url';
@@ -367,7 +367,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['created']['date_format'] = 'short';
   $handler->display->display_options['fields']['created']['second_date_format'] = 'long';
   $handler->display->display_options['fields']['created']['link_to_entity'] = 0;
-  /* Field: Indexed Content: Tags */
+  /* Field: Indexed Content: MEA topic */
   $handler->display->display_options['fields']['field_mea_topic']['id'] = 'field_mea_topic';
   $handler->display->display_options['fields']['field_mea_topic']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_mea_topic']['field'] = 'field_mea_topic';
@@ -407,7 +407,7 @@ function informea_views_default_views() {
     4 => 0,
     5 => 0,
   );
-  /* Filter criterion: Indexed Content: Tags */
+  /* Filter criterion: Indexed Content: MEA topic */
   $handler->display->display_options['filters']['field_mea_topic']['id'] = 'field_mea_topic';
   $handler->display->display_options['filters']['field_mea_topic']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['filters']['field_mea_topic']['field'] = 'field_mea_topic';
@@ -462,7 +462,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_entity'] = 0;
-  /* Field: Indexed Content: URL */
+  /* Field: Indexed Content: Link to decision on MEA website */
   $handler->display->display_options['fields']['field_url']['id'] = 'field_url';
   $handler->display->display_options['fields']['field_url']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_url']['field'] = 'field_url';
