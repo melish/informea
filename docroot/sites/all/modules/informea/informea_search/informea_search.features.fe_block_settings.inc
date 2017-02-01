@@ -41,6 +41,35 @@ search/*',
     'visibility' => 1,
   );
 
+  $export['facetapi-EBe4nF0bWIclTeTpPk5EfoKyGT3EgxZw'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'EBe4nF0bWIclTeTpPk5EfoKyGT3EgxZw',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'facetapi',
+    'node_types' => array(),
+    'pages' => 'search-legislation
+search-legislation/*',
+    'roles' => array(),
+    'themes' => array(
+      'informea_theme' => array(
+        'region' => 'sidebar_first',
+        'status' => 1,
+        'theme' => 'informea_theme',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => 'Region',
+    'visibility' => 1,
+  );
+
   $export['facetapi-EeqfYRvf4OeayxrDPBXmxh0uLs695r1S'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -95,6 +124,92 @@ search/*',
       ),
     ),
     'title' => 'Keywords',
+    'visibility' => 1,
+  );
+
+  $export['facetapi-IhbpziRRQ04ohXLVPOH1pzkj01ySLvut'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'IhbpziRRQ04ohXLVPOH1pzkj01ySLvut',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'facetapi',
+    'node_types' => array(),
+    'pages' => 'search-legislation
+search-legislation/*',
+    'roles' => array(),
+    'themes' => array(
+      'informea_theme' => array(
+        'region' => 'sidebar_first',
+        'status' => 1,
+        'theme' => 'informea_theme',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => 'Country',
+    'visibility' => 1,
+  );
+
+  $export['facetapi-Pg30Pc0KVb1ixI192kdMOYYpptaM7w81'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'Pg30Pc0KVb1ixI192kdMOYYpptaM7w81',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'facetapi',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'informea_theme' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'informea_theme',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
+  $export['facetapi-bhF7dlwZfRYrATVWsYC6eOvTl9pFOHHh'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'bhF7dlwZfRYrATVWsYC6eOvTl9pFOHHh',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'facetapi',
+    'node_types' => array(),
+    'pages' => 'search-legislation
+search-legislation/*',
+    'roles' => array(),
+    'themes' => array(
+      'informea_theme' => array(
+        'region' => 'sidebar_first',
+        'status' => 1,
+        'theme' => 'informea_theme',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => 'Type of text',
     'visibility' => 1,
   );
 
