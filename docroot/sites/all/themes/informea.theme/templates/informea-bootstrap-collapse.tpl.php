@@ -35,13 +35,13 @@ $show_filter_input = isset($variables['show-filter-input']) ? $variables['show-f
     }
   ?>
   <div class="panel panel-default">
-    <div id="heading-<?php print $eid; ?>" class="panel-heading<?php print $collapsed; ?> <?php print !empty($element['tags']) ? 'smallipop' : ''; ?>" data-toggle="collapse"<?php print $add_data_parent_text; ?> data-target="#collapse-<?php print $eid; ?>" aria-expanded="false" aria-controls="collapse-<?php print $eid; ?>" role="tab">
+    <div id="heading-<?php print $eid; ?>" class="clearfix panel-heading<?php print $collapsed; ?> <?php print !empty($element['tags']) ? 'smallipop' : ''; ?>" data-toggle="collapse"<?php print $add_data_parent_text; ?> data-target="#collapse-<?php print $eid; ?>" aria-expanded="false" aria-controls="collapse-<?php print $eid; ?>" role="tab">
       <?php
       if (!empty($element['tags'])) {
         print $element['tags'];
       }
       ?>
-      <i class="glyphicon glyphicon-plus-sign"></i> <h4 class="panel-title"><?php print $element['header']; ?></a></h4>
+      <h4 class="panel-title"><?php print $element['header']; ?></a></h4>&nbsp;<i class="glyphicon glyphicon-plus-sign"></i>
     </div>
     <div id="collapse-<?php print $eid; ?>" class="panel-collapse collapse<?php print $in; ?>" role="tabpanel" aria-labelledby="heading-<?php print $eid; ?>" aria-expanded="false">
       <?php if ($add_panel_body): ?>
