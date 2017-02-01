@@ -42,7 +42,8 @@ class EcolexLegislationMigration extends Migration {
     $this->addFieldMapping('field_ecolex_region:source_type')->defaultValue('tid');
 
     $this->addFieldMapping('field_files', 'legLinkToFullText');
-    $this->addFieldMapping('field_files:file_replace')->defaultValue(FILE_EXISTS_REPLACE); // FILE_EXISTS_OVERWRITE
+    $this->addFieldMapping('field_files:description', 'legLinkToFullText');
+    $this->addFieldMapping('field_files:file_replace')->defaultValue(MigrateFile::FILE_EXISTS_REUSE);
 
     $this->addFieldMapping('field_url', 'legRelatedWebSite');
 
@@ -129,7 +130,9 @@ class EcolexLegislationMigration extends Migration {
       'field_serial_imprint',
 
       'field_files:file_class', 'field_files:language', 'field_files:preserve_files', 'field_files:destination_dir', 'field_files:destination_file',
-      'field_files:source_dir', 'field_files:urlencode', 'field_files:description', 'field_files:display',
+      'field_files:source_dir', 'field_files:urlencode', 'field_files:display',
+      'field_ecolex_region:create_term', 'field_ecolex_region:ignore_case',
+      'field_ecolex_legislation_status:create_term', 'field_ecolex_legislation_status:ignore_case',
       'field_title_abbreviation:language',
       'field_avaiable_web_site', 'field_avaiable_web_site:title',
       'field_avaiable_web_site:attributes', 'field_avaiable_web_site:language',
