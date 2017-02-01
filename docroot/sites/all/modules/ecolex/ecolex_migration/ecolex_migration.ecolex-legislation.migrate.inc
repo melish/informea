@@ -131,8 +131,6 @@ class EcolexLegislationMigration extends Migration {
 
       'field_files:file_class', 'field_files:language', 'field_files:preserve_files', 'field_files:destination_dir', 'field_files:destination_file',
       'field_files:source_dir', 'field_files:urlencode', 'field_files:display',
-      'field_ecolex_region:create_term', 'field_ecolex_region:ignore_case',
-      'field_ecolex_legislation_status:create_term', 'field_ecolex_legislation_status:ignore_case',
       'field_title_abbreviation:language',
       'field_avaiable_web_site', 'field_avaiable_web_site:title',
       'field_avaiable_web_site:attributes', 'field_avaiable_web_site:language',
