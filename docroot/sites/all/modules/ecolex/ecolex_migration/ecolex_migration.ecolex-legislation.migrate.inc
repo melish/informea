@@ -41,8 +41,6 @@ class EcolexLegislationMigration extends Migration {
     $this->addFieldMapping('field_ecolex_region', 'legGeoArea_en');
     $this->addFieldMapping('field_ecolex_region:source_type')->defaultValue('tid');
 
-    // $this->addFieldMapping('field_source_language', 'legLanguage_code'); // 1 letter code - not needed
-
     $this->addFieldMapping('field_files', 'legLinkToFullText');
     $this->addFieldMapping('field_files:file_replace')->defaultValue(FILE_EXISTS_REPLACE); // FILE_EXISTS_OVERWRITE
 
@@ -68,7 +66,8 @@ class EcolexLegislationMigration extends Migration {
     $this->addFieldMapping('field_date_of_modification:timezone')->defaultValue('Europe/Zurich');
 
 
-    $this->addFieldMapping('field_data_source')->defaultValue('ECOLEX/FAOLEX');
+    $this->addFieldMapping('field_data_source', 'legDataSource');
+    $this->addFieldMapping('field_data_source:source_type')->defaultValue('tid');
     $this->addFieldMapping('comment')->defaultValue(FALSE);
     $this->addFieldMapping('uid')->defaultValue(0);
     $this->addFieldMapping('status')->defaultValue(1);
@@ -77,20 +76,17 @@ class EcolexLegislationMigration extends Migration {
     $this->addFieldMapping('revision')->defaultValue(0);
     $this->addFieldMapping('language')->defaultValue('en');
 
-    // TODO NOT FOUND:
-    $this->addFieldMapping('field_date_of_entry', 'legEntryDate');//may be will be enabled later - not clear...
+    $this->addFieldMapping('field_date_of_entry', 'legEntryDate');
     $this->addFieldMapping('field_date_of_entry:timezone')->defaultValue('Europe/Zurich');
-    $this->addFieldMapping('field_ecolex_url', 'ecolex_url'); // not used
-    $this->addFieldMapping('field_faolex_url', 'faolex_url'); // not used
+    $this->addFieldMapping('field_ecolex_url', 'ecolex_url');
+    $this->addFieldMapping('field_faolex_url', 'faolex_url');
 
 
     $this->addUnmigratedSources(array());
     $this->addUnmigratedDestinations(array(
       'nid', 'created', 'changed', 'log', 'tnid', 'translate', 'revision_uid', 'path',
       'is_new', 'body:summary', 'body:format', 'body:language',
-      'field_sorting_date:to', 'field_sorting_date:rrule',
-      'field_abstract','field_abstract:language',
-      'field_date_of_original_text:rrule',
+
       'metatag_title', 'metatag_description', 'metatag_abstract', 'metatag_keywords',
       'metatag_robots', 'metatag_news_keywords', 'metatag_standout', 'metatag_rating',
       'metatag_referrer', 'metatag_generator', 'metatag_rights', 'metatag_image_src',
@@ -99,39 +95,49 @@ class EcolexLegislationMigration extends Migration {
       'metatag_geo.position', 'metatag_geo.placename', 'metatag_geo.region',
       'metatag_icbm', 'metatag_refresh', 'metatag_revisit-after', 'metatag_pragma',
       'metatag_cache-control', 'metatag_expires',
+
+      'field_sorting_date:to', 'field_sorting_date:rrule',
+      'field_abstract','field_abstract:language',
+      'field_date_of_original_text:rrule',
       'field_date_of_original_text:to',
+
+      //term
       'field_ecolex_tags:create_term', 'field_ecolex_tags:ignore_case',
       'field_type_of_text:create_term', 'field_type_of_text:ignore_case',
+      'field_territorial_subdivision:create_term', 'field_territorial_subdivision:ignore_case',
+      'field_ecolex_region:create_term', 'field_ecolex_region:ignore_case',
+      'field_ecolex_legislation_status:create_term', 'field_ecolex_legislation_status:ignore_case',
+      'field_ecolex_keywords:create_term', 'field_ecolex_keywords:ignore_case',
+      // empty term
+      'field_sub_file_code', 'field_sub_file_code:source_type', 'field_sub_file_code:create_term', 'field_sub_file_code:ignore_case',
+      'field_informea_tags', 'field_informea_tags:source_type', 'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
+      'field_region', 'field_region:source_type', 'field_region:create_term', 'field_region:ignore_case',
+      'field_data_source:source_type', 'field_data_source:create_term', 'field_data_source:ignore_case',
+      'field_keywords', 'field_keywords:source_type', 'field_keywords:create_term', 'field_keywords:ignore_case',
+      'field_emerging_terms','field_emerging_terms:source_type', 'field_emerging_terms:create_term', 'field_emerging_terms:ignore_case',
+
       'field_url:title', 'field_url:attributes', 'field_url:language',
-      'field_date_of_entry:rrule',
-      'field_date_of_entry:to',
+
+      'field_date_of_entry:rrule', 'field_date_of_entry:to',
       'field_date_of_modification:rrule', 'field_date_of_modification:to',
+
       'field_internet_reference_url', 'field_internet_reference_url:title',
       'field_internet_reference_url:attributes', 'field_internet_reference_url:language',
       'field_notes',
       'field_reference_number',
       'field_repealed',
       'field_serial_imprint',
-      'field_sub_file_code', 'field_sub_file_code:source_type', 'field_sub_file_code:create_term', 'field_sub_file_code:ignore_case',
-      'field_territorial_subdivision:create_term', 'field_territorial_subdivision:ignore_case',
-      'field_informea_tags', 'field_informea_tags:source_type', 'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
-      'field_region', 'field_region:source_type', 'field_region:create_term', 'field_region:ignore_case',
-      'field_data_source:source_type', 'field_data_source:create_term', 'field_data_source:ignore_case',
+
       'field_files:file_class', 'field_files:language', 'field_files:preserve_files', 'field_files:destination_dir', 'field_files:destination_file',
       'field_files:source_dir', 'field_files:urlencode', 'field_files:description', 'field_files:display',
-      'field_ecolex_region:create_term', 'field_ecolex_region:ignore_case',
-      'field_ecolex_legislation_status:create_term', 'field_ecolex_legislation_status:ignore_case',
       'field_title_abbreviation:language',
-      'field_ecolex_keywords:create_term', 'field_ecolex_keywords:ignore_case',
       'field_avaiable_web_site', 'field_avaiable_web_site:title',
       'field_avaiable_web_site:attributes', 'field_avaiable_web_site:language',
       'field_date_of_consolidation', 'field_date_of_consolidation:timezone',
       'field_date_of_consolidation:rrule', 'field_date_of_consolidation:to',
       'field_isis_number',
-      'field_keywords', 'field_keywords:source_type', 'field_keywords:create_term', 'field_keywords:ignore_case',
       'field_ecolex_url:title', 'field_ecolex_url:attributes', 'field_ecolex_url:language',
       'field_faolex_url:title',  'field_faolex_url:attributes', 'field_faolex_url:language',
-      'field_emerging_terms','field_emerging_terms:source_type', 'field_emerging_terms:create_term', 'field_emerging_terms:ignore_case',
       'field_source_language',
     ));
   }
@@ -147,10 +153,10 @@ class EcolexLegislationMigration extends Migration {
     if (!empty($row->legOriginalYear) && strlen($row->legOriginalYear) == 4) {
       $row->legOriginalYear = $row->legOriginalYear . '-01-01';
     }
-    // 'title_field',
-    // 'title_field:language',
 
     // Taxonomies
+    $row->legDataSource = 'ECOLEX/FAOLEX';
+    $this->prepare_term_reference_field($row, 'legDataSource', 'data_source');
     $this->prepare_term_reference_field_multilingual($row, 'legType', 'type_of_text');
     $this->prepare_term_reference_field_multilingual($row, 'legGeoArea', 'ecolex_region');
     $this->prepare_term_reference_field_multilingual($row, 'legSubject', 'ecolex_subjects');
@@ -345,10 +351,7 @@ class EcolexLegislationMigrateSource extends MigrateSource {
       'legCountry_iso'           => 'Country ISO code',
       'legEntryIntoForce'        => 'Notes about enter into force',
       'legGeoArea_en'            => 'Geographical area, multivalued',
-      // 'legBasin_en'              => 'Basin geographical area',
-      // 'legLanguage_code'           => 'Document language',
       'legLinkToFullText'        => 'Link to document file',
-      // 'legModificationDate'      => 'Modification date',
       'legRelatedWebSite'        => 'Related website',
       'legSource'                => 'Source of the data input (ie. scanned copy)',
       'legStatus'                => 'Status (i.e. in force)',
@@ -360,9 +363,6 @@ class EcolexLegislationMigrateSource extends MigrateSource {
       'legKeyword_en'            => 'Tagging keywords',
       'ecolex_url'                  => 'Link to ECOLEX',
       'faolex_url'                  => 'Link to FAOLEX',
-      // 'legEntryDate'             => 'Date when record entered into the system',
-      // 'legTypeCode'              => 'Codification for type of document',
-      // 'legSearchDate'            => '',
     );
   }
 
@@ -456,7 +456,7 @@ class EcolexLegislationMigrateSource extends MigrateSource {
       }
       $str = elis_consumer_http_request($item->url, array('Accept' => 'application/json') );
       if ($this->log_detail) {
-        $destination = 'temporary://ecolex/'.$item->docId . '.json';
+        $destination = 'temporary://ecolex_legislation/'.$item->docId . '.json';
         if (file_prepare_directory(dirname($destination), FILE_CREATE_DIRECTORY)) {
           file_put_contents(drupal_realpath($destination), $str);
         }

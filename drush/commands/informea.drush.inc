@@ -27,6 +27,20 @@ function informea_drush_command() {
       'sync-ecolex-legislation' => 'Sync ecolex legislation',
     ),
   );
+  $items['sync-ecolex-literature'] = array(
+    'description' => 'Sync ecolex literature',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'examples' => array(
+      'sync-ecolex-literature' => 'Sync ecolex literature',
+    ),
+  );
+  $items['sync-ecolex-treaty'] = array(
+    'description' => 'Sync ecolex literature',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'examples' => array(
+      'sync-ecolex-literature' => 'Sync ecolex treaty',
+    ),
+  );
   return $items;
 }
 
@@ -71,4 +85,12 @@ function drush_informea_cache_warm() {
 
 function drush_informea_sync_ecolex_legislation() {
   ecolex_migration_legislation_sync();
+}
+
+function drush_informea_sync_ecolex_literature() {
+  ecolex_migration_literature_sync();
+}
+
+function drush_informea_sync_ecolex_treaty() {
+  ecolex_migration_treaty_sync();
 }
