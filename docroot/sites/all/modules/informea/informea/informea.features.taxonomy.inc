@@ -33,6 +33,9 @@ function informea_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'tags' => array(
       'name' => 'Tags',
@@ -57,6 +60,9 @@ function informea_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
     'thesaurus_agrovoc' => array(
@@ -83,6 +89,9 @@ function informea_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'thesaurus_ecolex' => array(
       'name' => 'Thesaurus - ECOLEX',
@@ -107,6 +116,9 @@ function informea_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
     'thesaurus_geg' => array(
@@ -133,6 +145,9 @@ function informea_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'thesaurus_gemet' => array(
       'name' => 'Thesaurus - GEMET',
@@ -158,6 +173,9 @@ function informea_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'thesaurus_ieg' => array(
       'name' => 'Thesaurus - IEG',
@@ -182,6 +200,9 @@ function informea_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
     'thesaurus_informea' => array(

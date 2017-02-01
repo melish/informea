@@ -2809,3 +2809,90 @@ iframe.pdfjs {
 .node-type-treaty #meetings .panel-heading {
   cursor: default;
 }
+
+#terms-listing-tabs .tab-pane{
+  height: 446px;
+  width: 100%;
+}
+#terms-listing-tabs .tab-pane-content{
+  overflow-y: scroll;
+  width: 100%;
+  height: 413px;
+}
+#terms-listing-tabs .tab-pane-content.full-height{
+  height: 446px;
+}
+
+#terms-listing-tabs a {
+  color: #336696;
+}
+
+#terms-listing-tabs .tab-content {
+  padding: 10px;
+}
+
+#terms-listing-tabs .tab-pane-content > button {
+  margin-right: 10px;
+}
+
+#terms-listing-tabs #terms-atoz-filter {
+  min-width: 100%;
+  margin-bottom: 10px;
+}
+
+.tabs--secondary {
+  width: 100%;
+  font-size: 100%;
+}
+
+/* Taxonomy term page header */
+.column-other-information h2 {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Taxonomy term related content */
+.taxonomy-term-related-content h2 {
+  font-size: 20px;
+}
+
+.taxonomy-term-related-content .views-row {
+  margin-bottom: 20px;
+}
+
+.taxonomy-term-related-content .views-row .img-thumbnail {
+  max-width: 50px;
+  position: absolute;
+  margin: 0;
+}
+
+.taxonomy-term-related-content .views-row .views-field {
+  margin-left: 60px;
+}
+
+.taxonomy-term-related-content .meta {
+  color: #666;
+}
+
+
+.taxonomy-term-related-content .meta .separator {
+  visibility: visible!important;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.taxonomy-term-related-content-facets h2 {
+  font-size: 16px;
+}
+
+.taxonomy-term-related-content-facets ul {
+  list-style-type: none;
+  margin: 0 0 0 5px;
+  padding: 0;
+}
+
+.taxonomy-term-related-content-facets input.facetapi-checkbox {
+  margin-right: 5px;
+}
+
