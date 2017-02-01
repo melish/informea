@@ -84,9 +84,13 @@ function informea_search_views_default_views() {
   $handler->display->display_options['arguments']['search_api_views_fulltext']['break_phrase'] = 0;
   $handler->display->display_options['arguments']['search_api_views_fulltext']['not'] = 0;
 
-  /* Display: Page */
-  $handler = $view->new_display('page', 'Page', 'page');
+  /* Display: Multilateral treaties */
+  $handler = $view->new_display('page', 'Multilateral treaties', 'page');
   $handler->display->display_options['path'] = 'search';
+
+  /* Display: Bilateral treaties */
+  $handler = $view->new_display('page', 'Bilateral treaties', 'page_1');
+  $handler->display->display_options['path'] = 'search-bilateral-treaties';
   $translatables['informea_search'] = array(
     t('Master'),
     t('Search InforMEA'),
@@ -101,7 +105,8 @@ function informea_search_views_default_views() {
     t('.'),
     t(','),
     t('All'),
-    t('Page'),
+    t('Multilateral treaties'),
+    t('Bilateral treaties'),
   );
   $export['informea_search'] = $view;
 

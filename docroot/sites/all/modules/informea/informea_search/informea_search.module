@@ -316,7 +316,7 @@ function informea_search_block_switch_topic_view() {
   $tabs = array();
   foreach($elements as $k => $v) {
     $link_options = array();
-    if ($k != 'search') {
+    if (!in_array($k, ['search', 'search-bilateral-treaties'])) {
       $link_url = $k;
       $link_options = array('query' => array('search_api_views_fulltext' => $fulltext));
     }

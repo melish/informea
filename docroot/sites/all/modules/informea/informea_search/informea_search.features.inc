@@ -208,6 +208,7 @@ function informea_search_default_search_api_index() {
         "field_action_plan_type" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_country" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "node" },
         "field_country_official_name" : { "type" : "text" },
+        "field_data_source" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_decision_number" : { "type" : "text" },
         "field_informea_tags" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_informea_tags:name" : { "type" : "list\\u003Ctext\\u003E" },
