@@ -179,7 +179,7 @@ function thesaurus_default_panels_layout() {
         'width' => 100,
         'width_type' => '%',
         'parent' => '10',
-        'class' => '',
+        'class' => 'well',
         'hide_empty' => 0,
       ),
       11 => array(
