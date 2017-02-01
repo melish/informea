@@ -51,10 +51,15 @@ function informea_search_block_info() {
       'status' => 1,
       'region' => 'content',
       'visibility' => BLOCK_VISIBILITY_LISTED,
-      'pages' => 'search/*
+      'pages' => 'search
+search/*
+search-legislation
 search-legislation/*
+search-court-decisions
 search-court-decisions/*
+search-literature
 search-literature/*
+search-bilateral-treaties
 search-bilateral-treaties/*',
     )
   );
@@ -340,10 +345,10 @@ function informea_search_block_switch_topic_view() {
 function informea_search_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'views_exposed_form') {
     switch ($form['#id']) {
-      case 'views-exposed-form-search-law-and-literature-page-legislation':
-      case 'views-exposed-form-search-law-and-literature-page-court-decisions':
-      case 'views-exposed-form-search-law-and-literature-page-literature':
-      case 'views-exposed-form-search-law-and-literature-page-bilateral-treaties':
+      case 'views-exposed-form-informea-search-legislation-page':
+      case 'views-exposed-form-informea-search-court-decision-page':
+      case 'views-exposed-form-informea-search-literature-page':
+      case 'views-exposed-form-informea-search-bilateral-treaties-page':
         hide($form);
     }
   }

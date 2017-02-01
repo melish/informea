@@ -52,7 +52,6 @@ function informea_search_default_search_api_index() {
           "entity_type" : "field_collection_item"
         },
         "field_document_type" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
-        "field_image:alt" : { "type" : "text" },
         "field_image:file" : { "type" : "integer", "entity_type" : "file" },
         "field_informea_tags" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_last_update" : { "type" : "date" },
@@ -175,7 +174,8 @@ function informea_search_default_search_api_index() {
     },
     "enabled" : "1",
     "read_only" : "0",
-    "rdf_mapping" : []
+    "rdf_mapping" : [],
+    "tes" : { "enable" : false }
   }');
   $items['informea_fulltext_solr_index'] = entity_import('search_api_index', '{
     "name" : "InforMEA fulltext Solr index",
@@ -342,7 +342,8 @@ function informea_search_default_search_api_index() {
     },
     "enabled" : "1",
     "read_only" : "0",
-    "rdf_mapping" : []
+    "rdf_mapping" : [],
+    "tes" : { "enable" : false }
   }');
   return $items;
 }
@@ -374,7 +375,8 @@ function informea_search_default_search_api_server() {
       "http_method" : "AUTO"
     },
     "enabled" : "1",
-    "rdf_mapping" : []
+    "rdf_mapping" : [],
+    "tes" : { "enable" : false }
   }');
   $items['search_solr_server'] = entity_import('search_api_server', '{
     "name" : "Apache Solr server",
@@ -401,7 +403,8 @@ function informea_search_default_search_api_server() {
       "http" : { "http_user" : "", "http_pass" : null }
     },
     "enabled" : "1",
-    "rdf_mapping" : []
+    "rdf_mapping" : [],
+    "tes" : { "enable" : false }
   }');
   $items['solr_4_informea_documents'] = entity_import('search_api_server', '{
     "name" : "solr 4 informea-documents",
@@ -425,7 +428,8 @@ function informea_search_default_search_api_server() {
       "http_method" : "AUTO"
     },
     "enabled" : "1",
-    "rdf_mapping" : []
+    "rdf_mapping" : [],
+    "tes" : { "enable" : false }
   }');
   return $items;
 }
