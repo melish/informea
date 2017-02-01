@@ -268,7 +268,12 @@ class EcolexLiteratureMigrateSource extends MigrateSource {
   public function __construct($source_url_pattern) {
     parent::__construct(array());
     $this->url_pattern = $source_url_pattern;
-    $this->check_modify_date = variable_get('ecolex_literature_check_modify_date', TRUE);
+    $this->check_modify_date = variable_get('ecolex_literature_check_modify_date', FALSE);
+    $this->updated_after = 0;
+    if ($this->check_modify_date) {
+      $this->updated_after = date('Ymd',strtotime('-10 days'));
+      $this->url_pattern .= '&updated_after=' . $this->updated_after;
+    }
     $this->fetch_limit = variable_get('ecolex_literature_fetch_limit', 100);
     $this->log_detail = variable_get('ecolex_literature_log_detail', FALSE);
     $this->computeCount();
@@ -360,7 +365,7 @@ class EcolexLiteratureMigrateSource extends MigrateSource {
     if ($this->currentCount == $next_call_count && $next_call_count < $this->totalCount) {
       $start = $this->currentPage * $this->pagination;
 
-      $destination = 'temporary://ecolex_literature/' . $this->pagination . '-' . $start. '.json';
+      $destination = 'temporary://ecolex_literature/' . $this->pagination . '-' . $start. '-' . $this->updated_after . '.json';
       file_prepare_directory(dirname($destination), FILE_CREATE_DIRECTORY);
       $detail_filename = drupal_realpath($destination);
       $str = '';
