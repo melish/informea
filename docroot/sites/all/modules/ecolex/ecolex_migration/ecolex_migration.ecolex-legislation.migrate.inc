@@ -45,7 +45,7 @@ class EcolexLegislationMigration extends Migration {
 
     $this->addFieldMapping('field_files', 'legLinkToFullText');
     $this->addFieldMapping('field_files:description', 'legLinkToFullText');
-    $this->addFieldMapping('field_files:file_replace')->defaultValue(FILE_EXISTS_REPLACE); // FILE_EXISTS_OVERWRITE
+    $this->addFieldMapping('field_files:file_replace')->defaultValue(MigrateFile::FILE_EXISTS_REUSE);
 
     $this->addFieldMapping('field_url', 'legRelatedWebSite');
 
