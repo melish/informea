@@ -44,6 +44,7 @@ class EcolexLegislationMigration extends Migration {
     // $this->addFieldMapping('field_source_language', 'legLanguage_code'); // 1 letter code - not needed
 
     $this->addFieldMapping('field_files', 'legLinkToFullText');
+    $this->addFieldMapping('field_files:description', 'legLinkToFullText');
     $this->addFieldMapping('field_files:file_replace')->defaultValue(FILE_EXISTS_REPLACE); // FILE_EXISTS_OVERWRITE
 
     $this->addFieldMapping('field_url', 'legRelatedWebSite');
@@ -118,7 +119,7 @@ class EcolexLegislationMigration extends Migration {
       'field_region', 'field_region:source_type', 'field_region:create_term', 'field_region:ignore_case',
       'field_data_source:source_type', 'field_data_source:create_term', 'field_data_source:ignore_case',
       'field_files:file_class', 'field_files:language', 'field_files:preserve_files', 'field_files:destination_dir', 'field_files:destination_file',
-      'field_files:source_dir', 'field_files:urlencode', 'field_files:description', 'field_files:display',
+      'field_files:source_dir', 'field_files:urlencode', 'field_files:display',
       'field_ecolex_region:create_term', 'field_ecolex_region:ignore_case',
       'field_ecolex_legislation_status:create_term', 'field_ecolex_legislation_status:ignore_case',
       'field_title_abbreviation:language',
