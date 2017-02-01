@@ -1758,6 +1758,114 @@ div.view-informea-search ul {
   margin: 0;
   padding: 0;
 }
+.view-informea-search .accordion.panel-group { margin-bottom: 0;}
+.view-informea-search .accordion .panel-heading img { display: inline; border: 1px solid #ddd; border-radius: 4px; margin-right: .5em; background-color: #fff; width: 50px; padding: 6px;}
+.view-informea-search .accordion .panel-heading img ~ a.permalink {
+  margin-left: .3em;
+  line-height: 50px;
+  font-size: .9em;
+  color: #777;
+}
+.view-informea-search .accordion .panel-heading h4 { margin-left: 0; display: inline; }
+.view-informea-search .accordion .panel-heading .glyphicon-plus-sign { position: static; top: auto; display: inline;}
+.view-informea-search .accordion .panel-body { padding-left: 4%; padding-right: 0; padding-bottom: 30px; }
+
+body[class*='page-search'] .block-facetapi a {
+  color: #444;
+}
+body[class*='page-search'] .block-facetapi ul {
+  list-style-type: none;
+  margin: 0 0 0 5px;
+  padding: 0;
+}
+body[class*='page-search'] .block-facetapi .facetapi-limit-link {
+  border-bottom: 3px solid transparent;
+  color: #0099d5;
+  display: inline-block;
+  font-size: .9em;
+  margin-top: 1em;
+  text-decoration: none;
+}
+body[class*='page-search'] .block-facetapi .facetapi-limit-link:hover { border-bottom: 3px solid; }
+body[class*='page-search'] .block-facetapi .block-title {
+  font-size: 16px;
+}
+
+body[class*='page-search'] input.facetapi-checkbox { margin-right: 5px; }
+.view-search-law-and-literature {
+  padding-top: 15px;
+}
+.view-search-law-and-literature ul {
+  list-style-type: none;
+  padding: 0;
+}
+.view-search-law-and-literature .views-row:not(:last-child) {
+  margin-bottom: 30px;
+}
+.view-search-law-and-literature .views-row > .views-field-title-field {
+  margin-bottom: .3em;
+}
+.view-search-law-and-literature .views-row > .views-field-title-field h3 {
+  font-size: 16px;
+  display: inline;
+  margin-top: 0;
+}
+.view-search-law-and-literature .flag {
+  max-width: 50px;
+  position: absolute;
+  border-radius: 4px;
+}
+.view-search-law-and-literature .flag ~ div {
+  margin-left: 60px;
+}
+.view-search-law-and-literature .meta {
+  color: #666;
+}
+.view-search-law-and-literature .meta .views-field {
+  display: inline-block;
+}
+.view-search-law-and-literature .meta .views-field + .views-field > .field-content:not(:empty):before {
+  content: ' \2022 ';
+  margin-right: .2em;
+}
+.view-search-law-and-literature .meta blockquote {
+  font-size: 90%;
+}
+.view-informea-search .panel-collapse > .panel-body strong,
+.view-search-law-and-literature .meta blockquote strong,
+.view-search-law-and-literature .meta .views-field-field-type-of-text > .field-content:not(:empty) {
+  padding: 1px 3px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  background: #eee;
+}
+.view-search-law-and-literature .meta blockquote strong,
+.view-informea-search .panel-collapse > .panel-body strong {
+  color: red;
+  padding: .1em;
+}
+.view-informea-search .panel-collapse > .panel-body .field > .field-label:after {
+  content: ": ";
+  margin-right: .3em;
+}
+.view-search-law-and-literature .meta .views-field-field-country .glyphicon {
+  margin-right: .2em;
+}
+.view-search-law-and-literature a[data-toggle="collapse"] .glyphicon-plus-sign,
+.view-search-law-and-literature a[data-toggle="collapse"].collapsed .glyphicon-plus-sign:hover,
+.accordion .panel-heading.collapsed .glyphicon-plus-sign:hover {
+  color: #777;
+}
+.view-search-law-and-literature a[data-toggle="collapse"] .glyphicon-plus-sign:before {
+  content: "\e082";
+}
+.view-search-law-and-literature a[data-toggle="collapse"].collapsed .glyphicon-plus-sign {
+  color: #c6cedb;
+}
+
+.view-search-law-and-literature a[data-toggle="collapse"].collapsed .glyphicon-plus-sign:before {
+  content: "\e081";
+}
 
 strong.excerpt {
   color: red;
