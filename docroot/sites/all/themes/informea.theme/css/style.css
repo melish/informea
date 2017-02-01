@@ -2903,7 +2903,6 @@ iframe.pdfjs {
   margin-right: 5px;
 }
 
-
 body.page-search h2,
 body.page-search-legislation h2,
 body.page-search-court-decisions h2,
@@ -2928,4 +2927,21 @@ body.page-search-court-decisions div.region-sidebar-first input.facetapi-checkbo
 body.page-search-literature div.region-sidebar-first input.facetapi-checkbox,
 body.page-search-bilateral-treaties div.region-sidebar-first input.facetapi-checkbox {
   margin-right: 5px;
+}
+
+body.page-search .view-empty,
+body.page-search-legislation .view-empty,
+body.page-search-court-decisions .view-empty,
+body.page-search-literature .view-empty,
+body.page-search-bilateral-treaties .view-empty {
+  padding: 50px;
+  text-align: center;
+}
+
+#block-informea-search-search-informea-switch-topic {
+  text-align: center;
+}
+#block-informea-search-search-informea-switch-topic ul li {
+  display: inline-block;
+  float: none;
 }

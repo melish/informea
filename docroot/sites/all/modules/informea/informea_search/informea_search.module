@@ -49,7 +49,7 @@ function informea_search_block_info() {
       'cache' => DRUPAL_NO_CACHE,
       'weight' => -50,
       'status' => 1,
-      'region' => 'content',
+      'region' => 'header',
       'visibility' => BLOCK_VISIBILITY_LISTED,
       'pages' => 'search
 search/*
@@ -308,10 +308,10 @@ function informea_search_block_switch_topic_view() {
   }
   $elements = array(
     'search' => t('Multilateral treaties'),
+    'search-bilateral-treaties' => t('Bilateral treaties'),
     'search-legislation' => t('Legislation'),
     'search-court-decisions' => t('Court decisions'),
-    'search-literature' => t('Literature'),
-    'search-bilateral-treaties' => t('Bilateral treaties'),
+    'search-literature' => t('Publications'),
   );
   $tabs = array();
   foreach($elements as $k => $v) {
