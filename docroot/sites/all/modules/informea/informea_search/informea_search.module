@@ -47,7 +47,7 @@ function informea_search_block_info() {
     'search_informea_switch_topic' => array(
       'info' => t('Switch search topic'),
       'cache' => DRUPAL_NO_CACHE,
-      'weight' => -10,
+      'weight' => -50,
       'status' => 1,
       'region' => 'content',
       'visibility' => BLOCK_VISIBILITY_LISTED,
