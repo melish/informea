@@ -32,6 +32,7 @@ function thesaurus_default_page_manager_handlers() {
     'access' => array(
       'logic' => 'and',
     ),
+    'panels_breadcrumbs_home' => 0,
   );
   $display = new panels_display();
   $display->layout = 'flexible';
@@ -1358,7 +1359,7 @@ Court decisions',
           30 => 0,
           29 => 0,
         ),
-        'breadcrumb' => 1,
+        'breadcrumb' => 0,
         'transform' => 0,
       ),
     ),
@@ -1739,7 +1740,7 @@ Legislations',
           30 => 0,
           29 => 0,
         ),
-        'breadcrumb' => 1,
+        'breadcrumb' => 0,
         'transform' => 0,
       ),
     ),
