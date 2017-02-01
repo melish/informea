@@ -27,6 +27,7 @@ function thesaurus_get_section($path = null) {
   if (preg_match('/.*(taxonomy\/term\/\d*|terms\/.*)\/*(.*)/', $path, $matches)) {
     $allowed_sections = [
       'default', //treaties
+      'bilateral-treaties',
       'court-decisions',
       'legislations',
       'literatures',
@@ -216,6 +217,12 @@ function _thesaurus_get_related_content_count($term, $bundle) {
       $related_data = $dp->getRelatedContent($term);
       return !empty($related_data['treaties']) ? count($related_data['treaties']) : 0;
 
+    case 'bilateral-treaties':
+      // ToDo: find a better solution
+      $dp = new InforMEAThesaurusTermRelatedContent($term);
+      $related_data = $dp->getRelatedContent($term);
+      return !empty($related_data['treaties']) ? count($related_data['treaties']) : 0;
+
     case 'court_decisions':
     case 'legislation':
     case 'literature':
@@ -236,25 +243,32 @@ function thesaurus_menu_local_tasks_alter(&$data, $router_item, $root_path) {
     if ($term = taxonomy_term_load(arg(2))) {
       if ($term->vid == $voc->vid) {
         $section = thesaurus_get_section();
+
         $treatiesCount = _thesaurus_get_related_content_count($term, 'treaty');
+        $bilateralTreatiesCount = _thesaurus_get_related_content_count($term, 'bilateral-treaties');
         $courtDecisionsCount = _thesaurus_get_related_content_count($term, 'court_decisions');
         $legislationsCount = _thesaurus_get_related_content_count($term, 'legislation');
         $literaturesCount = _thesaurus_get_related_content_count($term, 'literature');
+
         $menu_items = array(
           'default' => array(
-            'data' => l(t('Treaties') . '<span class="badge pull-right">' . $treatiesCount . '</span>', 'taxonomy/term/' . $term->tid, ['html' => true]),
+            'data' => l(t('Multilateral treaties') . '<span class="badge pull-right">' . $treatiesCount . '</span>', 'taxonomy/term/' . $term->tid, ['html' => true]),
             'role' => 'presentation',
           ),
-          'court-decisions' => array(
-            'data' => l(t('Court decisions') . '<span class="badge pull-right">' . $courtDecisionsCount . '</span>', 'taxonomy/term/' . $term->tid . '/court-decisions', ['html' => true]),
+          'bilateral-treaties' => array(
+            'data' => l(t('Bilateral treaties') . '<span class="badge pull-right">' . $bilateralTreatiesCount . '</span>', 'taxonomy/term/' . $term->tid . '/bilateral-treaties', ['html' => true]),
             'role' => 'presentation',
           ),
           'legislations' => array(
             'data' => l(t('Legislations') . '<span class="badge pull-right">' . $legislationsCount . '</span>', 'taxonomy/term/' . $term->tid . '/legislations', ['html' => true]),
             'role' => 'presentation',
           ),
+          'court-decisions' => array(
+            'data' => l(t('Court decisions') . '<span class="badge pull-right">' . $courtDecisionsCount . '</span>', 'taxonomy/term/' . $term->tid . '/court-decisions', ['html' => true]),
+            'role' => 'presentation',
+          ),
           'literatures' => array(
-            'data' => l(t('Literatures') . '<span class="badge pull-right">' . $literaturesCount . '</span>', 'taxonomy/term/' . $term->tid . '/literatures', ['html' => true]),
+            'data' => l(t('Publications') . '<span class="badge pull-right">' . $literaturesCount . '</span>', 'taxonomy/term/' . $term->tid . '/literatures', ['html' => true]),
             'role' => 'presentation',
           ),
         );
