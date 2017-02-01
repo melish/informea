@@ -456,7 +456,10 @@ class EcolexLegislationMigrateSource extends MigrateSource {
       }
       $str = elis_consumer_http_request($item->url, array('Accept' => 'application/json') );
       if ($this->log_detail) {
-        file_put_contents('../ecolex/'.$item->docId . '.json' , $str);
+        $destination = 'temporary://ecolex/'.$item->docId . '.json';
+        if (file_prepare_directory(dirname($destination), FILE_CREATE_DIRECTORY)) {
+          file_put_contents(drupal_realpath($destination), $str);
+        }
       }
       $json = json_decode($str);
       if ($json) {
