@@ -89,6 +89,33 @@ function informea_search_search_api_solr_query_alter(array &$call_args, SearchAp
   if ($pos !== FALSE) {
     $call_args['params']['fq'][$pos] = '{!tag=facet:type}((ss_type:"decision") OR (ss_type:"decision_paragraph"))';
   }
+
+  $view = views_get_page_view();
+  if (!empty($view) && $view->name == 'informea_search') {
+    $bilateral_treaties = _informea_search_get_treaties_by_data_source(2767 /* ECOLEX */);
+    $treaties_or = implode(' OR ', $bilateral_treaties);
+    switch ($view->current_display) {
+      case 'page':
+        $call_args['params']['fq'][] = sprintf('-item_id:(%s) AND -im_field_treaty:(%s)', $treaties_or, $treaties_or);
+        break;
+      case 'page_1':
+        $call_args['params']['fq'][] = sprintf('item_id:(%s) OR im_field_treaty:(%s)', $treaties_or, $treaties_or);
+        break;
+    }
+  }
+}
+
+function _informea_search_get_treaties_by_data_source($source_tid) {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'treaty')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->fieldCondition('field_data_source', 'tid', $source_tid);
+  $result = $query->execute();
+  if (!empty($result['node'])) {
+    return array_keys($result['node']);
+  }
+  return [];
 }
 
 /**
@@ -233,13 +260,22 @@ function informea_search_ajax_callback($data) {
 }
 
 function informea_search_form($form, $form_state) {
-  $action = 'search';
-  switch ($_GET['q']) {
-    case 'search-legislation';
-    case 'search-court-decisions';
-    case 'search-literature';
-    case 'search-bilateral-treaties';
-      $action = $_GET['q'];
+  $view = views_get_page_view();
+  switch ($view->name) {
+    case 'informea_search':
+      $action = ($view->current_display == 'page') ? 'search' : 'search-bilateral-treaties';
+      break;
+    case 'informea_search_legislation':
+      $action = 'search-legislation';
+      break;
+    case 'informea_search_court_decision':
+      $action = 'search-court-decisions';
+      break;
+    case 'informea_search_literature':
+      $action = 'search-literature';
+      break;
+    default:
+      $action = 'search';
   }
   $form['#action'] = $action;
   $form['#method'] = 'post';
@@ -252,6 +288,9 @@ function informea_search_form($form, $form_state) {
   $search_query = '';
   if (strpos($q, 'search/') === 0) {
     $search_query = str_replace('search/', '', $q);
+  }
+  elseif (strpos($q, 'search-bilateral-treaties/') === 0) {
+    $search_query = str_replace('search-bilateral-treaties/', '', $q);
   }
   if (empty($search_query) && !empty($_GET['search_api_views_fulltext'])) {
     $search_query = check_plain($_GET['search_api_views_fulltext']);
