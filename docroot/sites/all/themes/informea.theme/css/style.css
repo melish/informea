@@ -1759,18 +1759,6 @@ div.view-informea-search ul {
   padding: 0;
 }
 
-body.page-search h2 {
-  font-size: 16px;
-}
-
-body.page-search div.region-sidebar-first ul {
-  list-style-type: none;
-  margin: 0 0 0 5px;
-  padding: 0;
-}
-
-body.page-search input.facetapi-checkbox { margin-right: 5px; }
-
 strong.excerpt {
   color: red;
 }
@@ -2852,22 +2840,38 @@ iframe.pdfjs {
   margin: 0;
 }
 
-/* Taxonomy term related content */
-.taxonomy-term-related-content h2 {
+/* Search & Taxonomy term related content */
+.taxonomy-term-related-content h2,
+.view-informea-search-legislation h2,
+.view-informea-search-court-decision h2,
+.view-informea-search-literature h2,
+.view-informea-search-bilateral-treaties h2 {
   font-size: 20px;
 }
 
-.taxonomy-term-related-content .views-row {
+.taxonomy-term-related-content .views-row,
+.view-informea-search-legislation .views-row,
+.view-informea-search-court-decision .views-row,
+.view-informea-search-literature .views-row,
+.view-informea-search-bilateral-treaties .views-row {
   margin-bottom: 20px;
 }
 
-.taxonomy-term-related-content .views-row .img-thumbnail {
+.taxonomy-term-related-content .views-row .img-thumbnail,
+.view-informea-search-legislation .views-row .img-thumbnail,
+.view-informea-search-court-decision .views-row .img-thumbnail,
+.view-informea-search-literature .views-row .img-thumbnail,
+.view-informea-search-bilateral-treaties .views-row .img-thumbnail {
   max-width: 50px;
   position: absolute;
   margin: 0;
 }
 
-.taxonomy-term-related-content .views-row .views-field {
+.taxonomy-term-related-content .views-row .views-field,
+.view-informea-search-legislation .views-row .views-field,
+.view-informea-search-court-decision .views-row .views-field,
+.view-informea-search-literature .views-row .views-field,
+.view-informea-search-bilateral-treaties .views-row .views-field {
   margin-left: 60px;
 }
 
@@ -2875,8 +2879,11 @@ iframe.pdfjs {
   color: #666;
 }
 
-
-.taxonomy-term-related-content .meta .separator {
+.taxonomy-term-related-content .meta .separator,
+.view-informea-search-legislation .meta .separator,
+.view-informea-search-court-decision .meta .separator,
+.view-informea-search-literature .meta .separator,
+.view-informea-search-bilateral-treaties .meta .separator {
   visibility: visible!important;
   margin-left: 3px;
   margin-right: 3px;
@@ -2896,3 +2903,29 @@ iframe.pdfjs {
   margin-right: 5px;
 }
 
+
+body.page-search h2,
+body.page-search-legislation h2,
+body.page-search-court-decision h2,
+body.page-search-literature h2,
+body.page-search-bilateral-treaties h2 {
+  font-size: 16px;
+}
+
+body.page-search div.region-sidebar-first ul,
+body.page-search-legislation div.region-sidebar-first ul,
+body.page-search-court-decision div.region-sidebar-first ul,
+body.page-search-literature div.region-sidebar-first ul,
+body.page-search-bilateral-treaties div.region-sidebar-first ul {
+  list-style-type: none;
+  margin: 0 0 0 5px;
+  padding: 0;
+}
+
+body.page-search input.facetapi-checkbox,
+body.page-search-legislation div.region-sidebar-first input.facetapi-checkbox,
+body.page-search-court-decision div.region-sidebar-first input.facetapi-checkbox,
+body.page-search-literature div.region-sidebar-first input.facetapi-checkbox,
+body.page-search-bilateral-treaties div.region-sidebar-first input.facetapi-checkbox {
+  margin-right: 5px;
+}
