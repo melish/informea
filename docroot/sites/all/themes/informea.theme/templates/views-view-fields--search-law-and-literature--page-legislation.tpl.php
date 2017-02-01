@@ -27,22 +27,27 @@
 
 
 <?php if(!empty($row->_entity_properties['field_country'][0])): ?>
-<?php print informea_theme_country_flag($row->_entity_properties['field_country'][0]); ?>
+  <?php print informea_theme_country_flag($row->_entity_properties['field_country'][0]); ?>
 <?php endif; ?>
 
 <?php $title_field = $fields['title_field']; unset($fields['title_field']); ?>
+<?php $nid_field = $row->_entity_properties['nid']; ?>
+
 <?php print $title_field->wrapper_prefix; ?>
 <?php print $title_field->label_html; ?>
 <?php print $title_field->content; ?>
+<a href="#collapse-<?php print $nid_field ?>" data-toggle="collapse" aria-expanded="false" class="collapsed" ><i class="glyphicon glyphicon-plus-sign"></i></a>
 <?php print $title_field->wrapper_suffix; ?>
 <div class="meta search-index">
   <?php $excerpt_field = $fields['search_api_excerpt']; unset($fields['search_api_excerpt']); ?>
-  <blockquote>
-    <?php print $excerpt_field->wrapper_prefix; ?>
-    <?php print $excerpt_field->label_html; ?>
-    <?php print $excerpt_field->content; ?>
-    <?php print $excerpt_field->wrapper_suffix; ?>
-  </blockquote>
+  <div class="collapse" id="collapse-<?php print $nid_field; ?>">
+    <blockquote>
+      <?php print $excerpt_field->wrapper_prefix; ?>
+      <?php print $excerpt_field->label_html; ?>
+      <?php print $excerpt_field->content; ?>
+      <?php print $excerpt_field->wrapper_suffix; ?>
+    </blockquote>
+  </div>
   <?php foreach ($fields as $id => $field): ?>
     <?php if (!empty($field->separator)): ?>
       <?php print $field->separator; ?>
