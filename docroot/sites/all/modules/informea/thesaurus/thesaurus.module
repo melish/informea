@@ -22,7 +22,7 @@ if(!function_exists('slugify')) {
 
 function thesaurus_get_section($path = null) {
   if (empty($path)) {
-    $path = request_path();
+    $path = current_path();
   }
   if (preg_match('/.*(taxonomy\/term\/\d*|terms\/.*)\/*(.*)/', $path, $matches)) {
     $allowed_sections = [
@@ -95,6 +95,13 @@ function thesaurus_block_info() {
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => '',
   );
+  $blocks['thesaurus-bilateral-treaties'] = array(
+    'info' => t('Bilateral treaties tagged with current term'),
+    'status' => 1,
+    'region' => '-1',
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => '',
+  );
   return $blocks;
 }
 
@@ -109,12 +116,16 @@ function thesaurus_block_view($delta = '') {
       $block['content'] = thesaurus_terms_listing_block_content();
       break;
     case 'thesaurus-treaties':
+    case 'thesaurus-bilateral-treaties':
       $block['subject'] = t('Treaties tagged with current term');
       module_load_include('inc', 'thesaurus', 'thesaurus.related');
-      $term = menu_get_object('taxonomy_term', 2);
+      if (arg(0) == 'taxonomy' && arg(1) == 'term' && is_numeric(arg(2))) {
+        $term = taxonomy_term_load(arg(2));
+      }
       if (!empty($term)) {
+        $type = ($delta == 'thesaurus-treaties') ? 'multilateral' : 'bilateral';
         $dp = new InforMEAThesaurusTermRelatedContent($term);
-        $related_data = $dp->getRelatedContent($term);
+        $related_data = $dp->getRelatedContent($term, $type);
         $related_content = InforMEAThesaurusTermRelatedContent::view($term, $related_data['treaties']);
         $block['content'] = array(
           '#markup' => drupal_render($related_content),
@@ -214,13 +225,13 @@ function _thesaurus_get_related_content_count($term, $bundle) {
     case 'treaty':
       // ToDo: find a better solution
       $dp = new InforMEAThesaurusTermRelatedContent($term);
-      $related_data = $dp->getRelatedContent($term);
+      $related_data = $dp->getRelatedContent($term, 'multilateral');
       return !empty($related_data['treaties']) ? count($related_data['treaties']) : 0;
 
     case 'bilateral-treaties':
       // ToDo: find a better solution
       $dp = new InforMEAThesaurusTermRelatedContent($term);
-      $related_data = $dp->getRelatedContent($term);
+      $related_data = $dp->getRelatedContent($term, 'bilateral');
       return !empty($related_data['treaties']) ? count($related_data['treaties']) : 0;
 
     case 'court_decisions':

@@ -573,6 +573,313 @@ function thesaurus_default_page_manager_pages() {
   $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
+  $page->name = 'thesaurus_bilateral_treaties';
+  $page->task = 'page';
+  $page->admin_title = 'Thesaurus - bilateral treaties';
+  $page->admin_description = '';
+  $page->path = 'taxonomy/term/%taxonomy_term/bilateral-treaties';
+  $page->access = array();
+  $page->menu = array();
+  $page->arguments = array(
+    'taxonomy_term' => array(
+      'id' => 1,
+      'identifier' => 'Taxonomy term: ID',
+      'name' => 'term',
+      'settings' => array(
+        'input_form' => 'tid',
+        'vids' => array(
+          14 => '14',
+          15 => 0,
+          16 => 0,
+          22 => 0,
+          2 => 0,
+          21 => 0,
+          23 => 0,
+          20 => 0,
+          17 => 0,
+          33 => 0,
+          34 => 0,
+          6 => 0,
+          3 => 0,
+          36 => 0,
+          41 => 0,
+          42 => 0,
+          43 => 0,
+          24 => 0,
+          37 => 0,
+          38 => 0,
+          39 => 0,
+          4 => 0,
+          35 => 0,
+          5 => 0,
+          25 => 0,
+          44 => 0,
+          26 => 0,
+          27 => 0,
+          31 => 0,
+          18 => 0,
+          32 => 0,
+          1 => 0,
+          19 => 0,
+          9 => 0,
+          40 => 0,
+          11 => 0,
+          13 => 0,
+          7 => 0,
+          10 => 0,
+          12 => 0,
+          28 => 0,
+          30 => 0,
+          29 => 0,
+        ),
+        'breadcrumb' => 0,
+        'transform' => 0,
+      ),
+    ),
+  );
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
+  $page->default_handlers = array();
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_thesaurus_bilateral_treaties__panel';
+  $handler->task = 'page';
+  $handler->subtask = 'thesaurus_bilateral_treaties';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Panel',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'name' => 'panel',
+    'panels_breadcrumbs_state' => 1,
+    'panels_breadcrumbs_titles' => 'Glossary
+%taxonomy_term:name_field
+Legislations',
+    'panels_breadcrumbs_paths' => '/terms
+%taxonomy_term:url
+<none>',
+    'panels_breadcrumbs_home' => 1,
+  );
+  $display = new panels_display();
+  $display->layout = 'flexible:thesaurus_term_page';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'definition' => NULL,
+      'other_information' => NULL,
+      'tagged_content' => NULL,
+      'facets' => NULL,
+      'full_width_content' => NULL,
+      'menu' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '%taxonomy_term:name_field';
+  $display->uuid = 'f35c60aa-0ba0-4eda-840a-dadfd7ed2dfc';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-a97b66a2-03ab-4c34-b2d9-7d82dcf57f2a';
+    $pane->panel = 'definition';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'taxonomy_term:description_field';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'above',
+      'formatter' => 'text_default',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'expandText' => 'Expand »',
+        'expandPrefix' => '...',
+        'collapseTimer' => '',
+        'slicePoint' => '50',
+        'userCollapseText' => 'Collapse',
+        'userCollapsePrefix' => '',
+      ),
+      'context' => 'argument_term_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'a97b66a2-03ab-4c34-b2d9-7d82dcf57f2a';
+    $display->content['new-a97b66a2-03ab-4c34-b2d9-7d82dcf57f2a'] = $pane;
+    $display->panels['definition'][0] = 'new-a97b66a2-03ab-4c34-b2d9-7d82dcf57f2a';
+    $pane = new stdClass();
+    $pane->pid = 'new-794ea937-72ac-4469-b13e-169a63903fd4';
+    $pane->panel = 'full_width_content';
+    $pane->type = 'block';
+    $pane->subtype = 'thesaurus-thesaurus-bilateral-treaties';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '794ea937-72ac-4469-b13e-169a63903fd4';
+    $display->content['new-794ea937-72ac-4469-b13e-169a63903fd4'] = $pane;
+    $display->panels['full_width_content'][0] = 'new-794ea937-72ac-4469-b13e-169a63903fd4';
+    $pane = new stdClass();
+    $pane->pid = 'new-40aee080-9765-46b7-93d8-a33b980de132';
+    $pane->panel = 'menu';
+    $pane->type = 'page_tabs';
+    $pane->subtype = 'page_tabs';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'type' => 'secondary',
+      'id' => 'tabs',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '40aee080-9765-46b7-93d8-a33b980de132';
+    $display->content['new-40aee080-9765-46b7-93d8-a33b980de132'] = $pane;
+    $display->panels['menu'][0] = 'new-40aee080-9765-46b7-93d8-a33b980de132';
+    $pane = new stdClass();
+    $pane->pid = 'new-b8ea2b6a-4f24-42f9-bdd1-28fe6be150f2';
+    $pane->panel = 'other_information';
+    $pane->type = 'term_list';
+    $pane->subtype = 'term_list';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => NULL,
+      'type' => 'parent',
+      'include_current_term' => 0,
+      'list_type' => 'ul',
+      'path' => 'taxonomy/term',
+      'context' => 'argument_term_1',
+      'override_title' => 1,
+      'override_title_text' => 'Broader',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'b8ea2b6a-4f24-42f9-bdd1-28fe6be150f2';
+    $display->content['new-b8ea2b6a-4f24-42f9-bdd1-28fe6be150f2'] = $pane;
+    $display->panels['other_information'][0] = 'new-b8ea2b6a-4f24-42f9-bdd1-28fe6be150f2';
+    $pane = new stdClass();
+    $pane->pid = 'new-bdd81592-bf4c-43b2-a0ef-28206a674e4a';
+    $pane->panel = 'other_information';
+    $pane->type = 'term_list';
+    $pane->subtype = 'term_list';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => NULL,
+      'type' => 'child',
+      'include_current_term' => 0,
+      'list_type' => 'ul',
+      'path' => 'taxonomy/term',
+      'context' => 'argument_term_1',
+      'override_title' => 1,
+      'override_title_text' => 'Narrower',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'bdd81592-bf4c-43b2-a0ef-28206a674e4a';
+    $display->content['new-bdd81592-bf4c-43b2-a0ef-28206a674e4a'] = $pane;
+    $display->panels['other_information'][1] = 'new-bdd81592-bf4c-43b2-a0ef-28206a674e4a';
+    $pane = new stdClass();
+    $pane->pid = 'new-ac1d8da1-b969-4f4a-9534-e855043e0c74';
+    $pane->panel = 'other_information';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'taxonomy_term:field_term_synonyms';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'textformatter_list',
+      'delta_limit' => '0',
+      'delta_offset' => '0',
+      'delta_reversed' => 0,
+      'formatter_settings' => array(
+        'textformatter_type' => 'ul',
+        'textformatter_class' => 'textformatter-list',
+        'textformatter_comma_full_stop' => 0,
+        'textformatter_comma_and' => 0,
+        'textformatter_comma_tag' => 'div',
+        'textformatter_comma_override' => 0,
+        'textformatter_separator_custom' => '',
+        'textformatter_separator_custom_tag' => 'span',
+        'textformatter_separator_custom_class' => 'textformatter-separator',
+      ),
+      'context' => 'argument_term_1',
+      'override_title' => 1,
+      'override_title_text' => 'Synonyms',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = 'ac1d8da1-b969-4f4a-9534-e855043e0c74';
+    $display->content['new-ac1d8da1-b969-4f4a-9534-e855043e0c74'] = $pane;
+    $display->panels['other_information'][2] = 'new-ac1d8da1-b969-4f4a-9534-e855043e0c74';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $pages['thesaurus_bilateral_treaties'] = $page;
+
+  $page = new stdClass();
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
   $page->name = 'thesaurus_court_decisions';
   $page->task = 'page';
   $page->admin_title = 'Thesaurus - court decisions';
@@ -635,7 +942,7 @@ function thesaurus_default_page_manager_pages() {
           30 => 0,
           29 => 0,
         ),
-        'breadcrumb' => 1,
+        'breadcrumb' => 0,
         'transform' => 0,
       ),
     ),
