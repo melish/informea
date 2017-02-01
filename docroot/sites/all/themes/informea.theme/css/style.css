@@ -2906,7 +2906,7 @@ iframe.pdfjs {
 
 body.page-search h2,
 body.page-search-legislation h2,
-body.page-search-court-decision h2,
+body.page-search-court-decisions h2,
 body.page-search-literature h2,
 body.page-search-bilateral-treaties h2 {
   font-size: 16px;
@@ -2914,7 +2914,7 @@ body.page-search-bilateral-treaties h2 {
 
 body.page-search div.region-sidebar-first ul,
 body.page-search-legislation div.region-sidebar-first ul,
-body.page-search-court-decision div.region-sidebar-first ul,
+body.page-search-court-decisions div.region-sidebar-first ul,
 body.page-search-literature div.region-sidebar-first ul,
 body.page-search-bilateral-treaties div.region-sidebar-first ul {
   list-style-type: none;
@@ -2924,7 +2924,7 @@ body.page-search-bilateral-treaties div.region-sidebar-first ul {
 
 body.page-search input.facetapi-checkbox,
 body.page-search-legislation div.region-sidebar-first input.facetapi-checkbox,
-body.page-search-court-decision div.region-sidebar-first input.facetapi-checkbox,
+body.page-search-court-decisions div.region-sidebar-first input.facetapi-checkbox,
 body.page-search-literature div.region-sidebar-first input.facetapi-checkbox,
 body.page-search-bilateral-treaties div.region-sidebar-first input.facetapi-checkbox {
   margin-right: 5px;

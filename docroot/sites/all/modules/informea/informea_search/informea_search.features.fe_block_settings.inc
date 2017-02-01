@@ -12,6 +12,63 @@ function informea_search_default_fe_block_settings() {
 
   $export['version'] = '2.0';
 
+  $export['facetapi-5dVDefUus1Cng13EbCDnPRh5v5tXEP7B'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => '5dVDefUus1Cng13EbCDnPRh5v5tXEP7B',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'facetapi',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'informea_theme' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'informea_theme',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
+  $export['facetapi-ABol1qBh79jsfGqF27usDpaBznEzCn7M'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'ABol1qBh79jsfGqF27usDpaBznEzCn7M',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'facetapi',
+    'node_types' => array(),
+    'pages' => 'search-court-decisions
+search-court-decisions/*',
+    'roles' => array(),
+    'themes' => array(
+      'informea_theme' => array(
+        'region' => 'sidebar_first',
+        'status' => 1,
+        'theme' => 'informea_theme',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => 'Type of text',
+    'visibility' => 1,
+  );
+
   $export['facetapi-C0KfOYe1CTJW1tlSyl3brJVVT4qQLzy0'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -210,6 +267,64 @@ search-legislation/*',
       ),
     ),
     'title' => 'Type of text',
+    'visibility' => 1,
+  );
+
+  $export['facetapi-fdq04xNUyxSV1CkoyeTHIwwlufwxjcFK'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'fdq04xNUyxSV1CkoyeTHIwwlufwxjcFK',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'facetapi',
+    'node_types' => array(),
+    'pages' => 'search-court-decisions
+search-court-decisions/*',
+    'roles' => array(),
+    'themes' => array(
+      'informea_theme' => array(
+        'region' => 'sidebar_first',
+        'status' => 1,
+        'theme' => 'informea_theme',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => 'Region',
+    'visibility' => 1,
+  );
+
+  $export['facetapi-jX6n57R09128yKk8mDTq4yM84f6PAh5a'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'jX6n57R09128yKk8mDTq4yM84f6PAh5a',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'facetapi',
+    'node_types' => array(),
+    'pages' => 'search-court-decisions
+search-court-decisions/*',
+    'roles' => array(),
+    'themes' => array(
+      'informea_theme' => array(
+        'region' => 'sidebar_first',
+        'status' => 1,
+        'theme' => 'informea_theme',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => 'Country',
     'visibility' => 1,
   );
 
