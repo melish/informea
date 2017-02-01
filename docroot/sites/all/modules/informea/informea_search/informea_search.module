@@ -51,7 +51,11 @@ function informea_search_block_info() {
       'status' => 1,
       'region' => 'content',
       'visibility' => BLOCK_VISIBILITY_LISTED,
-      'pages' => 'search\nsearch-legislation\nsearch-court-decisions\nsearch-literature\nsearch-bilateral-treaties',
+      'pages' => 'search/*
+search-legislation/*
+search-court-decisions/*
+search-literature/*
+search-bilateral-treaties/*',
     )
   );
 }
