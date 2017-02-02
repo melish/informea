@@ -1536,9 +1536,6 @@ body.node-type-treaty div.field { margin-bottom: 3px; }
 body.node-type-treaty div.field-name-body { margin-bottom: 10px; }
 body.node-type-treaty div.field-label { min-width: 150px; }
 
-div.accordion .panel { border: 0; box-shadow: none; -webkit-box-shadow: none; }
-div.accordion .panel-heading { background-color: transparent; padding-left: 15px; padding-right: 15px; }
-
 body.node-type-treaty div.panel-heading a.permalink,
 a.administrative { display: none;  }
 
@@ -1585,18 +1582,31 @@ body.page-node-303 h2.block-title { font-size: 18px; font-weight: bold;}
 .media {
   margin-top: -1px;
 }
+/* Accordion panels */
+.accordion .panel { border: 0; box-shadow: none; -webkit-box-shadow: none; margin: 0; border-bottom: 1px solid #ddd; border-radius: 0; }
 
-div.accordion .panel-heading h4 { margin-left: 25px; }
-div.accordion .panel-heading .meta { text-align: right; font-size: 12px; color: #999; font-weight: normal; }
-div.accordion .panel-heading ul { margin: 0; }
-div.accordion .panel-heading .glyphicon-plus-sign { color: #777; font-size: 14px; position: absolute; top: 12px; }
-div.accordion .panel-heading .glyphicon-plus-sign:before { content: "\e082"; }
-div.accordion .panel-heading.collapsed .glyphicon-plus-sign { color: #c6cedb; }
-div.accordion .panel-heading.collapsed .glyphicon-plus-sign:before { content: "\e081"; }
+.accordion .panel-heading { background-color: transparent; padding-left: 15px; padding-right: 15px; border: 1px solid transparent; cursor: pointer; margin: 0; border-radius: 0; position: relative; }
+.accordion .panel-heading h4 { margin-left: 0; display: inline; }
+.accordion .panel-heading .meta { text-align: right; font-size: 12px; color: #999; font-weight: normal; }
+.accordion .panel-heading ul { margin: 0; }
+.accordion .panel-heading .glyphicon-plus-sign { color: #777; font-size: 14px; display: inline; }
+.accordion .panel-heading .glyphicon-plus-sign:before { content: "\e082"; }
+.accordion .panel-heading.collapsed .glyphicon-plus-sign { color: #c6cedb; }
+.accordion .panel-heading.collapsed .glyphicon-plus-sign:before { content: "\e081"; }
+.accordion .panel-heading:hover { border: 1px solid #39c; background-color: #D2EEFC; }
+.accordion .panel-heading img { display: inline; border: 1px solid #ddd; border-radius: 4px; margin-right: .5em; background-color: #fff; width: 50px; padding: 6px;}
+.accordion .panel-heading a.permalink { margin-left: .3em; font-size: .9em; color: #777; }
+.accordion .panel-heading img ~ a.permalink { line-height: 50px; }
 
-div.accordion .panel { margin: 0; border-bottom: 1px solid #ddd; border-radius: 0; }
-div.accordion .panel-heading { border: 1px solid transparent; cursor: pointer; margin: 0; border-radius: 0; position: relative; }
-div.accordion .panel-heading:hover { border: 1px solid #39c; background-color: #D2EEFC; }
+.accordion.panel-group { margin-bottom: 0;}
+.accordion.panel-group .panel-heading { padding-left: 15px; padding-right: 15px; }
+
+.accordion .panel-body { padding-left: 0; padding-right: 0; padding-bottom: 30px; }
+.accordion .panel-body > ol,
+.accordion .panel-body > ul { list-style-type: none; padding: 0; }
+
+.accordion .panel-collapse { padding-left: 4%; border-top: 1px solid #ddd;}
+.accordion .panel>.panel-heading+.panel-collapse>.panel-body { border: 0;}
 
 img.flag-xs { max-height: 16px; }
 img.flag-small { max-height: 32px; }
@@ -1633,7 +1643,33 @@ img.flag-medium { max-height: 48px; }
 }
 
 /* Terms page */
-div.accordion ol.paragraphs { list-style-type: none; margin-left: 10px; padding: 0; }
+.column-other-information ul,
+.column-other-information ol {
+  list-style-type: none; padding: 0 0 0 .5em;
+}
+.column-other-information h2 {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.42857143;
+  margin: 0;
+}
+.node .field-label-inline {
+  // display: table;
+  // table-layout: fixed;
+  width: 100%;
+  margin-bottom: .3em;
+}
+.node .field-label-inline .field-label,
+.node .field-label-inline .field-items {
+  // display: table-cell;
+}
+.node .field-label-inline .field-label {
+  width: 20%;
+  word-break: break-word;
+}
+.node .field-label-inline .field-items {
+  max-width: 80%;
+}
 
 /* Events page */
 .view-events .media-detail,
@@ -1758,27 +1794,17 @@ div.view-informea-search ul {
   margin: 0;
   padding: 0;
 }
-.view-informea-search .accordion.panel-group { margin-bottom: 0;}
-.view-informea-search .accordion .panel-heading img { display: inline; border: 1px solid #ddd; border-radius: 4px; margin-right: .5em; background-color: #fff; width: 50px; padding: 6px;}
-.view-informea-search .accordion .panel-heading img ~ a.permalink {
-  margin-left: .3em;
-  line-height: 50px;
-  font-size: .9em;
-  color: #777;
-}
-.view-informea-search .accordion .panel-heading h4 { margin-left: 0; display: inline; }
-.view-informea-search .accordion .panel-heading .glyphicon-plus-sign { position: static; top: auto; display: inline;}
-.view-informea-search .accordion .panel-body { padding-left: 4%; padding-right: 0; padding-bottom: 30px; }
-
-body[class*='page-search'] .block-facetapi a {
-  color: #444;
-}
-body[class*='page-search'] .block-facetapi ul {
+/* Facet API */
+ul[class*="facetapi"] {
   list-style-type: none;
   margin: 0 0 0 5px;
   padding: 0;
 }
-body[class*='page-search'] .block-facetapi .facetapi-limit-link {
+ul[class*="facetapi"] a {
+  color: #444;
+}
+
+.facetapi-limit-link {
   border-bottom: 3px solid transparent;
   color: #0099d5;
   display: inline-block;
@@ -1786,12 +1812,42 @@ body[class*='page-search'] .block-facetapi .facetapi-limit-link {
   margin-top: 1em;
   text-decoration: none;
 }
-body[class*='page-search'] .block-facetapi .facetapi-limit-link:hover { border-bottom: 3px solid; }
-body[class*='page-search'] .block-facetapi .block-title {
+.facetapi-limit-link:hover { border-bottom: 3px solid; text-decoration: none; }
+
+.block-facetapi > .block-title,
+[class*="pane-facetapi-"] > .pane-title {
   font-size: 16px;
 }
 
-body[class*='page-search'] input.facetapi-checkbox { margin-right: 5px; }
+input.facetapi-checkbox { margin-right: 5px; }
+
+.taxonomy-term-related-content-facets .panel-pane:first-child h2.pane-title {
+  margin-top: 0;
+}
+// body[class*='page-search'] .block-facetapi a {
+//   color: #444;
+// }
+// body[class*='page-search'] .block-facetapi ul {
+//   list-style-type: none;
+//   margin: 0 0 0 5px;
+//   padding: 0;
+// }
+// body[class*='page-search'] .block-facetapi .facetapi-limit-link {
+//   border-bottom: 3px solid transparent;
+//   color: #0099d5;
+//   display: inline-block;
+//   font-size: .9em;
+//   margin-top: 1em;
+//   text-decoration: none;
+// }
+// body[class*='page-search'] .block-facetapi .facetapi-limit-link:hover { border-bottom: 3px solid; }
+// body[class*='page-search'] .block-facetapi .block-title {
+//   font-size: 16px;
+// }
+
+// body[class*='page-search'] input.facetapi-checkbox { margin-right: 5px; }
+
+
 .view-search-law-and-literature {
   padding-top: 15px;
 }
@@ -1900,6 +1956,10 @@ strong.excerpt {
 
 .ui-menu .ui-menu-item a > img {
   max-width: 32px;
+  background-color: #fff;
+}
+.ui-menu .ui-menu-item a > img.leo-logo-search-image {
+  background-color: #ed9f0d;
 }
 
 .ui-menu .ui-menu-item a.ui-state-focus {
@@ -2906,16 +2966,16 @@ iframe.pdfjs {
   cursor: default;
 }
 
-#terms-listing-tabs .tab-pane{
+#terms-listing-tabs .tab-pane {
   height: 446px;
   width: 100%;
 }
-#terms-listing-tabs .tab-pane-content{
+#terms-listing-tabs .tab-pane-content {
   overflow-y: scroll;
   width: 100%;
   height: 413px;
 }
-#terms-listing-tabs .tab-pane-content.full-height{
+#terms-listing-tabs .tab-pane-content.full-height {
   height: 446px;
 }
 
@@ -2939,13 +2999,6 @@ iframe.pdfjs {
 .tabs--secondary {
   width: 100%;
   font-size: 100%;
-}
-
-/* Taxonomy term page header */
-.column-other-information h2 {
-  font-size: 14px;
-  font-weight: bold;
-  margin: 0;
 }
 
 /* Search & Taxonomy term related content */
@@ -2975,7 +3028,8 @@ iframe.pdfjs {
   margin: 0;
 }
 
-.taxonomy-term-related-content .views-row .views-field,
+.taxonomy-term-related-content .views-row .views-field-title-field:not(:first-child),
+.taxonomy-term-related-content .views-row .views-field-title-field:not(:first-child) ~ .views-field,
 .view-informea-search-legislation .views-row .views-field,
 .view-informea-search-court-decision .views-row .views-field,
 .view-informea-search-literature .views-row .views-field,
@@ -2997,26 +3051,26 @@ iframe.pdfjs {
   margin-right: 3px;
 }
 
-.taxonomy-term-related-content-facets h2 {
-  font-size: 16px;
-}
+// .taxonomy-term-related-content-facets h2 {
+//   font-size: 16px;
+// }
 
-.taxonomy-term-related-content-facets ul {
-  list-style-type: none;
-  margin: 0 0 0 5px;
-  padding: 0;
-}
+// .taxonomy-term-related-content-facets ul {
+//   list-style-type: none;
+//   margin: 0 0 0 5px;
+//   padding: 0;
+// }
 
-.taxonomy-term-related-content-facets input.facetapi-checkbox {
-  margin-right: 5px;
-}
-
+// .taxonomy-term-related-content-facets input.facetapi-checkbox {
+//   margin-right: 5px;
+// }
+//@todo Mara: check if this is needed
 body.page-search h2,
 body.page-search-legislation h2,
 body.page-search-court-decisions h2,
 body.page-search-literature h2,
 body.page-search-bilateral-treaties h2 {
-  font-size: 16px;
+  // font-size: 16px;
 }
 
 body.page-search div.region-sidebar-first ul,
