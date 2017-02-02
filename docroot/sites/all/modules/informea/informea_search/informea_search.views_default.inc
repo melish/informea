@@ -73,16 +73,29 @@ function informea_search_views_default_views() {
   $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_informea_fulltext_solr_index';
   $handler->display->display_options['sorts']['search_api_relevance']['field'] = 'search_api_relevance';
   $handler->display->display_options['sorts']['search_api_relevance']['order'] = 'DESC';
-  /* Contextual filter: Search: Fulltext search */
-  $handler->display->display_options['arguments']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
-  $handler->display->display_options['arguments']['search_api_views_fulltext']['table'] = 'search_api_index_informea_fulltext_solr_index';
-  $handler->display->display_options['arguments']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
-  $handler->display->display_options['arguments']['search_api_views_fulltext']['default_action'] = 'empty';
-  $handler->display->display_options['arguments']['search_api_views_fulltext']['default_argument_type'] = 'raw';
-  $handler->display->display_options['arguments']['search_api_views_fulltext']['default_argument_options']['index'] = '1';
-  $handler->display->display_options['arguments']['search_api_views_fulltext']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['search_api_views_fulltext']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['search_api_views_fulltext']['not'] = 0;
+  /* Filter criterion: Search: Fulltext search */
+  $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['group'] = 1;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Fulltext search';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+  );
 
   /* Display: Multilateral treaties */
   $handler = $view->new_display('page', 'Multilateral treaties', 'page');
@@ -104,7 +117,7 @@ function informea_search_views_default_views() {
     t('Sorry, there are no results for this search ...'),
     t('.'),
     t(','),
-    t('All'),
+    t('Fulltext search'),
     t('Multilateral treaties'),
     t('Bilateral treaties'),
   );
@@ -151,8 +164,15 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_country_iso2']['field'] = 'field_country_iso2';
   $handler->display->display_options['fields']['field_country_iso2']['relationship'] = 'field_country';
   $handler->display->display_options['fields']['field_country_iso2']['label'] = '';
+  $handler->display->display_options['fields']['field_country_iso2']['alter']['strip_tags'] = TRUE;
   $handler->display->display_options['fields']['field_country_iso2']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_country_iso2']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_country_iso2']['type'] = 'title_linked';
+  $handler->display->display_options['fields']['field_country_iso2']['settings'] = array(
+    'title_style' => 'div',
+    'title_link' => '',
+    'title_class' => 'country-flag',
+  );
   /* Field: Indexed Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_informea_court_decisions';
