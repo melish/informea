@@ -56,3 +56,7 @@ function decision_update_7003() {
   $nids = $q->fetchCol();
   node_delete_multiple($nids);
 }
+
+function decision_update_7004() {
+  features_revert_module('decision');
+}
