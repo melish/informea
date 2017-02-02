@@ -53,6 +53,7 @@ features[variable][] = search_api_attachments_extract_using
 features[variable][] = search_api_attachments_extracting_servlet_path
 features[variable][] = search_api_attachments_preserve_cache
 features[views_view][] = informea_search
+features[views_view][] = informea_search_bilateral_treaties
 features[views_view][] = informea_search_court_decision
 features[views_view][] = informea_search_legislation
 features[views_view][] = informea_search_literature

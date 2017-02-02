@@ -266,7 +266,10 @@ function informea_search_form($form, $form_state) {
   $view = views_get_page_view();
   switch ($view->name) {
     case 'informea_search':
-      $action = ($view->current_display == 'page') ? 'search' : 'search-bilateral-treaties';
+      $action = 'search';
+      break;
+    case 'informea_search_bilateral_treaties':
+      $action = 'search-bilateral-treaties';
       break;
     case 'informea_search_legislation':
       $action = 'search-legislation';
@@ -314,13 +317,7 @@ function informea_search_form_submit($form, $form_state) {
   $input = check_plain($form_state['values']['keys']);
   $arguments = array();
   $redirect_url = $form['#action'];
-  if (in_array($redirect_url, array('search-legislation', 'search-court-decisions', 'search-literature', 'search-bilateral-treaties'))) {
-    $arguments['query'] = array('search_api_views_fulltext' => $input);
-    $redirect_url = $form['#action'];
-  }
-  else {
-    $redirect_url = 'search/' . $input;
-  }
+  $arguments['query'] = array('search_api_views_fulltext' => $input);
   drupal_goto($redirect_url, $arguments);
 }
 
@@ -335,8 +332,7 @@ function _informea_search_get_topic_count($topic) {
   $display_name = 'page';
   switch ($topic) {
     case 'search-bilateral-treaties':
-      $view_name = 'informea_search';
-      $display_name = 'page_1';
+      $view_name = 'informea_search_bilateral_treaties';
       break;
     case 'search-legislation':
       $view_name = 'informea_search_legislation';
@@ -406,7 +402,7 @@ function informea_search_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'views_exposed_form') {
     switch ($form['#id']) {
       case 'views-exposed-form-informea-search-page':
-      case 'views-exposed-form-informea-search-page-1':
+      case 'views-exposed-form-informea-search-bilateral-treaties-page':
       case 'views-exposed-form-informea-search-legislation-page':
       case 'views-exposed-form-informea-search-court-decision-page':
       case 'views-exposed-form-informea-search-literature-page':

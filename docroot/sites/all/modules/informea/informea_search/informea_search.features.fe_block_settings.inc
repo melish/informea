@@ -606,9 +606,7 @@ search-bilateral-treaties/*',
     'module' => 'facetapi',
     'node_types' => array(),
     'pages' => 'search
-search/*
-search-bilateral-treaties
-search-bilateral-treaties/*',
+search/*',
     'roles' => array(),
     'themes' => array(
       'informea_theme' => array(
