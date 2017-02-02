@@ -7,7 +7,7 @@ $show_expand_button = isset($variables['show-expand-button']) ? $variables['show
 $show_filter_input = isset($variables['show-filter-input']) ? $variables['show-filter-input'] : FALSE;
 ?>
 <?php if (!empty($elements)): ?>
-  <form class="form-inline text-right">
+  <form class="form-inline form-group text-right">
     <?php if ($show_filter_input): ?>
       <div class="form-group">
         <input type="text" class="form-control" data-filter="list" data-target="#<?php print $id; ?>" data-selector=".title" placeholder="<?php print t('Filter&hellip;'); ?>">
