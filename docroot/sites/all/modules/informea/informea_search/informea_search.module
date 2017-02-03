@@ -356,7 +356,14 @@ function _informea_search_get_topic_count($topic) {
   return 0;
 }
 
-function informea_search_block_switch_topic_view($include_count = false) {
+function informea_search_block_switch_topic_view() {
+  if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+    $include_count = true;
+  }
+  else {
+    $include_count = false;
+  }
+
   $url = check_plain(arg(0));
   $fulltext = '';
   if (!empty($_GET['search_api_views_fulltext'])) {
