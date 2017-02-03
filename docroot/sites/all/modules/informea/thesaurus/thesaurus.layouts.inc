@@ -43,9 +43,8 @@ function thesaurus_default_panels_layout() {
         'type' => 'row',
         'contains' => 'column',
         'children' => array(
-          0 => 12,
-          1 => 3,
-          2 => 2,
+          0 => 3,
+          1 => 2,
         ),
         'parent' => 'main',
         'class' => '',
@@ -70,7 +69,7 @@ function thesaurus_default_panels_layout() {
         'children' => array(
           0 => 4,
         ),
-        'class' => 'col-sm-6',
+        'class' => 'col-sm-9',
         'hide_empty' => 0,
       ),
       4 => array(
@@ -198,36 +197,6 @@ function thesaurus_default_panels_layout() {
         'width' => 100,
         'width_type' => '%',
         'parent' => '6',
-        'class' => '',
-        'hide_empty' => 0,
-      ),
-      12 => array(
-        'type' => 'column',
-        'width' => 25,
-        'width_type' => '%',
-        'parent' => '1',
-        'children' => array(
-          0 => 13,
-        ),
-        'class' => 'col-sm-3',
-        'hide_empty' => 0,
-      ),
-      13 => array(
-        'type' => 'row',
-        'contains' => 'region',
-        'children' => array(
-          0 => 'menu',
-        ),
-        'parent' => '12',
-        'class' => '',
-        'hide_empty' => 0,
-      ),
-      'menu' => array(
-        'type' => 'region',
-        'title' => 'Menu',
-        'width' => 100,
-        'width_type' => '%',
-        'parent' => '13',
         'class' => '',
         'hide_empty' => 0,
       ),
