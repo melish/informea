@@ -113,10 +113,9 @@ function thesaurus_default_panels_layout() {
       ),
       6 => array(
         'type' => 'row',
-        'contains' => 'column',
+        'contains' => 'region',
         'children' => array(
-          0 => 8,
-          1 => 7,
+          0 => 'full_width_content',
         ),
         'parent' => 'main',
         'class' => '',
@@ -184,9 +183,10 @@ function thesaurus_default_panels_layout() {
       ),
       11 => array(
         'type' => 'row',
-        'contains' => 'region',
+        'contains' => 'column',
         'children' => array(
-          0 => 'full_width_content',
+          0 => 8,
+          1 => 7,
         ),
         'parent' => 'main',
         'class' => '',
@@ -197,7 +197,7 @@ function thesaurus_default_panels_layout() {
         'title' => 'Full-width content',
         'width' => 100,
         'width_type' => '%',
-        'parent' => '11',
+        'parent' => '6',
         'class' => '',
         'hide_empty' => 0,
       ),
