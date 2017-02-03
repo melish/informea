@@ -397,10 +397,12 @@ function informea_search_default_search_api_server() {
       "http_pass" : "",
       "excerpt" : 1,
       "retrieve_data" : 1,
-      "highlight_data" : 1,
+      "highlight_data" : 0,
       "skip_schema_check" : 0,
       "solr_version" : "",
       "http_method" : "AUTO",
+      "log_query" : 0,
+      "log_response" : 0,
       "http" : { "http_user" : "", "http_pass" : null }
     },
     "enabled" : "1",
