@@ -140,7 +140,7 @@ class VocBenchRDFSource extends DefaultSource {
           $term->status = (string) $status;
         }
 
-        if (empty($term->status) || $term->status != 'Deprecated') {
+        if (!empty($term->status) && $term->status == 'Published') {
           $terms[$key] = $term;
         }
       }
