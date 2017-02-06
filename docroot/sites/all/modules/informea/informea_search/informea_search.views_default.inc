@@ -157,14 +157,6 @@ function informea_search_views_default_views() {
   $handler->display->display_options['relationships']['field_country']['id'] = 'field_country';
   $handler->display->display_options['relationships']['field_country']['table'] = 'search_api_index_informea_fulltext_solr_index';
   $handler->display->display_options['relationships']['field_country']['field'] = 'field_country';
-  /* Field: Content: ISO alpha-2 code */
-  $handler->display->display_options['fields']['field_country_iso2']['id'] = 'field_country_iso2';
-  $handler->display->display_options['fields']['field_country_iso2']['table'] = 'entity_node';
-  $handler->display->display_options['fields']['field_country_iso2']['field'] = 'field_country_iso2';
-  $handler->display->display_options['fields']['field_country_iso2']['relationship'] = 'field_country';
-  $handler->display->display_options['fields']['field_country_iso2']['label'] = '';
-  $handler->display->display_options['fields']['field_country_iso2']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_country_iso2']['element_default_classes'] = FALSE;
   /* Field: Indexed Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_informea_fulltext_solr_index';
@@ -184,19 +176,6 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['search_api_excerpt']['label'] = '';
   $handler->display->display_options['fields']['search_api_excerpt']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['search_api_excerpt']['link_to_entity'] = 0;
-  /* Field: Indexed Content: Country */
-  $handler->display->display_options['fields']['field_country']['id'] = 'field_country';
-  $handler->display->display_options['fields']['field_country']['table'] = 'search_api_index_informea_fulltext_solr_index';
-  $handler->display->display_options['fields']['field_country']['field'] = 'field_country';
-  $handler->display->display_options['fields']['field_country']['label'] = '';
-  $handler->display->display_options['fields']['field_country']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_country']['alter']['text'] = '<div class="meta search-index">
-<span class="glyphicon glyphicon-globe"></span> [field_country]
-</div>';
-  $handler->display->display_options['fields']['field_country']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_country']['link_to_entity'] = 0;
-  $handler->display->display_options['fields']['field_country']['view_mode'] = 'full';
-  $handler->display->display_options['fields']['field_country']['bypass_access'] = 0;
   /* Sort criterion: Search: Relevance */
   $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
   $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_informea_fulltext_solr_index';
@@ -261,9 +240,6 @@ function informea_search_views_default_views() {
     t('No search results'),
     t('Sorry, there are no results for this search...'),
     t('Country'),
-    t('<div class="meta search-index">
-<span class="glyphicon glyphicon-globe"></span> [field_country]
-</div>'),
     t('Fulltext search'),
     t('Page'),
   );
@@ -608,14 +584,6 @@ function informea_search_views_default_views() {
   $handler->display->display_options['relationships']['field_country']['id'] = 'field_country';
   $handler->display->display_options['relationships']['field_country']['table'] = 'search_api_index_informea_literatures';
   $handler->display->display_options['relationships']['field_country']['field'] = 'field_country';
-  /* Field: Content: ISO alpha-2 code */
-  $handler->display->display_options['fields']['field_country_iso2']['id'] = 'field_country_iso2';
-  $handler->display->display_options['fields']['field_country_iso2']['table'] = 'entity_node';
-  $handler->display->display_options['fields']['field_country_iso2']['field'] = 'field_country_iso2';
-  $handler->display->display_options['fields']['field_country_iso2']['relationship'] = 'field_country';
-  $handler->display->display_options['fields']['field_country_iso2']['label'] = '';
-  $handler->display->display_options['fields']['field_country_iso2']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_country_iso2']['element_default_classes'] = FALSE;
   /* Field: Indexed Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_informea_literatures';
@@ -635,16 +603,6 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['search_api_excerpt']['label'] = '';
   $handler->display->display_options['fields']['search_api_excerpt']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['search_api_excerpt']['link_to_entity'] = 0;
-  /* Field: Indexed Content: Country */
-  $handler->display->display_options['fields']['field_country']['id'] = 'field_country';
-  $handler->display->display_options['fields']['field_country']['table'] = 'search_api_index_informea_literatures';
-  $handler->display->display_options['fields']['field_country']['field'] = 'field_country';
-  $handler->display->display_options['fields']['field_country']['label'] = '';
-  $handler->display->display_options['fields']['field_country']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_country']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_country']['link_to_entity'] = 0;
-  $handler->display->display_options['fields']['field_country']['view_mode'] = 'full';
-  $handler->display->display_options['fields']['field_country']['bypass_access'] = 0;
   /* Field: Indexed Content: Literature type */
   $handler->display->display_options['fields']['field_literature_type']['id'] = 'field_literature_type';
   $handler->display->display_options['fields']['field_literature_type']['table'] = 'search_api_index_informea_literatures';
@@ -652,8 +610,6 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_literature_type']['label'] = '';
   $handler->display->display_options['fields']['field_literature_type']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_literature_type']['alter']['text'] = '<div class="meta search-index">
-<span class="glyphicon glyphicon-globe"></span> [field_country]
-<span class="separator">·</span>
 [field_literature_type]
 </div>';
   $handler->display->display_options['fields']['field_literature_type']['element_label_colon'] = FALSE;
@@ -711,8 +667,6 @@ function informea_search_views_default_views() {
     t('Sorry, there are no results for this search...'),
     t('Country'),
     t('<div class="meta search-index">
-<span class="glyphicon glyphicon-globe"></span> [field_country]
-<span class="separator">·</span>
 [field_literature_type]
 </div>'),
     t('Fulltext search'),

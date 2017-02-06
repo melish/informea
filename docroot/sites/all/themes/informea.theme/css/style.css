@@ -3025,15 +3025,13 @@ iframe.pdfjs {
 .view-informea-search-bilateral-treaties .views-row .img-thumbnail {
   max-width: 50px;
   position: absolute;
-  margin: 0;
+  margin: 0 0 0 -60px;
 }
 
 .taxonomy-term-related-content .views-row .views-field-title-field:not(:first-child),
 .taxonomy-term-related-content .views-row .views-field-title-field:not(:first-child) ~ .views-field,
-.view-informea-search-legislation .views-row .views-field,
-.view-informea-search-court-decision .views-row .views-field,
-.view-informea-search-literature .views-row .views-field,
-.view-informea-search-bilateral-treaties .views-row .views-field {
+.view-informea-search-legislation .views-row,
+.view-informea-search-court-decision .views-row {
   margin-left: 60px;
 }
 
