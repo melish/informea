@@ -47,7 +47,7 @@ class DocumentsODataMigration extends AbstractODataMigration {
 
     $this->addFieldMapping('field_last_update', 'updated');
     $this->addFieldMapping('field_last_update:timezone')->defaultValue('Europe/Zurich');
-    $this->addFieldMapping('changed', 'updated');
+    //    $this->addFieldMapping('changed', 'changed'); - causes entity translation errors
 
     $this->addFieldMapping('field_treaty', 'treaty');
 
@@ -137,7 +137,7 @@ class DocumentsODataMigration extends AbstractODataMigration {
     $odata_values = $consumer->loadNavigationProperty($row, 'keywords');
     $keywords = array();
     foreach($odata_values as $v) {
-      if ($tid = ODataMigrationUtil::getOrCreateTaxonomyTermByName($v->literalForm, $vdk->vid)) {
+      if ($tid = ODataMigrationUtil::getOrCreateTaxonomyTermByName($v->termValueInEnglish, $vdk->vid)) {
         $keywords[] = $tid;
       }
     }
@@ -148,7 +148,7 @@ class DocumentsODataMigration extends AbstractODataMigration {
     $odata_values = $consumer->loadNavigationProperty($row, 'authors');
     $authors = array();
     foreach($odata_values as $v) {
-      if ($tid = ODataMigrationUtil::getOrCreateTaxonomyTermByName($v->name, $vda->vid)) {
+      if ($tid = ODataMigrationUtil::getOrCreateTaxonomyTermByName($v->value, $vda->vid)) {
         $authors[] = $tid;
       }
     }

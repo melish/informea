@@ -152,6 +152,9 @@ abstract class AbstractODataMigration extends Migration {
 
     module_load_include('inc', 'treaty', 'treaty.api');
     $node = treaty_load_by_odata_name($machine_name);
+    if ($node) {
+      return $node;
+    }
     if (!$node) {
       static $identifiers = array();
       if (empty($identifiers)) {

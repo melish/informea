@@ -106,6 +106,12 @@ class ODataConsumerConfig {
       case ODataConsumerConfig::$ODATA_NAME_CBD:
         $ret = 'ODataConsumerV3';
         break;
+      case ODataConsumerConfig::$ODATA_NAME_BASEL:
+        $ret = 'ODataConsumerV1';
+        if ($this->odata_entity == ODataConsumerConfig::$ODATA_ENTITY_DOCUMENT) {
+          $ret = 'ODataConsumerV4';
+        }
+        break;
       default:
         $ret = 'ODataConsumerV1';
     }
@@ -180,6 +186,7 @@ class ODataConsumerConfig {
           'Contacts' => 'http://informea.pops.int/Contacts2/BcContacts.svc',
           'Meetings' => 'http://informea.pops.int/Meetings/bcMeetings.svc',
           'Decisions' => 'http://informea.pops.int/Documents/bc/Decisions.svc',
+          'Documents'  => 'http://informea.pops.int/mfilesInformea/MFilesMea.svc',
         ),
         self::$ODATA_NAME_CITES => array(
           'default' => 'http://odata.cites.org/informea.svc'
