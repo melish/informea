@@ -23,7 +23,7 @@
         <li>
           <a class="brand brand-hover brand-unep" href="http://www.unep.org/" target="_blank">
             <div class="image"></div>
-            <?php print t('UNEP'); ?>
+            <?php print t('UN Environment'); ?>
           </a><!-- .brand .brand-hover .brand-unep -->
         </li>
         <li>
@@ -162,12 +162,12 @@
           <ul class="list-unstyled">
             <li><?php print l(t('Abidjan Convention'), 'http://abidjanconvention.org/', array('attributes' => array('target' => '_blank'))); ?></li>
             <li><?php print l(t('Antigua Convention'), 'http://www.iattc.org/IATTCdocumentationENG.htm', array('attributes' => array('target' => '_blank'))); ?></li>
-            <li><?php print l(t('Apia Convention'), 'http://www.sprep.org/', array('attributes' => array('target' => '_blank'))); ?></li>
-            <li><?php print l(t('Barcelona Convention'), 'http://www.unep.ch/regionalseas/regions/med/t_barcel.htm', array('attributes' => array('target' => '_blank'))); ?></li>
+            <li><?php print l(t('Apia Convention'), 'http://www.sprep.org/legal/meetings-apia-convention', array('attributes' => array('target' => '_blank'))); ?></li>
+            <li><?php print l(t('Barcelona Convention'), 'http://web.unep.org/unepmap/', array('attributes' => array('target' => '_blank'))); ?></li>
             <li class="divider"></li>
-            <li><?php print l(t('Jeddah Convention'), 'http://www.unep.ch/regionalseas/main/persga/redconv.html', array('attributes' => array('target' => '_blank'))); ?></li>
-            <li><?php print l(t('Nairobi Convention'), 'http://www.unep.org/nairobiconvention/', array('attributes' => array('target' => '_blank'))); ?></li>
-            <li><?php print l(t('Noumea Convention'), 'http://www2.unitar.org/cwm/publications/cbl/synergy/cat1_agree/noumea.htm', array('attributes' => array('target' => '_blank'))); ?></li>
+            <li><?php print l(t('Jeddah Convention'), 'http://www.persga.org/inner.php?id=32', array('attributes' => array('target' => '_blank'))); ?></li>
+            <li><?php print l(t('Nairobi Convention'), 'http://web.unep.org/nairobiconvention/', array('attributes' => array('target' => '_blank'))); ?></li>
+            <li><?php print l(t('Noumea Convention'), 'https://www.sprep.org/legal/noumea-convention', array('attributes' => array('target' => '_blank'))); ?></li>
           </ul><!-- .list-unstyled -->
         </div><!-- .col-md-3 -->
         <div class="col-md-3">
@@ -181,7 +181,7 @@
     </div><!-- .footer-section -->
     <div class="footer-section">
       <p>
-        <?php print t('<a href="@url">Terms and conditions</a> &dash; Portions Copyright &copy; United Nations, FAO, UNEP, UNESCO', array('@url' => url('disclaimer'))); ?>
+        <?php print t('<a href="@url">Terms and conditions</a> &dash; Portions Copyright &copy; United Nations, FAO, UN Environment, UNESCO', array('@url' => url('disclaimer'))); ?>
         &nbsp; &middot; &nbsp;<?php print $user->uid == 0 ? l(t('Log in'), 'user/login') : l(t('Log out'), 'user/logout'); ?>
       </p>
     </div><!-- .footer-section -->
