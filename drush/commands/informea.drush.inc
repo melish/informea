@@ -39,7 +39,12 @@ function informea_drush_command() {
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
     'examples' => array(
       'sync-ecolex-literature' => 'Sync ecolex treaty',
-    ),
+    )
+  );
+  $items['informea-tag-ecolex-data'] = array(
+    'description' => "Tag ECOLEX data",
+    'options' => array(),
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
   );
   return $items;
 }
@@ -93,4 +98,106 @@ function drush_informea_sync_ecolex_literature() {
 
 function drush_informea_sync_ecolex_treaty() {
   ecolex_migration_treaty_sync();
+}
+
+function drush_informea_tag_ecolex_data() {
+  $q = db_select('taxonomy_term_data', 'a')
+    ->fields('a', array('name', 'tid'))
+    ->condition('vid', 14);
+  $terms = $q->execute()->fetchAll(PDO::FETCH_KEY_PAIR);
+
+  echo "legislation\n";
+  $rows = _drush_informea_read_mapping_file(dirname(__FILE__) . "/data/legislation-leo.csv");
+  $i = 0;
+  foreach($rows as $k => $tags) {
+    $nid = db_select('field_data_field_original_id', 'a')
+      ->fields('a', array('entity_id'))
+      ->condition('field_original_id_value', $k)
+      ->execute()->fetchField();
+
+    $node = new stdClass();
+    $node->nid = $nid;
+    $node->type = 'legislation';
+    foreach($tags as $name) {
+      if (!empty($terms[$name])) {
+        $node->field_informea_tags[LANGUAGE_NONE][] = array('tid' => $terms[$name]);
+      }
+    }
+    if (!empty($node->nid) && !empty($node->field_informea_tags[LANGUAGE_NONE])) {
+      field_attach_update('node', $node);
+    }
+    if ($i % 5000 == 0) {
+      echo "$i\n";
+    }
+    $i++;
+  }
+
+  echo "court decisions\n";
+  $rows = _drush_informea_read_mapping_file(dirname(__FILE__) . "/data/court_decisions-leo.csv");
+  $i = 0;
+  foreach($rows as $k => $tags) {
+    $nid = db_select('field_data_field_original_id', 'a')
+      ->fields('a', array('entity_id'))
+      ->condition('field_original_id_value', $k)
+      ->execute()->fetchField();
+
+    $node = new stdClass();
+    $node->nid = $nid;
+    $node->type = 'court_decisions';
+    foreach($tags as $name) {
+      if (!empty($terms[$name])) {
+        $node->field_informea_tags[LANGUAGE_NONE][] = array('tid' => $terms[$name]);
+      }
+    }
+    if (!empty($node->nid) && !empty($node->field_informea_tags[LANGUAGE_NONE])) {
+      field_attach_update('node', $node);
+    }
+    if ($i % 5000 == 0) {
+      echo "$i\n";
+    }
+    $i++;
+  }
+
+  echo "treaties\n";
+  $rows = _drush_informea_read_mapping_file(dirname(__FILE__) . "/data/treaty-leo.csv");
+  foreach($rows as $k => $tags) {
+    $nid = db_select('field_data_field_original_id', 'a')
+      ->fields('a', array('entity_id'))
+      ->condition('field_original_id_value', $k)
+      ->execute()->fetchField();
+
+    $node = new stdClass();
+    $node->nid = $nid;
+    $node->type = 'treaty';
+    foreach($tags as $name) {
+      if (!empty($terms[$name])) {
+        $node->field_informea_tags[LANGUAGE_NONE][] = array('tid' => $terms[$name]);
+      }
+    }
+    if (!empty($node->nid) && !empty($node->field_informea_tags[LANGUAGE_NONE])) {
+      field_attach_update('node', $node);
+    }
+    if ($i % 5000 == 0) {
+      echo "$i\n";
+    }
+    $i++;
+  }
+}
+
+function _drush_informea_read_mapping_file($file) {
+  $rows = array();
+  $c = 0;
+  if (($handle = fopen($file, "r")) !== FALSE) {
+    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+      $col0 = $data[0];
+      $col1 = $data[1];
+      if (empty($rows[$col0])) {
+        $rows[$col0] = array();
+      }
+      $rows[$col0][] = $col1;
+      $c++;
+    }
+    fclose($handle);
+  }
+  return $rows;
 }
