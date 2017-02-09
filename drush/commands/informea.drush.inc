@@ -101,86 +101,115 @@ function drush_informea_sync_ecolex_treaty() {
 }
 
 function drush_informea_tag_ecolex_data() {
+  $args = func_get_args();
+  if (empty($args)) {
+    $args = array('legislation', 'court_decisions', 'treaty');
+  }
   $q = db_select('taxonomy_term_data', 'a')
     ->fields('a', array('name', 'tid'))
     ->condition('vid', 14);
   $terms = $q->execute()->fetchAll(PDO::FETCH_KEY_PAIR);
 
-  echo "legislation\n";
-  $rows = _drush_informea_read_mapping_file(dirname(__FILE__) . "/data/legislation-leo.csv");
-  $i = 0;
-  foreach($rows as $k => $tags) {
-    $nid = db_select('field_data_field_original_id', 'a')
-      ->fields('a', array('entity_id'))
-      ->condition('field_original_id_value', $k)
-      ->execute()->fetchField();
+  if (in_array('legislation', $args)) {
+    $rows = _drush_informea_read_mapping_file(dirname(__FILE__) . "/data/legislation-leo.csv");
+    echo "legislation:" . count($rows) . "\n";
+    $i = 0;
+    $updated = 0;
+    foreach ($rows as $k => $tags) {
+      $nid = db_select('field_data_field_original_id', 'a')
+        ->fields('a', array('entity_id'))
+        ->condition('field_original_id_value', $k)
+        ->execute()->fetchField();
 
-    $node = new stdClass();
-    $node->nid = $nid;
-    $node->type = 'legislation';
-    foreach($tags as $name) {
-      if (!empty($terms[$name])) {
-        $node->field_informea_tags[LANGUAGE_NONE][] = array('tid' => $terms[$name]);
+      $node = new stdClass();
+      $node->nid = $nid;
+      $node->type = 'legislation';
+      foreach ($tags as $name) {
+        if (!empty($terms[$name])) {
+          $node->field_informea_tags[LANGUAGE_NONE][] = array('tid' => $terms[$name]);
+        }
       }
+      if (!empty($node->nid) && !empty($node->field_informea_tags[LANGUAGE_NONE])) {
+        field_attach_update('node', $node);
+        $updated++;
+      }
+      else {
+        drush_log("Skipping invalid court decision: $k");
+      }
+      if ($i % 5000 == 0) {
+        echo "$i\n";
+      }
+      $i++;
     }
-    if (!empty($node->nid) && !empty($node->field_informea_tags[LANGUAGE_NONE])) {
-      field_attach_update('node', $node);
-    }
-    if ($i % 5000 == 0) {
-      echo "$i\n";
-    }
-    $i++;
+    echo "updated: $updated legislation\n";
   }
 
-  echo "court decisions\n";
-  $rows = _drush_informea_read_mapping_file(dirname(__FILE__) . "/data/court_decisions-leo.csv");
-  $i = 0;
-  foreach($rows as $k => $tags) {
-    $nid = db_select('field_data_field_original_id', 'a')
-      ->fields('a', array('entity_id'))
-      ->condition('field_original_id_value', $k)
-      ->execute()->fetchField();
+  if (in_array('court_decisions', $args)) {
+    $rows = _drush_informea_read_mapping_file(dirname(__FILE__) . "/data/court_decisions-leo.csv");
+    echo "court decisions:" . count($rows) . "\n";
+    $i = 0;
+    $updated = 0;
+    foreach ($rows as $k => $tags) {
+      $nid = db_select('field_data_field_original_id', 'a')
+        ->fields('a', array('entity_id'))
+        ->condition('field_original_id_value', $k)
+        ->execute()->fetchField();
 
-    $node = new stdClass();
-    $node->nid = $nid;
-    $node->type = 'court_decisions';
-    foreach($tags as $name) {
-      if (!empty($terms[$name])) {
-        $node->field_informea_tags[LANGUAGE_NONE][] = array('tid' => $terms[$name]);
+      $node = new stdClass();
+      $node->nid = $nid;
+      $node->type = 'court_decisions';
+      foreach ($tags as $name) {
+        if (!empty($terms[$name])) {
+          $node->field_informea_tags[LANGUAGE_NONE][] = array('tid' => $terms[$name]);
+        }
       }
+      if (!empty($node->nid) && !empty($node->field_informea_tags[LANGUAGE_NONE])) {
+        field_attach_update('node', $node);
+        $updated++;
+      }
+      else {
+        drush_log("Skipping invalid court decision: $k");
+      }
+      if ($i % 5000 == 0) {
+        echo "$i\n";
+      }
+      $i++;
     }
-    if (!empty($node->nid) && !empty($node->field_informea_tags[LANGUAGE_NONE])) {
-      field_attach_update('node', $node);
-    }
-    if ($i % 5000 == 0) {
-      echo "$i\n";
-    }
-    $i++;
+    echo "updated: $updated court decisions\n";
   }
 
-  echo "treaties\n";
-  $rows = _drush_informea_read_mapping_file(dirname(__FILE__) . "/data/treaty-leo.csv");
-  foreach($rows as $k => $tags) {
-    $nid = db_select('field_data_field_original_id', 'a')
-      ->fields('a', array('entity_id'))
-      ->condition('field_original_id_value', $k)
-      ->execute()->fetchField();
+  if (in_array('treaty', $args)) {
+    $rows = _drush_informea_read_mapping_file(dirname(__FILE__) . "/data/treaty-leo.csv");
+    echo "treaties:" . count($rows) . "\n";
+    $i = 0;
+    $updated = 0;
+    foreach ($rows as $k => $tags) {
+      $nid = db_select('field_data_field_original_id', 'a')
+        ->fields('a', array('entity_id'))
+        ->condition('field_original_id_value', $k)
+        ->execute()->fetchField();
 
-    $node = new stdClass();
-    $node->nid = $nid;
-    $node->type = 'treaty';
-    foreach($tags as $name) {
-      if (!empty($terms[$name])) {
-        $node->field_informea_tags[LANGUAGE_NONE][] = array('tid' => $terms[$name]);
+      $node = new stdClass();
+      $node->nid = $nid;
+      $node->type = 'treaty';
+      foreach ($tags as $name) {
+        if (!empty($terms[$name])) {
+          $node->field_informea_tags[LANGUAGE_NONE][] = array('tid' => $terms[$name]);
+          $updated++;
+        }
+        else {
+          drush_log("Skipping invalid treaty: $k");
+        }
       }
+      if (!empty($node->nid) && !empty($node->field_informea_tags[LANGUAGE_NONE])) {
+        field_attach_update('node', $node);
+      }
+      if ($i % 5000 == 0) {
+        echo "$i\n";
+      }
+      $i++;
     }
-    if (!empty($node->nid) && !empty($node->field_informea_tags[LANGUAGE_NONE])) {
-      field_attach_update('node', $node);
-    }
-    if ($i % 5000 == 0) {
-      echo "$i\n";
-    }
-    $i++;
+    echo "updated: $updated treaties\n";
   }
 }
 
