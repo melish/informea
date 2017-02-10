@@ -59,15 +59,16 @@
                             <?php print $decision_w->label(); ?>
                           </h4><!-- .panel-title -->
                         </div>
-                        <div class="accordion panel-group panel-collapse collapse" id="content-<?php print $decision->nid; ?>" role="tabpanel">
+                        <div class="accordion panel-group panel-collapse collapse" id="content-<?php print $decision->nid; ?>" role="tabpanel"> <p>
+                        <?php print l('['.t('View Source document').']','node/'. $decision->nid, array('attributes' => array('class' => array('permalink'),'target' => '_blank'), 'html' => TRUE)); ?> </p>
                           <div class="national-report-paragraphs panel-body">
                               <?php foreach($decision->children as $decision_paragraph): ?>
                               <?php $decision_paragraph_w = entity_metadata_wrapper('node', $decision_paragraph); ?>
                               <div class="item" id="content-<?php print $decision->nid; ?>">
                                 <p>
-                               <?php if($decision_paragraph_w->body->value()): ?>
-                                    <?php print l('['.t('View').']', 'node/'. $decision_paragraph->nid, array('attributes' => array('class' => array('permalink pull-right'),'target' => '_blank'), 'fragment' => $decision_paragraph->nid, 'html' => TRUE)); ?>
+                                 <?php print l('['.t('View Target').']', 'node/'. $decision_paragraph->nid, array('attributes' => array('class' => array('permalink pull-right'),'target' => '_blank'), 'fragment' => $decision_paragraph->nid, 'html' => TRUE)); ?>
                                     <?php print($decision_paragraph_w->body->value->value(array('decode' => FALSE))); ?>
+                                    <?php if($decision_paragraph_w->body->value()): ?>
                                   <?php endif; ?>
                                 </p>
                               </div>
