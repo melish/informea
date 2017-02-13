@@ -181,9 +181,25 @@ function ecolex_remote_content($context, $item, $type, $page = 0, $sid = '') {
 }
 
 
+function ecolex_treaty_load_nid_by_faolexid($faolexId) {
+  $q = db_select('field_data_field_original_id')->fields(NULL, array('entity_id'));
+  $q->condition('bundle', 'treaty');
+  $q->condition('field_original_id_value', $faolexId);
+  $q->condition('entity_type', 'node');
+  return $q->execute()->fetchField();
+}
+
 function ecolex_legislation_load_nid_by_faolexid($faolexId) {
   $q = db_select('field_data_field_original_id')->fields(NULL, array('entity_id'));
   $q->condition('bundle', 'legislation');
+  $q->condition('field_original_id_value', $faolexId);
+  $q->condition('entity_type', 'node');
+  return $q->execute()->fetchField();
+}
+
+function ecolex_literature_load_nid_by_faolexid($faolexId) {
+  $q = db_select('field_data_field_original_id')->fields(NULL, array('entity_id'));
+  $q->condition('bundle', 'literature');
   $q->condition('field_original_id_value', $faolexId);
   $q->condition('entity_type', 'node');
   return $q->execute()->fetchField();
