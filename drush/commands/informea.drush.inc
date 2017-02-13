@@ -218,8 +218,8 @@ function _drush_informea_read_mapping_file($file) {
   $c = 0;
   if (($handle = fopen($file, "r")) !== FALSE) {
     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-      $col0 = $data[0];
-      $col1 = $data[1];
+      $col0 = trim($data[0]);
+      $col1 = trim($data[1]);
       if (empty($rows[$col0])) {
         $rows[$col0] = array();
       }
