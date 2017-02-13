@@ -20,8 +20,8 @@ function informea_search_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => 'search-literature
-search-literature/*',
+    'pages' => 'search-publications
+search-publications/*',
     'roles' => array(),
     'themes' => array(
       'informea_theme' => array(
@@ -106,8 +106,8 @@ search-court-decisions/*',
     'i18n_mode' => 0,
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => 'search-literature
-search-literature/*',
+    'pages' => 'search-publications
+search-publications/*',
     'roles' => array(),
     'themes' => array(
       'informea_theme' => array(
@@ -226,8 +226,8 @@ search-bilateral-treaties/*',
     'i18n_mode' => 0,
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => 'search-literature
-search-literature/*',
+    'pages' => 'search-publications
+search-publications/*',
     'roles' => array(),
     'themes' => array(
       'informea_theme' => array(
@@ -371,8 +371,8 @@ search-legislation/*',
     'i18n_mode' => 0,
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => 'search-literature
-search-literature/*',
+    'pages' => 'search-publications
+search-publications/*',
     'roles' => array(),
     'themes' => array(
       'informea_theme' => array(
@@ -458,8 +458,8 @@ search-court-decisions/*',
     'i18n_mode' => 0,
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => 'search-literature
-search-literature/*',
+    'pages' => 'search-publications
+search-publications/*',
     'roles' => array(),
     'themes' => array(
       'informea_theme' => array(
@@ -516,8 +516,8 @@ search-court-decisions/*',
     'i18n_mode' => 0,
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => 'search-literature
-search-literature/*',
+    'pages' => 'search-publications
+search-publications/*',
     'roles' => array(),
     'themes' => array(
       'informea_theme' => array(
@@ -545,8 +545,8 @@ search-literature/*',
     'i18n_mode' => 0,
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => 'search-literature
-search-literature/*',
+    'pages' => 'search-publications
+search-publications/*',
     'roles' => array(),
     'themes' => array(
       'informea_theme' => array(

@@ -646,7 +646,7 @@ function informea_search_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'search-literature';
+  $handler->display->display_options['path'] = 'search-publications';
   $translatables['informea_search_literature'] = array(
     t('Master'),
     t('Search InforMEA'),

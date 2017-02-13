@@ -3005,7 +3005,7 @@ iframe.pdfjs {
 .taxonomy-term-related-content h2,
 .view-informea-search-legislation h2,
 .view-informea-search-court-decision h2,
-.view-informea-search-literature h2,
+.view-informea-search-publications h2,
 .view-informea-search-bilateral-treaties h2 {
   font-size: 20px;
 }
@@ -3013,7 +3013,7 @@ iframe.pdfjs {
 .taxonomy-term-related-content .views-row,
 .view-informea-search-legislation .views-row,
 .view-informea-search-court-decision .views-row,
-.view-informea-search-literature .views-row,
+.view-informea-search-publications .views-row,
 .view-informea-search-bilateral-treaties .views-row {
   margin-bottom: 20px;
 }
@@ -3021,7 +3021,7 @@ iframe.pdfjs {
 .taxonomy-term-related-content .views-row .img-thumbnail,
 .view-informea-search-legislation .views-row .img-thumbnail,
 .view-informea-search-court-decision .views-row .img-thumbnail,
-.view-informea-search-literature .views-row .img-thumbnail,
+.view-informea-search-publications .views-row .img-thumbnail,
 .view-informea-search-bilateral-treaties .views-row .img-thumbnail {
   max-width: 50px;
   position: absolute;
@@ -3041,7 +3041,7 @@ iframe.pdfjs {
 .taxonomy-term-related-content .meta .separator,
 .view-informea-search-legislation .meta .separator,
 .view-informea-search-court-decision .meta .separator,
-.view-informea-search-literature .meta .separator,
+.view-informea-search-publications .meta .separator,
 .view-informea-search-bilateral-treaties .meta .separator {
   visibility: visible!important;
   margin-left: 3px;
@@ -3065,7 +3065,7 @@ iframe.pdfjs {
 body.page-search h2,
 body.page-search-legislation h2,
 body.page-search-court-decisions h2,
-body.page-search-literature h2,
+body.page-search-publications h2,
 body.page-search-bilateral-treaties h2 {
   // font-size: 16px;
 }
@@ -3073,7 +3073,7 @@ body.page-search-bilateral-treaties h2 {
 body.page-search div.region-sidebar-first ul,
 body.page-search-legislation div.region-sidebar-first ul,
 body.page-search-court-decisions div.region-sidebar-first ul,
-body.page-search-literature div.region-sidebar-first ul,
+body.page-search-publications div.region-sidebar-first ul,
 body.page-search-bilateral-treaties div.region-sidebar-first ul {
   list-style-type: none;
   margin: 0 0 0 5px;
@@ -3083,7 +3083,7 @@ body.page-search-bilateral-treaties div.region-sidebar-first ul {
 body.page-search input.facetapi-checkbox,
 body.page-search-legislation div.region-sidebar-first input.facetapi-checkbox,
 body.page-search-court-decisions div.region-sidebar-first input.facetapi-checkbox,
-body.page-search-literature div.region-sidebar-first input.facetapi-checkbox,
+body.page-search-publications div.region-sidebar-first input.facetapi-checkbox,
 body.page-search-bilateral-treaties div.region-sidebar-first input.facetapi-checkbox {
   margin-right: 5px;
 }
@@ -3091,7 +3091,7 @@ body.page-search-bilateral-treaties div.region-sidebar-first input.facetapi-chec
 body.page-search .view-empty,
 body.page-search-legislation .view-empty,
 body.page-search-court-decisions .view-empty,
-body.page-search-literature .view-empty,
+body.page-search-publications .view-empty,
 body.page-search-bilateral-treaties .view-empty {
   padding: 50px;
   text-align: center;

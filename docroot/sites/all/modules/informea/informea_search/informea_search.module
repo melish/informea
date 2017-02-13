@@ -21,7 +21,7 @@ function informea_search_views_pre_render(&$view) {
       // do not break here
     case 'informea_search_legislation':
     case 'informea_search_court_decision':
-    case 'informea_search_literature':
+    case 'informea_search_publications':
       $content = sprintf('<div class="results-for">%s: "%s"</div>', t('Results for'), $_GET['search_api_views_fulltext']);
       $view->attachment_before = $content;
       break;
@@ -52,8 +52,8 @@ search-legislation
 search-legislation/*
 search-court-decisions
 search-court-decisions/*
-search-literature
-search-literature/*
+search-publications
+search-publications/*
 search-bilateral-treaties
 search-bilateral-treaties/*',
     )
@@ -277,8 +277,8 @@ function informea_search_form($form, $form_state) {
     case 'informea_search_court_decision':
       $action = 'search-court-decisions';
       break;
-    case 'informea_search_literature':
-      $action = 'search-literature';
+    case 'informea_search_publications':
+      $action = 'search-publications';
       break;
     default:
       $action = 'search';
@@ -340,8 +340,8 @@ function _informea_search_get_topic_count($topic) {
     case 'search-court-decisions':
       $view_name = 'informea_search_court_decision';
       break;
-    case 'search-literature':
-      $view_name = 'informea_search_literature';
+    case 'search-publications':
+      $view_name = 'informea_search_publications';
       break;
   }
   $view = views_get_view($view_name);
@@ -377,7 +377,7 @@ function informea_search_block_switch_topic_view() {
     'search-bilateral-treaties' => t('Bilateral treaties'),
     'search-legislation' => t('Legislation'),
     'search-court-decisions' => t('Court decisions'),
-    'search-literature' => t('Publications'),
+    'search-publications' => t('Publications'),
   );
   $tabs = array();
 
@@ -418,7 +418,7 @@ function informea_search_form_alter(&$form, &$form_state, $form_id) {
       case 'views-exposed-form-informea-search-bilateral-treaties-page':
       case 'views-exposed-form-informea-search-legislation-page':
       case 'views-exposed-form-informea-search-court-decision-page':
-      case 'views-exposed-form-informea-search-literature-page':
+      case 'views-exposed-form-informea-search-publications-page':
         hide($form);
     }
   }
