@@ -57,5 +57,6 @@ features[views_view][] = informea_search_bilateral_treaties
 features[views_view][] = informea_search_court_decision
 features[views_view][] = informea_search_legislation
 features[views_view][] = informea_search_literature
+features[views_view][] = informea_search_publications
 files[] = informea_search.pages.inc
 files[] = informea_search.results.inc
