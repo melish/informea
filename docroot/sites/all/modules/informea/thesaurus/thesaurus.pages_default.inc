@@ -730,6 +730,29 @@ Legislations',
     $display->content['new-a97b66a2-03ab-4c34-b2d9-7d82dcf57f2a'] = $pane;
     $display->panels['definition'][0] = 'new-a97b66a2-03ab-4c34-b2d9-7d82dcf57f2a';
     $pane = new stdClass();
+    $pane->pid = 'new-52c4d4eb-1127-4430-81a7-c5b530e0cdfb';
+    $pane->panel = 'facets';
+    $pane->type = 'block';
+    $pane->subtype = 'facetapi-EeqfYRvf4OeayxrDPBXmxh0uLs695r1S';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '52c4d4eb-1127-4430-81a7-c5b530e0cdfb';
+    $display->content['new-52c4d4eb-1127-4430-81a7-c5b530e0cdfb'] = $pane;
+    $display->panels['facets'][0] = 'new-52c4d4eb-1127-4430-81a7-c5b530e0cdfb';
+    $pane = new stdClass();
     $pane->pid = 'new-40aee080-9765-46b7-93d8-a33b980de132';
     $pane->panel = 'full_width_content';
     $pane->type = 'page_tabs';
@@ -754,29 +777,6 @@ Legislations',
     $pane->uuid = '40aee080-9765-46b7-93d8-a33b980de132';
     $display->content['new-40aee080-9765-46b7-93d8-a33b980de132'] = $pane;
     $display->panels['full_width_content'][0] = 'new-40aee080-9765-46b7-93d8-a33b980de132';
-    $pane = new stdClass();
-    $pane->pid = 'new-794ea937-72ac-4469-b13e-169a63903fd4';
-    $pane->panel = 'full_width_content';
-    $pane->type = 'block';
-    $pane->subtype = 'thesaurus-thesaurus-bilateral-treaties';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $pane->uuid = '794ea937-72ac-4469-b13e-169a63903fd4';
-    $display->content['new-794ea937-72ac-4469-b13e-169a63903fd4'] = $pane;
-    $display->panels['full_width_content'][1] = 'new-794ea937-72ac-4469-b13e-169a63903fd4';
     $pane = new stdClass();
     $pane->pid = 'new-b8ea2b6a-4f24-42f9-bdd1-28fe6be150f2';
     $pane->panel = 'other_information';
@@ -875,6 +875,44 @@ Legislations',
     $pane->uuid = 'ac1d8da1-b969-4f4a-9534-e855043e0c74';
     $display->content['new-ac1d8da1-b969-4f4a-9534-e855043e0c74'] = $pane;
     $display->panels['other_information'][2] = 'new-ac1d8da1-b969-4f4a-9534-e855043e0c74';
+    $pane = new stdClass();
+    $pane->pid = 'new-7e5d8635-376d-4a2f-953c-13ac2cd1231c';
+    $pane->panel = 'tagged_content';
+    $pane->type = 'views';
+    $pane->subtype = 'taxonomy_term_related_bilateral_treaties';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 1,
+      'nodes_per_page' => '20',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'block',
+      'context' => array(
+        0 => 'argument_term_1.tid',
+      ),
+      'override_title' => 1,
+      'override_title_text' => 'Content tagged with "%taxonomy_term:name_field"',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '7e5d8635-376d-4a2f-953c-13ac2cd1231c';
+    $display->content['new-7e5d8635-376d-4a2f-953c-13ac2cd1231c'] = $pane;
+    $display->panels['tagged_content'][0] = 'new-7e5d8635-376d-4a2f-953c-13ac2cd1231c';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

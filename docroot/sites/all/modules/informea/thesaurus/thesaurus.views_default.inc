@@ -11,6 +11,97 @@ function thesaurus_views_default_views() {
   $export = array();
 
   $view = new view();
+  $view->name = 'taxonomy_term_related_bilateral_treaties';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'search_api_index_informea_fulltext_solr_index';
+  $view->human_name = 'Taxonomy term related bilateral treaties';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Taxonomy term related bilateral treaties';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '20';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Indexed Content: Country */
+  $handler->display->display_options['relationships']['field_country']['id'] = 'field_country';
+  $handler->display->display_options['relationships']['field_country']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['relationships']['field_country']['field'] = 'field_country';
+  /* Field: Indexed Content: Title */
+  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
+  $handler->display->display_options['fields']['title_field']['settings'] = array(
+    'title_style' => '_none',
+    'title_link' => 'content',
+    'title_class' => '',
+  );
+  /* Sort criterion: Indexed Content: Date of text */
+  $handler->display->display_options['sorts']['field_sorting_date']['id'] = 'field_sorting_date';
+  $handler->display->display_options['sorts']['field_sorting_date']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['sorts']['field_sorting_date']['field'] = 'field_sorting_date';
+  $handler->display->display_options['sorts']['field_sorting_date']['order'] = 'DESC';
+  /* Contextual filter: Indexed Content: InforMEA Tags */
+  $handler->display->display_options['arguments']['field_informea_tags']['id'] = 'field_informea_tags';
+  $handler->display->display_options['arguments']['field_informea_tags']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['arguments']['field_informea_tags']['field'] = 'field_informea_tags';
+  $handler->display->display_options['arguments']['field_informea_tags']['default_action'] = 'empty';
+  $handler->display->display_options['arguments']['field_informea_tags']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_informea_tags']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_informea_tags']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['field_informea_tags']['not'] = 0;
+  /* Filter criterion: Indexed Content: Content type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'treaty' => 'treaty',
+  );
+  /* Filter criterion: Indexed Content: Data source */
+  $handler->display->display_options['filters']['field_data_source']['id'] = 'field_data_source';
+  $handler->display->display_options['filters']['field_data_source']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['filters']['field_data_source']['field'] = 'field_data_source';
+  $handler->display->display_options['filters']['field_data_source']['value'] = array(
+    2767 => '2767',
+  );
+
+  /* Display: Block */
+  $handler = $view->new_display('block', 'Block', 'block');
+  $translatables['taxonomy_term_related_bilateral_treaties'] = array(
+    t('Master'),
+    t('Taxonomy term related bilateral treaties'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Country'),
+    t('All'),
+    t('Block'),
+  );
+  $export['taxonomy_term_related_bilateral_treaties'] = $view;
+
+  $view = new view();
   $view->name = 'taxonomy_term_related_court_decisions';
   $view->description = '';
   $view->tag = 'default';
@@ -84,7 +175,7 @@ function thesaurus_views_default_views() {
   $handler->display->display_options['fields']['field_type_of_text']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_type_of_text']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_type_of_text']['bypass_access'] = 0;
-  /* Sort criterion: Indexed Content: Date */
+  /* Sort criterion: Indexed Content: Date of text */
   $handler->display->display_options['sorts']['field_sorting_date']['id'] = 'field_sorting_date';
   $handler->display->display_options['sorts']['field_sorting_date']['table'] = 'search_api_index_informea_court_decisions';
   $handler->display->display_options['sorts']['field_sorting_date']['field'] = 'field_sorting_date';
