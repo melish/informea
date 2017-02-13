@@ -175,6 +175,7 @@ features[node][] = page
 features[search_api_index][] = informea_court_decisions
 features[search_api_index][] = informea_legislations
 features[search_api_index][] = informea_literatures
+features[search_api_index][] = informea_publications
 features[services_endpoint][] = views_export
 features[taxonomy][] = keywords
 features[taxonomy][] = tags
