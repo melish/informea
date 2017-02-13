@@ -29,7 +29,7 @@ function taxonomy_external_sync_taxonomy_form_element($form, $form_state) {
     $plugins = taxonomy_external_sync_source_plugins();
     /**
      * @var string $machine_name
-     * @var \Drupal\taxonomy_external_sync\plugin\SourceInterface $ob
+     * @var \Drupal\taxonomy_external_sync\plugin\source\DefaultSource $ob
      */
     foreach ($plugins as $machine_name => $ob) {
       $options[$machine_name] = $ob->getName();
@@ -52,7 +52,7 @@ function taxonomy_external_sync_taxonomy_form_element($form, $form_state) {
         'effect' => 'fade',
       ),
     );
-    /** @var \Drupal\taxonomy_external_sync\plugin\SourceInterface $plugin */
+    /** @var \Drupal\taxonomy_external_sync\plugin\source\DefaultSource $plugin */
     if ($selected && $plugin = $plugins[$selected]) {
       $ret['tes']['plugin_config'] = array(
         '#type' => 'fieldset',
