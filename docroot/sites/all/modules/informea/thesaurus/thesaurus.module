@@ -229,10 +229,8 @@ function _thesaurus_get_related_content_count($term, $bundle) {
       return !empty($related_data['treaties']) ? count($related_data['treaties']) : 0;
 
     case 'bilateral-treaties':
-      // ToDo: find a better solution
-      $dp = new InforMEAThesaurusTermRelatedContent($term);
-      $related_data = $dp->getRelatedContent($term, 'bilateral');
-      return !empty($related_data['treaties']) ? count($related_data['treaties']) : 0;
+      $bilateral_treaties = _informea_search_get_treaties_by_data_source(2767 /* ECOLEX */);
+      return $select->condition('entity_id', $bilateral_treaties, 'IN')->execute()->rowCount();
 
     case 'court_decisions':
     case 'legislation':
