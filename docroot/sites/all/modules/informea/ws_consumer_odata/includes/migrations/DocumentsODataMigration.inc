@@ -209,6 +209,9 @@ class DocumentsODataMigration extends AbstractODataMigration {
         $row->filename[] = $filename;
       }
     }
+
+    $this->truncateFields($row, ['title_en', 'titles']);
+
     return $this->validateRow($row);
   }
 

@@ -414,6 +414,9 @@ class ODataMigrationUtil {
     if ($tid = $query->execute()->fetchField()) {
       return $tid;
     }
+    elseif(strlen($name) > 255) {
+      ws_consumer_odata_log("The taxonomy term name is too long. The term will not be created: {$name}", MigrationBase::MESSAGE_WARNING);
+    }
     else {
       // Create the term
       $term = new stdClass();
@@ -425,8 +428,8 @@ class ODataMigrationUtil {
       if (!empty($term->tid)) {
         return $term->tid;
       }
-      return NULL;
     }
+    return null;
   }
 
   static function getTaxonomyTermByName($name, $vid) {

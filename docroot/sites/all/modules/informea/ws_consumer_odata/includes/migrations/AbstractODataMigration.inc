@@ -232,4 +232,33 @@ abstract class AbstractODataMigration extends Migration {
     }
     return $ret;
   }
+
+  /**
+   * Truncate the field values to a specified size.
+   *
+   * @param stdClass $row
+   *   Migrated row data
+   * @param array $fields
+   *   An array with field names
+   * @param int $size
+   */
+  public function truncateFields(&$row, array $fields, $size = 2048) {
+    foreach ($fields as $field) {
+      if (!empty($row->{$field})) {
+        try {
+          if (is_array($row->{$field})) {
+            foreach ($row->{$field} as $key => $value) {
+              $row->{$field}[$key] = substr(trim($value), 0, $size);
+            }
+          }
+          else {
+            $row->{$field} = substr(trim($row->{$field}), 0, $size);
+          }
+        }
+        catch (\Exception $e) {
+          ws_consumer_odata_log("Could not truncate '$field' field", MigrationBase::MESSAGE_ERROR);
+        }
+      }
+    }
+  }
 }
