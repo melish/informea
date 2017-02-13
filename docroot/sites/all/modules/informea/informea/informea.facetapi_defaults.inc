@@ -24,6 +24,7 @@ function informea_facetapi_default_facet_settings() {
     'dependencies' => array(
       'bundle' => 'none',
       'bundle_selected' => array(),
+      'roles' => array(),
     ),
     'facet_mincount' => '1',
     'facet_missing' => '0',
@@ -31,7 +32,7 @@ function informea_facetapi_default_facet_settings() {
     'individual_parent' => '0',
     'query_type' => 'term',
     'limit_active_items' => 0,
-    'default_true' => TRUE,
+    'default_true' => '1',
     'facet_search_ids' => array(),
     'exclude' => 0,
   );
@@ -51,6 +52,7 @@ function informea_facetapi_default_facet_settings() {
     'dependencies' => array(
       'bundle' => 'none',
       'bundle_selected' => array(),
+      'roles' => array(),
     ),
     'facet_mincount' => '1',
     'facet_missing' => '0',
@@ -58,7 +60,7 @@ function informea_facetapi_default_facet_settings() {
     'individual_parent' => '0',
     'query_type' => 'term',
     'limit_active_items' => 0,
-    'default_true' => TRUE,
+    'default_true' => '1',
     'facet_search_ids' => array(),
     'exclude' => 0,
   );
@@ -105,6 +107,7 @@ function informea_facetapi_default_facet_settings() {
     'dependencies' => array(
       'bundle' => 'none',
       'bundle_selected' => array(),
+      'roles' => array(),
     ),
     'facet_mincount' => '1',
     'facet_missing' => '0',
@@ -112,7 +115,7 @@ function informea_facetapi_default_facet_settings() {
     'individual_parent' => '0',
     'query_type' => 'term',
     'limit_active_items' => 0,
-    'default_true' => TRUE,
+    'default_true' => '1',
     'facet_search_ids' => array(),
     'exclude' => 0,
   );
@@ -131,9 +134,9 @@ function informea_facetapi_default_facet_settings() {
     'widget' => 'facetapi_checkbox_links',
     'filters' => array(),
     'active_sorts' => array(
+      'active' => 'active',
+      'count' => 'count',
       'display' => 'display',
-      'active' => 0,
-      'count' => 0,
       'indexed' => 0,
     ),
     'sort_weight' => array(
@@ -174,9 +177,9 @@ function informea_facetapi_default_facet_settings() {
     'widget' => 'facetapi_checkbox_links',
     'filters' => array(),
     'active_sorts' => array(
+      'active' => 'active',
+      'count' => 'count',
       'display' => 'display',
-      'active' => 0,
-      'count' => 0,
       'indexed' => 0,
     ),
     'sort_weight' => array(
@@ -217,9 +220,9 @@ function informea_facetapi_default_facet_settings() {
     'widget' => 'facetapi_checkbox_links',
     'filters' => array(),
     'active_sorts' => array(
+      'active' => 'active',
+      'count' => 'count',
       'display' => 'display',
-      'active' => 0,
-      'count' => 0,
       'indexed' => 0,
     ),
     'sort_weight' => array(
@@ -260,9 +263,9 @@ function informea_facetapi_default_facet_settings() {
     'widget' => 'facetapi_checkbox_links',
     'filters' => array(),
     'active_sorts' => array(
+      'active' => 'active',
+      'count' => 'count',
       'display' => 'display',
-      'active' => 0,
-      'count' => 0,
       'indexed' => 0,
     ),
     'sort_weight' => array(

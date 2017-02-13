@@ -420,7 +420,6 @@ function informea_default_search_api_index() {
         "attachments_field_files" : { "type" : "text" },
         "changed" : { "type" : "date" },
         "created" : { "type" : "date" },
-        "field_abstract" : { "type" : "text" },
         "field_alternative_record_id" : { "type" : "text" },
         "field_amends" : { "type" : "integer", "entity_type" : "node" },
         "field_country" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "node" },

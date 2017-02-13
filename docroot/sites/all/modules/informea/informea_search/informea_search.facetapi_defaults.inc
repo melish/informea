@@ -13,6 +13,143 @@ function informea_search_facetapi_default_facet_settings() {
   $facet = new stdClass();
   $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
   $facet->api_version = 1;
+  $facet->name = 'search_api@informea_fulltext_solr_index::field_country';
+  $facet->searcher = 'search_api@informea_fulltext_solr_index';
+  $facet->realm = '';
+  $facet->facet = 'field_country';
+  $facet->enabled = FALSE;
+  $facet->settings = array(
+    'operator' => 'and',
+    'hard_limit' => '20',
+    'dependencies' => array(
+      'bundle' => 'none',
+      'bundle_selected' => array(),
+      'roles' => array(),
+    ),
+    'facet_mincount' => '1',
+    'facet_missing' => '0',
+    'flatten' => 0,
+    'individual_parent' => 0,
+    'query_type' => 'term',
+    'limit_active_items' => 0,
+    'default_true' => '1',
+    'facet_search_ids' => array(),
+    'exclude' => 0,
+  );
+  $export['search_api@informea_fulltext_solr_index::field_country'] = $facet;
+
+  $facet = new stdClass();
+  $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
+  $facet->api_version = 1;
+  $facet->name = 'search_api@informea_fulltext_solr_index::field_informea_tags';
+  $facet->searcher = 'search_api@informea_fulltext_solr_index';
+  $facet->realm = '';
+  $facet->facet = 'field_informea_tags';
+  $facet->enabled = FALSE;
+  $facet->settings = array(
+    'operator' => 'and',
+    'hard_limit' => '20',
+    'dependencies' => array(
+      'bundle' => 'none',
+      'bundle_selected' => array(),
+      'roles' => array(),
+    ),
+    'facet_mincount' => '1',
+    'facet_missing' => '0',
+    'flatten' => '0',
+    'individual_parent' => '0',
+    'query_type' => 'term',
+    'limit_active_items' => 0,
+    'default_true' => '1',
+    'facet_search_ids' => array(),
+    'exclude' => 0,
+  );
+  $export['search_api@informea_fulltext_solr_index::field_informea_tags'] = $facet;
+
+  $facet = new stdClass();
+  $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
+  $facet->api_version = 1;
+  $facet->name = 'search_api@informea_fulltext_solr_index::field_region';
+  $facet->searcher = 'search_api@informea_fulltext_solr_index';
+  $facet->realm = '';
+  $facet->facet = 'field_region';
+  $facet->enabled = FALSE;
+  $facet->settings = array(
+    'operator' => 'and',
+    'hard_limit' => '20',
+    'dependencies' => array(
+      'bundle' => 'none',
+      'bundle_selected' => array(),
+    ),
+    'facet_mincount' => '1',
+    'facet_missing' => '0',
+    'flatten' => '0',
+    'individual_parent' => '0',
+    'query_type' => 'term',
+    'limit_active_items' => 0,
+    'default_true' => '1',
+    'facet_search_ids' => array(),
+    'exclude' => 0,
+  );
+  $export['search_api@informea_fulltext_solr_index::field_region'] = $facet;
+
+  $facet = new stdClass();
+  $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
+  $facet->api_version = 1;
+  $facet->name = 'search_api@informea_fulltext_solr_index::field_treaty';
+  $facet->searcher = 'search_api@informea_fulltext_solr_index';
+  $facet->realm = '';
+  $facet->facet = 'field_treaty';
+  $facet->enabled = FALSE;
+  $facet->settings = array(
+    'operator' => 'and',
+    'hard_limit' => '20',
+    'dependencies' => array(
+      'bundle' => 'none',
+      'bundle_selected' => array(),
+      'roles' => array(),
+    ),
+    'facet_mincount' => '1',
+    'facet_missing' => '0',
+    'flatten' => 0,
+    'individual_parent' => 0,
+    'query_type' => 'term',
+    'limit_active_items' => 0,
+    'default_true' => '1',
+    'facet_search_ids' => array(),
+    'exclude' => 0,
+  );
+  $export['search_api@informea_fulltext_solr_index::field_treaty'] = $facet;
+
+  $facet = new stdClass();
+  $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
+  $facet->api_version = 1;
+  $facet->name = 'search_api@informea_fulltext_solr_index::type';
+  $facet->searcher = 'search_api@informea_fulltext_solr_index';
+  $facet->realm = '';
+  $facet->facet = 'type';
+  $facet->enabled = FALSE;
+  $facet->settings = array(
+    'operator' => 'and',
+    'hard_limit' => '20',
+    'dependencies' => array(
+      'roles' => array(),
+    ),
+    'facet_mincount' => '1',
+    'facet_missing' => '0',
+    'flatten' => 0,
+    'individual_parent' => 0,
+    'query_type' => 'term',
+    'limit_active_items' => 0,
+    'default_true' => '1',
+    'facet_search_ids' => array(),
+    'exclude' => 0,
+  );
+  $export['search_api@informea_fulltext_solr_index::type'] = $facet;
+
+  $facet = new stdClass();
+  $facet->disabled = FALSE; /* Edit this to true to make a default facet disabled initially */
+  $facet->api_version = 1;
   $facet->name = 'search_api@informea_fulltext_solr_index:block:field_country';
   $facet->searcher = 'search_api@informea_fulltext_solr_index';
   $facet->realm = 'block';
@@ -66,9 +203,9 @@ function informea_search_facetapi_default_facet_settings() {
     'widget' => 'facetapi_checkbox_links',
     'filters' => array(),
     'active_sorts' => array(
+      'active' => 'active',
       'count' => 'count',
       'display' => 'display',
-      'active' => 0,
       'indexed' => 0,
     ),
     'sort_weight' => array(
@@ -152,9 +289,9 @@ function informea_search_facetapi_default_facet_settings() {
     'widget' => 'facetapi_checkbox_links',
     'filters' => array(),
     'active_sorts' => array(
+      'active' => 'active',
+      'count' => 'count',
       'display' => 'display',
-      'active' => 0,
-      'count' => 0,
       'indexed' => 0,
     ),
     'sort_weight' => array(
@@ -220,9 +357,9 @@ function informea_search_facetapi_default_facet_settings() {
       ),
     ),
     'active_sorts' => array(
-      'active' => 0,
-      'count' => 0,
-      'display' => 0,
+      'active' => 'active',
+      'count' => 'count',
+      'display' => 'display',
       'indexed' => 0,
     ),
     'sort_weight' => array(
