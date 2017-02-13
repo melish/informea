@@ -130,8 +130,17 @@ function document_views_default_views() {
   $handler->display->display_options['fields']['field_country']['table'] = 'search_api_index_informea_documents';
   $handler->display->display_options['fields']['field_country']['field'] = 'field_country';
   $handler->display->display_options['fields']['field_country']['label'] = '';
-  $handler->display->display_options['fields']['field_country']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_country']['alter']['text'] = '<h3>[title]</h3>
+  $handler->display->display_options['fields']['field_country']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_country']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_country']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['field_country']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_country']['bypass_access'] = 0;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<h3>[title]</h3>
 <p>[body]</p>
 <dl class="dl-horizontal">
 <dt>Instrument:&nbsp;&nbsp;</dt><dl>[field_treaty]</dl>
@@ -139,10 +148,7 @@ function document_views_default_views() {
 <dt>Country:&nbsp;&nbsp;</dt><dl>[field_country]</dl>
 </dl>
 [field_files]';
-  $handler->display->display_options['fields']['field_country']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_country']['link_to_entity'] = 0;
-  $handler->display->display_options['fields']['field_country']['view_mode'] = 'full';
-  $handler->display->display_options['fields']['field_country']['bypass_access'] = 0;
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Filter criterion: Indexed Content: Country */
   $handler->display->display_options['filters']['field_country']['id'] = 'field_country';
   $handler->display->display_options['filters']['field_country']['table'] = 'search_api_index_informea_documents';
