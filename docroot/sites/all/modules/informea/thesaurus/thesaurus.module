@@ -30,7 +30,7 @@ function thesaurus_get_section($path = null) {
       'bilateral-treaties',
       'court-decisions',
       'legislations',
-      'literatures',
+      'publications',
     ];
     $section = end($matches) ?: 'default';
     if (in_array($section, $allowed_sections)) {
@@ -237,6 +237,7 @@ function _thesaurus_get_related_content_count($term, $bundle) {
     case 'court_decisions':
     case 'legislation':
     case 'literature':
+    case 'document':
       return $select->condition('bundle', $bundle)->execute()->rowCount();
 
     default:
@@ -259,7 +260,7 @@ function thesaurus_menu_local_tasks_alter(&$data, $router_item, $root_path) {
         $bilateralTreatiesCount = _thesaurus_get_related_content_count($term, 'bilateral-treaties');
         $courtDecisionsCount = _thesaurus_get_related_content_count($term, 'court_decisions');
         $legislationsCount = _thesaurus_get_related_content_count($term, 'legislation');
-        $literaturesCount = _thesaurus_get_related_content_count($term, 'literature');
+        $publicationsCount = _thesaurus_get_related_content_count($term, 'literature') + _thesaurus_get_related_content_count($term, 'document');
 
         $menu_items = array(
           'default' => array(
@@ -278,8 +279,8 @@ function thesaurus_menu_local_tasks_alter(&$data, $router_item, $root_path) {
             'data' => l(t('Court decisions') . ' <span class="badge pull-right">' . $courtDecisionsCount . '</span>', 'taxonomy/term/' . $term->tid . '/court-decisions', ['html' => true]),
             'role' => 'presentation',
           ),
-          'literatures' => array(
-            'data' => l(t('Publications') . ' <span class="badge pull-right">' . $literaturesCount . '</span>', 'taxonomy/term/' . $term->tid . '/literatures', ['html' => true]),
+          'publications' => array(
+            'data' => l(t('Publications') . ' <span class="badge pull-right">' . $publicationsCount . '</span>', 'taxonomy/term/' . $term->tid . '/publications', ['html' => true]),
             'role' => 'presentation',
           ),
         );

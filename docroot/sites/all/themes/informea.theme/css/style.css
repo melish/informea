@@ -3104,3 +3104,12 @@ body.page-search-bilateral-treaties .view-empty {
   display: inline-block;
   float: none;
 }
+
+.panels-flexible-region-thesaurus_term_page-full_width_content #tabs {
+  text-align: center;
+  margin-top: 20px;
+}
+.panels-flexible-region-thesaurus_term_page-full_width_content #tabs ul li {
+  display: inline-block;
+  float: none;
+}

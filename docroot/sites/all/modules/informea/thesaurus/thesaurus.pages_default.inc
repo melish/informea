@@ -1725,11 +1725,11 @@ Legislations',
   $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
-  $page->name = 'thesaurus_literatures';
+  $page->name = 'thesaurus_publications';
   $page->task = 'page';
-  $page->admin_title = 'Thesaurus - literatures';
+  $page->admin_title = 'Thesaurus - publications';
   $page->admin_description = '';
-  $page->path = 'taxonomy/term/%taxonomy_term/literatures';
+  $page->path = 'taxonomy/term/%taxonomy_term/publications';
   $page->access = array(
     'type' => 'none',
     'settings' => NULL,
@@ -1799,9 +1799,9 @@ Legislations',
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = 'page_thesaurus_literatures__panel';
+  $handler->name = 'page_thesaurus_publications__panel';
   $handler->task = 'page';
-  $handler->subtask = 'thesaurus_literatures';
+  $handler->subtask = 'thesaurus_publications';
   $handler->handler = 'panel_context';
   $handler->weight = 0;
   $handler->conf = array(
@@ -1818,7 +1818,7 @@ Legislations',
     'panels_breadcrumbs_state' => 1,
     'panels_breadcrumbs_titles' => 'Glossary
 %taxonomy_term:name_field
-Literatures',
+Publications',
     'panels_breadcrumbs_paths' => '/terms
 %taxonomy_term:url
 <none>',
@@ -1875,10 +1875,33 @@ Literatures',
     $display->content['new-287a5eba-4472-41a7-980d-840574a89ad6'] = $pane;
     $display->panels['definition'][0] = 'new-287a5eba-4472-41a7-980d-840574a89ad6';
     $pane = new stdClass();
-    $pane->pid = 'new-a6eb2271-2331-48c0-b5b8-3a03653c696e';
+    $pane->pid = 'new-25aca4d4-3623-487e-8ab4-0f52d31bc9d7';
     $pane->panel = 'facets';
     $pane->type = 'block';
-    $pane->subtype = 'facetapi-p9WcWVBg1G8eNqrSM10du4dp9e1NAuLR';
+    $pane->subtype = 'facetapi-3mJm1W4dfmvVJwQU6Fwa1UYCADF630r5';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Type',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '25aca4d4-3623-487e-8ab4-0f52d31bc9d7';
+    $display->content['new-25aca4d4-3623-487e-8ab4-0f52d31bc9d7'] = $pane;
+    $display->panels['facets'][0] = 'new-25aca4d4-3623-487e-8ab4-0f52d31bc9d7';
+    $pane = new stdClass();
+    $pane->pid = 'new-1bf01caf-0fcf-434f-be2f-d12ea658bf0b';
+    $pane->panel = 'facets';
+    $pane->type = 'block';
+    $pane->subtype = 'facetapi-EPopgYUIPRwLmsNXr9X8D1FoiB4vdkPG';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -1892,16 +1915,16 @@ Literatures',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = 'a6eb2271-2331-48c0-b5b8-3a03653c696e';
-    $display->content['new-a6eb2271-2331-48c0-b5b8-3a03653c696e'] = $pane;
-    $display->panels['facets'][0] = 'new-a6eb2271-2331-48c0-b5b8-3a03653c696e';
+    $pane->uuid = '1bf01caf-0fcf-434f-be2f-d12ea658bf0b';
+    $display->content['new-1bf01caf-0fcf-434f-be2f-d12ea658bf0b'] = $pane;
+    $display->panels['facets'][1] = 'new-1bf01caf-0fcf-434f-be2f-d12ea658bf0b';
     $pane = new stdClass();
-    $pane->pid = 'new-2188a521-20ac-4d4f-920c-384df3aa3278';
+    $pane->pid = 'new-33c7a4ae-944b-432c-aece-204f0d315701';
     $pane->panel = 'facets';
     $pane->type = 'block';
-    $pane->subtype = 'facetapi-HEmkPZqeT0zhhPkPHy81Br53u3i3pN1x';
+    $pane->subtype = 'facetapi-IyeCKCprQMtwZlPzlV9rNi3D01lK0oqY';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -1915,39 +1938,16 @@ Literatures',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $pane->uuid = '2188a521-20ac-4d4f-920c-384df3aa3278';
-    $display->content['new-2188a521-20ac-4d4f-920c-384df3aa3278'] = $pane;
-    $display->panels['facets'][1] = 'new-2188a521-20ac-4d4f-920c-384df3aa3278';
-    $pane = new stdClass();
-    $pane->pid = 'new-9dba67c3-b1b2-4155-bdeb-6915c413a67d';
-    $pane->panel = 'facets';
-    $pane->type = 'block';
-    $pane->subtype = 'facetapi-lwGfxWf5h8Kx3R4o7n1RvBsw0ZrJJ4qN';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => 'Publication Place',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
-    $pane->uuid = '9dba67c3-b1b2-4155-bdeb-6915c413a67d';
-    $display->content['new-9dba67c3-b1b2-4155-bdeb-6915c413a67d'] = $pane;
-    $display->panels['facets'][2] = 'new-9dba67c3-b1b2-4155-bdeb-6915c413a67d';
+    $pane->uuid = '33c7a4ae-944b-432c-aece-204f0d315701';
+    $display->content['new-33c7a4ae-944b-432c-aece-204f0d315701'] = $pane;
+    $display->panels['facets'][2] = 'new-33c7a4ae-944b-432c-aece-204f0d315701';
     $pane = new stdClass();
-    $pane->pid = 'new-e99872fb-a155-4bdf-8636-b0eda6696e51';
+    $pane->pid = 'new-afb33572-8c93-4603-9573-13ab1ae21343';
     $pane->panel = 'facets';
     $pane->type = 'block';
-    $pane->subtype = 'facetapi-hHFp4hC2AL6C8acdwH93ZO7CG1T9Bdjh';
+    $pane->subtype = 'facetapi-lFTDOmrsVmQmRqG1yhvhkLE1HBeKji6v';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -1963,14 +1963,37 @@ Literatures',
     $pane->extras = array();
     $pane->position = 3;
     $pane->locks = array();
-    $pane->uuid = 'e99872fb-a155-4bdf-8636-b0eda6696e51';
-    $display->content['new-e99872fb-a155-4bdf-8636-b0eda6696e51'] = $pane;
-    $display->panels['facets'][3] = 'new-e99872fb-a155-4bdf-8636-b0eda6696e51';
+    $pane->uuid = 'afb33572-8c93-4603-9573-13ab1ae21343';
+    $display->content['new-afb33572-8c93-4603-9573-13ab1ae21343'] = $pane;
+    $display->panels['facets'][3] = 'new-afb33572-8c93-4603-9573-13ab1ae21343';
     $pane = new stdClass();
-    $pane->pid = 'new-a15aa67b-6cec-43c9-918b-b36391c77589';
+    $pane->pid = 'new-b9bffedc-a795-4994-a803-ecb2c146dcc6';
     $pane->panel = 'facets';
     $pane->type = 'block';
-    $pane->subtype = 'facetapi-BE41Y0ukWcJC4Q0JoNSqDH1shcPk05zA';
+    $pane->subtype = 'facetapi-nH0H81P3pdN1dfvkdvCD5VKkmHgsDC6W';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Publication Place',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $pane->locks = array();
+    $pane->uuid = 'b9bffedc-a795-4994-a803-ecb2c146dcc6';
+    $display->content['new-b9bffedc-a795-4994-a803-ecb2c146dcc6'] = $pane;
+    $display->panels['facets'][4] = 'new-b9bffedc-a795-4994-a803-ecb2c146dcc6';
+    $pane = new stdClass();
+    $pane->pid = 'new-72c5f79a-6cf1-495a-8863-a420f222140a';
+    $pane->panel = 'facets';
+    $pane->type = 'block';
+    $pane->subtype = 'facetapi-3KWtmCIzHfDw1AIpfhJ6xCbHm5eyrM1x';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -1984,16 +2007,16 @@ Literatures',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 4;
+    $pane->position = 5;
     $pane->locks = array();
-    $pane->uuid = 'a15aa67b-6cec-43c9-918b-b36391c77589';
-    $display->content['new-a15aa67b-6cec-43c9-918b-b36391c77589'] = $pane;
-    $display->panels['facets'][4] = 'new-a15aa67b-6cec-43c9-918b-b36391c77589';
+    $pane->uuid = '72c5f79a-6cf1-495a-8863-a420f222140a';
+    $display->content['new-72c5f79a-6cf1-495a-8863-a420f222140a'] = $pane;
+    $display->panels['facets'][5] = 'new-72c5f79a-6cf1-495a-8863-a420f222140a';
     $pane = new stdClass();
-    $pane->pid = 'new-06f8a1e1-c8ad-4218-b528-809bed6fc1a2';
+    $pane->pid = 'new-44c48387-43a6-4f38-a853-ca30d3ce515c';
     $pane->panel = 'facets';
     $pane->type = 'block';
-    $pane->subtype = 'facetapi-QyLdjrjTJBkP8bCwICExitKlISp0s8fy';
+    $pane->subtype = 'facetapi-p9FlWiab4gZsEGaV8liVtKqUrzwmczuq';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -2007,16 +2030,16 @@ Literatures',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 5;
+    $pane->position = 6;
     $pane->locks = array();
-    $pane->uuid = '06f8a1e1-c8ad-4218-b528-809bed6fc1a2';
-    $display->content['new-06f8a1e1-c8ad-4218-b528-809bed6fc1a2'] = $pane;
-    $display->panels['facets'][5] = 'new-06f8a1e1-c8ad-4218-b528-809bed6fc1a2';
+    $pane->uuid = '44c48387-43a6-4f38-a853-ca30d3ce515c';
+    $display->content['new-44c48387-43a6-4f38-a853-ca30d3ce515c'] = $pane;
+    $display->panels['facets'][6] = 'new-44c48387-43a6-4f38-a853-ca30d3ce515c';
     $pane = new stdClass();
-    $pane->pid = 'new-0edc1a58-fbd7-434e-8ffa-581448358fdd';
+    $pane->pid = 'new-281e395d-c1ef-4d82-9544-773c79334869';
     $pane->panel = 'facets';
     $pane->type = 'block';
-    $pane->subtype = 'facetapi-2inj02S8SSDr0L3OF8hraGUH3abtqIC6';
+    $pane->subtype = 'facetapi-O1SxmXX8M8WxQY0H1ovKh0bHXdiFF6ao';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -2030,11 +2053,11 @@ Literatures',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 6;
+    $pane->position = 7;
     $pane->locks = array();
-    $pane->uuid = '0edc1a58-fbd7-434e-8ffa-581448358fdd';
-    $display->content['new-0edc1a58-fbd7-434e-8ffa-581448358fdd'] = $pane;
-    $display->panels['facets'][6] = 'new-0edc1a58-fbd7-434e-8ffa-581448358fdd';
+    $pane->uuid = '281e395d-c1ef-4d82-9544-773c79334869';
+    $display->content['new-281e395d-c1ef-4d82-9544-773c79334869'] = $pane;
+    $display->panels['facets'][7] = 'new-281e395d-c1ef-4d82-9544-773c79334869';
     $pane = new stdClass();
     $pane->pid = 'new-bc555204-4c95-4c9a-b02e-92b0d4f4516e';
     $pane->panel = 'full_width_content';
@@ -2149,16 +2172,16 @@ Literatures',
     $display->content['new-6bd77781-58a1-47ac-99c9-108b15d6e244'] = $pane;
     $display->panels['other_information'][2] = 'new-6bd77781-58a1-47ac-99c9-108b15d6e244';
     $pane = new stdClass();
-    $pane->pid = 'new-cff16a75-7f72-4e16-ab11-25eb5ffe1f2e';
+    $pane->pid = 'new-de91fe73-0366-4f74-920f-6f7365adb0f9';
     $pane->panel = 'tagged_content';
     $pane->type = 'views';
-    $pane->subtype = 'taxonomy_term_related_literatures';
+    $pane->subtype = 'taxonomy_term_related_publications';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
       'override_pager_settings' => 0,
-      'use_pager' => 0,
-      'nodes_per_page' => '5',
+      'use_pager' => 1,
+      'nodes_per_page' => '20',
       'pager_id' => '0',
       'offset' => '0',
       'more_link' => 0,
@@ -2167,7 +2190,7 @@ Literatures',
       'link_to_view' => 0,
       'args' => '',
       'url' => '',
-      'display' => 'default',
+      'display' => 'block',
       'context' => array(
         0 => 'argument_term_1.tid',
       ),
@@ -2183,14 +2206,14 @@ Literatures',
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = 'cff16a75-7f72-4e16-ab11-25eb5ffe1f2e';
-    $display->content['new-cff16a75-7f72-4e16-ab11-25eb5ffe1f2e'] = $pane;
-    $display->panels['tagged_content'][0] = 'new-cff16a75-7f72-4e16-ab11-25eb5ffe1f2e';
+    $pane->uuid = 'de91fe73-0366-4f74-920f-6f7365adb0f9';
+    $display->content['new-de91fe73-0366-4f74-920f-6f7365adb0f9'] = $pane;
+    $display->panels['tagged_content'][0] = 'new-de91fe73-0366-4f74-920f-6f7365adb0f9';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
-  $pages['thesaurus_literatures'] = $page;
+  $pages['thesaurus_publications'] = $page;
 
   return $pages;
 
