@@ -146,6 +146,10 @@ class EcolexLegislationMigration extends Migration {
   public function prepareRow($row) {
     parent::prepareRow($row);
 
+    if (!$row->slug) {
+      return false; // ignore already synced file
+    }
+
     $row->updatedDate = substr($row->updatedDate, 0, 10);
 
     if (!empty($row->legYear) && strlen($row->legYear) == 4) {
@@ -313,9 +317,9 @@ class EcolexLegislationMigrateSource extends MigrateSource {
 
   private $url_pattern = NULL;
 
+  public $check_modify_date = TRUE;
   public $found_rows = 0;
   public $fetched_rows = 0;
-  public $fetch_limit = 100;
   public $log_detail;
   public $totalCount = 0;
   public $currentCount = 0;
@@ -329,12 +333,19 @@ class EcolexLegislationMigrateSource extends MigrateSource {
     $this->url_pattern = 'http://www.ecolex.org/export/?type=legislation&format=json'; // todo cache
     $this->check_modify_date = variable_get('ecolex_legislation_check_modify_date', FALSE);
     $this->updated_after = 0;
+    echo "\n\n";
     if ($this->check_modify_date) {
-      $this->updated_after = date('Ymd',strtotime('-10 days'));
+      $this->updated_after = date('Ymd', strtotime('-10 days'));
       $this->url_pattern .= '&updated_after=' . $this->updated_after;
+      echo "Check modify date ON\n";
     }
-    $this->fetch_limit = variable_get('ecolex_legislation_fetch_limit', 100);
+    else {
+      echo "Check modify date OFF\n";
+    }
     $this->log_detail = variable_get('ecolex_legislation_log_detail', FALSE);
+    if ($this->log_detail) {
+      echo "Log detail ON\n";
+    }
     $this->computeCount();
   }
 
@@ -383,6 +394,7 @@ class EcolexLegislationMigrateSource extends MigrateSource {
         $this->totalCount = $json->count;
       }
     }
+    echo "Total: {$this->totalCount}\n";
     return $this->totalCount;
   }
 
@@ -420,19 +432,35 @@ class EcolexLegislationMigrateSource extends MigrateSource {
     $this->found_rows = 0;
     if ($this->currentCount == $next_call_count && $next_call_count < $this->totalCount) {
       $start = $this->currentPage * $this->pagination;
-      if ($str = elis_consumer_http_request($this->url_pattern . '&rows=' . $this->pagination . '&start=' . $start, array('Accept' => 'application/json'))) {
+
+      $destination = 'temporary://ecolex_legislation/' . $this->pagination . '-' . $start. '-' . $this->updated_after . '.json';
+      file_prepare_directory(dirname($destination), FILE_CREATE_DIRECTORY);
+      $detail_filename = drupal_realpath($destination);
+      $str = '';
+      if (file_exists($detail_filename) && $this->log_detail) {
+        $str = file_get_contents($detail_filename);
+      }
+      if (!$str) {
+        $str = elis_consumer_http_request($this->url_pattern . '&rows=' . $this->pagination . '&start=' . $start, array('Accept' => 'application/json'));
+        if ($this->log_detail && $str) {
+          if (!file_exists($detail_filename)) {
+            file_put_contents($detail_filename, $str);
+          }
+        }
+      }
+      if ($str) {
         if ($json = json_decode($str)) {
           $this->found_rows = count($json); // before filter
 
           $mig_data = [];
 
           if ($this->check_modify_date) {
-            $sourceid1 = [];
+            $source_ids = [];
             foreach ($json as $row) {
-              $sourceid1[] = $row->docId;
+              $source_ids[] = $row->docId;
             }
-            if ($sourceid1) {
-              $mig_data = $this->getDatesOfModification($sourceid1);
+            if ($source_ids) {
+              $mig_data = $this->getDatesOfModification($source_ids);
             }
           }
 
@@ -445,7 +473,12 @@ class EcolexLegislationMigrateSource extends MigrateSource {
               $this->data[] = $row;
               continue;
             }
-            $this->currentCount++;
+            $obj = new stdClass();
+            $obj->url = '';
+            $obj->slug = '';
+            $obj->legId = $row->docId;
+
+            $this->data[] = $obj;
           }
           $this->currentPage++;
         }
@@ -463,18 +496,31 @@ class EcolexLegislationMigrateSource extends MigrateSource {
       next($this->data);
       $this->currentCount++;
       if (!$item) {
+        $this->currentCount--;
         return NULL;
       }
-      $str = elis_consumer_http_request($item->url, array('Accept' => 'application/json') );
-      if ($this->log_detail) {
+
+      if ($item->url) {
         $destination = 'temporary://ecolex_legislation/'.$item->docId . '.json';
-        if (file_prepare_directory(dirname($destination), FILE_CREATE_DIRECTORY)) {
-          file_put_contents(drupal_realpath($destination), $str);
+        $detail_filename = drupal_realpath($destination);
+        $str = '';
+        if (file_exists($detail_filename) && $this->log_detail) {
+          $str = file_get_contents($detail_filename);
         }
-      }
-      $json = json_decode($str);
-      if ($json) {
-        $item = $json[0];
+        else {
+          $str = elis_consumer_http_request($item->url, array('Accept' => 'application/json') );
+        }
+        if ($this->log_detail && $str) {
+          if (!file_exists($detail_filename)) {
+            if (file_prepare_directory(dirname($destination), FILE_CREATE_DIRECTORY)) {
+              file_put_contents($detail_filename, $str);
+            }
+          }
+        }
+        $json = json_decode($str);
+        if ($json) {
+          $item = $json[0];
+        }
       }
     }
     return $item;
@@ -487,10 +533,6 @@ class EcolexLegislationMigrateSource extends MigrateSource {
    *   FALSE data as stdClass, FALSE when there is no more data available.
    */
   public function getNextRow() {
-    if ($this->fetched_rows >= $this->fetch_limit) {
-      return FALSE;
-    }
-
     $item = $this->getItem();
     if (!$item) {
       $this->getData();
@@ -499,7 +541,11 @@ class EcolexLegislationMigrateSource extends MigrateSource {
         return FALSE;
       }
     }
+    if ($item) {
+      if ($item->slug) {
     $this->fetched_rows++;
+      }
+    }
 
     return $item;
   }

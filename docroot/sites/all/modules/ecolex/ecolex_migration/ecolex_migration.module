@@ -9,7 +9,12 @@ function ecolex_migration_literature_sync() {
   watchdog('ecolex_migration', 'Starting import @migration',
     array('@migration' => $machine_name), WATCHDOG_INFO);
 
-  $result = $migration->processImport(array('update' => TRUE));
+  $options = array('update' => TRUE);
+  $limit = drush_get_option('limit', FALSE);
+  if ($limit) {
+    $options['limit'] = ['unit' => 'items', 'value' => $limit];
+  }
+  $result = $migration->processImport($options);
 
   watchdog('ecolex_migration', 'Done @migration with result: @result',
     array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
@@ -26,7 +31,12 @@ function ecolex_migration_legislation_sync() {
   watchdog('ecolex_migration', 'Starting import @migration',
     array('@migration' => $machine_name), WATCHDOG_INFO);
 
-  $result = $migration->processImport(array('update' => TRUE));
+  $options = array('update' => TRUE);
+  $limit = drush_get_option('limit', FALSE);
+  if ($limit) {
+    $options['limit'] = ['unit' => 'items', 'value' => $limit];
+  }
+  $result = $migration->processImport($options);
 
   watchdog('ecolex_migration', 'Done @migration with result: @result',
     array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
@@ -43,7 +53,12 @@ function ecolex_migration_treaty_sync() {
   watchdog('ecolex_migration', 'Starting import @migration',
     array('@migration' => $machine_name), WATCHDOG_INFO);
 
-  $result = $migration->processImport(array('update' => TRUE));
+  $options = array('update' => TRUE);
+  $limit = drush_get_option('limit', FALSE);
+  if ($limit) {
+    $options['limit'] = ['unit' => 'items', 'value' => $limit];
+  }
+  $result = $migration->processImport($options);
 
   watchdog('ecolex_migration', 'Done @migration with result: @result',
     array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);

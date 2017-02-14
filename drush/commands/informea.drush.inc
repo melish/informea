@@ -23,6 +23,9 @@ function informea_drush_command() {
   $items['sync-ecolex-legislation'] = array(
     'description' => 'Sync ecolex legislation',
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'options' => array(
+      'limit' => 'limit',
+    ),
     'examples' => array(
       'sync-ecolex-legislation' => 'Sync ecolex legislation',
     ),
@@ -30,6 +33,9 @@ function informea_drush_command() {
   $items['sync-ecolex-literature'] = array(
     'description' => 'Sync ecolex literature',
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'options' => array(
+      'limit' => 'limit',
+    ),
     'examples' => array(
       'sync-ecolex-literature' => 'Sync ecolex literature',
     ),
@@ -37,6 +43,9 @@ function informea_drush_command() {
   $items['sync-ecolex-treaty'] = array(
     'description' => 'Sync ecolex literature',
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'options' => array(
+      'limit' => 'limit',
+    ),
     'examples' => array(
       'sync-ecolex-literature' => 'Sync ecolex treaty',
     )
