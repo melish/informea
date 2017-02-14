@@ -33,6 +33,9 @@ function informea_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'tags' => array(
       'name' => 'Tags',
@@ -57,6 +60,9 @@ function informea_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
     'thesaurus_agrovoc' => array(
@@ -83,6 +89,9 @@ function informea_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'thesaurus_ecolex' => array(
       'name' => 'Thesaurus - ECOLEX',
@@ -107,6 +116,9 @@ function informea_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
     'thesaurus_geg' => array(
@@ -133,6 +145,9 @@ function informea_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'thesaurus_gemet' => array(
       'name' => 'Thesaurus - GEMET',
@@ -158,6 +173,9 @@ function informea_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'thesaurus_ieg' => array(
       'name' => 'Thesaurus - IEG',
@@ -182,6 +200,9 @@ function informea_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
     'thesaurus_informea' => array(
@@ -211,17 +232,29 @@ function informea_taxonomy_default_vocabularies() {
       'tes' => array(
         'enable' => TRUE,
         'plugin' => 'Drupal\\taxonomy_external_sync\\plugin\\source\\VocBenchRDFSource',
-        'mappings' => array(
-          'description_field' => 'definition',
-          'field_taxonomy_term_uri' => 'uri',
-          'field_term_reference_url' => 'relatedMatch',
-          'field_term_synonyms' => 'related',
-          'name_field' => 'prefLabel',
-        ),
         'plugin_config' => array(
           'url' => 'http://informea.org/sites/default/files/export/informea.rdf',
           'id_field' => 'uri',
           'parent_field' => 'broader',
+          'delete_deprecated_terms' => 1,
+        ),
+        'mappings' => array(
+          'description_field' => 'definition',
+          'field_ecolex_tags' => '',
+          'field_sorting_order' => '',
+          'field_taxonomy_term_uri' => 'uri',
+          'field_term_geg_url' => '',
+          'field_term_popularity' => '',
+          'field_term_reference_url' => 'relatedMatch',
+          'field_term_related_uri' => '',
+          'field_term_substantive' => '',
+          'field_term_synonyms' => 'altLabel',
+          'field_term_tag' => '',
+          'field_thesaurus_map_agrovoc' => '',
+          'field_thesaurus_map_ecolex' => '',
+          'field_thesaurus_map_geg' => '',
+          'field_thesaurus_map_gemet' => '',
+          'name_field' => 'prefLabel',
         ),
       ),
     ),

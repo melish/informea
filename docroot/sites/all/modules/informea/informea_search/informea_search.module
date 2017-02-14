@@ -10,26 +10,21 @@ include_once 'informea_search.features.inc';
  * Implements hook_views_pre_render().
  */
 function informea_search_views_pre_render(&$view) {
-  if ($view->name == 'informea_search') {
-    drupal_add_library('informea', 'smallipop');
-    drupal_add_js(drupal_get_path('module', 'informea_search') . '/js/informea_search.js');
+  switch ($view->name) {
+    case 'informea_search':
+      drupal_add_library('informea', 'smallipop');
+      drupal_add_js(drupal_get_path('module', 'informea_search') . '/js/informea_search.js');
 
-    module_load_include('inc', 'informea_search', 'informea_search.results');
-    $group = new InforMEASearchResultsGrouping();
-    $view->result = $group->getResults($view->result);
-
-    $search = reset($view->args);
-    $term = taxonomy_get_term_by_name($search, 'thesaurus_informea');
-    $content = sprintf('<div class="results-for">%s: "%s"</div>', t('Results for'), $search);
-    if (!empty($term)) {
-      $term = reset($term);
-      $path = drupal_get_path_alias('taxonomy/term/' . $term->tid);
-      $content .= '<div class="alert alert-info">';
-      $content .= t('This term also exits as a LEO term, ');
-      $content .= l(t('click here to see its glossary entry'), 'http://leo.informea.org/' . $path, array('attributes' => array('target'=>'_blank')));
-      $content .= '.</div>';
-    }
-    $view->attachment_before = $content;
+      module_load_include('inc', 'informea_search', 'informea_search.results');
+      $group = new InforMEASearchResultsGrouping();
+      $view->result = $group->getResults($view->result);
+      // do not break here
+    case 'informea_search_legislation':
+    case 'informea_search_court_decision':
+    case 'informea_search_publications':
+      $content = sprintf('<div class="results-for">%s: "%s"</div>', t('Results for'), $_GET['search_api_views_fulltext']);
+      $view->attachment_before = $content;
+      break;
   }
 }
 
@@ -43,6 +38,24 @@ function informea_search_block_info() {
       'region' => 'navigation',
       'visibility' => BLOCK_VISIBILITY_NOTLISTED,
       'pages' => '',
+    ),
+    'search_informea_switch_topic' => array(
+      'info' => t('Switch search topic'),
+      'cache' => DRUPAL_NO_CACHE,
+      'weight' => -50,
+      'status' => 1,
+      'region' => 'header',
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+      'pages' => 'search
+search/*
+search-legislation
+search-legislation/*
+search-court-decisions
+search-court-decisions/*
+search-publications
+search-publications/*
+search-bilateral-treaties
+search-bilateral-treaties/*',
     )
   );
 }
@@ -55,8 +68,29 @@ function informea_search_block_view($delta = '') {
   switch($delta) {
     case 'search_informea':
       $block['content'] = drupal_get_form('informea_search_form');
+      break;
+    case 'search_informea_switch_topic':
+      $block['content'] = informea_search_block_switch_topic_view();
   }
   return $block;
+}
+
+/**
+ * Implements hook_search_api_views_query_alter().
+ */
+function informea_search_search_api_views_query_alter(view &$view, SearchApiViewsQuery &$query) {
+  if ($view->name == 'informea_search') {
+    $multilateral_treaties = _informea_search_get_treaties_by_data_source(2767 /* ECOLEX */, true);
+    if (empty($multilateral_treaties)) {
+      $multilateral_treaties = [-1];
+    }
+    $group = $query->set_where_group('OR');
+    foreach ($multilateral_treaties as $multilateral_treaty) {
+      // @todo: SearchApiViewsQuery does not support operator "IN"?!?!
+      $query->condition('nid', $multilateral_treaty, '=', $group);
+      $query->condition('field_treaty', $multilateral_treaty, '=', $group);
+    }
+  }
 }
 
 function informea_search_search_api_solr_query_alter(array &$call_args, SearchApiQueryInterface $query) {
@@ -68,6 +102,23 @@ function informea_search_search_api_solr_query_alter(array &$call_args, SearchAp
   if ($pos !== FALSE) {
     $call_args['params']['fq'][$pos] = '{!tag=facet:type}((ss_type:"decision") OR (ss_type:"decision_paragraph"))';
   }
+}
+
+function _informea_search_get_treaties_by_data_source($source_tid, $negate_condition = false) {
+  $query = db_select('node', 'n');
+  $query->leftJoin('field_data_field_data_source', 'ds', 'n.nid = ds.entity_id');
+  $query->fields('n', ['nid']);
+  $query->condition('n.type', 'treaty');
+  if ($negate_condition == true) {
+    $or = db_or();
+    $or->condition('ds.field_data_source_tid', $source_tid, '!=');
+    $or->isNull('ds.field_data_source_tid');
+    $query->condition($or);
+  }
+  else {
+    $query->condition('ds.field_data_source_tid', $source_tid, '=');
+  }
+  return $query->execute()->fetchCol();
 }
 
 /**
@@ -181,7 +232,7 @@ function informea_search_ajax_get_ajax_terms($term, &$data) {
       $data[] = array(
         'category' => t('Terms'),
         'label' => $img . ' ' . $wrapper->label(),
-        'link' => 'http://leo.informea.org/' . drupal_get_path_alias('taxonomy/term/' . $term->tid),
+        'link' => url('taxonomy/term/' . $term->tid),
         'value' => $wrapper->label()
       );
     }
@@ -212,20 +263,34 @@ function informea_search_ajax_callback($data) {
 }
 
 function informea_search_form($form, $form_state) {
-  $action = 'search';
+  $view = views_get_page_view();
+  switch ($view->name) {
+    case 'informea_search':
+      $action = 'search';
+      break;
+    case 'informea_search_bilateral_treaties':
+      $action = 'search-bilateral-treaties';
+      break;
+    case 'informea_search_legislation':
+      $action = 'search-legislation';
+      break;
+    case 'informea_search_court_decision':
+      $action = 'search-court-decisions';
+      break;
+    case 'informea_search_publications':
+      $action = 'search-publications';
+      break;
+    default:
+      $action = 'search';
+  }
   $form['#action'] = $action;
   $form['#method'] = 'post';
   $form['#id'] = 'search-form';
-  $form['#action'] = url('search');
   // Record the $action for later use in redirecting.
   $form['#attributes'] = array(
     'class' => array('navbar-form')
   );
-  $q = $_GET['q'];
-  $search_query = '';
-  if (strpos($q, 'search/') === 0) {
-    $search_query = str_replace('search/', '', $q);
-  }
+  $search_query = check_plain($_GET['search_api_views_fulltext']);
   $form['basic'] = array('#type' => 'container');
   $form['basic']['keys'] = array(
     '#theme_wrappers' => array('informea_search_form_wrapper'),
@@ -249,11 +314,112 @@ function informea_search_form($form, $form_state) {
 }
 
 function informea_search_form_submit($form, $form_state) {
-  $input = $form_state['values']['keys'];
-  drupal_goto('search/' . $input);
+  $input = check_plain($form_state['values']['keys']);
+  $arguments = array();
+  $redirect_url = $form['#action'];
+  $arguments['query'] = array('search_api_views_fulltext' => $input);
+  drupal_goto($redirect_url, $arguments);
 }
 
 function informea_search_external_search() {
   $input = isset($_GET['keys']) ? check_plain($_GET['keys']) : '';
   drupal_goto('search/' . $input);
+}
+
+function _informea_search_get_topic_count($topic) {
+  $current_view = views_get_page_view();
+  $view_name = 'informea_search';
+  $display_name = 'page';
+  switch ($topic) {
+    case 'search-bilateral-treaties':
+      $view_name = 'informea_search_bilateral_treaties';
+      break;
+    case 'search-legislation':
+      $view_name = 'informea_search_legislation';
+      break;
+    case 'search-court-decisions':
+      $view_name = 'informea_search_court_decision';
+      break;
+    case 'search-publications':
+      $view_name = 'informea_search_publications';
+      break;
+  }
+  $view = views_get_view($view_name);
+  if (is_object($view)) {
+    $view->set_display($display_name);
+    $view->set_arguments($current_view->args);
+    $view->get_total_rows = true;
+    $view->pre_execute();
+    $view->execute($display_name);
+    return $view->total_rows;
+  }
+  return 0;
+}
+
+function informea_search_block_switch_topic_view() {
+  if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+    $include_count = true;
+  }
+  else {
+    $include_count = false;
+  }
+
+  $url = check_plain(arg(0));
+  $fulltext = '';
+  if (!empty($_GET['search_api_views_fulltext'])) {
+    $fulltext = check_plain($_GET['search_api_views_fulltext']);
+  }
+  else if (!empty(arg(1))) {
+    $fulltext = check_plain(arg(1));
+  }
+  $elements = array(
+    'search' => t('Multilateral treaties'),
+    'search-bilateral-treaties' => t('Bilateral treaties'),
+    'search-legislation' => t('Legislation'),
+    'search-court-decisions' => t('Court decisions'),
+    'search-publications' => t('Publications'),
+  );
+  $tabs = array();
+
+  foreach($elements as $link_url => $title) {
+    $link_options = array('html' => true);
+    $link_options['query'] = array('search_api_views_fulltext' => $fulltext);
+    if ($include_count == true) {
+      $count = _informea_search_get_topic_count($link_url);
+      $link_title = $title . ' <span class="badge">' . $count . '</span>';
+    }
+    else {
+      $link_title = $title;
+    }
+    $tabs[] = array(
+      'data' => l($link_title, $link_url, $link_options),
+      'class' => $link_url == $url ? array('active') : array(),
+    );
+  }
+
+  $ret = array(
+    '#theme' => 'item_list',
+    '#items' => $tabs,
+    '#attributes' => array('class' => array('nav nav-tabs'))
+  );
+  return $ret;
+}
+
+/**
+ * Implements hook_form_alter().
+ *
+ * Hide the form full-text search field to the users. The field is
+ * added to allow passing search_api_views_fulltext parameter
+ */
+function informea_search_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'views_exposed_form') {
+    switch ($form['#id']) {
+      case 'views-exposed-form-informea-search-page':
+      case 'views-exposed-form-informea-search-bilateral-treaties-page':
+      case 'views-exposed-form-informea-search-legislation-page':
+      case 'views-exposed-form-informea-search-court-decision-page':
+      case 'views-exposed-form-informea-search-publications-page':
+        hide($form);
+    }
+  }
 }
