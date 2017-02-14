@@ -244,7 +244,7 @@ search-bilateral-treaties/*',
       ),
     ),
     'title' => 'Geographical region',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['facetapi-I6RVf55CR0muKADP1zTBRoXexXDd7LN4'] = array(
