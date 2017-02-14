@@ -2814,3 +2814,21 @@ iframe.pdfjs {
 .node-type-treaty #meetings .panel-heading {
   cursor: default;
 }
+
+.node_view_panel .panels-flexible-row {
+  padding-top: 22px;
+  border-top: 1px solid #dddddd;
+  margin-bottom: 22px;
+}
+
+.node_view_panel .field-label-inline .field-label {
+  padding-right: 10px;
+  width: 190px;
+  text-align: right;
+}
+
+.node_view_panel .field-label-inline.field-name-body .field-items,
+.node_view_panel .field-name-field-available-in .field-items,
+.node_view_panel .field-label-inline.field-name-field-abstract .field-items {
+  padding-left: 190px;
+}
