@@ -3033,8 +3033,27 @@ iframe.pdfjs {
 .taxonomy-term-related-content .views-row .views-field-title-field:not(:first-child) ~ .views-field,
 .view-informea-search-bilateral-treaties .views-row .views-field,
 .view-informea-search-legislation .views-row .views-field,
+.view-informea-search-publications .views-row .views-field,
 .view-informea-search-court-decision .views-row .views-field {
   margin-left: 60px;
+  margin-bottom: 2px;
+}
+
+.view-informea-search-publications .views-row .views-field-field-logo {
+  margin-left: 0;
+}
+.view-informea-search-publications .views-field-field-logo img {
+  padding: 4px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  display: inline-block;
+  height: auto;
+  max-width: 50px;
+  position: absolute;
 }
 
 .meta.search-index {
@@ -3049,28 +3068,6 @@ iframe.pdfjs {
   visibility: visible!important;
   margin-left: 3px;
   margin-right: 3px;
-}
-
-// .taxonomy-term-related-content-facets h2 {
-//   font-size: 16px;
-// }
-
-// .taxonomy-term-related-content-facets ul {
-//   list-style-type: none;
-//   margin: 0 0 0 5px;
-//   padding: 0;
-// }
-
-// .taxonomy-term-related-content-facets input.facetapi-checkbox {
-//   margin-right: 5px;
-// }
-//@todo Mara: check if this is needed
-body.page-search h2,
-body.page-search-legislation h2,
-body.page-search-court-decisions h2,
-body.page-search-publications h2,
-body.page-search-bilateral-treaties h2 {
-  // font-size: 16px;
 }
 
 body.page-search div.region-sidebar-first ul,

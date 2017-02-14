@@ -194,6 +194,8 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_jurisdiction']['field'] = 'field_jurisdiction';
   $handler->display->display_options['fields']['field_jurisdiction']['label'] = '';
   $handler->display->display_options['fields']['field_jurisdiction']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_jurisdiction']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_jurisdiction']['alter']['text'] = '<span class="glyphicon glyphicon-education"></span> [field_jurisdiction]';
   $handler->display->display_options['fields']['field_jurisdiction']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_jurisdiction']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_jurisdiction']['view_mode'] = 'full';
@@ -205,7 +207,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_type_of_text']['label'] = '';
   $handler->display->display_options['fields']['field_type_of_text']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_type_of_text']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_type_of_text']['alter']['text'] = '<span class="separator">·</span> [field_type_of_text]';
+  $handler->display->display_options['fields']['field_type_of_text']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-book"></span> [field_type_of_text]';
   $handler->display->display_options['fields']['field_type_of_text']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_type_of_text']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_type_of_text']['view_mode'] = 'full';
@@ -217,7 +219,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_place_of_adoption']['label'] = '';
   $handler->display->display_options['fields']['field_place_of_adoption']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_place_of_adoption']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_place_of_adoption']['alter']['text'] = '<span class="separator">·</span> [field_place_of_adoption]';
+  $handler->display->display_options['fields']['field_place_of_adoption']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-globe"></span> [field_place_of_adoption]';
   $handler->display->display_options['fields']['field_place_of_adoption']['element_label_colon'] = FALSE;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
@@ -296,8 +298,9 @@ function informea_search_views_default_views() {
     t('Country'),
     t('<img class="img-thumbnail" src="/sites/all/themes/informea.theme/img/ecolex-logo.png">
 '),
-    t('<span class="separator">·</span> [field_type_of_text]'),
-    t('<span class="separator">·</span> [field_place_of_adoption]'),
+    t('<span class="glyphicon glyphicon-education"></span> [field_jurisdiction]'),
+    t('<span class="separator">·</span> <span class="glyphicon glyphicon-book"></span> [field_type_of_text]'),
+    t('<span class="separator">·</span> <span class="glyphicon glyphicon-globe"></span> [field_place_of_adoption]'),
     t('<div class="meta search-index">
 [field_jurisdiction]
 [field_type_of_text]
@@ -399,7 +402,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_type_of_text']['label'] = '';
   $handler->display->display_options['fields']['field_type_of_text']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_type_of_text']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_type_of_text']['alter']['text'] = '<span class="separator">·</span> [field_type_of_text]';
+  $handler->display->display_options['fields']['field_type_of_text']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-book"></span> [field_type_of_text]';
   $handler->display->display_options['fields']['field_type_of_text']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_type_of_text']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_type_of_text']['view_mode'] = 'full';
@@ -465,7 +468,7 @@ function informea_search_views_default_views() {
     t('Sorry, there are no results for this search...'),
     t('Country'),
     t('<span class="glyphicon glyphicon-globe"></span> [field_country]'),
-    t('<span class="separator">·</span> [field_type_of_text]'),
+    t('<span class="separator">·</span> <span class="glyphicon glyphicon-book"></span> [field_type_of_text]'),
     t('<div class="meta search-index">
 [field_country]
 [field_type_of_text]
@@ -559,7 +562,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_type_of_text']['label'] = '';
   $handler->display->display_options['fields']['field_type_of_text']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_type_of_text']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_type_of_text']['alter']['text'] = '<span class="separator">·</span> [field_type_of_text]';
+  $handler->display->display_options['fields']['field_type_of_text']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-book"></span> [field_type_of_text]';
   $handler->display->display_options['fields']['field_type_of_text']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_type_of_text']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_type_of_text']['view_mode'] = 'full';
@@ -623,7 +626,7 @@ function informea_search_views_default_views() {
     t('Sorry, there are no results for this search...'),
     t('Country'),
     t('<span class="glyphicon glyphicon-globe"></span> [field_country]'),
-    t('<span class="separator">·</span> [field_type_of_text]'),
+    t('<span class="separator">·</span> <span class="glyphicon glyphicon-book"></span> [field_type_of_text]'),
     t('Custom text'),
     t('<div class="meta search-index">
 [field_country]
@@ -672,6 +675,22 @@ function informea_search_views_default_views() {
   $handler->display->display_options['relationships']['field_country']['id'] = 'field_country';
   $handler->display->display_options['relationships']['field_country']['table'] = 'search_api_index_informea_publications';
   $handler->display->display_options['relationships']['field_country']['field'] = 'field_country';
+  /* Relationship: Indexed Content: Treaty */
+  $handler->display->display_options['relationships']['field_treaty']['id'] = 'field_treaty';
+  $handler->display->display_options['relationships']['field_treaty']['table'] = 'search_api_index_informea_publications';
+  $handler->display->display_options['relationships']['field_treaty']['field'] = 'field_treaty';
+  /* Field: Content: Logo */
+  $handler->display->display_options['fields']['field_logo']['id'] = 'field_logo';
+  $handler->display->display_options['fields']['field_logo']['table'] = 'entity_node';
+  $handler->display->display_options['fields']['field_logo']['field'] = 'field_logo';
+  $handler->display->display_options['fields']['field_logo']['relationship'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_logo']['label'] = '';
+  $handler->display->display_options['fields']['field_logo']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_logo']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_logo']['settings'] = array(
+    'image_style' => 'logo',
+    'image_link' => '',
+  );
   /* Field: Indexed Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_informea_publications';
@@ -698,7 +717,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_literature_type']['label'] = '';
   $handler->display->display_options['fields']['field_literature_type']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_literature_type']['alter']['text'] = '<div class="meta search-index">
-[field_literature_type]
+<span class="glyphicon glyphicon-book"></span> [field_literature_type]
 </div>';
   $handler->display->display_options['fields']['field_literature_type']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_literature_type']['link_to_entity'] = 0;
@@ -711,7 +730,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_document_type']['label'] = '';
   $handler->display->display_options['fields']['field_document_type']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_document_type']['alter']['text'] = '<div class="meta search-index">
-[field_document_type]
+<span class="glyphicon glyphicon-book"></span> [field_document_type]
 </div>';
   $handler->display->display_options['fields']['field_document_type']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_document_type']['link_to_entity'] = 0;
@@ -767,11 +786,12 @@ function informea_search_views_default_views() {
     t('No search results'),
     t('Sorry, there are no results for this search...'),
     t('Country'),
+    t('Treaty'),
     t('<div class="meta search-index">
-[field_literature_type]
+<span class="glyphicon glyphicon-book"></span> [field_literature_type]
 </div>'),
     t('<div class="meta search-index">
-[field_document_type]
+<span class="glyphicon glyphicon-book"></span> [field_document_type]
 </div>'),
     t('Fulltext search'),
     t('Page'),
