@@ -345,6 +345,8 @@ function thesaurus_views_default_views() {
   $handler->display->display_options['fields']['field_country']['field'] = 'field_country';
   $handler->display->display_options['fields']['field_country']['label'] = '';
   $handler->display->display_options['fields']['field_country']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_country']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_country']['alter']['text'] = '<span class="glyphicon glyphicon-globe"></span> [field_country]';
   $handler->display->display_options['fields']['field_country']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_country']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_country']['view_mode'] = 'full';
@@ -354,16 +356,23 @@ function thesaurus_views_default_views() {
   $handler->display->display_options['fields']['field_type_of_text']['table'] = 'search_api_index_informea_legislations';
   $handler->display->display_options['fields']['field_type_of_text']['field'] = 'field_type_of_text';
   $handler->display->display_options['fields']['field_type_of_text']['label'] = '';
+  $handler->display->display_options['fields']['field_type_of_text']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_type_of_text']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_type_of_text']['alter']['text'] = '<div class="meta search-index">
-<span class="glyphicon glyphicon-globe"></span> [field_country]
-<span class="separator">·</span>
-[field_type_of_text]
-</div>';
+  $handler->display->display_options['fields']['field_type_of_text']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-book"></span> [field_type_of_text]';
   $handler->display->display_options['fields']['field_type_of_text']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_type_of_text']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_type_of_text']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_type_of_text']['bypass_access'] = 0;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="meta search-index">
+[field_country]
+[field_type_of_text]
+</div>';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Contextual filter: Indexed Content: InforMEA Tags */
   $handler->display->display_options['arguments']['field_informea_tags']['id'] = 'field_informea_tags';
   $handler->display->display_options['arguments']['field_informea_tags']['table'] = 'search_api_index_informea_legislations';
@@ -389,9 +398,10 @@ function thesaurus_views_default_views() {
     t('next ›'),
     t('last »'),
     t('Country'),
+    t('<span class="glyphicon glyphicon-globe"></span> [field_country]'),
+    t('<span class="separator">·</span> <span class="glyphicon glyphicon-book"></span> [field_type_of_text]'),
     t('<div class="meta search-index">
-<span class="glyphicon glyphicon-globe"></span> [field_country]
-<span class="separator">·</span>
+[field_country]
 [field_type_of_text]
 </div>'),
     t('All'),

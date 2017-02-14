@@ -1645,7 +1645,7 @@ img.flag-medium { max-height: 48px; }
 /* Terms page */
 .column-other-information ul,
 .column-other-information ol {
-  list-style-type: none; padding: 0 0 0 .5em;
+  list-style-type: none; padding: 0;
 }
 .column-other-information h2 {
   font-size: 14px;
