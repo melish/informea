@@ -232,7 +232,7 @@ function informea_search_ajax_get_ajax_terms($term, &$data) {
       $data[] = array(
         'category' => t('Terms'),
         'label' => $img . ' ' . $wrapper->label(),
-        'link' => 'http://leo.informea.org/' . drupal_get_path_alias('taxonomy/term/' . $term->tid),
+        'link' => url('taxonomy/term/' . $term->tid),
         'value' => $wrapper->label()
       );
     }
