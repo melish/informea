@@ -3039,9 +3039,11 @@ iframe.pdfjs {
   margin-bottom: 2px;
 }
 
+.taxonomy-term-related-content .views-row .views-field-field-logo,
 .view-informea-search-publications .views-row .views-field-field-logo {
   margin-left: 0;
 }
+.taxonomy-term-related-content .views-field-field-logo img,
 .view-informea-search-publications .views-field-field-logo img {
   padding: 4px;
   background-color: #fff;
