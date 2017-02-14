@@ -264,7 +264,8 @@ function informea_search_ajax_callback($data) {
 
 function informea_search_form($form, $form_state) {
   $view = views_get_page_view();
-  switch ($view->name) {
+  $viewName = !empty($view) ? $view->name : '';
+  switch ($viewName) {
     case 'informea_search':
       $action = 'search';
       break;
