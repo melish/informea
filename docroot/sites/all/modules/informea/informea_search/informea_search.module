@@ -290,7 +290,7 @@ function informea_search_form($form, $form_state) {
   $form['#attributes'] = array(
     'class' => array('navbar-form')
   );
-  $search_query = check_plain($_GET['search_api_views_fulltext']);
+  $search_query = !empty($_GET['search_api_views_fulltext']) ? check_plain($_GET['search_api_views_fulltext']) : '';
   $form['basic'] = array('#type' => 'container');
   $form['basic']['keys'] = array(
     '#theme_wrappers' => array('informea_search_form_wrapper'),
