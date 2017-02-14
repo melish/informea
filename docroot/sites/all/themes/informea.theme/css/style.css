@@ -3011,6 +3011,7 @@ iframe.pdfjs {
 }
 
 .taxonomy-term-related-content .views-row,
+.view-informea-search-bilateral-treaties .views-row,
 .view-informea-search-legislation .views-row,
 .view-informea-search-court-decision .views-row,
 .view-informea-search-publications .views-row,
@@ -3019,6 +3020,7 @@ iframe.pdfjs {
 }
 
 .taxonomy-term-related-content .views-row .img-thumbnail,
+.view-informea-search-bilateral-treaties .views-row .img-thumbnail,
 .view-informea-search-legislation .views-row .img-thumbnail,
 .view-informea-search-court-decision .views-row .img-thumbnail,
 .view-informea-search-publications .views-row .img-thumbnail,
@@ -3029,6 +3031,7 @@ iframe.pdfjs {
 
 .taxonomy-term-related-content .views-row .views-field-title-field:not(:first-child),
 .taxonomy-term-related-content .views-row .views-field-title-field:not(:first-child) ~ .views-field,
+.view-informea-search-bilateral-treaties .views-row .views-field,
 .view-informea-search-legislation .views-row .views-field,
 .view-informea-search-court-decision .views-row .views-field {
   margin-left: 60px;

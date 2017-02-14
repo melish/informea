@@ -29,7 +29,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['search_api_bypass_access'] = 0;
   $handler->display->display_options['query']['options']['entity_access'] = 0;
-  $handler->display->display_options['query']['options']['parse_mode'] = 'direct';
+  $handler->display->display_options['query']['options']['parse_mode'] = 'single';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '100';
@@ -140,6 +140,9 @@ function informea_search_views_default_views() {
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['search_api_bypass_access'] = 0;
+  $handler->display->display_options['query']['options']['entity_access'] = 0;
+  $handler->display->display_options['query']['options']['parse_mode'] = 'single';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '20';
@@ -157,6 +160,15 @@ function informea_search_views_default_views() {
   $handler->display->display_options['relationships']['field_country']['id'] = 'field_country';
   $handler->display->display_options['relationships']['field_country']['table'] = 'search_api_index_informea_fulltext_solr_index';
   $handler->display->display_options['relationships']['field_country']['field'] = 'field_country';
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<img class="img-thumbnail" src="/sites/all/themes/informea.theme/img/ecolex-logo.png">
+';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nothing']['element_default_classes'] = FALSE;
   /* Field: Indexed Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_informea_fulltext_solr_index';
@@ -176,6 +188,48 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['search_api_excerpt']['label'] = '';
   $handler->display->display_options['fields']['search_api_excerpt']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['search_api_excerpt']['link_to_entity'] = 0;
+  /* Field: Indexed Content: Jurisdiction */
+  $handler->display->display_options['fields']['field_jurisdiction']['id'] = 'field_jurisdiction';
+  $handler->display->display_options['fields']['field_jurisdiction']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['fields']['field_jurisdiction']['field'] = 'field_jurisdiction';
+  $handler->display->display_options['fields']['field_jurisdiction']['label'] = '';
+  $handler->display->display_options['fields']['field_jurisdiction']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_jurisdiction']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_jurisdiction']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['field_jurisdiction']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_jurisdiction']['bypass_access'] = 0;
+  /* Field: Indexed Content: Type of text */
+  $handler->display->display_options['fields']['field_type_of_text']['id'] = 'field_type_of_text';
+  $handler->display->display_options['fields']['field_type_of_text']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['fields']['field_type_of_text']['field'] = 'field_type_of_text';
+  $handler->display->display_options['fields']['field_type_of_text']['label'] = '';
+  $handler->display->display_options['fields']['field_type_of_text']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_type_of_text']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_type_of_text']['alter']['text'] = '<span class="separator">·</span> [field_type_of_text]';
+  $handler->display->display_options['fields']['field_type_of_text']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_type_of_text']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['field_type_of_text']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_type_of_text']['bypass_access'] = 0;
+  /* Field: Indexed Content: Place of adoption */
+  $handler->display->display_options['fields']['field_place_of_adoption']['id'] = 'field_place_of_adoption';
+  $handler->display->display_options['fields']['field_place_of_adoption']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['fields']['field_place_of_adoption']['field'] = 'field_place_of_adoption';
+  $handler->display->display_options['fields']['field_place_of_adoption']['label'] = '';
+  $handler->display->display_options['fields']['field_place_of_adoption']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_place_of_adoption']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_place_of_adoption']['alter']['text'] = '<span class="separator">·</span> [field_place_of_adoption]';
+  $handler->display->display_options['fields']['field_place_of_adoption']['element_label_colon'] = FALSE;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
+  $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing_1']['label'] = '';
+  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '<div class="meta search-index">
+[field_jurisdiction]
+[field_type_of_text]
+[field_place_of_adoption]
+</div>';
+  $handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
   /* Sort criterion: Search: Relevance */
   $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
   $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_informea_fulltext_solr_index';
@@ -240,6 +294,15 @@ function informea_search_views_default_views() {
     t('No search results'),
     t('Sorry, there are no results for this search...'),
     t('Country'),
+    t('<img class="img-thumbnail" src="/sites/all/themes/informea.theme/img/ecolex-logo.png">
+'),
+    t('<span class="separator">·</span> [field_type_of_text]'),
+    t('<span class="separator">·</span> [field_place_of_adoption]'),
+    t('<div class="meta search-index">
+[field_jurisdiction]
+[field_type_of_text]
+[field_place_of_adoption]
+</div>'),
     t('Fulltext search'),
     t('Page'),
   );
@@ -263,6 +326,9 @@ function informea_search_views_default_views() {
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['search_api_bypass_access'] = 0;
+  $handler->display->display_options['query']['options']['entity_access'] = 0;
+  $handler->display->display_options['query']['options']['parse_mode'] = 'single';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '20';
@@ -320,6 +386,8 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_country']['field'] = 'field_country';
   $handler->display->display_options['fields']['field_country']['label'] = '';
   $handler->display->display_options['fields']['field_country']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_country']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_country']['alter']['text'] = '<span class="glyphicon glyphicon-globe"></span> [field_country]';
   $handler->display->display_options['fields']['field_country']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_country']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_country']['view_mode'] = 'full';
@@ -329,16 +397,23 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_type_of_text']['table'] = 'search_api_index_informea_court_decisions';
   $handler->display->display_options['fields']['field_type_of_text']['field'] = 'field_type_of_text';
   $handler->display->display_options['fields']['field_type_of_text']['label'] = '';
+  $handler->display->display_options['fields']['field_type_of_text']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_type_of_text']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_type_of_text']['alter']['text'] = '<div class="meta search-index">
-<span class="glyphicon glyphicon-globe"></span> [field_country]
-<span class="separator">·</span>
-[field_type_of_text]
-</div>';
+  $handler->display->display_options['fields']['field_type_of_text']['alter']['text'] = '<span class="separator">·</span> [field_type_of_text]';
   $handler->display->display_options['fields']['field_type_of_text']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_type_of_text']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_type_of_text']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_type_of_text']['bypass_access'] = 0;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="meta search-index">
+[field_country]
+[field_type_of_text]
+</div>';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Sort criterion: Search: Relevance */
   $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
   $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_informea_court_decisions';
@@ -389,9 +464,10 @@ function informea_search_views_default_views() {
     t('No search results'),
     t('Sorry, there are no results for this search...'),
     t('Country'),
+    t('<span class="glyphicon glyphicon-globe"></span> [field_country]'),
+    t('<span class="separator">·</span> [field_type_of_text]'),
     t('<div class="meta search-index">
-<span class="glyphicon glyphicon-globe"></span> [field_country]
-<span class="separator">·</span>
+[field_country]
 [field_type_of_text]
 </div>'),
     t('Fulltext search'),
@@ -419,7 +495,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['search_api_bypass_access'] = 0;
   $handler->display->display_options['query']['options']['entity_access'] = 0;
-  $handler->display->display_options['query']['options']['parse_mode'] = 'direct';
+  $handler->display->display_options['query']['options']['parse_mode'] = 'single';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '20';
@@ -470,6 +546,8 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_country']['field'] = 'field_country';
   $handler->display->display_options['fields']['field_country']['label'] = '';
   $handler->display->display_options['fields']['field_country']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_country']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_country']['alter']['text'] = '<span class="glyphicon glyphicon-globe"></span> [field_country]';
   $handler->display->display_options['fields']['field_country']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_country']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_country']['view_mode'] = 'full';
@@ -479,16 +557,21 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_type_of_text']['table'] = 'search_api_index_informea_legislations';
   $handler->display->display_options['fields']['field_type_of_text']['field'] = 'field_type_of_text';
   $handler->display->display_options['fields']['field_type_of_text']['label'] = '';
+  $handler->display->display_options['fields']['field_type_of_text']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_type_of_text']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_type_of_text']['alter']['text'] = '<div class="meta search-index">
-<span class="glyphicon glyphicon-globe"></span> [field_country]
-<span class="separator">·</span>
-[field_type_of_text]
-</div>';
+  $handler->display->display_options['fields']['field_type_of_text']['alter']['text'] = '<span class="separator">·</span> [field_type_of_text]';
   $handler->display->display_options['fields']['field_type_of_text']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_type_of_text']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_type_of_text']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_type_of_text']['bypass_access'] = 0;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="meta search-index">
+[field_country]
+[field_type_of_text]
+</div>';
   /* Sort criterion: Search: Relevance */
   $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
   $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_informea_legislations';
@@ -539,9 +622,11 @@ function informea_search_views_default_views() {
     t('No search results'),
     t('Sorry, there are no results for this search...'),
     t('Country'),
+    t('<span class="glyphicon glyphicon-globe"></span> [field_country]'),
+    t('<span class="separator">·</span> [field_type_of_text]'),
+    t('Custom text'),
     t('<div class="meta search-index">
-<span class="glyphicon glyphicon-globe"></span> [field_country]
-<span class="separator">·</span>
+[field_country]
 [field_type_of_text]
 </div>'),
     t('Fulltext search'),
@@ -567,6 +652,9 @@ function informea_search_views_default_views() {
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['search_api_bypass_access'] = 0;
+  $handler->display->display_options['query']['options']['entity_access'] = 0;
+  $handler->display->display_options['query']['options']['parse_mode'] = 'single';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '20';
