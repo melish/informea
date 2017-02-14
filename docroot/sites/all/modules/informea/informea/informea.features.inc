@@ -207,9 +207,7 @@ function informea_default_search_api_index() {
         "title" : { "type" : "text" },
         "title_field" : { "type" : "text" },
         "type" : { "type" : "string" },
-        "url" : { "type" : "uri" },
-        "uuid" : { "type" : "text" },
-        "vid" : { "type" : "integer" }
+        "url" : { "type" : "uri" }
       },
       "data_alter_callbacks" : {
         "search_api_alter_bundle_filter" : {
@@ -457,9 +455,7 @@ function informea_default_search_api_index() {
         "title" : { "type" : "text" },
         "title_field" : { "type" : "text" },
         "type" : { "type" : "string" },
-        "url" : { "type" : "uri" },
-        "uuid" : { "type" : "text" },
-        "vid" : { "type" : "integer" }
+        "url" : { "type" : "uri" }
       },
       "data_alter_callbacks" : {
         "search_api_alter_bundle_filter" : {
@@ -667,9 +663,7 @@ function informea_default_search_api_index() {
         "title" : { "type" : "text" },
         "title_field" : { "type" : "text" },
         "type" : { "type" : "string" },
-        "url" : { "type" : "uri" },
-        "uuid" : { "type" : "text" },
-        "vid" : { "type" : "integer" }
+        "url" : { "type" : "uri" }
       },
       "data_alter_callbacks" : {
         "search_api_alter_bundle_filter" : {
