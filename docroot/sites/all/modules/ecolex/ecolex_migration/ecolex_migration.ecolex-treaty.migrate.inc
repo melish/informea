@@ -195,7 +195,20 @@ class EcolexTreatyMigration extends Migration {
     $row->trDateOfModification = substr($row->trDateOfModification, 0, 10);
     $row->updatedDate = substr($row->updatedDate, 0, 10);
 
-
+    if (!empty($row->trRegion_en)) {
+      if (is_string($row->trRegion_en)) {
+        $row->trRegion_en = country_map_region($row->trRegion_en);
+      }
+      else if (is_array($row->trRegion_en)) {
+        $regions = array();
+        foreach ($row->trRegion_en as &$region) {
+          if ($region = country_map_region($region)) {
+            $regions[] = $region;
+          }
+        }
+        $row->trRegion_en = $regions;
+      }
+    }
 
     // Taxonomies
     $row->trDataSource = 'ECOLEX/ELIS';

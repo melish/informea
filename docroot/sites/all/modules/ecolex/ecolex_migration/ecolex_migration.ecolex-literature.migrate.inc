@@ -140,6 +140,21 @@ class EcolexLiteratureMigration extends Migration {
       $row->litYearOfText = $row->litYearOfText . '-01-01';
     }
 
+    if (!empty($row->litRegion_en)) {
+      if (is_string($row->litRegion_en)) {
+        $row->litRegion_en = country_map_region($row->litRegion_en);
+      }
+      else if (is_array($row->litRegion_en)) {
+        $regions = array();
+        foreach ($row->litRegion_en as &$region) {
+          if ($region = country_map_region($region)) {
+            $regions[] = $region;
+          }
+        }
+        $row->litRegion_en = $regions;
+      }
+    }
+
     // Taxonomies
     $this->prepare_term_reference_field_multilingual($row, 'litTerritorialSubdivision', 'territorial_subdivision');
     $this->prepare_term_reference_field_multilingual($row, 'litTypeOfText', 'literature_type');
