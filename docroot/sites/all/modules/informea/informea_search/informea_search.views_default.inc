@@ -716,6 +716,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_document_type']['table'] = 'search_api_index_informea_publications';
   $handler->display->display_options['fields']['field_document_type']['field'] = 'field_document_type';
   $handler->display->display_options['fields']['field_document_type']['label'] = '';
+  $handler->display->display_options['fields']['field_document_type']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_document_type']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_document_type']['alter']['text'] = '<span class="glyphicon glyphicon-book"></span> [field_document_type]';
   $handler->display->display_options['fields']['field_document_type']['element_label_colon'] = FALSE;
