@@ -651,7 +651,7 @@ function informea_default_search_api_index() {
         "field_literature_type" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_organizations" : { "type" : "list\\u003Ctext\\u003E" },
         "field_original_id" : { "type" : "text" },
-        "field_publication_place" : { "type" : "text" },
+        "field_publication_place" : { "type" : "string" },
         "field_publisher" : { "type" : "text" },
         "field_region" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_related_literature" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "node" },
