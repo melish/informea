@@ -169,7 +169,7 @@ function informea_search_views_default_views() {
 ';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nothing']['element_default_classes'] = FALSE;
-  /* Field: Indexed Content: Name */
+  /* Field: Indexed Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_informea_fulltext_solr_index';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
@@ -188,7 +188,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['search_api_excerpt']['label'] = '';
   $handler->display->display_options['fields']['search_api_excerpt']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['search_api_excerpt']['link_to_entity'] = 0;
-  /* Field: Indexed Content: Court jurisdiction */
+  /* Field: Indexed Content: Jurisdiction */
   $handler->display->display_options['fields']['field_jurisdiction']['id'] = 'field_jurisdiction';
   $handler->display->display_options['fields']['field_jurisdiction']['table'] = 'search_api_index_informea_fulltext_solr_index';
   $handler->display->display_options['fields']['field_jurisdiction']['field'] = 'field_jurisdiction';
@@ -200,7 +200,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_jurisdiction']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_jurisdiction']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_jurisdiction']['bypass_access'] = 0;
-  /* Field: Indexed Content: Type of document */
+  /* Field: Indexed Content: Type of text */
   $handler->display->display_options['fields']['field_type_of_text']['id'] = 'field_type_of_text';
   $handler->display->display_options['fields']['field_type_of_text']['table'] = 'search_api_index_informea_fulltext_solr_index';
   $handler->display->display_options['fields']['field_type_of_text']['field'] = 'field_type_of_text';
@@ -364,7 +364,7 @@ function informea_search_views_default_views() {
     'title_link' => '',
     'title_class' => 'country-flag',
   );
-  /* Field: Indexed Content: Name */
+  /* Field: Indexed Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_informea_court_decisions';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
@@ -395,7 +395,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_country']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_country']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_country']['bypass_access'] = 0;
-  /* Field: Indexed Content: Type of document */
+  /* Field: Indexed Content: Type of text */
   $handler->display->display_options['fields']['field_type_of_text']['id'] = 'field_type_of_text';
   $handler->display->display_options['fields']['field_type_of_text']['table'] = 'search_api_index_informea_court_decisions';
   $handler->display->display_options['fields']['field_type_of_text']['field'] = 'field_type_of_text';
@@ -524,7 +524,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_country_iso2']['label'] = '';
   $handler->display->display_options['fields']['field_country_iso2']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_country_iso2']['element_default_classes'] = FALSE;
-  /* Field: Indexed Content: Name */
+  /* Field: Indexed Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_informea_legislations';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
@@ -555,7 +555,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_country']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_country']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_country']['bypass_access'] = 0;
-  /* Field: Indexed Content: Type of document */
+  /* Field: Indexed Content: Type of text */
   $handler->display->display_options['fields']['field_type_of_text']['id'] = 'field_type_of_text';
   $handler->display->display_options['fields']['field_type_of_text']['table'] = 'search_api_index_informea_legislations';
   $handler->display->display_options['fields']['field_type_of_text']['field'] = 'field_type_of_text';
@@ -692,7 +692,7 @@ function informea_search_views_default_views() {
     'image_style' => 'logo',
     'image_link' => '',
   );
-  /* Field: Indexed Content: Name */
+  /* Field: Indexed Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_informea_publications';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
@@ -711,32 +711,59 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['search_api_excerpt']['label'] = '';
   $handler->display->display_options['fields']['search_api_excerpt']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['search_api_excerpt']['link_to_entity'] = 0;
-  /* Field: Indexed Content: Literature type */
-  $handler->display->display_options['fields']['field_literature_type']['id'] = 'field_literature_type';
-  $handler->display->display_options['fields']['field_literature_type']['table'] = 'search_api_index_informea_publications';
-  $handler->display->display_options['fields']['field_literature_type']['field'] = 'field_literature_type';
-  $handler->display->display_options['fields']['field_literature_type']['label'] = '';
-  $handler->display->display_options['fields']['field_literature_type']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_literature_type']['alter']['text'] = '<div class="meta search-index">
-<span class="glyphicon glyphicon-book"></span> [field_literature_type]
-</div>';
-  $handler->display->display_options['fields']['field_literature_type']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_literature_type']['link_to_entity'] = 0;
-  $handler->display->display_options['fields']['field_literature_type']['view_mode'] = 'full';
-  $handler->display->display_options['fields']['field_literature_type']['bypass_access'] = 0;
   /* Field: Indexed Content: Document type */
   $handler->display->display_options['fields']['field_document_type']['id'] = 'field_document_type';
   $handler->display->display_options['fields']['field_document_type']['table'] = 'search_api_index_informea_publications';
   $handler->display->display_options['fields']['field_document_type']['field'] = 'field_document_type';
   $handler->display->display_options['fields']['field_document_type']['label'] = '';
   $handler->display->display_options['fields']['field_document_type']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_document_type']['alter']['text'] = '<div class="meta search-index">
-<span class="glyphicon glyphicon-book"></span> [field_document_type]
-</div>';
+  $handler->display->display_options['fields']['field_document_type']['alter']['text'] = '<span class="glyphicon glyphicon-book"></span> [field_document_type]';
   $handler->display->display_options['fields']['field_document_type']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_document_type']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_document_type']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_document_type']['bypass_access'] = 0;
+  /* Field: Indexed Content: Publisher */
+  $handler->display->display_options['fields']['field_publisher']['id'] = 'field_publisher';
+  $handler->display->display_options['fields']['field_publisher']['table'] = 'search_api_index_informea_publications';
+  $handler->display->display_options['fields']['field_publisher']['field'] = 'field_publisher';
+  $handler->display->display_options['fields']['field_publisher']['label'] = '';
+  $handler->display->display_options['fields']['field_publisher']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_publisher']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_publisher']['alter']['text'] = '<span class="glyphicon glyphicon-pencil"></span> [field_publisher]';
+  $handler->display->display_options['fields']['field_publisher']['element_label_colon'] = FALSE;
+  /* Field: Indexed Content: Literature type */
+  $handler->display->display_options['fields']['field_literature_type']['id'] = 'field_literature_type';
+  $handler->display->display_options['fields']['field_literature_type']['table'] = 'search_api_index_informea_publications';
+  $handler->display->display_options['fields']['field_literature_type']['field'] = 'field_literature_type';
+  $handler->display->display_options['fields']['field_literature_type']['label'] = '';
+  $handler->display->display_options['fields']['field_literature_type']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_literature_type']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_literature_type']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-book"></span> [field_literature_type]';
+  $handler->display->display_options['fields']['field_literature_type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_literature_type']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['field_literature_type']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_literature_type']['bypass_access'] = 0;
+  /* Field: Indexed Content: Publication Place */
+  $handler->display->display_options['fields']['field_publication_place']['id'] = 'field_publication_place';
+  $handler->display->display_options['fields']['field_publication_place']['table'] = 'search_api_index_informea_publications';
+  $handler->display->display_options['fields']['field_publication_place']['field'] = 'field_publication_place';
+  $handler->display->display_options['fields']['field_publication_place']['label'] = '';
+  $handler->display->display_options['fields']['field_publication_place']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_publication_place']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_publication_place']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-globe"></span> [field_publication_place]';
+  $handler->display->display_options['fields']['field_publication_place']['element_label_colon'] = FALSE;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="meta search-index">
+[field_document_type]
+[field_publisher]
+[field_literature_type]
+[field_publication_place]
+</div>';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Sort criterion: Search: Relevance */
   $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
   $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_informea_publications';
@@ -788,11 +815,15 @@ function informea_search_views_default_views() {
     t('Sorry, there are no results for this search...'),
     t('Country'),
     t('Treaty'),
+    t('<span class="glyphicon glyphicon-book"></span> [field_document_type]'),
+    t('<span class="glyphicon glyphicon-pencil"></span> [field_publisher]'),
+    t('<span class="separator">·</span> <span class="glyphicon glyphicon-book"></span> [field_literature_type]'),
+    t('<span class="separator">·</span> <span class="glyphicon glyphicon-globe"></span> [field_publication_place]'),
     t('<div class="meta search-index">
-<span class="glyphicon glyphicon-book"></span> [field_literature_type]
-</div>'),
-    t('<div class="meta search-index">
-<span class="glyphicon glyphicon-book"></span> [field_document_type]
+[field_document_type]
+[field_publisher]
+[field_literature_type]
+[field_publication_place]
 </div>'),
     t('Fulltext search'),
     t('Page'),
