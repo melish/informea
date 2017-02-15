@@ -20,7 +20,7 @@ function ws_provider_menu() {
  * Implements hook_services_views_execute_view_alter().
  */
 function ws_provider_services_views_execute_view_alter(&$output, $view) {
-  if(in_array($view->name, array('ws_provider_court_decisions', 'ws_provider_legislation', 'ws_provider_literature'))) {
+  if(in_array($view->name, array('ws_provider_court_decisions', 'ws_provider_decisions', 'ws_provider_legislation', 'ws_provider_literature'))) {
     global $base_url;
     foreach ($output as $row) {
       $row->data_url = $base_url . '/node/' . $row->uuid . '/json';

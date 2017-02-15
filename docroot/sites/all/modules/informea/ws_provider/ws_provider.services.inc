@@ -42,6 +42,13 @@ function ws_provider_default_services_endpoint() {
         ),
       ),
     ),
+    'decisions' => array(
+      'operations' => array(
+        'index' => array(
+          'enabled' => '1',
+        ),
+      ),
+    ),
     'legislation' => array(
       'operations' => array(
         'index' => array(
