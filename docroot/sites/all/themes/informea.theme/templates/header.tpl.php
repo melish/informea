@@ -74,6 +74,7 @@
                   <?php print l(t('UNFCCC'), 'node/269'); ?>
                   <ul>
                     <li><?php print l(t('Kyoto Protocol'), 'node/271'); ?></li>
+                     <li><?php print l(t('Paris Agreement'), 'node/236208'); ?></li>
                   </ul>
                 </li>
                 <li>
