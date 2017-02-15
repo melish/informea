@@ -17,7 +17,8 @@ function thesaurus_foamtree_block_config_alter(&$form) {
 }
 
 function create_foamtree_object_from_excel($excel, $row, $column) {
-  $term = reset(taxonomy_get_term_by_name($excel[$row][$column], 'thesaurus_informea'));
+  $term = taxonomy_get_term_by_name($excel[$row][$column], 'thesaurus_informea');
+  $term = reset($term);
   return (object)array(
     'id' => $term ? $term->tid : 0,
     'phrases' => array($excel[$row][$column]),
