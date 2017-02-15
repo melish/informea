@@ -178,6 +178,17 @@ function informea_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'treaty' => 'treaty',
   );
+  /* Filter criterion: Content: Data source (field_data_source) */
+  $handler->display->display_options['filters']['field_data_source_tid']['id'] = 'field_data_source_tid';
+  $handler->display->display_options['filters']['field_data_source_tid']['table'] = 'field_data_field_data_source';
+  $handler->display->display_options['filters']['field_data_source_tid']['field'] = 'field_data_source_tid';
+  $handler->display->display_options['filters']['field_data_source_tid']['operator'] = 'not';
+  $handler->display->display_options['filters']['field_data_source_tid']['value'] = array(
+    2767 => '2767',
+    3689 => '3689',
+  );
+  $handler->display->display_options['filters']['field_data_source_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_data_source_tid']['vocabulary'] = 'data_source';
 
   /* Display: Services */
   $handler = $view->new_display('services', 'Services', 'treaties');
