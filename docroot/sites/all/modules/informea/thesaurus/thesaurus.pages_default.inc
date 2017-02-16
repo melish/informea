@@ -31,6 +31,18 @@ function thesaurus_default_page_manager_handlers() {
     'name' => 'panel',
     'access' => array(
       'logic' => 'and',
+      'plugins' => array(
+        0 => array(
+          'name' => 'entity_bundle:taxonomy_term',
+          'settings' => array(
+            'type' => array(
+              'thesaurus_informea' => 'thesaurus_informea',
+            ),
+          ),
+          'context' => 'argument_term_1',
+          'not' => FALSE,
+        ),
+      ),
     ),
     'panels_breadcrumbs_home' => 0,
   );
