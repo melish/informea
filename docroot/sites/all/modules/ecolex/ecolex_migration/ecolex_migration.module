@@ -79,21 +79,21 @@ function ecolex_migration_process_import($migration_name) {
   $migration = Migration::getInstance($migration_name);
 
   if ($migration->getStatus() != MigrationBase::STATUS_IDLE) {
-    watchdog('ecolex_migration', '[CRON][!machine_name] migration is currently not idle, skipping (status:!status)',
+    watchdog('ecolex_migration', '@migration migration is currently not idle, skipping (status: @status)',
       array(
-        '!machine_name' => $machine_name,
-        '!status' => $migration->getStatus()
+        '@migration' => $machine_name,
+        '@status' => $migration->getStatus()
       ),
       WATCHDOG_ERROR
     );
   }
   else {
-    watchdog('ecolex_migration', '[CRON]Starting import @migration',
+    watchdog('ecolex_migration', '@migration migration: starting import',
       array('@migration' => $migration_name), WATCHDOG_INFO);
 
-    $migration->processImport();
+    $result = $migration->processImport();
 
-    watchdog('ecolex_migration', '[CRON]Done @migration with result: @result',
+    watchdog('ecolex_migration', '@migration migration: finished with result: @result',
       array('@migration' => $migration_name, '@result' => $result), WATCHDOG_INFO);
   }
 }
