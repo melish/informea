@@ -140,7 +140,9 @@ class VocBenchRDFSource extends DefaultSource {
           $term->status = (string) $status;
         }
 
-        $terms[$key] = $term;
+        if (!empty($term->status) && $term->status == 'Published') {
+          $terms[$key] = $term;
+        }
       }
     }
 

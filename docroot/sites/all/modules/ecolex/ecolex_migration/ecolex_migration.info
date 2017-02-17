@@ -8,3 +8,5 @@ dependencies[] = elis_consumer
 files[] = ecolex_migration.elis-courtdecisions.migrate.inc
 files[] = ecolex_migration.elis-treaties.migrate.inc
 files[] = ecolex_migration.ecolex-legislation.migrate.inc
+files[] = ecolex_migration.ecolex-literature.migrate.inc
+files[] = ecolex_migration.ecolex-treaty.migrate.inc

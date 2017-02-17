@@ -571,7 +571,7 @@ function informea_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_term_related_uri'
+  // Exported field_base: 'field_term_related_uri'.
   $field_bases['field_term_related_uri'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -627,7 +627,7 @@ function informea_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_term_synonyms'
+  // Exported field_base: 'field_term_synonyms'.
   $field_bases['field_term_synonyms'] = array(
     'active' => 1,
     'cardinality' => -1,

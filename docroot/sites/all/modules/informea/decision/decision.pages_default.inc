@@ -323,27 +323,15 @@ Decisions
         'type' => 'row',
         'contains' => 'column',
         'children' => array(
-          0 => 17,
-          1 => 18,
+          0 => 18,
         ),
         'parent' => '3',
         'class' => 'decision-update-container row',
         'hide_empty' => 0,
       ),
-      17 => array(
-        'type' => 'column',
-        'width' => 50,
-        'width_type' => '%',
-        'parent' => '16',
-        'children' => array(
-          0 => 20,
-        ),
-        'class' => 'col-sm-9',
-        'hide_empty' => 0,
-      ),
       18 => array(
         'type' => 'column',
-        'width' => 50,
+        'width' => 100,
         'width_type' => '%',
         'parent' => '16',
         'children' => array(
@@ -369,25 +357,6 @@ Decisions
         'width_type' => '%',
         'parent' => '19',
         'class' => '',
-        'hide_empty' => 0,
-      ),
-      20 => array(
-        'type' => 'row',
-        'contains' => 'region',
-        'children' => array(
-          0 => 'updates',
-        ),
-        'parent' => '17',
-        'class' => 'decision-updates-form-container',
-        'hide_empty' => 0,
-      ),
-      'updates' => array(
-        'type' => 'region',
-        'title' => 'Updates',
-        'width' => 100,
-        'width_type' => '%',
-        'parent' => '20',
-        'class' => 'decision-updates-form-container',
         'hide_empty' => 0,
       ),
       21 => array(
@@ -1015,29 +984,6 @@ Decisions
     $pane->uuid = '042196e4-4f93-4987-9cab-133c3121514c';
     $display->content['new-042196e4-4f93-4987-9cab-133c3121514c'] = $pane;
     $display->panels['treaty'][0] = 'new-042196e4-4f93-4987-9cab-133c3121514c';
-    $pane = new stdClass();
-    $pane->pid = 'new-8d4320d8-cdb4-44bb-975a-5c92088d11d1';
-    $pane->panel = 'updates';
-    $pane->type = 'block';
-    $pane->subtype = 'informea-informea_subscribe_updates';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => 'Stay updated',
-      'override_title_heading' => 'h4',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '8d4320d8-cdb4-44bb-975a-5c92088d11d1';
-    $display->content['new-8d4320d8-cdb4-44bb-975a-5c92088d11d1'] = $pane;
-    $display->panels['updates'][0] = 'new-8d4320d8-cdb4-44bb-975a-5c92088d11d1';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

@@ -11,6 +11,308 @@ function goal_views_default_views() {
   $export = array();
 
   $view = new view();
+  $view->name = 'aichi_biodiversity_targets';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Aichi biodiversity targets';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Aichi Biodiversity Targets';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Sort criterion: Content: Title (title_field) */
+  $handler->display->display_options['sorts']['title_field_value']['id'] = 'title_field_value';
+  $handler->display->display_options['sorts']['title_field_value']['table'] = 'field_data_title_field';
+  $handler->display->display_options['sorts']['title_field_value']['field'] = 'title_field_value';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'goal' => 'goal',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Goal Type (field_goal_type) */
+  $handler->display->display_options['filters']['field_goal_type_tid']['id'] = 'field_goal_type_tid';
+  $handler->display->display_options['filters']['field_goal_type_tid']['table'] = 'field_data_field_goal_type';
+  $handler->display->display_options['filters']['field_goal_type_tid']['field'] = 'field_goal_type_tid';
+  $handler->display->display_options['filters']['field_goal_type_tid']['value'] = array(
+    0 => '1736',
+  );
+  $handler->display->display_options['filters']['field_goal_type_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_goal_type_tid']['expose']['operator_id'] = 'field_goal_type_tid_op';
+  $handler->display->display_options['filters']['field_goal_type_tid']['expose']['label'] = 'Goal Type (field_goal_type)';
+  $handler->display->display_options['filters']['field_goal_type_tid']['expose']['operator'] = 'field_goal_type_tid_op';
+  $handler->display->display_options['filters']['field_goal_type_tid']['expose']['identifier'] = 'field_goal_type_tid';
+  $handler->display->display_options['filters']['field_goal_type_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_goal_type_tid']['vocabulary'] = 'type_of_goal';
+  /* Filter criterion: Content: Source (field_goal_source) */
+  $handler->display->display_options['filters']['field_goal_source_tid']['id'] = 'field_goal_source_tid';
+  $handler->display->display_options['filters']['field_goal_source_tid']['table'] = 'field_data_field_goal_source';
+  $handler->display->display_options['filters']['field_goal_source_tid']['field'] = 'field_goal_source_tid';
+  $handler->display->display_options['filters']['field_goal_source_tid']['value'] = array(
+    1738 => '1738',
+  );
+  $handler->display->display_options['filters']['field_goal_source_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_goal_source_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_goal_source_tid']['vocabulary'] = 'goal_sources';
+
+  /* Display: Strategic goals */
+  $handler = $view->new_display('page', 'Strategic goals', 'page_strategic_goals');
+  $handler->display->display_options['display_description'] = 'Strategic goals';
+  $handler->display->display_options['defaults']['group_by'] = FALSE;
+  $handler->display->display_options['group_by'] = TRUE;
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['label'] = 'Strategic Goals';
+  $handler->display->display_options['header']['area']['empty'] = TRUE;
+  $handler->display->display_options['header']['area']['content'] = '<strong>Strategic Goals </strong><br><br>';
+  $handler->display->display_options['header']['area']['format'] = 'full_html';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['text'] = '<a href="/goals/aichi/[nid]">[title]</a>';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  $handler->display->display_options['path'] = 'taxonomy/term/1738';
+
+  /* Display: Targets */
+  $handler = $view->new_display('page', 'Targets', 'page_targets');
+  $handler->display->display_options['defaults']['group_by'] = FALSE;
+  $handler->display->display_options['group_by'] = TRUE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Goal (field_parent_goal) */
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['id'] = 'field_parent_goal_target_id';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['table'] = 'field_data_field_parent_goal';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['field'] = 'field_parent_goal_target_id';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'goal' => 'goal',
+  );
+  /* Filter criterion: Content: Goal Type (field_goal_type) */
+  $handler->display->display_options['filters']['field_goal_type_tid']['id'] = 'field_goal_type_tid';
+  $handler->display->display_options['filters']['field_goal_type_tid']['table'] = 'field_data_field_goal_type';
+  $handler->display->display_options['filters']['field_goal_type_tid']['field'] = 'field_goal_type_tid';
+  $handler->display->display_options['filters']['field_goal_type_tid']['value'] = array(
+    0 => '1732',
+  );
+  $handler->display->display_options['filters']['field_goal_type_tid']['reduce_duplicates'] = TRUE;
+  $handler->display->display_options['filters']['field_goal_type_tid']['vocabulary'] = 'type_of_goal';
+  $handler->display->display_options['path'] = 'goals/aichi/%';
+
+  /* Display: Indicators */
+  $handler = $view->new_display('page', 'Indicators', 'page_indicators');
+  $handler->display->display_options['enabled'] = FALSE;
+  $handler->display->display_options['exposed_block'] = TRUE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_parent_goal_target_id']['id'] = 'field_parent_goal_target_id';
+  $handler->display->display_options['relationships']['field_parent_goal_target_id']['table'] = 'field_data_field_parent_goal';
+  $handler->display->display_options['relationships']['field_parent_goal_target_id']['field'] = 'field_parent_goal_target_id';
+  $handler->display->display_options['relationships']['field_parent_goal_target_id']['label'] = 'parent_goal';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Goal (field_parent_goal) */
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['id'] = 'field_parent_goal_target_id';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['table'] = 'field_data_field_parent_goal';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['field'] = 'field_parent_goal_target_id';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['summary_options']['items_per_page'] = '25';
+  /* Contextual filter: Content: Goal (field_parent_goal) */
+  $handler->display->display_options['arguments']['field_parent_goal_target_id_1']['id'] = 'field_parent_goal_target_id_1';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id_1']['table'] = 'field_data_field_parent_goal';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id_1']['field'] = 'field_parent_goal_target_id';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id_1']['relationship'] = 'field_parent_goal_target_id';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id_1']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id_1']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id_1']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id_1']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id_1']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'goal' => 'goal',
+  );
+  /* Filter criterion: Content: Goal Type (field_goal_type) */
+  $handler->display->display_options['filters']['field_goal_type_tid']['id'] = 'field_goal_type_tid';
+  $handler->display->display_options['filters']['field_goal_type_tid']['table'] = 'field_data_field_goal_type';
+  $handler->display->display_options['filters']['field_goal_type_tid']['field'] = 'field_goal_type_tid';
+  $handler->display->display_options['filters']['field_goal_type_tid']['relationship'] = 'field_parent_goal_target_id';
+  $handler->display->display_options['filters']['field_goal_type_tid']['value'] = array(
+    1735 => '1735',
+  );
+  $handler->display->display_options['filters']['field_goal_type_tid']['expose']['operator_id'] = 'field_goal_type_tid_op';
+  $handler->display->display_options['filters']['field_goal_type_tid']['expose']['label'] = 'Goal Type (field_goal_type)';
+  $handler->display->display_options['filters']['field_goal_type_tid']['expose']['operator'] = 'field_goal_type_tid_op';
+  $handler->display->display_options['filters']['field_goal_type_tid']['expose']['identifier'] = 'field_goal_type_tid';
+  $handler->display->display_options['filters']['field_goal_type_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_goal_type_tid']['vocabulary'] = 'type_of_goal';
+  $handler->display->display_options['path'] = 'goal/aichi/target/%/indicator%';
+
+  /* Display: Indicator */
+  $handler = $view->new_display('block', 'Indicator', 'block_indicators');
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Goal (field_parent_goal) */
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['id'] = 'field_parent_goal_target_id';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['table'] = 'field_data_field_parent_goal';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['field'] = 'field_parent_goal_target_id';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_parent_goal_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Goal Type (field_goal_type) */
+  $handler->display->display_options['filters']['field_goal_type_tid']['id'] = 'field_goal_type_tid';
+  $handler->display->display_options['filters']['field_goal_type_tid']['table'] = 'field_data_field_goal_type';
+  $handler->display->display_options['filters']['field_goal_type_tid']['field'] = 'field_goal_type_tid';
+  $handler->display->display_options['filters']['field_goal_type_tid']['value'] = array(
+    1735 => '1735',
+  );
+  $handler->display->display_options['filters']['field_goal_type_tid']['expose']['operator_id'] = 'field_goal_type_tid_op';
+  $handler->display->display_options['filters']['field_goal_type_tid']['expose']['label'] = 'Goal Type (field_goal_type)';
+  $handler->display->display_options['filters']['field_goal_type_tid']['expose']['operator'] = 'field_goal_type_tid_op';
+  $handler->display->display_options['filters']['field_goal_type_tid']['expose']['identifier'] = 'field_goal_type_tid';
+  $handler->display->display_options['filters']['field_goal_type_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_goal_type_tid']['vocabulary'] = 'type_of_goal';
+  /* Filter criterion: Content: Source (field_goal_source) */
+  $handler->display->display_options['filters']['field_goal_source_tid']['id'] = 'field_goal_source_tid';
+  $handler->display->display_options['filters']['field_goal_source_tid']['table'] = 'field_data_field_goal_source';
+  $handler->display->display_options['filters']['field_goal_source_tid']['field'] = 'field_goal_source_tid';
+  $handler->display->display_options['filters']['field_goal_source_tid']['value'] = array(
+    1738 => '1738',
+  );
+  $handler->display->display_options['filters']['field_goal_source_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_goal_source_tid']['vocabulary'] = 'goal_sources';
+  $handler->display->display_options['block_description'] = 'View: Aichi Indicators';
+  $translatables['aichi_biodiversity_targets'] = array(
+    t('Master'),
+    t('Aichi Biodiversity Targets'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Goal Type (field_goal_type)'),
+    t('Strategic goals'),
+    t('Strategic Goals'),
+    t('<strong>Strategic Goals </strong><br><br>'),
+    t('<a href="/goals/aichi/[nid]">[title]</a>'),
+    t('Targets'),
+    t('All'),
+    t('Indicators'),
+    t('parent_goal'),
+    t('Indicator'),
+    t('View: Aichi Indicators'),
+  );
+  $export['aichi_biodiversity_targets'] = $view;
+
+  $view = new view();
   $view->name = 'geg';
   $view->description = '';
   $view->tag = 'default';

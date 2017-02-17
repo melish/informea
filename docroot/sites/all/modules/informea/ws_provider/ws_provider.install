@@ -14,3 +14,10 @@ function ws_provider_update_7001() {
     ->condition('name', 'osha_tmgmt', '=')
     ->execute();
 }
+
+/**
+ * install new ws_provider_decisions view
+ */
+function ws_provider_update_7002() {
+  features_revert_module('ws_provider');
+}
