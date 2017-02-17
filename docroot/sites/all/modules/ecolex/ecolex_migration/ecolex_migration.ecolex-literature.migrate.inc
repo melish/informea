@@ -272,7 +272,6 @@ class EcolexLiteratureMigrateSource extends MigrateSource {
   public $check_modify_date = TRUE;
   public $found_rows = 0;
   public $fetched_rows = 0;
-  public $fetch_limit = 100;
   public $log_detail;
   public $totalCount = 0;
   public $currentCount = 0;
@@ -285,12 +284,19 @@ class EcolexLiteratureMigrateSource extends MigrateSource {
     $this->url_pattern = $source_url_pattern;
     $this->check_modify_date = variable_get('ecolex_literature_check_modify_date', FALSE);
     $this->updated_after = 0;
+    echo "\n\n";
     if ($this->check_modify_date) {
-      $this->updated_after = date('Ymd',strtotime('-10 days'));
+      $this->updated_after = date('Ymd', strtotime('-10 days'));
       $this->url_pattern .= '&updated_after=' . $this->updated_after;
+      echo "Check modify date ON\n";
     }
-    $this->fetch_limit = variable_get('ecolex_literature_fetch_limit', 100);
+    else {
+      echo "Check modify date OFF\n";
+    }
     $this->log_detail = variable_get('ecolex_literature_log_detail', FALSE);
+    if ($this->log_detail) {
+      echo "Log detail ON\n";
+    }
     $this->computeCount();
   }
 
@@ -342,6 +348,7 @@ class EcolexLiteratureMigrateSource extends MigrateSource {
         $this->totalCount = $json->count;
       }
     }
+    echo "Total: {$this->totalCount}\n";
     return $this->totalCount;
   }
 
@@ -480,10 +487,6 @@ class EcolexLiteratureMigrateSource extends MigrateSource {
    *   FALSE data as stdClass, FALSE when there is no more data available.
    */
   public function getNextRow() {
-    if ($this->fetched_rows >= $this->fetch_limit) {
-      return FALSE;
-    }
-
     $item = $this->getItem();
     if (!$item) {
       $this->getData();

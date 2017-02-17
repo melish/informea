@@ -1,56 +1,5 @@
 <?php
 
-function ecolex_migration_literature_sync() {
-  module_load_include('inc', 'migrate_ui', 'migrate_ui.pages');
-  $machine_name = 'ecolex_literature';
-  $migration = Migration::getInstance($machine_name);
-  /* @var $migration EcolexLegislationMigration */
-  $migration->prepareUpdate();
-  watchdog('ecolex_migration', 'Starting import @migration',
-    array('@migration' => $machine_name), WATCHDOG_INFO);
-
-  $result = $migration->processImport(array('update' => TRUE));
-
-  watchdog('ecolex_migration', 'Done @migration with result: @result',
-    array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
-
-  return '';
-}
-
-function ecolex_migration_legislation_sync() {
-  module_load_include('inc', 'migrate_ui', 'migrate_ui.pages');
-  $machine_name = 'ecolex_legislation';
-  $migration = Migration::getInstance($machine_name);
-  /* @var $migration EcolexLegislationMigration */
-  $migration->prepareUpdate();
-  watchdog('ecolex_migration', 'Starting import @migration',
-    array('@migration' => $machine_name), WATCHDOG_INFO);
-
-  $result = $migration->processImport(array('update' => TRUE));
-
-  watchdog('ecolex_migration', 'Done @migration with result: @result',
-    array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
-
-  return '';
-}
-
-function ecolex_migration_treaty_sync() {
-  module_load_include('inc', 'migrate_ui', 'migrate_ui.pages');
-  $machine_name = 'ecolex_treaty';
-  $migration = Migration::getInstance($machine_name);
-  /* @var $migration EcolexLegislationMigration */
-  $migration->prepareUpdate();
-  watchdog('ecolex_migration', 'Starting import @migration',
-    array('@migration' => $machine_name), WATCHDOG_INFO);
-
-  $result = $migration->processImport(array('update' => TRUE));
-
-  watchdog('ecolex_migration', 'Done @migration with result: @result',
-    array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
-
-  return '';
-}
-
 /**
  * Implements hook_migrate_api().
  *
@@ -101,4 +50,62 @@ function ecolex_migration_migrate_api() {
     'source_url_pattern' => 'http://www.ecolex.org/export/?type=treaty&format=json',
   );
   return $ret;
+}
+
+/**
+ * Implements hook_cronapi().
+ *
+ * Provided by the elysia_cron module.
+ */
+function ecolex_migration_cronapi($ob, $job = NULL) {
+  return array(
+    'ecolex_migration_literature_sync' => array(
+      'description' => 'Update Ecolex literatures',
+      'rule' => '0 1 * * *', // Every day at 01:00
+    ),
+    'ecolex_migration_legislation_sync' => array(
+      'description' => 'Update Ecolex legislations',
+      'rule' => '0 1 * * *', // Every day at 01:00
+    ),
+    'ecolex_migration_treaty_sync' => array(
+      'description' => 'Update Ecolex treaties',
+      'rule' => '0 1 * * *', // Every day at 01:00
+    ),
+  );
+}
+
+function ecolex_migration_process_import($migration_name) {
+  /* @var $migration EcolexLegislationMigration */
+  $migration = Migration::getInstance($migration_name);
+
+  if ($migration->getStatus() != MigrationBase::STATUS_IDLE) {
+    watchdog('ecolex_migration', '@migration migration is currently not idle, skipping (status: @status)',
+      array(
+        '@migration' => $migration_name,
+        '@status' => $migration->getStatus()
+      ),
+      WATCHDOG_ERROR
+    );
+  }
+  else {
+    watchdog('ecolex_migration', '@migration migration: starting import',
+      array('@migration' => $migration_name), WATCHDOG_INFO);
+
+    $result = $migration->processImport();
+
+    watchdog('ecolex_migration', '@migration migration: finished with result: @result',
+      array('@migration' => $migration_name, '@result' => $result), WATCHDOG_INFO);
+  }
+}
+
+function ecolex_migration_literature_sync() {
+  ecolex_migration_process_import('ecolex_literature');
+}
+
+function ecolex_migration_legislation_sync() {
+  ecolex_migration_process_import('ecolex_legislation');
+}
+
+function ecolex_migration_treaty_sync() {
+  ecolex_migration_process_import('ecolex_treaty');
 }
