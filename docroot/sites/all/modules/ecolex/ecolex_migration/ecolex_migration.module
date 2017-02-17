@@ -1,5 +1,28 @@
 <?php
 
+/**
+ * Implements hook_cronapi().
+ *
+ * Provided by the elysia_cron module.
+ */
+function ecolex_migration_cronapi($ob, $job = NULL) {
+  return array(
+    'ecolex_migration_literature_sync' => array(
+      'description' => 'Update Ecolex literatures everyday',
+      'rule' => '0 1 * * *', // Every day at 01:00
+    ),
+    'ecolex_migration_legislation_sync' => array(
+      'description' => 'Update Ecolex legislations everyday',
+      'rule' => '0 1 * * *', // Every day at 01:00
+    ),
+    'ecolex_migration_treaty_sync' => array(
+      'description' => 'Update Ecolex treaties everyday',
+      'rule' => '0 1 * * *', // Every day at 01:00
+    ),
+  );
+}
+
+
 function ecolex_migration_literature_sync() {
   module_load_include('inc', 'migrate_ui', 'migrate_ui.pages');
   $machine_name = 'ecolex_literature';
