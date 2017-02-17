@@ -168,10 +168,14 @@ function informea_search_ajax_get_ajax_treaties($term, &$data) {
       $wrapper = entity_metadata_wrapper('node', $node);
 
       $img = treaty_url_logo($node);
+      $label = $wrapper->label();
+      if (!empty($img)) {
+        $label = $img . ' ' . $label;
+      }
 
       $data[] = array(
         'category' => t('Treaties'),
-        'label' => $img . ' ' . $wrapper->label(),
+        'label' => $label,
         'link' => url('node/' . $wrapper->getIdentifier()),
         'value' => $wrapper->label()
       );

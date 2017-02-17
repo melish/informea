@@ -896,7 +896,7 @@ function treaty_url_action_plan($id_treaty, $id_report) {
 function treaty_url_logo($treaty) {
   $w = entity_metadata_wrapper('node', $treaty->nid);
   $logo = $w->field_logo->value();
-  return theme('image_style', array('style_name' => 'logo', 'path' => $logo['uri']));
+  return empty($logo) ? null : theme('image_style', array('style_name' => 'logo', 'path' => $logo['uri']));
 }
 
 /**
