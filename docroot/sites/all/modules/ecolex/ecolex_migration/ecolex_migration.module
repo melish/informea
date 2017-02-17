@@ -5,16 +5,10 @@ function ecolex_migration_literature_sync() {
   $machine_name = 'ecolex_literature';
   $migration = Migration::getInstance($machine_name);
   /* @var $migration EcolexLegislationMigration */
-  $migration->prepareUpdate();
   watchdog('ecolex_migration', 'Starting import @migration',
     array('@migration' => $machine_name), WATCHDOG_INFO);
 
-  $options = array('update' => TRUE);
-  $limit = drush_get_option('limit', FALSE);
-  if ($limit) {
-    $options['limit'] = ['unit' => 'items', 'value' => $limit];
-  }
-  $result = $migration->processImport($options);
+  $result = $migration->processImport([]);
 
   watchdog('ecolex_migration', 'Done @migration with result: @result',
     array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
@@ -27,16 +21,10 @@ function ecolex_migration_legislation_sync() {
   $machine_name = 'ecolex_legislation';
   $migration = Migration::getInstance($machine_name);
   /* @var $migration EcolexLegislationMigration */
-  $migration->prepareUpdate();
   watchdog('ecolex_migration', 'Starting import @migration',
     array('@migration' => $machine_name), WATCHDOG_INFO);
 
-  $options = array('update' => TRUE);
-  $limit = drush_get_option('limit', FALSE);
-  if ($limit) {
-    $options['limit'] = ['unit' => 'items', 'value' => $limit];
-  }
-  $result = $migration->processImport($options);
+  $result = $migration->processImport([]);
 
   watchdog('ecolex_migration', 'Done @migration with result: @result',
     array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
@@ -49,16 +37,10 @@ function ecolex_migration_treaty_sync() {
   $machine_name = 'ecolex_treaty';
   $migration = Migration::getInstance($machine_name);
   /* @var $migration EcolexLegislationMigration */
-  $migration->prepareUpdate();
   watchdog('ecolex_migration', 'Starting import @migration',
     array('@migration' => $machine_name), WATCHDOG_INFO);
 
-  $options = array('update' => TRUE);
-  $limit = drush_get_option('limit', FALSE);
-  if ($limit) {
-    $options['limit'] = ['unit' => 'items', 'value' => $limit];
-  }
-  $result = $migration->processImport($options);
+  $result = $migration->processImport([]);
 
   watchdog('ecolex_migration', 'Done @migration with result: @result',
     array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
