@@ -78,13 +78,24 @@ function ecolex_migration_process_import($migration_name) {
   /* @var $migration EcolexLegislationMigration */
   $migration = Migration::getInstance($migration_name);
 
-  watchdog('ecolex_migration', 'Starting import @migration',
-    array('@migration' => $migration_name), WATCHDOG_INFO);
+  if ($migration->getStatus() != MigrationBase::STATUS_IDLE) {
+    watchdog('ecolex_migration', '[CRON][!machine_name] migration is currently not idle, skipping (status:!status)',
+      array(
+        '!machine_name' => $machine_name,
+        '!status' => $migration->getStatus()
+      ),
+      WATCHDOG_ERROR
+    );
+  }
+  else {
+    watchdog('ecolex_migration', '[CRON]Starting import @migration',
+      array('@migration' => $migration_name), WATCHDOG_INFO);
 
-  $result = $migration->processImport([]);
+    $migration->processImport();
 
-  watchdog('ecolex_migration', 'Done @migration with result: @result',
-    array('@migration' => $migration_name, '@result' => $result), WATCHDOG_INFO);
+    watchdog('ecolex_migration', '[CRON]Done @migration with result: @result',
+      array('@migration' => $migration_name, '@result' => $result), WATCHDOG_INFO);
+  }
 }
 
 function ecolex_migration_literature_sync() {
