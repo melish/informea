@@ -41,6 +41,27 @@ function ecolex_default_page_manager_handlers() {
           'context' => 'argument_entity_id:node_1',
           'not' => FALSE,
         ),
+        1 => array(
+          'name' => 'entity_field_value:node:treaty:field_data_source',
+          'settings' => array(
+            'field_data_source' => array(
+              'und' => array(
+                0 => array(
+                  'tid' => '2767',
+                ),
+                1 => array(
+                  'tid' => '3689',
+                ),
+              ),
+            ),
+            'field_data_source_tid' => array(
+              0 => '2767',
+              1 => '3689',
+            ),
+          ),
+          'context' => 'argument_entity_id:node_1',
+          'not' => FALSE,
+        ),
       ),
       'logic' => 'and',
     ),
