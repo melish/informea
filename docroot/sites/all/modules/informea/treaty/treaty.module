@@ -635,6 +635,12 @@ function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node, $hide = a
         'count' => $ap_count,
       )
     );
+
+    $text = treaty_get_treaty_text($node->nid);
+    if (empty($text)) {
+      $menu_items['text']['disabled'] = TRUE;
+    }
+
     if (treaty_count_child_protocols($node->nid) == 0) {
       unset($menu_items['protocols']);
     }

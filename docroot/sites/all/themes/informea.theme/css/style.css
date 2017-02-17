@@ -1659,14 +1659,8 @@ img.flag-medium { max-height: 48px; }
   margin: 0;
 }
 .node .field-label-inline {
-  // display: table;
-  // table-layout: fixed;
   width: 100%;
   margin-bottom: .3em;
-}
-.node .field-label-inline .field-label,
-.node .field-label-inline .field-items {
-  // display: table-cell;
 }
 .node .field-label-inline .field-label {
   width: 20%;
@@ -1829,28 +1823,31 @@ input.facetapi-checkbox { margin-right: 5px; }
 .taxonomy-term-related-content-facets .panel-pane:first-child h2.pane-title {
   margin-top: 0;
 }
-// body[class*='page-search'] .block-facetapi a {
-//   color: #444;
-// }
-// body[class*='page-search'] .block-facetapi ul {
-//   list-style-type: none;
-//   margin: 0 0 0 5px;
-//   padding: 0;
-// }
-// body[class*='page-search'] .block-facetapi .facetapi-limit-link {
-//   border-bottom: 3px solid transparent;
-//   color: #0099d5;
-//   display: inline-block;
-//   font-size: .9em;
-//   margin-top: 1em;
-//   text-decoration: none;
-// }
-// body[class*='page-search'] .block-facetapi .facetapi-limit-link:hover { border-bottom: 3px solid; }
-// body[class*='page-search'] .block-facetapi .block-title {
-//   font-size: 16px;
-// }
 
-// body[class*='page-search'] input.facetapi-checkbox { margin-right: 5px; }
+/*
+body[class*='page-search'] .block-facetapi a {
+  color: #444;
+}
+body[class*='page-search'] .block-facetapi ul {
+  list-style-type: none;
+  margin: 0 0 0 5px;
+  padding: 0;
+}
+body[class*='page-search'] .block-facetapi .facetapi-limit-link {
+  border-bottom: 3px solid transparent;
+  color: #0099d5;
+  display: inline-block;
+  font-size: .9em;
+  margin-top: 1em;
+  text-decoration: none;
+}
+body[class*='page-search'] .block-facetapi .facetapi-limit-link:hover { border-bottom: 3px solid; }
+body[class*='page-search'] .block-facetapi .block-title {
+  font-size: 16px;
+}
+*/
+
+body[class*='page-search'] input.facetapi-checkbox { margin-right: 5px; }
 
 
 .view-search-law-and-literature {
@@ -3124,4 +3121,21 @@ body.page-search-bilateral-treaties .view-empty {
 .panels-flexible-region-thesaurus_term_page-full_width_content #tabs ul li {
   display: inline-block;
   float: none;
+}
+.node_view_panel .panels-flexible-row {
+  padding-top: 22px;
+  border-top: 1px solid #dddddd;
+  margin-bottom: 22px;
+}
+
+.node_view_panel .field-label-inline .field-label {
+  padding-right: 10px;
+  width: 190px;
+  text-align: right;
+}
+
+.node_view_panel .field-label-inline.field-name-body .field-items,
+.node_view_panel .field-name-field-available-in .field-items,
+.node_view_panel .field-label-inline.field-name-field-abstract .field-items {
+  padding-left: 190px;
 }
