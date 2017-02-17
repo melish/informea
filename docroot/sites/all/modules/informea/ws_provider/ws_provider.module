@@ -13,18 +13,40 @@ function ws_provider_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
+  $items['ws/decisions/count'] = array(
+    'page callback' => 'ws_provider_decisions_count',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  $items['ws/court-decisions/count'] = array(
+    'page callback' => 'ws_provider_court_decisions_count',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
   return $items;
+}
+
+function ws_provider_decisions_count() {
+  $result = views_get_view_result('ws_provider_decisions', 'page_1');
+  echo $result[0]->nid;
+  exit;
+}
+
+function ws_provider_court_decisions_count() {
+  $result = views_get_view_result('ws_provider_court_decisions', 'page_1');
+  echo $result[0]->nid;
+  exit;
 }
 
 /**
  * Implements hook_services_views_execute_view_alter().
  */
 function ws_provider_services_views_execute_view_alter(&$output, $view) {
-  if(in_array($view->name, array('ws_provider_court_decisions', 'ws_provider_legislation', 'ws_provider_literature'))) {
+  if(in_array($view->name, array('ws_provider_court_decisions', 'ws_provider_decisions', 'ws_provider_legislation', 'ws_provider_literature'))) {
     global $base_url;
     foreach ($output as $row) {
       $row->data_url = $base_url . '/node/' . $row->uuid . '/json';
-      $row->link = url('node/' . $row->nid, array('absolute' => TRUE));
+      $row->link = $base_url . '/node/' . $row->nid;
       unset($row->nid);
     }
   }
