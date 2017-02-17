@@ -2535,7 +2535,11 @@ iframe.pdfjs {
 }
 
 .node-type-decision .pane-informea-informea-share,
-.node-type-event-calendar .pane-informea-informea-share,
+.node-type-event-calendar .pane-informea-informea-share {
+  border: 1px solid #f7f7f7;
+  padding: 15px 30px;
+}
+
 .node-type-decision .decision-updates-form-container {
   border: 1px solid #f7f7f7;
   height: 180px;
@@ -2571,8 +2575,9 @@ iframe.pdfjs {
   padding-left: 0;
 }
 
-.informea-share-widget > li + li {
-  margin-top: 8px;
+.informea-share-widget li {
+  display: inline-block;
+  margin-right: 8px;
 }
 
 .informea-share-widget > li > a {
