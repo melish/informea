@@ -81,7 +81,7 @@ function ecolex_migration_process_import($migration_name) {
   if ($migration->getStatus() != MigrationBase::STATUS_IDLE) {
     watchdog('ecolex_migration', '@migration migration is currently not idle, skipping (status: @status)',
       array(
-        '@migration' => $machine_name,
+        '@migration' => $migration_name,
         '@status' => $migration->getStatus()
       ),
       WATCHDOG_ERROR
