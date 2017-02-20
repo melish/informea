@@ -1,7 +1,25 @@
 /**
  * @file
- * Stylesheets for the PowerTagging module for the frontend.
+ * Stylesheets for the PowerTagging module.
  */
+
+.pp-led {
+  width: 12px;
+  height: 12px;
+  background-color: #999999;
+  border-radius: 50%;
+  box-shadow: #000 0 -1px 4px 1px, inset #444 0 -1px 5px, #999 0 2px 5px;
+}
+
+.led-red {
+  background-color: #ff0000;
+  box-shadow: #000 0 0px 0px 0px, inset #600 0 0px 5px, #f00 0 0px 5px;
+}
+
+.led-green {
+  background-color: #00ff00;
+  box-shadow: #000 0 0px 0px 0px, inset #460 0 0px 5px, #0f0 0 0px 5px;
+}
 
 fieldset#edit-batch-jobs .ui-progressbar {
   position: relative;
@@ -25,12 +43,12 @@ fieldset#edit-batch-jobs .powertagging-progress-label {
   margin-bottom: 0px;
 }
 
-.powertagging-extracted-tags .powertagging-extracted-tags-area {
+#powertagging-extracted-tags .powertagging-extracted-tags-area {
   margin: 0px;
   padding-bottom: 10px;
 }
 
-.powertagging-extracted-tags .powertagging-extraction-label {
+#powertagging-extracted-tags .powertagging-extraction-label {
   font-weight: bold;
   color: #666;
   border-bottom: 1px solid #CCC;
@@ -75,35 +93,35 @@ fieldset#edit-batch-jobs .powertagging-progress-label {
   background: #cccccc;
 }
 
-.powertagging-extracted-tags li div.powertagging-tag.concept:hover,
-.powertagging-extracted-tags li div.powertagging-tag.concept:focus {
+#powertagging-extracted-tags li div.powertagging-tag.concept:hover,
+#powertagging-extracted-tags li div.powertagging-tag.concept:focus {
   cursor: pointer;
 }
 
-.powertagging-extracted-tags li div.powertagging-tag.freeterm:hover,
-.powertagging-extracted-tags li div.powertagging-tag.freeterm:focus {
+#powertagging-extracted-tags li div.powertagging-tag.freeterm:hover,
+#powertagging-extracted-tags li div.powertagging-tag.freeterm:focus {
   cursor: pointer;
 }
 
-.field-type-powertagging fieldset .powertagging-tag-result li .concept {
+.field-type-powertagging fieldset #powertagging-tag-result li .concept {
   background: url("../images/tag_close.png") top 7px right 9px no-repeat #c3e2f7;
   padding: 1px 23px 1px 10px;
 }
 
-.field-type-powertagging fieldset .powertagging-tag-result li .concept:hover,
-.field-type-powertagging fieldset .powertagging-tag-result li .concept:focus {
+.field-type-powertagging fieldset #powertagging-tag-result li .concept:hover,
+.field-type-powertagging fieldset #powertagging-tag-result li .concept:focus {
   background: url("../images/tag_close.png") top 7px right 9px no-repeat #ccc;
   cursor: pointer;
   padding: 1px 23px 1px 10px;
 }
 
-.field-type-powertagging fieldset .powertagging-tag-result li .freeterm {
+.field-type-powertagging fieldset #powertagging-tag-result li .freeterm {
   background: url("../images/tag_close.png") top 7px right 9px no-repeat #fff199;
   padding: 1px 23px 1px 10px;
 }
 
-.field-type-powertagging fieldset .powertagging-tag-result li .freeterm:hover,
-.field-type-powertagging fieldset .powertagging-tag-result li .freeterm:focus {
+.field-type-powertagging fieldset #powertagging-tag-result li .freeterm:hover,
+.field-type-powertagging fieldset #powertagging-tag-result li .freeterm:focus {
   background: url("../images/tag_close.png") top 7px right 9px no-repeat #ccc;
   cursor: pointer;
   padding: 1px 23px 1px 10px;
@@ -155,17 +173,5 @@ fieldset#edit-batch-jobs .powertagging-progress-label {
 
 #block-views-articles-for-powertagging-block .views-field-title a:hover,
 #block-views-articles-for-powertagging-block .views-field-title a:focus {
-  color: #666666;
-}
-
-/* =============================================================================
- *   PowerTagging Tag Glossary block
- * ========================================================================== */
-
-.powertagging_glossary_terms_term h3 {
-  font-weight: bold;
-}
-
-.powertagging_glossary_terms_term:not(:last-child) {
-  border-bottom: 1px solid #CCC;
+	color: #666666;
 }

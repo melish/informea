@@ -17,6 +17,7 @@ function powertagging_field_info() {
       ),
       'instance_settings' => array(
         'fields' => array(),
+        'project_id' => '',
       ),
       'description' => t('This field stores concepts in the database.'),
       'default_widget' => 'powertagging_ui',
@@ -60,9 +61,27 @@ function powertagging_field_instance_settings_form($field, $instance) {
     $powertagging_config = powertagging_config_load($field['settings']['powertagging_id']);
     $entity_fields = field_info_instances($instance['entity_type'], $instance['bundle']);
 
+    $project_options = array();
+    if (!empty($powertagging_config->config['projects'])) {
+      foreach ($powertagging_config->config['projects'] as $project_id => $project) {
+        if (!empty($project['taxonomy_name'])) {
+          $project_options[$project_id] = $project['label'];
+        }
+      }
+    }
+
     $form['powertagging_id'] = array(
       '#type' => 'hidden',
       '#value' => $powertagging_config->powertagging_id,
+    );
+
+    $form['project_id'] = array(
+      '#type' => 'select',
+      '#options' => $project_options,
+      '#title' => t('PoolParty Project (tagging taxonomy)'),
+      '#default_value' => isset($settings['project_id']) ? $settings['project_id'] : '',
+      '#required' => TRUE,
+      '#description' => (!empty($project_options) ? t('The project ID from the corresponding taxonomy') : t('Projects have to be configured in the PowerTagging configuration first.')),
     );
 
     // Check if this content type already has fields with tags.
@@ -85,14 +104,6 @@ function powertagging_field_instance_settings_form($field, $instance) {
       );
     }
 
-    $form['include_in_tag_glossary'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Include in PowerTagging Tag Glossary'),
-      '#description' => t('Show tags of this field in the "PowerTagging Tag Glossary" block (if it is enabled)'),
-      '#default_value' => isset($settings['include_in_tag_glossary']) ? $settings['include_in_tag_glossary'] : TRUE,
-      '#empty_value' => '',
-    );
-
     $concepts_per_extraction = isset($settings['concepts_per_extraction']) ? $settings['concepts_per_extraction'] : $powertagging_config->config['concepts_per_extraction'];
     $concepts_threshold = isset($settings['concepts_threshold']) ? $settings['concepts_threshold'] : $powertagging_config->config['concepts_threshold'];
     $freeterms_per_extraction = isset($settings['freeterms_per_extraction']) ? $settings['freeterms_per_extraction'] : $powertagging_config->config['freeterms_per_extraction'];
@@ -111,7 +122,7 @@ function powertagging_field_instance_settings_form($field, $instance) {
   }
   // Global field settings need to be saved first.
   else {
-    $form['powertagging_error'] = array(
+    $form['project_id'] = array(
       '#type' => 'item',
       '#markup' => '<div class="messages error">The global field settings have to be saved before editing the field instance is possible.</div>',
     );
@@ -247,7 +258,7 @@ function powertagging_field_widget_form(&$form, &$form_state, $field, $instance,
         // supported.
         $error_markup = t('Tagging is not possible for the currently selected language.');
         if (user_access('administer powertagging')) {
-          $error_markup .= '<br />' . t('Select a PoolParty language in your !moduleconfig.', array('!moduleconfig' => l(t('powertagging configuration'), 'admin/config/semantic-drupal/powertagging/' . $instance['settings']['powertagging_id'])));
+          $error_markup .= '<br />' . t('Select a PoolParty language in your !moduleconfig.', array('!moduleconfig' => l(t('powertagging configuration'), 'admin/config/services/powertagging/' . $instance['settings']['powertagging_id'] . '/edit')));
         }
         $element['powertagging']['language_error'] = array(
           '#type' => 'item',
@@ -266,13 +277,13 @@ function powertagging_field_widget_form(&$form, &$form_state, $field, $instance,
         $element['powertagging']['tags_result'] = array(
           '#type' => 'item',
           '#title' => t('Your selected tags'),
-          '#markup' => '<div class="powertagging-tag-result"></div>',
+          '#markup' => '<div id="powertagging-tag-result"></div>',
         );
 
         $element['powertagging']['tags'] = array(
           '#type' => 'item',
           '#title' => t('Tags extracted from'),
-          '#markup' => '<div class="ajax-progress" style="display:none;"><div class="throbber">' . t('Loading...') . '</div></div><div class="powertagging-extracted-tags" style="display:none;"></div>',
+          '#markup' => '<div class="ajax-progress" style="display:none;"><div class="throbber">Loading...</div></div><div id="powertagging-extracted-tags" style="display:none;"></div>',
         );
 
         $element['powertagging']['get_tags'] = array(
@@ -299,14 +310,10 @@ function powertagging_field_widget_form(&$form, &$form_state, $field, $instance,
       else {
         $element['powertagging']['error_info'] = array(
           '#type' => 'item',
-          '#markup' => t('The "PowerTagging Tags" field needs to be properly configured before content can be tagged.') . '<br />' . t('Make sure all the required fields have a selection and "Number of values" was changed to "Unlimited".'),
+          '#markup' => t('The "PowerTagging Tags"-field needs to be properly configured before content can be tagged.') . '<br />' . t('Make sure all the required fields have a selection and "Number of values" was changed to "Unlimited".'),
         );
       }
 
-      // Add CSS file
-      $element['#attached'] = array(
-        'css' => array(drupal_get_path('module', 'powertagging') . '/css/powertagging.admin.css'),
-      );
       break;
   }
 
@@ -329,12 +336,12 @@ function powertagging_add_field_js(array $element) {
 
   $instance = $element['field_instance']['#value'];
   $language = $element['language']['#value'];
-  $taxonomy_id = powertagging_get_taxonomy_id($instance['settings']['powertagging_id']);
+  $taxonomy_id = powertagging_get_taxonomy_id($instance['settings']['powertagging_id'], $instance['settings']['project_id']);
   $selected_tags = array();
 
   if (!$taxonomy_id) {
     drupal_set_message(t('The project selected in field "%name" is not connected with a vocabulary. Please select one in the connected <a href="!link">PowerTagging configuration area</a>.', array(
-      '!link' => url('admin/config/semantic-drupal/powertagging/' . $instance['settings']['powertagging_id']),
+      '!link' => url('admin/config/services/powertagging/' . $instance['settings']['powertagging_id']),
       '%name' => $element['#title']
     )), 'warning');
   }
@@ -393,7 +400,7 @@ function powertagging_add_field_js(array $element) {
 
   // Find out what Drupal languages are available for tagging.
   $powertagging_config = powertagging_config_load($instance['settings']['powertagging_id']);
-  $project_languages = $powertagging_config->config['projects'][$powertagging_config->project_id]['languages'];
+  $project_languages = $powertagging_config->config['projects'][$instance['settings']['project_id']]['languages'];
   $allowed_drupal_languages = array();
   foreach ($project_languages as $drupal_lang => $pp_lang) {
     if (!empty($pp_lang) && ($drupal_lang == LANGUAGE_NONE || $drupal_lang == language_default('language') || powertagging_translation_possible())) {
@@ -406,6 +413,7 @@ function powertagging_add_field_js(array $element) {
     'settings' => array(
       'field_name' => $instance['field_name'],
       'powertagging_id' => $instance['settings']['powertagging_id'],
+      'project_id' => $instance['settings']['project_id'],
       'taxonomy_id' => $taxonomy_id,
       'concepts_per_extraction' => $instance['settings']['concepts_per_extraction']['value'],
       'concepts_threshold' => $instance['settings']['concepts_threshold']['value'],
@@ -442,16 +450,11 @@ function powertagging_add_field_js(array $element) {
 function powertagging_field_list(array $instance, $type) {
   $allowed_widgets = array(
     'text' => array(
-      'text_textfield', // Drupal core
-      'text_textarea', // Drupal core
-      'text_textarea_with_summary', // Drupal core
+      'text_textfield',
+      'text_textarea',
+      'text_textarea_with_summary',
     ),
-    'file' => array(
-      'file_generic', // Drupal core
-    ),
-    'media' => array(
-      'media_generic', // Media module: https://www.drupal.org/project/media
-    ),
+    'file' => array('file_generic'),
   );
   $allowed_modules = array_keys($allowed_widgets);
 
@@ -526,6 +529,7 @@ function powertagging_field_list(array $instance, $type) {
           isset($selected_fields[$field_name]) &&
           $selected_fields[$field_name]
         ) {
+
           $result[] = array(
             'field_name' => $field_name,
             'module' => $field_data['widget']['module'],
@@ -568,44 +572,20 @@ function powertagging_ui_validate($element, &$form_state) {
 
     // Check if all the terms are still existent if there was no error till now.
     if (!$error) {
-      $powertagging_id = $form_state['values'][$element['#parents'][0]][$element['#parents'][1]]['field_instance']['settings']['powertagging_id'];
-      $powertagging_config = powertagging_config_load($powertagging_id);
-
       $terms = taxonomy_term_load_multiple($tids);
       // All of the terms are existent.
       if (count($terms) != count($tids)) {
         $error = TRUE;
       }
-      // Update data of existing terms if required.
-      else {
-        $existing_terms_by_uri = array();
-        foreach ($terms as $existing_term) {
-          if (!empty($existing_term->field_uri) && isset($existing_term->field_uri[LANGUAGE_NONE])) {
-            $existing_terms_by_uri[$existing_term->field_uri[LANGUAGE_NONE][0]['value']] = $existing_term;
-          }
-        }
-
-        if (!empty($existing_terms_by_uri)) {
-          $concepts_detail_data = powertagging_get_concept_details($powertagging_config, array_keys($existing_terms_by_uri));
-          foreach ($concepts_detail_data as $concept_detail_data) {
-            if (isset($existing_terms_by_uri[$concept_detail_data->uri])) {
-              $existing_term = $existing_terms_by_uri[$concept_detail_data->uri];
-              $term_data_changed = powertagging_update_term_concept_details($existing_term, $concept_detail_data);
-              // Only save the taxonomy term if any information has changed.
-              if ($term_data_changed) {
-                taxonomy_term_save($existing_term);
-              }
-            }
-          }
-        }
-      }
     }
 
     // If there is no error at all, add taxonomy terms for the new freeterms.
     if (!$error) {
-      $taxonomy_id = powertagging_get_taxonomy_id($powertagging_id);
+      $project_id = $form_state['values'][$element['#parents'][0]][$element['#parents'][1]]['field_instance']['settings']['project_id'];
+      $powertagging_id = $form_state['values'][$element['#parents'][0]][$element['#parents'][1]]['field_instance']['settings']['powertagging_id'];
+      $taxonomy_id = powertagging_get_taxonomy_id($powertagging_id, $project_id);
       if ($taxonomy_id !== FALSE) {
-        $new_term_ids = powertagging_add_new_tag($powertagging_config, $new_tags, $taxonomy_id, (isset($form_state['values']['language']) ? $form_state['values']['language'] : LANGUAGE_NONE), (module_exists('skos_importer') ? $powertagging_config->project_id : ''));
+        $new_term_ids = powertagging_add_new_tag($new_tags, $taxonomy_id, (isset($form_state['values']['language']) ? $form_state['values']['language'] : LANGUAGE_NONE), (module_exists('skos_importer') ? $project_id : ''));
       }
 
       form_set_value($element, implode(',', array_merge($tids, $new_term_ids)), $form_state);
@@ -620,8 +600,6 @@ function powertagging_ui_validate($element, &$form_state) {
 /**
  * Add new concepts or freeterms to the taxonomy of a PoolParty project.
  *
- * @param object $powertagging_config
- *   The current PowerTagging configuration.
  * @param array $new_tags
  *   Array of strings of new tag to add.
  * @param string $taxonomy_id
@@ -632,28 +610,13 @@ function powertagging_ui_validate($element, &$form_state) {
  * @return array
  *   Array of created term-ids.
  */
-function powertagging_add_new_tag($powertagging_config, array $new_tags, $taxonomy_id, $language, $skos_importer_id = '') {
+function powertagging_add_new_tag(array $new_tags, $taxonomy_id, $language, $skos_importer_id = '') {
   $tag_ids = array();
   $skos_importer_tags = array();
   $parent = powertagging_get_term_list_id($taxonomy_id);
 
   // Check if the term needs to be saved as a translation.
   $is_translation = ($language != LANGUAGE_NONE && $language != language_default('language') && powertagging_translation_possible());
-
-  // Get detail information of all concepts.
-  $new_concept_uris = array();
-  foreach ($new_tags as $new_tag) {
-    list($label, $uri) = explode('|', $new_tag);
-    if (!empty($uri)) {
-      $new_concept_uris[] = $uri;
-    }
-  }
-  $concept_details = powertagging_get_concept_details($powertagging_config, $new_concept_uris);
-  $concept_details_by_uri = array();
-  foreach ($concept_details as $concept_details_concept) {
-    $concept_details_by_uri[$concept_details_concept->uri] = $concept_details_concept;
-  }
-  $concept_details = $concept_details_by_uri;
 
   foreach ($new_tags as $new_tag) {
     list($label, $uri) = explode('|', $new_tag);
@@ -692,11 +655,6 @@ function powertagging_add_new_tag($powertagging_config, array $new_tags, $taxono
     else {
       $term->field_uri[LANGUAGE_NONE][0]['value'] = $uri;
       $term->parent = $parent['concepts'];
-
-      // Add the concept details to the term.
-      if (isset($concept_details[$uri])) {
-        powertagging_update_term_concept_details($term, $concept_details[$uri]);
-      }
     }
 
     // Save free terms and concepts in the default language normally.
@@ -755,23 +713,17 @@ function powertagging_field_presave($entity_type, $entity, $field, $instance, $l
     if (isset($items[0]) && is_string($items[0]) && !empty($items[0])) {
       $items_string = $items[0];
       // Remove the language if one gets added automatically.
-      if (!empty($items_string) && count(explode(',', $items_string)) == 1 && !is_numeric($items_string)) {
-        if (isset($items[1]) && is_string($items[1]) && !empty($items[1])) {
-          $items_string = $items[1];
-        }
-        else {
-          $items_string = '';
-        }
+      if (!empty($items_string) && count(explode(',', $items_string)) == 1 && !is_numeric($items_string) && isset($items[1]) && is_string($items[1]) && !empty($items[1])) {
+        $items_string = $items[1];
       }
 
       // Make savable values out of the value-string.
-      if (!empty($items_string)) {
-        foreach (explode(',', $items_string) as $value) {
-          if (is_numeric($value)) {
-            $values_array[] = array('tid' => $value);
-          }
+      foreach (explode(',', $items_string) as $value) {
+        if (is_numeric($value)) {
+          $values_array[] = array('tid' => $value);
         }
       }
+
       $items = $values_array;
     }
   }
@@ -809,18 +761,15 @@ function powertagging_extract($content = NULL, array $files = NULL, array $setti
       $settings = array();
     }
   }
-  $powertagging_config = (isset($settings['powertagging_config']) ? $settings['powertagging_config'] : powertagging_config_load($settings['powertagging_id']));
 
   // Remove line breaks and HTML tags from the content and convert HTML
   // characters to normal ones.
   $content = html_entity_decode(str_replace(array("\r", "\n", "\t"), "", strip_tags($content)), ENT_COMPAT, 'UTF-8');
-  $corpus_id = isset($powertagging_config->config['projects'][$powertagging_config->project_id]['corpus_id']) ? $powertagging_config->config['projects'][$powertagging_config->project_id]['corpus_id'] : '';
 
   $param = array(
-    'projectId' => $powertagging_config->project_id,
+    'projectId' => $settings['project_id'],
     'numberOfConcepts' => (int) $settings['concepts_per_extraction'],
     'numberOfTerms' => (int) $settings['freeterms_per_extraction'],
-    'corpusScoring' => $corpus_id,
   );
   $tags = array(
     'content' => array(
@@ -839,7 +788,8 @@ function powertagging_extract($content = NULL, array $files = NULL, array $setti
   );
 
   // Find out what language to extract.
-  $project_languages = $powertagging_config->config['projects'][$powertagging_config->project_id]['languages'];
+  $powertagging_config = powertagging_config_load($settings['powertagging_id']);
+  $project_languages = $powertagging_config->config['projects'][$settings['project_id']]['languages'];
 
   // Language mapping for the content languages exists.
   if (isset($project_languages[$settings['entity_language']]) && !empty($project_languages[$settings['entity_language']])) {
@@ -848,7 +798,7 @@ function powertagging_extract($content = NULL, array $files = NULL, array $setti
     // Extract the concepts and free terms.
     if (isset($settings['taxonomy_id']) && $settings['taxonomy_id'] > 0) {
       if (!empty($content)) {
-        $extraction = $pp_api->extractConcepts($content, $project_languages[$settings['entity_language']], $param, 'text');
+        $extraction = $pp_api->extractConcepts($content, $project_languages[$settings['entity_language']], $param);
         $extracted_tags = powertagging_extract_tags($extraction, $settings);
         $tags['content'] = $extracted_tags;
         $suggestion['concepts'] = array_merge($suggestion['concepts'], $extracted_tags['concepts']);
@@ -861,7 +811,7 @@ function powertagging_extract($content = NULL, array $files = NULL, array $setti
           $file = file_load($file_id);
           // Use only existing files for tagging.
           if (file_exists($file->uri)) {
-            $extraction = $pp_api->extractConcepts($file, $project_languages[$settings['entity_language']], $param, 'file');
+            $extraction = $pp_api->extractConcepts($file, $project_languages[$settings['entity_language']], $param);
             $extracted_tags = powertagging_extract_tags($extraction, $settings);
             $tags['files'][$file->filename] = $extracted_tags;
             $suggestion['concepts'] = array_merge($suggestion['concepts'], $extracted_tags['concepts']);
@@ -1089,27 +1039,29 @@ function powertagging_add_tid_to_concept(array &$concepts, $taxonomy_id, $type, 
 }
 
 /**
- * Get the taxonomy id (vid) from the project of a PowerTagging configuration.
+ * Get the taxonomy id (vid) from the project id.
  *
  * @param string $powertagging_id
  *   The ID of the powertagging configuration.
+ * @param string $project_id
+ *   The ID of the PoolParty project.
  *
  * @return int
  *   The vid of the taxonomy.
  */
-function powertagging_get_taxonomy_id($powertagging_id) {
+function powertagging_get_taxonomy_id($powertagging_id, $project_id) {
   /*if (module_exists('skos_importer')) {
     $vid = db_select('skos_importer_terms', 's')
       ->fields('s', array('vid'))
-      ->condition('s.importer_id', $powertagging_config->project_id)
+      ->condition('s.importer_id', $project_id)
       ->range(0, 1)
       ->execute()
       ->fetchField();
   }
   else {*/
     $powertagging_config = powertagging_config_load($powertagging_id);
-    if (isset($powertagging_config->config['projects'][$powertagging_config->project_id]) && isset($powertagging_config->config['projects'][$powertagging_config->project_id]['taxonomy_id'])) {
-      $vid = $powertagging_config->config['projects'][$powertagging_config->project_id]['taxonomy_id'];
+    if (isset($powertagging_config->config['projects'][$project_id]['taxonomy_id'])) {
+      $vid = $powertagging_config->config['projects'][$project_id]['taxonomy_id'];
     }
     else {
       $vid = 0;
@@ -1206,20 +1158,13 @@ function powertagging_field_formatter_view($entity_type, $entity, $field, $insta
         if (is_null($markup)) {
           $tids = array();
           foreach ($items as $tid) {
-            // Live display.
-            if (is_array($tid)) {
-              $tids[] = $tid['tid'];
-            }
-            // Preview mode.
-            elseif (is_numeric($tid)) {
-              $tids[] = $tid;
-            }
+            $tids[] = $tid['tid'];
           }
           $terms = taxonomy_term_load_multiple($tids);
 
           /*$pp_config = powertagging_config_load($instance['settings']['powertagging_id'])->connection->getConfig();
           foreach ($pp_config['projects'] as $project) {
-            if ($project->id == $pp_config->project_id) {
+            if ($project->id == $instance['settings']['project_id']) {
               $project_sparql_url = $project->sparql_endpoint_url;
             }
           }
@@ -1228,7 +1173,7 @@ function powertagging_field_formatter_view($entity_type, $entity, $field, $insta
           if (isset($project_sparql_url)) {
             $entity_language = ($entity->language == LANGUAGE_NONE ? language_default('language') : $entity->language);
             foreach (smart_glossary_config_load() as $glossary) {
-              if ($glossary->connection->getUrl() == $project_sparql_url) {
+              if ($glossary->connection->getURL() == $project_sparql_url) {
                 foreach ($glossary->language_mapping as $lang_key => $language_data) {
                   if (empty($language_data['page_language']) || $language_data['page_language'] == $entity_language) {
                     $glossary_path = $glossary->base_path . '/' . $lang_key;
@@ -1242,19 +1187,12 @@ function powertagging_field_formatter_view($entity_type, $entity, $field, $insta
             }
           }*/
 
-          $powertagging_config = powertagging_config_load($instance['settings']['powertagging_id']);
-          $tags_to_theme = array();
           foreach ($terms as $term) {
-            $tags_to_theme[] = array(
-              'uri' => (!empty($term->field_uri) ? $term->field_uri[key($term->field_uri)][0]['value'] : ''),
-              'html' => field_filter_xss($term->name),
-            );
-            //$elements[] = l(field_filter_xss($term->name), 'taxonomy/term/' . $term->tid);
+            $elements[] = l(field_filter_xss($term->name), 'taxonomy/term/' . $term->tid);
             //$elements[] = (!empty($glossary_path) && !empty($term->field_uri) ? l(field_filter_xss($term->name), $glossary_path . '/' . $term->name, array('query' => array('uri' => $term->field_uri[array_shift(array_keys($term->field_uri))][0]['value']))) : $term->name);
           }
-          $markup = semantic_connector_theme_concepts($tags_to_theme, $powertagging_config->connection->getId(), $powertagging_config->project_id);
 
-          // $markup = implode(', ', $elements);
+          $markup = implode(', ', $elements);
         }
       }
       break;
@@ -1266,63 +1204,6 @@ function powertagging_field_formatter_view($entity_type, $entity, $field, $insta
   else {
     return FALSE;
   }
-}
-
-/**
- * Get the matching concepts for GET-parameter "term".
- *
- * @param object $powertagging_config
- *   The PowerTagging configuration.
- * @param string $language
- *   The iso-code of the language you want your suggestions in.
- *
- * @return string
- *   A list of concepts in JSON format.
- */
-function powertagging_autocomplete_tags($powertagging_config, $language) {
-  $string = check_plain($_GET['term']);
-  $terms = array();
-
-  if (!empty($string)) {
-    $project_languages = $powertagging_config->config['projects'][$powertagging_config->project_id]['languages'];
-    if (isset($project_languages[$language]) && !empty($project_languages[$language])) {
-      $pp_api = powertagging_getPoolPartyApi($powertagging_config->powertagging_id);
-      $suggested_concepts = $pp_api->suggest($string, $project_languages[$language], $powertagging_config->project_id);
-      if (!empty($suggested_concepts)) {
-        // Add the Drupal taxonomy ID if it needs to be added.
-        if (!property_exists($suggested_concepts[0], 'tid')) {
-          powertagging_add_tid_to_concept($suggested_concepts, (int) $powertagging_config->config['projects'][$powertagging_config->project_id]['taxonomy_id'], 'concepts', $project_languages[$language]);
-        }
-        foreach ($suggested_concepts as $concept) {
-          $terms[] = array(
-            'tid' => $concept->tid,
-            'uri' => $concept->uri,
-            'name' => $concept->prefLabel,
-            'value' => $concept->prefLabel,
-            'type' => 'concept',
-          );
-        }
-      }
-    }
-  }
-
-  // Sort the terms: concepts on top and free terms to the bottom.
-  if (!empty($terms)) {
-    usort($terms, 'powertagging_autocomplete_tags_sort');
-  }
-
-  drupal_json_output($terms);
-}
-
-/**
- * Callback function to sort the autocomplete tags.
- */
-function powertagging_autocomplete_tags_sort($a, $b) {
-  if ((empty($a['uri']) && empty($b['uri'])) || (!empty($a['uri']) && !empty($b['uri']))) {
-    return strcasecmp($a['name'], $b['name']);
-  }
-
-  return empty($a['uri']) ? 1 : -1;
 }
 
 /**

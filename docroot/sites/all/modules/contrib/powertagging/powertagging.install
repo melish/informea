@@ -15,28 +15,20 @@ function powertagging_schema() {
       'powertagging_id' => array(
         'description' => 'Primary Key: Unique PowerTagging ID.',
         'type' => 'serial',
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'title' => array(
-        'description' => 'Title of the PowerTagging configuration.',
+        'description' => 'Title of the PowerTagging configuration',
         'type' => 'varchar',
         'length' => 255,
         'not null' => FALSE,
       ),
       'connection_id' => array(
-        'description' => 'ID of the Semantic Connector Connection.',
+        'description' => 'ID of the Semantic Module Connector Connection',
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => TRUE,
         'default' => 0,
-      ),
-      'project_id' => array(
-        'description' => 'The ID of the PoolParty project.',
-        'type' => 'varchar',
-        'length' => 255,
-        'not null' => TRUE,
-        'default' => '',
       ),
       'config' => array(
         'description' => 'Additional configuration of the configuration set.',
@@ -47,29 +39,9 @@ function powertagging_schema() {
       ),
     ),
     'primary key' => array('powertagging_id'),
-    'indexes' => array(
-      'project_id' => array('project_id'),
-    ),
   );
 
   return $schema;
-}
-
-/**
- * Implements hook_update_N().
- *
- * Adds new column for the project ID.
- */
-function powertagging_update_7001() {
-  $spec = array(
-    'description' => 'The ID of the PoolParty project.',
-    'type' => 'varchar',
-    'length' => 255,
-    'not null' => TRUE,
-    'default' => '',
-  );
-  db_add_field('powertagging', 'project_id', $spec);
-  db_add_index('powertagging', 'project_id',  array('project_id'));
 }
 
 /**

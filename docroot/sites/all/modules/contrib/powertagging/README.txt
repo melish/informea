@@ -30,10 +30,8 @@ information.
 
 -- USAGE --
 
-- Configure a PowerTagging configuration at admin/config/semantic-drupal/powertagging.
+- Configure a PowerTagging configuration at admin/config/services/powertagging.
 - Add the now available "PowerTagging Tags" field to all the entity bundles you
 want. Currently supported entity types are nodes, users and taxonomy terms.
 - After completely configuring the new field, tagging is available inside the
 edit-area of entities of your configured bundle.
-- For batch operations go to the "Batch jobs" tab in the configuration of a
-specific PowerTagging configuration. (admin/config/semantic-drupal/powertagging/XXX)

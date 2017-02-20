@@ -40,11 +40,7 @@ Drupal.behaviors.powertagging_field = {
             break;
 
           case "file":
-          case "media":
-            var files = collect_content_file(field.field_name, field.widget);
-            if (files.length > 0) {
-              data.files = data.files.concat(collect_content_file(field.field_name, field.widget));
-            }
+            data.files = data.files.concat(collect_content_file(field.field_name, field.widget));
             break;
         }
       });
@@ -97,10 +93,9 @@ Drupal.behaviors.powertagging_field = {
       var field_id = "#edit-" + field.replace(/_/g, "-");
       switch (widget) {
         case "file_generic":
-        case "media_generic":
           var files = [];
-          $(field_id + " input[type=hidden]").each(function() {
-            if ($(this).attr("name").indexOf("[fid]") > 0 && $(this).val() > 0) {
+          $(field_id + " table input[type=hidden]").each(function() {
+            if ($(this).attr("name").indexOf("[fid]") > 0) {
               files.push($(this).val());
             }
           });
@@ -136,7 +131,7 @@ Drupal.behaviors.powertagging_field = {
               html_tags.push(renderTag(tag));
             });
 
-            $(field_id + " .powertagging-extracted-tags").append('<div class="powertagging-extracted-tags-area"><div class="powertagging-extraction-label">' + Drupal.t("Form fields") + "</div><ul><li>" + html_tags.join("</li><li>") + "</li></ul></div>");
+            $(field_id + " #powertagging-extracted-tags").append('<div id="powertagging-extracted-tags-area-content" class="powertagging-extracted-tags-area"><div class="powertagging-extraction-label">' + Drupal.t("Form fields") + "</div><ul><li>" + html_tags.join("</li><li>") + "</li></ul></div>");
             show_extracted_tags(field_id);
           }
         }
@@ -152,7 +147,7 @@ Drupal.behaviors.powertagging_field = {
                 html_tags.push(renderTag(tag));
               });
 
-              $(field_id + " .powertagging-extracted-tags").append('<div class="powertagging-extracted-tags-area"><div class="powertagging-extraction-label">' + Drupal.t('Uploaded file "%file"', {'%file': file_name}) + "</div><ul><li>" + html_tags.join("</li><li>") + "</li></ul></div>");
+              $(field_id + " #powertagging-extracted-tags").append('<div class="powertagging-extracted-tags-area"><div class="powertagging-extraction-label">' + Drupal.t('Uploaded file "%file"', {'%file': file_name}) + "</div><ul><li>" + html_tags.join("</li><li>") + "</li></ul></div>");
               show_extracted_tags(field_id);
             }
           }
@@ -188,12 +183,12 @@ Drupal.behaviors.powertagging_field = {
         tags.messages.forEach(function(message){
           messages_html += '<div class="messages ' + message.type + '">' + message.message + '</div>';
         });
-        $(field_id + " .powertagging-extracted-tags").html(messages_html);
+        $(field_id + " #powertagging-extracted-tags").html(messages_html);
         show_extracted_tags(field_id);
       }
 
       // Add the click handlers to the tag-elements.
-      $(field_id + " .powertagging-extracted-tags .powertagging-tag").click(function() {
+      $(field_id + " #powertagging-extracted-tags .powertagging-tag").click(function() {
         if ($(this).hasClass('disabled')) {
           removeTagFromResult(field_id, tagElementToObject($(this)));
         }
@@ -201,13 +196,13 @@ Drupal.behaviors.powertagging_field = {
           addTagToResult(field_id, tagElementToObject($(this)));
         }
       });
-      $(field_id + " .powertagging-tag-result .powertagging-tag").click(function() {
+      $(field_id + " #powertagging-tag-result .powertagging-tag").click(function() {
         removeTagFromResult(field_id, tagElementToObject($(this)));
       });
 
       // Manually add an existing concept or freeterm to the result.
-      $(field_id + " .powertagging-tag-result").closest(".field-type-powertagging").find("input.powertagging_autocomplete_tags").autocomplete({
-        source: Drupal.settings.basePath + "powertagging/autocomplete-tags/" + settings.settings.powertagging_id + '/' + settings.settings.entity_language,
+      $(field_id + " #powertagging-tag-result").closest(".field-type-powertagging").find("input.powertagging_autocomplete_tags").autocomplete({
+        source: Drupal.settings.basePath + "powertagging/autocomplete_tags/" + settings.settings.powertagging_id + '/' + settings.settings.project_id + '/' + settings.settings.entity_language,
         minLength: 2,
         select: function( event, ui ) {
           event.preventDefault();
@@ -246,8 +241,8 @@ Drupal.behaviors.powertagging_field = {
             check_entity_language(html_field_id, field_settings);
             
             // Update the the autocomplete path.
-            $(html_field_id + " .powertagging-tag-result").closest(".field-type-powertagging").find("input.powertagging_autocomplete_tags").autocomplete(
-              'option', 'source', Drupal.settings.basePath + "powertagging/autocomplete-tags/" + settings.settings.powertagging_id + '/' + settings.settings.entity_language
+            $(html_field_id + " #powertagging-tag-result").closest(".field-type-powertagging").find("input.powertagging_autocomplete_tags").autocomplete(
+              'option', 'source', Drupal.settings.basePath + "powertagging/autocomplete_tags/" + settings.settings.powertagging_id + '/' + settings.settings.project_id + '/' + settings.settings.entity_language
             );
           });
         });
@@ -278,24 +273,24 @@ Drupal.behaviors.powertagging_field = {
 
     function addTagToResult(field_id, tag) {
       // Only add tags, that are not already inside the results area.
-      if ((tag.tid > 0 && $(field_id + ' .powertagging-tag-result .powertagging-tag[data-tid="' + tag.tid + '"]').length == 0) ||
-          (tag.tid == 0 && ($(field_id + ' .powertagging-tag-result .powertagging-tag[data-label="' + tag.label + '"]').length == 0 || tag.uri != ""))) {
+      if ((tag.tid > 0 && $(field_id + ' #powertagging-tag-result .powertagging-tag[data-tid="' + tag.tid + '"]').length == 0) ||
+          (tag.tid == 0 && ($(field_id + ' #powertagging-tag-result .powertagging-tag[data-label="' + tag.label + '"]').length == 0 || tag.uri != ""))) {
 
         // Add a new list if this is the first tag to add.
-        if ($(field_id + " .powertagging-tag-result ul").length == 0) {
-          $(field_id + " .powertagging-tag-result").append("<ul></ul>");
+        if ($(field_id + " #powertagging-tag-result ul").length == 0) {
+          $(field_id + " #powertagging-tag-result").append("<ul></ul>");
         }
 
         // Remove freeterms with the same string for concepts.
         if (tag.type == 'concept') {
-          $(field_id + ' .powertagging-tag-result .powertagging-tag[data-label="' + tag.label + '"]').parent("li").remove();
+          $(field_id + ' #powertagging-tag-result .powertagging-tag[data-label="' + tag.label + '"]').parent("li").remove();
         }
 
         // Add a new list item to the result.
-        $(field_id + " .powertagging-tag-result ul").append("<li>" + renderTag(tag) + "</li>");
+        $(field_id + " #powertagging-tag-result ul").append("<li>" + renderTag(tag) + "</li>");
 
         // Add a click handler to the new result tag.
-        $(field_id + " .powertagging-tag-result li:last-child .powertagging-tag").click(function() {
+        $(field_id + " #powertagging-tag-result li:last-child .powertagging-tag").click(function() {
           removeTagFromResult(field_id, tagElementToObject($(this)));
         });
 
@@ -305,10 +300,10 @@ Drupal.behaviors.powertagging_field = {
 
       // Disable already selected tags in the extraction area.
       if (tag.tid > 0) {
-        $(field_id + ' .powertagging-extracted-tags .powertagging-tag[data-tid="' + tag.tid + '"]').addClass("disabled");
+        $(field_id + ' #powertagging-extracted-tags .powertagging-tag[data-tid="' + tag.tid + '"]').addClass("disabled");
       }
       else {
-        $(field_id + ' .powertagging-extracted-tags .powertagging-tag[data-label="' + tag.label + '"]').addClass("disabled");
+        $(field_id + ' #powertagging-extracted-tags .powertagging-tag[data-label="' + tag.label + '"]').addClass("disabled");
       }
     }
 
@@ -318,17 +313,17 @@ Drupal.behaviors.powertagging_field = {
 
       // Enable tags in the extraction area again and remove the list item.
       if (tag.tid > 0) {
-        $(field_id + ' .powertagging-tag-result .powertagging-tag[data-tid="' + tag.tid + '"]').parent("li").remove();
-        $(field_id + ' .powertagging-extracted-tags .powertagging-tag[data-tid="' + tag.tid + '"]').removeClass("disabled");
+        $(field_id + ' #powertagging-tag-result .powertagging-tag[data-tid="' + tag.tid + '"]').parent("li").remove();
+        $(field_id + ' #powertagging-extracted-tags .powertagging-tag[data-tid="' + tag.tid + '"]').removeClass("disabled");
       }
       else {
-        $(field_id + ' .powertagging-tag-result .powertagging-tag[data-label="' + tag.label + '"]').parent("li").remove();
-        $(field_id + ' .powertagging-extracted-tags .powertagging-tag[data-label="' + tag.label + '"]').removeClass("disabled");
+        $(field_id + ' #powertagging-tag-result .powertagging-tag[data-label="' + tag.label + '"]').parent("li").remove();
+        $(field_id + ' #powertagging-extracted-tags .powertagging-tag[data-label="' + tag.label + '"]').removeClass("disabled");
       }
 
       // No empty ULs are allowed, remove them.
-      if ($(field_id + " .powertagging-tag-result li").length == 0) {
-        $(field_id + " .powertagging-tag-result ul").remove();
+      if ($(field_id + " #powertagging-tag-result li").length == 0) {
+        $(field_id + " #powertagging-tag-result ul").remove();
       }
 
       // Also remove the tag from the selected tags in the Drupal settings.
@@ -348,7 +343,7 @@ Drupal.behaviors.powertagging_field = {
     function updateFieldValue(field_id) {
       var tags_to_save = [];
       // Use tid for existing terms and label for new free terms.
-      $(field_id + " .powertagging-tag-result .powertagging-tag").each(function() {
+      $(field_id + " #powertagging-tag-result .powertagging-tag").each(function() {
         if ($(this).attr("data-tid") > 0) {
           tags_to_save.push($(this).attr("data-tid"));
         }
@@ -357,7 +352,7 @@ Drupal.behaviors.powertagging_field = {
         }
       });
 
-      $(field_id + " .powertagging-tag-result").closest(".field-type-powertagging").find("input.powertagging_tag_string").val(tags_to_save.join(','));
+      $(field_id + " #powertagging-tag-result").closest(".field-type-powertagging").find("input.powertagging_tag_string").val(tags_to_save.join(','));
     }
 
     /**
@@ -388,9 +383,9 @@ Drupal.behaviors.powertagging_field = {
      */
     function loading_extracted_tags(field_id) {
       // Clear the extracted tags area
-      $(field_id + " .powertagging-extracted-tags").slideUp().html("");
-      $(field_id + " .powertagging-extracted-tags").prev().slideDown();
-      $(field_id + " .powertagging-extracted-tags").parent().slideDown();
+      $(field_id + " #powertagging-extracted-tags").slideUp().html("");
+      $(field_id + " #powertagging-extracted-tags").prev().slideDown();
+      $(field_id + " #powertagging-extracted-tags").parent().slideDown();
     }
 
     /**
@@ -400,9 +395,9 @@ Drupal.behaviors.powertagging_field = {
      *   The ID of the DOM element of the powertagging field
      */
     function show_extracted_tags(field_id) {
-      $(field_id + " .powertagging-extracted-tags").show();
-      $(field_id + " .powertagging-extracted-tags").prev().slideUp();
-      $(field_id + " .powertagging-extracted-tags").slideDown();
+      $(field_id + " #powertagging-extracted-tags").show();
+      $(field_id + " #powertagging-extracted-tags").prev().slideUp();
+      $(field_id + " #powertagging-extracted-tags").slideDown();
     }
 
     /**
@@ -412,9 +407,9 @@ Drupal.behaviors.powertagging_field = {
      *   The ID of the DOM element of the powertagging field
      */
     function hide_extracted_tags(field_id) {
-      $(field_id + " .powertagging-extracted-tags").parent().hide();
-      $(field_id + " .powertagging-extracted-tags").prev().hide();
-      $(field_id + " .powertagging-extracted-tags").hide();
+      $(field_id + " #powertagging-extracted-tags").parent().hide();
+      $(field_id + " #powertagging-extracted-tags").prev().hide();
+      $(field_id + " #powertagging-extracted-tags").hide();
     }
 
   }
