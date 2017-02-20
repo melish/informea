@@ -1,0 +1,13 @@
+diff --git a/climate_tagger.info b/climate_tagger.info
+index cbd18edc..6661b8f4 100644
+--- a/climate_tagger.info
++++ b/climate_tagger.info
+@@ -5,7 +5,7 @@ core = 7.x
+ 
+ configure = admin/config/services/climate-tagger
+ 
+-dependencies[] = powertagging (>=7.x-1.0-rc5)
++dependencies[] = powertagging (>=7.x-1.0-rc5, <7.x-2.x)
+ 
+ ; Information added by Drupal.org packaging script on 2016-08-16
+ version = "7.x-1.0-rc8"
