@@ -679,7 +679,7 @@ function thesaurus_default_page_manager_pages() {
     'panels_breadcrumbs_state' => 1,
     'panels_breadcrumbs_titles' => 'Glossary
 %taxonomy_term:name_field
-Legislations',
+Legislation',
     'panels_breadcrumbs_paths' => '/terms
 %taxonomy_term:url
 <none>',
