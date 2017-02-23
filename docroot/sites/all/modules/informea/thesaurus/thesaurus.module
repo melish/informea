@@ -273,7 +273,7 @@ function thesaurus_menu_local_tasks_alter(&$data, $router_item, $root_path) {
             'role' => 'presentation',
           ),
           'legislations' => array(
-            'data' => l(t('Legislations') . ' <span class="badge">' . $legislationsCount . '</span>', 'taxonomy/term/' . $term->tid . '/legislations', ['html' => true]),
+            'data' => l(t('Legislation') . ' <span class="badge">' . $legislationsCount . '</span>', 'taxonomy/term/' . $term->tid . '/legislations', ['html' => true]),
             'role' => 'presentation',
           ),
           'court-decisions' => array(
