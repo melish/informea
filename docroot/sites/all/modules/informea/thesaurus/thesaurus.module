@@ -758,10 +758,16 @@ function thesaurus_taxonomy_term_insert($term) {
 }
 
 function thesaurus_cronapi() {
-  return array('thesaurus_vocbench_export_ontologies' => array(
-    'description' => 'Export VocBench ontologies into RDF & Excel',
-    'rule' => '*/30 * * * *',
-  ));
+  return array(
+    'thesaurus_vocbench_export_ontologies' => array(
+      'description' => 'Export VocBench ontologies into RDF & Excel',
+      'rule' => '*/30 * * * *',
+    ),
+    'thesaurus_update_path_aliases' => array(
+      'description' => 'Update path aliases for Thesaurus terms',
+      'rule' => '*/30 * * * *',
+    ),
+  );
 }
 
 function thesaurus_vocbench_export_ontologies() {
@@ -788,3 +794,6 @@ function thesaurus_vocbench_export_ontologies() {
   }
 }
 
+function thesaurus_update_path_aliases() {
+  Thesaurus::updatePathAliases();
+}
