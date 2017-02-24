@@ -76,10 +76,6 @@ class Thesaurus {
               'language' => $langKey,
             ]);
 
-            if (function_exists('drush_log')) {
-              drush_log("Redirect {$langKey}/{$path['alias']} to {$langKey}/{$alias}", "ok");
-            }
-
             $path['alias'] = $alias;
             path_save($path);
 
