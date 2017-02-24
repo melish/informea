@@ -67,7 +67,7 @@ class Thesaurus {
             path_save($path);
 
             if (function_exists('drush_log')) {
-              drush_log("New alias for term '{$term->name}': {$alias}", "ok");
+              drush_log("New alias for term '{$term->name}': {$langKey}/{$alias}", "ok");
             }
           }
           elseif ($path['alias'] != $alias) {
@@ -87,7 +87,7 @@ class Thesaurus {
 
             if (function_exists('drush_log')) {
               drush_log("Redirect {$langKey}/{$path['alias']} to {$langKey}/{$alias}", "ok");
-              drush_log("New alias for term '{$term->name}': {$alias}", "ok");
+              drush_log("New alias for term '{$term->name}': {$langKey}/{$alias}", "ok");
             }
           }
           
