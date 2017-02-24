@@ -65,6 +65,10 @@ class Thesaurus {
               'language' => $langKey,
             ];
             path_save($path);
+
+            if (function_exists('drush_log')) {
+              drush_log("New alias for term '{$term->name}': {$alias}", "ok");
+            }
           }
           elseif ($path['alias'] != $alias) {
             // The path alias exists, but it is incorrect.
@@ -80,10 +84,16 @@ class Thesaurus {
             path_save($path);
 
             redirect_save($redirect);
+
+            if (function_exists('drush_log')) {
+              drush_log("Redirect {$langKey}/{$path['alias']} to {$langKey}/{$alias}", "ok");
+              drush_log("New alias for term '{$term->name}': {$alias}", "ok");
+            }
           }
-        }
-      }
-    }
+          
+        } // end languages foreach
+      } // end sections foreach
+    } // end terms foreach
   }
 
 }

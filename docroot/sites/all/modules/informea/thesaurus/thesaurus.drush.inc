@@ -21,9 +21,9 @@ function thesaurus_drush_command() {
     'description' => 'Migrate terms from vocbench and fix field_informea_tags.',
   );
 
-  $items['informea-thesaurus-correct-path-alias'] = array(
-    'description' => 'Updates path alias for terms in Thesaurus Informea vocabulary.',
-    'aliases' => array('imea-tcpa')
+  $items['informea-thesaurus-update-path-aliases'] = array(
+    'description' => 'Updates path aliases for terms in Thesaurus Informea vocabulary.',
+    'aliases' => array('thesaurus-aliases')
   );
 
   return $items;
@@ -134,40 +134,6 @@ VALUES ('node', :bundle, '0', :entity_id, :entity_id, 'und', IFNULL((SELECT MAX(
   }
 }
 
-function drush_thesaurus_informea_thesaurus_correct_path_alias() {
-  $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
-  $terms = taxonomy_get_tree($voc->vid);
-  $count = 0;
-  foreach ($terms as $term) {
-    $term = taxonomy_term_load($term->tid);
-    $url = $term->field_taxonomy_term_uri[LANGUAGE_NONE][0]['url'];
-    $path_alias = str_replace('http://www.informea.org/', '', $url);
-    $old_alias = reset(db_select('url_alias')
-      ->fields(NULL, array('alias'))
-      ->condition('source', 'taxonomy/term/' . $term->tid)
-      ->execute()->fetchCol());
-    if (!empty($path_alias) && $old_alias != $path_alias) {
-      // We need to redirect the old alias to the new one
-      $redirect = new stdClass();
-      redirect_object_prepare(
-        $redirect,
-        array(
-          'source' => $old_alias,
-          'source_options' => array(),
-          'redirect' => $path_alias,
-          'redirect_options' => array(),
-          'language' => LANGUAGE_NONE,
-        )
-      );
-      redirect_save($redirect);
-
-      db_update('url_alias')
-        ->fields(array('alias' => $path_alias))
-        ->condition('source', 'taxonomy/term/' . $term->tid)
-        ->execute();
-      drush_log("Path alias changed for term: \"{$term->name}\". OLD: {$old_alias} | NEW: {$path_alias}", 'ok');
-      $count ++;
-    }
-  }
-  drush_log(dt('Succesfully updated path alias for @n terms.', array('@n' => $count)), 'ok');
+function drush_thesaurus_informea_thesaurus_update_path_aliases() {
+  Thesaurus::updatePathAliases();
 }
