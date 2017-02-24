@@ -28,3 +28,4 @@ features[views_view][] = taxonomy_term_related_publications
 files[] = export/rdf.inc
 files[] = export/xls.inc
 files[] = thesaurus.related.inc
+files[] = includes/Glossary.php

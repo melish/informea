@@ -20,26 +20,6 @@ if(!function_exists('slugify')) {
   }
 }
 
-function thesaurus_get_section($path = null) {
-  if (empty($path)) {
-    $path = current_path();
-  }
-  if (preg_match('/.*(taxonomy\/term\/\d*|terms\/.*)\/*(.*)/', $path, $matches)) {
-    $allowed_sections = [
-      'default', //treaties
-      'bilateral-treaties',
-      'court-decisions',
-      'legislations',
-      'publications',
-    ];
-    $section = end($matches) ?: 'default';
-    if (in_array($section, $allowed_sections)) {
-      return $section;
-    }
-  }
-  return FALSE;
-}
-
 function thesaurus_menu() {
   return array(
     'export/thesaurus.rdf' => array(
@@ -255,7 +235,7 @@ function thesaurus_menu_local_tasks_alter(&$data, $router_item, $root_path) {
     /** @var stdClass $term */
     if ($term = taxonomy_term_load(arg(2))) {
       if ($term->vid == $voc->vid) {
-        $section = thesaurus_get_section();
+        $section = Glossary::getSection();
 
         $treatiesCount = _thesaurus_get_related_content_count($term, 'treaty');
         $bilateralTreatiesCount = _thesaurus_get_related_content_count($term, 'bilateral-treaties');
