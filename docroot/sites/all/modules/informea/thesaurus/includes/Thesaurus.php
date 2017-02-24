@@ -1,6 +1,6 @@
 <?php
 
-class Glossary {
+class Thesaurus {
 
   public static $sections = [
     'default', //treaties

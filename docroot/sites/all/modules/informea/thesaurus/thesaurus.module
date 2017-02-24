@@ -235,7 +235,7 @@ function thesaurus_menu_local_tasks_alter(&$data, $router_item, $root_path) {
     /** @var stdClass $term */
     if ($term = taxonomy_term_load(arg(2))) {
       if ($term->vid == $voc->vid) {
-        $section = Glossary::getSection();
+        $section = Thesaurus::getSection();
 
         $treatiesCount = _thesaurus_get_related_content_count($term, 'treaty');
         $bilateralTreatiesCount = _thesaurus_get_related_content_count($term, 'bilateral-treaties');
