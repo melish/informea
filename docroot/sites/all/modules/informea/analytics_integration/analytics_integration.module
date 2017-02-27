@@ -4,6 +4,11 @@
  * Code for the Analytics integration feature.
  */
 
+define('ANALYTICS_INTEGRATION_FAOLEX', 'UA-16957842-1');
+define('ANALYTICS_INTEGRATION_FAOLEX2', 'UA-16957552-1');
+define('ANALYTICS_INTEGRATION_ECOLEX', 'UA-58379026-1');
+define('ANALYTICS_INTEGRATION_UNEP', 'UA-59519586-13');
+
 include_once 'analytics_integration.features.inc';
 
 /**

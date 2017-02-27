@@ -259,7 +259,7 @@ function country_deliverable_node_view($node, $view_mode, $langcode) {
     if (module_exists('analytics_integration') && $node_w->field_data_source->value()[0]->tid == 2767 /* ECOLEX-ELIS */) {
       $url = 'http://www.ecolex.org/court_decision/details/';
       $url .= $node_w->field_original_id->value();
-      analytics_integration_google_analytics_send_hit('UA-58379026-1', $url, 'ecolex', $node_w->label());
+      analytics_integration_google_analytics_send_hit(ANALYTICS_INTEGRATION_ECOLEX, $url, 'ecolex', $node_w->label());
     }
   }
   if ($node->type == 'legislation' && $view_mode == 'full') {
@@ -268,7 +268,21 @@ function country_deliverable_node_view($node, $view_mode, $langcode) {
     if (module_exists('analytics_integration') && $node_w->field_original_id->value()) {
       $url = 'http://www.ecolex.org/legislation/details/';
       $url .= $node_w->field_original_id->value();
-      analytics_integration_google_analytics_send_hit('UA-58379026-1', $url, 'ecolex', $node_w->label());
+      analytics_integration_google_analytics_send_hit(ANALYTICS_INTEGRATION_ECOLEX, $url, 'ecolex', $node_w->label());
+
+    }
+    if (module_exists('analytics_integration') && $node_w->field_faolex_url->value()) {
+      $link = $node_w->field_faolex_url->value();
+      analytics_integration_google_analytics_send_hit(ANALYTICS_INTEGRATION_FAOLEX, $link['url'], 'faolex', $node_w->label());
+      analytics_integration_google_analytics_send_hit(ANALYTICS_INTEGRATION_FAOLEX2, $link['url'], 'faolex2', $node_w->label());
+    }
+  }
+  if ($node->type == 'literature' && $view_mode == 'full') {
+    $node_w = entity_metadata_wrapper('node', $node);
+    if (module_exists('analytics_integration') && $node_w->field_faolex_url->value()) {
+      $link = $node_w->field_faolex_url->value();
+      analytics_integration_google_analytics_send_hit(ANALYTICS_INTEGRATION_FAOLEX, $link['url'], 'faolex', $node_w->label());
+      analytics_integration_google_analytics_send_hit(ANALYTICS_INTEGRATION_FAOLEX2, $link['url'], 'faolex2', $node_w->label());
     }
   }
 }
