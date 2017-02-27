@@ -15,6 +15,24 @@ define('ROLE_MEA', 'MEA');
 define('ROLE_ADMINISTRATOR', 'administrator');
 
 /**
+ * Implements hook_form_alter().
+ */
+function informea_form_alter(&$form, $form_state, $form_id) {
+  if ($form_id == 'views_exposed_form' && $form_state['view']->name == 'the_content') {
+    $form['field_treaty_target_id'] = array(
+      '#type' => 'entityreference',
+      '#default_value'=>[],
+      '#era_entity_type' => 'node',
+      '#era_bundles' => array('treaty'),
+      '#era_cardinality' => 3,
+      '#era_query_settings' => array(
+        'limit' => 15,
+      ),
+    );
+  };
+}
+
+/**
  * Implements hook_schema_alter()
  */
 function informea_schema_alter(&$schema) {
