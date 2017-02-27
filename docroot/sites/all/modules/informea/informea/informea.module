@@ -715,8 +715,8 @@ function informea_page_alter(&$page) {
       $url = 'http://www.ecolex.org/treaty/details/' . $node_w->field_original_id->value();
       analytics_integration_google_analytics_send_hit(ANALYTICS_INTEGRATION_ECOLEX, $url, 'ecolex', $node_w->label());
     }
-    if ($node_w->field_faolex_url->value()) {
-      if (($node->type == 'legislation') || ($node->type == 'literature')) {
+    if (($node->type == 'legislation') || ($node->type == 'literature')) {
+      if ($node_w->field_faolex_url->value()) {
         $link = $node_w->field_faolex_url->value();
         analytics_integration_google_analytics_send_hit(ANALYTICS_INTEGRATION_FAOLEX, $link['url'], 'faolex', $node_w->label());
         analytics_integration_google_analytics_send_hit(ANALYTICS_INTEGRATION_FAOLEX2, $link['url'], 'faolex2', $node_w->label());
