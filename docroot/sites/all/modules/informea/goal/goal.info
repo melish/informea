@@ -84,6 +84,7 @@ features[variable][] = pathauto_node_goal_pattern
 features[variable][] = pathauto_taxonomy_term_goal_sources_pattern
 features[variable][] = pathauto_taxonomy_term_informea_themes_pattern
 features[variable][] = pathauto_taxonomy_term_type_of_goal_pattern
+features[variable][] = xmlsitemap_settings_node_goal
 features[views_view][] = aichi_biodiversity_targets
 features[views_view][] = geg
 features[views_view][] = goals_geg_listing_admin_page
