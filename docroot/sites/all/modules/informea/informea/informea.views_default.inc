@@ -1112,6 +1112,7 @@ function informea_views_default_views() {
   $handler->display->display_options['filters']['field_treaty_target_id']['expose']['label'] = 'Treaty';
   $handler->display->display_options['filters']['field_treaty_target_id']['expose']['operator'] = 'field_treaty_target_id_op';
   $handler->display->display_options['filters']['field_treaty_target_id']['expose']['identifier'] = 'field_treaty_target_id';
+  $handler->display->display_options['filters']['field_treaty_target_id']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['field_treaty_target_id']['expose']['remember_roles'] = array(
     2 => 0,
     1 => 0,
@@ -1123,6 +1124,7 @@ function informea_views_default_views() {
     8 => 0,
     9 => 0,
     10 => 0,
+    11 => 0,
   );
 
   /* Display: Page */
