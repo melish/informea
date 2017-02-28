@@ -2061,6 +2061,9 @@ strong.excerpt {
     float: right;
   }*/
 }
+.view-treaty-listing-page .views-field-field-logo .img-responsive {
+  max-width: 64px;
+}
 
 .view-treaty-listing-page .views-field-field-logo,
 .view-treaty-listing-page .views-field-field-region,
