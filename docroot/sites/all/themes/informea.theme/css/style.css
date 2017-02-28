@@ -1353,14 +1353,17 @@ button.toggle {
 
 .brand-unfccc .image,
 .brand-kyoto .image,
+.brand-paris .image,
 .brand-hover.brand-unfccc:hover .image,
 .brand-hover.brand-kyoto:hover .image,
 .brand-hover.brand-unfccc:focus .image,
+.brand-hover.brand-paris:focus .image,
 .brand-hover.brand-kyoto:focus .image {
   background-position: -1390px 0;
 }
 
 .brand-hover.brand-unfccc .image,
+.brand-hover.brand-paris .image,
 .brand-hover.brand-kyoto .image {
   background-position: -1390px -60px;
 }
