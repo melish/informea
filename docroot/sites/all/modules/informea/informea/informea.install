@@ -70,3 +70,11 @@ function informea_update_7004() {
   );
   module_enable($modules);
 }
+
+/**
+ * Enable autocomplete module and revert admin content view
+ */
+function informea_update_7005() {
+  module_enable(['entityreference_autocomplete']);
+  features_revert(array('informea' => ['views_view']));
+}
