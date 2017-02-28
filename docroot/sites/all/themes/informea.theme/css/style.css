@@ -1561,7 +1561,6 @@ iframe.ecolex {
   border: 0;
   min-height: 700px;
 }
-.views-field .img-responsive { display: block; min-width: 100%; height: auto;}
 
 /* Disclaimer block from the Minamata convention page */
 body.page-node-303 h2.block-title { font-size: 18px; font-weight: bold;}
@@ -2058,6 +2057,9 @@ strong.excerpt {
   /*#block-locale-language {
     float: right;
   }*/
+}
+.view-treaty-listing-page .views-field-field-logo .img-responsive {
+  max-width: 64px;
 }
 
 .view-treaty-listing-page .views-field-field-logo,
