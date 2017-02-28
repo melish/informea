@@ -1047,8 +1047,8 @@ function informea_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'xmlsitemap_settings_taxonomy_term_thesaurus_informea';
   $strongarm->value = array(
-    'status' => '0',
-    'priority' => '0.5',
+    'status' => '1',
+    'priority' => '0.8',
   );
   $export['xmlsitemap_settings_taxonomy_term_thesaurus_informea'] = $strongarm;
 

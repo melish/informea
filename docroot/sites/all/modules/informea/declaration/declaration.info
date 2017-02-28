@@ -109,6 +109,7 @@ features[variable][] = node_submitted_declaration
 features[variable][] = node_submitted_declaration_paragraph
 features[variable][] = node_submitted_declaration_section
 features[variable][] = save_continue_declaration_section
+features[variable][] = xmlsitemap_settings_node_declaration
 features[views_view][] = declaration_ordering
 features[views_view][] = declaration_parent_section_entity_view
 project path = sites/all/modules/leo

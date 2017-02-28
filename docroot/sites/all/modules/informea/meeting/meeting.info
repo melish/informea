@@ -131,6 +131,7 @@ features[variable][] = node_preview_event_calendar
 features[variable][] = node_preview_event_calendar_imported
 features[variable][] = node_submitted_event_calendar
 features[variable][] = node_submitted_event_calendar_imported
+features[variable][] = xmlsitemap_settings_node_event_calendar
 features[views_view][] = events
 features[views_view][] = meeting_decisions
 features[views_view][] = past_events
