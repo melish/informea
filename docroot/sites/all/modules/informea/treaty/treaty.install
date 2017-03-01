@@ -11,3 +11,10 @@ function treaty_update_7001() {
   );
   module_enable($modules);
 }
+
+/**
+ * Enable autocomplete module and revert admin content view
+ */
+function treaty_update_7002() {
+  features_revert(array('treaty' => ['field_instance']));
+}

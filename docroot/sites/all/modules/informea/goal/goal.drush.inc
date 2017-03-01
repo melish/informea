@@ -286,8 +286,8 @@ function drush_goal_import_treaty_goals_mappings($path = NULL) {
       continue;
     }
 
-    $treaty_paragraph = _goal_get_treaty_paragraph($row['Permalink']);
-    if (!$treaty_paragraph) {
+    $treaty_node = _goal_get_treaty_node($row['Permalink']);
+    if (!$treaty_node) {
       drush_log('Wrong treaty paragraph permalink "' . $row['Permalink'] . '", line: ' . ($key + 2), 'error');
       continue;
     }
@@ -298,9 +298,9 @@ function drush_goal_import_treaty_goals_mappings($path = NULL) {
       $new_sdg_goals[$goal_original_ids[$original_id]] = [ 'target_id'=>$goal_original_ids[$original_id] ];
     }
 
-    if ($treaty_paragraph && $new_sdg_goals) {
-      $treaty_paragraph->field_sdg_goals['und'] = array_values($new_sdg_goals);
-      node_save($treaty_paragraph);
+    if ($treaty_node && $new_sdg_goals) {
+      $treaty_node->field_sdg_goals['und'] = array_values($new_sdg_goals);
+      node_save($treaty_node);
       $updated++;
     }
   }
@@ -318,9 +318,13 @@ function _goal_parse_row_numbers($row) {
   return $row;
 }
 
-function _goal_get_treaty_paragraph($url) {
+function _goal_get_treaty_node($url) {
   $url = drupal_parse_url($url);
   $nid = intval(@$url['query']['paragraph']);
+  if ($nid) {
+    return node_load($nid);
+  }
+  $nid = intval(@$url['query']['article']);
   if ($nid) {
     return node_load($nid);
   }
