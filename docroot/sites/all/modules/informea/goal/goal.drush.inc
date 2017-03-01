@@ -19,6 +19,18 @@ function goal_drush_command() {
     'aliases' => array('sdg-fi'),
   );
 
+  $items['import-treaty-goals-mappings'] = array(
+    'drupal dependencies' => array('phpexcel'),
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'description' => 'SDG Full Import',
+    'examples' => array(
+      'drush import-treaty-goals-mappings /path/to/excel/file' => 'Import xls data',
+    ),
+    'arguments' => array(
+      'path' => 'Path to excel file',
+    ),
+  );
+
   return $items;
 }
 
@@ -208,4 +220,116 @@ function drush_goal_informea_sdg_full_import() {
   foreach ($goals as $goal) {
     _goal_sdg_handle_item($goal);
   }
+}
+
+function drush_goal_import_treaty_goals_mappings($path = NULL) {
+  if (!file_exists($path)) {
+    drupal_set_message(t('File !path does not exists!', array('!path'=>$path)), 'error');
+    return ;
+  }
+  $goal_original_ids = _goal_get_goal_original_ids();
+  drush_log('Total goals ' . count($goal_original_ids), 'ok');
+
+  module_load_include('inc', 'phpexcel');
+  $data = phpexcel_import($path)[0];
+  if (!is_array($data)) {
+    drush_log("We could not get the data from the excel file.", 'error');
+    return;
+  }
+  $updated = 0;
+  foreach ($data as $key => $row) {
+    if (empty($row['Permalink'])) {
+      continue;
+    }
+    $goal_no = rtrim($row['SDG Goal'], ',. ');
+    $goal_ids = _goal_parse_row_numbers($goal_no);
+    $error = 0;
+    foreach($goal_ids as $goal_id) {
+      if ($goal_id != intval($goal_id)) {
+        drush_log('Wrong goal identifier "' . $goal_id . '", line: ' . ($key + 2), 'error');
+        $error++;
+        continue;
+      }
+      if (!@$goal_original_ids[$goal_id]) {
+        drush_log('We could not find goal identifier "' . $goal_id . '", line: ' . ($key + 2), 'error');
+        $error++;
+        continue;
+      }
+    }
+    if ($error) {
+      continue;
+    }
+    if (implode(',', $goal_ids) != str_replace(' ', '', $goal_no)) {
+      drush_log('Error SDG Goal "' . $goal_no . '", line: ' . ($key + 2), 'error');
+      continue;
+    }
+
+    $target_no = rtrim($row['SDG Target'], ',. ');
+    $target_ids = _goal_parse_row_numbers($target_no);
+    foreach($target_ids as $target_id) {
+      if ($target_id == strval(intval($target_id))) {
+        drush_log('Wrong target identifier "' . $target_id . '", line: ' . ($key + 2), 'error');
+        $error++;
+        continue;
+      }
+      if (!@$goal_original_ids[$target_id]) {
+        drush_log('We could not find target identifier "' . $target_id . '", line: ' . ($key + 2), 'error');
+        $error++;
+        continue;
+      }
+    }
+    if ($error) {
+      continue;
+    }
+    if (implode(',', $target_ids) != str_replace(' ', '', $target_no)) {
+      drush_log('Error SDG Target "' . $target_no . '", line: ' . ($key + 2), 'error');
+      continue;
+    }
+
+    $treaty_paragraph = _goal_get_treaty_paragraph($row['Permalink']);
+    if (!$treaty_paragraph) {
+      drush_log('Wrong treaty paragraph permalink "' . $row['Permalink'] . '", line: ' . ($key + 2), 'error');
+      continue;
+    }
+
+    $new_sdg_goals = [];
+    $add_ids = array_merge($goal_ids, $target_ids);
+    foreach($add_ids as $original_id) {
+      $new_sdg_goals[$goal_original_ids[$original_id]] = [ 'target_id'=>$goal_original_ids[$original_id] ];
+    }
+
+    if ($treaty_paragraph && $new_sdg_goals) {
+      $treaty_paragraph->field_sdg_goals['und'] = array_values($new_sdg_goals);
+      node_save($treaty_paragraph);
+      $updated++;
+    }
+  }
+  drush_log('Updated ' . $updated, 'ok');
+}
+
+function _goal_parse_row_numbers($row) {
+  if (!$row) {
+    return [];
+  }
+  $row = explode(',', $row);
+  foreach($row as $k => $v) {
+    $row[$k] = trim($v);
+  }
+  return $row;
+}
+
+function _goal_get_treaty_paragraph($url) {
+  $url = drupal_parse_url($url);
+  $nid = intval(@$url['query']['paragraph']);
+  if ($nid) {
+    return node_load($nid);
+  }
+  return NULL;
+}
+
+function _goal_get_goal_original_ids() {
+  $q = db_select('field_data_field_original_id')->fields(NULL, array('field_original_id_value', 'entity_id'));
+  $q->condition('bundle', 'goal');
+  $q->condition('entity_type', 'node');
+  return $q->execute()->fetchAllKeyed(0, 1);
 }
