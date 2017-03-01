@@ -167,7 +167,7 @@ function goal_get_related_content($goal_nid) {
   $return = [];
   $nids = db_select('field_data_field_sdg_goals', 'g')
     ->fields('g', ['entity_id', 'bundle'])
-    ->condition('g.bundle', ['national_report_paragraph', 'treaty_paragraph' , 'decision_paragraph'], 'IN')
+    ->condition('g.bundle', ['national_report_paragraph', 'treaty_article', 'treaty_paragraph' , 'decision_paragraph'], 'IN')
     ->condition('g.field_sdg_goals_target_id', $goal_nid)
     ->execute()->fetchAllKeyed();
   if (!empty($nids)) {
