@@ -86,16 +86,9 @@ class SemanticConnectorCurlConnection {
    */
   public function post($resource_path, array $variables = array()) {
     if (isset($variables['data'])) {
-      if (is_string($variables['data'])) {
-        $variables['headers']['Content-Length'] = strlen($variables['data']);
-        $variables['headers']['Content-Type'] = 'application/json;charset=UTF-8';
-      }
-      elseif (!isset($variables['headers']['Content-Type'])) {
-        // Make data ready for proxy server
-        $variables['data'] = http_build_query($variables['data']);
-        $variables['headers']['Content-Type'] = 'application/x-www-form-urlencoded';
-      }
-      if (is_array($variables['data']) && isset($variables['data']['file'])) {
+      // Handle file uploads
+      if (isset($variables['data']['file'])) {
+        $variables['headers']['Content-Type'] = 'multipart/form-data';
         // The @ prefix for the file is deprecated as of PHP 5.6.
         // Convert @ prefixed file names to CURLFile class.
         if (class_exists('CURLFile')) {
@@ -108,12 +101,22 @@ class SemanticConnectorCurlConnection {
           $variables['curl_opt'][CURLOPT_SAFE_UPLOAD] = 1;
         }
       }
+      else {
+        if (is_array($variables['data']) && !isset($variables['headers']['Content-Type'])) {
+          $variables['headers']['Content-Type'] = 'application/x-www-form-urlencoded';
+        }
+        else if (is_string($variables['data'])) {
+          $variables['headers']['Content-Length'] = strlen($variables['data']);
+          $variables['headers']['Content-Type'] = 'application/json;charset=UTF-8';
+        }
+        $variables['data'] = http_build_query($variables['data']);
+        $variables['headers']['Content-Length'] = strlen($variables['data']);
+      }
     }
     else {
       $variables['data'] = array();
       $variables['headers']['Content-Length'] = 0;
     }
-
     return $this->call($resource_path, $variables, 'POST');
   }
 
