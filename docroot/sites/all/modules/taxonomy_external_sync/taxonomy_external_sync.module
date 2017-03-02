@@ -554,7 +554,12 @@ function taxonomy_external_sync_migrate_vocabulary($bundle, $config = NULL) {
 
     if ($config['plugin_config']['delete_deprecated_terms'] == true) {
       $deprecatedTerms = $plugin->getDeprecatedTerms();
-      foreach ($deprecatedTerms as $tid) {
+      $q = db_select('taxonomy_external_sync_map', 't')
+        ->condition('t.bundle', $bundle)
+        ->condition('t.source_id', $deprecatedTerms, 'IN')
+        ->fields('t', array('source_id', 'destination_tid'));
+      $termsToDelete = $q->execute()->fetchAllKeyed();
+      foreach ($termsToDelete as $tid) {
         taxonomy_term_delete($tid);
         db_delete('taxonomy_external_sync_map')
           ->condition('destination_tid', $tid)
@@ -612,12 +617,11 @@ function taxonomy_external_sync_migrate_vocabulary($bundle, $config = NULL) {
   }
   watchdog(
     'taxonomy_external_sync',
-    t('Successfully synchronized \'@voc\' vocabulary. Processed @np terms: @nc created, @nu updated, @nd deleted',
+    t('Successfully synchronized \'@voc\' vocabulary. Processed @np terms: @nc created, @nd deleted',
       array(
         '@voc' => $bundle,
         '@np' => $terms_processed,
         '@nc' => $terms_created,
-        '@nu' => ($terms_processed - $terms_created - $terms_deleted),
         '@nd' => $terms_deleted)
     ),
     NULL,
