@@ -554,19 +554,21 @@ function taxonomy_external_sync_migrate_vocabulary($bundle, $config = NULL) {
 
     if ($config['plugin_config']['delete_deprecated_terms'] == true) {
       $deprecatedTerms = $plugin->getDeprecatedTerms();
-      $q = db_select('taxonomy_external_sync_map', 't')
-        ->condition('t.bundle', $bundle)
-        ->condition('t.source_id', $deprecatedTerms, 'IN')
-        ->fields('t', array('source_id', 'destination_tid'));
-      $termsToDelete = $q->execute()->fetchAllKeyed();
-      foreach ($termsToDelete as $tid) {
-        taxonomy_term_delete($tid);
-        db_delete('taxonomy_external_sync_map')
-          ->condition('destination_tid', $tid)
-          ->execute();
-        $terms_deleted++;
-        if (function_exists('drush_log')) {
-          drush_log("Deleted deprecated term with id {$tid}", "ok");
+      if (!empty($deprecatedTerms)) {
+        $q = db_select('taxonomy_external_sync_map', 't')
+          ->condition('t.bundle', $bundle)
+          ->condition('t.source_id', $deprecatedTerms, 'IN')
+          ->fields('t', array('source_id', 'destination_tid'));
+        $termsToDelete = $q->execute()->fetchAllKeyed();
+        foreach ($termsToDelete as $tid) {
+          taxonomy_term_delete($tid);
+          db_delete('taxonomy_external_sync_map')
+            ->condition('destination_tid', $tid)
+            ->execute();
+          $terms_deleted++;
+          if (function_exists('drush_log')) {
+            drush_log("Deleted deprecated term with id {$tid}", "ok");
+          }
         }
       }
     }
