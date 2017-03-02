@@ -553,7 +553,7 @@ function taxonomy_external_sync_migrate_vocabulary($bundle, $config = NULL) {
     }
 
     if ($config['plugin_config']['delete_deprecated_terms'] == true) {
-      $deprecatedTerms = array_diff($term_mappings, array_keys($drupal_terms));
+      $deprecatedTerms = $plugin->getDeprecatedTerms();
       foreach ($deprecatedTerms as $tid) {
         taxonomy_term_delete($tid);
         db_delete('taxonomy_external_sync_map')
@@ -562,6 +562,20 @@ function taxonomy_external_sync_migrate_vocabulary($bundle, $config = NULL) {
         $terms_deleted++;
         if (function_exists('drush_log')) {
           drush_log("Deleted deprecated term with id {$tid}", "ok");
+        }
+      }
+    }
+
+    if ($config['plugin_config']['delete_missing_terms'] == true) {
+      $missingTerms = array_diff($term_mappings, array_keys($drupal_terms));
+      foreach ($missingTerms as $tid) {
+        taxonomy_term_delete($tid);
+        db_delete('taxonomy_external_sync_map')
+          ->condition('destination_tid', $tid)
+          ->execute();
+        $terms_deleted++;
+        if (function_exists('drush_log')) {
+          drush_log("Deleted missing term with id {$tid}", "ok");
         }
       }
     }

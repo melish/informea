@@ -62,11 +62,18 @@ abstract class DefaultSource {
       '#default_value' => !empty($vocabulary->tes['plugin_config']['parent_field']) ? $vocabulary->tes['plugin_config']['parent_field'] : NULL,
     );
     $ret['delete_deprecated_terms'] = array(
-      '#title' => t('Delete deprecated terms'),
-      '#description' => t('If selected, terms that no longer exist in source will be deleted.'),
+      '#title' => t('Delete <b>deprecated</b> terms'),
+      '#description' => t('If selected, terms that are marked as <b>deprecated</b> by the source will be deleted.'),
       '#type' => 'checkbox',
       '#required' => FALSE,
       '#default_value' => !empty($vocabulary->tes['plugin_config']['delete_deprecated_terms']) ? $vocabulary->tes['plugin_config']['delete_deprecated_terms'] : NULL,
+    );
+    $ret['delete_missing_terms'] = array(
+      '#title' => t('Delete <b>missing</b> terms'),
+      '#description' => t('If selected, terms that no longer exist in source will be deleted.'),
+      '#type' => 'checkbox',
+      '#required' => FALSE,
+      '#default_value' => !empty($vocabulary->tes['plugin_config']['delete_missing_terms']) ? $vocabulary->tes['plugin_config']['delete_missing_terms'] : NULL,
     );
     return $ret;
   }
@@ -116,6 +123,15 @@ abstract class DefaultSource {
    * @return array
    */
   abstract function getTerms();
+
+  /**
+   * Array of terms ids to delete.
+   *
+   * @return array
+   */
+  public function getDeprecatedTerms() {
+    return [];
+  }
 }
 
 class DummySourcePlugin extends DefaultSource {
