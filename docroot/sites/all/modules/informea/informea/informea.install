@@ -78,3 +78,10 @@ function informea_update_7005() {
   module_enable(['entityreference_autocomplete']);
   features_revert(array('informea' => ['views_view']));
 }
+
+/**
+ * Revert search-bilateral-treaties and search-legislation views
+ */
+function informea_update_7006() {
+  features_revert(array('informea_search' => ['views_view']));
+}

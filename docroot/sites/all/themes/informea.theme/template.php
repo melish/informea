@@ -527,6 +527,20 @@ function informea_theme_preprocess_views_view_table(&$variables) {
   }
 }
 
+function informea_theme_preprocess_views_view_fields(&$vars) {
+  $view = $vars['view'];
+  if ($view->name == 'informea_search_legislation' || $view->name == 'informea_search_bilateral_treaties') {
+    $options = ['external' => TRUE, 'attributes'=>['target' => '_blank']];
+    $original_id  = $vars['row']->_entity_properties['field_original_id'][0];
+    $links = [];
+    if (strpos($original_id, '-FAO')) {
+      $links[] = l('FAOLEX', 'http://www.fao.org/faolex/results/details/en/?details=' . $original_id, $options);
+    }
+    $links[] = l('ECOLEX', 'http://www.ecolex.org/legislation/details/' . $original_id, $options);
+    $vars['fields']['nothing']->content .= ' <span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> ' .  implode(' | ' , $links) . '</div>';
+  }
+}
+
 function informea_theme_views_pre_render(&$view) {
   if ($view->name == 'treaty_listing_page' && $view->current_display == 'page') {
     foreach($view->result as &$row) {
