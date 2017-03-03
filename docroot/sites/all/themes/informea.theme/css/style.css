@@ -3145,3 +3145,19 @@ body.page-search-bilateral-treaties .view-empty {
 .node_view_panel .field-label-inline.field-name-field-abstract .field-items {
   padding-left: 190px;
 }
+
+
+.fao-link {
+  color: inherit;
+  color: #0066cc;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+.fao-link span {
+  display: block;
+  height: 64px;
+  width: 56px;
+  background: url(../img/logos-fao.png) no-repeat top left;
+}

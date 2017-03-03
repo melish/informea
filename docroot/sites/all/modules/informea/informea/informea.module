@@ -719,6 +719,57 @@ function informea_block_view_block_4_alter(&$data, $block) {
   $data['content'] = $content;
 }
 
+function informea_panels_pane_content_alter($content, $pane, $args, $contexts) {
+  static $page_node = NULL;
+  if (!$page_node) {
+    $page_node = menu_get_object('node');
+  }
+
+  if ($page_node && $page_node->type == 'legislation') {
+    $original_id = $page_node->field_original_id['und'][0]['value'];
+    if ($content->subtype == 'node:field_data_source') {
+      $data_sources = [];
+      if ($page_node->field_data_source) {
+        $w = entity_metadata_wrapper('node', $page_node);
+        foreach($w->field_data_source->value() as $data_source) {
+          $data_sources[$data_source->name] = $data_source->name;
+        }
+      }
+
+      $options = ['external' => TRUE, 'attributes'=>['target' => '_blank']];
+      $ecolex_url = 'http://www.ecolex.org/legislation/details/' . $original_id;
+      $faolex_url = 'http://www.fao.org/faolex/results/details/en/?details=' . $original_id;
+
+      if (strpos($original_id, '-FAO')) {
+        $data_sources['ECOLEX/FAOLEX'] = l('ECOLEX', $ecolex_url, $options)  . '/' . l('FAOLEX', $faolex_url, $options);
+      }
+
+      $content->content = ['#markup' => '
+      <div class="field field-name-field-data-source field-label-inline clearfix">
+        <div class="field-label">Data source:&nbsp;</div>
+        <div class="field-items"><div class="field-item">'.implode('</div><div class="field-item">',$data_sources).'</div>
+        </div>
+      </div>'];
+
+      if (strpos($original_id, '-FAO')) {
+          $content->content['#markup'] .= '<div class="panel-separator"></div>
+        <div class="field field-name-field-faolex-url field-label-inline clearfix">
+          <div class="field-label">FAOLEX URL:&nbsp;</div>
+          <div class="field-items"><div class="field-item">' . l($faolex_url, $faolex_url, $options) . '</div>
+          </div>
+        </div>';
+
+          $content->content['#markup'] .= '<div class="panel-separator"></div>
+        <div class="field field-name-field-ecolex-url field-label-inline clearfix">
+          <div class="field-label">ECOLEX URL:&nbsp;</div>
+          <div class="field-items"><div class="field-item">' . l($ecolex_url, $ecolex_url, $options) . '</div>
+          </div>
+        </div>';
+      }
+    }
+  }
+}
+
 /**
  * Implements hook_page_alter().
  */
