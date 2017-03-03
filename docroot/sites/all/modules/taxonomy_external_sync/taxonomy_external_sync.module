@@ -345,7 +345,7 @@ function _taxonomy_external_sync_get_field_value($value, array $field_info) {
 function taxonomy_external_sync_migrate_vocabulary($bundle, $config = NULL) {
   $vocabulary = taxonomy_vocabulary_machine_name_load($bundle);
   $languages   = array_keys(language_list());
-  $terms_created = $terms_processed = $terms_deleted = 0;
+  $terms_processed = $terms_created = $terms_updated = $terms_deleted = 0;
   if ($config == NULL) {
     $config = taxonomy_external_sync_get_configuration($bundle);
   }
@@ -379,6 +379,7 @@ function taxonomy_external_sync_migrate_vocabulary($bundle, $config = NULL) {
     $drupal_terms = array();
 
     foreach ($terms as $term) {
+      $terms_processed++;
       $translations = array();
       $is_new = FALSE;
       if (!property_exists($term, $id_field)) {
@@ -404,8 +405,8 @@ function taxonomy_external_sync_migrate_vocabulary($bundle, $config = NULL) {
         }
         $drupal_term->vid = $vocabulary->vid;
         foreach ($mappings as $destination_field => $source_field) {
+          $field_info = $fields_info[$destination_field];
           if (property_exists($term, $source_field)) {
-            $field_info = $fields_info[$destination_field];
             switch ($field_info['type']) {
               case 'link_field':
                 $colname = 'url';
@@ -509,6 +510,14 @@ function taxonomy_external_sync_migrate_vocabulary($bundle, $config = NULL) {
             }
             $drupal_term->{$destination_field} = $value;
           }
+          elseif (!empty($drupal_term->{$destination_field})) {
+            $drupal_term->{$destination_field} = null;
+            $changed = $field_info['field_name'];
+          }
+        }
+
+        if ($changed && !$is_new) {
+          $terms_updated++;
         }
 
         if ($changed || $is_new) {
@@ -542,7 +551,6 @@ function taxonomy_external_sync_migrate_vocabulary($bundle, $config = NULL) {
             }
           }
           taxonomy_term_save($drupal_term);
-          $terms_processed++;
         }
         $drupal_terms[$drupal_term->tid] = $drupal_term;
       }
@@ -619,11 +627,12 @@ function taxonomy_external_sync_migrate_vocabulary($bundle, $config = NULL) {
   }
   watchdog(
     'taxonomy_external_sync',
-    t('Successfully synchronized \'@voc\' vocabulary. Processed @np terms: @nc created, @nd deleted',
+    t('Successfully synchronized \'@voc\' vocabulary. Processed @np terms: @nc created, @nu updated, @nd deleted',
       array(
         '@voc' => $bundle,
         '@np' => $terms_processed,
         '@nc' => $terms_created,
+        '@nu' => $terms_updated,
         '@nd' => $terms_deleted)
     ),
     NULL,
