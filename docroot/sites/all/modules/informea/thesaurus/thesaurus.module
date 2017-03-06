@@ -797,3 +797,19 @@ function thesaurus_vocbench_export_ontologies() {
 function thesaurus_update_path_aliases() {
   Thesaurus::updatePathAliases();
 }
+
+/**
+ * Implements hook_panels_pane_content_alter().
+ */
+function thesaurus_panels_pane_content_alter(&$content, $pane, $args, $contexts) {
+  $uids = [
+    '27524512-75b9-453c-b279-6a96a3a97c21',
+    'ac1d8da1-b969-4f4a-9534-e855043e0c74',
+    'eccecd17-7675-4501-bb54-dac15e2c7e04',
+    '6bd77781-58a1-47ac-99c9-108b15d6e244',
+  ];
+  if (!empty($pane->uuid) && in_array($pane->uuid, $uids) && empty($content->content['#items'][0]['value'])) {
+    // Hide field synonyms on taxonomy term pages if it is empty
+    $content = false;
+  }
+}
