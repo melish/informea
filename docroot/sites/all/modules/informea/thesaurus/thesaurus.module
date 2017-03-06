@@ -82,15 +82,35 @@ function thesaurus_block_info() {
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => '',
   );
+  $blocks['thesaurus-disclaimer'] = array(
+    'info' => t('Thesaurus disclaimer'),
+    'cache' => DRUPAL_NO_CACHE,
+    'status' => 1,
+    'region' => 'content',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => '',
+  );
   return $blocks;
 }
 
+function thesaurus_get_disclaimer_block() {
+  $object = menu_get_object('pm_arg', 2);
+  $block = [];
+  if ($object && arg(0)=='taxonomy' && (arg(3)=='bilateral-treaties' || arg(3)=='legislations')) {
+    $block['subject'] = '<none>';
+    $block['content'] = '<div><p style="text-align:center">Disclaimer: <span class="source-link"> </span> This content is exclusively provided&nbsp;by FAO / <a href="http://www.fao.org/faolex/en" target="_blank">FAOLEX</a> / <a href="http://www.ecolex.org" target="_blank">ECOLEX</a>.</p></div>';
+  }
+  return $block;
+}
 /**
  * Implements hook_block_view().
  */
 function thesaurus_block_view($delta = '') {
   $block = array();
   switch ($delta) {
+    case 'thesaurus-disclaimer':
+      $block = thesaurus_get_disclaimer_block();
+      break;
     case 'terms-listing':
       $block['subject'] = 'Terms listing with 2 tabs';
       $block['content'] = thesaurus_terms_listing_block_content();

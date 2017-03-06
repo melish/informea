@@ -3154,6 +3154,27 @@ body.page-search-bilateral-treaties .view-empty {
   text-decoration: none;
 }
 
+.page-taxonomy-term-legislations span.source-link {
+  color: #0066cc;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+  height: 64px;
+  width: 56px;
+  background: url(../img/faolex-logo.png) no-repeat top left;
+}
+
+.page-taxonomy-term-bilateral-treaties span.source-link {
+  color: #0066cc;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+  height: 80px;
+  width: 90px;
+  background: url(../img/ecolex-logo.png) no-repeat top left;
+  background-size: 80px 60px;
+}
+
 .page-search-legislation .source-link span {
   display: block;
   height: 64px;
