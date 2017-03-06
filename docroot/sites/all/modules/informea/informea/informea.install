@@ -85,3 +85,11 @@ function informea_update_7005() {
 function informea_update_7006() {
   features_revert(array('informea_search' => ['views_view']));
 }
+
+/**
+ * Revert Thesaurus Taxonomy term related bilateral treaties, Taxonomy term related legislations, Search bilateral treaties and Search legislation views
+ */
+function informea_update_7007() {
+  features_revert(array('informea_search' => ['views_view']));
+  features_revert(array('thesaurus' => ['views_view']));
+}

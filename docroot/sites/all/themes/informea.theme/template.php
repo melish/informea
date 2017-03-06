@@ -529,15 +529,31 @@ function informea_theme_preprocess_views_view_table(&$variables) {
 
 function informea_theme_preprocess_views_view_fields(&$vars) {
   $view = $vars['view'];
-  if ($view->name == 'informea_search_legislation' || $view->name == 'informea_search_bilateral_treaties') {
-    $options = ['external' => TRUE, 'attributes'=>['target' => '_blank']];
-    $original_id  = $vars['row']->_entity_properties['field_original_id'][0];
-    $links = [];
-    if (strpos($original_id, '-FAO')) {
-      $links[] = l('FAOLEX', 'http://www.fao.org/faolex/results/details/en/?details=' . $original_id, $options);
+  if (
+    $view->name == 'informea_search_legislation' ||
+    $view->name == 'informea_search_bilateral_treaties' ||
+    $view->name == 'taxonomy_term_related_legislations' ||
+    $view->name == 'taxonomy_term_related_bilateral_treaties'
+  ) {
+    $nothing_key = 'nothing';
+    if (
+      $view->name == 'informea_search_bilateral_treaties' ||
+      $view->name == 'taxonomy_term_related_bilateral_treaties'
+    ) {
+      $nothing_key = 'nothing_1';
     }
-    $links[] = l('ECOLEX', 'http://www.ecolex.org/legislation/details/' . $original_id, $options);
-    $vars['fields']['nothing']->content .= ' <span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> ' .  implode(' | ' , $links) . '</div>';
+    $original_id = @$vars['row']->_entity_properties['field_original_id'][0];
+    $type = @$vars['row']->_entity_properties['type'];
+    if ($original_id) {
+      $options = ['external' => TRUE, 'attributes'=>['target' => '_blank']];
+      $links = [];
+      if (strpos($original_id, '-FAO')) {
+        $links[] = l('FAOLEX', 'http://www.fao.org/faolex/results/details/en/?details=' . $original_id, $options);
+      }
+      $links[] = l('ECOLEX', 'http://www.ecolex.org/' . $type . '/details/' . $original_id, $options);
+      $vars['fields'][$nothing_key]->content .= ' <span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> ' .  implode(' | ' , $links);
+    }
+    $vars['fields'][$nothing_key]->content .= '</div>';
   }
 }
 

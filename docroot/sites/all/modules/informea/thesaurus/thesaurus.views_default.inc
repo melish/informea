@@ -57,7 +57,7 @@ function thesaurus_views_default_views() {
     'title_link' => 'content',
     'title_class' => '',
   );
-  /* Field: Indexed Content: Court jurisdiction */
+  /* Field: Indexed Content: Jurisdiction */
   $handler->display->display_options['fields']['field_jurisdiction']['id'] = 'field_jurisdiction';
   $handler->display->display_options['fields']['field_jurisdiction']['table'] = 'search_api_index_informea_fulltext_solr_index';
   $handler->display->display_options['fields']['field_jurisdiction']['field'] = 'field_jurisdiction';
@@ -69,7 +69,7 @@ function thesaurus_views_default_views() {
   $handler->display->display_options['fields']['field_jurisdiction']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_jurisdiction']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_jurisdiction']['bypass_access'] = 0;
-  /* Field: Indexed Content: Type of document */
+  /* Field: Indexed Content: Type of text */
   $handler->display->display_options['fields']['field_type_of_text']['id'] = 'field_type_of_text';
   $handler->display->display_options['fields']['field_type_of_text']['table'] = 'search_api_index_informea_fulltext_solr_index';
   $handler->display->display_options['fields']['field_type_of_text']['field'] = 'field_type_of_text';
@@ -90,6 +90,13 @@ function thesaurus_views_default_views() {
   $handler->display->display_options['fields']['field_place_of_adoption']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_place_of_adoption']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-globe"></span> [field_place_of_adoption]';
   $handler->display->display_options['fields']['field_place_of_adoption']['element_label_colon'] = FALSE;
+  /* Field: Indexed Content: Original ID */
+  $handler->display->display_options['fields']['field_original_id']['id'] = 'field_original_id';
+  $handler->display->display_options['fields']['field_original_id']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['fields']['field_original_id']['field'] = 'field_original_id';
+  $handler->display->display_options['fields']['field_original_id']['label'] = '';
+  $handler->display->display_options['fields']['field_original_id']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_original_id']['element_label_colon'] = FALSE;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
   $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
@@ -99,9 +106,18 @@ function thesaurus_views_default_views() {
 [field_jurisdiction]
 [field_type_of_text]
 [field_place_of_adoption]
-</div>';
+';
   $handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
-  /* Sort criterion: Indexed Content: Date */
+  /* Field: Indexed Content: Content type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['label'] = '';
+  $handler->display->display_options['fields']['type']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['type']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['type']['format_name'] = 0;
+  /* Sort criterion: Indexed Content: Date of text */
   $handler->display->display_options['sorts']['field_sorting_date']['id'] = 'field_sorting_date';
   $handler->display->display_options['sorts']['field_sorting_date']['table'] = 'search_api_index_informea_fulltext_solr_index';
   $handler->display->display_options['sorts']['field_sorting_date']['field'] = 'field_sorting_date';
@@ -158,7 +174,7 @@ function thesaurus_views_default_views() {
 [field_jurisdiction]
 [field_type_of_text]
 [field_place_of_adoption]
-</div>'),
+'),
     t('All'),
     t('Block'),
   );
@@ -225,7 +241,7 @@ function thesaurus_views_default_views() {
   $handler->display->display_options['fields']['field_country']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_country']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_country']['bypass_access'] = 0;
-  /* Field: Indexed Content: Type of document */
+  /* Field: Indexed Content: Type of text */
   $handler->display->display_options['fields']['field_type_of_text']['id'] = 'field_type_of_text';
   $handler->display->display_options['fields']['field_type_of_text']['table'] = 'search_api_index_informea_court_decisions';
   $handler->display->display_options['fields']['field_type_of_text']['field'] = 'field_type_of_text';
@@ -247,7 +263,7 @@ function thesaurus_views_default_views() {
 [field_type_of_text]
 </div>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  /* Sort criterion: Indexed Content: Date */
+  /* Sort criterion: Indexed Content: Date of text */
   $handler->display->display_options['sorts']['field_sorting_date']['id'] = 'field_sorting_date';
   $handler->display->display_options['sorts']['field_sorting_date']['table'] = 'search_api_index_informea_court_decisions';
   $handler->display->display_options['sorts']['field_sorting_date']['field'] = 'field_sorting_date';
@@ -351,7 +367,7 @@ function thesaurus_views_default_views() {
   $handler->display->display_options['fields']['field_country']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_country']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_country']['bypass_access'] = 0;
-  /* Field: Indexed Content: Type of document */
+  /* Field: Indexed Content: Type of text */
   $handler->display->display_options['fields']['field_type_of_text']['id'] = 'field_type_of_text';
   $handler->display->display_options['fields']['field_type_of_text']['table'] = 'search_api_index_informea_legislations';
   $handler->display->display_options['fields']['field_type_of_text']['field'] = 'field_type_of_text';
@@ -363,6 +379,13 @@ function thesaurus_views_default_views() {
   $handler->display->display_options['fields']['field_type_of_text']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_type_of_text']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_type_of_text']['bypass_access'] = 0;
+  /* Field: Indexed Content: Original ID */
+  $handler->display->display_options['fields']['field_original_id']['id'] = 'field_original_id';
+  $handler->display->display_options['fields']['field_original_id']['table'] = 'search_api_index_informea_legislations';
+  $handler->display->display_options['fields']['field_original_id']['field'] = 'field_original_id';
+  $handler->display->display_options['fields']['field_original_id']['label'] = '';
+  $handler->display->display_options['fields']['field_original_id']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_original_id']['element_label_colon'] = FALSE;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -371,8 +394,17 @@ function thesaurus_views_default_views() {
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="meta search-index">
 [field_country]
 [field_type_of_text]
-</div>';
+';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Field: Indexed Content: Content type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'search_api_index_informea_legislations';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['label'] = '';
+  $handler->display->display_options['fields']['type']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['type']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['type']['format_name'] = 0;
   /* Contextual filter: Indexed Content: InforMEA Tags */
   $handler->display->display_options['arguments']['field_informea_tags']['id'] = 'field_informea_tags';
   $handler->display->display_options['arguments']['field_informea_tags']['table'] = 'search_api_index_informea_legislations';
@@ -403,7 +435,7 @@ function thesaurus_views_default_views() {
     t('<div class="meta search-index">
 [field_country]
 [field_type_of_text]
-</div>'),
+'),
     t('All'),
   );
   $export['taxonomy_term_related_legislations'] = $view;
