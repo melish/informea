@@ -461,6 +461,10 @@ EOT
     informea_theme_set_page_breadcrumb($breadcrumbs);
 
     if (module_exists('analytics_integration')) {
+      if ($node_w->field_original_id->value()) {
+        $url = 'http://www.ecolex.org/treaty/details/' . $node_w->field_original_id->value();
+        analytics_integration_google_analytics_send_hit(ANALYTICS_INTEGRATION_ECOLEX, $url, 'ecolex', $node_w->label());
+      }
       $google_analytics_keys = analytics_integration_get_node_keys($node, 'field_treaty', 'Google Analytics');
       $piwik_keys = analytics_integration_get_node_keys($node, 'field_treaty', 'Piwik');
       analytics_integration_google_analytics_send_hit($ga_informea_key, $informea_url, 'informea', $node_w->label());

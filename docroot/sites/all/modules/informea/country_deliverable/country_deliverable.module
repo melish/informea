@@ -4,6 +4,11 @@
  * Code for the country_deliverable feature.
  */
 
+define('ANALYTICS_INTEGRATION_FAOLEX', 'UA-16957842-1');
+define('ANALYTICS_INTEGRATION_FAOLEX2', 'UA-16957552-1');
+define('ANALYTICS_INTEGRATION_ECOLEX', 'UA-58379026-1');
+define('ANALYTICS_INTEGRATION_UNEP', 'UA-59519586-13');
+
 include_once 'country_deliverable.features.inc';
 
 
@@ -259,16 +264,34 @@ function country_deliverable_node_view($node, $view_mode, $langcode) {
     if (module_exists('analytics_integration') && $node_w->field_data_source->value()[0]->tid == 2767 /* ECOLEX-ELIS */) {
       $url = 'http://www.ecolex.org/court_decision/details/';
       $url .= $node_w->field_original_id->value();
-      analytics_integration_google_analytics_send_hit('UA-58379026-1', $url, 'ecolex', $node_w->label());
+      analytics_integration_google_analytics_send_hit(ANALYTICS_INTEGRATION_ECOLEX, $url, 'ecolex', $node_w->label());
     }
   }
   if ($node->type == 'legislation' && $view_mode == 'full') {
     $node_w = entity_metadata_wrapper('node', $node);
     // @todo Seems the field_data_source - is not correctly populated
-    if (module_exists('analytics_integration') && $node_w->field_original_id->value()) {
-      $url = 'http://www.ecolex.org/legislation/details/';
-      $url .= $node_w->field_original_id->value();
-      analytics_integration_google_analytics_send_hit('UA-58379026-1', $url, 'ecolex', $node_w->label());
+    $details = $node_w->field_original_id->value();
+    if (module_exists('analytics_integration') && $details) {
+      $url = 'http://www.ecolex.org/legislation/details/' . $details;
+      analytics_integration_google_analytics_send_hit(ANALYTICS_INTEGRATION_ECOLEX, $url, 'ecolex', $node_w->label());
+
     }
+    country_deliverable_google_analytics_faolex_send_hit($node_w);
+  }
+  if ($node->type == 'literature' && $view_mode == 'full') {
+    $node_w = entity_metadata_wrapper('node', $node);
+    country_deliverable_google_analytics_faolex_send_hit($node_w);
+  }
+}
+
+function country_deliverable_google_analytics_faolex_send_hit($node_w) {
+  $details = $node_w->field_original_id->value();
+  if (!strpos($details, '-FAO')) { // FAOLEX only
+    return;
+  }
+  if (module_exists('analytics_integration') && $details) {
+    $url = 'http://www.fao.org/faolex/results/details/en/?details=' . $details;
+    analytics_integration_google_analytics_send_hit(ANALYTICS_INTEGRATION_FAOLEX, $url, 'faolex', $node_w->label());
+    analytics_integration_google_analytics_send_hit(ANALYTICS_INTEGRATION_FAOLEX2, $url, 'faolex2', $node_w->label());
   }
 }

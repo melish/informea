@@ -80,7 +80,7 @@ class EcolexLegislationMigration extends Migration {
     $this->addFieldMapping('field_date_of_entry', 'legEntryDate');
     $this->addFieldMapping('field_date_of_entry:timezone')->defaultValue('Europe/Zurich');
     $this->addFieldMapping('field_ecolex_url', 'ecolex_url');
-    $this->addFieldMapping('field_faolex_url', 'faolex_url');
+//    $this->addFieldMapping('field_faolex_url', 'faolex_url');// no faolex_url in source
 
 
     $this->addUnmigratedSources(array());
@@ -380,7 +380,7 @@ class EcolexLegislationMigrateSource extends MigrateSource {
       'legRepeals'               => 'IDs of the repealed legislation',
       'legKeyword_en'            => 'Tagging keywords',
       'ecolex_url'                  => 'Link to ECOLEX',
-      'faolex_url'                  => 'Link to FAOLEX',
+//      'faolex_url'                  => 'Link to FAOLEX',
     );
   }
 
