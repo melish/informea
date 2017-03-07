@@ -83,7 +83,7 @@ function informea_search_block_view($delta = '') {
  */
 function informea_search_search_api_views_query_alter(view &$view, SearchApiViewsQuery &$query) {
   if ($view->name == 'informea_search') {
-    $multilateral_treaties = _informea_search_get_treaties_by_data_source(2767 /* ECOLEX */, true);
+    $multilateral_treaties = _informea_search_get_treaties_by_data_source(DATA_SOURCE_ECOLEX, true);
     if (empty($multilateral_treaties)) {
       $multilateral_treaties = [-1];
     }

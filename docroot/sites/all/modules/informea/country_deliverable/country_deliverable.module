@@ -284,7 +284,7 @@ function country_deliverable_page_alter(&$page) {
         case 'treaty':
           $original_id = $node_w->field_original_id->value();
           $data_source = $node_w->field_data_source->value();
-          if (!empty($data_source) && $data_source[0]->tid == 2767) { /* ECOLEX */
+          if (!empty($data_source) && $data_source[0]->tid == DATA_SOURCE_ECOLEX) {
             $url = sprintf('http://www.ecolex.org/treaty/details/%s', $original_id);
             analytics_integration_google_analytics_send_hit(ANALYTICS_INTEGRATION_ECOLEX, $url, 'ecolex', $node_w->label());
           }

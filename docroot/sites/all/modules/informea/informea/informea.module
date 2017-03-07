@@ -14,6 +14,10 @@ define('INFORMEA_VOC_GEMET', 'thesaurus_gemet');
 define('ROLE_MEA', 'MEA');
 define('ROLE_ADMINISTRATOR', 'administrator');
 
+define('DATA_SOURCE_ECOLEX', 2767);
+define('DATA_SOURCE_FAOLEX', 3689);
+define('DATA_SOURCE_INFORMEA', 815);
+
 /**
  * Implements hook_form_alter().
  */
