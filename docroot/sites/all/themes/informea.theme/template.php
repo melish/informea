@@ -553,7 +553,7 @@ function informea_theme_preprocess_views_view_fields(&$vars) {
         $links[] = l('FAOLEX', 'http://www.fao.org/faolex/results/details/en/?details=' . $original_id, $options);
       }
       $links[] = l('ECOLEX', 'http://www.ecolex.org/' . $type . '/details/' . $original_id, $options);
-      $vars['fields'][$nothing_key]->content .= ' <span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> ' .  implode(' | ' , $links);
+      $vars['fields'][$nothing_key]->content .= ' <span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> ' .  implode(' · ' , $links);
     }
     $vars['fields'][$nothing_key]->content .= '</div>';
   }
