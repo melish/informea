@@ -327,6 +327,12 @@ function ecolex_strongarm() {
         'redirect' => array(
           'weight' => '30',
         ),
+        'metatags' => array(
+          'weight' => '40',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '30',
+        ),
       ),
       'display' => array(),
     ),

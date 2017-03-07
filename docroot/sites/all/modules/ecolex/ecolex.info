@@ -172,6 +172,7 @@ features[field_instance][] = node-literature-field_country
 features[field_instance][] = node-literature-field_date_of_entry
 features[field_instance][] = node-literature-field_date_of_modification
 features[field_instance][] = node-literature-field_ecolex_tags
+features[field_instance][] = node-literature-field_ecolex_url
 features[field_instance][] = node-literature-field_geographical_scope
 features[field_instance][] = node-literature-field_informea_tags
 features[field_instance][] = node-literature-field_isbn
