@@ -595,7 +595,9 @@ function treaty_page_alter(&$page) {
 }
 
 function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node, $hide = array()) {
-  if ($node->type == 'treaty') {
+  $wrapper = entity_metadata_wrapper('node', $node);
+  $data_source = @$wrapper->field_data_source->value()[0]->tid;
+  if ($node->type == 'treaty' && $data_source != DATA_SOURCE_ECOLEX) {
     module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
     module_load_include('inc', 'country_data', 'country_data.api');
     module_load_include('inc', 'decision', 'decision.api');
