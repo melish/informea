@@ -597,7 +597,11 @@ function treaty_page_alter(&$page) {
 function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node, $hide = array()) {
   $wrapper = entity_metadata_wrapper('node', $node);
   $data_source = @$wrapper->field_data_source->value()[0]->tid;
-  if ($node->type == 'treaty' && $data_source != DATA_SOURCE_ECOLEX) {
+  if ($node->type == 'treaty' && $data_source == DATA_SOURCE_ECOLEX) {
+    $contextual_menu = null;
+    return;
+  }
+  else if ($node->type == 'treaty') {
     module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
     module_load_include('inc', 'country_data', 'country_data.api');
     module_load_include('inc', 'decision', 'decision.api');
@@ -715,10 +719,12 @@ function treaty_menu_local_tasks_alter(&$data, $router_item, $root_path) {
     $context_menu = array();
     $node = $router_item['page_arguments'][0];
     drupal_alter('treaty_contextual_menu', $context_menu, $node);
-    $data['tabs'][1] = array(
-      'count' => count($context_menu),
-      'output' => $context_menu,
-    );
+    if (!empty($context_menu)) {
+      $data['tabs'][1] = array(
+        'count' => count($context_menu),
+        'output' => $context_menu,
+      );
+    }
   }
 }
 
