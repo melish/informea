@@ -94,11 +94,14 @@ function thesaurus_block_info() {
 }
 
 function thesaurus_get_disclaimer_block() {
-  $object = menu_get_object('pm_arg', 2);
   $block = [];
-  if ($object && arg(0)=='taxonomy' && (arg(3)=='bilateral-treaties' || arg(3)=='legislations')) {
+  if (arg(0) == 'search-legislation' || (arg(0)=='taxonomy' && arg(3) == 'legislation')) {
     $block['subject'] = '<none>';
-    $block['content'] = '<div><p style="text-align:center">Disclaimer: <span class="source-link"> </span> This content is exclusively provided&nbsp;by FAO / <a href="http://www.fao.org/faolex/en" target="_blank">FAOLEX</a> / <a href="http://www.ecolex.org" target="_blank">ECOLEX</a>.</p></div>';
+    $block['content'] = '<div><p style="text-align:center"><span class="faolex-logo"></span>This content is exclusively provided by <a href="http://www.fao.org/" target="_blank">FAO</a> / <a href="http://www.fao.org/faolex/en" target="_blank">FAOLEX</a> / <a href="http://www.ecolex.org" target="_blank">ECOLEX</a><span class="ecolex-logo"></span></p></div>';
+  }
+  else if (arg(0) == 'search-bilateral-treaties' || (arg(0)=='taxonomy' && arg(3) == 'bilateral-treaties')) {
+    $block['subject'] = '<none>';
+    $block['content'] = '<div><p style="text-align:center"><span class="ecolex-logo"></span>This content is exclusively provided <a href="http://www.ecolex.org" target="_blank">ECOLEX</a>.</p></div>';
   }
   return $block;
 }
