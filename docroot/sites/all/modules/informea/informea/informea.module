@@ -986,3 +986,36 @@ function informea_pdfjs_view() {
   print theme('pdfjs_markup', ['file' => $q]);
   die();
 }
+
+
+function informea_ecolex_treaty_link($nid) {
+  $wrapper = entity_metadata_wrapper($nid);
+  if ($original_id = $wrapper->field_original_id->value()) {
+    return sprintf('http://www.ecolex.org/treaty/details/%s', $original_id);
+  }
+  return false;
+}
+
+function informea_ecolex_literature_link($nid) {
+  $wrapper = entity_metadata_wrapper($nid);
+  if ($original_id = $wrapper->field_original_id->value()) {
+    return sprintf('http://www.ecolex.org/literature/details/%s', $original_id);
+  }
+  return false;
+}
+
+function informea_ecolex_legislation_link($nid) {
+  $wrapper = entity_metadata_wrapper($nid);
+  if ($original_id = $wrapper->field_original_id->value()) {
+    return sprintf('http://www.ecolex.org/legislation/details/%s', $original_id);
+  }
+  return false;
+}
+
+function informea_faolex_legislation_link($nid) {
+  $wrapper = entity_metadata_wrapper($nid);
+  if ($original_id = $wrapper->field_original_id->value()) {
+    return sprintf('http://www.fao.org/faolex/results/details/en/?details=%s', $original_id);
+  }
+  return false;
+}

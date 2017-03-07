@@ -462,7 +462,7 @@ EOT
 
     if (module_exists('analytics_integration')) {
       if ($node_w->field_original_id->value()) {
-        $url = 'http://www.ecolex.org/treaty/details/' . $node_w->field_original_id->value();
+        $url = informea_ecolex_treaty_link($node->nid);
         analytics_integration_google_analytics_send_hit(ANALYTICS_INTEGRATION_ECOLEX, $url, 'ecolex', $node_w->label());
       }
       $google_analytics_keys = analytics_integration_get_node_keys($node, 'field_treaty', 'Google Analytics');
