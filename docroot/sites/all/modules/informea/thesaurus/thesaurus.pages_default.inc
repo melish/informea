@@ -1388,7 +1388,7 @@ Court decisions',
   $page->task = 'page';
   $page->admin_title = 'Thesaurus - legislations';
   $page->admin_description = '';
-  $page->path = 'taxonomy/term/%taxonomy_term/legislations';
+  $page->path = 'taxonomy/term/%taxonomy_term/legislation';
   $page->access = array(
     'type' => 'none',
     'settings' => NULL,
@@ -1477,7 +1477,7 @@ Court decisions',
     'panels_breadcrumbs_state' => 1,
     'panels_breadcrumbs_titles' => 'Glossary
 %taxonomy_term:name_field
-Legislations',
+Legislation',
     'panels_breadcrumbs_paths' => '/terms
 %taxonomy_term:url
 <none>',

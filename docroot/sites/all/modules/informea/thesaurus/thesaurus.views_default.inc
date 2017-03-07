@@ -312,7 +312,7 @@ function thesaurus_views_default_views() {
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'search_api_index_informea_legislations';
-  $view->human_name = 'Taxonomy term related legislations';
+  $view->human_name = 'Taxonomy term related legislation';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
