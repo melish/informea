@@ -535,7 +535,8 @@ function informea_theme_preprocess_views_view_fields(&$vars) {
     $view->name == 'informea_search_legislation' ||
     $view->name == 'informea_search_bilateral_treaties' ||
     $view->name == 'taxonomy_term_related_legislations' ||
-    $view->name == 'taxonomy_term_related_bilateral_treaties'
+    $view->name == 'taxonomy_term_related_bilateral_treaties' ||
+    $view->name == 'informea_search_publications'
   ) {
     $nothing_key = 'nothing';
     if (

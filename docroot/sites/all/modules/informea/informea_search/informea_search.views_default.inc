@@ -794,8 +794,7 @@ function informea_search_views_default_views() {
 [field_document_type]
 [field_publisher]
 [field_literature_type]
-[field_publication_place]
-</div>';
+[field_publication_place]';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Sort criterion: Search: Relevance */
   $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
@@ -856,8 +855,7 @@ function informea_search_views_default_views() {
 [field_document_type]
 [field_publisher]
 [field_literature_type]
-[field_publication_place]
-</div>'),
+[field_publication_place]'),
     t('Fulltext search'),
     t('Page'),
   );
