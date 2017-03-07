@@ -712,6 +712,16 @@ function informea_search_views_default_views() {
   $handler->display->display_options['relationships']['field_treaty']['id'] = 'field_treaty';
   $handler->display->display_options['relationships']['field_treaty']['table'] = 'search_api_index_informea_publications';
   $handler->display->display_options['relationships']['field_treaty']['field'] = 'field_treaty';
+  /* Field: Indexed Content: Data source */
+  $handler->display->display_options['fields']['field_data_source']['id'] = 'field_data_source';
+  $handler->display->display_options['fields']['field_data_source']['table'] = 'search_api_index_informea_publications';
+  $handler->display->display_options['fields']['field_data_source']['field'] = 'field_data_source';
+  $handler->display->display_options['fields']['field_data_source']['label'] = '';
+  $handler->display->display_options['fields']['field_data_source']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_data_source']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_data_source']['link_to_entity'] = 1;
+  $handler->display->display_options['fields']['field_data_source']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_data_source']['bypass_access'] = 0;
   /* Field: Content: Logo */
   $handler->display->display_options['fields']['field_logo']['id'] = 'field_logo';
   $handler->display->display_options['fields']['field_logo']['table'] = 'entity_node';
