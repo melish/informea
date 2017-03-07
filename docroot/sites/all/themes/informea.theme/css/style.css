@@ -1256,6 +1256,24 @@ button.toggle {
   background-position: -1630px -60px;
 }
 
+.brand-ecolex {
+  min-width: 80px;
+}
+
+.brand-ecolex .image {
+  width: 58px;
+}
+
+.brand-ecolex .image,
+.brand-hover.brand-ecolex:hover .image,
+.brand-hover.brand-ecolex:focus .image {
+  background-position: -1780px 0;
+}
+
+.brand-hover.brand-ecolex .image {
+  background-position: -1780px -60px;
+}
+
 .brand-cites .image,
 .brand-hover.brand-cites:hover .image,
 .brand-hover.brand-cites:focus .image {
