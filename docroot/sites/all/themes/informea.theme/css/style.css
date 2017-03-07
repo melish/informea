@@ -3145,3 +3145,34 @@ body.page-search-bilateral-treaties .view-empty {
 .node_view_panel .field-label-inline.field-name-field-abstract .field-items {
   padding-left: 190px;
 }
+
+.source-link {
+  color: inherit;
+  color: #0066cc;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+span.faolex-logo {
+  margin: 5px;
+  color: #0066cc;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+  height: 64px;
+  width: 56px;
+  background: url(../img/faolex-logo.png) no-repeat top left;
+}
+
+span.ecolex-logo {
+  margin: 5px;
+  color: #0066cc;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+  height: 80px;
+  width: 90px;
+  background: url(../img/ecolex-logo.png) no-repeat top left;
+  background-size: 80px 60px;
+}
