@@ -531,32 +531,12 @@ function informea_theme_preprocess_views_view_table(&$variables) {
 
 function informea_theme_preprocess_views_view_fields(&$vars) {
   $view = $vars['view'];
-  if (
-    $view->name == 'informea_search_legislation' ||
-    $view->name == 'informea_search_bilateral_treaties' ||
-    $view->name == 'taxonomy_term_related_legislations' ||
-    $view->name == 'taxonomy_term_related_bilateral_treaties' ||
-    $view->name == 'informea_search_publications'
-  ) {
-    $nothing_key = 'nothing';
-    if (
-      $view->name == 'informea_search_bilateral_treaties' ||
-      $view->name == 'taxonomy_term_related_bilateral_treaties'
-    ) {
-      $nothing_key = 'nothing_1';
+  if ($view->name == 'informea_search_publications') {
+    // LOGO - use ECOLEX if data comes from ECOLEX
+    $source = @$vars['row']->_entity_properties['field_data_source'][0];
+    if (!empty($source) && $source == DATA_SOURCE_ECOLEX) {
+      $vars['fields']['field_logo']->content = '<span><img class="img-thumbnail" src="/sites/all/themes/informea.theme/img/ecolex-logo.png"></span>';
     }
-    $original_id = @$vars['row']->_entity_properties['field_original_id'][0];
-    $type = @$vars['row']->_entity_properties['type'];
-    if ($original_id) {
-      $options = ['external' => TRUE, 'attributes'=>['target' => '_blank']];
-      $links = [];
-      if (strpos($original_id, '-FAO')) {
-        $links[] = l('FAOLEX', 'http://www.fao.org/faolex/results/details/en/?details=' . $original_id, $options);
-      }
-      $links[] = l('ECOLEX', 'http://www.ecolex.org/' . $type . '/details/' . $original_id, $options);
-      $vars['fields'][$nothing_key]->content .= ' <span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> ' .  implode(' · ' , $links);
-    }
-    $vars['fields'][$nothing_key]->content .= '</div>';
   }
 }
 
