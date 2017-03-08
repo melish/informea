@@ -226,6 +226,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_ecolex_url']['table'] = 'search_api_index_informea_fulltext_solr_index';
   $handler->display->display_options['fields']['field_ecolex_url']['field'] = 'field_ecolex_url';
   $handler->display->display_options['fields']['field_ecolex_url']['label'] = '';
+  $handler->display->display_options['fields']['field_ecolex_url']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_ecolex_url']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_ecolex_url']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> <a target="_blank" [field_ecolex_url-attributes] href="[field_ecolex_url]">[field_ecolex_url-title]</a>';
   $handler->display->display_options['fields']['field_ecolex_url']['element_label_colon'] = FALSE;
