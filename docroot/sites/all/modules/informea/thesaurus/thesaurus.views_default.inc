@@ -90,24 +90,17 @@ function thesaurus_views_default_views() {
   $handler->display->display_options['fields']['field_place_of_adoption']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_place_of_adoption']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-globe"></span> [field_place_of_adoption]';
   $handler->display->display_options['fields']['field_place_of_adoption']['element_label_colon'] = FALSE;
-  /* Field: Indexed Content: Original ID */
-  $handler->display->display_options['fields']['field_original_id']['id'] = 'field_original_id';
-  $handler->display->display_options['fields']['field_original_id']['table'] = 'search_api_index_informea_fulltext_solr_index';
-  $handler->display->display_options['fields']['field_original_id']['field'] = 'field_original_id';
-  $handler->display->display_options['fields']['field_original_id']['label'] = '';
-  $handler->display->display_options['fields']['field_original_id']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_original_id']['element_label_colon'] = FALSE;
-  /* Field: Global: Custom text */
-  $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
-  $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing_1']['label'] = '';
-  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '<div class="meta search-index">
-[field_jurisdiction]
-[field_type_of_text]
-[field_place_of_adoption]
-';
-  $handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
+  /* Field: Indexed Content: ECOLEX URL */
+  $handler->display->display_options['fields']['field_ecolex_url']['id'] = 'field_ecolex_url';
+  $handler->display->display_options['fields']['field_ecolex_url']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['fields']['field_ecolex_url']['field'] = 'field_ecolex_url';
+  $handler->display->display_options['fields']['field_ecolex_url']['label'] = '';
+  $handler->display->display_options['fields']['field_ecolex_url']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_ecolex_url']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_ecolex_url']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> <a target="_blank" [field_ecolex_url-attributes] href="[field_ecolex_url]">[field_ecolex_url-title]</a>';
+  $handler->display->display_options['fields']['field_ecolex_url']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_ecolex_url']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_ecolex_url']['type'] = 'link_absolute';
   /* Field: Indexed Content: Content type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'search_api_index_informea_fulltext_solr_index';
@@ -117,7 +110,19 @@ function thesaurus_views_default_views() {
   $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['type']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['type']['format_name'] = 0;
-  /* Sort criterion: Indexed Content: Date */
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
+  $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing_1']['label'] = '';
+  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '<div class="meta search-index">
+[field_jurisdiction]
+[field_type_of_text]
+[field_place_of_adoption]
+[field_ecolex_url]
+</div>';
+  $handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
+  /* Sort criterion: Indexed Content: Date of text */
   $handler->display->display_options['sorts']['field_sorting_date']['id'] = 'field_sorting_date';
   $handler->display->display_options['sorts']['field_sorting_date']['table'] = 'search_api_index_informea_fulltext_solr_index';
   $handler->display->display_options['sorts']['field_sorting_date']['field'] = 'field_sorting_date';
@@ -170,11 +175,13 @@ function thesaurus_views_default_views() {
     t('<span class="glyphicon glyphicon-education"></span> [field_jurisdiction]'),
     t('<span class="separator">·</span> <span class="glyphicon glyphicon-book"></span> [field_type_of_text]'),
     t('<span class="separator">·</span> <span class="glyphicon glyphicon-globe"></span> [field_place_of_adoption]'),
+    t('<span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> <a target="_blank" [field_ecolex_url-attributes] href="[field_ecolex_url]">[field_ecolex_url-title]</a>'),
     t('<div class="meta search-index">
 [field_jurisdiction]
 [field_type_of_text]
 [field_place_of_adoption]
-'),
+[field_ecolex_url]
+</div>'),
     t('All'),
     t('Block'),
   );
@@ -263,7 +270,7 @@ function thesaurus_views_default_views() {
 [field_type_of_text]
 </div>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  /* Sort criterion: Indexed Content: Date */
+  /* Sort criterion: Indexed Content: Date of text */
   $handler->display->display_options['sorts']['field_sorting_date']['id'] = 'field_sorting_date';
   $handler->display->display_options['sorts']['field_sorting_date']['table'] = 'search_api_index_informea_court_decisions';
   $handler->display->display_options['sorts']['field_sorting_date']['field'] = 'field_sorting_date';
@@ -379,23 +386,28 @@ function thesaurus_views_default_views() {
   $handler->display->display_options['fields']['field_type_of_text']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_type_of_text']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_type_of_text']['bypass_access'] = 0;
-  /* Field: Indexed Content: Original ID */
-  $handler->display->display_options['fields']['field_original_id']['id'] = 'field_original_id';
-  $handler->display->display_options['fields']['field_original_id']['table'] = 'search_api_index_informea_legislations';
-  $handler->display->display_options['fields']['field_original_id']['field'] = 'field_original_id';
-  $handler->display->display_options['fields']['field_original_id']['label'] = '';
-  $handler->display->display_options['fields']['field_original_id']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_original_id']['element_label_colon'] = FALSE;
-  /* Field: Global: Custom text */
-  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="meta search-index">
-[field_country]
-[field_type_of_text]
-';
-  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Field: Indexed Content: FAOLEX URL */
+  $handler->display->display_options['fields']['field_faolex_url']['id'] = 'field_faolex_url';
+  $handler->display->display_options['fields']['field_faolex_url']['table'] = 'search_api_index_informea_legislations';
+  $handler->display->display_options['fields']['field_faolex_url']['field'] = 'field_faolex_url';
+  $handler->display->display_options['fields']['field_faolex_url']['label'] = '';
+  $handler->display->display_options['fields']['field_faolex_url']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_faolex_url']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_faolex_url']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> <a target="_blank" [field_faolex_url-attributes] href="[field_faolex_url]">[field_faolex_url-title]</a>';
+  $handler->display->display_options['fields']['field_faolex_url']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_faolex_url']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_faolex_url']['type'] = 'link_absolute';
+  /* Field: Indexed Content: ECOLEX URL */
+  $handler->display->display_options['fields']['field_ecolex_url']['id'] = 'field_ecolex_url';
+  $handler->display->display_options['fields']['field_ecolex_url']['table'] = 'search_api_index_informea_legislations';
+  $handler->display->display_options['fields']['field_ecolex_url']['field'] = 'field_ecolex_url';
+  $handler->display->display_options['fields']['field_ecolex_url']['label'] = '';
+  $handler->display->display_options['fields']['field_ecolex_url']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_ecolex_url']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_ecolex_url']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> <a target="_blank" [field_ecolex_url-attributes] href="[field_ecolex_url]">[field_ecolex_url-title]</a>';
+  $handler->display->display_options['fields']['field_ecolex_url']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_ecolex_url']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_ecolex_url']['type'] = 'link_absolute';
   /* Field: Indexed Content: Content type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'search_api_index_informea_legislations';
@@ -405,6 +417,18 @@ function thesaurus_views_default_views() {
   $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['type']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['type']['format_name'] = 0;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="meta search-index">
+[field_country]
+[field_type_of_text]
+[field_faolex_url]
+[field_ecolex_url]
+</div>';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Contextual filter: Indexed Content: InforMEA Tags */
   $handler->display->display_options['arguments']['field_informea_tags']['id'] = 'field_informea_tags';
   $handler->display->display_options['arguments']['field_informea_tags']['table'] = 'search_api_index_informea_legislations';
@@ -432,10 +456,14 @@ function thesaurus_views_default_views() {
     t('Country'),
     t('<span class="glyphicon glyphicon-globe"></span> [field_country]'),
     t('<span class="separator">·</span> <span class="glyphicon glyphicon-book"></span> [field_type_of_text]'),
+    t('<span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> <a target="_blank" [field_faolex_url-attributes] href="[field_faolex_url]">[field_faolex_url-title]</a>'),
+    t('<span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> <a target="_blank" [field_ecolex_url-attributes] href="[field_ecolex_url]">[field_ecolex_url-title]</a>'),
     t('<div class="meta search-index">
 [field_country]
 [field_type_of_text]
-'),
+[field_faolex_url]
+[field_ecolex_url]
+</div>'),
     t('All'),
   );
   $export['taxonomy_term_related_legislations'] = $view;
@@ -470,6 +498,16 @@ function thesaurus_views_default_views() {
   $handler->display->display_options['relationships']['field_treaty']['id'] = 'field_treaty';
   $handler->display->display_options['relationships']['field_treaty']['table'] = 'search_api_index_informea_publications';
   $handler->display->display_options['relationships']['field_treaty']['field'] = 'field_treaty';
+  /* Field: Indexed Content: Data source */
+  $handler->display->display_options['fields']['field_data_source']['id'] = 'field_data_source';
+  $handler->display->display_options['fields']['field_data_source']['table'] = 'search_api_index_informea_publications';
+  $handler->display->display_options['fields']['field_data_source']['field'] = 'field_data_source';
+  $handler->display->display_options['fields']['field_data_source']['label'] = '';
+  $handler->display->display_options['fields']['field_data_source']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_data_source']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_data_source']['link_to_entity'] = 1;
+  $handler->display->display_options['fields']['field_data_source']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_data_source']['bypass_access'] = 0;
   /* Field: Content: Logo */
   $handler->display->display_options['fields']['field_logo']['id'] = 'field_logo';
   $handler->display->display_options['fields']['field_logo']['table'] = 'entity_node';
@@ -532,6 +570,17 @@ function thesaurus_views_default_views() {
   $handler->display->display_options['fields']['field_publication_place']['label'] = '';
   $handler->display->display_options['fields']['field_publication_place']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_publication_place']['element_label_colon'] = FALSE;
+  /* Field: Indexed Content: ECOLEX URL */
+  $handler->display->display_options['fields']['field_ecolex_url']['id'] = 'field_ecolex_url';
+  $handler->display->display_options['fields']['field_ecolex_url']['table'] = 'search_api_index_informea_publications';
+  $handler->display->display_options['fields']['field_ecolex_url']['field'] = 'field_ecolex_url';
+  $handler->display->display_options['fields']['field_ecolex_url']['label'] = '';
+  $handler->display->display_options['fields']['field_ecolex_url']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_ecolex_url']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_ecolex_url']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> <a target="_blank" [field_ecolex_url-attributes] href="[field_ecolex_url]">[field_ecolex_url-title]</a>';
+  $handler->display->display_options['fields']['field_ecolex_url']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_ecolex_url']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_ecolex_url']['type'] = 'link_absolute';
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -542,6 +591,7 @@ function thesaurus_views_default_views() {
 [field_publisher]
 [field_literature_type]
 [field_publication_place]
+[field_ecolex_url]
 </div>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Contextual filter: Indexed Content: InforMEA Tags */
@@ -576,11 +626,13 @@ function thesaurus_views_default_views() {
     t('Treaty'),
     t('<span class="glyphicon glyphicon-book"></span> [field_document_type]'),
     t('<span class="separator">·</span> <span class="glyphicon glyphicon-book"></span> [field_literature_type]'),
+    t('<span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> <a target="_blank" [field_ecolex_url-attributes] href="[field_ecolex_url]">[field_ecolex_url-title]</a>'),
     t('<div class="meta search-index">
 [field_document_type]
 [field_publisher]
 [field_literature_type]
 [field_publication_place]
+[field_ecolex_url]
 </div>'),
     t('All'),
     t('Block'),

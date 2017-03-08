@@ -531,7 +531,7 @@ function informea_theme_preprocess_views_view_table(&$variables) {
 
 function informea_theme_preprocess_views_view_fields(&$vars) {
   $view = $vars['view'];
-  if ($view->name == 'informea_search_publications') {
+  if (in_array($view->name, array('informea_search_publications', 'taxonomy_term_related_publications'))) {
     // LOGO - use ECOLEX if data comes from ECOLEX
     $source = @$vars['row']->_entity_properties['field_data_source'][0];
     if (!empty($source) && $source == DATA_SOURCE_ECOLEX) {
