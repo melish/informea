@@ -69,6 +69,9 @@ class EcolexLiteratureMigration extends Migration {
     $this->addFieldMapping('revision')->defaultValue(0);
     $this->addFieldMapping('language')->defaultValue('en');
 
+    $this->addFieldMapping('field_ecolex_url', 'ecolex_url');
+    $this->addFieldMapping('field_ecolex_url:title')->defaultValue('ECOLEX');
+
     $this->addUnmigratedSources(array());
     $this->addUnmigratedDestinations(array(
       'field_isis_number',
@@ -154,6 +157,8 @@ class EcolexLiteratureMigration extends Migration {
         $row->litRegion_en = $regions;
       }
     }
+
+    $row->ecolex_url = 'http://www.ecolex.org/literature/details/' . $row->litId;
 
     // Taxonomies
     $this->prepare_term_reference_field_multilingual($row, 'litTerritorialSubdivision', 'territorial_subdivision');
