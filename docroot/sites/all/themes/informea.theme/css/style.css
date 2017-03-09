@@ -1691,6 +1691,10 @@ img.flag-medium { max-height: 48px; }
   max-width: 80%;
 }
 
+.pane-thesaurus-terms-listing { padding-left: 0; }
+.pane-foamtree-foamtree { padding-left: 0; padding-right: 0; }
+.pane-terms-introduction { margin-bottom: 20px; }
+
 /* Events page */
 .view-events .media-detail,
 .view-past-events .media-detail {
