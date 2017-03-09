@@ -530,6 +530,32 @@ function thesaurus_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
+  $pane->pid = 'new-5125f100-d6fb-49cb-a358-3fb4a3eeec66';
+  $pane->panel = 'middle';
+  $pane->type = 'custom';
+  $pane->subtype = 'custom';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'admin_title' => 'Terms introduction block',
+    'title' => '<none>',
+    'title_heading' => 'h2',
+    'body' => '<p><span style="font-size: 13.008px;">To help you navigate the world of Multilateral Environmental Agreements and International Environmental Law, this section offers you definitions and related information on the term concepts common to all or several Multilateral Environmental Agreements.</span></p>',
+    'format' => 'full_html',
+    'substitute' => TRUE,
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  $pane->uuid = '5125f100-d6fb-49cb-a358-3fb4a3eeec66';
+  $display->content['new-5125f100-d6fb-49cb-a358-3fb4a3eeec66'] = $pane;
+  $display->panels['middle'][0] = 'new-5125f100-d6fb-49cb-a358-3fb4a3eeec66';
+  $pane = new stdClass();
   $pane->pid = 'new-475aa95f-5da5-453f-a8e4-d94ca539b591';
   $pane->panel = 'middle';
   $pane->type = 'block';
@@ -550,11 +576,11 @@ function thesaurus_default_page_manager_pages() {
     'css_class' => 'col-sm-3',
   );
   $pane->extras = array();
-  $pane->position = 0;
+  $pane->position = 1;
   $pane->locks = array();
   $pane->uuid = '475aa95f-5da5-453f-a8e4-d94ca539b591';
   $display->content['new-475aa95f-5da5-453f-a8e4-d94ca539b591'] = $pane;
-  $display->panels['middle'][0] = 'new-475aa95f-5da5-453f-a8e4-d94ca539b591';
+  $display->panels['middle'][1] = 'new-475aa95f-5da5-453f-a8e4-d94ca539b591';
   $pane = new stdClass();
   $pane->pid = 'new-68b2f3ad-5970-48f4-9db7-413c59ba1072';
   $pane->panel = 'middle';
@@ -576,11 +602,11 @@ function thesaurus_default_page_manager_pages() {
     'css_class' => 'col-sm-9',
   );
   $pane->extras = array();
-  $pane->position = 1;
+  $pane->position = 2;
   $pane->locks = array();
   $pane->uuid = '68b2f3ad-5970-48f4-9db7-413c59ba1072';
   $display->content['new-68b2f3ad-5970-48f4-9db7-413c59ba1072'] = $pane;
-  $display->panels['middle'][1] = 'new-68b2f3ad-5970-48f4-9db7-413c59ba1072';
+  $display->panels['middle'][2] = 'new-68b2f3ad-5970-48f4-9db7-413c59ba1072';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-475aa95f-5da5-453f-a8e4-d94ca539b591';
   $handler->conf['display'] = $display;
