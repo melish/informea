@@ -56,7 +56,7 @@ function country_data_treaty_count_membership($id_treaty) {
       foreach($rows['node'] as $row) {
         $w = entity_metadata_wrapper('node', $row->nid);
         $status = $w->field_party_status->value();
-        if (in_array(strtolower($status->name_original), $allowed)) {
+        if (!empty($status->name_original) && in_array(strtolower($status->name_original), $allowed)) {
           $count++;
         }
       }
