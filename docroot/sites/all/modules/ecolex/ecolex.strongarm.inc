@@ -325,10 +325,10 @@ function ecolex_strongarm() {
           'weight' => '0',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '29',
         ),
         'metatags' => array(
-          'weight' => '40',
+          'weight' => '34',
         ),
         'xmlsitemap' => array(
           'weight' => '30',

@@ -169,6 +169,7 @@ features[field_instance][] = node-literature-field_author
 features[field_instance][] = node-literature-field_author_institution
 features[field_instance][] = node-literature-field_collation
 features[field_instance][] = node-literature-field_country
+features[field_instance][] = node-literature-field_data_source
 features[field_instance][] = node-literature-field_date_of_entry
 features[field_instance][] = node-literature-field_date_of_modification
 features[field_instance][] = node-literature-field_ecolex_tags
