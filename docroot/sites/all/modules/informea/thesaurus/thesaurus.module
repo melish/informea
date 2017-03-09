@@ -108,7 +108,7 @@ function thesaurus_get_disclaimer_block() {
     if ($node->type == 'treaty') {
       $wrapper = entity_metadata_wrapper('node', $node);
       if ($source = @$wrapper->field_data_source->value()[0]->tid) {
-        if ($source = DATA_SOURCE_ECOLEX) {
+        if ($source == DATA_SOURCE_ECOLEX) {
           $ecolex_node = true;
         }
       }
