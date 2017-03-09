@@ -237,7 +237,6 @@ function informea_taxonomy_default_vocabularies() {
           'id_field' => 'uri',
           'parent_field' => 'broader',
           'delete_deprecated_terms' => 1,
-          'delete_missing_terms' => 0,
         ),
         'mappings' => array(
           'description_field' => 'definition',

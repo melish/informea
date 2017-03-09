@@ -33,6 +33,9 @@ function goal_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'goal_sources' => array(
       'name' => 'Goal sources',
@@ -57,6 +60,9 @@ function goal_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
     'informea_themes' => array(
@@ -83,6 +89,9 @@ function goal_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'type_of_goal' => array(
       'name' => 'Type of Goal',
@@ -107,6 +116,9 @@ function goal_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
   );

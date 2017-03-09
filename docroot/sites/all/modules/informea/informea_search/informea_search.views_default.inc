@@ -188,7 +188,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['search_api_excerpt']['label'] = '';
   $handler->display->display_options['fields']['search_api_excerpt']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['search_api_excerpt']['link_to_entity'] = 0;
-  /* Field: Indexed Content: Jurisdiction */
+  /* Field: Indexed Content: Court jurisdiction */
   $handler->display->display_options['fields']['field_jurisdiction']['id'] = 'field_jurisdiction';
   $handler->display->display_options['fields']['field_jurisdiction']['table'] = 'search_api_index_informea_fulltext_solr_index';
   $handler->display->display_options['fields']['field_jurisdiction']['field'] = 'field_jurisdiction';
@@ -200,7 +200,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_jurisdiction']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_jurisdiction']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_jurisdiction']['bypass_access'] = 0;
-  /* Field: Indexed Content: Type of text */
+  /* Field: Indexed Content: Type of document */
   $handler->display->display_options['fields']['field_type_of_text']['id'] = 'field_type_of_text';
   $handler->display->display_options['fields']['field_type_of_text']['table'] = 'search_api_index_informea_fulltext_solr_index';
   $handler->display->display_options['fields']['field_type_of_text']['field'] = 'field_type_of_text';
@@ -226,7 +226,6 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_ecolex_url']['table'] = 'search_api_index_informea_fulltext_solr_index';
   $handler->display->display_options['fields']['field_ecolex_url']['field'] = 'field_ecolex_url';
   $handler->display->display_options['fields']['field_ecolex_url']['label'] = '';
-  $handler->display->display_options['fields']['field_ecolex_url']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_ecolex_url']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_ecolex_url']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> <a target="_blank" [field_ecolex_url-attributes] href="[field_ecolex_url]">[field_ecolex_url-title]</a>';
   $handler->display->display_options['fields']['field_ecolex_url']['element_label_colon'] = FALSE;
@@ -246,6 +245,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
   $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing_1']['label'] = '';
+  $handler->display->display_options['fields']['nothing_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '<div class="meta search-index">
 [field_jurisdiction]
 [field_type_of_text]
@@ -420,7 +420,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_country']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_country']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_country']['bypass_access'] = 0;
-  /* Field: Indexed Content: Type of text */
+  /* Field: Indexed Content: Type of document */
   $handler->display->display_options['fields']['field_type_of_text']['id'] = 'field_type_of_text';
   $handler->display->display_options['fields']['field_type_of_text']['table'] = 'search_api_index_informea_court_decisions';
   $handler->display->display_options['fields']['field_type_of_text']['field'] = 'field_type_of_text';
@@ -580,7 +580,7 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_country']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_country']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_country']['bypass_access'] = 0;
-  /* Field: Indexed Content: Type of text */
+  /* Field: Indexed Content: Type of document */
   $handler->display->display_options['fields']['field_type_of_text']['id'] = 'field_type_of_text';
   $handler->display->display_options['fields']['field_type_of_text']['table'] = 'search_api_index_informea_legislations';
   $handler->display->display_options['fields']['field_type_of_text']['field'] = 'field_type_of_text';

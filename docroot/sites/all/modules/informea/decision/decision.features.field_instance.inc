@@ -1288,6 +1288,76 @@ function decision_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-decision_paragraph-field_sdg_goals'.
+  $field_instances['node-decision_paragraph-field_sdg_goals'] = array(
+    'bundle' => 'decision_paragraph',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 7,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_sdg_goals',
+    'label' => 'SDG goals',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+        'use_select2' => FALSE,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 42,
+    ),
+  );
+
   // Exported field_instance: 'node-decision_paragraph-field_sorting_order'.
   $field_instances['node-decision_paragraph-field_sorting_order'] = array(
     'bundle' => 'decision_paragraph',
@@ -1478,71 +1548,6 @@ function decision_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-decision_paragraph-field_sdg_goals'.
-  $field_instances['node-treaty_decision-field_sdg_goals'] = array(
-    'bundle' => 'decision_paragraph',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'ajax' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 7,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'treaty_listing' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_sdg_goals',
-    'label' => 'SDG goals',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'select2_integration' => array(
-        'styling' => array(
-          'dropdownAutoWidth' => 0,
-          'placeholder' => '',
-        ),
-        'use_select2' => 0,
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
-        'use_select2' => FALSE,
-      ),
-      'type' => 'entityreference_autocomplete',
-      'weight' => 42,
-    ),
-  );
-
-
   // Exported field_instance: 'taxonomy_term-decision_status-description_field'.
   $field_instances['taxonomy_term-decision_status-description_field'] = array(
     'bundle' => 'decision_status',
@@ -1678,6 +1683,7 @@ function decision_field_default_field_instances() {
   t('Original ID');
   t('Paragraph Indentation');
   t('Parent decision');
+  t('SDG goals');
   t('Sorting order');
   t('Status');
   t('The MEA/instrument the decision belongs to (e.g. UNFCCC). Use autocomplete to search');
