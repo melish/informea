@@ -94,6 +94,10 @@ function informea_update_7007() {
   features_revert(array('thesaurus' => ['views_view']));
 }
 
+
+/**
+ * Bootstrap tour changes
+ */
 function informea_update_7008() {
   features_revert(array('informea' => ['bootstrap_tour']));
 }
