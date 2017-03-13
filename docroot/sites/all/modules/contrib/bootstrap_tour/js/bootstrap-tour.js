@@ -120,7 +120,11 @@
             if (!tourConfig.cleanUrls) {
               options.path += '&';
             } else {
-              options.path += '?';
+              if (options.path.indexOf('?') > 0) {
+                  options.path += '&';
+              } else {
+                  options.path += '?';
+              }
             }
             options.path += 'tour=' + tourConfig.name;
             if (!(tourConfig.isFirstStep && index == 0)) {
