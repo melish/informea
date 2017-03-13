@@ -1,0 +1,17 @@
+diff --git a/docroot/sites/all/modules/contrib/bootstrap_tour/js/bootstrap-tour.js b/docroot/sites/all/modules/contrib/bootstrap_tour/js/bootstrap-tour.js
+index bde1f5c..9af71e7 100644
+--- a/docroot/sites/all/modules/contrib/bootstrap_tour/js/bootstrap-tour.js
++++ b/docroot/sites/all/modules/contrib/bootstrap_tour/js/bootstrap-tour.js
+@@ -120,8 +120,12 @@
+             if (!tourConfig.cleanUrls) {
+               options.path += '&';
+             } else {
++              if (options.path.indexOf('?')>0) {
++                  options.path += '&';
++              } else {
+               options.path += '?';
+             }
++            }
+             options.path += 'tour=' + tourConfig.name;
+             if (!(tourConfig.isFirstStep && index == 0)) {
+               options.path += '&step=' + index;
