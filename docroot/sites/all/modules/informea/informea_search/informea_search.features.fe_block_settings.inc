@@ -98,6 +98,34 @@ search-publications/*',
     'visibility' => 0,
   );
 
+  $export['facetapi-7R00LhqRFhlzPLK775MhkBao9G1ddsJq'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => '7R00LhqRFhlzPLK775MhkBao9G1ddsJq',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'facetapi',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'informea_theme' => array(
+        'region' => 'sidebar_first',
+        'status' => 1,
+        'theme' => 'informea_theme',
+        'weight' => -32,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => 'Document Type',
+    'visibility' => 0,
+  );
+
   $export['facetapi-ABol1qBh79jsfGqF27usDpaBznEzCn7M'] = array(
     'cache' => -1,
     'custom' => 0,
