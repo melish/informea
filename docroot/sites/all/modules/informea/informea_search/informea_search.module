@@ -7,6 +7,27 @@
 include_once 'informea_search.features.inc';
 
 /**
+ * Implements hook_facet_items_alter(&$build, &$settings);
+ */
+function informea_search_facet_items_alter(&$build, &$settings) {
+  if ($settings->facet == "type") {
+    $map = [
+      t('Action Plan') => t('National Plan'),
+      t('Event Calendar') => t('Events'),
+      t('Treaty paragraph') => t('Treaty Text'),
+      t('Decision Paragraph') => t('Decision Text'),
+    ];
+    foreach($build as $key => $item) {
+      if (isset($map[$item["#markup"]])) {
+        $build[$key]["#markup"] = $map[$item["#markup"]];
+      } else {
+        $build[$key]["#markup"] = ucwords($build[$key]["#markup"]);
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_views_pre_render().
  */
 function informea_search_views_pre_render(&$view) {
