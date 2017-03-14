@@ -346,7 +346,9 @@ function _informea_search_get_topic_count($topic) {
   $view = views_get_view($view_name);
   if (is_object($view)) {
     $view->set_display($display_name);
-    $view->set_arguments($current_view->args);
+    if ($current_view) {
+      $view->set_arguments($current_view->args);
+    }
     $view->get_total_rows = true;
     $view->pre_execute();
     $view->execute($display_name);
