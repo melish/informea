@@ -96,11 +96,15 @@ function thesaurus_block_info() {
 function thesaurus_get_disclaimer_block() {
   $block = [];
   $node = null;
+  $un_env_node = false;
   $faolex_node = false;
   $ecolex_node = false;
   if ($node = menu_get_object()) {
     if ($node->type == 'legislation') {
       $faolex_node = true;
+    }
+    if ($node->type == 'court-decisions') {
+      $un_env_node = true;
     }
     if ($node->type == 'literature') {
       $ecolex_node = true;
@@ -122,6 +126,10 @@ function thesaurus_get_disclaimer_block() {
   else if ($ecolex_node || arg(0) == 'search-bilateral-treaties' || (arg(0)=='taxonomy' && arg(3) == 'bilateral-treaties')) {
     $block['subject'] = '<none>';
     $block['content'] = '<div><p style="text-align:center"><span class="ecolex-logo"></span>This content is exclusively provided <a href="http://www.ecolex.org" target="_blank">ECOLEX</a>.</p></div>';
+  }
+  else if (arg(0) == 'search-court-decisions') { // || (arg(0)=='taxonomy' && arg(3) == 'court-decisions') $un_env_node || ? todo
+    $block['subject'] = '<none>';
+    $block['content'] = '<div><p style="text-align:center"><span class="un-env-logo"></span>This content is provided UN Environment.</p></div>';
   }
   return $block;
 }
