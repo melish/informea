@@ -27,7 +27,7 @@ function goal_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -44,
+        'weight' => -45,
       ),
       'seven' => array(
         'region' => '',
@@ -48,33 +48,14 @@ function goal_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'goal/target-1-0
-goal/target-2-0
-goal/target-3-0
-goal/target-4-0
-goal/target-5-0
-goal/target-6-0
-goal/target-7-0
-goal/target-8-0
-goal/target-9-0
-goal/target-10-0
-goal/target-11-0
-goal/target-12-0
-goal/target-13-0
-goal/target-14-0
-goal/target-15-0
-goal/target-16-0
-goal/target-17-0
-goal/target-18-0
-goal/target-19-0
-goal/target-20-0',
+    'pages' => '',
     'roles' => array(),
     'themes' => array(
       'informea_theme' => array(
-        'region' => 'content',
-        'status' => 1,
+        'region' => '',
+        'status' => 0,
         'theme' => 'informea_theme',
-        'weight' => -36,
+        'weight' => 0,
       ),
       'seven' => array(
         'region' => '',
@@ -83,8 +64,8 @@ goal/target-20-0',
         'weight' => 0,
       ),
     ),
-    'title' => 'Indicators',
-    'visibility' => 1,
+    'title' => '',
+    'visibility' => 0,
   );
 
   return $export;

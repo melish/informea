@@ -55,6 +55,12 @@ function goal_theme() {
       'variables' => array('goals'),
       'path' => drupal_get_path('module', 'goal'),
     ),
+     'aichi_listing' => array(
+      'render element' => 'element',
+      'template' => 'templates/aichi-listing',
+      'variables' => array('goals'),
+      'path' => drupal_get_path('module', 'goal'),
+    ),
     'goal_text_tags' => array(
       'render element' => 'element',
       'template' => 'templates/goal-text-tags',
@@ -308,6 +314,30 @@ function _get_goal_children($source, $parent, $type_of_goals) {
   return $nodes;
 }
 
+function _get_target_children($source, $parent, $type_of_goals) {
+  $nodes = array();
+  $query = new EntityFieldQuery();
+
+  $goal_type_tid = NULL;
+  if ($goal_type = taxonomy_get_term_by_name($type_of_goals, 'type_of_goal')) {
+    $goal_type_tid = reset($goal_type)->tid;
+  }
+
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'goal')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->fieldCondition('field_goal_source', 'tid', $source->tid)
+    ->fieldCondition('field_goal_type', 'tid', $goal_type_tid)
+    ->fieldCondition('field_parent_goal', 'target_id', $parent->nid)
+    ->propertyOrderBy('title', 'ASC');
+
+  if ($result = $query->execute()) {
+    $nodes = $result['node'];
+  }
+
+  return $nodes;
+}
+
 function goal_taxonomy_term_view($term, $view_mode, $langcode) {
   if ($term->vocabulary_machine_name == 'goal_sources' && $view_mode == 'full') {
     drupal_add_js(drupal_get_path('module', 'goal') . '/js/goal.js');
@@ -361,5 +391,5 @@ function goal_taxonomy_term_view($term, $view_mode, $langcode) {
 function goal_link($node, $suffix = '') {
   $wrapper = entity_metadata_wrapper('node', $node);
   $goal = $wrapper->field_goal_source->value();
-  return url('taxonomy/term/' . $goal->tid . $suffix);
+  return url('taxonomy/term/sdg' . $goal->tid . $suffix);
 }
