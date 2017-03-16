@@ -29,6 +29,50 @@ function decision_get_treaty_decisions($id_treaty) {
   return isset($result['node']) ? node_load_multiple(array_keys($result['node'])) : array();
 }
 
+function decision_get_treaty_decisions_count($id_treaty = NULL) { // for 255
+  $count = [];
+  $q = db_select('node', 'a')->fields('a', array('nid'));
+  $q->innerJoin('field_data_field_has_api_decisions', 'b', 'a.nid = b.entity_id AND a.vid = b.revision_id');
+  $q->condition('field_has_api_decisions_value', 0, '!=');
+  $have_decisions = $q->execute()->fetchAllKeyed(0, 0);
+
+  $ret = array();
+
+  $allowed_status = array(840 /* active */, 846 /* adopted */, 845 /* amended */);
+  $query = db_select('node', 'a')->fields('a', array('nid'))->fields('m', array('field_meeting_target_id'))->fields('b', array('field_treaty_target_id'));
+  $query->join('field_data_field_treaty', 'b', 'b.entity_id = a.nid');
+  $query->leftJoin('field_data_field_sorting_order', 'c', 'c.entity_id = a.nid');
+  $query->leftJoin('field_data_field_decision_status', 'd', 'd.entity_id = a.nid');
+  $query->innerJoin('field_data_field_meeting', 'm', 'm.entity_id = a.nid');
+  $query->innerJoin('field_data_event_calendar_date', 'md', 'm.field_meeting_target_id = md.entity_id');
+  $query->condition('a.type', 'decision');
+  if ($id_treaty) {
+    $query->condition('b.field_treaty_target_id', $id_treaty);
+  }
+  $query->condition('d.field_decision_status_tid', $allowed_status, 'IN');
+  // Keep only COP meetings for CBD, Cartagena and Nagoya
+  if (in_array($id_treaty, array(255 /* CBD *//* , 262 Cartagena *//* , 263 Nagoya */))) {
+    $cop_term = taxonomy_get_term_by_name('cop', 'event_type');
+    $cop_term = reset($cop_term);
+    $query->innerJoin('field_data_field_event_type', 'et', 'm.field_meeting_target_id = et.entity_id');
+    $query->condition('et.field_event_type_tid', $cop_term->tid);
+  }
+  $query->groupBy('a.nid');
+  $decisions = $query->execute()->fetchAllAssoc('nid');
+
+  foreach($decisions as $nid => $row) {
+    $ret[$row->field_treaty_target_id][$row->field_meeting_target_id][$nid] = $nid;
+  }
+  foreach ($ret as $nid => $meetings) {
+    foreach ($meetings as $decisions) {
+      if (@$have_decisions[$nid]) {
+        @$count[$nid] += count($decisions);
+      }
+    }
+  }
+  return $count;
+}
+
 function decision_get_treaty_decisions_group_by_meeting2($id_treaty) {
   $ret = array();
   $fields = field_info_instances('node', 'decision');

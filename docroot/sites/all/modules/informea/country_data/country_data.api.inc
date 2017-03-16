@@ -19,6 +19,40 @@ function country_data_get_allowed_membership_status() {
   return array('acceptance', 'accession', 'approval', 'continuation', 'ratification', 'succession', 'party');
 }
 
+function country_data_get_allowed_membership_status_tids() {
+  $statuses = country_data_get_allowed_membership_status();
+  $vocabulary = taxonomy_vocabulary_machine_name_load('party_status');
+  $terms = taxonomy_get_tree($vocabulary->vid);
+  $tids = [];
+  foreach($terms as $term) {
+    if (in_array(strtolower($term->name), $statuses)) {
+      $tids[$term->tid] = $term->tid;
+    }
+  }
+  return $tids;
+}
+
+function country_data_get_treaty_membership_count($id_treaty = NULL) {
+  $tids = country_data_get_allowed_membership_status_tids();
+  $query = db_select('field_data_field_treaty', 'a')
+    ->fields('a', array('entity_id', 'field_treaty_target_id'))
+    ->condition('a.entity_type', 'node')
+    ->condition('a.bundle', 'member_party')
+    ->fields('ps', array('field_party_status_tid'))
+    ->condition('ps.field_party_status_tid', $tids, 'in');
+  if ($id_treaty) {
+    $query->condition('a.field_treaty_target_id', $id_treaty);
+  }
+  $query->join('field_data_field_party_status', 'ps', "ps.entity_id = a.entity_id");
+
+  $data = $query->execute()->fetchAll();
+  $count = [];
+  foreach($data as $row) {
+    @$count[$row->field_treaty_target_id]++;
+  }
+  return $count;
+}
+
 function country_data_treaty_get_membership($id_treaty, $other = FALSE) {
   $query = new EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')

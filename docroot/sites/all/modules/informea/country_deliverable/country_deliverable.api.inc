@@ -48,6 +48,72 @@ function country_deliverable_get_treaty_action_plans($id_treaty) {
   return array();
 }
 
+function country_deliverable_get_treaty_action_plans_count($id_treaty = NULL) {
+  $q = db_select('node', 'a')->fields('a', array('nid'));
+  $q->innerJoin('field_data_field_has_api_action_plans', 'b', 'a.nid = b.entity_id AND a.vid = b.revision_id');
+  $q->condition('field_has_api_action_plans_value', 0, '!=');
+  $has_action_plans = $q->execute()->fetchAllKeyed(0, 0);
+
+  $query = db_select('field_data_field_treaty', 'a')
+    ->fields('a', array('entity_id', 'field_treaty_target_id'))->fields('b', array('field_country_target_id'));
+  $query->innerJoin('field_data_field_country', 'b', 'a.entity_id=b.entity_id');
+  $query->condition('a.bundle', 'action_plan');
+  if ($id_treaty) {
+    $query->condition('a.field_treaty_target_id', $id_treaty);
+  }
+  $pids = $query->execute()->fetchAll();
+
+  $treaties_parties = array();
+  if (!empty($pids)) {
+    foreach ($pids as $row) {
+      $treaties_parties[$row->field_treaty_target_id][$row->field_country_target_id][$row->entity_id] = $row->entity_id;//node_load($row->field_country_target_id);
+    }
+  }
+
+  $count = [];
+  foreach ($treaties_parties as $nid => $parties) {
+    foreach ($parties as $countries) {
+      if (@$has_action_plans[$nid]) {
+        @$count[$nid] += count($countries);
+      }
+    }
+  }
+  return $count;
+}
+
+function country_deliverable_get_treaty_national_reports_count($id_treaty = NULL) {
+  $q = db_select('node', 'a')->fields('a', array('nid'));
+  $q->innerJoin('field_data_field_has_api_national_reports', 'b', 'a.nid = b.entity_id AND a.vid = b.revision_id');
+  $q->condition('field_has_api_national_reports_value', 0, '!=');
+  $has_national_reports = $q->execute()->fetchAllKeyed(0, 0);
+
+  $query = db_select('field_data_field_treaty', 'a')
+    ->fields('a', array('entity_id', 'field_treaty_target_id'))->fields('b', array('field_country_target_id'));
+  $query->innerJoin('field_data_field_country', 'b', 'a.entity_id=b.entity_id');
+  $query->condition('a.bundle', 'national_report');
+  if ($id_treaty) {
+    $query->condition('a.field_treaty_target_id', $id_treaty);
+  }
+  $rids = $query->execute()->fetchAll();
+
+  $treaties_parties = array();
+  if (!empty($rids)) {
+    foreach ($rids as $row) {
+      $treaties_parties[$row->field_treaty_target_id][$row->field_country_target_id][$row->entity_id] = $row->entity_id;//node_load($row->field_country_target_id);
+    }
+  }
+
+  $count = [];
+  foreach ($treaties_parties as $nid => $parties) {
+    foreach ($parties as $countries) {
+      if (@$has_national_reports[$nid]) {
+        @$count[$nid] += count($countries);
+      }
+    }
+  }
+  return $count;
+}
+
 function country_deliverable_national_reports_group_by_treaty($id_country) {
   $rows = country_deliverable_get_country_national_reports($id_country);
   if (!empty($rows)) {

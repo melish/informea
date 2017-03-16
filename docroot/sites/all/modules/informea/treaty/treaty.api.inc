@@ -97,6 +97,80 @@ function treaty_get_treaties() {
   return array();
 }
 
+function treaty_get_treaty_article_count() {
+  $query = db_select('node', 'a')
+    ->fields('a', array('nid'))
+    ->fields('tr', array('field_treaty_target_id'))
+    ->condition('a.type', 'treaty_article');
+  $query->join('field_data_field_treaty', 'tr', "a.nid = tr.entity_id");
+  $data = $query->execute()->fetchAll();
+  $count = [];
+  foreach($data as $row) {
+    @$count[$row->field_treaty_target_id]++;
+  }
+  return $count;
+}
+
+function treaty_get_child_protocols_count() {
+  $query = db_select('field_data_field_parent_treaty', 'a')
+    ->fields('a', array('entity_id', 'field_parent_treaty_target_id'))
+    ->fields('oi', array('field_odata_identifier_value'))
+    ->condition('a.entity_type', 'node');
+  $query->join('node', 'n', "a.entity_id = n.nid");
+  $query->leftJoin('field_data_field_odata_identifier', 'oi', "a.field_parent_treaty_target_id = oi.entity_id");
+
+  $query->condition('a.bundle', 'treaty');
+  $data = $query->execute()->fetchAll();
+
+  $count = [];
+  $oi = [];
+  $inc = 0;
+  if ($treaty = treaty_load_by_odata_name('NKL')) {
+    $inc = 1;
+  }
+  foreach($data as $row) {
+    if ($row->field_odata_identifier_value == 'cbd' && $inc) {
+      $oi[$row->field_parent_treaty_target_id] = $inc;
+    }
+    @$count[$row->field_parent_treaty_target_id]++;
+  }
+  foreach($oi as $nid => $val) {
+    $count[$nid] += $val;
+  }
+  return $count;
+}
+
+function treaty_get_enabled_treaties_count($menu_object) {
+  $count = [];
+  if (isset($menu_object->context) && $menu_object->context) {
+    switch ($menu_object->context) {
+      case 'parties':
+        $count = country_data_get_treaty_membership_count();
+        break;
+      case 'protocols':
+        $count = treaty_get_child_protocols_count();
+        break;
+      case 'decisions':
+        $id_treaty = 255;
+        $count = decision_get_treaty_decisions_count($id_treaty);
+        $count_255 = $count[$id_treaty];
+        $count = decision_get_treaty_decisions_count(NULL);
+        $count[$id_treaty] = $count_255;
+        break;
+      case 'national-reports':
+        $count = country_deliverable_get_treaty_national_reports_count();
+        break;
+      case 'action-plans':
+        $count = country_deliverable_get_treaty_action_plans_count();
+        break;
+      case 'text':
+        $count = treaty_get_treaty_article_count();
+        break;
+    }
+  }
+  return $count;
+}
+
 function treaty_get_treaties_as_select_options() {
   $ret = array();
   $query = new EntityFieldQuery();
@@ -112,12 +186,15 @@ function treaty_get_treaties_as_select_options() {
     field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['title_field']['field_id']));
     field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['field_odata_identifier']['field_id']));
     $menu_object = menu_get_object();
+    $count = treaty_get_enabled_treaties_count($menu_object);
     foreach ($rows as $nid => $node) {
       $label = field_get_items('node', $node, 'title_field');
       $label = isset($label[0]['value']) ? $label[0]['value'] : $node->title;
       $path = 'treaties/' . $node->field_odata_identifier[LANGUAGE_NONE][0]['value'];
       if (isset($menu_object->context)) {
-        $path .= '/' . $menu_object->context;
+        if (@$count[$nid]) {
+          $path .= '/' . $menu_object->context;
+        }
       }
       $ret[url($path, array('absolute' => TRUE))] = $label;
     }
