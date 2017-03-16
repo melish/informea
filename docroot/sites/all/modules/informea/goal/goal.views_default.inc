@@ -85,7 +85,6 @@ function goal_views_default_views() {
 
   /* Display: Strategic goals */
   $handler = $view->new_display('page', 'Strategic goals', 'page_strategic_goals');
-  $handler->display->display_options['enabled'] = FALSE;
   $handler->display->display_options['display_description'] = 'Strategic goals';
   $handler->display->display_options['defaults']['group_by'] = FALSE;
   $handler->display->display_options['group_by'] = TRUE;
@@ -290,51 +289,6 @@ function goal_views_default_views() {
   $handler->display->display_options['filters']['field_goal_source_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_goal_source_tid']['vocabulary'] = 'goal_sources';
   $handler->display->display_options['block_description'] = 'View: Aichi Indicators';
-
-  /* Display: Goals */
-  $handler = $view->new_display('block', 'Goals', 'block_goals');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'goal' => 'goal',
-  );
-  $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Goal Type (field_goal_type) */
-  $handler->display->display_options['filters']['field_goal_type_tid']['id'] = 'field_goal_type_tid';
-  $handler->display->display_options['filters']['field_goal_type_tid']['table'] = 'field_data_field_goal_type';
-  $handler->display->display_options['filters']['field_goal_type_tid']['field'] = 'field_goal_type_tid';
-  $handler->display->display_options['filters']['field_goal_type_tid']['value'] = array(
-    1736 => '1736',
-  );
-  $handler->display->display_options['filters']['field_goal_type_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_goal_type_tid']['expose']['operator_id'] = 'field_goal_type_tid_op';
-  $handler->display->display_options['filters']['field_goal_type_tid']['expose']['label'] = 'Goal Type (field_goal_type)';
-  $handler->display->display_options['filters']['field_goal_type_tid']['expose']['operator'] = 'field_goal_type_tid_op';
-  $handler->display->display_options['filters']['field_goal_type_tid']['expose']['identifier'] = 'field_goal_type_tid';
-  $handler->display->display_options['filters']['field_goal_type_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_goal_type_tid']['vocabulary'] = 'type_of_goal';
-  /* Filter criterion: Content: Source (field_goal_source) */
-  $handler->display->display_options['filters']['field_goal_source_tid']['id'] = 'field_goal_source_tid';
-  $handler->display->display_options['filters']['field_goal_source_tid']['table'] = 'field_data_field_goal_source';
-  $handler->display->display_options['filters']['field_goal_source_tid']['field'] = 'field_goal_source_tid';
-  $handler->display->display_options['filters']['field_goal_source_tid']['value'] = array(
-    1738 => '1738',
-  );
-  $handler->display->display_options['filters']['field_goal_source_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_goal_source_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_goal_source_tid']['vocabulary'] = 'goal_sources';
   $translatables['aichi_biodiversity_targets'] = array(
     t('Master'),
     t('Aichi Biodiversity Targets'),
@@ -355,7 +309,6 @@ function goal_views_default_views() {
     t('parent_goal'),
     t('Indicator'),
     t('View: Aichi Indicators'),
-    t('Goals'),
   );
   $export['aichi_biodiversity_targets'] = $view;
 
@@ -689,7 +642,7 @@ function goal_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'views_bootstrap_grid_plugin_style';
-  $handler->display->display_options['style_options']['columns'] = '3';
+  $handler->display->display_options['style_options']['columns'] = '4';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Relationship: Taxonomy term: Entity translation: translations */
   $handler->display->display_options['relationships']['entity_translations']['id'] = 'entity_translations';
@@ -718,7 +671,6 @@ function goal_views_default_views() {
   $handler->display->display_options['sorts']['weight']['id'] = 'weight';
   $handler->display->display_options['sorts']['weight']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['sorts']['weight']['field'] = 'weight';
-  $handler->display->display_options['sorts']['weight']['order'] = 'DESC';
   /* Filter criterion: Taxonomy vocabulary: Machine name */
   $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
   $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
@@ -736,12 +688,6 @@ function goal_views_default_views() {
     '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
   );
   $handler->display->display_options['filters']['language']['group'] = 1;
-  /* Filter criterion: Taxonomy term: Term ID */
-  $handler->display->display_options['filters']['tid_raw']['id'] = 'tid_raw';
-  $handler->display->display_options['filters']['tid_raw']['table'] = 'taxonomy_term_data';
-  $handler->display->display_options['filters']['tid_raw']['field'] = 'tid_raw';
-  $handler->display->display_options['filters']['tid_raw']['operator'] = '!=';
-  $handler->display->display_options['filters']['tid_raw']['value']['value'] = '1740';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
