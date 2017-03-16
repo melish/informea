@@ -642,7 +642,7 @@ function goal_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'views_bootstrap_grid_plugin_style';
-  $handler->display->display_options['style_options']['columns'] = '4';
+  $handler->display->display_options['style_options']['columns'] = '3';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Relationship: Taxonomy term: Entity translation: translations */
   $handler->display->display_options['relationships']['entity_translations']['id'] = 'entity_translations';
@@ -671,6 +671,7 @@ function goal_views_default_views() {
   $handler->display->display_options['sorts']['weight']['id'] = 'weight';
   $handler->display->display_options['sorts']['weight']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['sorts']['weight']['field'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['order'] = 'DESC';
   /* Filter criterion: Taxonomy vocabulary: Machine name */
   $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
   $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
@@ -688,6 +689,12 @@ function goal_views_default_views() {
     '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
   );
   $handler->display->display_options['filters']['language']['group'] = 1;
+  /* Filter criterion: Taxonomy term: Term ID */
+  $handler->display->display_options['filters']['tid_raw']['id'] = 'tid_raw';
+  $handler->display->display_options['filters']['tid_raw']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['filters']['tid_raw']['field'] = 'tid_raw';
+  $handler->display->display_options['filters']['tid_raw']['operator'] = '!=';
+  $handler->display->display_options['filters']['tid_raw']['value']['value'] = '1740';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
