@@ -273,7 +273,14 @@ function _get_goal_source_goals($source, $type_of_goals) {
     ->entityCondition('bundle', 'goal')
     ->propertyCondition('status', NODE_PUBLISHED)
     ->fieldCondition('field_goal_source', 'tid', $source->tid)
-    ->fieldCondition('field_goal_type', 'tid', $goal_type_tid);
+    ->fieldCondition('field_goal_type', 'tid', $goal_type_tid)
+    ->fieldOrderBy('field_sorting_order', 'value');
+    usort($ret, function($a, $b) {
+ // check if $a and $b have the sorting other field
+// return -1 if the first element has lower sorting order
+// return 0 if they have the same sorting order
+// return 1 if the second one has lower sorting order 
+ });
 
   $ret = array();
   $result = $query->execute();
