@@ -72,119 +72,6 @@ class ContactsODataMigration extends AbstractODataMigration {
     ));
   }
 
-  function getGender($prefix) {
-    if (!$prefix) {
-      return NULL;
-    }
-
-    $male = [
-      'Mr',
-      'Mr.',
-      'Sr.',
-      'H.E.Mr.',
-      'H.E. Mr',
-      'H.E. Mr.',
-      'His Exc. Mr.',
-      'S.E. Sr.',
-      'S.E.M.Mr.',
-      'Hon Mr.',
-      'Hon. Mr',
-      'Excellence Mr.',
-      'Monsieur',
-      'Dr. (Mr.)',
-      'Don',
-      'Dr./Mr.',
-      'Mr./Dr.',
-    ];
-    if (in_array($prefix, $male)) {
-      return 0;
-    }
-
-    $female = [
-      'Dr. (Ms.)',
-      'Madame',
-      'S.E. Sra.',
-      'S.E Sra.',
-      'Sra.',
-      'Ms.',
-      'Ms',
-      'Mrs',
-      'Mrs.',
-      'H.Mrs',
-      'H Mrs.',
-      'H.E. Ms.',
-      'S.E. Mrs.',
-      'Dr. (Ms)',
-      'Dr.(Ms.)',
-      'Miss',
-      'Mlle',
-      'Mlle.',
-      'Melle',
-      'Mme.',
-      'Mme',
-      'Hon Mrs.',
-      'Mademoiselle',
-      'Mrs./Dr.',
-    ];
-    if (in_array($prefix, $female)) {
-      return 1;
-    }
-
-    $unknown = [
-      'Sheikh',
-      'Son Excellence',
-      'H.R.H. Prince',
-      'H.E. Archbishop',
-      'His Excellency',
-      'Sr.Lic.',
-      'Senator the Hon.',
-
-      'M.', // ?
-      'S.E.M.',
-      'H.E.M.',
-      'S.E. M.',
-      'Blga.',
-      'Blgo.',
-      'Ing.',
-      'Ing. Agr.',
-      'Emb.',
-      'Ing. E.H.',
-      'Eng.',
-      'H.E.',
-      'H.E. Eng.',
-      'S.E.',
-      'Lcda.',
-      'Lic.',
-      'Hon.',
-
-      'Dra',
-      'Dra.',
-      'Pr.',
-      'Prof.',
-
-      'Dr.', // ? doctor
-      'HE Dr.',
-      'H.E. Dr.',
-      'S.E. Dr.',
-      'Prof. Dr.',
-    ];
-    if (in_array($prefix, $unknown)) {
-      return NULL;
-    }
-
-    if (stripos($prefix,' mr.') !== FALSE) {
-      return 0;
-    }
-    if (stripos($prefix,' ms.') !== FALSE) {
-      return 1;
-    }
-    if (stripos($prefix,' mrs.') !== FALSE) {
-      return 1;
-    }
-    ws_consumer_odata_log(__METHOD__ . 'Unkown prefix '. $prefix, MigrationBase::MESSAGE_WARNING);
-    return NULL;
-  }
-
   /**
    * Add some Contacts specific preparations.
    *
@@ -192,7 +79,11 @@ class ContactsODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
-    $row->gender = $this->getGender($row->prefix);
+
+    if ($row->gender !== NULL) {
+      $v = intval($row->gender);
+      $row->gender = ($v == 1) ?: 0;
+    }
 
     /* Fill with remote-data */
     $consumer = $this->source->getConsumer();
@@ -343,6 +234,7 @@ class InforMEAODataContactsMigrateSource extends InforMEAAbstractODataMigrateSou
       'department' => 'Department',
       'address' => 'Working address',
       'email' => 'Work e-mail address',
+      'gender' => 'Person gender (NULL unknown, 0=male, 1=female)',
       'phoneNumber' => 'Contact telephone number',
       'type' => 'Type of contact (i.e. licenced focal point)',
       'fax' => 'Work fax number',
