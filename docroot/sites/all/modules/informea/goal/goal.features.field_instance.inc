@@ -672,6 +672,70 @@ function goal_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-goal-field_lead_institution'.
+  $field_instances['node-goal-field_lead_institution'] = array(
+    'bundle' => 'goal',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 19,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_lead_institution',
+    'label' => 'Lead Institution',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'hide_id' => 0,
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'STARTS_WITH',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 24,
+    ),
+  );
+
   // Exported field_instance: 'node-goal-field_link_emg_url'.
   $field_instances['node-goal-field_link_emg_url'] = array(
     'bundle' => 'goal',
@@ -1421,6 +1485,7 @@ function goal_field_default_field_instances() {
   t('Identifier');
   t('Images');
   t('InforMEA tags');
+  t('Lead Institution');
   t('Link to UN statistics');
   t('Link to source website where relevant information can be found');
   t('Link to work of the Environmental Management Group');
