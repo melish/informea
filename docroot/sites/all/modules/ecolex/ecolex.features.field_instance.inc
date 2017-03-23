@@ -870,10 +870,10 @@ function ecolex_field_default_field_instances() {
       'entity_translation_sync' => FALSE,
       'select2_integration' => array(
         'styling' => array(
-          'dropdownAutoWidth' => 0,
+          'dropdownAutoWidth' => TRUE,
           'placeholder' => '',
         ),
-        'use_select2' => 0,
+        'use_select2' => 1,
       ),
       'user_register_form' => FALSE,
     ),
@@ -3223,10 +3223,10 @@ function ecolex_field_default_field_instances() {
       'entity_translation_sync' => FALSE,
       'select2_integration' => array(
         'styling' => array(
-          'dropdownAutoWidth' => 0,
+          'dropdownAutoWidth' => TRUE,
           'placeholder' => '',
         ),
-        'use_select2' => 0,
+        'use_select2' => 1,
       ),
       'user_register_form' => FALSE,
     ),
