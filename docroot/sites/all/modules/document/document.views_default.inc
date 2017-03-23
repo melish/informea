@@ -42,7 +42,7 @@ function document_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['exclude'] = TRUE;
   $handler->display->display_options['fields']['title']['link_to_entity'] = 1;
-  /* Field: Indexed Content: Image */
+  /* Field: Indexed Content: Thumbnail */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'search_api_index_informea_publications';
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
@@ -186,7 +186,7 @@ function document_views_default_views() {
     10 => 0,
     11 => 0,
   );
-  /* Filter criterion: Indexed Content: InforMEA Tags */
+  /* Filter criterion: Indexed Content: InforMEA tags */
   $handler->display->display_options['filters']['field_informea_tags']['id'] = 'field_informea_tags';
   $handler->display->display_options['filters']['field_informea_tags']['table'] = 'search_api_index_informea_publications';
   $handler->display->display_options['filters']['field_informea_tags']['field'] = 'field_informea_tags';
