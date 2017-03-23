@@ -11,3 +11,10 @@ function treaty_update_7001() {
   );
   module_enable($modules);
 }
+
+/**
+ * Display parent treaty as link.
+ */
+function treaty_update_7002() {
+  features_revert(array('treaty' => ['field_instance']));
+}
