@@ -85,6 +85,7 @@ function goal_views_default_views() {
 
   /* Display: Strategic goals */
   $handler = $view->new_display('page', 'Strategic goals', 'page_strategic_goals');
+  $handler->display->display_options['enabled'] = FALSE;
   $handler->display->display_options['display_description'] = 'Strategic goals';
   $handler->display->display_options['defaults']['group_by'] = FALSE;
   $handler->display->display_options['group_by'] = TRUE;
