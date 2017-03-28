@@ -65,6 +65,9 @@ class EcolexTreatyMigration extends Migration {
     $this->addFieldMapping('revision')->defaultValue(0);
     $this->addFieldMapping('language')->defaultValue('en');
 
+    $this->addFieldMapping('field_ecolex_url', 'ecolex_url');
+    $this->addFieldMapping('field_ecolex_url:title')->defaultValue('ECOLEX');
+
     $this->addUnmigratedSources(array());
     $this->addUnmigratedDestinations(array(
       'nid', 'created', 'changed', 'log', 'tnid', 'translate', 'revision_uid', 'path',
@@ -131,7 +134,7 @@ class EcolexTreatyMigration extends Migration {
       'field_treaty_plans_url', 'field_treaty_plans_url:title', 'field_treaty_plans_url:attributes', 'field_treaty_plans_url:language',
       'field_treaty_protocols_url', 'field_treaty_protocols_url:title', 'field_treaty_protocols_url:attributes', 'field_treaty_protocols_url:language',
       'field_treaty_reports_url', 'field_treaty_reports_url:title', 'field_treaty_reports_url:attributes', 'field_treaty_reports_url:language',
-      'field_ecolex_url', 'field_ecolex_url:title', 'field_ecolex_url:attributes', 'field_ecolex_url:language',
+      'field_ecolex_url:attributes', 'field_ecolex_url:language',
       'field_faolex_url', 'field_faolex_url:title', 'field_faolex_url:attributes', 'field_faolex_url:language',
 
       // metatag
@@ -210,8 +213,10 @@ class EcolexTreatyMigration extends Migration {
       }
     }
 
+    $row->ecolex_url = 'http://www.ecolex.org/treaty/details/' . $row->docId;
+
     // Taxonomies
-    $row->trDataSource = 'ECOLEX/ELIS';
+    $row->trDataSource = 'ECOLEX';
     $this->prepare_term_reference_field($row, 'trDataSource', 'data_source');
     $this->prepare_term_reference_field_multilingual($row, 'trFieldOfApplication', 'field_of_application');
     $this->prepare_term_reference_field_multilingual($row, 'trJurisdiction', 'jurisdiction');

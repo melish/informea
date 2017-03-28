@@ -27,11 +27,26 @@ class VocBenchRDFSource extends DefaultSource {
 
   function getTerms() {
     $terms = $this->loadCachedRDF($this->url);
+    foreach ($terms as $key => $term) {
+      if (empty($term->status) || $term->status != 'Published') {
+        unset($terms[$key]);
+      }
+    }
     return $terms;
   }
 
+  public function getDeprecatedTerms() {
+    $terms = $this->loadCachedRDF($this->url);
+    $deprecatedTerms = [];
+    foreach ($terms as $key => $term) {
+      if (empty($term->status) || $term->status != 'Published') {
+        $deprecatedTerms[] = $term->{$this->getIdField()};
+      }
+    }
+    return $deprecatedTerms;
+  }
+
   private function loadCachedRDF($rdf) {
-    $thesaurus = NULL;
     $data = array();
     if ($cache = cache_get(__FUNCTION__, 'cache')) {
       $data = $cache->data;
@@ -45,14 +60,14 @@ class VocBenchRDFSource extends DefaultSource {
         $data[$rdf] = $thesaurus;
         cache_set(__FUNCTION__, $data, 'cache', time() + 3600);
       }
+      return $thesaurus;
     }
-    return $thesaurus;
   }
 
   private function loadRDF($rdf) {
     if (!easyrdf()) {
       drupal_set_message(t('EasyRdf library is not available.'), 'error');
-      return FALSE;
+      return [];
     }
     \EasyRdf_Namespace::set('vb', 'http://art.uniroma2.it/ontologies/vocbench#');
 
@@ -62,7 +77,7 @@ class VocBenchRDFSource extends DefaultSource {
     }
     catch(\Exception $e) {
       drupal_set_message("Failed to parse RDF file $rdf");
-      return NULL;
+      return [];
     }
 
     $terms = array();
@@ -140,9 +155,7 @@ class VocBenchRDFSource extends DefaultSource {
           $term->status = (string) $status;
         }
 
-        if (!empty($term->status) && $term->status == 'Published') {
-          $terms[$key] = $term;
-        }
+        $terms[$key] = $term;
       }
     }
 

@@ -44,6 +44,12 @@
             <?php print t('UNECE'); ?>
           </a><!-- .brand .brand-hover .brand-unece -->
         </li>
+        <li>
+          <a class="brand brand-hover brand-ecolex" href="http://www.ecolex.org/" target="_blank">
+            <div class="image"></div>
+            <?php print t('ECOLEX'); ?>
+          </a><!-- .brand .brand-hover .brand-ecolex -->
+        </li>
         <li class="pull-right">
           <a class="brand brand-hover brand-eu" href="http://ec.europa.eu/" target="_blank">
             <div class="image"></div>

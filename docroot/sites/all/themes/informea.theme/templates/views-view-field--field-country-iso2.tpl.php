@@ -23,14 +23,12 @@
  */
 ?>
 <?php
+$img = '';
 if (!empty($field->original_value)) {
   $img = theme('image', array(
     'path' => drupal_get_path('theme', 'informea_theme') . '/img/flags/flag-' . strtolower($field->original_value) . '.png',
     'attributes' => array('class' => array('img-thumbnail'))
   ));
-}
-else {
-  $img = '';
 }
 print $img;
 ?>

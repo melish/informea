@@ -152,10 +152,6 @@ function analytics_integration_get_key_by_name($name) {
  * @return string
  */
 function analytics_integration_google_analytics_send_hit($key, $target_url, $js_identifier, $page_title, $type = 'pageview', $add_referrer = TRUE) {
-  global $user;
-  if ($user->uid > 0) {
-    return '';
-  }
   $url = parse_url($target_url);
   $host = $url['host'];
   $page_title = trim($page_title);

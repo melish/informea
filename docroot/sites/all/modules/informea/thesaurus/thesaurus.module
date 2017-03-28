@@ -82,15 +82,58 @@ function thesaurus_block_info() {
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => '',
   );
+  $blocks['thesaurus-disclaimer'] = array(
+    'info' => t('Thesaurus disclaimer'),
+    'cache' => DRUPAL_NO_CACHE,
+    'status' => 1,
+    'region' => 'content',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => '',
+  );
   return $blocks;
 }
 
+function thesaurus_get_disclaimer_block() {
+  $block = [];
+  $node = null;
+  $faolex_node = false;
+  $ecolex_node = false;
+  if ($node = menu_get_object()) {
+    if ($node->type == 'legislation') {
+      $faolex_node = true;
+    }
+    if ($node->type == 'literature') {
+      $ecolex_node = true;
+    }
+    if ($node->type == 'treaty') {
+      $wrapper = entity_metadata_wrapper('node', $node);
+      if ($source = @$wrapper->field_data_source->value()[0]->tid) {
+        if ($source == DATA_SOURCE_ECOLEX) {
+          $ecolex_node = true;
+        }
+      }
+    }
+  }
+
+  if ($faolex_node || (arg(0) == 'search-legislation') || (arg(0)=='taxonomy' && arg(3) == 'legislation')) {
+    $block['subject'] = '<none>';
+    $block['content'] = '<div><p style="text-align:center"><span class="faolex-logo"></span>This content is exclusively provided by <a href="http://www.fao.org/" target="_blank">FAO</a> / <a href="http://www.fao.org/faolex/en" target="_blank">FAOLEX</a> / <a href="http://www.ecolex.org" target="_blank">ECOLEX</a><span class="ecolex-logo"></span></p></div>';
+  }
+  else if ($ecolex_node || arg(0) == 'search-bilateral-treaties' || (arg(0)=='taxonomy' && arg(3) == 'bilateral-treaties')) {
+    $block['subject'] = '<none>';
+    $block['content'] = '<div><p style="text-align:center"><span class="ecolex-logo"></span>This content is exclusively provided <a href="http://www.ecolex.org" target="_blank">ECOLEX</a>.</p></div>';
+  }
+  return $block;
+}
 /**
  * Implements hook_block_view().
  */
 function thesaurus_block_view($delta = '') {
   $block = array();
   switch ($delta) {
+    case 'thesaurus-disclaimer':
+      $block = thesaurus_get_disclaimer_block();
+      break;
     case 'terms-listing':
       $block['subject'] = 'Terms listing with 2 tabs';
       $block['content'] = thesaurus_terms_listing_block_content();
@@ -209,7 +252,7 @@ function _thesaurus_get_related_content_count($term, $bundle) {
       return !empty($related_data['treaties']) ? count($related_data['treaties']) : 0;
 
     case 'bilateral-treaties':
-      $bilateral_treaties = _informea_search_get_treaties_by_data_source(2767 /* ECOLEX */);
+      $bilateral_treaties = _informea_search_get_treaties_by_data_source(DATA_SOURCE_ECOLEX);
       if (!empty($bilateral_treaties)) {
         return $select->condition('entity_id', $bilateral_treaties, 'IN')->execute()->rowCount();
       }
@@ -252,8 +295,8 @@ function thesaurus_menu_local_tasks_alter(&$data, $router_item, $root_path) {
             'data' => l(t('Bilateral treaties') . ' <span class="badge">' . $bilateralTreatiesCount . '</span>', 'taxonomy/term/' . $term->tid . '/bilateral-treaties', ['html' => true]),
             'role' => 'presentation',
           ),
-          'legislations' => array(
-            'data' => l(t('Legislation') . ' <span class="badge">' . $legislationsCount . '</span>', 'taxonomy/term/' . $term->tid . '/legislations', ['html' => true]),
+          'legislation' => array(
+            'data' => l(t('Legislation') . ' <span class="badge">' . $legislationsCount . '</span>', 'taxonomy/term/' . $term->tid . '/legislation', ['html' => true]),
             'role' => 'presentation',
           ),
           'court-decisions' => array(

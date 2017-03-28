@@ -82,6 +82,8 @@ class EcolexLegislationMigration extends Migration {
     $this->addFieldMapping('field_ecolex_url', 'ecolex_url');
     $this->addFieldMapping('field_faolex_url', 'faolex_url');
 
+    $this->addFieldMapping('field_ecolex_url:title')->defaultValue('ECOLEX');
+    $this->addFieldMapping('field_faolex_url:title')->defaultValue('FAOLEX');
 
     $this->addUnmigratedSources(array());
     $this->addUnmigratedDestinations(array(
@@ -137,8 +139,8 @@ class EcolexLegislationMigration extends Migration {
       'field_date_of_consolidation', 'field_date_of_consolidation:timezone',
       'field_date_of_consolidation:rrule', 'field_date_of_consolidation:to',
       'field_isis_number',
-      'field_ecolex_url:title', 'field_ecolex_url:attributes', 'field_ecolex_url:language',
-      'field_faolex_url:title',  'field_faolex_url:attributes', 'field_faolex_url:language',
+      'field_ecolex_url:attributes', 'field_ecolex_url:language',
+      'field_faolex_url:attributes', 'field_faolex_url:language',
       'field_source_language',
     ));
   }
@@ -159,8 +161,11 @@ class EcolexLegislationMigration extends Migration {
       $row->legOriginalYear = $row->legOriginalYear . '-01-01';
     }
 
+    $row->ecolex_url = 'http://www.ecolex.org/legislation/details/' . $row->legId;
+    $row->faolex_url = 'http://www.fao.org/faolex/results/details/en/?details=' . $row->legId;
+
     // Taxonomies
-    $row->legDataSource = 'ECOLEX/FAOLEX';
+    $row->legDataSource = 'FAOLEX';
     $this->prepare_term_reference_field($row, 'legDataSource', 'data_source');
     $this->prepare_term_reference_field_multilingual($row, 'legType', 'type_of_text');
     $this->prepare_term_reference_field_multilingual($row, 'legGeoArea', 'ecolex_region');

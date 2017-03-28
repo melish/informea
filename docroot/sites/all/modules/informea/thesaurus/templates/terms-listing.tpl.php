@@ -3,7 +3,7 @@
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#AtoZ" aria-controls="AtoZ" role="tab" data-toggle="tab">A-Z</a></li>
-    <li role="presentation"><a href="#hierarchical" aria-controls="hierarchical" role="tab" data-toggle="tab">Hierarhical</a></li>
+    <li role="presentation"><a href="#hierarchical" aria-controls="hierarchical" role="tab" data-toggle="tab">Hierarchical</a></li>
   </ul>
 
   <!-- Tab panes -->

@@ -90,7 +90,7 @@ class InforMEAThesaurusTermRelatedContent {
       }
     }
 
-    $bilateral_treaties = _informea_search_get_treaties_by_data_source(2767 /* ECOLEX */);
+    $bilateral_treaties = _informea_search_get_treaties_by_data_source(DATA_SOURCE_ECOLEX);
     foreach ($treaties as $nid => $data) {
       if ($type == 'multilateral' && in_array($nid, $bilateral_treaties)) {
         unset($treaties[$nid]);

@@ -22,7 +22,7 @@ function country_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Countries';
+  $handler->display->display_options['title'] = 'Parties';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -65,7 +65,7 @@ function country_views_default_views() {
   $handler->display->display_options['path'] = 'countries';
   $translatables['countries'] = array(
     t('Master'),
-    t('Countries'),
+    t('Parties'),
     t('more'),
     t('Apply'),
     t('Reset'),

@@ -200,8 +200,6 @@ function meeting_views_default_views() {
     'any_label' => NULL,
     'filter_rewrite_values' => NULL,
   );
-  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'full_html';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '100';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -433,7 +431,6 @@ function meeting_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('Advanced options'),
-    t('Select any filter and click on Apply to see results'),
     t('There is no content available'),
     t('Content entity referenced from field_treaty'),
     t('term from field_event_type'),
@@ -795,8 +792,6 @@ function meeting_views_default_views() {
     'any_label' => NULL,
     'filter_rewrite_values' => NULL,
   );
-  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'full_html';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '100';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -1028,7 +1023,6 @@ function meeting_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('Advanced options'),
-    t('Select any filter and click on Apply to see results'),
     t('There is no content available'),
     t('Content entity referenced from field_treaty'),
     t('term from field_event_type'),

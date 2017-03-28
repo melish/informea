@@ -221,16 +221,38 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_place_of_adoption']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_place_of_adoption']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-globe"></span> [field_place_of_adoption]';
   $handler->display->display_options['fields']['field_place_of_adoption']['element_label_colon'] = FALSE;
+  /* Field: Indexed Content: ECOLEX URL */
+  $handler->display->display_options['fields']['field_ecolex_url']['id'] = 'field_ecolex_url';
+  $handler->display->display_options['fields']['field_ecolex_url']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['fields']['field_ecolex_url']['field'] = 'field_ecolex_url';
+  $handler->display->display_options['fields']['field_ecolex_url']['label'] = '';
+  $handler->display->display_options['fields']['field_ecolex_url']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_ecolex_url']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> <a target="_blank" [field_ecolex_url-attributes] href="[field_ecolex_url]">[field_ecolex_url-title]</a>';
+  $handler->display->display_options['fields']['field_ecolex_url']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_ecolex_url']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_ecolex_url']['type'] = 'link_absolute';
+  /* Field: Indexed Content: Content type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['label'] = '';
+  $handler->display->display_options['fields']['type']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['type']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['type']['format_name'] = 0;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
   $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
   $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing_1']['label'] = '';
+  $handler->display->display_options['fields']['nothing_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '<div class="meta search-index">
 [field_jurisdiction]
 [field_type_of_text]
 [field_place_of_adoption]
-</div>';
+[field_ecolex_url]
+</div>
+';
   $handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
   /* Sort criterion: Search: Relevance */
   $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
@@ -301,11 +323,14 @@ function informea_search_views_default_views() {
     t('<span class="glyphicon glyphicon-education"></span> [field_jurisdiction]'),
     t('<span class="separator">·</span> <span class="glyphicon glyphicon-book"></span> [field_type_of_text]'),
     t('<span class="separator">·</span> <span class="glyphicon glyphicon-globe"></span> [field_place_of_adoption]'),
+    t('<span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> <a target="_blank" [field_ecolex_url-attributes] href="[field_ecolex_url]">[field_ecolex_url-title]</a>'),
     t('<div class="meta search-index">
 [field_jurisdiction]
 [field_type_of_text]
 [field_place_of_adoption]
-</div>'),
+[field_ecolex_url]
+</div>
+'),
     t('Fulltext search'),
     t('Page'),
   );
@@ -567,6 +592,44 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_type_of_text']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_type_of_text']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_type_of_text']['bypass_access'] = 0;
+  /* Field: Indexed Content: Original ID */
+  $handler->display->display_options['fields']['field_original_id']['id'] = 'field_original_id';
+  $handler->display->display_options['fields']['field_original_id']['table'] = 'search_api_index_informea_legislations';
+  $handler->display->display_options['fields']['field_original_id']['field'] = 'field_original_id';
+  $handler->display->display_options['fields']['field_original_id']['label'] = '';
+  $handler->display->display_options['fields']['field_original_id']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_original_id']['element_label_colon'] = FALSE;
+  /* Field: Indexed Content: ECOLEX URL */
+  $handler->display->display_options['fields']['field_ecolex_url']['id'] = 'field_ecolex_url';
+  $handler->display->display_options['fields']['field_ecolex_url']['table'] = 'search_api_index_informea_legislations';
+  $handler->display->display_options['fields']['field_ecolex_url']['field'] = 'field_ecolex_url';
+  $handler->display->display_options['fields']['field_ecolex_url']['label'] = '';
+  $handler->display->display_options['fields']['field_ecolex_url']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_ecolex_url']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_ecolex_url']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> <a target="_blank" [field_ecolex_url-attributes] href="[field_ecolex_url]">[field_ecolex_url-title]</a>';
+  $handler->display->display_options['fields']['field_ecolex_url']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_ecolex_url']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_ecolex_url']['type'] = 'link_absolute';
+  /* Field: Indexed Content: FAOLEX URL */
+  $handler->display->display_options['fields']['field_faolex_url']['id'] = 'field_faolex_url';
+  $handler->display->display_options['fields']['field_faolex_url']['table'] = 'search_api_index_informea_legislations';
+  $handler->display->display_options['fields']['field_faolex_url']['field'] = 'field_faolex_url';
+  $handler->display->display_options['fields']['field_faolex_url']['label'] = '';
+  $handler->display->display_options['fields']['field_faolex_url']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_faolex_url']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_faolex_url']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> <a target="_blank" [field_faolex_url-attributes] href="[field_faolex_url]">[field_faolex_url-title]</a>';
+  $handler->display->display_options['fields']['field_faolex_url']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_faolex_url']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_faolex_url']['type'] = 'link_absolute';
+  /* Field: Indexed Content: Content type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'search_api_index_informea_legislations';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['label'] = '';
+  $handler->display->display_options['fields']['type']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['type']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['type']['format_name'] = 0;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -575,6 +638,8 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="meta search-index">
 [field_country]
 [field_type_of_text]
+[field_faolex_url]
+[field_ecolex_url]
 </div>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Sort criterion: Search: Relevance */
@@ -629,9 +694,13 @@ function informea_search_views_default_views() {
     t('Country'),
     t('<span class="glyphicon glyphicon-globe"></span> [field_country]'),
     t('<span class="separator">·</span> <span class="glyphicon glyphicon-book"></span> [field_type_of_text]'),
+    t('<span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> <a target="_blank" [field_ecolex_url-attributes] href="[field_ecolex_url]">[field_ecolex_url-title]</a>'),
+    t('<span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> <a target="_blank" [field_faolex_url-attributes] href="[field_faolex_url]">[field_faolex_url-title]</a>'),
     t('<div class="meta search-index">
 [field_country]
 [field_type_of_text]
+[field_faolex_url]
+[field_ecolex_url]
 </div>'),
     t('Fulltext search'),
     t('Page'),
@@ -680,6 +749,16 @@ function informea_search_views_default_views() {
   $handler->display->display_options['relationships']['field_treaty']['id'] = 'field_treaty';
   $handler->display->display_options['relationships']['field_treaty']['table'] = 'search_api_index_informea_publications';
   $handler->display->display_options['relationships']['field_treaty']['field'] = 'field_treaty';
+  /* Field: Indexed Content: Data source */
+  $handler->display->display_options['fields']['field_data_source']['id'] = 'field_data_source';
+  $handler->display->display_options['fields']['field_data_source']['table'] = 'search_api_index_informea_publications';
+  $handler->display->display_options['fields']['field_data_source']['field'] = 'field_data_source';
+  $handler->display->display_options['fields']['field_data_source']['label'] = '';
+  $handler->display->display_options['fields']['field_data_source']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_data_source']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_data_source']['link_to_entity'] = 1;
+  $handler->display->display_options['fields']['field_data_source']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_data_source']['bypass_access'] = 0;
   /* Field: Content: Logo */
   $handler->display->display_options['fields']['field_logo']['id'] = 'field_logo';
   $handler->display->display_options['fields']['field_logo']['table'] = 'entity_node';
@@ -687,11 +766,21 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_logo']['relationship'] = 'field_treaty';
   $handler->display->display_options['fields']['field_logo']['label'] = '';
   $handler->display->display_options['fields']['field_logo']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_logo']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['field_logo']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_logo']['settings'] = array(
     'image_style' => 'logo',
     'image_link' => '',
   );
+  /* Field: computed_logo */
+  $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
+  $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing_1']['ui_name'] = 'computed_logo';
+  $handler->display->display_options['fields']['nothing_1']['label'] = '';
+  $handler->display->display_options['fields']['nothing_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = 'LOGO';
+  $handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
   /* Field: Indexed Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_informea_publications';
@@ -753,6 +842,17 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_publication_place']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_publication_place']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-globe"></span> [field_publication_place]';
   $handler->display->display_options['fields']['field_publication_place']['element_label_colon'] = FALSE;
+  /* Field: Indexed Content: ECOLEX URL */
+  $handler->display->display_options['fields']['field_ecolex_url']['id'] = 'field_ecolex_url';
+  $handler->display->display_options['fields']['field_ecolex_url']['table'] = 'search_api_index_informea_publications';
+  $handler->display->display_options['fields']['field_ecolex_url']['field'] = 'field_ecolex_url';
+  $handler->display->display_options['fields']['field_ecolex_url']['label'] = '';
+  $handler->display->display_options['fields']['field_ecolex_url']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_ecolex_url']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_ecolex_url']['alter']['text'] = '<span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> <a target="_blank" [field_ecolex_url-attributes] href="[field_ecolex_url]">[field_ecolex_url-title]</a>';
+  $handler->display->display_options['fields']['field_ecolex_url']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_ecolex_url']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_ecolex_url']['type'] = 'link_absolute';
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -763,6 +863,7 @@ function informea_search_views_default_views() {
 [field_publisher]
 [field_literature_type]
 [field_publication_place]
+[field_ecolex_url]
 </div>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Sort criterion: Search: Relevance */
@@ -816,15 +917,18 @@ function informea_search_views_default_views() {
     t('Sorry, there are no results for this search...'),
     t('Country'),
     t('Treaty'),
+    t('LOGO'),
     t('<span class="glyphicon glyphicon-book"></span> [field_document_type]'),
     t('<span class="glyphicon glyphicon-pencil"></span> [field_publisher]'),
     t('<span class="separator">·</span> <span class="glyphicon glyphicon-book"></span> [field_literature_type]'),
     t('<span class="separator">·</span> <span class="glyphicon glyphicon-globe"></span> [field_publication_place]'),
+    t('<span class="separator">·</span> <span class="glyphicon glyphicon-share"></span> <a target="_blank" [field_ecolex_url-attributes] href="[field_ecolex_url]">[field_ecolex_url-title]</a>'),
     t('<div class="meta search-index">
 [field_document_type]
 [field_publisher]
 [field_literature_type]
 [field_publication_place]
+[field_ecolex_url]
 </div>'),
     t('Fulltext search'),
     t('Page'),

@@ -45,6 +45,8 @@ class EcolexLiteratureMigration extends Migration {
     $this->addFieldMapping('field_sorting_date:timezone')->defaultValue('Europe/Zurich');
 
     // Taxonomy
+    $this->addFieldMapping('field_data_source', 'litDataSource');
+    $this->addFieldMapping('field_data_source:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_territorial_subdivision', 'litTerritorialSubdivision_en');
     $this->addFieldMapping('field_territorial_subdivision:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_literature_type', 'litTypeOfText_en');
@@ -68,6 +70,9 @@ class EcolexLiteratureMigration extends Migration {
     $this->addFieldMapping('sticky')->defaultValue(0);
     $this->addFieldMapping('revision')->defaultValue(0);
     $this->addFieldMapping('language')->defaultValue('en');
+
+    $this->addFieldMapping('field_ecolex_url', 'ecolex_url');
+    $this->addFieldMapping('field_ecolex_url:title')->defaultValue('ECOLEX');
 
     $this->addUnmigratedSources(array());
     $this->addUnmigratedDestinations(array(
@@ -155,7 +160,11 @@ class EcolexLiteratureMigration extends Migration {
       }
     }
 
+    $row->ecolex_url = 'http://www.ecolex.org/literature/details/' . $row->litId;
+
     // Taxonomies
+    $row->litDataSource = 'ECOLEX';
+    $this->prepare_term_reference_field($row, 'litDataSource', 'data_source');
     $this->prepare_term_reference_field_multilingual($row, 'litTerritorialSubdivision', 'territorial_subdivision');
     $this->prepare_term_reference_field_multilingual($row, 'litTypeOfText', 'literature_type');
     $this->prepare_term_reference_field_multilingual($row, 'litSubject',    'ecolex_subjects');
@@ -208,6 +217,49 @@ class EcolexLiteratureMigration extends Migration {
 
   public function validateRow($row) {
     return !empty($row->litLongTitle_en);
+  }
+
+  /**
+   * Map the term names with the existing terms tids.
+   * If the vocabulary doesn't contain a term with that name, it will be created.
+   *
+   * @param $row
+   *  Current migration row.
+   * @param $field_name
+   *  Name of the source field.
+   * @param $data
+   *  An array containing the terms. Each item needs to be an associative array
+   * containing:
+   *  - name: original term name
+   *  - translations: an array containing language => translation pairs.
+   * @param $vocabulary
+   *  Vocabulary machine name.
+   */
+  public function prepare_term_reference_field(&$row, $field_name, $vocabulary) {
+    if (empty($row->{$field_name})) {
+      return;
+    }
+    else if (is_array($row->{$field_name})) {
+      $tids = array();
+      foreach ($row->{$field_name} as $delta => $term_name) {
+        if ($term = taxonomy_get_term_by_name($term_name, $vocabulary)) {
+          $tids[] = reset($term)->tid;
+        }
+        else {
+          $tids[] = elis_migration_create_taxonomy_term($term_name, $vocabulary, array());
+        }
+      }
+      $row->{$field_name} = $tids;
+    } else {
+      // Handle single-valued fields
+      $term_name = $row->{$field_name};
+      if ($term = taxonomy_get_term_by_name($term_name, $vocabulary)) {
+        $row->{$field_name} = reset($term)->tid;
+      }
+      else {
+        $row->{$field_name} = elis_migration_create_taxonomy_term($term_name, $vocabulary, array());
+      }
+    }
   }
 
   /**

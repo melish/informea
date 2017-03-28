@@ -461,6 +461,10 @@ EOT
     informea_theme_set_page_breadcrumb($breadcrumbs);
 
     if (module_exists('analytics_integration')) {
+      if ($node_w->field_original_id->value()) {
+        $url = informea_ecolex_treaty_link($node->nid);
+        analytics_integration_google_analytics_send_hit(ANALYTICS_INTEGRATION_ECOLEX, $url, 'ecolex', $node_w->label());
+      }
       $google_analytics_keys = analytics_integration_get_node_keys($node, 'field_treaty', 'Google Analytics');
       $piwik_keys = analytics_integration_get_node_keys($node, 'field_treaty', 'Piwik');
       analytics_integration_google_analytics_send_hit($ga_informea_key, $informea_url, 'informea', $node_w->label());
@@ -591,7 +595,13 @@ function treaty_page_alter(&$page) {
 }
 
 function treaty_treaty_contextual_menu_alter(&$contextual_menu, $node, $hide = array()) {
-  if ($node->type == 'treaty') {
+  $wrapper = entity_metadata_wrapper('node', $node);
+  $data_source = @$wrapper->field_data_source->value()[0]->tid;
+  if ($node->type == 'treaty' && $data_source == DATA_SOURCE_ECOLEX) {
+    $contextual_menu = null;
+    return;
+  }
+  else if ($node->type == 'treaty') {
     module_load_include('inc', 'country_deliverable', 'country_deliverable.api');
     module_load_include('inc', 'country_data', 'country_data.api');
     module_load_include('inc', 'decision', 'decision.api');
@@ -709,10 +719,12 @@ function treaty_menu_local_tasks_alter(&$data, $router_item, $root_path) {
     $context_menu = array();
     $node = $router_item['page_arguments'][0];
     drupal_alter('treaty_contextual_menu', $context_menu, $node);
-    $data['tabs'][1] = array(
-      'count' => count($context_menu),
-      'output' => $context_menu,
-    );
+    if (!empty($context_menu)) {
+      $data['tabs'][1] = array(
+        'count' => count($context_menu),
+        'output' => $context_menu,
+      );
+    }
   }
 }
 

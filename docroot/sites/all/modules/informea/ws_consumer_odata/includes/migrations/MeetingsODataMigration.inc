@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class ContactsODataMigration migrate OData contacts
+ * Class MeetingsODataMigration migrate OData contacts
  */
 class MeetingsODataMigration extends AbstractODataMigration {
 

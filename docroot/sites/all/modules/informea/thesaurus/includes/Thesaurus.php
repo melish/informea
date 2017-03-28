@@ -12,7 +12,7 @@ class Thesaurus {
     'default', //treaties
     'bilateral-treaties',
     'court-decisions',
-    'legislations', // @todo: replace with legislation (without 's')
+    'legislation',
     'publications',
   ];
 

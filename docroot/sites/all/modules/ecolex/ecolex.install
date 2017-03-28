@@ -5,3 +5,10 @@ function ecolex_update_7001() {
   ecolex_create_default_thesaurus_terms();
   ecolex_create_default_keywords_terms();
 }
+
+/**
+ * Revert ecolex literature data source
+ */
+function ecolex_update_7002() {
+  features_revert(array('ecolex' => ['field_instance']));
+}

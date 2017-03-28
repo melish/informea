@@ -33,6 +33,9 @@ function meeting_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'event_calendar_status' => array(
       'name' => 'Event status',
@@ -57,6 +60,9 @@ function meeting_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
     'event_kind' => array(
@@ -83,6 +89,9 @@ function meeting_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'event_repetition' => array(
       'name' => 'Event repetition',
@@ -108,6 +117,9 @@ function meeting_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'event_type' => array(
       'name' => 'Event type',
@@ -132,6 +144,9 @@ function meeting_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
   );

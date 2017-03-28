@@ -1256,6 +1256,24 @@ button.toggle {
   background-position: -1630px -60px;
 }
 
+.brand-ecolex {
+  min-width: 80px;
+}
+
+.brand-ecolex .image {
+  width: 58px;
+}
+
+.brand-ecolex .image,
+.brand-hover.brand-ecolex:hover .image,
+.brand-hover.brand-ecolex:focus .image {
+  background-position: -1780px 0;
+}
+
+.brand-hover.brand-ecolex .image {
+  background-position: -1780px -60px;
+}
+
 .brand-cites .image,
 .brand-hover.brand-cites:hover .image,
 .brand-hover.brand-cites:focus .image {
@@ -1672,6 +1690,10 @@ img.flag-medium { max-height: 48px; }
 .node .field-label-inline .field-items {
   max-width: 80%;
 }
+
+.pane-thesaurus-terms-listing { padding-left: 0; }
+.pane-foamtree-foamtree { padding-left: 0; padding-right: 0; }
+.pane-terms-introduction { margin-bottom: 20px; }
 
 /* Events page */
 .view-events .media-detail,
@@ -3144,4 +3166,35 @@ body.page-search-bilateral-treaties .view-empty {
 .node_view_panel .field-name-field-available-in .field-items,
 .node_view_panel .field-label-inline.field-name-field-abstract .field-items {
   padding-left: 190px;
+}
+
+.source-link {
+  color: inherit;
+  color: #0066cc;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+span.faolex-logo {
+  margin: 5px;
+  color: #0066cc;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+  height: 64px;
+  width: 56px;
+  background: url(../img/faolex-logo.png) no-repeat top left;
+}
+
+span.ecolex-logo {
+  margin: 5px;
+  color: #0066cc;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+  height: 80px;
+  width: 90px;
+  background: url(../img/ecolex-logo.png) no-repeat top left;
+  background-size: 80px 60px;
 }

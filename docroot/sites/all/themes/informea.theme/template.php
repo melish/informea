@@ -92,7 +92,10 @@ function informea_theme_preprocess_page(&$variables) {
         break;
 
       case 'treaty':
-        $variables['content_column_class'] = ' class="col-sm-9"';
+        if ($local_tasks = menu_secondary_local_tasks()) {
+          array_unshift($variables['page']['sidebar_first'], menu_secondary_local_tasks());
+        }
+        $variables['content_column_class'] = !empty($local_tasks) ? ' class="col-sm-9"' : ' class="col-sm-12"';
         $treaties = treaty_get_treaties_as_select_options();
         $variables['treaties'] = $treaties;
         $treaties1 = $treaties;
@@ -102,7 +105,6 @@ function informea_theme_preprocess_page(&$variables) {
           '#options' => $treaties1,
           '#type' => 'select'
         );
-        array_unshift($variables['page']['sidebar_first'], menu_secondary_local_tasks());
         break;
 
       case 'decision':
@@ -523,6 +525,17 @@ function informea_theme_preprocess_views_view_table(&$variables) {
       if (isset($result->parent_treaty)) {
         $variables['row_classes'][$key][] = 'active';
       }
+    }
+  }
+}
+
+function informea_theme_preprocess_views_view_fields(&$vars) {
+  $view = $vars['view'];
+  if (in_array($view->name, array('informea_search_publications', 'taxonomy_term_related_publications'))) {
+    // LOGO - use ECOLEX if data comes from ECOLEX
+    $source = @$vars['row']->_entity_properties['field_data_source'][0];
+    if (!empty($source) && $source == DATA_SOURCE_ECOLEX) {
+      $vars['fields']['field_logo']->content = '<span><img class="img-thumbnail" src="/sites/all/themes/informea.theme/img/ecolex-logo.png"></span>';
     }
   }
 }

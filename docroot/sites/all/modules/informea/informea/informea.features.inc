@@ -627,6 +627,7 @@ function informea_default_search_api_index() {
         "field_author_institution" : { "type" : "list\\u003Ctext\\u003E" },
         "field_collation" : { "type" : "text" },
         "field_country" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "node" },
+        "field_data_source" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_date_of_entry" : { "type" : "date" },
         "field_date_of_modification" : { "type" : "date" },
         "field_document_authors" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },

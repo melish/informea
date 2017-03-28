@@ -34,6 +34,9 @@ class ContactsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_treaty', 'treaties');
     $this->addFieldMapping('field_person_prefix', 'prefix');
     $this->addFieldMapping('field_person_first_name', 'firstName');
+    $this->addFieldMapping('field_person_gender', 'gender');
+
+
     $this->addFieldMapping('field_person_last_name', 'lastName');
     $this->addFieldMapping('field_person_position', 'position');
     $this->addFieldMapping('field_person_institution', 'institution');
@@ -76,6 +79,11 @@ class ContactsODataMigration extends AbstractODataMigration {
    */
   function prepareRow($row) {
     parent::prepareRow($row);
+
+    if ($row->gender !== NULL) {
+      $v = intval($row->gender);
+      $row->gender = ($v == 1) ?: 0;
+    }
 
     /* Fill with remote-data */
     $consumer = $this->source->getConsumer();
@@ -226,6 +234,7 @@ class InforMEAODataContactsMigrateSource extends InforMEAAbstractODataMigrateSou
       'department' => 'Department',
       'address' => 'Working address',
       'email' => 'Work e-mail address',
+      'gender' => 'Person gender (NULL unknown, 0=male, 1=female)',
       'phoneNumber' => 'Contact telephone number',
       'type' => 'Type of contact (i.e. licenced focal point)',
       'fax' => 'Work fax number',
