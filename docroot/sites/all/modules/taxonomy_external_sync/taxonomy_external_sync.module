@@ -532,6 +532,14 @@ function taxonomy_external_sync_migrate_vocabulary($bundle, $config = NULL) {
               ))
               ->execute();
           }
+          else {
+            if (!empty($drupal_term->description_field['en'][0]['value'])) {
+              $drupal_term->description = $drupal_term->description_field['en'][0]['value'];
+            }
+            elseif (!empty($drupal_term->description_field[LANGUAGE_NONE][0]['value'])) {
+              $drupal_term->description = $drupal_term->description_field[LANGUAGE_NONE][0]['value'];
+            }
+          }
 
           $translations = array_unique($translations);
           // Set term translations
