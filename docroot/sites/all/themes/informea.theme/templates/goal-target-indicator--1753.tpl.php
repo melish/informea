@@ -4,20 +4,17 @@ $tags = $pw->field_informea_tags->value();
 $highlight = isset($_GET['indicator']) ? $_GET['indicator'] == $indicator->nid : FALSE;
 ?>
 <div class="indicator smallipop <?php print $highlight ? 'highlight' : '' ;?>" id="indicator-<?php print $indicator->nid; ?>">
-  <p><?php print $pw->label(); ?></p>
+  <?php
+    print l('<p>' . $pw->label() . '</p>', "node/{$indicator->nid}", array(
+      'attributes' => array(
+        'data-toggle' => 'tooltip', 'data-placement' => 'top',
+        'title' => t('View indicator page'),
+      ),
+      'html' => TRUE,
+    ));
+    ?>
   <?php print theme('goal_text_tags', array('tags' => $tags)); ?>
   <ul class="list-inline actions">
-    <li class="action-hover">
-      <?php
-      print l('<i class="glyphicon glyphicon-eye-open"></i>', "node/{$indicator->nid}", array(
-        'attributes' => array(
-          'data-toggle' => 'tooltip', 'data-placement' => 'top',
-          'title' => t('View indicator page'),
-        ),
-        'html' => TRUE,
-      ));
-      ?>
-    </li>
    <li class="action-hover">
         <?php
         print l('<i class="glyphicon glyphicon-link"></i>', $base_goal_url, array(

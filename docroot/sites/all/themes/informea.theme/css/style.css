@@ -1634,6 +1634,11 @@ body.page-node-303 h2.block-title { font-size: 18px; font-weight: bold;}
 .accordion .panel-collapse { padding-left: 4%; border-top: 1px solid #ddd;}
 .accordion .panel>.panel-heading+.panel-collapse>.panel-body { border: 0;}
 
+.accordion_plus .panel-heading .glyphicon-plus-sign { color: #777; font-size: 14px; display: inline; cursor: pointer;}
+.accordion_plus .panel-heading .glyphicon-plus-sign:before { content: "\e082"; }
+.accordion_plus .panel-heading .glyphicon-plus-sign.collapsed { color: #c6cedb; }
+.accordion_plus .panel-heading .glyphicon-plus-sign.collapsed:before { content: "\e081"; }
+
 img.flag-xs { max-height: 16px; }
 img.flag-small { max-height: 32px; }
 img.flag-medium { max-height: 48px; }
@@ -1652,6 +1657,18 @@ img.flag-medium { max-height: 48px; }
 
 .panel-group .panel-heading:hover {
   cursor: pointer;
+}
+
+.accordion_plus.panel-group .panel-heading {
+  cursor: default;
+}
+
+.accordion_plus.panel-group .panel-heading:hover {
+  cursor: default;
+}
+
+.indicator.smallipop a {
+  color: inherit;
 }
 
 #table-parties .list-group {
