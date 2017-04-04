@@ -2752,12 +2752,13 @@ iframe.pdfjs {
 }
 
 .panel-heading > .actions > .action-hover {
-  display: none;
+  display: inline-block;
+  visibility: hidden;
 }
 
 .panel-heading:hover > .actions > .action-hover,
 .panel-heading:focus > .actions > .action-hover {
-  display: inline-block;
+  visibility: visible;
 }
 
 .panel-title-target {
