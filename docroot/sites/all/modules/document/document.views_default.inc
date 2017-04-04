@@ -42,7 +42,7 @@ function document_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['exclude'] = TRUE;
   $handler->display->display_options['fields']['title']['link_to_entity'] = 1;
-  /* Field: Indexed Content: Thumbnail */
+  /* Field: Indexed Content: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'search_api_index_informea_publications';
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
@@ -70,8 +70,11 @@ function document_views_default_views() {
   $handler->display->display_options['fields']['field_files']['id'] = 'field_files';
   $handler->display->display_options['fields']['field_files']['table'] = 'search_api_index_informea_publications';
   $handler->display->display_options['fields']['field_files']['field'] = 'field_files';
+  $handler->display->display_options['fields']['field_files']['label'] = '';
   $handler->display->display_options['fields']['field_files']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_files']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_files']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_files']['type'] = 'external_url';
   $handler->display->display_options['fields']['field_files']['delta_offset'] = '0';
   /* Field: Indexed Content: Document type */
   $handler->display->display_options['fields']['field_document_type']['id'] = 'field_document_type';
@@ -186,7 +189,7 @@ function document_views_default_views() {
     10 => 0,
     11 => 0,
   );
-  /* Filter criterion: Indexed Content: InforMEA tags */
+  /* Filter criterion: Indexed Content: InforMEA Tags */
   $handler->display->display_options['filters']['field_informea_tags']['id'] = 'field_informea_tags';
   $handler->display->display_options['filters']['field_informea_tags']['table'] = 'search_api_index_informea_publications';
   $handler->display->display_options['filters']['field_informea_tags']['field'] = 'field_informea_tags';
@@ -234,7 +237,6 @@ function document_views_default_views() {
     t('Node ID'),
     t('.'),
     t('Body'),
-    t('Attached files'),
     t('Document type'),
     t('Treaty'),
     t('Country'),

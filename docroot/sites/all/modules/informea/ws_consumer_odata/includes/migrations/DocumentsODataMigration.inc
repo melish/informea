@@ -63,6 +63,7 @@ class DocumentsODataMigration extends AbstractODataMigration {
 //    $this->addFieldMapping('field_document_identifiers', 'identifiers');
 
     $this->addFieldMapping('field_files', 'files');
+    $this->addFieldMapping('field_files:description', 'files');
     $this->addFieldMapping('field_files:language', 'files_language');
     $this->addFieldMapping('field_files:destination_file', 'filename');
     $this->addFieldMapping('field_files:file_replace')->defaultValue(MigrateFile::FILE_EXISTS_REUSE);

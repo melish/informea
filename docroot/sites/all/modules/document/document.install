@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * documents view and documents list file external url formatter
+ */
+function document_update_7001() {
+  features_revert(array('document' => ['views_view']));
+}
