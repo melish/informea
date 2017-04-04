@@ -1616,9 +1616,25 @@ body.page-node-303 h2.block-title { font-size: 18px; font-weight: bold;}
 .accordion .panel-heading .meta { text-align: right; font-size: 12px; color: #999; font-weight: normal; }
 .accordion .panel-heading ul { margin: 0; }
 .accordion .panel-heading .glyphicon-plus-sign { color: #777; font-size: 14px; display: inline; }
+.accordion .panel-heading .actions {
+  float: right;
+}
+.accordion .panel-heading > .panel-title  * { display: inline; }
+.accordion .indicator > a > p { display: inline; }
+
+.accordion .panel-heading.collapsed .glyphicon-plus-sign:hover,
+.accordion_plus .panel-heading .glyphicon-plus-sign.collapsed:hover {
+  color: #777;
+}
+
 .accordion .panel-heading .glyphicon-plus-sign:before { content: "\e082"; }
-.accordion .panel-heading.collapsed .glyphicon-plus-sign { color: #c6cedb; }
-.accordion .panel-heading.collapsed .glyphicon-plus-sign:before { content: "\e081"; }
+
+.accordion .panel-heading.collapsed .glyphicon-plus-sign,
+.accordion_plus .panel-heading .glyphicon-plus-sign.collapsed { color: #c6cedb; }
+
+.accordion .panel-heading.collapsed .glyphicon-plus-sign:before,
+.accordion_plus .panel-heading .glyphicon-plus-sign.collapsed:before { content: "\e081"; }
+
 .accordion .panel-heading:hover { border: 1px solid #39c; background-color: #D2EEFC; }
 .accordion .panel-heading img { display: inline; border: 1px solid #ddd; border-radius: 4px; margin-right: .5em; background-color: #fff; width: 50px; padding: 6px;}
 .accordion .panel-heading a.permalink { margin-left: .3em; font-size: .9em; color: #777; }
@@ -1634,10 +1650,12 @@ body.page-node-303 h2.block-title { font-size: 18px; font-weight: bold;}
 .accordion .panel-collapse { padding-left: 4%; border-top: 1px solid #ddd;}
 .accordion .panel>.panel-heading+.panel-collapse>.panel-body { border: 0;}
 
-.accordion_plus .panel-heading .glyphicon-plus-sign { color: #777; font-size: 14px; display: inline; cursor: pointer;}
-.accordion_plus .panel-heading .glyphicon-plus-sign:before { content: "\e082"; }
-.accordion_plus .panel-heading .glyphicon-plus-sign.collapsed { color: #c6cedb; }
-.accordion_plus .panel-heading .glyphicon-plus-sign.collapsed:before { content: "\e081"; }
+/* sdg accordions custom styling */
+.accordion_plus.panel-group .panel-heading,
+.accordion_plus.panel-group .panel-heading:hover {
+  cursor: default;
+}
+.accordion_plus .panel-heading .glyphicon-plus-sign { cursor: pointer; }
 
 img.flag-xs { max-height: 16px; }
 img.flag-small { max-height: 32px; }
@@ -1659,13 +1677,6 @@ img.flag-medium { max-height: 48px; }
   cursor: pointer;
 }
 
-.accordion_plus.panel-group .panel-heading {
-  cursor: default;
-}
-
-.accordion_plus.panel-group .panel-heading:hover {
-  cursor: default;
-}
 
 .indicator.smallipop a {
   color: inherit;
