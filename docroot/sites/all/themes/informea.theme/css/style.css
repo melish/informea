@@ -1962,21 +1962,6 @@ body[class*='page-search'] input.facetapi-checkbox { margin-right: 5px; }
 .view-search-law-and-literature .meta .views-field-field-country .glyphicon {
   margin-right: .2em;
 }
-.view-search-law-and-literature a[data-toggle="collapse"] .glyphicon-plus-sign,
-.view-search-law-and-literature a[data-toggle="collapse"].collapsed .glyphicon-plus-sign:hover,
-.accordion .panel-heading.collapsed .glyphicon-plus-sign:hover {
-  color: #777;
-}
-.view-search-law-and-literature a[data-toggle="collapse"] .glyphicon-plus-sign:before {
-  content: "\e082";
-}
-.view-search-law-and-literature a[data-toggle="collapse"].collapsed .glyphicon-plus-sign {
-  color: #c6cedb;
-}
-
-.view-search-law-and-literature a[data-toggle="collapse"].collapsed .glyphicon-plus-sign:before {
-  content: "\e081";
-}
 
 strong.excerpt {
   color: red;
