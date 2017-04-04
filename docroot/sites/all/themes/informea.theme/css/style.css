@@ -1623,7 +1623,6 @@ body.page-node-303 h2.block-title { font-size: 18px; font-weight: bold;}
 .accordion .panel-heading img ~ a.permalink { line-height: 50px; }
 .accordion .panel-heading > .panel-title  * { display: inline; }
 .accordion .indicator > a > p { display: inline; }
-.accordion .target { margin-right: 20px; }
 
 /* Content collapsed and hover styles */
 .accordion .panel-heading.collapsed .glyphicon-plus-sign:hover,
