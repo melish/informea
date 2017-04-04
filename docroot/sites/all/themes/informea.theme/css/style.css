@@ -1638,7 +1638,7 @@ body.page-node-303 h2.block-title { font-size: 18px; font-weight: bold;}
 
 
 .accordion .panel-heading:hover { border: 1px solid #39c; background-color: #D2EEFC; }
-
+.accordion .panel-heading:hover img { border-color: #39c; }
 .accordion .panel-heading:hover .glyphicon-plus-sign,
 .accordion .panel-heading:hover .actions a,
 .accordion .panel-heading:hover a.permalink { color: #487084;}
