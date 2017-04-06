@@ -262,31 +262,33 @@ function _get_goal_source_goals($source, $type_of_goals) {
     return array();
   }
 
-  $query = new EntityFieldQuery();
-
   $goal_type_tid = NULL;
   if ($goal_type = taxonomy_get_term_by_name($type_of_goals, 'type_of_goal')) {
     $goal_type_tid = reset($goal_type)->tid;
   }
 
+  $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'goal')
     ->propertyCondition('status', NODE_PUBLISHED)
     ->fieldCondition('field_goal_source', 'tid', $source->tid)
-    ->fieldCondition('field_goal_type', 'tid', $goal_type_tid)
-    ->fieldOrderBy('field_sorting_order', 'value');
-    usort($ret, function($a, $b) {
- // check if $a and $b have the sorting other field
-// return -1 if the first element has lower sorting order
-// return 0 if they have the same sorting order
-// return 1 if the second one has lower sorting order 
- });
-
-  $ret = array();
+    ->fieldCondition('field_goal_type', 'tid', $goal_type_tid);
   $result = $query->execute();
-  if (!empty($result['node'])) {
-    $ret = $result['node'];
+  $ret = !empty($result['node']) ? $result['node'] : [];
+
+  if (!empty($ret)) {
+    $q = db_select('field_data_field_sorting_order', 'o')
+      ->fields('o', ['entity_id', 'field_sorting_order_value'])
+      ->condition('o.entity_id', array_keys($ret), 'IN');
+    $sorting_order = $q->execute()->fetchAllKeyed();
+
+    usort($ret, function ($a, $b) use ($sorting_order) {
+      $sorting_a = !empty($sorting_order[$a->nid]) ? $sorting_order[$a->nid] : -1;
+      $sorting_b = !empty($sorting_order[$b->nid]) ? $sorting_order[$b->nid] : -1;
+      return ($sorting_a < $sorting_b) ? -1 : 1;
+    });
   }
+
   return $ret;
 }
 
