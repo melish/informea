@@ -51,6 +51,11 @@ sub vcl_recv {
     return (pass);
   }
 
+  # Do not cache tour pages
+  if ( req.url ~ "tour=informea_site_tour" ) {
+    return (pass);
+  }
+
   # Cache only (www.)informea.org for now
   #if (req.http.host != "(www)?(informea).org") {
   #  return(pass);
