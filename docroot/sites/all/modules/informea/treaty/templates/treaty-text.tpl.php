@@ -53,3 +53,6 @@ if (user_access('create treaty_article content')):
 endif;
 ?>
 
+<ul class="text-right list-inline grey-777">
+    <li class="first"> <?php print t('Last updated:'); ?> <?php print gmdate("d M Y", $node->last_modification_date) ?> </li>
+</ul>
