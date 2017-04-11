@@ -274,7 +274,7 @@ search-bilateral-treaties/*',
         'weight' => 0,
       ),
     ),
-    'title' => 'LEO Terms',
+    'title' => 'Term Concepts',
     'visibility' => 1,
   );
 
@@ -594,7 +594,7 @@ search-bilateral-treaties/*',
         'weight' => 0,
       ),
     ),
-    'title' => 'Country',
+    'title' => 'Party',
     'visibility' => 1,
   );
 
