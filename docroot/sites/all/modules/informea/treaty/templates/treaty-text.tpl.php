@@ -54,5 +54,5 @@ endif;
 ?>
 
 <ul class="text-right list-inline grey-777">
-    <li class="first"> <?php print t('Last updated:'); ?> <?php print gmdate("d M Y", $node->last_modification_date) ?> </li>
+    <li class="first"> <em><?php print t('Last updated'); ?></em>: <?php print gmdate("d M Y", $node->last_modification_date) ?> </li>
 </ul>
