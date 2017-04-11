@@ -37,7 +37,7 @@ search-publications/*',
         'weight' => 0,
       ),
     ),
-    'title' => 'Region',
+    'title' => 'Geographical Region',
     'visibility' => 1,
   );
 
@@ -123,7 +123,7 @@ search-court-decisions/*',
         'weight' => 0,
       ),
     ),
-    'title' => 'Type of text',
+    'title' => 'Type of Decision',
     'visibility' => 1,
   );
 
@@ -183,7 +183,7 @@ search-legislation/*',
         'weight' => 0,
       ),
     ),
-    'title' => 'Region',
+    'title' => 'Geographical Region',
     'visibility' => 1,
   );
 
@@ -243,7 +243,7 @@ search-bilateral-treaties/*',
         'weight' => 0,
       ),
     ),
-    'title' => 'Geographical region',
+    'title' => 'Geographical Region',
     'visibility' => 1,
   );
 
@@ -274,7 +274,7 @@ search-bilateral-treaties/*',
         'weight' => 0,
       ),
     ),
-    'title' => 'LEO terms',
+    'title' => 'LEO Terms',
     'visibility' => 1,
   );
 
@@ -332,7 +332,7 @@ search-publications/*',
         'weight' => 0,
       ),
     ),
-    'title' => 'Geographical scope',
+    'title' => 'Geographical Scope',
     'visibility' => 1,
   );
 
@@ -418,7 +418,7 @@ search-legislation/*',
         'weight' => 0,
       ),
     ),
-    'title' => 'Type of text',
+    'title' => 'Type of Legislation',
     'visibility' => 1,
   );
 
@@ -447,7 +447,7 @@ search-court-decisions/*',
         'weight' => 0,
       ),
     ),
-    'title' => 'Region',
+    'title' => 'Geographical Region',
     'visibility' => 1,
   );
 
@@ -505,7 +505,7 @@ search-publications/*',
         'weight' => 0,
       ),
     ),
-    'title' => 'Literature type',
+    'title' => 'Type of Literature',
     'visibility' => 1,
   );
 
@@ -534,7 +534,7 @@ search-publications/*',
         'weight' => 0,
       ),
     ),
-    'title' => 'Publication place',
+    'title' => 'Publication Place',
     'visibility' => 1,
   );
 
@@ -563,7 +563,7 @@ search-publications/*',
         'weight' => 0,
       ),
     ),
-    'title' => 'Territorial subdivision',
+    'title' => 'Territorial Subdivision',
     'visibility' => 1,
   );
 
