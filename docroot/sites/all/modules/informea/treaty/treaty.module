@@ -230,6 +230,7 @@ function treaty_custom_view_node($node, $context) {
       drupal_add_library('informea', 'smallipop');
       drupal_add_css(drupal_get_path('module', 'treaty') . '/styles/treaty.css');
       $articles = treaty_get_treaty_text($node->nid);
+      $node->last_modification_date = treaty_text_get_last_modification_date($node->nid);
       $node->content['context'] = array(
         '#type' => 'item', '#weight' => 10, '#markup' => theme('treaty_text', array('articles' => $articles, 'node' => $node)),
       );
@@ -1505,4 +1506,13 @@ function treaty_select_meeting_render_panel() {
     return $count > 0;
   }
   return false;
+}
+
+function treaty_text_get_last_modification_date($nid) {
+  $query = db_select('node', 'n');
+  $query->innerJoin('field_data_field_treaty', 't', 't.entity_id = n.nid');
+  $query->addExpression('MAX(`changed`)');
+  $query->condition('t.field_treaty_target_id', $nid);
+  $query->condition('n.type', array('treaty_article', 'treaty_paragraph'), 'IN');
+  return $query->execute()->fetchField();
 }
