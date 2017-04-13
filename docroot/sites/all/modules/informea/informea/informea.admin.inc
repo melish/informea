@@ -1,4 +1,59 @@
 <?php
+function informea_get_entityreference_fields() {
+  $instances = field_info_instances();
+  $fields = [];
+  foreach($instances['node'] as $content_type) {
+    foreach($content_type as $field_name => $field_settings) {
+      if ($field_settings['widget']['module'] == 'entityreference') {
+        @$fields[$field_name] += intval($field_settings['required']);
+      }
+    }
+  }
+  return $fields;
+}
+
+function informea_orphaned_rows($field) {
+  $q = db_select('field_data_' . $field, 'a');
+  $q->fields('a', [$field . '_target_id', 'entity_id']);
+  $q->fields('c', ['type', 'title']);
+  $q->leftJoin('node', 'b', 'a.' . $field . '_target_id = b.nid');
+  $q->join('node', 'c', 'a.entity_id = c.nid');
+  $q->condition('b.nid', null);
+  $q->condition('c.status', 1);
+  $q->range(0, 3);
+
+  return $q->execute()->fetchAll();
+}
+
+function informea_orphaned() {
+  $fields = informea_get_entityreference_fields();
+  $data = [];
+  $options['attributes']['target'] = '_blank';
+  foreach ($fields as $field => $required) {
+    $all = informea_orphaned_rows($field);
+    if ($all) {
+      $name = $field . '_target_id';
+      foreach ($all as $err) {
+        $err->required = $required;
+        $err->filed_name = $name;
+        $err->nid = $err->$name;
+        unset($err->$name);
+        $err->title = l($err->title, 'node/'.$err->entity_id, $options);
+        $err->type = l($err->type, 'node/'.$err->entity_id, $options);
+        $data[] = $err;
+      }
+    }
+  }
+  $headers = array();
+  $rows = array();
+  foreach ($data as $v) {
+    if (!$headers) {
+      $headers = array_keys((array)$v);
+    }
+    $rows[] = array_values((array)$v);
+  }
+  return theme('table', array('header' => $headers, 'rows' => $rows) );
+}
 
 function informea_analytics_form() {
   $form = array();

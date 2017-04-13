@@ -251,18 +251,25 @@ function country_node_view($node, $view_mode, $langcode) {
         foreach ($parties as $party) {
           $wrapper = entity_metadata_wrapper('node', $party);
           $treaty = $wrapper->field_treaty->value()[0];
+          if (!$treaty) {
+            continue;
+          }
           $date1 = $wrapper->field_party_date_1->value();
           $date1 = empty($date1) ? '&nbsp;' : format_date($date1, 'short');
           $date2 = $wrapper->field_party_date_2->value();
           $date2 = empty($date2) ? '&nbsp;' : format_date($date2, 'short');
           $status = $wrapper->field_party_status->value();
+          $status_name = '';
+          if ($status) {
+            $status_name = $status->name;
+          }
           $logo = treaty_url_logo($treaty);
           $row = array(
             'data' => array(
               $img = $logo . $wrapper->field_treaty->label(),
               array('data' => $date1, 'class' => 'text-center'),
               array('data' => $date2, 'class' => 'text-center'),
-              array('data' => $status->name, 'class' => 'text-center')
+              array('data' => $status_name, 'class' => 'text-center')
             )
           );
           $nfps = country_data_get_treaty_focal_points($node->nid, $treaty->nid);
