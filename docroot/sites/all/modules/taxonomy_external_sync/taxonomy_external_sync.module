@@ -418,7 +418,8 @@ function taxonomy_external_sync_migrate_vocabulary($bundle, $config = NULL) {
             switch (_taxonomy_external_sync_get_field_type($field_info)) {
               case 0:
                 // NO multilingual, NO multivalue
-                if ($drupal_term->{$destination_field}[LANGUAGE_NONE][0][$colname] != $value) {
+                if (!array_key_exists(LANGUAGE_NONE, $drupal_term->{$destination_field})
+                    || $drupal_term->{$destination_field}[LANGUAGE_NONE][0][$colname] != $value) {
                   $changed = $field_info['field_name'];
                 }
                 $value = array(
@@ -492,7 +493,8 @@ function taxonomy_external_sync_migrate_vocabulary($bundle, $config = NULL) {
                 }
                 foreach ($value as $lang => $val) {
                   $translations[] = $lang;
-                  if (count($val) != count($drupal_term->{$destination_field}[$lang])) {
+                  if (!array_key_exists($lang, $drupal_term->{$destination_field})
+                      || count($val) != count($drupal_term->{$destination_field}[$lang])) {
                     $drupal_term->{$destination_field}[$lang] = array();
                   }
                   if (!empty($val)) {
