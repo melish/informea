@@ -246,7 +246,7 @@ class EcolexLegislationMigration extends Migration {
           $tids[] = reset($term)->tid;
         }
         else {
-          $tids[] = elis_migration_create_taxonomy_term($term_name, $vocabulary, array());
+          $tids[] = ecolex_migration_create_taxonomy_term($term_name, $vocabulary, array());
         }
       }
       $row->{$field_name} = $tids;
@@ -257,7 +257,7 @@ class EcolexLegislationMigration extends Migration {
         $row->{$field_name} = reset($term)->tid;
       }
       else {
-        $row->{$field_name} = elis_migration_create_taxonomy_term($term_name, $vocabulary, array());
+        $row->{$field_name} = ecolex_migration_create_taxonomy_term($term_name, $vocabulary, array());
       }
     }
   }
@@ -293,7 +293,7 @@ class EcolexLegislationMigration extends Migration {
           if (!empty($row->{$field_name_base . '_es'}[$delta])) {
             $translations['es'] = $row->{$field_name_base . '_es'}[$delta];
           }
-          $tids[] = elis_migration_create_taxonomy_term($term_name, $vocabulary, $translations);
+          $tids[] = ecolex_migration_create_taxonomy_term($term_name, $vocabulary, $translations);
         }
       }
       $row->{$field_name_base . '_en'} = $tids;
@@ -311,7 +311,7 @@ class EcolexLegislationMigration extends Migration {
         if (!empty($row->{$field_name_base . '_es'})) {
           $translations['es'] = $row->{$field_name_base . '_es'};
         }
-        $row->{$field_name_base . '_en'} = elis_migration_create_taxonomy_term($term_name, $vocabulary, $translations);
+        $row->{$field_name_base . '_en'} = ecolex_migration_create_taxonomy_term($term_name, $vocabulary, $translations);
       }
     }
   }
@@ -394,7 +394,7 @@ class EcolexLegislationMigrateSource extends MigrateSource {
    * Return the number of available source records.
    */
   public function computeCount() {
-    if ($str = elis_consumer_http_request($this->url_pattern . '&count=yes')) {
+    if ($str = ecolex_migration_http_request($this->url_pattern . '&count=yes')) {
       if ($json = json_decode($str)) {
         $this->totalCount = $json->count;
       }
@@ -446,7 +446,7 @@ class EcolexLegislationMigrateSource extends MigrateSource {
         $str = file_get_contents($detail_filename);
       }
       if (!$str) {
-        $str = elis_consumer_http_request($this->url_pattern . '&rows=' . $this->pagination . '&start=' . $start, array('Accept' => 'application/json'));
+        $str = ecolex_migration_http_request($this->url_pattern . '&rows=' . $this->pagination . '&start=' . $start, array('Accept' => 'application/json'));
         if ($this->log_detail && $str) {
           if (!file_exists($detail_filename)) {
             file_put_contents($detail_filename, $str);
@@ -513,7 +513,7 @@ class EcolexLegislationMigrateSource extends MigrateSource {
           $str = file_get_contents($detail_filename);
         }
         else {
-          $str = elis_consumer_http_request($item->url, array('Accept' => 'application/json') );
+          $str = ecolex_migration_http_request($item->url, array('Accept' => 'application/json') );
         }
         if ($this->log_detail && $str) {
           if (!file_exists($detail_filename)) {

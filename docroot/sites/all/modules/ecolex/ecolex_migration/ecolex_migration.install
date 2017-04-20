@@ -7,4 +7,6 @@ function ecolex_migration_update_7001() {
 
   watchdog('ecolex_migration', 'Deregistering migration elis_court_decisions', WATCHDOG_WARNING);
   Migration::deregisterMigration('elis_court_decisions');
+
+  module_disable(array('elis_consumer'), false);
 }
