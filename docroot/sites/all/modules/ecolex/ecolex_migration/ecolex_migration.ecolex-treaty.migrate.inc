@@ -407,7 +407,6 @@ class EcolexTreatyMigrateSource extends MigrateSource {
       'trSubject_en' => 'Treaty Subject',
       'trCountry_en' => 'Treaty Country',
       'trTitleAbbreviation'=>'Title Abbreviation',
-      'trObsolete' => '',
       'trTypeOfText_en' => 'Type Of Text',
       'trPlaceOfAdoption' => 'Place Of Adoption',
       'trObsolete' => 'Obsolete',
