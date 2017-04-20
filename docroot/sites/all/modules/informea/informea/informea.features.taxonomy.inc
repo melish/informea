@@ -124,7 +124,7 @@ function informea_taxonomy_default_vocabularies() {
           'url' => 'http://informea.org/sites/default/files/export/ecolex.rdf',
           'id_field' => 'uri',
           'parent_field' => 'broader',
-          'delete_deprecated_terms' => 1,
+          'delete_deprecated_terms' => 0,
           'delete_missing_terms' => 0,
         ),
         'mappings' => array(
