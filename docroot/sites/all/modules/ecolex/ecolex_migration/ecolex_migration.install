@@ -1,0 +1,10 @@
+<?php
+
+
+function ecolex_migration_update_7001() {
+  watchdog('ecolex_migration', 'Deregistering migration elis_treaties', WATCHDOG_WARNING);
+  Migration::deregisterMigration('elis_treaties');
+
+  watchdog('ecolex_migration', 'Deregistering migration elis_court_decisions', WATCHDOG_WARNING);
+  Migration::deregisterMigration('elis_court_decisions');
+}

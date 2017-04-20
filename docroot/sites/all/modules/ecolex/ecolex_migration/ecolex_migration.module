@@ -21,18 +21,6 @@ function ecolex_migration_migrate_api() {
     ),
     'migrations' => array(),
   );
-  $ret['migrations']['elis_treaties'] = array(
-    'class_name' => 'ElisTreatyMigration',
-    'group_name' => 'elis',
-    'source_url_pattern' => 'http://www.ecolex.org/elis_isis3w.php?database=tre&search_type=page_search&table=all&format_name=@xmlexp&lang=xmlf&page_header=@xmlh&spage_query=SPAGE_QUERY_VALUE&spage_first=SPAGE_FIRST_VALUE',
-    'xml_encoding' => 'iso-8859-15',
-  );
-  $ret['migrations']['elis_court_decisions'] = array(
-    'class_name' => 'ElisCourtDecisionMigration',
-    'group_name' => 'elis',
-    'source_url_pattern' => 'http://www.ecolex.org/elis_isis3w.php?database=cou&search_type=view_query_search&table=all&format_name=@xmlexp&lang=xmlf&page_header=@xmlh&vq_query=ID:"RECORD_ID"',
-    'xml_encoding' => 'iso-8859-15',
-  );
   // source_url_pattern also dublicated in EcolexLegislationMigrateSource because of cache
   $ret['migrations']['ecolex_legislation'] = array(
     'class_name' => 'EcolexLegislationMigration',
