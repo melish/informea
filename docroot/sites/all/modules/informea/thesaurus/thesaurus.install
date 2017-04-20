@@ -21,4 +21,6 @@ function thesaurus_update_7001() {
         ->execute();
     }
   }
+
+  features_revert_module('informea');
 }
