@@ -304,7 +304,13 @@ function _taxonomy_external_sync_get_field_value($value, array $field_info) {
         if (is_numeric(key($value))) {
           return $value;
         }
-        if (empty($return = $value['en']) && empty($return = $value[LANGUAGE_NONE])) {
+        if (!empty($value['en'])) {
+          $return = $value['en'];
+        }
+        elseif (!empty($value[LANGUAGE_NONE])) {
+          $return = $value[LANGUAGE_NONE];
+        }
+        else {
           $return = reset($value);
         }
         if (is_array($return)) {
@@ -594,7 +600,7 @@ function taxonomy_external_sync_migrate_vocabulary($bundle, $config = NULL) {
       }
     }
 
-    if ($config['plugin_config']['delete_missing_terms'] == true) {
+    if (!empty($config['plugin_config']['delete_missing_terms'])) {
       $missingTerms = array_diff($term_mappings, array_keys($drupal_terms));
       foreach ($missingTerms as $tid) {
         taxonomy_term_delete($tid);
