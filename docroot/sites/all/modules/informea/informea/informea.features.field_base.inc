@@ -552,7 +552,7 @@ function informea_field_default_field_bases() {
   // Exported field_base: 'field_term_reference_url'.
   $field_bases['field_term_reference_url'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_term_reference_url',
