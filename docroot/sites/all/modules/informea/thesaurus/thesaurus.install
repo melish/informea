@@ -30,3 +30,12 @@ function thesaurus_update_7001() {
 
   features_revert_module('informea');
 }
+
+/**
+ * Delete terms without names
+ */
+function thesaurus_update_7002() {
+  foreach (range(3806, 4005) as $tid) {
+    taxonomy_term_delete($tid);
+  }
+}
