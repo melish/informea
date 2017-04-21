@@ -312,7 +312,7 @@ class EcolexTreatyMigration extends Migration {
 
   /**
    * Map the term names with the existing terms tids.
-   * If the vocabulary doesn't contain a term with that name, it will be created.
+   * If the vocabulary doesn't contain a term with that name, it will be ignored.
    *
    * @param $row
    *  Current migration row.
@@ -332,16 +332,6 @@ class EcolexTreatyMigration extends Migration {
         if ($term = taxonomy_get_term_by_name($term_name, $vocabulary)) {
           $tids[] = reset($term)->tid;
         }
-        else {
-          $translations = array();
-          if (!empty($row->{$field_name_base . '_fr'}[$delta])) {
-            $translations['fr'] = $row->{$field_name_base . '_fr'}[$delta];
-          }
-          if (!empty($row->{$field_name_base . '_es'}[$delta])) {
-            $translations['es'] = $row->{$field_name_base . '_es'}[$delta];
-          }
-          $tids[] = ecolex_migration_create_taxonomy_term($term_name, $vocabulary, $translations);
-        }
       }
       $row->{$field_name_base . '_en'} = $tids;
     } else {
@@ -349,16 +339,6 @@ class EcolexTreatyMigration extends Migration {
       $term_name = $row->{$field_name_base . '_en'};
       if ($term = taxonomy_get_term_by_name($term_name, $vocabulary)) {
         $row->{$field_name_base . '_en'} = reset($term)->tid;
-      }
-      else {
-        $translations = array();
-        if (!empty($row->{$field_name_base . '_fr'})) {
-          $translations['fr'] = $row->{$field_name_base . '_fr'};
-        }
-        if (!empty($row->{$field_name_base . '_es'})) {
-          $translations['es'] = $row->{$field_name_base . '_es'};
-        }
-        $row->{$field_name_base . '_en'} = ecolex_migration_create_taxonomy_term($term_name, $vocabulary, $translations);
       }
     }
   }
