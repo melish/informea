@@ -121,18 +121,6 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['field_files']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_files']['type'] = 'external_url';
   $handler->display->display_options['fields']['field_files']['delta_offset'] = '0';
-  /* Field: Content: InforMEA Tags */
-  $handler->display->display_options['fields']['field_informea_tags_1']['id'] = 'field_informea_tags_1';
-  $handler->display->display_options['fields']['field_informea_tags_1']['table'] = 'entity_node';
-  $handler->display->display_options['fields']['field_informea_tags_1']['field'] = 'field_informea_tags';
-  $handler->display->display_options['fields']['field_informea_tags_1']['relationship'] = 'field_treaty';
-  $handler->display->display_options['fields']['field_informea_tags_1']['label'] = 'Tagged terms';
-  $handler->display->display_options['fields']['field_informea_tags_1']['element_wrapper_type'] = 'div';
-  $handler->display->display_options['fields']['field_informea_tags_1']['element_wrapper_class'] = 'smallipop-hint';
-  $handler->display->display_options['fields']['field_informea_tags_1']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['field_informea_tags_1']['link_to_entity'] = 1;
-  $handler->display->display_options['fields']['field_informea_tags_1']['view_mode'] = 'full';
-  $handler->display->display_options['fields']['field_informea_tags_1']['bypass_access'] = 0;
   /* Sort criterion: Search: Relevance */
   $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
   $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_informea_fulltext_solr_index';
@@ -202,7 +190,6 @@ function informea_search_views_default_views() {
 [search_api_excerpt]
 </div>'),
     t('Documents'),
-    t('Tagged terms'),
     t('Fulltext search'),
     t('Multilateral treaties'),
   );
