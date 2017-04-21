@@ -56,7 +56,7 @@ class EcolexTreatyMigration extends Migration {
     $this->addFieldMapping('field_ecolex_tags:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_type_of_text', 'trTypeOfText_en');
     $this->addFieldMapping('field_type_of_text:source_type')->defaultValue('tid');
-    $this->addFieldMapping('field_ecolex_keywords', 'trKeyword_en');
+    $this->addFieldMapping('field_ecolex_keywords', 'docKeyword_en');
     $this->addFieldMapping('field_ecolex_keywords:source_type')->defaultValue('tid');
 
     $this->addFieldMapping('comment')->defaultValue(FALSE);
@@ -223,7 +223,7 @@ class EcolexTreatyMigration extends Migration {
 
     // Taxonomies
     // Map ECOLEX keywords to LEO
-    $row->leoKeywords = ThesaurusMapping::mapEcolexTermToLEOMultiple($row->trKeyword_en);
+    $row->leoKeywords = ThesaurusMapping::mapEcolexTermToLEOMultiple($row->docKeyword_en);
     $row->trDataSource = 'ECOLEX';
     $this->prepare_term_reference_field($row, 'trDataSource', 'data_source');
     $this->prepare_term_reference_field_multilingual($row, 'trFieldOfApplication', 'field_of_application');
@@ -231,7 +231,7 @@ class EcolexTreatyMigration extends Migration {
     $this->prepare_term_reference_field_multilingual($row, 'trRegion', 'geographical_region');
     $this->prepare_term_reference_field_multilingual($row, 'trSubject', 'ecolex_subjects');
     $this->prepare_term_reference_field_multilingual($row, 'trTypeOfText', 'type_of_text');
-    $this->prepare_term_reference_field_multilingual($row, 'trKeyword', 'thesaurus_ecolex');
+    $this->prepare_term_reference_field_multilingual($row, 'docKeyword', 'thesaurus_ecolex');
 
     // Entity Reference
     if ($row->trCountry_en) {
@@ -428,7 +428,7 @@ class EcolexTreatyMigrateSource extends MigrateSource {
       'trJurisdiction_en' => 'Jurisdiction',
       'trRegion_en' => 'Region',
       'trAmendsTreaty' => 'Amends Treaty',
-      'trKeyword_en' => 'Keywords',
+      'docKeyword_en' => 'Keywords',
       'updatedDate' => 'Updated Date',
       'leoKeywords' => 'LEO tags computed from VocBench mappings to LEO',
     );
