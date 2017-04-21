@@ -118,6 +118,11 @@ class DocumentsODataMigration extends AbstractODataMigration {
     $titles = $consumer->loadNavigationProperty($row, 'titles');
     $row->title_en = ODataMigrationUtil::prepareTitle($titles);
     list($titles, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($titles);
+    foreach($languages as $key => $language) {
+      if ($language == 'ru') {
+        $titles[$key] = ODataMigrationUtil::fix_unicode_characters($titles[$key]);
+      }
+    }
     $row->titles = $titles;
     $row->titles_language = $languages;
     $all_languages = array_merge($all_languages, $languages);

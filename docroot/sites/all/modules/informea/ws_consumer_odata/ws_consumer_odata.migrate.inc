@@ -169,11 +169,44 @@ abstract class InforMEAAbstractODataMigrateSource extends MigrateSource {
 
 class ODataMigrationUtil {
 
+  function fix_unicode_characters($orig_str) {
+    static $unicode = [];
+    $unicode_letters = ["\udbc0\udeab", "\udbc0\udeba", "\udbc0\udec8", "\udbc0\udea4", "\udbc0\udebb", "\udbc0\udeb0", "\udbc0\udeaf", "\udbc0\udc03", "\udbc0\udec1", "\udbc0\udebd", "\udbc0\udeaa", "\udbc0\udeb1", "\udbc0\udec3", "\udbc0\udea6", "\udbc0\uded4", "\udbc0\udec4", "\udbc0\udecd", "\udbc0\udeb8", "\udbc0\uded3", "\udbc0\udea5", "\udbc0\uded0", "\udbc0\udeb6", "\udbc0\udec9", "\udbc0\udea7", "\udbc0\udebf", "\udbc0\udec0"];
+    if (!$unicode) {
+      echo "Caching exclude characters: " . count($unicode_letters) . "\n";
+      foreach($unicode_letters as $uc) {
+        $unicode[] = json_decode('"' . $uc . '"');
+      }
+    }
+    $str = str_replace($unicode, [], $orig_str);
+    if (strlen($str) != strlen($orig_str)) {
+      $ret = array();
+      $len = mb_strlen($str, "UTF-8");
+      for ($i = 0; $i < $len; $i ++) {
+        $characters = mb_substr($str, $i, 1, "UTF-8");
+        if (strlen($characters) < 4) {
+          continue;
+        }
+        if (@$ret[$characters]) {
+          continue;
+        }
+        $unicode[] = $characters;
+        $ret[$characters] = $characters;
+        echo "Added exclude character = " . json_encode('"' . $characters . '"') . "\n";
+      }
+      if ($ret) {
+        $str = str_replace($unicode, [], $str);
+      }
+    }
+    return $str;
+  }
+
   public static function fixI18NString($str, $strip_tags = FALSE) {
     $v = $strip_tags ? strip_tags($str) : $str;
     $v = html_entity_decode($v);
     // Post-process leftovers
     $replace = array(
+      '&#xD;' => '',
       // Cyrillic
       '&#1024' => 'Ѐ', '&#1025' => 'Ё', '&#1026' => 'Ђ', '&#1027' => 'Ѓ', '&#1028' => 'Є', '&#1029' => 'Ѕ',
       '&#1030' => 'І', '&#1031' => 'Ї', '&#1032' => 'Ј', '&#1033' => 'Љ', '&#1034' => 'Њ', '&#1035' => 'Ћ',
