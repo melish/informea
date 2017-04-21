@@ -23,6 +23,7 @@ function informea_search_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Search InforMEA';
+  $handler->display->display_options['css_class'] = 'view-informea-search-publications';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -31,12 +32,13 @@ function informea_search_views_default_views() {
   $handler->display->display_options['query']['options']['entity_access'] = 0;
   $handler->display->display_options['query']['options']['parse_mode'] = 'single';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '100';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '20';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['style_plugin'] = 'list';
-  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
-  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class'] = 'smallipop';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
@@ -46,6 +48,10 @@ function informea_search_views_default_views() {
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = 'Sorry, there are no results for this search ...';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
+  /* Relationship: Indexed Content: Treaty */
+  $handler->display->display_options['relationships']['field_treaty']['id'] = 'field_treaty';
+  $handler->display->display_options['relationships']['field_treaty']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['relationships']['field_treaty']['field'] = 'field_treaty';
   /* Field: Indexed Content: Node ID */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'search_api_index_informea_fulltext_solr_index';
@@ -54,20 +60,67 @@ function informea_search_views_default_views() {
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nid']['link_to_entity'] = 0;
-  /* Field: Search: Excerpt */
-  $handler->display->display_options['fields']['search_api_excerpt']['id'] = 'search_api_excerpt';
-  $handler->display->display_options['fields']['search_api_excerpt']['table'] = 'search_api_index_informea_fulltext_solr_index';
-  $handler->display->display_options['fields']['search_api_excerpt']['field'] = 'search_api_excerpt';
-  $handler->display->display_options['fields']['search_api_excerpt']['label'] = '';
-  $handler->display->display_options['fields']['search_api_excerpt']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['search_api_excerpt']['link_to_entity'] = 0;
+  /* Field: Content: Logo */
+  $handler->display->display_options['fields']['field_logo']['id'] = 'field_logo';
+  $handler->display->display_options['fields']['field_logo']['table'] = 'entity_node';
+  $handler->display->display_options['fields']['field_logo']['field'] = 'field_logo';
+  $handler->display->display_options['fields']['field_logo']['relationship'] = 'field_treaty';
+  $handler->display->display_options['fields']['field_logo']['label'] = '';
+  $handler->display->display_options['fields']['field_logo']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_logo']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_logo']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_logo']['settings'] = array(
+    'image_style' => 'logo',
+    'image_link' => '',
+  );
+  /* Field: Indexed Content: Logo */
+  $handler->display->display_options['fields']['field_logo_1']['id'] = 'field_logo_1';
+  $handler->display->display_options['fields']['field_logo_1']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['fields']['field_logo_1']['field'] = 'field_logo';
+  $handler->display->display_options['fields']['field_logo_1']['label'] = '';
+  $handler->display->display_options['fields']['field_logo_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_logo_1']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_logo_1']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_logo_1']['settings'] = array(
+    'image_style' => 'logo',
+    'image_link' => '',
+  );
   /* Field: Indexed Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'search_api_index_informea_fulltext_solr_index';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['title']['link_to_entity'] = 1;
+  /* Field: Search: Excerpt */
+  $handler->display->display_options['fields']['search_api_excerpt']['id'] = 'search_api_excerpt';
+  $handler->display->display_options['fields']['search_api_excerpt']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['fields']['search_api_excerpt']['field'] = 'search_api_excerpt';
+  $handler->display->display_options['fields']['search_api_excerpt']['label'] = '';
+  $handler->display->display_options['fields']['search_api_excerpt']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['search_api_excerpt']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['search_api_excerpt']['link_to_entity'] = 0;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="meta search-index">
+[search_api_excerpt]
+</div>';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Field: Indexed Content: Attached files */
+  $handler->display->display_options['fields']['field_files']['id'] = 'field_files';
+  $handler->display->display_options['fields']['field_files']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['fields']['field_files']['field'] = 'field_files';
+  $handler->display->display_options['fields']['field_files']['label'] = 'Documents';
+  $handler->display->display_options['fields']['field_files']['element_label_class'] = 'field-label';
+  $handler->display->display_options['fields']['field_files']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['field_files']['element_wrapper_class'] = 'field';
+  $handler->display->display_options['fields']['field_files']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_files']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_files']['type'] = 'external_url';
+  $handler->display->display_options['fields']['field_files']['delta_offset'] = '0';
   /* Sort criterion: Search: Relevance */
   $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
   $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_informea_fulltext_solr_index';
@@ -100,6 +153,14 @@ function informea_search_views_default_views() {
   $handler->display->display_options['filters']['field_treaty']['id'] = 'field_treaty';
   $handler->display->display_options['filters']['field_treaty']['table'] = 'search_api_index_informea_fulltext_solr_index';
   $handler->display->display_options['filters']['field_treaty']['field'] = 'field_treaty';
+  /* Filter criterion: Indexed Content: Content type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_informea_fulltext_solr_index';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['operator'] = '<>';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'treaty_paragraph' => 'treaty_paragraph',
+  );
 
   /* Display: Multilateral treaties */
   $handler = $view->new_display('page', 'Multilateral treaties', 'page');
@@ -113,10 +174,22 @@ function informea_search_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
     t('No search results'),
     t('Sorry, there are no results for this search ...'),
+    t('Treaty'),
     t('.'),
     t(','),
+    t('<div class="meta search-index">
+[search_api_excerpt]
+</div>'),
+    t('Documents'),
     t('Fulltext search'),
     t('Multilateral treaties'),
   );

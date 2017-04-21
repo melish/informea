@@ -93,3 +93,10 @@ function informea_update_7007() {
   features_revert(array('informea_search' => ['views_view']));
   features_revert(array('thesaurus' => ['views_view']));
 }
+
+/**
+ * Replace the Multilateral treaties view with a standard Solr view
+ */
+function informea_update_7008() {
+  features_revert(array('informea_search' => ['views_view']));
+}
