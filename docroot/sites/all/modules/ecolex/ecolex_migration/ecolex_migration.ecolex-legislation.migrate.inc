@@ -84,6 +84,10 @@ class EcolexLegislationMigration extends Migration {
 
     $this->addFieldMapping('field_ecolex_url:title')->defaultValue('ECOLEX');
 
+    $this->addFieldMapping('field_informea_tags', 'leoKeywords');
+    $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_informea_tags:create_term')->defaultValue(FALSE);
+
     $this->addUnmigratedSources(array());
     $this->addUnmigratedDestinations(array(
       'nid', 'created', 'changed', 'log', 'tnid', 'translate', 'revision_uid', 'path',
@@ -112,7 +116,7 @@ class EcolexLegislationMigration extends Migration {
       'field_ecolex_keywords:create_term', 'field_ecolex_keywords:ignore_case',
       // empty term
       'field_sub_file_code', 'field_sub_file_code:source_type', 'field_sub_file_code:create_term', 'field_sub_file_code:ignore_case',
-      'field_informea_tags', 'field_informea_tags:source_type', 'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
+      'field_informea_tags:ignore_case',
       'field_region', 'field_region:source_type', 'field_region:create_term', 'field_region:ignore_case',
       'field_data_source:create_term', 'field_data_source:ignore_case',
       'field_keywords', 'field_keywords:source_type', 'field_keywords:create_term', 'field_keywords:ignore_case',
@@ -164,6 +168,8 @@ class EcolexLegislationMigration extends Migration {
     $row->faolex_url = 'http://www.fao.org/faolex/results/details/en/?details=' . $row->legId;
 
     // Taxonomies
+    // Map ECOLEX keywords to LEO
+    $row->leoKeywords = ThesaurusMapping::mapEcolexTermToLEOMultiple($row->legKeyword_en);
     $row->legDataSource = 'FAOLEX';
     $this->prepare_term_reference_field($row, 'legDataSource', 'data_source');
     $this->prepare_term_reference_field_multilingual($row, 'legType', 'type_of_text');
@@ -385,6 +391,7 @@ class EcolexLegislationMigrateSource extends MigrateSource {
       'legKeyword_en'            => 'Tagging keywords',
       'ecolex_url'                  => 'Link to ECOLEX',
       'faolex_url'                  => 'Link to FAOLEX',
+      'leoKeywords' => 'LEO tags computed from VocBench mappings to LEO',
     );
   }
 
