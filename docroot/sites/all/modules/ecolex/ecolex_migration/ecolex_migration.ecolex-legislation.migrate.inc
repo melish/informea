@@ -83,7 +83,6 @@ class EcolexLegislationMigration extends Migration {
     $this->addFieldMapping('field_faolex_url', 'faolex_url');
 
     $this->addFieldMapping('field_ecolex_url:title')->defaultValue('ECOLEX');
-    $this->addFieldMapping('field_faolex_url:title')->defaultValue('FAOLEX');
 
     $this->addUnmigratedSources(array());
     $this->addUnmigratedDestinations(array(
