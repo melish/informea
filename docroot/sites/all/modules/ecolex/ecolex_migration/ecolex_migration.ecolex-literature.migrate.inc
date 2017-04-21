@@ -58,6 +58,13 @@ class EcolexLiteratureMigration extends Migration {
     $this->addFieldMapping('field_region', 'litRegion_en');
     $this->addFieldMapping('field_region:source_type')->defaultValue('tid');
 
+    $this->addFieldMapping('field_ecolex_keywords', 'docKeyword_en');
+    $this->addFieldMapping('field_ecolex_keywords:source_type')->defaultValue('tid');
+
+    $this->addFieldMapping('field_informea_tags', 'leoKeywords');
+    $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_informea_tags:create_term')->defaultValue(FALSE);
+
     // Entity Reference
     $this->addFieldMapping('field_country', 'litCountry_en');
     $this->addFieldMapping('field_related_literature', 'litRelatedMonograph');
@@ -79,8 +86,7 @@ class EcolexLiteratureMigration extends Migration {
       'field_isis_number',
       'field_author_institution',
       'field_organizations',
-      'field_informea_tags', 'field_informea_tags:source_type',
-      'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
+      'field_informea_tags:ignore_case',
 
       'field_url:title', 'field_url:attributes', 'field_url:language',
       'field_sorting_date:rrule', 'field_sorting_date:to',
@@ -163,6 +169,8 @@ class EcolexLiteratureMigration extends Migration {
     $row->ecolex_url = 'http://www.ecolex.org/literature/details/' . $row->litId;
 
     // Taxonomies
+    // Map ECOLEX keywords to LEO
+    $row->leoKeywords = ThesaurusMapping::mapEcolexTermToLEOMultiple($row->docKeyword_en);
     $row->litDataSource = 'ECOLEX';
     $this->prepare_term_reference_field($row, 'litDataSource', 'data_source');
     $this->prepare_term_reference_field_multilingual($row, 'litTerritorialSubdivision', 'territorial_subdivision');
@@ -170,6 +178,7 @@ class EcolexLiteratureMigration extends Migration {
     $this->prepare_term_reference_field_multilingual($row, 'litSubject',    'ecolex_subjects');
     $this->prepare_term_reference_field_multilingual($row, 'litScope',      'geographical_scope');
     $this->prepare_term_reference_field_multilingual($row, 'litRegion',     'geographical_region');
+    $this->prepare_term_reference_field_multilingual($row, 'docKeyword', 'thesaurus_ecolex');
 
     //Entity Reference
     if ($row->litCountry_en) {
@@ -385,8 +394,9 @@ class EcolexLiteratureMigrateSource extends MigrateSource {
       'litTreatyReference' => 'Literature Treaty Reference',
       'litRelatedWebSite' => 'Literature RelatedWeb Site',
       'litVolumeNo' => 'Literature Volume No',
-
+      'docKeyword_en' => 'ECOLEX keywords',
       'updatedDate' => 'Updated Date',
+      'leoKeywords' => 'LEO tags computed from VocBench mappings to LEO',
     );
   }
 
