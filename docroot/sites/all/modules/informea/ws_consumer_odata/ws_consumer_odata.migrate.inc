@@ -409,6 +409,9 @@ class ODataMigrationUtil {
   }
 
   static function getOrCreateTaxonomyTermByName($name, $vid) {
+    if (empty($name) || empty($vid)) {
+      return null;
+    }
     /** @var SelectQuery $query */
     $query = db_select('taxonomy_term_data', 'a')->fields('a', array('tid'))->condition('vid', $vid)->condition('name', $name);
     if ($tid = $query->execute()->fetchField()) {
