@@ -17,7 +17,7 @@ class ThesaurusMapping {
    * @param string $ecolex_vid ECOLEX vocabulary ID
    *
    * @return array
-   *   Array of LEO tids corresponding in accordance to mapping
+   *   Array of LEO tids corresponding in accordance to mapping, ex. [ 1, 2, 3 ]
    * <pre>
    * SELECT
    *   a.name as ecolex_term_en,
@@ -50,5 +50,32 @@ class ThesaurusMapping {
       }
     }
     return !empty($mappings[$ecolex_name_en]) ? $mappings[$ecolex_name_en] : array();
+  }
+
+  /**
+   * Map multiple terms to LEO at once.
+   *
+   * @see self::mapEcolexTermToLEO
+   *
+   * @param array $ecolex_names_en Array of english ECOLEX terms
+   * @param int $ecolex_vid
+   *
+   * @return array
+   *   Array of unique tids
+   */
+  public static function mapEcolexTermToLEOMultiple($ecolex_names_en, $ecolex_vid = 10) {
+    if (empty($ecolex_names_en)) {
+      return array();
+    }
+    $ret = array();
+    if (is_array($ecolex_names_en)) {
+      foreach($ecolex_names_en as $ecolex_name_en) {
+        $ret = array_merge($ret, self::mapEcolexTermToLEO($ecolex_name_en, $ecolex_vid));
+      }
+    }
+    else {
+      $ret = self::mapEcolexTermToLEO($ecolex_names_en, $ecolex_vid);
+    }
+    return array_unique($ret);
   }
 }
