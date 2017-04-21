@@ -56,6 +56,8 @@ class EcolexTreatyMigration extends Migration {
     $this->addFieldMapping('field_ecolex_tags:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_type_of_text', 'trTypeOfText_en');
     $this->addFieldMapping('field_type_of_text:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_ecolex_keywords', 'trKeyword_en');
+    $this->addFieldMapping('field_ecolex_keywords:source_type')->defaultValue('tid');
 
     $this->addFieldMapping('comment')->defaultValue(FALSE);
     $this->addFieldMapping('uid')->defaultValue(0);
@@ -67,6 +69,10 @@ class EcolexTreatyMigration extends Migration {
 
     $this->addFieldMapping('field_ecolex_url', 'ecolex_url');
     $this->addFieldMapping('field_ecolex_url:title')->defaultValue('ECOLEX');
+
+    $this->addFieldMapping('field_informea_tags', 'leoKeywords');
+    $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_informea_tags:create_term')->defaultValue(FALSE);
 
     $this->addUnmigratedSources(array());
     $this->addUnmigratedDestinations(array(
@@ -119,7 +125,7 @@ class EcolexTreatyMigration extends Migration {
       // empty term
       'field_primary_topic', 'field_primary_topic:source_type', 'field_primary_topic:create_term', 'field_primary_topic:ignore_case',
       'field_secondary_topic', 'field_secondary_topic:source_type', 'field_secondary_topic:create_term', 'field_secondary_topic:ignore_case',
-      'field_informea_tags', 'field_informea_tags:source_type', 'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
+      'field_informea_tags:ignore_case',
       'field_mea_topic', 'field_mea_topic:source_type', 'field_mea_topic:create_term', 'field_mea_topic:ignore_case',
 
       // links
@@ -216,6 +222,8 @@ class EcolexTreatyMigration extends Migration {
     $row->ecolex_url = 'http://www.ecolex.org/treaty/details/' . $row->docId;
 
     // Taxonomies
+    // Map ECOLEX keywords to LEO
+    $row->leoKeywords = ThesaurusMapping::mapEcolexTermToLEOMultiple($row->trKeyword_en);
     $row->trDataSource = 'ECOLEX';
     $this->prepare_term_reference_field($row, 'trDataSource', 'data_source');
     $this->prepare_term_reference_field_multilingual($row, 'trFieldOfApplication', 'field_of_application');
@@ -223,6 +231,7 @@ class EcolexTreatyMigration extends Migration {
     $this->prepare_term_reference_field_multilingual($row, 'trRegion', 'geographical_region');
     $this->prepare_term_reference_field_multilingual($row, 'trSubject', 'ecolex_subjects');
     $this->prepare_term_reference_field_multilingual($row, 'trTypeOfText', 'type_of_text');
+    $this->prepare_term_reference_field_multilingual($row, 'trKeyword', 'thesaurus_ecolex');
 
     // Entity Reference
     if ($row->trCountry_en) {
@@ -419,7 +428,9 @@ class EcolexTreatyMigrateSource extends MigrateSource {
       'trJurisdiction_en' => 'Jurisdiction',
       'trRegion_en' => 'Region',
       'trAmendsTreaty' => 'Amends Treaty',
+      'trKeyword_en' => 'Keywords',
       'updatedDate' => 'Updated Date',
+      'leoKeywords' => 'LEO tags computed from VocBench mappings to LEO',
     );
   }
 

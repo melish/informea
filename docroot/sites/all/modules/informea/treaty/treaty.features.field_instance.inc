@@ -1126,7 +1126,7 @@ function treaty_field_default_field_instances() {
           'dropdownAutoWidth' => 0,
           'placeholder' => '',
         ),
-        'use_select2' => 0,
+        'use_select2' => 1,
       ),
       'user_register_form' => FALSE,
     ),
@@ -1181,23 +1181,20 @@ function treaty_field_default_field_instances() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'select2_integration' => array(
-        'allow_add_onfly' => 0,
-        'show_voc_terms_page_link' => 0,
         'styling' => array(
           'dropdownAutoWidth' => 0,
           'placeholder' => '',
         ),
-        'use_select2' => 0,
+        'use_select2' => 1,
       ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
+      'active' => 0,
       'module' => 'taxonomy',
       'settings' => array(
         'autocomplete_path' => 'taxonomy/autocomplete',
         'size' => 60,
-        'use_select2' => FALSE,
       ),
       'type' => 'taxonomy_autocomplete',
       'weight' => 29,
