@@ -597,6 +597,9 @@ function thesaurus_informea_sync_vocbench($force_update = FALSE) {
   }
 }
 
+/**
+ * @deprecated
+ */
 function thesaurus_load_from_rdf_cached($rdf) {
   $thesaurus = NULL;
   $data = array();
@@ -616,6 +619,9 @@ function thesaurus_load_from_rdf_cached($rdf) {
   return $thesaurus;
 }
 
+/**
+ * @deprecated
+ */
 function thesaurus_load_from_rdf($rdf) {
   if (!easyrdf()) {
     drupal_set_message(t('EasyRdf library is not available.'), 'error');

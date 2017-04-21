@@ -504,6 +504,12 @@ function treaty_strongarm() {
         'redirect' => array(
           'weight' => '27',
         ),
+        'metatags' => array(
+          'weight' => '40',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '30',
+        ),
       ),
       'display' => array(
         'computed_number_of_parties' => array(

@@ -44,6 +44,7 @@ function treaty_field_group_info() {
       18 => 'field_date_of_entry',
       19 => 'field_date_of_modification',
       20 => 'field_sorting_date',
+      21 => 'field_ecolex_keywords',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -75,11 +76,10 @@ function treaty_field_group_info() {
       1 => 'field_treaty_parties_url',
       2 => 'field_treaty_text_url',
       3 => 'field_treaty_website_url',
-      4 => 'field_treaty_summary_url',
-      5 => 'field_treaty_protocols_url',
-      6 => 'field_treaty_decisions_url',
+      4 => 'field_treaty_decisions_url',
+      5 => 'field_treaty_plans_url',
+      6 => 'field_treaty_protocols_url',
       7 => 'field_treaty_reports_url',
-      8 => 'field_treaty_plans_url',
     ),
     'format_type' => 'htab',
     'format_settings' => array(

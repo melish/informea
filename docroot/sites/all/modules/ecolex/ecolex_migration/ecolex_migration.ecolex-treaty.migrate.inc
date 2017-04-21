@@ -56,6 +56,8 @@ class EcolexTreatyMigration extends Migration {
     $this->addFieldMapping('field_ecolex_tags:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_type_of_text', 'trTypeOfText_en');
     $this->addFieldMapping('field_type_of_text:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_ecolex_keywords', 'docKeyword_en');
+    $this->addFieldMapping('field_ecolex_keywords:source_type')->defaultValue('tid');
 
     $this->addFieldMapping('comment')->defaultValue(FALSE);
     $this->addFieldMapping('uid')->defaultValue(0);
@@ -67,6 +69,10 @@ class EcolexTreatyMigration extends Migration {
 
     $this->addFieldMapping('field_ecolex_url', 'ecolex_url');
     $this->addFieldMapping('field_ecolex_url:title')->defaultValue('ECOLEX');
+
+    $this->addFieldMapping('field_informea_tags', 'leoKeywords');
+    $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_informea_tags:create_term')->defaultValue(FALSE);
 
     $this->addUnmigratedSources(array());
     $this->addUnmigratedDestinations(array(
@@ -119,7 +125,7 @@ class EcolexTreatyMigration extends Migration {
       // empty term
       'field_primary_topic', 'field_primary_topic:source_type', 'field_primary_topic:create_term', 'field_primary_topic:ignore_case',
       'field_secondary_topic', 'field_secondary_topic:source_type', 'field_secondary_topic:create_term', 'field_secondary_topic:ignore_case',
-      'field_informea_tags', 'field_informea_tags:source_type', 'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
+      'field_informea_tags:ignore_case',
       'field_mea_topic', 'field_mea_topic:source_type', 'field_mea_topic:create_term', 'field_mea_topic:ignore_case',
 
       // links
@@ -216,6 +222,8 @@ class EcolexTreatyMigration extends Migration {
     $row->ecolex_url = 'http://www.ecolex.org/treaty/details/' . $row->docId;
 
     // Taxonomies
+    // Map ECOLEX keywords to LEO
+    $row->leoKeywords = ThesaurusMapping::mapEcolexTermToLEOMultiple($row->docKeyword_en);
     $row->trDataSource = 'ECOLEX';
     $this->prepare_term_reference_field($row, 'trDataSource', 'data_source');
     $this->prepare_term_reference_field_multilingual($row, 'trFieldOfApplication', 'field_of_application');
@@ -223,6 +231,7 @@ class EcolexTreatyMigration extends Migration {
     $this->prepare_term_reference_field_multilingual($row, 'trRegion', 'geographical_region');
     $this->prepare_term_reference_field_multilingual($row, 'trSubject', 'ecolex_subjects');
     $this->prepare_term_reference_field_multilingual($row, 'trTypeOfText', 'type_of_text');
+    $this->prepare_term_reference_field_multilingual($row, 'docKeyword', 'thesaurus_ecolex');
 
     // Entity Reference
     if ($row->trCountry_en) {
@@ -285,7 +294,7 @@ class EcolexTreatyMigration extends Migration {
           $tids[] = reset($term)->tid;
         }
         else {
-          $tids[] = elis_migration_create_taxonomy_term($term_name, $vocabulary, array());
+          $tids[] = ecolex_migration_create_taxonomy_term($term_name, $vocabulary, array());
         }
       }
       $row->{$field_name} = $tids;
@@ -296,14 +305,14 @@ class EcolexTreatyMigration extends Migration {
         $row->{$field_name} = reset($term)->tid;
       }
       else {
-        $row->{$field_name} = elis_migration_create_taxonomy_term($term_name, $vocabulary, array());
+        $row->{$field_name} = ecolex_migration_create_taxonomy_term($term_name, $vocabulary, array());
       }
     }
   }
 
   /**
    * Map the term names with the existing terms tids.
-   * If the vocabulary doesn't contain a term with that name, it will be created.
+   * If the vocabulary doesn't contain a term with that name, it will be ignored.
    *
    * @param $row
    *  Current migration row.
@@ -323,16 +332,6 @@ class EcolexTreatyMigration extends Migration {
         if ($term = taxonomy_get_term_by_name($term_name, $vocabulary)) {
           $tids[] = reset($term)->tid;
         }
-        else {
-          $translations = array();
-          if (!empty($row->{$field_name_base . '_fr'}[$delta])) {
-            $translations['fr'] = $row->{$field_name_base . '_fr'}[$delta];
-          }
-          if (!empty($row->{$field_name_base . '_es'}[$delta])) {
-            $translations['es'] = $row->{$field_name_base . '_es'}[$delta];
-          }
-          $tids[] = elis_migration_create_taxonomy_term($term_name, $vocabulary, $translations);
-        }
       }
       $row->{$field_name_base . '_en'} = $tids;
     } else {
@@ -340,16 +339,6 @@ class EcolexTreatyMigration extends Migration {
       $term_name = $row->{$field_name_base . '_en'};
       if ($term = taxonomy_get_term_by_name($term_name, $vocabulary)) {
         $row->{$field_name_base . '_en'} = reset($term)->tid;
-      }
-      else {
-        $translations = array();
-        if (!empty($row->{$field_name_base . '_fr'})) {
-          $translations['fr'] = $row->{$field_name_base . '_fr'};
-        }
-        if (!empty($row->{$field_name_base . '_es'})) {
-          $translations['es'] = $row->{$field_name_base . '_es'};
-        }
-        $row->{$field_name_base . '_en'} = elis_migration_create_taxonomy_term($term_name, $vocabulary, $translations);
       }
     }
   }
@@ -407,7 +396,6 @@ class EcolexTreatyMigrateSource extends MigrateSource {
       'trSubject_en' => 'Treaty Subject',
       'trCountry_en' => 'Treaty Country',
       'trTitleAbbreviation'=>'Title Abbreviation',
-      'trObsolete' => '',
       'trTypeOfText_en' => 'Type Of Text',
       'trPlaceOfAdoption' => 'Place Of Adoption',
       'trObsolete' => 'Obsolete',
@@ -420,7 +408,9 @@ class EcolexTreatyMigrateSource extends MigrateSource {
       'trJurisdiction_en' => 'Jurisdiction',
       'trRegion_en' => 'Region',
       'trAmendsTreaty' => 'Amends Treaty',
+      'docKeyword_en' => 'Keywords',
       'updatedDate' => 'Updated Date',
+      'leoKeywords' => 'LEO tags computed from VocBench mappings to LEO',
     );
   }
 
@@ -429,7 +419,7 @@ class EcolexTreatyMigrateSource extends MigrateSource {
    * Return the number of available source records.
    */
   public function computeCount() {
-    if ($str = elis_consumer_http_request($this->url_pattern . '&count=yes')) {
+    if ($str = ecolex_migration_http_request($this->url_pattern . '&count=yes')) {
       if ($json = json_decode($str)) {
         $this->totalCount = $json->count;
       }
@@ -484,7 +474,7 @@ class EcolexTreatyMigrateSource extends MigrateSource {
         $str = file_get_contents($detail_filename);
       }
       if (!$str) {
-        $str = elis_consumer_http_request($this->url_pattern . '&rows=' . $this->pagination . '&start=' . $start, array('Accept' => 'application/json'));
+        $str = ecolex_migration_http_request($this->url_pattern . '&rows=' . $this->pagination . '&start=' . $start, array('Accept' => 'application/json'));
         if ($this->log_detail && $str) {
           if (!file_exists($detail_filename)) {
             file_put_contents($detail_filename, $str);
@@ -554,7 +544,7 @@ class EcolexTreatyMigrateSource extends MigrateSource {
           $str = file_get_contents($detail_filename);
         }
         else {
-          $str = elis_consumer_http_request($item->url, array('Accept' => 'application/json') );
+          $str = ecolex_migration_http_request($item->url, array('Accept' => 'application/json') );
         }
         if ($this->log_detail && $str) {
           if (!file_exists($detail_filename)) {
