@@ -143,7 +143,7 @@ class DocumentsODataMigration extends AbstractODataMigration {
     $odata_values = $consumer->loadNavigationProperty($row, 'keywords');
     $keywords = array();
     foreach($odata_values as $v) {
-      if ($tid = ODataMigrationUtil::getOrCreateTaxonomyTermByName($v->termValueInEnglish, $vdk->vid)) {
+      if ($tid = ODataMigrationUtil::getTaxonomyTermByName($v->termValueInEnglish, $vdk->vid)) {
         $keywords[] = $tid;
       }
     }
