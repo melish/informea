@@ -156,7 +156,7 @@ function treaty_theme() {
     'treaty_text_article' => array(
       'render element' => 'element',
       'template' => 'templates/treaty-text-article',
-      'variables' => array('article'),
+      'variables' => array('article', 'odata_identifier'),
       'path' => drupal_get_path('module', 'treaty'),
     ),
     'treaty_text_paragraph' => array(
@@ -1515,4 +1515,22 @@ function treaty_text_get_last_modification_date($nid) {
   $query->condition('t.field_treaty_target_id', $nid);
   $query->condition('n.type', array('treaty_article', 'treaty_paragraph'), 'IN');
   return $query->execute()->fetchField();
+}
+
+/*
+ * static function to get base url
+ * return node/nid or treaties/odata_identifier if no alias
+ * */
+function treaty_get_url_base($nid, $odata_identifier) {
+  static $path;
+  if (!$path) {
+    $treaty_url = url(drupal_get_path_alias('node/' . $nid));
+    if (strpos($treaty_url, 'node/' . $nid)) {
+      $path = 'node/' . $nid;
+    } else {
+      $path = 'treaties/' . $odata_identifier;
+    }
+    krumo($path);
+  }
+  return $path;
 }
