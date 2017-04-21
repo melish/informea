@@ -60,7 +60,7 @@ class EcolexLegislationMigration extends Migration {
     $this->addFieldMapping('field_implements', 'legImplement');
     $this->addFieldMapping('field_repeals', 'legRepeals');
 
-    $this->addFieldMapping('field_ecolex_keywords', 'legKeyword_en');
+    $this->addFieldMapping('field_ecolex_keywords', 'docKeyword_en');
     $this->addFieldMapping('field_ecolex_keywords:source_type')->defaultValue('tid');
 
     $this->addFieldMapping('field_date_of_modification', 'updatedDate');
@@ -169,13 +169,13 @@ class EcolexLegislationMigration extends Migration {
 
     // Taxonomies
     // Map ECOLEX keywords to LEO
-    $row->leoKeywords = ThesaurusMapping::mapEcolexTermToLEOMultiple($row->legKeyword_en);
+    $row->leoKeywords = ThesaurusMapping::mapEcolexTermToLEOMultiple($row->docKeyword_en);
     $row->legDataSource = 'FAOLEX';
     $this->prepare_term_reference_field($row, 'legDataSource', 'data_source');
     $this->prepare_term_reference_field_multilingual($row, 'legType', 'type_of_text');
     $this->prepare_term_reference_field_multilingual($row, 'legGeoArea', 'ecolex_region');
     $this->prepare_term_reference_field_multilingual($row, 'legSubject', 'ecolex_subjects');
-    $this->prepare_term_reference_field_multilingual($row, 'legKeyword', 'thesaurus_ecolex');
+    $this->prepare_term_reference_field_multilingual($row, 'docKeyword', 'thesaurus_ecolex');
     $this->prepare_term_reference_field($row, 'legStatus', 'ecolex_legislation_status');
     $this->prepare_term_reference_field($row, 'legTerritorialSubdivision', 'territorial_subdivision');
 
@@ -388,7 +388,7 @@ class EcolexLegislationMigrateSource extends MigrateSource {
       'legAmends'                => 'IDs of the amended legislation',
       'legImplement'             => 'IDs of the implemented legislation',
       'legRepeals'               => 'IDs of the repealed legislation',
-      'legKeyword_en'            => 'Tagging keywords',
+      'docKeyword_en'            => 'Tagging keywords',
       'ecolex_url'                  => 'Link to ECOLEX',
       'faolex_url'                  => 'Link to FAOLEX',
       'leoKeywords' => 'LEO tags computed from VocBench mappings to LEO',
