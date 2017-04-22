@@ -106,7 +106,7 @@ function ecolex_migration_http_request($url, $headers = array()) {
   curl_setopt($ch, CURLOPT_URL, $url);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
   curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
-  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 3);
+  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
   curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
   curl_setopt($ch, CURLOPT_NOBODY, 0);
   $ret = curl_exec($ch);
