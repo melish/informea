@@ -21,6 +21,7 @@ class ODataConsumerConfig {
   public static $ODATA_NAME_RAMSAR = 'ramsar';
   public static $ODATA_NAME_UNFCCC = 'unfccc';
   public static $ODATA_NAME_BARCELONA = 'barcelona';
+  public static $ODATA_NAME_IPPC = 'ippc';
 
   public static $ODATA_ENTITY_CONTACTS = 'Contacts';
   public static $DRUPAL_TYPE_CONTACTS = 'contact_person';
@@ -80,6 +81,7 @@ class ODataConsumerConfig {
       ODataConsumerConfig::$ODATA_NAME_RAMSAR,
       ODataConsumerConfig::$ODATA_NAME_UNFCCC,
       ODataConsumerConfig::$ODATA_NAME_BARCELONA,
+      ODataConsumerConfig::$ODATA_NAME_IPPC,
     );
   }
 
