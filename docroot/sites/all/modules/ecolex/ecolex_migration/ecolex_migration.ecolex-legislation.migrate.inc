@@ -60,7 +60,7 @@ class EcolexLegislationMigration extends Migration {
     $this->addFieldMapping('field_implements', 'legImplement');
     $this->addFieldMapping('field_repeals', 'legRepeals');
 
-    $this->addFieldMapping('field_ecolex_keywords', 'legKeyword_en');
+    $this->addFieldMapping('field_ecolex_keywords', 'docKeyword_en');
     $this->addFieldMapping('field_ecolex_keywords:source_type')->defaultValue('tid');
 
     $this->addFieldMapping('field_date_of_modification', 'updatedDate');
@@ -83,7 +83,10 @@ class EcolexLegislationMigration extends Migration {
     $this->addFieldMapping('field_faolex_url', 'faolex_url');
 
     $this->addFieldMapping('field_ecolex_url:title')->defaultValue('ECOLEX');
-    $this->addFieldMapping('field_faolex_url:title')->defaultValue('FAOLEX');
+
+    $this->addFieldMapping('field_informea_tags', 'leoKeywords');
+    $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_informea_tags:create_term')->defaultValue(FALSE);
 
     $this->addUnmigratedSources(array());
     $this->addUnmigratedDestinations(array(
@@ -113,7 +116,7 @@ class EcolexLegislationMigration extends Migration {
       'field_ecolex_keywords:create_term', 'field_ecolex_keywords:ignore_case',
       // empty term
       'field_sub_file_code', 'field_sub_file_code:source_type', 'field_sub_file_code:create_term', 'field_sub_file_code:ignore_case',
-      'field_informea_tags', 'field_informea_tags:source_type', 'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
+      'field_informea_tags:ignore_case',
       'field_region', 'field_region:source_type', 'field_region:create_term', 'field_region:ignore_case',
       'field_data_source:create_term', 'field_data_source:ignore_case',
       'field_keywords', 'field_keywords:source_type', 'field_keywords:create_term', 'field_keywords:ignore_case',
@@ -165,12 +168,14 @@ class EcolexLegislationMigration extends Migration {
     $row->faolex_url = 'http://www.fao.org/faolex/results/details/en/?details=' . $row->legId;
 
     // Taxonomies
+    // Map ECOLEX keywords to LEO
+    $row->leoKeywords = ThesaurusMapping::mapEcolexTermToLEOMultiple($row->docKeyword_en);
     $row->legDataSource = 'FAOLEX';
     $this->prepare_term_reference_field($row, 'legDataSource', 'data_source');
     $this->prepare_term_reference_field_multilingual($row, 'legType', 'type_of_text');
     $this->prepare_term_reference_field_multilingual($row, 'legGeoArea', 'ecolex_region');
     $this->prepare_term_reference_field_multilingual($row, 'legSubject', 'ecolex_subjects');
-    $this->prepare_term_reference_field_multilingual($row, 'legKeyword', 'thesaurus_ecolex');
+    $this->prepare_term_reference_field_multilingual($row, 'docKeyword', 'thesaurus_ecolex');
     $this->prepare_term_reference_field($row, 'legStatus', 'ecolex_legislation_status');
     $this->prepare_term_reference_field($row, 'legTerritorialSubdivision', 'territorial_subdivision');
 
@@ -246,7 +251,7 @@ class EcolexLegislationMigration extends Migration {
           $tids[] = reset($term)->tid;
         }
         else {
-          $tids[] = elis_migration_create_taxonomy_term($term_name, $vocabulary, array());
+          $tids[] = ecolex_migration_create_taxonomy_term($term_name, $vocabulary, array());
         }
       }
       $row->{$field_name} = $tids;
@@ -257,7 +262,7 @@ class EcolexLegislationMigration extends Migration {
         $row->{$field_name} = reset($term)->tid;
       }
       else {
-        $row->{$field_name} = elis_migration_create_taxonomy_term($term_name, $vocabulary, array());
+        $row->{$field_name} = ecolex_migration_create_taxonomy_term($term_name, $vocabulary, array());
       }
     }
   }
@@ -265,7 +270,7 @@ class EcolexLegislationMigration extends Migration {
 
   /**
    * Map the term names with the existing terms tids.
-   * If the vocabulary doesn't contain a term with that name, it will be created.
+   * If the vocabulary doesn't contain a term with that name, it will be ignored.
    *
    * @param $row
    *  Current migration row.
@@ -285,16 +290,6 @@ class EcolexLegislationMigration extends Migration {
         if ($term = taxonomy_get_term_by_name($term_name, $vocabulary)) {
           $tids[] = reset($term)->tid;
         }
-        else {
-          $translations = array();
-          if (!empty($row->{$field_name_base . '_fr'}[$delta])) {
-            $translations['fr'] = $row->{$field_name_base . '_fr'}[$delta];
-          }
-          if (!empty($row->{$field_name_base . '_es'}[$delta])) {
-            $translations['es'] = $row->{$field_name_base . '_es'}[$delta];
-          }
-          $tids[] = elis_migration_create_taxonomy_term($term_name, $vocabulary, $translations);
-        }
       }
       $row->{$field_name_base . '_en'} = $tids;
     } else {
@@ -302,16 +297,6 @@ class EcolexLegislationMigration extends Migration {
       $term_name = $row->{$field_name_base . '_en'};
       if ($term = taxonomy_get_term_by_name($term_name, $vocabulary)) {
         $row->{$field_name_base . '_en'} = reset($term)->tid;
-      }
-      else {
-        $translations = array();
-        if (!empty($row->{$field_name_base . '_fr'})) {
-          $translations['fr'] = $row->{$field_name_base . '_fr'};
-        }
-        if (!empty($row->{$field_name_base . '_es'})) {
-          $translations['es'] = $row->{$field_name_base . '_es'};
-        }
-        $row->{$field_name_base . '_en'} = elis_migration_create_taxonomy_term($term_name, $vocabulary, $translations);
       }
     }
   }
@@ -383,9 +368,10 @@ class EcolexLegislationMigrateSource extends MigrateSource {
       'legAmends'                => 'IDs of the amended legislation',
       'legImplement'             => 'IDs of the implemented legislation',
       'legRepeals'               => 'IDs of the repealed legislation',
-      'legKeyword_en'            => 'Tagging keywords',
+      'docKeyword_en'            => 'Tagging keywords',
       'ecolex_url'                  => 'Link to ECOLEX',
       'faolex_url'                  => 'Link to FAOLEX',
+      'leoKeywords' => 'LEO tags computed from VocBench mappings to LEO',
     );
   }
 
@@ -394,7 +380,7 @@ class EcolexLegislationMigrateSource extends MigrateSource {
    * Return the number of available source records.
    */
   public function computeCount() {
-    if ($str = elis_consumer_http_request($this->url_pattern . '&count=yes')) {
+    if ($str = ecolex_migration_http_request($this->url_pattern . '&count=yes')) {
       if ($json = json_decode($str)) {
         $this->totalCount = $json->count;
       }
@@ -446,7 +432,7 @@ class EcolexLegislationMigrateSource extends MigrateSource {
         $str = file_get_contents($detail_filename);
       }
       if (!$str) {
-        $str = elis_consumer_http_request($this->url_pattern . '&rows=' . $this->pagination . '&start=' . $start, array('Accept' => 'application/json'));
+        $str = ecolex_migration_http_request($this->url_pattern . '&rows=' . $this->pagination . '&start=' . $start, array('Accept' => 'application/json'));
         if ($this->log_detail && $str) {
           if (!file_exists($detail_filename)) {
             file_put_contents($detail_filename, $str);
@@ -513,7 +499,7 @@ class EcolexLegislationMigrateSource extends MigrateSource {
           $str = file_get_contents($detail_filename);
         }
         else {
-          $str = elis_consumer_http_request($item->url, array('Accept' => 'application/json') );
+          $str = ecolex_migration_http_request($item->url, array('Accept' => 'application/json') );
         }
         if ($this->log_detail && $str) {
           if (!file_exists($detail_filename)) {

@@ -7,6 +7,11 @@
 include_once 'document.features.inc';
 
 
+function document_block_view_alter(&$data, $block) {
+  if ((arg(0)=='documents') && ($block->title == 'Treaty')) {
+    $block->title = t('Instrument');
+  }
+}
 /**
  * Implements hook_form_alter().
  */

@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * Link thesaurus_ecolex terms to Vocbench terms
+ */
+function thesaurus_update_7001() {
+  $config = [
+    'url' => 'http://informea.org/sites/default/files/export/ecolex.rdf',
+    'id_field' => 'uri',
+    'parent_field' => 'broader',
+  ];
+  $vocBenchRDFSource = new \Drupal\taxonomy_external_sync\plugin\source\VocBenchRDFSource($config);
+  $thesaurus = $vocBenchRDFSource->getTerms();
+  $vocabulary = 'thesaurus_ecolex';
+
+  foreach ($thesaurus as $key => $term) {
+    $label = !empty($term->prefLabel['en']) ? $term->prefLabel['en'] : $term->prefLabel[LANGUAGE_NONE];
+    $drupal_term = reset(taxonomy_get_term_by_name($label, $vocabulary));
+    if (!empty($drupal_term) && !empty($drupal_term->tid)) {
+      db_merge('taxonomy_external_sync_map')
+        ->key(array('destination_tid' => $drupal_term->tid))
+        ->fields(array(
+          'source_id' => $key,
+          'destination_tid' => $drupal_term->tid,
+          'bundle' => $vocabulary,
+        ))
+        ->execute();
+    }
+  }
+
+  features_revert_module('informea');
+}
+
+/**
+ * Delete terms without names
+ */
+function thesaurus_update_7002() {
+  foreach (range(3806, 4005) as $tid) {
+    taxonomy_term_delete($tid);
+  }
+}

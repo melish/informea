@@ -29,3 +29,4 @@ files[] = export/rdf.inc
 files[] = export/xls.inc
 files[] = thesaurus.related.inc
 files[] = includes/Thesaurus.php
+files[] = includes/ThesaurusMapping.php
