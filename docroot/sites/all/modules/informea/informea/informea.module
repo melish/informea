@@ -247,6 +247,15 @@ function informea_menu() {
     'access arguments' => array('administer site configuration'),
     'type' => MENU_LOCAL_TASK
   );
+
+  $items['admin/reports/orphaned'] = array(
+    'title' => 'Orphaned entity references',
+    'page callback' => 'informea_orphaned',
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'informea.admin.inc'
+  );
+
   $items['informea/autocomplete/single/field_treaty/node/%'] = array(
     'title' => 'Entity Reference Autocomplete',
     'page callback' => 'informea_entityreference_autocomplete_field_treaty_callback',

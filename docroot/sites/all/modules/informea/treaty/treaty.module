@@ -907,7 +907,13 @@ function treaty_url_action_plan($id_treaty, $id_report) {
  * @return string
  */
 function treaty_url_logo($treaty) {
+  if (!$treaty) {
+    return null;
+  }
   $w = entity_metadata_wrapper('node', $treaty->nid);
+  if (!$w) {
+    return null;
+  }
   $logo = $w->field_logo->value();
   return empty($logo) ? null : theme('image_style', array('style_name' => 'logo', 'path' => $logo['uri']));
 }
