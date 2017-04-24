@@ -10,13 +10,14 @@
   $tags = $aw->field_informea_tags->value();
   $expanded = isset($_GET['article']) ? $_GET['article'] == $article->nid : FALSE;
   $id_treaty = $aw->field_treaty->value()[0]->nid;
+  $treaty_path = treaty_get_url_base($id_treaty, $odata_identifier) . '/text';
   ?>
   <div class="panel <?php print $expanded ? 'panel-warning' : 'panel-default'; ?>">
     <div class="panel-heading smallipop<?php print $expanded ? '' : ' collapsed' ;?>" role="tab" id="heading-<?php echo $article->nid; ?>" data-toggle="collapse" data-target="#article-<?php echo $article->nid; ?>" aria-expanded="<?php print $expanded ? 'true' : 'false' ;?>" aria-controls="article-<?php echo $article->nid; ?>">
       <h4 class="panel-title">
         <a href="javascript:void(0);"><?php echo $article->official_title; ?></a>
         <?php
-        print l('<i class="glyphicon glyphicon-link"></i>', 'node/' . $id_treaty .'/text', array(
+        print l('<i class="glyphicon glyphicon-link"></i>', $treaty_path, array(
           'attributes' => array(
             'data-toggle' => 'tooltip', 'data-placement' => 'top',
             'title' => t('Permalink'),

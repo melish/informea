@@ -36,14 +36,14 @@ function informea_search_views_pre_render(&$view) {
       drupal_add_library('informea', 'smallipop');
       drupal_add_js(drupal_get_path('module', 'informea_search') . '/js/informea_search.js');
 
-      module_load_include('inc', 'informea_search', 'informea_search.results');
-      $group = new InforMEASearchResultsGrouping();
-      $view->result = $group->getResults($view->result);
       // do not break here
     case 'informea_search_legislation':
     case 'informea_search_court_decision':
     case 'informea_search_publications':
-      $content = sprintf('<div class="results-for">%s: "%s"</div>', t('Results for'), $_GET['search_api_views_fulltext']);
+      $content = '';
+      if (@$_GET['search_api_views_fulltext']) {
+        $content = sprintf('<div class="results-for">%s: "%s"</div>', t('Results for'), @$_GET['search_api_views_fulltext']);
+      }
       $view->attachment_before = $content;
       break;
   }

@@ -118,7 +118,22 @@ function informea_taxonomy_default_vocabularies() {
         ),
       ),
       'tes' => array(
-        'enable' => FALSE,
+        'enable' => TRUE,
+        'plugin' => 'Drupal\\taxonomy_external_sync\\plugin\\source\\VocBenchRDFSource',
+        'plugin_config' => array(
+          'url' => 'http://informea.org/sites/default/files/export/ecolex.rdf',
+          'id_field' => 'uri',
+          'parent_field' => 'broader',
+          'delete_deprecated_terms' => 0,
+          'delete_missing_terms' => 0,
+        ),
+        'mappings' => array(
+          'description_field' => 'definition',
+          'field_taxonomy_term_uri' => 'uri',
+          'field_term_reference_url' => 'relatedMatch',
+          'field_term_synonyms' => 'altLabel',
+          'name_field' => 'prefLabel',
+        ),
       ),
     ),
     'thesaurus_geg' => array(

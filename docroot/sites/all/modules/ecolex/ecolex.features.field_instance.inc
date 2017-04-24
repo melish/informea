@@ -4967,7 +4967,7 @@ function ecolex_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 28,
+      'weight' => 29,
     ),
   );
 
@@ -5242,7 +5242,7 @@ function ecolex_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 21,
+      'weight' => 22,
     ),
   );
 
@@ -5292,7 +5292,7 @@ function ecolex_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 23,
+      'weight' => 24,
     ),
   );
 
@@ -5430,6 +5430,66 @@ function ecolex_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-literature-field_ecolex_keywords'.
+  $field_instances['node-literature-field_ecolex_keywords'] = array(
+    'bundle' => 'literature',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 33,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_ecolex_keywords',
+    'label' => 'ECOLEX Keywords',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 1,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 20,
+    ),
+  );
+
   // Exported field_instance: 'node-literature-field_ecolex_tags'.
   $field_instances['node-literature-field_ecolex_tags'] = array(
     'bundle' => 'literature',
@@ -5474,7 +5534,7 @@ function ecolex_field_default_field_instances() {
           'dropdownAutoWidth' => 0,
           'placeholder' => '',
         ),
-        'use_select2' => 0,
+        'use_select2' => 1,
       ),
       'user_register_form' => FALSE,
     ),
@@ -5556,7 +5616,7 @@ function ecolex_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 35,
+      'weight' => 36,
     ),
   );
 
@@ -5617,7 +5677,7 @@ function ecolex_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 22,
+      'weight' => 23,
     ),
   );
 
@@ -5677,7 +5737,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 32,
+      'weight' => 33,
     ),
   );
 
@@ -6056,7 +6116,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 20,
+      'weight' => 21,
     ),
   );
 
@@ -6277,7 +6337,7 @@ function ecolex_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 24,
+      'weight' => 25,
     ),
   );
 
@@ -6341,7 +6401,7 @@ function ecolex_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 26,
+      'weight' => 27,
     ),
   );
 
@@ -6408,7 +6468,7 @@ function ecolex_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 33,
+      'weight' => 34,
     ),
   );
 
@@ -6460,7 +6520,7 @@ function ecolex_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 31,
+      'weight' => 32,
     ),
   );
 
@@ -6524,7 +6584,7 @@ function ecolex_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 27,
+      'weight' => 28,
     ),
   );
 
@@ -6593,7 +6653,7 @@ function ecolex_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 25,
+      'weight' => 26,
     ),
   );
 

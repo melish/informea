@@ -58,6 +58,13 @@ class EcolexLiteratureMigration extends Migration {
     $this->addFieldMapping('field_region', 'litRegion_en');
     $this->addFieldMapping('field_region:source_type')->defaultValue('tid');
 
+    $this->addFieldMapping('field_ecolex_keywords', 'docKeyword_en');
+    $this->addFieldMapping('field_ecolex_keywords:source_type')->defaultValue('tid');
+
+    $this->addFieldMapping('field_informea_tags', 'leoKeywords');
+    $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_informea_tags:create_term')->defaultValue(FALSE);
+
     // Entity Reference
     $this->addFieldMapping('field_country', 'litCountry_en');
     $this->addFieldMapping('field_related_literature', 'litRelatedMonograph');
@@ -79,8 +86,7 @@ class EcolexLiteratureMigration extends Migration {
       'field_isis_number',
       'field_author_institution',
       'field_organizations',
-      'field_informea_tags', 'field_informea_tags:source_type',
-      'field_informea_tags:create_term', 'field_informea_tags:ignore_case',
+      'field_informea_tags:ignore_case',
 
       'field_url:title', 'field_url:attributes', 'field_url:language',
       'field_sorting_date:rrule', 'field_sorting_date:to',
@@ -163,6 +169,8 @@ class EcolexLiteratureMigration extends Migration {
     $row->ecolex_url = 'http://www.ecolex.org/literature/details/' . $row->litId;
 
     // Taxonomies
+    // Map ECOLEX keywords to LEO
+    $row->leoKeywords = ThesaurusMapping::mapEcolexTermToLEOMultiple($row->docKeyword_en);
     $row->litDataSource = 'ECOLEX';
     $this->prepare_term_reference_field($row, 'litDataSource', 'data_source');
     $this->prepare_term_reference_field_multilingual($row, 'litTerritorialSubdivision', 'territorial_subdivision');
@@ -170,6 +178,7 @@ class EcolexLiteratureMigration extends Migration {
     $this->prepare_term_reference_field_multilingual($row, 'litSubject',    'ecolex_subjects');
     $this->prepare_term_reference_field_multilingual($row, 'litScope',      'geographical_scope');
     $this->prepare_term_reference_field_multilingual($row, 'litRegion',     'geographical_region');
+    $this->prepare_term_reference_field_multilingual($row, 'docKeyword', 'thesaurus_ecolex');
 
     //Entity Reference
     if ($row->litCountry_en) {
@@ -246,7 +255,7 @@ class EcolexLiteratureMigration extends Migration {
           $tids[] = reset($term)->tid;
         }
         else {
-          $tids[] = elis_migration_create_taxonomy_term($term_name, $vocabulary, array());
+          $tids[] = ecolex_migration_create_taxonomy_term($term_name, $vocabulary, array());
         }
       }
       $row->{$field_name} = $tids;
@@ -257,14 +266,14 @@ class EcolexLiteratureMigration extends Migration {
         $row->{$field_name} = reset($term)->tid;
       }
       else {
-        $row->{$field_name} = elis_migration_create_taxonomy_term($term_name, $vocabulary, array());
+        $row->{$field_name} = ecolex_migration_create_taxonomy_term($term_name, $vocabulary, array());
       }
     }
   }
 
   /**
    * Map the term names with the existing terms tids.
-   * If the vocabulary doesn't contain a term with that name, it will be created.
+   * If the vocabulary doesn't contain a term with that name, it will be ignored.
    *
    * @param $row
    *  Current migration row.
@@ -284,16 +293,6 @@ class EcolexLiteratureMigration extends Migration {
         if ($term = taxonomy_get_term_by_name($term_name, $vocabulary)) {
           $tids[] = reset($term)->tid;
         }
-        else {
-          $translations = array();
-          if (!empty($row->{$field_name_base . '_fr'}[$delta])) {
-            $translations['fr'] = $row->{$field_name_base . '_fr'}[$delta];
-          }
-          if (!empty($row->{$field_name_base . '_es'}[$delta])) {
-            $translations['es'] = $row->{$field_name_base . '_es'}[$delta];
-          }
-          $tids[] = elis_migration_create_taxonomy_term($term_name, $vocabulary, $translations);
-        }
       }
       $row->{$field_name_base . '_en'} = $tids;
     } else {
@@ -301,16 +300,6 @@ class EcolexLiteratureMigration extends Migration {
       $term_name = $row->{$field_name_base . '_en'};
       if ($term = taxonomy_get_term_by_name($term_name, $vocabulary)) {
         $row->{$field_name_base . '_en'} = reset($term)->tid;
-      }
-      else {
-        $translations = array();
-        if (!empty($row->{$field_name_base . '_fr'})) {
-          $translations['fr'] = $row->{$field_name_base . '_fr'};
-        }
-        if (!empty($row->{$field_name_base . '_es'})) {
-          $translations['es'] = $row->{$field_name_base . '_es'};
-        }
-        $row->{$field_name_base . '_en'} = elis_migration_create_taxonomy_term($term_name, $vocabulary, $translations);
       }
     }
   }
@@ -385,8 +374,9 @@ class EcolexLiteratureMigrateSource extends MigrateSource {
       'litTreatyReference' => 'Literature Treaty Reference',
       'litRelatedWebSite' => 'Literature RelatedWeb Site',
       'litVolumeNo' => 'Literature Volume No',
-
+      'docKeyword_en' => 'ECOLEX keywords',
       'updatedDate' => 'Updated Date',
+      'leoKeywords' => 'LEO tags computed from VocBench mappings to LEO',
     );
   }
 
@@ -395,7 +385,7 @@ class EcolexLiteratureMigrateSource extends MigrateSource {
    * Return the number of available source records.
    */
   public function computeCount() {
-    if ($str = elis_consumer_http_request($this->url_pattern . '&count=yes')) {
+    if ($str = ecolex_migration_http_request($this->url_pattern . '&count=yes')) {
       if ($json = json_decode($str)) {
         $this->totalCount = $json->count;
       }
@@ -447,7 +437,7 @@ class EcolexLiteratureMigrateSource extends MigrateSource {
         $str = file_get_contents($detail_filename);
       }
       if (!$str) {
-        $str = elis_consumer_http_request($this->url_pattern . '&rows=' . $this->pagination . '&start=' . $start, array('Accept' => 'application/json'));
+        $str = ecolex_migration_http_request($this->url_pattern . '&rows=' . $this->pagination . '&start=' . $start, array('Accept' => 'application/json'));
         if ($this->log_detail && $str) {
           if (!file_exists($detail_filename)) {
             file_put_contents($detail_filename, $str);
@@ -514,7 +504,7 @@ class EcolexLiteratureMigrateSource extends MigrateSource {
           $str = file_get_contents($detail_filename);
         }
         else {
-          $str = elis_consumer_http_request($item->url, array('Accept' => 'application/json') );
+          $str = ecolex_migration_http_request($item->url, array('Accept' => 'application/json') );
         }
         if ($this->log_detail && $str) {
           if (!file_exists($detail_filename)) {

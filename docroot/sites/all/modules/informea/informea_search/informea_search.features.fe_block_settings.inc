@@ -98,6 +98,34 @@ search-publications/*',
     'visibility' => 0,
   );
 
+  $export['facetapi-7R00LhqRFhlzPLK775MhkBao9G1ddsJq'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => '7R00LhqRFhlzPLK775MhkBao9G1ddsJq',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'facetapi',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'informea_theme' => array(
+        'region' => 'sidebar_first',
+        'status' => 1,
+        'theme' => 'informea_theme',
+        'weight' => -32,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => 'Document type',
+    'visibility' => 0,
+  );
+
   $export['facetapi-ABol1qBh79jsfGqF27usDpaBznEzCn7M'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -114,7 +142,7 @@ search-court-decisions/*',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -39,
+        'weight' => -40,
       ),
       'seven' => array(
         'region' => '',
@@ -145,7 +173,7 @@ search-bilateral-treaties/*',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -45,
+        'weight' => -47,
       ),
       'seven' => array(
         'region' => '',
@@ -174,7 +202,7 @@ search-legislation/*',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -37,
+        'weight' => -38,
       ),
       'seven' => array(
         'region' => '',
@@ -196,7 +224,8 @@ search-legislation/*',
     'module' => 'facetapi',
     'node_types' => array(),
     'pages' => 'search-publications
-search-publications/*',
+search-publications/*
+documents',
     'roles' => array(),
     'themes' => array(
       'informea_theme' => array(
@@ -234,7 +263,7 @@ search-bilateral-treaties/*',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -44,
+        'weight' => -45,
       ),
       'seven' => array(
         'region' => '',
@@ -265,7 +294,7 @@ search-bilateral-treaties/*',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -42,
+        'weight' => -43,
       ),
       'seven' => array(
         'region' => '',
@@ -294,7 +323,7 @@ search-legislation/*',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -38,
+        'weight' => -39,
       ),
       'seven' => array(
         'region' => '',
@@ -345,14 +374,15 @@ search-publications/*',
     'module' => 'facetapi',
     'node_types' => array(),
     'pages' => 'search-publications
-search-publications/*',
+search-publications/*
+documents',
     'roles' => array(),
     'themes' => array(
       'informea_theme' => array(
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -25,
+        'weight' => -34,
       ),
       'seven' => array(
         'region' => '',
@@ -409,7 +439,7 @@ search-legislation/*',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -36,
+        'weight' => -37,
       ),
       'seven' => array(
         'region' => '',
@@ -438,7 +468,7 @@ search-court-decisions/*',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -40,
+        'weight' => -41,
       ),
       'seven' => array(
         'region' => '',
@@ -467,7 +497,7 @@ search-court-decisions/*',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -41,
+        'weight' => -42,
       ),
       'seven' => array(
         'region' => '',
@@ -538,6 +568,34 @@ search-publications/*',
     'visibility' => 1,
   );
 
+  $export['facetapi-ngjcSTHvKkM3YrCBeABMwT0nTaX6fC4t'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'ngjcSTHvKkM3YrCBeABMwT0nTaX6fC4t',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'facetapi',
+    'node_types' => array(),
+    'pages' => 'documents',
+    'roles' => array(),
+    'themes' => array(
+      'informea_theme' => array(
+        'region' => 'sidebar_first',
+        'status' => 1,
+        'theme' => 'informea_theme',
+        'weight' => -25,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => 'InforMEA tags',
+    'visibility' => 1,
+  );
+
   $export['facetapi-p9FlWiab4gZsEGaV8liVtKqUrzwmczuq'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -585,7 +643,7 @@ search-bilateral-treaties/*',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'informea_theme',
-        'weight' => -43,
+        'weight' => -44,
       ),
       'seven' => array(
         'region' => '',
