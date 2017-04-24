@@ -1083,6 +1083,7 @@ button.toggle {
   margin-right: 12px;
   padding: 6px;
   border: 1px solid #c6cedb;
+  display: inline;
 }
 
 
@@ -1248,11 +1249,29 @@ button.toggle {
 .brand-unece .image,
 .brand-hover.brand-unece:hover .image,
 .brand-hover.brand-unece:focus .image {
-  background-position: -1610px 0;
+  background-position: -1630px 0;
 }
 
 .brand-hover.brand-unece .image {
-  background-position: -1610px -60px;
+  background-position: -1630px -60px;
+}
+
+.brand-ecolex {
+  min-width: 80px;
+}
+
+.brand-ecolex .image {
+  width: 58px;
+}
+
+.brand-ecolex .image,
+.brand-hover.brand-ecolex:hover .image,
+.brand-hover.brand-ecolex:focus .image {
+  background-position: -1780px 0;
+}
+
+.brand-hover.brand-ecolex .image {
+  background-position: -1780px -60px;
 }
 
 .brand-cites .image,
@@ -1274,7 +1293,12 @@ button.toggle {
 .brand-hover.brand-ramsar .image {
   background-position: -820px -60px;
 }
-
+.brand-montreal .image,
+.brand-minamataunep .image,
+.brand-vienna .image,
+.brand-unep .image {
+  width: 77px;
+}
 .brand-unep .image,
 .brand-minamataunep .image,
 .brand-vienna .image,
@@ -1300,73 +1324,76 @@ button.toggle {
 .brand-cms .image,
 .brand-hover.brand-cms:hover .image,
 .brand-hover.brand-cms:focus .image {
-  background-position: -940px 0;
+  background-position: -960px 0;
 }
 
 .brand-hover.brand-cms .image {
-  background-position: -940px -60px;
+  background-position: -960px -60px;
 }
 
 .brand-unesco .image,
 .brand-hover.brand-unesco:hover .image,
 .brand-hover.brand-unesco:focus .image {
-  background-position: -1060px 0;
+  background-position: -1080px 0;
 }
 
 .brand-hover.brand-unesco .image {
-  background-position: -1060px -60px;
+  background-position: -1080px -60px;
 }
 
 .brand-fao .image,
 .brand-hover.brand-fao:hover .image,
 .brand-hover.brand-fao:focus .image {
-  background-position: -1120px 0;
+  background-position: -1140px 0;
   width: 158px;
 }
 
 .brand-unece .image,
 .brand-hover.brand-unece:hover .image,
 .brand-hover.brand-unece:focus .image {
-  background-position: -1610px 0;
+  background-position: -1630px 0;
   width: 150px;
 }
 
 .brand-hover.brand-fao .image {
-  background-position: -1120px -60px;
+  background-position: -1140px -60px;
 }
 
 .brand-rotterdam .image,
 .brand-hover.brand-rotterdam:hover .image,
 .brand-hover.brand-rotterdam:focus .image {
-  background-position: -1310px 0;
+  background-position: -1330px 0;
 }
 
 .brand-hover.brand-rotterdam .image {
-  background-position: -1310px -60px;
+  background-position: -1330px -60px;
 }
 
 .brand-unfccc .image,
 .brand-kyoto .image,
+.brand-paris .image,
 .brand-hover.brand-unfccc:hover .image,
 .brand-hover.brand-kyoto:hover .image,
 .brand-hover.brand-unfccc:focus .image,
+.brand-hover.brand-paris:focus .image,
 .brand-hover.brand-kyoto:focus .image {
-  background-position: -1370px 0;
+  background-position: -1390px 0;
 }
 
 .brand-hover.brand-unfccc .image,
+.brand-hover.brand-paris .image,
 .brand-hover.brand-kyoto .image {
-  background-position: -1370px -60px;
+  background-position: -1390px -60px;
 }
 
 .brand-whc .image,
 .brand-hover.brand-whc:hover .image,
 .brand-hover.brand-whc:focus .image {
-  background-position: -1550px 0;
+  background-position: -1570px 0;
 }
 
 .brand-hover.brand-whc .image {
-  background-position: -1550px -60px;
+  background-position: -1570px -60px;
 }
 
 .brand-eu .image {
@@ -1535,9 +1562,6 @@ body.node-type-treaty div.field { margin-bottom: 3px; }
 body.node-type-treaty div.field-name-body { margin-bottom: 10px; }
 body.node-type-treaty div.field-label { min-width: 150px; }
 
-div.accordion .panel { border: 0; box-shadow: none; -webkit-box-shadow: none; }
-div.accordion .panel-heading { background-color: transparent; padding-left: 15px; padding-right: 15px; }
-
 body.node-type-treaty div.panel-heading a.permalink,
 a.administrative { display: none;  }
 
@@ -1584,18 +1608,36 @@ body.page-node-303 h2.block-title { font-size: 18px; font-weight: bold;}
 .media {
   margin-top: -1px;
 }
+/* Accordion panels */
+.accordion .panel { border: 0; box-shadow: none; -webkit-box-shadow: none; margin: 0; border-bottom: 1px solid #ddd; border-radius: 0; }
 
-div.accordion .panel-heading h4 { margin-left: 25px; }
-div.accordion .panel-heading .meta { text-align: right; font-size: 12px; color: #999; font-weight: normal; }
-div.accordion .panel-heading ul { margin: 0; }
-div.accordion .panel-heading .glyphicon-plus-sign { color: #777; font-size: 14px; position: absolute; top: 12px; }
-div.accordion .panel-heading .glyphicon-plus-sign:before { content: "\e082"; }
-div.accordion .panel-heading.collapsed .glyphicon-plus-sign { color: #c6cedb; }
-div.accordion .panel-heading.collapsed .glyphicon-plus-sign:before { content: "\e081"; }
+.accordion .panel-heading { background-color: transparent; padding-left: 15px; padding-right: 15px; border: 1px solid transparent; cursor: pointer; margin: 0; border-radius: 0; position: relative; }
+.accordion .panel-heading h4 { margin-left: 0; display: inline; }
+.accordion .panel-heading .meta { text-align: right; font-size: 12px; color: #999; font-weight: normal; }
+.accordion .panel-heading ul { margin: 0; }
+.accordion .panel-heading .glyphicon-plus-sign { color: #777; font-size: 14px; display: inline; }
+.accordion .panel-heading .glyphicon-plus-sign:before { content: "\e082"; }
+.accordion .panel-heading.collapsed .glyphicon-plus-sign { color: #c6cedb; }
+.accordion .panel-heading.collapsed .glyphicon-plus-sign:before { content: "\e081"; }
+.accordion .panel-heading:hover { border: 1px solid #39c; background-color: #D2EEFC; }
+.accordion .panel-heading img { display: inline; border: 1px solid #ddd; border-radius: 4px; margin-right: .5em; background-color: #fff; width: 50px; padding: 6px;}
+.accordion .panel-heading img.flag-xs,
+.accordion .panel-heading img.flag-small,
+.accordion .panel-heading img.flag-medium {
+  max-height: none;
+}
+.accordion .panel-heading a.permalink { margin-left: .3em; font-size: .9em; color: #777; }
+.accordion .panel-heading img ~ a.permalink { line-height: 50px; }
 
-div.accordion .panel { margin: 0; border-bottom: 1px solid #ddd; border-radius: 0; }
-div.accordion .panel-heading { border: 1px solid transparent; cursor: pointer; margin: 0; border-radius: 0; position: relative; }
-div.accordion .panel-heading:hover { border: 1px solid #39c; background-color: #D2EEFC; }
+.accordion.panel-group { margin-bottom: 0;}
+.accordion.panel-group .panel-heading { padding-left: 15px; padding-right: 15px; }
+
+.accordion .panel-body { padding-left: 0; padding-right: 0; padding-bottom: 30px; }
+.accordion .panel-body > ol,
+.accordion .panel-body > ul { list-style-type: none; padding: 0; }
+
+.accordion .panel-collapse { padding-left: 4%; border-top: 1px solid #ddd;}
+.accordion .panel>.panel-heading+.panel-collapse>.panel-body { border: 0;}
 
 img.flag-xs { max-height: 16px; }
 img.flag-small { max-height: 32px; }
@@ -1632,7 +1674,31 @@ img.flag-medium { max-height: 48px; }
 }
 
 /* Terms page */
-div.accordion ol.paragraphs { list-style-type: none; margin-left: 10px; padding: 0; }
+.column-other-information ul,
+.column-other-information ol {
+  list-style-type: none; padding: 0;
+}
+.column-other-information h2 {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.42857143;
+  margin: 0;
+}
+.node .field-label-inline {
+  width: 100%;
+  margin-bottom: .3em;
+}
+.node .field-label-inline .field-label {
+  width: 20%;
+  word-break: break-word;
+}
+.node .field-label-inline .field-items {
+  max-width: 80%;
+}
+
+.pane-thesaurus-terms-listing { padding-left: 0; }
+.pane-foamtree-foamtree { padding-left: 0; padding-right: 0; }
+.pane-terms-introduction { margin-bottom: 20px; }
 
 /* Events page */
 .view-events .media-detail,
@@ -1757,18 +1823,137 @@ div.view-informea-search ul {
   margin: 0;
   padding: 0;
 }
-
-body.page-search h2 {
-  font-size: 16px;
-}
-
-body.page-search div.region-sidebar-first ul {
+/* Facet API */
+ul[class*="facetapi"] {
   list-style-type: none;
   margin: 0 0 0 5px;
   padding: 0;
 }
+ul[class*="facetapi"] a {
+  color: #444;
+}
 
-body.page-search input.facetapi-checkbox { margin-right: 5px; }
+.facetapi-limit-link {
+  border-bottom: 3px solid transparent;
+  color: #0099d5;
+  display: inline-block;
+  font-size: .9em;
+  margin-top: 1em;
+  text-decoration: none;
+}
+.facetapi-limit-link:hover { border-bottom: 3px solid; text-decoration: none; }
+
+.block-facetapi > .block-title,
+[class*="pane-facetapi-"] > .pane-title {
+  font-size: 16px;
+}
+
+input.facetapi-checkbox { margin-right: 5px; }
+
+.taxonomy-term-related-content-facets .panel-pane:first-child h2.pane-title {
+  margin-top: 0;
+}
+
+/*
+body[class*='page-search'] .block-facetapi a {
+  color: #444;
+}
+body[class*='page-search'] .block-facetapi ul {
+  list-style-type: none;
+  margin: 0 0 0 5px;
+  padding: 0;
+}
+body[class*='page-search'] .block-facetapi .facetapi-limit-link {
+  border-bottom: 3px solid transparent;
+  color: #0099d5;
+  display: inline-block;
+  font-size: .9em;
+  margin-top: 1em;
+  text-decoration: none;
+}
+body[class*='page-search'] .block-facetapi .facetapi-limit-link:hover { border-bottom: 3px solid; }
+body[class*='page-search'] .block-facetapi .block-title {
+  font-size: 16px;
+}
+*/
+
+body[class*='page-search'] input.facetapi-checkbox { margin-right: 5px; }
+
+
+.view-search-law-and-literature {
+  padding-top: 15px;
+}
+.view-search-law-and-literature ul {
+  list-style-type: none;
+  padding: 0;
+}
+.view-search-law-and-literature .views-row:not(:last-child) {
+  margin-bottom: 30px;
+}
+.view-search-law-and-literature .views-row > .views-field-title-field {
+  margin-bottom: .3em;
+}
+.view-search-law-and-literature .views-row > .views-field-title-field h3 {
+  font-size: 16px;
+  display: inline;
+  margin-top: 0;
+}
+.view-search-law-and-literature .flag {
+  max-width: 50px;
+  position: absolute;
+  border-radius: 4px;
+}
+.view-search-law-and-literature .flag ~ div {
+  margin-left: 60px;
+}
+.view-search-law-and-literature .meta {
+  color: #666;
+}
+.view-search-law-and-literature .meta .views-field {
+  display: inline-block;
+}
+.view-search-law-and-literature .meta .views-field + .views-field > .field-content:not(:empty):before {
+  content: ' \2022 ';
+  margin-right: .2em;
+}
+.view-search-law-and-literature .meta blockquote {
+  font-size: 90%;
+}
+.view-informea-search .panel-collapse > .panel-body strong,
+.view-search-law-and-literature .meta blockquote strong,
+.view-search-law-and-literature .meta .views-field-field-type-of-text > .field-content:not(:empty) {
+  padding: 1px 3px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  background: #eee;
+}
+.view-search-law-and-literature .meta blockquote strong,
+.view-informea-search .panel-collapse > .panel-body strong {
+  color: red;
+  padding: .1em;
+}
+.view-informea-search .panel-collapse > .panel-body .field > .field-label:after {
+  content: ": ";
+  margin-right: .3em;
+}
+.view-search-law-and-literature .meta .views-field-field-country .glyphicon {
+  margin-right: .2em;
+}
+.view-search-law-and-literature a[data-toggle="collapse"] .glyphicon-plus-sign,
+.view-search-law-and-literature a[data-toggle="collapse"].collapsed .glyphicon-plus-sign:hover,
+.accordion .panel-heading.collapsed .glyphicon-plus-sign:hover {
+  color: #777;
+}
+.view-search-law-and-literature a[data-toggle="collapse"] .glyphicon-plus-sign:before {
+  content: "\e082";
+}
+.view-search-law-and-literature a[data-toggle="collapse"].collapsed .glyphicon-plus-sign {
+  color: #c6cedb;
+}
+
+.view-search-law-and-literature a[data-toggle="collapse"].collapsed .glyphicon-plus-sign:before {
+  content: "\e081";
+}
 
 strong.excerpt {
   color: red;
@@ -1803,6 +1988,10 @@ strong.excerpt {
 
 .ui-menu .ui-menu-item a > img {
   max-width: 32px;
+  background-color: #fff;
+}
+.ui-menu .ui-menu-item a > img.leo-logo-search-image {
+  background-color: #ed9f0d;
 }
 
 .ui-menu .ui-menu-item a.ui-state-focus {
@@ -1898,6 +2087,9 @@ strong.excerpt {
   /*#block-locale-language {
     float: right;
   }*/
+}
+.view-treaty-listing-page .views-field-field-logo .img-responsive {
+  max-width: 64px;
 }
 
 .view-treaty-listing-page .views-field-field-logo,
@@ -2373,7 +2565,11 @@ iframe.pdfjs {
 }
 
 .node-type-decision .pane-informea-informea-share,
-.node-type-event-calendar .pane-informea-informea-share,
+.node-type-event-calendar .pane-informea-informea-share {
+  border: 1px solid #f7f7f7;
+  padding: 15px 30px;
+}
+
 .node-type-decision .decision-updates-form-container {
   border: 1px solid #f7f7f7;
   height: 180px;
@@ -2409,8 +2605,9 @@ iframe.pdfjs {
   padding-left: 0;
 }
 
-.informea-share-widget > li + li {
-  margin-top: 8px;
+.informea-share-widget li {
+  display: inline-block;
+  margin-right: 8px;
 }
 
 .informea-share-widget > li > a {
@@ -2807,4 +3004,202 @@ iframe.pdfjs {
 
 .node-type-treaty #meetings .panel-heading {
   cursor: default;
+}
+
+#terms-listing-tabs .tab-pane {
+  height: 446px;
+  width: 100%;
+}
+#terms-listing-tabs .tab-pane-content {
+  overflow-y: scroll;
+  width: 100%;
+  height: 413px;
+}
+#terms-listing-tabs .tab-pane-content.full-height {
+  height: 446px;
+}
+
+#terms-listing-tabs a {
+  color: #336696;
+}
+
+#terms-listing-tabs .tab-content {
+  padding: 10px;
+}
+
+#terms-listing-tabs .tab-pane-content > button {
+  margin-right: 10px;
+}
+
+#terms-listing-tabs #terms-atoz-filter {
+  min-width: 100%;
+  margin-bottom: 10px;
+}
+
+.tabs--secondary {
+  width: 100%;
+  font-size: 100%;
+}
+
+/* Search & Taxonomy term related content */
+.taxonomy-term-related-content h2,
+.view-informea-search-legislation h2,
+.view-informea-search-court-decision h2,
+.view-informea-search-publications h2,
+.view-informea-search-bilateral-treaties h2 {
+  font-size: 20px;
+}
+
+.taxonomy-term-related-content .views-row,
+.view-informea-search-bilateral-treaties .views-row,
+.view-informea-search-legislation .views-row,
+.view-informea-search-court-decision .views-row,
+.view-informea-search-publications .views-row,
+.view-informea-search-bilateral-treaties .views-row {
+  margin-bottom: 20px;
+}
+
+.taxonomy-term-related-content .views-row .img-thumbnail,
+.view-informea-search-bilateral-treaties .views-row .img-thumbnail,
+.view-informea-search-legislation .views-row .img-thumbnail,
+.view-informea-search-court-decision .views-row .img-thumbnail,
+.view-informea-search-publications .views-row .img-thumbnail,
+.view-informea-search-bilateral-treaties .views-row .img-thumbnail {
+  max-width: 50px;
+  position: absolute;
+}
+
+.taxonomy-term-related-content .views-row .views-field-title-field:not(:first-child),
+.taxonomy-term-related-content .views-row .views-field-title-field:not(:first-child) ~ .views-field,
+.view-informea-search-bilateral-treaties .views-row .views-field,
+.view-informea-search-legislation .views-row .views-field,
+.view-informea-search-publications .views-row .views-field,
+.view-informea-search-court-decision .views-row .views-field {
+  margin-left: 60px;
+  margin-bottom: 2px;
+}
+
+.taxonomy-term-related-content .views-row .views-field-field-logo,
+.view-informea-search-publications .views-row .views-field-field-logo {
+  margin-left: 0;
+}
+.taxonomy-term-related-content .views-field-field-logo img,
+.view-informea-search-publications .views-field-field-logo img {
+  padding: 4px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  display: inline-block;
+  height: auto;
+  max-width: 50px;
+  position: absolute;
+}
+
+.meta.search-index {
+  color: #666;
+}
+
+.taxonomy-term-related-content .meta .separator,
+.view-informea-search-legislation .meta .separator,
+.view-informea-search-court-decision .meta .separator,
+.view-informea-search-publications .meta .separator,
+.view-informea-search-bilateral-treaties .meta .separator {
+  visibility: visible!important;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+body.page-search div.region-sidebar-first ul,
+body.page-search-legislation div.region-sidebar-first ul,
+body.page-search-court-decisions div.region-sidebar-first ul,
+body.page-search-publications div.region-sidebar-first ul,
+body.page-search-bilateral-treaties div.region-sidebar-first ul {
+  list-style-type: none;
+  margin: 0 0 0 5px;
+  padding: 0;
+}
+
+body.page-search input.facetapi-checkbox,
+body.page-search-legislation div.region-sidebar-first input.facetapi-checkbox,
+body.page-search-court-decisions div.region-sidebar-first input.facetapi-checkbox,
+body.page-search-publications div.region-sidebar-first input.facetapi-checkbox,
+body.page-search-bilateral-treaties div.region-sidebar-first input.facetapi-checkbox {
+  margin-right: 5px;
+}
+
+body.page-search .view-empty,
+body.page-search-legislation .view-empty,
+body.page-search-court-decisions .view-empty,
+body.page-search-publications .view-empty,
+body.page-search-bilateral-treaties .view-empty {
+  padding: 50px;
+  text-align: center;
+}
+
+#block-informea-search-search-informea-switch-topic {
+  text-align: center;
+}
+#block-informea-search-search-informea-switch-topic ul li {
+  display: inline-block;
+  float: none;
+}
+
+.panels-flexible-region-thesaurus_term_page-full_width_content #tabs {
+  text-align: center;
+  margin-top: 20px;
+}
+.panels-flexible-region-thesaurus_term_page-full_width_content #tabs ul li {
+  display: inline-block;
+  float: none;
+}
+.node_view_panel .panels-flexible-row {
+  padding-top: 22px;
+  border-top: 1px solid #dddddd;
+  margin-bottom: 22px;
+}
+
+.node_view_panel .field-label-inline .field-label {
+  padding-right: 10px;
+  width: 190px;
+  text-align: right;
+}
+
+.node_view_panel .field-label-inline.field-name-body .field-items,
+.node_view_panel .field-name-field-available-in .field-items,
+.node_view_panel .field-label-inline.field-name-field-abstract .field-items {
+  padding-left: 190px;
+}
+
+.source-link {
+  color: inherit;
+  color: #0066cc;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+span.faolex-logo {
+  margin: 5px;
+  color: #0066cc;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+  height: 64px;
+  width: 56px;
+  background: url(../img/faolex-logo.png) no-repeat top left;
+}
+
+span.ecolex-logo {
+  margin: 5px;
+  color: #0066cc;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+  height: 80px;
+  width: 90px;
+  background: url(../img/ecolex-logo.png) no-repeat top left;
+  background-size: 80px 60px;
 }

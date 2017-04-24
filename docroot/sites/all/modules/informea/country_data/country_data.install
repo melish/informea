@@ -30,3 +30,10 @@ function country_data_update_7001 () {
     echo sprintf("Removing %d duplicate sites\n", count($delete));
     node_delete_multiple($delete);
 }
+
+/**
+ * Person gender field
+ */
+function country_data_update_7002 () {
+  features_revert(array('country_data' => ['field_base', 'field_instance']));
+}

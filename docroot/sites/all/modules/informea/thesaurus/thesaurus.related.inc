@@ -7,7 +7,15 @@ class InforMEAThesaurusTermRelatedContent {
     $this->term = $term;
   }
 
-  function getRelatedContent($term) {
+  /**
+   * @param $term
+   *  Taxonomy term
+   * @param string $type
+   *  "multilateral" or "bilateral"
+   * @return array
+   *  Array with treaties
+   */
+  function getRelatedContent($term, $type = 'multilateral') {
     $items = db_select('field_data_field_informea_tags', 'a')->fields('a')->condition('field_informea_tags_tid', $term->tid)->execute()->fetchAll();
     $treaties = array();
     foreach($items as $item) {
@@ -81,6 +89,17 @@ class InforMEAThesaurusTermRelatedContent {
           }
       }
     }
+
+    $bilateral_treaties = _informea_search_get_treaties_by_data_source(DATA_SOURCE_ECOLEX);
+    foreach ($treaties as $nid => $data) {
+      if ($type == 'multilateral' && in_array($nid, $bilateral_treaties)) {
+        unset($treaties[$nid]);
+      }
+      elseif ($type == 'bilateral' && !in_array($nid, $bilateral_treaties)) {
+        unset($treaties[$nid]);
+      }
+    }
+
     return array(
       'treaties' => $treaties,
     );

@@ -14,6 +14,11 @@ function ws_consumer_odata_drush_command() {
       ),
       'required-arguments' => 2,
     ),
+
+    'ws-consumer-remove-deleted' => array(
+      'description' => 'Remove deleted destinatoins',
+    ),
+
     'ws-consumer-purge-orphans' => array(
       'description' => 'Check remote service for orphaned records (removed) and remove them locally',
       'arguments' => array(
@@ -26,6 +31,25 @@ function ws_consumer_odata_drush_command() {
       ),
     )
   );
+}
+
+function drush_ws_consumer_odata_ws_consumer_remove_deleted() {
+  $migrations = ws_consumer_odata_match_migrations_by_name('/_Meetings$/');
+  $migrations = array_merge($migrations, ws_consumer_odata_match_migrations_by_name('/_Decisions$/'));
+  foreach($migrations as $migration) {
+    $table = 'migrate_map_' . strtolower($migration);
+    $query = db_select($table, 'm')->fields('m', ['destid1']);
+    $query->leftJoin('node', 'n','n.nid = m.destid1');
+    $query->condition('m.destid1',NULL, 'IS NOT');
+    $query->condition('n.nid',NULL);
+    $destids = $query->execute()->fetchCol();
+    if ($destids) {
+      db_delete($table)
+        ->condition('destid1', $destids, 'IN')
+        ->execute();
+      drush_log('Removed from ' . $table . ', ' . implode(', ', $destids), 'status');
+    }
+  }
 }
 
 function drush_ws_consumer_odata_ws_consumer_delete_nodes($content_type, $treaty_odata_identifier) {

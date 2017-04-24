@@ -20,6 +20,7 @@ function ws_consumer_odata_migrate_api() {
       'odata_whc' => array('title' => 'WHC/UNESCO OData importers'),
       'odata_montreal' => array('title' => 'OZONE OData importers'),
       'odata_ramsar' => array('title' => 'Ramsar OData importers'),
+      'odata_barcelona' => array('title' => 'Regional Seas conventions'),
     ),
     'migrations' => array(
       /* Contacts migrations */
@@ -30,6 +31,7 @@ function ws_consumer_odata_migrate_api() {
       'odata_cites_Contacts'      => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CITES, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
       'odata_ramsar_Contacts'      => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
       'odata_unfccc_Contacts'      => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_UNFCCC, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
+      'odata_barcelona_Contacts'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BARCELONA, ODataConsumerConfig::$ODATA_ENTITY_CONTACTS),
 
       /* Meetings migrations */
       'odata_cbd_Meetings'        => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CBD, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
@@ -44,6 +46,7 @@ function ws_consumer_odata_migrate_api() {
       'odata_montreal_Meetings'   => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_MONTREAL, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
       'odata_ramsar_Meetings'     => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
       'odata_unfccc_Meetings'     => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_UNFCCC, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
+      'odata_barcelona_Meetings'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BARCELONA, ODataConsumerConfig::$ODATA_ENTITY_MEETINGS),
 
       /* NationalPlans migrations */
       'odata_stockholm_NationalPlans' => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_STOCKHOLM, ODataConsumerConfig::$ODATA_ENTITY_ACTION_PLAN),
@@ -62,6 +65,7 @@ function ws_consumer_odata_migrate_api() {
       'odata_montreal_Decisions'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_MONTREAL, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_montreal_Meetings')),
       'odata_ramsar_Decisions'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_RAMSAR, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_ramsar_Meetings')),
       'odata_unfccc_Decisions'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_UNFCCC, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS, array('odata_unfccc_Meetings')),
+      'odata_barcelona_Decisions'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BARCELONA, ODataConsumerConfig::$ODATA_ENTITY_DECISIONS),
 
       /* CountryReports migrations */
       'odata_ascobans_CountryReports'  => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_NATIONAL_REPORT),
@@ -78,7 +82,9 @@ function ws_consumer_odata_migrate_api() {
 
       /* Documents migrations */
       'odata_cms_documents' => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_CMS, ODataConsumerConfig::$ODATA_ENTITY_DOCUMENT),
-
+      'odata_aewa_documents' => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_AEWA, ODataConsumerConfig::$ODATA_ENTITY_DOCUMENT),
+      'odata_ascobans_documents' => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_ASCOBANS, ODataConsumerConfig::$ODATA_ENTITY_DOCUMENT),
+      'odata_basel_documents' => ODataMigrationUtil::createMigrationConfig(ODataConsumerConfig::$ODATA_NAME_BASEL, ODataConsumerConfig::$ODATA_ENTITY_DOCUMENT),
     )
   );
 
@@ -163,11 +169,44 @@ abstract class InforMEAAbstractODataMigrateSource extends MigrateSource {
 
 class ODataMigrationUtil {
 
+  function fix_unicode_characters($orig_str) {
+    static $unicode = [];
+    $unicode_letters = ["\udbc0\udeab", "\udbc0\udeba", "\udbc0\udec8", "\udbc0\udea4", "\udbc0\udebb", "\udbc0\udeb0", "\udbc0\udeaf", "\udbc0\udc03", "\udbc0\udec1", "\udbc0\udebd", "\udbc0\udeaa", "\udbc0\udeb1", "\udbc0\udec3", "\udbc0\udea6", "\udbc0\uded4", "\udbc0\udec4", "\udbc0\udecd", "\udbc0\udeb8", "\udbc0\uded3", "\udbc0\udea5", "\udbc0\uded0", "\udbc0\udeb6", "\udbc0\udec9", "\udbc0\udea7", "\udbc0\udebf", "\udbc0\udec0"];
+    if (!$unicode) {
+      echo "Caching exclude characters: " . count($unicode_letters) . "\n";
+      foreach($unicode_letters as $uc) {
+        $unicode[] = json_decode('"' . $uc . '"');
+      }
+    }
+    $str = str_replace($unicode, [], $orig_str);
+    if (strlen($str) != strlen($orig_str)) {
+      $ret = array();
+      $len = mb_strlen($str, "UTF-8");
+      for ($i = 0; $i < $len; $i ++) {
+        $characters = mb_substr($str, $i, 1, "UTF-8");
+        if (strlen($characters) < 4) {
+          continue;
+        }
+        if (@$ret[$characters]) {
+          continue;
+        }
+        $unicode[] = $characters;
+        $ret[$characters] = $characters;
+        echo "Added exclude character = " . json_encode('"' . $characters . '"') . "\n";
+      }
+      if ($ret) {
+        $str = str_replace($unicode, [], $str);
+      }
+    }
+    return $str;
+  }
+
   public static function fixI18NString($str, $strip_tags = FALSE) {
     $v = $strip_tags ? strip_tags($str) : $str;
     $v = html_entity_decode($v);
     // Post-process leftovers
     $replace = array(
+      '&#xD;' => '',
       // Cyrillic
       '&#1024' => 'Ѐ', '&#1025' => 'Ё', '&#1026' => 'Ђ', '&#1027' => 'Ѓ', '&#1028' => 'Є', '&#1029' => 'Ѕ',
       '&#1030' => 'І', '&#1031' => 'Ї', '&#1032' => 'Ј', '&#1033' => 'Љ', '&#1034' => 'Њ', '&#1035' => 'Ћ',
@@ -226,23 +265,25 @@ class ODataMigrationUtil {
   /**
    * Prepare English title (node.title).
    *
-   * @param $values
+   * @param array $values
    *
    * @return string title
    */
   static function prepareTitle(&$values) {
     if(empty($values) || !is_array($values)) {
-      return NULL;
+      return null;
     }
     foreach($values as &$v) {
-      $v->value = self::fixI18NString($v->value, TRUE);
+      $v->value = self::fixI18NString($v->value, true);
     }
     foreach ($values as $ob) {
       if ($ob->language == 'en') {
         return $ob->value;
       }
     }
-    return NULL;
+    // Just return the first value encountered (some items do not have an english title)
+    $item = array_shift($values);
+    return $item->value;
   }
 
   static function getSingleValuedMultilingualField($data) {
@@ -250,8 +291,9 @@ class ODataMigrationUtil {
     $values = array();
     if (!empty($data) && is_array($data)) {
       foreach ($data as $value) {
-        if (!empty($value->value)) {
-          $languages[] = $value->language;
+        $language = self::fixLanguage($value->language);
+        if (!empty($value->value) && !in_array($language, $languages)) {
+          $languages[] = $language;
           $values[] = $value->value;
         }
       }
@@ -314,14 +356,29 @@ class ODataMigrationUtil {
   }
 
   static function fixLanguage($language) {
-    // Sometimes chinese comes as 'zh' instead of 'zh-hans'
-    if (empty($language)) {
+    static $allowed = array('en', 'fr', 'es', 'ru', 'ar', 'zh-hans');
+    $language = strtolower($language);
+    switch ($language) {
+      case 'english':
+        return 'en';
+      case 'french':
+        return 'fr';
+      case 'spanish':
+        return 'es';
+      case 'russian':
+        return 'ru';
+      case 'arabic':
+        return 'ar';
+      case 'chinese':
+      case 'chinese, simplified':
+      case 'cn':
+      case 'zh':
+        return 'zh-hans';
+    }
+    if (!in_array($language, $allowed)) {
       return 'en';
     }
-    if ($language == 'zh') {
-      return 'zh-hans';
-    }
-    return $language;
+    return strtolower($language);
   }
 
   /**
@@ -385,10 +442,16 @@ class ODataMigrationUtil {
   }
 
   static function getOrCreateTaxonomyTermByName($name, $vid) {
+    if (empty($name) || empty($vid)) {
+      return null;
+    }
     /** @var SelectQuery $query */
     $query = db_select('taxonomy_term_data', 'a')->fields('a', array('tid'))->condition('vid', $vid)->condition('name', $name);
     if ($tid = $query->execute()->fetchField()) {
       return $tid;
+    }
+    elseif(strlen($name) > 255) {
+      ws_consumer_odata_log("The taxonomy term name is too long. The term will not be created: {$name}", MigrationBase::MESSAGE_WARNING);
     }
     else {
       // Create the term
@@ -401,8 +464,8 @@ class ODataMigrationUtil {
       if (!empty($term->tid)) {
         return $term->tid;
       }
-      return NULL;
     }
+    return null;
   }
 
   static function getTaxonomyTermByName($name, $vid) {

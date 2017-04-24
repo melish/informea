@@ -9,6 +9,34 @@
  */
 function informea_taxonomy_default_vocabularies() {
   return array(
+    'keywords' => array(
+      'name' => 'Keywords',
+      'machine_name' => 'keywords',
+      'description' => 'Arbitrary keywords attached to entity',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
+      'rdf_mapping' => array(
+        'rdftype' => array(
+          0 => 'skos:ConceptScheme',
+        ),
+        'name' => array(
+          'predicates' => array(
+            0 => 'dc:title',
+          ),
+        ),
+        'description' => array(
+          'predicates' => array(
+            0 => 'rdfs:comment',
+          ),
+        ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
+    ),
     'tags' => array(
       'name' => 'Tags',
       'machine_name' => 'tags',
@@ -32,6 +60,9 @@ function informea_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
     'thesaurus_agrovoc' => array(
@@ -58,6 +89,9 @@ function informea_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'thesaurus_ecolex' => array(
       'name' => 'Thesaurus - ECOLEX',
@@ -81,6 +115,24 @@ function informea_taxonomy_default_vocabularies() {
           'predicates' => array(
             0 => 'rdfs:comment',
           ),
+        ),
+      ),
+      'tes' => array(
+        'enable' => TRUE,
+        'plugin' => 'Drupal\\taxonomy_external_sync\\plugin\\source\\VocBenchRDFSource',
+        'plugin_config' => array(
+          'url' => 'http://informea.org/sites/default/files/export/ecolex.rdf',
+          'id_field' => 'uri',
+          'parent_field' => 'broader',
+          'delete_deprecated_terms' => 0,
+          'delete_missing_terms' => 0,
+        ),
+        'mappings' => array(
+          'description_field' => 'definition',
+          'field_taxonomy_term_uri' => 'uri',
+          'field_term_reference_url' => 'relatedMatch',
+          'field_term_synonyms' => 'altLabel',
+          'name_field' => 'prefLabel',
         ),
       ),
     ),
@@ -108,6 +160,9 @@ function informea_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'thesaurus_gemet' => array(
       'name' => 'Thesaurus - GEMET',
@@ -132,6 +187,9 @@ function informea_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
     'thesaurus_ieg' => array(
@@ -158,6 +216,9 @@ function informea_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'thesaurus_informea' => array(
       'name' => 'Thesaurus - InforMEA',
@@ -181,6 +242,34 @@ function informea_taxonomy_default_vocabularies() {
           'predicates' => array(
             0 => 'rdfs:comment',
           ),
+        ),
+      ),
+      'tes' => array(
+        'enable' => TRUE,
+        'plugin' => 'Drupal\\taxonomy_external_sync\\plugin\\source\\VocBenchRDFSource',
+        'plugin_config' => array(
+          'url' => 'http://informea.org/sites/default/files/export/informea.rdf',
+          'id_field' => 'uri',
+          'parent_field' => 'broader',
+          'delete_deprecated_terms' => 1,
+        ),
+        'mappings' => array(
+          'description_field' => 'definition',
+          'field_ecolex_tags' => '',
+          'field_sorting_order' => '',
+          'field_taxonomy_term_uri' => 'uri',
+          'field_term_geg_url' => '',
+          'field_term_popularity' => '',
+          'field_term_reference_url' => 'relatedMatch',
+          'field_term_related_uri' => '',
+          'field_term_substantive' => '',
+          'field_term_synonyms' => 'altLabel',
+          'field_term_tag' => '',
+          'field_thesaurus_map_agrovoc' => '',
+          'field_thesaurus_map_ecolex' => '',
+          'field_thesaurus_map_geg' => '',
+          'field_thesaurus_map_gemet' => '',
+          'name_field' => 'prefLabel',
         ),
       ),
     ),

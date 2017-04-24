@@ -507,7 +507,7 @@ function country_data_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'xmlsitemap_settings_node_contact_person';
   $strongarm->value = array(
-    'status' => '1',
+    'status' => '0',
     'priority' => '0.5',
   );
   $export['xmlsitemap_settings_node_contact_person'] = $strongarm;
@@ -527,7 +527,7 @@ function country_data_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'xmlsitemap_settings_node_member_party';
   $strongarm->value = array(
-    'status' => '1',
+    'status' => '0',
     'priority' => '0.5',
   );
   $export['xmlsitemap_settings_node_member_party'] = $strongarm;

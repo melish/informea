@@ -112,7 +112,11 @@ if (!empty($page['sidebar_first'])) {
       <?php if (!empty($action_links)): ?>
         <ul class="action-links"><?php print render($action_links); ?></ul>
       <?php endif; ?>
-      <?php print render($page['content']); ?>
+      <?php
+      $content = render($page['content']);
+      $content = str_replace('views-field-field-logo-1','views-field-field-logo', $content);
+      print $content;
+      ?>
     </section>
     <?php if (!empty($page['sidebar_first'])): ?>
       <aside id="sidebar-first" class="col-sm-3 pull-left" role="complementary">

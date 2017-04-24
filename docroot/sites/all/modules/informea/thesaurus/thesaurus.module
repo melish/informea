@@ -1,4 +1,14 @@
 <?php
+/**
+ * @file
+ * Code for the thesaurus feature.
+ */
+
+include_once 'thesaurus.features.inc';
+
+require_once 'includes/export.inc';
+require_once 'includes/vocbench.inc';
+require_once 'thesaurus.foamtree.inc';
 
 if(!function_exists('slugify')) {
   function slugify($phrase, $maxLength = 50) {
@@ -10,40 +20,8 @@ if(!function_exists('slugify')) {
   }
 }
 
-/**
- *  Implements hook_url_inbound_alter().
- */
-function thesaurus_url_inbound_alter(&$path, $original_path, $path_language) {
-  if((arg(0, $path) == 'terms' || arg(1, $path) == 'terms') && preg_match('/\/ecolex$/', $path)) {
-    global $language;
-    $prefix = $language->language . '/';
-    if (strpos($path, $prefix) === 0) {
-      $path = substr($path, strlen($prefix));
-    }
-    $q = db_select('url_alias', 'a');
-    $q->addField('a', 'source');
-    $q->where("CONCAT(a.alias, '/ecolex') LIKE :p", array(':p' => '%' . $path));
-    if ($source = $q->execute()->fetchField()) {
-      $path = $source;
-    }
-  }
-}
-
-function thesaurus_get_section($path) {
-  if((arg(0, $path) == 'terms' || arg(1, $path) == 'terms') && preg_match('/\/ecolex$/', $path)) {
-    return 'ecolex';
-  }
-  return FALSE;
-}
-
 function thesaurus_menu() {
   return array(
-    'terms' => array(
-      'title' => 'Glossary',
-      'page callback' => 'thesaurus_terms_page_view',
-      'access arguments' => array('access content'),
-      'type' => MENU_CALLBACK,
-    ),
     'export/thesaurus.rdf' => array(
       'title' => 'Export in RDF',
       'page callback' => 'thesaurus_export_rdf',
@@ -79,6 +57,141 @@ function thesaurus_libraries_info() {
       ),
     ),
   );
+}
+
+function thesaurus_block_info() {
+  $blocks = array();
+  $blocks['terms-listing'] = array(
+    'info' => t('Terms listing with 2 tabs.'),
+    'status' => 1,
+    'region' => '-1',
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => '',
+  );
+  $blocks['thesaurus-treaties'] = array(
+    'info' => t('Treaties tagged with current term'),
+    'status' => 1,
+    'region' => '-1',
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => '',
+  );
+  $blocks['thesaurus-bilateral-treaties'] = array(
+    'info' => t('Bilateral treaties tagged with current term'),
+    'status' => 1,
+    'region' => '-1',
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => '',
+  );
+  $blocks['thesaurus-disclaimer'] = array(
+    'info' => t('Thesaurus disclaimer'),
+    'cache' => DRUPAL_NO_CACHE,
+    'status' => 1,
+    'region' => 'content',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => '',
+  );
+  return $blocks;
+}
+
+function thesaurus_get_disclaimer_block() {
+  $block = [];
+  $node = null;
+  $faolex_node = false;
+  $ecolex_node = false;
+  if ($node = menu_get_object()) {
+    if ($node->type == 'legislation') {
+      $faolex_node = true;
+    }
+    if ($node->type == 'literature') {
+      $ecolex_node = true;
+    }
+    if ($node->type == 'treaty') {
+      $wrapper = entity_metadata_wrapper('node', $node);
+      if ($source = @$wrapper->field_data_source->value()[0]->tid) {
+        if ($source == DATA_SOURCE_ECOLEX) {
+          $ecolex_node = true;
+        }
+      }
+    }
+  }
+
+  if ($faolex_node || (arg(0) == 'search-legislation') || (arg(0)=='taxonomy' && arg(3) == 'legislation')) {
+    $block['subject'] = '<none>';
+    $block['content'] = '<div><p style="text-align:center"><span class="faolex-logo"></span>This content is exclusively provided by <a href="http://www.fao.org/" target="_blank">FAO</a> / <a href="http://www.fao.org/faolex/en" target="_blank">FAOLEX</a> / <a href="http://www.ecolex.org" target="_blank">ECOLEX</a><span class="ecolex-logo"></span></p></div>';
+  }
+  else if ($ecolex_node || arg(0) == 'search-bilateral-treaties' || (arg(0)=='taxonomy' && arg(3) == 'bilateral-treaties')) {
+    $block['subject'] = '<none>';
+    $block['content'] = '<div><p style="text-align:center"><span class="ecolex-logo"></span>This content is exclusively provided <a href="http://www.ecolex.org" target="_blank">ECOLEX</a>.</p></div>';
+  }
+  return $block;
+}
+/**
+ * Implements hook_block_view().
+ */
+function thesaurus_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'thesaurus-disclaimer':
+      $block = thesaurus_get_disclaimer_block();
+      break;
+    case 'terms-listing':
+      $block['subject'] = 'Terms listing with 2 tabs';
+      $block['content'] = thesaurus_terms_listing_block_content();
+      break;
+    case 'thesaurus-treaties':
+    case 'thesaurus-bilateral-treaties':
+      $block['subject'] = t('Treaties tagged with current term');
+      module_load_include('inc', 'thesaurus', 'thesaurus.related');
+      if (arg(0) == 'taxonomy' && arg(1) == 'term' && is_numeric(arg(2))) {
+        $term = taxonomy_term_load(arg(2));
+      }
+      if (!empty($term)) {
+        $type = ($delta == 'thesaurus-treaties') ? 'multilateral' : 'bilateral';
+        $dp = new InforMEAThesaurusTermRelatedContent($term);
+        $related_data = $dp->getRelatedContent($term, $type);
+        $related_content = InforMEAThesaurusTermRelatedContent::view($term, $related_data['treaties']);
+        $block['content'] = array(
+          '#markup' => drupal_render($related_content),
+          '#weight' => 10,
+        );
+      }
+      break;
+  }
+  return $block;
+}
+
+function thesaurus_terms_listing_block_content() {
+  drupal_add_js(drupal_get_path('module', 'thesaurus') . '/js/jquery.fastLiveFilter.js');
+  drupal_add_js(drupal_get_path('module', 'thesaurus') . '/js/terms.js');
+  $terms_atoz = array();
+  $terms_hierarchical = array();
+  $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
+
+  // AtoZ
+  $q = new EntityFieldQuery();
+  $tids = $q->entityCondition('entity_type', 'taxonomy_term')
+    ->propertyCondition('vid', $voc->vid)
+    ->fieldOrderBy('name_field', 'value', 'ASC')
+    ->execute();
+  if (!empty($tids['taxonomy_term'])) {
+    $terms_atoz = taxonomy_term_load_multiple(array_keys($tids['taxonomy_term']));
+  }
+
+  // Hierarchical
+  $q = db_select('taxonomy_term_hierarchy', 'a')
+    ->fields('a', array('tid'));
+  $q->innerJoin('taxonomy_term_data', 'b', 'a.tid = b.tid');
+  $q->condition('b.vid', $voc->vid)
+    ->condition('a.parent', 0);
+  $tids = $q->execute()->fetchCol();
+
+  foreach($tids as $tid) {
+    $term = taxonomy_term_load($tid);
+    $children = taxonomy_get_tree($voc->vid, $tid);
+    $term->children = thesaurus_get_nested_tree($children, NULL, $tid);
+    $terms_hierarchical[$tid] = $term;
+  }
+  return theme('terms-listing', array('terms_atoz' => $terms_atoz, 'terms_hierarchical' => $terms_hierarchical));
 }
 
 function thesaurus_menu_export_rdf() {
@@ -121,7 +234,39 @@ function thesaurus_theme() {
       'variables' => array('substantives' => array()),
       'path' => drupal_get_path('module', 'thesaurus'),
     ),
+    'terms-listing' => array(
+      'template' => 'templates/terms-listing',
+      'variables' => array('terms_hierarchical' => array()),
+      'path' => drupal_get_path('module', 'thesaurus'),
+    ),
   );
+}
+
+function _thesaurus_get_related_content_count($term, $bundle) {
+  $select = db_select('field_data_field_informea_tags', 'a')->fields('a')->condition('field_informea_tags_tid', $term->tid);
+  switch ($bundle) {
+    case 'treaty':
+      // ToDo: find a better solution
+      $dp = new InforMEAThesaurusTermRelatedContent($term);
+      $related_data = $dp->getRelatedContent($term, 'multilateral');
+      return !empty($related_data['treaties']) ? count($related_data['treaties']) : 0;
+
+    case 'bilateral-treaties':
+      $bilateral_treaties = _informea_search_get_treaties_by_data_source(DATA_SOURCE_ECOLEX);
+      if (!empty($bilateral_treaties)) {
+        return $select->condition('entity_id', $bilateral_treaties, 'IN')->execute()->rowCount();
+      }
+      return false;
+
+    case 'court_decisions':
+    case 'legislation':
+    case 'literature':
+    case 'document':
+      return $select->condition('bundle', $bundle)->execute()->rowCount();
+
+    default:
+      return false;
+  }
 }
 
 /**
@@ -129,30 +274,44 @@ function thesaurus_theme() {
  */
 function thesaurus_menu_local_tasks_alter(&$data, $router_item, $root_path) {
   if (arg(0) == 'taxonomy') {
-    $section = thesaurus_get_section(request_path());
     $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
     /** @var stdClass $term */
     if ($term = taxonomy_term_load(arg(2))) {
       if ($term->vid == $voc->vid) {
+        $section = Thesaurus::getSection();
+
+        $treatiesCount = _thesaurus_get_related_content_count($term, 'treaty');
+        $bilateralTreatiesCount = _thesaurus_get_related_content_count($term, 'bilateral-treaties');
+        $courtDecisionsCount = _thesaurus_get_related_content_count($term, 'court_decisions');
+        $legislationsCount = _thesaurus_get_related_content_count($term, 'legislation');
+        $publicationsCount = _thesaurus_get_related_content_count($term, 'literature') + _thesaurus_get_related_content_count($term, 'document');
+
         $menu_items = array(
-          array(
-            'data' => l(t('Treaties'), thesaurus_url_term($term)),
+          'default' => array(
+            'data' => l(t('Multilateral treaties') . ' <span class="badge">' . $treatiesCount . '</span>', 'taxonomy/term/' . $term->tid, ['html' => true]),
             'role' => 'presentation',
           ),
-          array(
-            'data' => l(t('ECOLEX'), thesaurus_url_term($term) . '/ecolex'),
+          'bilateral-treaties' => array(
+            'data' => l(t('Bilateral treaties') . ' <span class="badge">' . $bilateralTreatiesCount . '</span>', 'taxonomy/term/' . $term->tid . '/bilateral-treaties', ['html' => true]),
             'role' => 'presentation',
-          )
+          ),
+          'legislation' => array(
+            'data' => l(t('Legislation') . ' <span class="badge">' . $legislationsCount . '</span>', 'taxonomy/term/' . $term->tid . '/legislation', ['html' => true]),
+            'role' => 'presentation',
+          ),
+          'court-decisions' => array(
+            'data' => l(t('Court decisions') . ' <span class="badge">' . $courtDecisionsCount . '</span>', 'taxonomy/term/' . $term->tid . '/court-decisions', ['html' => true]),
+            'role' => 'presentation',
+          ),
+          'publications' => array(
+            'data' => l(t('Publications') . ' <span class="badge">' . $publicationsCount . '</span>', 'taxonomy/term/' . $term->tid . '/publications', ['html' => true]),
+            'role' => 'presentation',
+          ),
         );
-        if($section == 'ecolex') {
-          $menu_items[1]['class'] = array('active');
-        }
-        else {
-          $menu_items[0]['class'] = array('active');
-        }
+        $menu_items[$section]['class'] = array('active');
         $contextual_menu = array(
           '#theme' => 'item_list',
-          '#attributes' => array('class' => array('nav', 'nav-pills', 'nav-stacked')),
+          '#attributes' => array('class' => array('nav', 'nav-tabs')),
           '#items' => $menu_items
         );
         $data['tabs'][1] = array(
@@ -160,84 +319,6 @@ function thesaurus_menu_local_tasks_alter(&$data, $router_item, $root_path) {
           'output' => $contextual_menu,
         );
       }
-    }
-  }
-}
-
-/**
- * Implements hook_taxonomy_term_view().
- */
-function thesaurus_taxonomy_term_view($term, $view_mode, $langcode) {
-  if ($view_mode == 'full') {
-    $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
-    if ($term->vid == $voc->vid) {
-      $section = thesaurus_get_section(request_path());
-      if ($section == 'ecolex') {
-        foreach (element_children($term->content) as $element_id) {
-          hide($term->content[$element_id]);
-          // Load the Ecolex content.
-        }
-
-        $legislation_url = ecolex_remote_url('taxonomy', $term->tid, 'legislation');
-        $courdecisions_url = ecolex_remote_url('taxonomy', $term->tid, 'courtdecisions');
-        $literature_url = ecolex_remote_url('taxonomy', $term->tid, 'literature');
-
-        $elements = array(
-          'legislation' => array(
-            'header' => t('Legislation'),
-            'body' => sprintf('<iframe class="ecolex" src="%s"></iframe>', $legislation_url) .
-                      l(t('View more results on ECOLEX website'), $legislation_url, array('attributes' => array('class' => array('ecolex-link'), 'target' => '_blank')))
-          ),
-          'courtdecisions' => array(
-            'header' => t('Court decisions'),
-            'body' => sprintf('<iframe class="ecolex" src="%s"></iframe>', $courdecisions_url) .
-                      l(t('View more results on ECOLEX website'), $courdecisions_url, array('attributes' => array('class' => array('ecolex-link'), 'target' => '_blank')))
-          ),
-          'literature' => array(
-            'header' => t('Literature'),
-            'body' => sprintf('<iframe class="ecolex" src="%s"></iframe>', $literature_url) .
-                      l(t('View more results on ECOLEX website'), $literature_url, array('attributes' => array('class' => array('ecolex-link'), 'target' => '_blank')))
-          )
-        );
-        $term->content['ecolex'] = array(
-          'heading' => array(
-            '#id' => 'disclaimer',
-            '#type' => 'item',
-            '#markup' => t('The content of this this area is exclusively provided by <a href="http://www.ecolex.org">ECOLEX</a> - the gateway to environmental law, which is a collaboration of IUCN, FAO and UNEP.')
-          ),
-          'tabs' => array(
-            '#id' => 'ecolex-tabs',
-            '#theme' => 'informea_bootstrap_tabs',
-            '#elements' => $elements,
-        ));
-        drupal_add_js(drupal_get_path('module', 'thesaurus') . '/js/concept.js');
-      }
-      else {
-        module_load_include('inc', 'thesaurus', 'thesaurus.related');
-        $dp = new InforMEAThesaurusTermRelatedContent($term);
-        $related_data = $dp->getRelatedContent($term);
-        $related_content = InforMEAThesaurusTermRelatedContent::view($term, $related_data['treaties']);
-        $term->content['tagged_content'] = array(
-          '#markup' => drupal_render($related_content),
-          '#weight' => 10,
-        );
-      }
-    }
-  }
-}
-
-/**
- * Implements hook_page_alter().
- */
-function thesaurus_page_alter(&$page) {
-  if ($ob = menu_get_object('taxonomy_term', 2)) {
-    $hierarchy = thesaurus_term_hierarchy($ob);
-    $hierarchy['term'] = $ob;
-    if (!empty($hierarchy['children']) && !empty($hierarchy['parents'])) {
-      $page['sidebar_first']['hierarchy'] = array(
-        '#type' => 'item',
-        '#markup' => theme('term-hierarchy', $hierarchy),
-      );
     }
   }
 }
@@ -266,29 +347,6 @@ function thesaurus_get_library_version() {
 
 function thesaurus_menu_export_xls() {
   thesaurus_export_xls();
-}
-
-function thesaurus_terms_page_view() {
-  // Adds the terms JavaScript file to the page.
-  drupal_add_js(drupal_get_path('module', 'treaty') . '/js/terms.js');
-  $substantives = array();
-  $voc = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
-  $q = new EntityFieldQuery();
-  $tids = $q->entityCondition('entity_type', 'taxonomy_term')
-    ->propertyCondition('vid', $voc->vid)
-    ->execute();
-  $q = db_select('taxonomy_term_hierarchy', 'a')
-    ->fields('a', array('tid'))
-    ->condition('tid', array_keys($tids['taxonomy_term']), 'IN')
-    ->condition('parent', 0);
-  $tids = $q->execute()->fetchCol();
-  foreach($tids as $tid) {
-    $term = taxonomy_term_load($tid);
-    $children = taxonomy_get_tree($voc->vid, $tid);
-    $term->children = thesaurus_get_nested_tree($children, NULL, $tid);
-    $substantives[$tid] = $term;
-  }
-  return theme('terms', array('substantives' => $substantives));
 }
 
 function thesaurus_get_nested_tree($terms = array(), $max_depth = NULL, $parent = 0, $parents_index = array(), $depth = 0) {
@@ -539,6 +597,9 @@ function thesaurus_informea_sync_vocbench($force_update = FALSE) {
   }
 }
 
+/**
+ * @deprecated
+ */
 function thesaurus_load_from_rdf_cached($rdf) {
   $thesaurus = NULL;
   $data = array();
@@ -558,6 +619,9 @@ function thesaurus_load_from_rdf_cached($rdf) {
   return $thesaurus;
 }
 
+/**
+ * @deprecated
+ */
 function thesaurus_load_from_rdf($rdf) {
   if (!easyrdf()) {
     drupal_set_message(t('EasyRdf library is not available.'), 'error');
@@ -739,5 +803,62 @@ function thesaurus_taxonomy_term_insert($term) {
     }
     $path['alias'] = $path_alias;
     path_save($path);
+  }
+}
+
+function thesaurus_cronapi() {
+  return array(
+    'thesaurus_vocbench_export_ontologies' => array(
+      'description' => 'Export VocBench ontologies into RDF & Excel',
+      'rule' => '*/30 * * * *',
+    ),
+    'thesaurus_update_path_aliases' => array(
+      'description' => 'Update path aliases for Thesaurus terms',
+      'rule' => '*/30 * * * *',
+    ),
+  );
+}
+
+function thesaurus_vocbench_export_ontologies() {
+  if ($vb_conn = Database::getConnection('default', 'vocbench')) {
+    $q = $vb_conn->select('ontology_info', 'a')->fields('a', array());
+    $rows = $q->execute()->fetchAll();
+    $st = new SemanticTurkey('http://localhost:1979');
+    foreach ($rows as $row) {
+      $ontology = $row->ontology_name;
+      $rdf_filename = SemanticTurkey::slugify($ontology) . '.rdf';
+      $rdf_destination = variable_get('thesaurus_rdf_export_dir') . '/' . $rdf_filename;
+      if ($st->exportRDF($ontology, $rdf_destination)) {
+        // Also generate the Excel file
+        $xls_filename = SemanticTurkey::slugify($ontology) . '.xls';
+        $xls_destination = variable_get('thesaurus_rdf_export_dir') . '/' . $xls_filename;
+        $rdf_url = 'http://www.informea.org/sites/default/files/export/' . $rdf_filename;
+        thesaurus_export_to_xls($rdf_url, $xls_destination);
+      }
+      else {
+        watchdog('thesaurus', 'Failed to export ontology ' . $ontology, [], WATCHDOG_ERROR);
+      }
+    }
+    $vb_conn->destroy();
+  }
+}
+
+function thesaurus_update_path_aliases() {
+  Thesaurus::updatePathAliases();
+}
+
+/**
+ * Implements hook_panels_pane_content_alter().
+ */
+function thesaurus_panels_pane_content_alter(&$content, $pane, $args, $contexts) {
+  $uids = [
+    '27524512-75b9-453c-b279-6a96a3a97c21',
+    'ac1d8da1-b969-4f4a-9534-e855043e0c74',
+    'eccecd17-7675-4501-bb54-dac15e2c7e04',
+    '6bd77781-58a1-47ac-99c9-108b15d6e244',
+  ];
+  if (!empty($pane->uuid) && in_array($pane->uuid, $uids) && empty($content->content['#items'][0]['value'])) {
+    // Hide field synonyms on taxonomy term pages if it is empty
+    $content = false;
   }
 }

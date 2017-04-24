@@ -211,8 +211,6 @@ function ws_consumer_service_process_xml($url) {
       $rows = $xml->xpath('//Row');
     }
     if (!empty($rows)) {
-      $statuses = array();
-      $statuses_raw = array();
       foreach($rows as $xml_row) {
         $warnings = '';
         $row = $xml_row->children();
@@ -266,12 +264,6 @@ function ws_consumer_service_process_xml($url) {
           }
         }
         $status = NULL;
-        $status = strtolower($row[2]);
-        if (empty($statuses_raw[$status])) {
-          $statuses_raw[$status] = 0;
-        }
-        $statuses_raw[$status] += 1;
-
         if (!empty($row[3])) {
         } else if(preg_match('/\ a$/', $row[2])) { // a
           $status = 'accession';
@@ -284,10 +276,6 @@ function ws_consumer_service_process_xml($url) {
         } else {
           $status = 'signatory';
         }
-        if (empty($statuses[$status])) {
-          $statuses[$status] = 0;
-        }
-        $statuses[$status] += 1;
         $country_ob = ws_consumer_un_database_get_country($country);
         $ob = new stdClass();
         $ob->country = $country;

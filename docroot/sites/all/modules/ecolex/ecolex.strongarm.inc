@@ -327,6 +327,12 @@ function ecolex_strongarm() {
         'redirect' => array(
           'weight' => '30',
         ),
+        'metatags' => array(
+          'weight' => '35',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '31',
+        ),
       ),
       'display' => array(),
     ),
@@ -512,6 +518,188 @@ function ecolex_strongarm() {
   $strongarm->name = 'node_submitted_literature';
   $strongarm->value = 0;
   $export['node_submitted_literature'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_court_decisions_ar_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_court_decisions_ar_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_court_decisions_en_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_court_decisions_en_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_court_decisions_es_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_court_decisions_es_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_court_decisions_fr_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_court_decisions_fr_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_court_decisions_ru_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_court_decisions_ru_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_court_decisions_und_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_court_decisions_und_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_court_decisions_zh-hans_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_court_decisions_zh-hans_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_legislation_ar_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_legislation_ar_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_legislation_en_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_legislation_en_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_legislation_es_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_legislation_es_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_legislation_fr_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_legislation_fr_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_legislation_ru_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_legislation_ru_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_legislation_und_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_legislation_und_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_legislation_zh-hans_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_legislation_zh-hans_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_literature_ar_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_literature_ar_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_literature_en_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_literature_en_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_literature_es_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_literature_es_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_literature_fr_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_literature_fr_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_literature_ru_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_literature_ru_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_literature_und_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_literature_und_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_literature_zh-hans_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_literature_zh-hans_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_ecolex_decision_status_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_ecolex_decision_status_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_geographical_scope_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_geographical_scope_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_legislation_sub_file_code_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_legislation_sub_file_code_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_literature_type_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_literature_type_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_territorial_subdivision_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_territorial_subdivision_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

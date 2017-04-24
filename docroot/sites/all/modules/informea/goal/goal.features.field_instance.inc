@@ -575,6 +575,20 @@ function goal_field_default_field_instances() {
       'active' => 1,
       'module' => 'image',
       'settings' => array(
+        'filefield_sources' => array(
+          'filefield_sources' => array(),
+          'source_attach' => array(
+            'absolute' => 0,
+            'attach_mode' => 'move',
+            'path' => 'file_attach',
+          ),
+          'source_imce' => array(
+            'imce_mode' => 0,
+          ),
+          'source_reference' => array(
+            'autocomplete' => 0,
+          ),
+        ),
         'preview_image_style' => 'thumbnail',
         'progress_indicator' => 'throbber',
       ),
@@ -655,6 +669,140 @@ function goal_field_default_field_instances() {
       ),
       'type' => 'taxonomy_autocomplete',
       'weight' => 9,
+    ),
+  );
+
+  // Exported field_instance: 'node-goal-field_lead_institution'.
+  $field_instances['node-goal-field_lead_institution'] = array(
+    'bundle' => 'goal',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 19,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_lead_institution',
+    'label' => 'Lead Institution',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'hide_id' => 0,
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'STARTS_WITH',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 24,
+    ),
+  );
+
+  // Exported field_instance: 'node-goal-field_link_emg_url'.
+  $field_instances['node-goal-field_link_emg_url'] = array(
+    'bundle' => 'goal',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Link to work of the Environmental Management Group',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_default',
+        'weight' => 17,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_link_emg_url',
+    'label' => 'EMG Link',
+    'required' => 0,
+    'settings' => array(
+      'absolute_url' => 1,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 0,
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => '_top',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
+      'rel_remove' => 'default',
+      'title' => 'value',
+      'title_label_use_field_label' => 0,
+      'title_maxlength' => 250,
+      'title_value' => 'Environmental Management Group work',
+      'url' => 0,
+      'user_register_form' => FALSE,
+      'validate_url' => 0,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 22,
     ),
   );
 
@@ -924,6 +1072,76 @@ function goal_field_default_field_instances() {
       'settings' => array(),
       'type' => 'number',
       'weight' => 21,
+    ),
+  );
+
+  // Exported field_instance: 'node-goal-field_unstats_links'.
+  $field_instances['node-goal-field_unstats_links'] = array(
+    'bundle' => 'goal',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Link to UN statistics',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_default',
+        'weight' => 18,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_unstats_links',
+    'label' => 'UN statistics Link',
+    'required' => 0,
+    'settings' => array(
+      'absolute_url' => 1,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 0,
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => 'default',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
+      'rel_remove' => 'default',
+      'title' => 'none',
+      'title_label_use_field_label' => 0,
+      'title_maxlength' => 250,
+      'title_value' => '',
+      'url' => 0,
+      'user_register_form' => FALSE,
+      'validate_url' => 0,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 23,
     ),
   );
 
@@ -1257,6 +1475,7 @@ function goal_field_default_field_instances() {
   t('Applies only to GEG goals');
   t('Binding');
   t('Description');
+  t('EMG Link');
   t('GEG Tags');
   t('GEG Theme');
   t('Geographical scope');
@@ -1266,7 +1485,10 @@ function goal_field_default_field_instances() {
   t('Identifier');
   t('Images');
   t('InforMEA tags');
+  t('Lead Institution');
+  t('Link to UN statistics');
   t('Link to source website where relevant information can be found');
+  t('Link to work of the Environmental Management Group');
   t('Name');
   t('Official order');
   t('Reference');
@@ -1279,6 +1501,7 @@ function goal_field_default_field_instances() {
   t('Title');
   t('Tools');
   t('Type of goal (Goal, Target or Indicator)');
+  t('UN statistics Link');
   t('URL');
   t('URL to the data source');
   t('Wether the text legally-binding or not');

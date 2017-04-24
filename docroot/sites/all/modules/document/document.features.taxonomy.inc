@@ -33,6 +33,9 @@ function document_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'document_identifier_type' => array(
       'name' => 'Document identifier type',
@@ -58,6 +61,9 @@ function document_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'document_type' => array(
       'name' => 'Document type',
@@ -82,6 +88,9 @@ function document_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
   );

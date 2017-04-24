@@ -11,3 +11,14 @@ function treaty_update_7001() {
   );
   module_enable($modules);
 }
+
+/**
+ * Revert the field instance for treat
+ */
+function treaty_update_7002() {
+  features_revert(array('treaty' => ['field_instance']));
+}
+
+function treaty_update_7003() {
+  features_revert(array('treaty' => ['field_instance']));
+}

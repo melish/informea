@@ -424,5 +424,155 @@ function meeting_strongarm() {
   $strongarm->value = 0;
   $export['node_submitted_event_calendar_imported'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_event_calendar_ar_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_event_calendar_ar_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_event_calendar_en_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_event_calendar_en_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_event_calendar_es_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_event_calendar_es_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_event_calendar_fr_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_event_calendar_fr_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_event_calendar_imported_ar_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_event_calendar_imported_ar_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_event_calendar_imported_en_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_event_calendar_imported_en_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_event_calendar_imported_es_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_event_calendar_imported_es_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_event_calendar_imported_fr_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_event_calendar_imported_fr_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_event_calendar_imported_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_event_calendar_imported_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_event_calendar_imported_ru_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_event_calendar_imported_ru_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_event_calendar_imported_und_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_event_calendar_imported_und_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_event_calendar_imported_zh-hans_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_event_calendar_imported_zh-hans_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_event_calendar_ru_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_event_calendar_ru_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_event_calendar_und_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_event_calendar_und_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_event_calendar_zh-hans_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_event_calendar_zh-hans_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_event_access_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_event_access_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_event_calendar_status_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_event_calendar_status_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_event_kind_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_event_kind_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_event_repetition_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_event_repetition_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_event_type_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_event_type_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xmlsitemap_settings_node_event_calendar';
+  $strongarm->value = array(
+    'status' => '1',
+    'priority' => '0.5',
+  );
+  $export['xmlsitemap_settings_node_event_calendar'] = $strongarm;
+
   return $export;
 }

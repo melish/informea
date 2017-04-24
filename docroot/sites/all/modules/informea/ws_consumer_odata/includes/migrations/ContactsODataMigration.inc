@@ -34,6 +34,9 @@ class ContactsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_treaty', 'treaties');
     $this->addFieldMapping('field_person_prefix', 'prefix');
     $this->addFieldMapping('field_person_first_name', 'firstName');
+    $this->addFieldMapping('field_person_gender', 'gender');
+
+
     $this->addFieldMapping('field_person_last_name', 'lastName');
     $this->addFieldMapping('field_person_position', 'position');
     $this->addFieldMapping('field_person_institution', 'institution');
@@ -77,6 +80,11 @@ class ContactsODataMigration extends AbstractODataMigration {
   function prepareRow($row) {
     parent::prepareRow($row);
 
+    if ($row->gender !== NULL) {
+      $v = intval($row->gender);
+      $row->gender = ($v == 1) ?: 0;
+    }
+
     /* Fill with remote-data */
     $consumer = $this->source->getConsumer();
     $row->languages = array('en');
@@ -85,34 +93,37 @@ class ContactsODataMigration extends AbstractODataMigration {
     if (!empty($values) && is_array($values)) {
       foreach ($values as $value) {
         if (!empty($value->value)) {
-          $treaties[] = $value->value;
-        }
-        // CBD OData v3 seem to return this format
-        else if (!empty($value) && is_string($value)) {
-          $treaties[] = $value;
+          if ($tob = $this->getTreatyByODataIdentifier($value->value)) {
+            $treaties[] = $tob->nid;
+          }
+          else {
+            ws_consumer_odata_log(__METHOD__ . "(): Invalid OData identifier({$value->value})", MigrationBase::MESSAGE_WARNING);
+          }
         }
       }
     }
-    $row->treaties = $treaties;
+    // CBD OData v3 seem to return this format
+    else if (!empty($value) && is_string($value)) {
+      if ($tob = $this->getTreatyByODataIdentifier($value)) {
+        $treaties[] = $tob->nid;
+      }
+      else {
+        ws_consumer_odata_log(__METHOD__ . "(): Invalid OData identifier({$value})", MigrationBase::MESSAGE_WARNING);
+      }
+    }
+
     $row->roles = $consumer->loadContactRolesProperty($row);
     $row->email = str_replace(' ', '', $row->email);
     $row->title_en = $this->getContactName($row);
-    $treaties = array();
-
     foreach ($row->roles as $odata_name => $roles) {
       if ($tob = $this->getTreatyByODataIdentifier($odata_name)) {
         $treaties[] = $tob->nid;
       }
+      else {
+        ws_consumer_odata_log(__METHOD__ . "(): Invalid OData identifier({$odata_name})", MigrationBase::MESSAGE_WARNING);
+      }
     }
 
-    foreach($row->treaties as &$identifier) {
-      if ($node = $this->getTreatyByODataIdentifier($identifier)) {
-        $treaties[] = $node->nid;
-      }
-      else {
-        ws_consumer_odata_log(__METHOD__ . "(): Invalid OData identifier({$identifier})", MigrationBase::MESSAGE_WARNING);
-      }
-    }
     $row->treaties = array_unique($treaties);
     return $this->validateRow($row);
   }
@@ -223,6 +234,7 @@ class InforMEAODataContactsMigrateSource extends InforMEAAbstractODataMigrateSou
       'department' => 'Department',
       'address' => 'Working address',
       'email' => 'Work e-mail address',
+      'gender' => 'Person gender (NULL unknown, 0=male, 1=female)',
       'phoneNumber' => 'Contact telephone number',
       'type' => 'Type of contact (i.e. licenced focal point)',
       'fax' => 'Work fax number',

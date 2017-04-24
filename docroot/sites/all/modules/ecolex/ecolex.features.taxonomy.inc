@@ -33,6 +33,9 @@ function ecolex_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'ecolex_legislation_status' => array(
       'name' => 'ECOLEX legislation status',
@@ -57,6 +60,9 @@ function ecolex_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
     'ecolex_region' => array(
@@ -83,6 +89,9 @@ function ecolex_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'ecolex_subjects' => array(
       'name' => 'ECOLEX Subjects',
@@ -107,6 +116,9 @@ function ecolex_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
     'geographical_scope' => array(
@@ -133,6 +145,9 @@ function ecolex_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'legislation_sub_file_code' => array(
       'name' => 'Legislation sub-file code',
@@ -157,6 +172,9 @@ function ecolex_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
     'literature_type' => array(
@@ -183,6 +201,9 @@ function ecolex_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'territorial_subdivision' => array(
       'name' => 'Territorial subdivision',
@@ -208,6 +229,9 @@ function ecolex_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'thesaurus_emerging_terms' => array(
       'name' => 'Thesaurus - Emerging terms',
@@ -232,6 +256,9 @@ function ecolex_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
   );

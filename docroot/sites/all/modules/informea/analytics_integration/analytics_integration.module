@@ -151,18 +151,17 @@ function analytics_integration_get_key_by_name($name) {
  * @param string $type
  * @return string
  */
-function analytics_integration_google_analytics_send_hit($key, $target_url, $js_identifier, $page_title, $type = 'pageview') {
-  global $user;
-  if ($user->uid > 0) {
-    return '';
-  }
+function analytics_integration_google_analytics_send_hit($key, $target_url, $js_identifier, $page_title, $type = 'pageview', $add_referrer = TRUE) {
   $url = parse_url($target_url);
   $host = $url['host'];
   $page_title = trim($page_title);
+  $referrer = '';
+  if ($add_referrer) {
+    $referrer = "\n    ga('$js_identifier.set', 'referrer', \"http://\" + document.domain);";
+  }
   $script = <<<EOT
   if (typeof ga == 'function') {
-    ga('create', '$key', 'auto', {'name': '$js_identifier'});
-    ga('$js_identifier.set', 'referrer', "http://" + document.domain);
+    ga('create', '$key', 'auto', {'name': '$js_identifier'});$referrer
     ga('$js_identifier.set', 'hostname', '$host');
     ga('$js_identifier.set', 'location', '$target_url');
     ga('$js_identifier.set', 'title', '$page_title');

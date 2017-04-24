@@ -30,7 +30,7 @@ $akoma = sprintf('/treaties/%s/export', $odata_identifier);
   <?php endif; ?>
   <div class="panel-group tagged-content" id="treaty-text" role="tablist" aria-multiselectable="true">
     <?php foreach ($articles as $article) : ?>
-      <?php print theme('treaty_text_article', array('article' => $article)); ?>
+      <?php print theme('treaty_text_article', array('article' => $article, 'odata_identifier' => $odata_identifier)); ?>
     <?php endforeach; ?>
   </div>
 <?php endif; ?>
@@ -53,3 +53,6 @@ if (user_access('create treaty_article content')):
 endif;
 ?>
 
+<ul class="text-right list-inline grey-777">
+    <li class="first"> <em><?php print t('Last updated'); ?></em>: <?php print gmdate("d M Y", $node->last_modification_date) ?> </li>
+</ul>

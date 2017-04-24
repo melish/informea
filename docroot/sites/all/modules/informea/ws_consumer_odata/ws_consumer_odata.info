@@ -17,6 +17,7 @@ files[] = includes/migrations/SitesODataMigration.inc
 files[] = includes/odata/ODataConsumer.inc
 files[] = includes/odata/ODataConsumerV1.inc
 files[] = includes/odata/ODataConsumerV3.inc
+files[] = includes/odata/ODataConsumerV4.inc
 files[] = includes/sources/ContactsODataMigrateItem.inc
 files[] = includes/sources/MeetingsODataMigrateItem.inc
 files[] = includes/sources/NationalPlansODataMigrateItem.inc

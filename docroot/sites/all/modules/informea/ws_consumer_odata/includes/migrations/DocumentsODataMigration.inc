@@ -47,7 +47,7 @@ class DocumentsODataMigration extends AbstractODataMigration {
 
     $this->addFieldMapping('field_last_update', 'updated');
     $this->addFieldMapping('field_last_update:timezone')->defaultValue('Europe/Zurich');
-    $this->addFieldMapping('changed', 'updated');
+    //    $this->addFieldMapping('changed', 'changed'); - causes entity translation errors
 
     $this->addFieldMapping('field_treaty', 'treaty');
 
@@ -60,9 +60,10 @@ class DocumentsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_informea_tags', 'keywords');
     $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
 
-//    $this->addFieldMapping('field_document_identifiers', 'identifier');
+//    $this->addFieldMapping('field_document_identifiers', 'identifiers');
 
     $this->addFieldMapping('field_files', 'files');
+    $this->addFieldMapping('field_files:description', 'files');
     $this->addFieldMapping('field_files:language', 'files_language');
     $this->addFieldMapping('field_files:destination_file', 'filename');
     $this->addFieldMapping('field_files:file_replace')->defaultValue(MigrateFile::FILE_EXISTS_REUSE);
@@ -117,6 +118,11 @@ class DocumentsODataMigration extends AbstractODataMigration {
     $titles = $consumer->loadNavigationProperty($row, 'titles');
     $row->title_en = ODataMigrationUtil::prepareTitle($titles);
     list($titles, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($titles);
+    foreach($languages as $key => $language) {
+      if ($language == 'ru') {
+        $titles[$key] = ODataMigrationUtil::fix_unicode_characters($titles[$key]);
+      }
+    }
     $row->titles = $titles;
     $row->titles_language = $languages;
     $all_languages = array_merge($all_languages, $languages);
@@ -137,7 +143,7 @@ class DocumentsODataMigration extends AbstractODataMigration {
     $odata_values = $consumer->loadNavigationProperty($row, 'keywords');
     $keywords = array();
     foreach($odata_values as $v) {
-      if ($tid = ODataMigrationUtil::getOrCreateTaxonomyTermByName($v->literalForm, $vdk->vid)) {
+      if ($tid = ODataMigrationUtil::getTaxonomyTermByName($v->literalForm, $vdk->vid)) {
         $keywords[] = $tid;
       }
     }
@@ -148,7 +154,7 @@ class DocumentsODataMigration extends AbstractODataMigration {
     $odata_values = $consumer->loadNavigationProperty($row, 'authors');
     $authors = array();
     foreach($odata_values as $v) {
-      if ($tid = ODataMigrationUtil::getOrCreateTaxonomyTermByName($v->name, $vda->vid)) {
+      if ($tid = ODataMigrationUtil::getOrCreateTaxonomyTermByName($v->value, $vda->vid)) {
         $authors[] = $tid;
       }
     }
@@ -209,6 +215,9 @@ class DocumentsODataMigration extends AbstractODataMigration {
         $row->filename[] = $filename;
       }
     }
+
+    $this->truncateFields($row, ['title_en', 'titles']);
+
     return $this->validateRow($row);
   }
 
@@ -249,10 +258,10 @@ class InforMEAODataDocumentsMigrateSource extends InforMEAAbstractODataMigrateSo
       'descriptions_language' => 'Document description languages',
       'files' => 'Document files',
       'files_language' => 'Document files languages',
-      'identifier' => 'Document identifiers',
+      'identifiers' => 'Document identifiers',
       'keywords' => 'InforMEA thesaurus keywords',
       'referenceToEntities' => 'Reference to othe entities',
-      'tag' => 'Other specific tags',
+      'tags' => 'Other specific tags',
       'types' => 'Document type',
     );
   }

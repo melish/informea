@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class ContactsODataMigration migrate OData contacts
+ * Class MeetingsODataMigration migrate OData contacts
  */
 class MeetingsODataMigration extends AbstractODataMigration {
 
@@ -65,7 +65,7 @@ class MeetingsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_longitude', 'longitude');
     $this->addFieldMapping('field_last_update', 'updated');
     $this->addFieldMapping('field_last_update:timezone')->defaultValue('Europe/Zurich');
-    $this->addFieldMapping('changed', 'updated');
+    // $this->addFieldMapping('changed', 'updated');
 
     $this->addFieldMapping('comment')->defaultValue(FALSE);
     $this->addFieldMapping('uid')->defaultValue(0);
@@ -133,7 +133,9 @@ class MeetingsODataMigration extends AbstractODataMigration {
     if (!empty($row->end)) {
       $row->end = $this->fixDateValue($row->end);
     }
-    $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
+    if ($tob = $this->getTreatyByODataIdentifier($row->treaty)) {
+      $row->treaty = $tob->nid;
+    }
     return $this->validateRow($row);
   }
 

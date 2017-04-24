@@ -106,6 +106,28 @@ function country_node_view($node, $view_mode, $langcode) {
         );
         break;
 
+        case 'legislation':
+        $breadcrumbs[] = t('Legislation');
+        $view = country_get_view_country_related_content($node->nid, 'page_legislation');
+        $raw_data = country_get_legislation_statistics($node->nid);
+        $data = array();
+        foreach($raw_data as $t) {
+          $data[] = (object) array('the_title' => $t->name, 'the_value' => (int)$t->count);
+        }
+      //  $chart_config = edw_amcharts_default_config_chart_pie();
+      // $chart_config->theme = 'light';
+      //  $chart_config->dataProvider = $data;
+      //  edw_amcharts_add_chart('country_legislation_chart', 'pie', $chart_config, array(),array('width' => '460px', 'height' => '260px'));
+        $node->content['context'] = array(
+         // array(
+         //     '#type' => 'item', '#weight' => 10, '#prefix' => '<p></p><h4>Types of Legislation</h4>', '#suffix' => '', '#id' => 'country_legislation_chart',
+          //),
+          array(
+            '#type' => 'item', '#weight' => 100, '#markup' => $view->render(),
+            )
+        );
+        break;
+
       case 'court-decisions':
         $breadcrumbs[] = t('Court decisions');
         $view = country_get_view_country_related_content($node->nid, 'page_court_decisions');
@@ -114,15 +136,14 @@ function country_node_view($node, $view_mode, $langcode) {
         foreach($raw_data as $t) {
           $data[] = (object) array('the_category' => $t->name, 'the_value' =>(int) $t->count);
         }
-        $chart_config = edw_amcharts_default_config_chart_column();
-        $chart_config->rotate = TRUE;
-        $chart_config->dataProvider = $data;
-        edw_amcharts_add_chart('country_decisions_chart', 'column', $chart_config, array(), array('width' => '850px', 'height' => '300px'));
+        //$chart_config = edw_amcharts_default_config_chart_column();
+        //$chart_config->rotate = TRUE;
+        //$chart_config->dataProvider = $data;
+        //edw_amcharts_add_chart('country_decisions_chart', 'column', $chart_config, array(), array('width' => '850px', 'height' => '300px'));
         $node->content['context'] = array(
-          array(
-            '#type' => 'item', '#weight' => 1,
-            '#id' => 'country_decisions_chart',
-          ),
+          //array(
+          //  '#type' => 'item', '#weight' => 1, '#prefix' => '<p></p><h4>Types of Court Decisions</h4>', '#suffix' => '', '#id' => 'country_decisions_chart',
+          //),
           array(
             '#type' => 'item', '#weight' => 10, '#markup' => $view->render(),
           )
@@ -300,8 +321,8 @@ function country_page_alter(&$page) {
         if (isset( $node['context'] ) && is_array($node['context'])) {
           foreach ($node['context'] as $idx => $item) {
             if (isset( $item['#id'] ) && $item['#id'] == 'country_legislation_chart') {
-              $page['sidebar_second'][] = $item;
-              unset( $node['context'][0] );
+            //  $page['content'][] = $item;
+             // unset( $node['content'][0] );
             }
           }
         }
@@ -351,6 +372,10 @@ function country_country_contextual_menu_alter(&$contextual_menu, $node) {
       'national-reports' => array(
         'title' => t('National reports'),
         'count' => country_get_national_report_count($node->nid)
+      ),
+        'legislation' => array(
+        'title' => t('Legislation'),
+        'count' => country_get_legislation_count($node->nid)
       ),
       'court-decisions' => array(
         'title' => t('Court Decisions'),
@@ -642,5 +667,37 @@ function country_batch_update_region_finish($success, $results, $operations) {
   }
   else {
     drupal_set_message('An error occurred.', 'error');
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function country_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'views_exposed_form') {
+    if ($form['#id'] == 'views-exposed-form-country-related-content-page-court-decisions') {
+      $view = $form_state['view'];
+      $country = !empty($view->args[0]) ? $view->args[0] : NULL;
+      $allowed = ecolex_get_court_decisions_keywords_in_use($country);
+      $options = array('All' => '- ' . t('Any') . ' -');
+      foreach ($form['field_ecolex_keywords_tid']['#options'] as $k => $v) {
+        if (in_array($k, $allowed)) {
+          $options[$k] = $v;
+        }
+      }
+      $form['field_ecolex_keywords_tid']['#options'] = $options;
+    }
+    if ($form['#id'] == 'views-exposed-form-country-related-content-page-legislation') {
+      $view = $form_state['view'];
+      $country = !empty($view->args[0]) ? $view->args[0] : NULL;
+      $allowed = ecolex_get_legislations_keywords_in_use($country);
+      $options = array('All' => '- ' . t('Any') . ' -');
+      foreach ($form['field_ecolex_keywords_tid']['#options'] as $k => $v) {
+        if (in_array($k, $allowed)) {
+          $options[$k] = $v;
+        }
+      }
+      $form['field_ecolex_keywords_tid']['#options'] = $options;
+    }
   }
 }

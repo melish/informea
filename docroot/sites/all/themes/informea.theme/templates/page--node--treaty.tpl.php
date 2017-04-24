@@ -76,6 +76,7 @@
 <?php
 /** @var stdClass $node */
 /** @var array $variables */
+/** @var array $page */
 ?>
 <?php include 'header.tpl.php'; ?>
 <div class="page-header">

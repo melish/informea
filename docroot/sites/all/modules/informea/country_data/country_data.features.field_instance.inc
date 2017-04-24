@@ -758,6 +758,56 @@ function country_data_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-contact_person-field_person_gender'.
+  $field_instances['node-contact_person-field_person_gender'] = array(
+    'bundle' => 'contact_person',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'ajax' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 19,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'treaty_listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_person_gender',
+    'label' => 'Gender',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 41,
+    ),
+  );
+
   // Exported field_instance: 'node-contact_person-field_person_institution'.
   $field_instances['node-contact_person-field_person_institution'] = array(
     'bundle' => 'contact_person',
@@ -2330,6 +2380,7 @@ function country_data_field_default_field_instances() {
   t('Entry into force');
   t('Fax');
   t('First name');
+  t('Gender');
   t('InforMEA Tags');
   t('Institution');
   t('Last name');

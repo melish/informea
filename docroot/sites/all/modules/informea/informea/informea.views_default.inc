@@ -178,6 +178,17 @@ function informea_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'treaty' => 'treaty',
   );
+  /* Filter criterion: Content: Data source (field_data_source) */
+  $handler->display->display_options['filters']['field_data_source_tid']['id'] = 'field_data_source_tid';
+  $handler->display->display_options['filters']['field_data_source_tid']['table'] = 'field_data_field_data_source';
+  $handler->display->display_options['filters']['field_data_source_tid']['field'] = 'field_data_source_tid';
+  $handler->display->display_options['filters']['field_data_source_tid']['operator'] = 'not';
+  $handler->display->display_options['filters']['field_data_source_tid']['value'] = array(
+    2767 => '2767',
+    3689 => '3689',
+  );
+  $handler->display->display_options['filters']['field_data_source_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_data_source_tid']['vocabulary'] = 'data_source';
 
   /* Display: Services */
   $handler = $view->new_display('services', 'Services', 'treaties');
@@ -332,7 +343,7 @@ function informea_views_default_views() {
     'image_style' => 'logo',
     'image_link' => '',
   );
-  /* Field: Indexed Content: URL */
+  /* Field: Indexed Content: Piwik URL */
   $handler->display->display_options['fields']['field_url']['id'] = 'field_url';
   $handler->display->display_options['fields']['field_url']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_url']['field'] = 'field_url';
@@ -462,7 +473,7 @@ function informea_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_entity'] = 0;
-  /* Field: Indexed Content: URL */
+  /* Field: Indexed Content: Piwik URL */
   $handler->display->display_options['fields']['field_url']['id'] = 'field_url';
   $handler->display->display_options['fields']['field_url']['table'] = 'search_api_index_news_search_index';
   $handler->display->display_options['fields']['field_url']['field'] = 'field_url';
@@ -1101,6 +1112,7 @@ function informea_views_default_views() {
   $handler->display->display_options['filters']['field_treaty_target_id']['expose']['label'] = 'Treaty';
   $handler->display->display_options['filters']['field_treaty_target_id']['expose']['operator'] = 'field_treaty_target_id_op';
   $handler->display->display_options['filters']['field_treaty_target_id']['expose']['identifier'] = 'field_treaty_target_id';
+  $handler->display->display_options['filters']['field_treaty_target_id']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['field_treaty_target_id']['expose']['remember_roles'] = array(
     2 => 0,
     1 => 0,
@@ -1112,6 +1124,7 @@ function informea_views_default_views() {
     8 => 0,
     9 => 0,
     10 => 0,
+    11 => 0,
   );
 
   /* Display: Page */
