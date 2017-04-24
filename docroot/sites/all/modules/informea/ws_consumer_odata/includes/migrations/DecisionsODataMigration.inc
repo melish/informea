@@ -45,6 +45,7 @@ class DecisionsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_decision_type:create_term')->defaultValue(TRUE);
     $this->addFieldMapping('field_decision_type:ignore_case')->defaultValue(TRUE);
     $this->addFieldMapping('field_decision_number', 'number');
+    // from decision published or meeting calendar date if exists
     $this->addFieldMapping('field_sorting_date', 'published');
     $this->addFieldMapping('field_sorting_date:timezone')->defaultValue('Europe/Zurich');
     $this->addFieldMapping('field_meeting', 'meetingId');
@@ -188,7 +189,28 @@ class DecisionsODataMigration extends AbstractODataMigration {
     }
     $row->treaty = $this->getTreatyByODataIdentifier($row->treaty)->nid;
     $row->meetingId = $this->map_source_meeting($row->meetingId, $row->meetingTitle, $row->treaty);
+
+    if ($row->meetingId) {
+      $published = $this->meeting_get_start_date($row->meetingId);
+      if ($published) {
+        if ($published != $row->published) {
+          $decisions_date = date('Y-m-d H:i', $row->published);
+          $meeting_date = date('Y-m-d H:i', $published);
+          drush_log("Decision date = {$decisions_date}, Meeting date = {$meeting_date}, Treaty = {$row->treaty}, Meeting = {$row->meetingId}", 'status');
+          $row->published = $published;
+        }
+      }
+    }
     return $this->validateRow($row);
+  }
+
+  public function meeting_get_start_date($nid) {
+    $q = db_select('node', 'n')->fields('d', array('event_calendar_date_value'));
+    $q->leftJoin('field_data_event_calendar_date', 'd', 'n.nid = d.entity_id');
+    $q->condition('n.nid', $nid);
+    $field = $q->execute()->fetchField();
+    $date = new DateTime($field, new DateTimeZone('Europe/Zurich'));
+    return $date ->getTimestamp();
   }
 
   public function map_source_meeting($id_event, $meeting_title, $id_treaty) {
