@@ -42,7 +42,7 @@ function document_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['exclude'] = TRUE;
   $handler->display->display_options['fields']['title']['link_to_entity'] = 1;
-  /* Field: Indexed Content: Thumbnail */
+  /* Field: Indexed Content: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'search_api_index_informea_publications';
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
@@ -70,8 +70,11 @@ function document_views_default_views() {
   $handler->display->display_options['fields']['field_files']['id'] = 'field_files';
   $handler->display->display_options['fields']['field_files']['table'] = 'search_api_index_informea_publications';
   $handler->display->display_options['fields']['field_files']['field'] = 'field_files';
+  $handler->display->display_options['fields']['field_files']['label'] = '';
   $handler->display->display_options['fields']['field_files']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_files']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_files']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_files']['type'] = 'external_url';
   $handler->display->display_options['fields']['field_files']['delta_offset'] = '0';
   /* Field: Indexed Content: Document type */
   $handler->display->display_options['fields']['field_document_type']['id'] = 'field_document_type';
@@ -118,97 +121,6 @@ function document_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'document' => 'document',
   );
-  /* Filter criterion: Indexed Content: Country */
-  $handler->display->display_options['filters']['field_country']['id'] = 'field_country';
-  $handler->display->display_options['filters']['field_country']['table'] = 'search_api_index_informea_publications';
-  $handler->display->display_options['filters']['field_country']['field'] = 'field_country';
-  $handler->display->display_options['filters']['field_country']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_country']['expose']['operator_id'] = 'field_country_op';
-  $handler->display->display_options['filters']['field_country']['expose']['label'] = 'Country';
-  $handler->display->display_options['filters']['field_country']['expose']['operator'] = 'field_country_op';
-  $handler->display->display_options['filters']['field_country']['expose']['identifier'] = 'field_country';
-  $handler->display->display_options['filters']['field_country']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-    10 => 0,
-    11 => 0,
-  );
-  /* Filter criterion: Indexed Content: Document type */
-  $handler->display->display_options['filters']['field_document_type']['id'] = 'field_document_type';
-  $handler->display->display_options['filters']['field_document_type']['table'] = 'search_api_index_informea_publications';
-  $handler->display->display_options['filters']['field_document_type']['field'] = 'field_document_type';
-  $handler->display->display_options['filters']['field_document_type']['value'] = array();
-  $handler->display->display_options['filters']['field_document_type']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_document_type']['expose']['operator_id'] = 'field_document_type_op';
-  $handler->display->display_options['filters']['field_document_type']['expose']['label'] = 'Document type';
-  $handler->display->display_options['filters']['field_document_type']['expose']['operator'] = 'field_document_type_op';
-  $handler->display->display_options['filters']['field_document_type']['expose']['identifier'] = 'field_document_type';
-  $handler->display->display_options['filters']['field_document_type']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-    10 => 0,
-    11 => 0,
-  );
-  $handler->display->display_options['filters']['field_document_type']['type'] = 'select';
-  /* Filter criterion: Indexed Content: Treaty */
-  $handler->display->display_options['filters']['field_treaty']['id'] = 'field_treaty';
-  $handler->display->display_options['filters']['field_treaty']['table'] = 'search_api_index_informea_publications';
-  $handler->display->display_options['filters']['field_treaty']['field'] = 'field_treaty';
-  $handler->display->display_options['filters']['field_treaty']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_treaty']['expose']['operator_id'] = 'field_treaty_op';
-  $handler->display->display_options['filters']['field_treaty']['expose']['label'] = 'Instrument';
-  $handler->display->display_options['filters']['field_treaty']['expose']['operator'] = 'field_treaty_op';
-  $handler->display->display_options['filters']['field_treaty']['expose']['identifier'] = 'field_treaty';
-  $handler->display->display_options['filters']['field_treaty']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-    10 => 0,
-    11 => 0,
-  );
-  /* Filter criterion: Indexed Content: InforMEA tags */
-  $handler->display->display_options['filters']['field_informea_tags']['id'] = 'field_informea_tags';
-  $handler->display->display_options['filters']['field_informea_tags']['table'] = 'search_api_index_informea_publications';
-  $handler->display->display_options['filters']['field_informea_tags']['field'] = 'field_informea_tags';
-  $handler->display->display_options['filters']['field_informea_tags']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_informea_tags']['expose']['operator_id'] = 'field_informea_tags_op';
-  $handler->display->display_options['filters']['field_informea_tags']['expose']['label'] = 'InforMEA Tags';
-  $handler->display->display_options['filters']['field_informea_tags']['expose']['operator'] = 'field_informea_tags_op';
-  $handler->display->display_options['filters']['field_informea_tags']['expose']['identifier'] = 'field_informea_tags';
-  $handler->display->display_options['filters']['field_informea_tags']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-    10 => 0,
-    11 => 0,
-  );
-  $handler->display->display_options['filters']['field_informea_tags']['type'] = 'select';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -234,7 +146,6 @@ function document_views_default_views() {
     t('Node ID'),
     t('.'),
     t('Body'),
-    t('Attached files'),
     t('Document type'),
     t('Treaty'),
     t('Country'),
@@ -246,8 +157,6 @@ function document_views_default_views() {
 <dt>Country:&nbsp;&nbsp;</dt><dl>[field_country]</dl>
 </dl>
 [field_files]'),
-    t('Instrument'),
-    t('InforMEA Tags'),
     t('Page'),
   );
   $export['documents'] = $view;

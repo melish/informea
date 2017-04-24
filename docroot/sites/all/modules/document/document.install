@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * documents view and documents list file external url formatter
+ */
+function document_update_7001() {
+  features_revert(array('document' => ['views_view']));
+}
+
+/**
+ * removed document exposed filters. informea and informea_search fe_block_settings.
+ */
+function document_update_7002() {
+  features_revert(array('document' => ['views_view']));
+  features_revert(array('informea' => ['fe_block_settings']));
+  features_revert(array('informea_search' => ['fe_block_settings']));
+}

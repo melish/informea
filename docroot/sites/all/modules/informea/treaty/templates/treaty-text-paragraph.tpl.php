@@ -11,6 +11,7 @@ $tags = $pw->field_informea_tags->value();
 $treaty = $pw->field_treaty->value()[0];
 $treaty_wrapper = entity_metadata_wrapper('node', $treaty);
 $odata_identifier = $treaty_wrapper->field_odata_identifier->value();
+$treaty_path = treaty_get_url_base($treaty->nid, $odata_identifier) . '/text';
 static $i = 1;
 $indent = $pw->field_paragraph_indentation->value();
 $highlight = isset($_GET['paragraph']) ? $_GET['paragraph'] == $paragraph->nid : FALSE;
@@ -31,7 +32,7 @@ $highlight = isset($_GET['paragraph']) ? $_GET['paragraph'] == $paragraph->nid :
         'html' => TRUE, 'query' => $query
       ));
     endif;
-    print l('<span class="glyphicon glyphicon-link"></span>', 'treaties/' . $odata_identifier . '/text', array(
+    print l('<span class="glyphicon glyphicon-link"></span>', $treaty_path, array(
       'attributes' => array(
         'data-toggle' => 'tooltip', 'data-placement' => 'top',
         'title' => t('Permalink'),

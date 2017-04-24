@@ -63,6 +63,7 @@ class DocumentsODataMigration extends AbstractODataMigration {
 //    $this->addFieldMapping('field_document_identifiers', 'identifiers');
 
     $this->addFieldMapping('field_files', 'files');
+    $this->addFieldMapping('field_files:description', 'files');
     $this->addFieldMapping('field_files:language', 'files_language');
     $this->addFieldMapping('field_files:destination_file', 'filename');
     $this->addFieldMapping('field_files:file_replace')->defaultValue(MigrateFile::FILE_EXISTS_REUSE);
@@ -117,6 +118,11 @@ class DocumentsODataMigration extends AbstractODataMigration {
     $titles = $consumer->loadNavigationProperty($row, 'titles');
     $row->title_en = ODataMigrationUtil::prepareTitle($titles);
     list($titles, $languages) = ODataMigrationUtil::getSingleValuedMultilingualField($titles);
+    foreach($languages as $key => $language) {
+      if ($language == 'ru') {
+        $titles[$key] = ODataMigrationUtil::fix_unicode_characters($titles[$key]);
+      }
+    }
     $row->titles = $titles;
     $row->titles_language = $languages;
     $all_languages = array_merge($all_languages, $languages);
@@ -137,7 +143,7 @@ class DocumentsODataMigration extends AbstractODataMigration {
     $odata_values = $consumer->loadNavigationProperty($row, 'keywords');
     $keywords = array();
     foreach($odata_values as $v) {
-      if ($tid = ODataMigrationUtil::getOrCreateTaxonomyTermByName($v->termValueInEnglish, $vdk->vid)) {
+      if ($tid = ODataMigrationUtil::getTaxonomyTermByName($v->literalForm, $vdk->vid)) {
         $keywords[] = $tid;
       }
     }

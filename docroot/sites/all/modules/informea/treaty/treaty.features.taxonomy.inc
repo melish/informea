@@ -33,6 +33,9 @@ function treaty_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'field_of_application' => array(
       'name' => 'Field of application',
@@ -57,6 +60,9 @@ function treaty_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
     'geographical_region' => array(
@@ -83,6 +89,9 @@ function treaty_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'jurisdiction' => array(
       'name' => 'Court Jurisdiction',
@@ -107,6 +116,9 @@ function treaty_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
     'mea_topic' => array(
@@ -133,6 +145,9 @@ function treaty_taxonomy_default_vocabularies() {
           ),
         ),
       ),
+      'tes' => array(
+        'enable' => FALSE,
+      ),
     ),
     'type_of_text' => array(
       'name' => 'Type of document',
@@ -157,6 +172,9 @@ function treaty_taxonomy_default_vocabularies() {
             0 => 'rdfs:comment',
           ),
         ),
+      ),
+      'tes' => array(
+        'enable' => FALSE,
       ),
     ),
   );

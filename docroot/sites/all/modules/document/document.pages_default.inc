@@ -430,7 +430,7 @@ function document_default_page_manager_handlers() {
   $pane->access = array();
   $pane->configuration = array(
     'label' => 'inline',
-    'formatter' => 'file_default',
+    'formatter' => 'external_url',
     'delta_limit' => '0',
     'delta_offset' => '0',
     'delta_reversed' => 0,

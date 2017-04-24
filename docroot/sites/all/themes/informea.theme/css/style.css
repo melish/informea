@@ -1619,6 +1619,11 @@ body.page-node-303 h2.block-title { font-size: 18px; font-weight: bold;}
 .accordion .panel-heading .glyphicon-plus-sign:before { content: "\e082"; }
 .accordion .panel-heading .actions { float: right; }
 .accordion .panel-heading img { display: inline; border: 1px solid #ddd; border-radius: 4px; margin-right: .5em; background-color: #fff; width: 50px; padding: 6px;}
+.accordion .panel-heading img.flag-xs,
+.accordion .panel-heading img.flag-small,
+.accordion .panel-heading img.flag-medium {
+  max-height: none;
+}
 .accordion .panel-heading a.permalink { margin-left: .3em; font-size: .9em; color: #777; }
 .accordion .panel-heading img ~ a.permalink { line-height: 50px; }
 .accordion .panel-heading > .panel-title  * { display: inline; }
