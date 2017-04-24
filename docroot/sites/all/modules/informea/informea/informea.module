@@ -248,11 +248,11 @@ function informea_menu() {
     'type' => MENU_LOCAL_TASK
   );
 
-  $items['admin/reports/orphaned'] = array(
-    'title' => 'Orphaned entity references',
+  $items['admin/reports/broken-entity-references'] = array(
+    'title' => 'Broken entity references',
     'page callback' => 'informea_orphaned',
     'access arguments' => array('administer site configuration'),
-    'type' => MENU_LOCAL_TASK,
+    'type' => MENU_NORMAL_ITEM,
     'file' => 'informea.admin.inc'
   );
 
