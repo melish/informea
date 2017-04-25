@@ -1176,7 +1176,7 @@ function treaty_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_ecolex_tags',
-    'label' => 'ECOLEX Tags',
+    'label' => 'ECOLEX Subject(s)',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -5474,7 +5474,7 @@ function treaty_field_default_field_instances() {
   t('Depositary');
   t('Description');
   t('ECOLEX Keywords');
-  t('ECOLEX Tags');
+  t('ECOLEX Subject(s)');
   t('ECOLEX URL');
   t('Entry into force');
   t('FAOLEX URL');

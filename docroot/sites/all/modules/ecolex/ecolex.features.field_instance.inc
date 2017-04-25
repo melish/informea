@@ -985,7 +985,7 @@ function ecolex_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_ecolex_tags',
-    'label' => 'ECOLEX subject(s)',
+    'label' => 'ECOLEX Subject(s)',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1220,7 +1220,7 @@ function ecolex_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_informea_tags',
-    'label' => 'InforMEA keyword(s)',
+    'label' => 'InforMEA Tags',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -3400,7 +3400,7 @@ function ecolex_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_ecolex_tags',
-    'label' => 'ECOLEX Tags',
+    'label' => 'ECOLEX Subject(s)',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -7175,10 +7175,8 @@ function ecolex_field_default_field_instances() {
   t('Description');
   t('ECOLEX Keywords');
   t('ECOLEX Subject(s)');
-  t('ECOLEX Tags');
   t('ECOLEX URL');
   t('ECOLEX region');
-  t('ECOLEX subject(s)');
   t('Emerging terms');
   t('Entry into force notes');
   t('FAOLEX URL');
@@ -7187,7 +7185,7 @@ function ecolex_field_default_field_instances() {
   t('ISBN');
   t('ISIS Number');
   t('Implements');
-  t('InforMEA keyword(s)');
+  t('InforMEA Tags');
   t('InforMEA tags');
   t('Instance');
   t('Internet Reference');
