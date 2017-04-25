@@ -228,12 +228,18 @@ class ContactsODataMigration extends AbstractODataMigration {
     $klass = $this->config->getODataConsumerClass();
     /** @var ODataConsumer $consumer */
     $consumer = new $klass($this->config);
+    $deleted = 0;
     foreach ($rows as $source_id => $nid) {
       if (!$consumer->itemExists($this->config->odata_entity, $source_id)) {
         ws_consumer_odata_log("{$this->getMachineName()}: Deleting orphan record: $source_id ($nid)", MigrationBase::MESSAGE_INFORMATIONAL);
         node_delete($nid);
         $this->getMap()->delete(array($source_id));
+        $deleted++;
       }
+    }
+
+    if ($deleted > 0) {
+      ws_consumer_odata_log("{$this->getMachineName()}: Deleted {$deleted} orphan records", MigrationBase::MESSAGE_INFORMATIONAL);
     }
   }
 }
