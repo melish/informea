@@ -116,6 +116,9 @@ class ContactsODataMigration extends AbstractODataMigration {
 
     $row->roles = $consumer->loadContactRolesProperty($row);
     $row->email = str_replace(' ', '', $row->email);
+    if (strlen($row->email) > 255) {
+      $row->email = null;
+    }
     $row->title_en = $this->getContactName($row);
     foreach ($row->roles as $odata_name => $roles) {
       if ($tob = $this->getTreatyByODataIdentifier($odata_name)) {
@@ -141,10 +144,6 @@ class ContactsODataMigration extends AbstractODataMigration {
    */
   public function validateRow($row) {
     if (!$this->validateEnglishTitle($row)) {
-      return FALSE;
-    }
-    if (strlen($row->email) > 255) {
-      ws_consumer_odata_log('Skipping Contact Person with source id=' . $row->id .' because the email is invalid', MigrationBase::MESSAGE_ERROR);
       return FALSE;
     }
 
