@@ -5525,7 +5525,7 @@ function ecolex_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_ecolex_tags',
-    'label' => 'Subject(s)',
+    'label' => 'ECOLEX Subject(s)',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -7174,6 +7174,7 @@ function ecolex_field_default_field_instances() {
   t('Date of text');
   t('Description');
   t('ECOLEX Keywords');
+  t('ECOLEX Subject(s)');
   t('ECOLEX Tags');
   t('ECOLEX URL');
   t('ECOLEX region');
@@ -7226,7 +7227,6 @@ function ecolex_field_default_field_instances() {
   t('Status');
   t('Sub-file code');
   t('Subdivision');
-  t('Subject(s)');
   t('Summary');
   t('Territorial subdivision');
   t('Title');
