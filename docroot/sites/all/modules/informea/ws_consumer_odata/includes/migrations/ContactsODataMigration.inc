@@ -77,7 +77,7 @@ class ContactsODataMigration extends AbstractODataMigration {
    *
    * {@inheritdoc}
    */
-  function prepareRow($row) {
+  public function prepareRow($row) {
     parent::prepareRow($row);
 
     if ($row->gender !== NULL) {
@@ -137,7 +137,7 @@ class ContactsODataMigration extends AbstractODataMigration {
    * @return bool
    *   FALSE if row is invalid
    */
-  function validateRow($row) {
+  public function validateRow($row) {
     if (!$this->validateEnglishTitle($row)) {
       return FALSE;
     }
@@ -195,7 +195,7 @@ class ContactsODataMigration extends AbstractODataMigration {
     return $name;
   }
 
-  function complete($entity, stdClass $row) {
+  public function complete($entity, stdClass $row) {
     foreach ($row->roles as $odata_name => $roles) {
       $treaty = treaty_load_by_odata_name($odata_name);
       foreach ($roles as $delta => $role) {
@@ -210,6 +210,29 @@ class ContactsODataMigration extends AbstractODataMigration {
         $ob = entity_create('field_collection_item', $values);
         $ob->setHostEntity('node', $entity);
         $ob->save();
+      }
+    }
+  }
+
+  /**
+   * Delete destination when source data is removed
+   */
+  public function postImport() {
+    parent::postImport();
+    $rows = db_select('migrate_map_' . strtolower($this->getMachineName()), 'm')
+      ->fields('m', array('sourceid1', 'destid1'))
+      ->isNotNull('destid1')
+      ->execute()
+      ->fetchAllKeyed();
+
+    $klass = $this->config->getODataConsumerClass();
+    /** @var ODataConsumer $consumer */
+    $consumer = new $klass($this->config);
+    foreach ($rows as $source_id => $nid) {
+      if (!$consumer->itemExists($this->config->odata_entity, $source_id)) {
+        ws_consumer_odata_log("{$this->getMachineName()}: Deleting orphan record: $source_id ($nid)", MigrationBase::MESSAGE_INFORMATIONAL);
+        node_delete($nid);
+        $this->getMap()->delete(array($source_id));
       }
     }
   }
