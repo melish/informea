@@ -111,10 +111,11 @@ abstract class ODataConsumer {
     curl_setopt($ch,CURLOPT_MAXREDIRS, 3);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-    curl_setopt($ch, CURLOPT_NOBODY, FALSE);
+    curl_setopt($ch, CURLOPT_HEADER, TRUE);
     curl_exec($ch);
     $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    if ($code != 200 && $code != 301) {
+    if ($code == 404) {
+      // Item no longer exists
       return FALSE;
     }
     return TRUE;
