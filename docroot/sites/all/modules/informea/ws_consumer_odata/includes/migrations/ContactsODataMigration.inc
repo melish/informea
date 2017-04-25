@@ -5,6 +5,8 @@
  */
 class ContactsODataMigration extends AbstractODataMigration {
 
+  protected $migrated_ids = [];
+
   /**
    * {@inheritdoc}
    */
@@ -212,6 +214,7 @@ class ContactsODataMigration extends AbstractODataMigration {
         $ob->save();
       }
     }
+    $this->migrated_ids[] = $row->id;
   }
 
   /**
@@ -219,17 +222,22 @@ class ContactsODataMigration extends AbstractODataMigration {
    */
   public function postImport() {
     parent::postImport();
-    $rows = db_select('migrate_map_' . strtolower($this->getMachineName()), 'm')
+
+    $query = db_select('migrate_map_' . strtolower($this->getMachineName()), 'm')
       ->fields('m', array('sourceid1', 'destid1'))
-      ->isNotNull('destid1')
-      ->execute()
-      ->fetchAllKeyed();
+      ->isNotNull('destid1');
+    if (!empty($this->migrated_ids)) {
+      $query->condition('sourceid1', $this->migrated_ids, 'NOT IN');
+    }
+
+     $rows = $query->execute()->fetchAllKeyed();
 
     $klass = $this->config->getODataConsumerClass();
     /** @var ODataConsumer $consumer */
     $consumer = new $klass($this->config);
     $deleted = 0;
     foreach ($rows as $source_id => $nid) {
+      ws_consumer_odata_log("{$this->getMachineName()}: Checking source id: $source_id", MigrationBase::MESSAGE_INFORMATIONAL);
       if (!$consumer->itemExists($this->config->odata_entity, $source_id)) {
         ws_consumer_odata_log("{$this->getMachineName()}: Deleting orphan record: $source_id ($nid)", MigrationBase::MESSAGE_INFORMATIONAL);
         node_delete($nid);
