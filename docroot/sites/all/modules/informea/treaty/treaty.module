@@ -1536,7 +1536,6 @@ function treaty_get_url_base($nid, $odata_identifier) {
     } else {
       $path = 'treaties/' . $odata_identifier;
     }
-    krumo($path);
   }
   return $path;
 }
