@@ -323,7 +323,7 @@ function informea_search_form($form, $form_state) {
     'search_api_views_fulltext' => [
       '#theme_wrappers' => array('informea_search_form_wrapper'),
       '#type' => 'textfield',
-      '#default_value' => $search_query,
+      '#default_value' => html_entity_decode($search_query),
       '#size' => 25,
       '#maxlength' => 255,
       '#attributes' => array(
