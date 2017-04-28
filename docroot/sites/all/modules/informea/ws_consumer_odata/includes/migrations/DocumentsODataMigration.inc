@@ -57,7 +57,8 @@ class DocumentsODataMigration extends AbstractODataMigration {
     $this->addFieldMapping('field_document_authors', 'authors');
     $this->addFieldMapping('field_document_authors:source_type')->defaultValue('tid');
 
-    $this->addFieldMapping('field_informea_tags', 'keywords');
+    // field_informea_tags uses tags or keywords
+    $this->addFieldMapping('field_informea_tags', 'keywords');//prio: tags, keywords
     $this->addFieldMapping('field_informea_tags:source_type')->defaultValue('tid');
 
 //    $this->addFieldMapping('field_document_identifiers', 'identifiers');
@@ -105,6 +106,23 @@ class DocumentsODataMigration extends AbstractODataMigration {
     ));
   }
 
+  function get_odata_tags($row) {
+    $consumer = $this->source->getConsumer();
+    $tags = [];
+    $odata_values = $consumer->loadNavigationProperty($row, 'tags');
+    if ($odata_values) {
+      foreach($odata_values as $value) { // scope filter ???  scope:brs-programme or scope:brs-term
+        $tags[$value->value] = $value->value;
+      }
+    } else {
+      $odata_values = $consumer->loadNavigationProperty($row, 'keywords');
+      foreach($odata_values as $value) {
+        $tags[$value->literalForm] = $value->literalForm;
+      }
+    }
+    return $tags;
+  }
+
   /**
    * Add some Contacts specific preparations.
    *
@@ -139,12 +157,15 @@ class DocumentsODataMigration extends AbstractODataMigration {
     $row->types = $types;
 
     // keywords
+    $odata_values = $this->get_odata_tags($row);
     $vdk = taxonomy_vocabulary_machine_name_load('thesaurus_informea');
-    $odata_values = $consumer->loadNavigationProperty($row, 'keywords');
     $keywords = array();
-    foreach($odata_values as $v) {
-      if ($tid = ODataMigrationUtil::getTaxonomyTermByName($v->literalForm, $vdk->vid)) {
-        $keywords[] = $tid;
+
+    foreach($odata_values as $value) {
+      $terms = thesaurus_get_brs_map_terms($value);
+      if ($terms) {
+        $tids = array_keys($terms);
+        $keywords[] = $tids[0];
       }
     }
     $row->keywords = $keywords;
